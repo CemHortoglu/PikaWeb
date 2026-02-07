@@ -4,83 +4,38 @@
     ViewData["Title"] = "Ana Sayfa";
 }
 
-<section class="hero-section d-flex align-items-center">
-    <div class="container position-relative" style="z-index: 2;">
-        <div class="row align-items-center">
+<section class="hero">
+    <div class="container">
+        <div class="row align-items-center g-5">
             <div class="col-lg-6" data-aos="fade-right">
-                <span class="badge bg-white text-primary mb-3 px-3 py-2 rounded-pill shadow-sm">
-                    <i class="bi bi-star-fill me-1"></i> Yeni Nesil Sadakat Sistemi
-                </span>
-                <h1 class="display-3 fw-bold mb-4 lh-sm">Müşterilerinizi <br /> Markanıza <span class="text-info">Bağlayın</span></h1>
-                <p class="lead text-white-50 mb-5">
-                    Pika ile müşteri davranışlarını analiz edin, kişiselleştirilmiş kampanyalar sunun ve sadakati kâra dönüştürün.
-                </p>
-                <div class="d-flex gap-3">
-                    <button class="btn btn-lg btn-primary-custom px-5" data-bs-toggle="modal" data-bs-target="#demoModal">
-                        Hemen Başlayın
-                    </button>
-                    <a asp-page="/Cozumlerimiz" class="btn btn-lg btn-outline-light px-4">
-                        Çözümleri İncele
-                    </a>
+                <span class="badge badge-soft rounded-pill px-3 py-2 mb-3">Yeni Nesil Sadakat Platformu</span>
+                <h1>Müşteri bağlılığını ölçülebilir büyümeye dönüştürün.</h1>
+                <p class="lead">publish.tr görsel diline yakın modern bir kurumsal deneyimle; kampanya, sadakat ve içgörü modüllerini tek noktada yönetin.</p>
+                <div class="d-flex flex-wrap gap-3 mt-4">
+                    <button class="btn btn-brand" data-bs-toggle="modal" data-bs-target="#demoModal">Demo Talep Et</button>
+                    <a asp-page="/Cozumlerimiz" class="btn btn-ghost">Çözümlerimizi İncele</a>
+                </div>
+                <div class="row g-3 mt-4">
+                    <div class="col-6 col-md-4"><div class="metric"><h3>+28%</h3><small>Tekrar alışveriş artışı</small></div></div>
+                    <div class="col-6 col-md-4"><div class="metric"><h3>4.2x</h3><small>Kampanya geri dönüşü</small></div></div>
+                    <div class="col-6 col-md-4"><div class="metric"><h3>30 gün</h3><small>Canlıya geçiş süresi</small></div></div>
                 </div>
             </div>
-            <div class="col-lg-6 mt-5 mt-lg-0 text-center" data-aos="fade-left" data-aos-delay="200">
-                <img src="https://cdn.dribbble.com/users/1615584/screenshots/15865225/media/30e38a221256372d8e4827011b90559f.jpg?compress=1&resize=1200x900"
-                     class="img-fluid rounded-4 shadow-lg border border-white border-opacity-10"
-                     alt="Pika Dashboard Önizleme"
-                     style="transform: perspective(1000px) rotateY(-5deg) rotateX(5deg);">
+            <div class="col-lg-6" data-aos="fade-left">
+                <div class="hero-visual">
+                    <img src="https://app.publish.tr/assets/images/hero/finance.png" alt="Pika Dashboard" />
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<section class="py-4 bg-white border-bottom">
-    <div class="container text-center">
-        <p class="text-muted small fw-bold mb-3">TÜRKİYE'NİN LİDER MARKALARI PİKA'YI TERCİH EDİYOR</p>
-        <div class="d-flex justify-content-center flex-wrap gap-5 opacity-50 grayscale-logos">
-            <h4 class="text-secondary fw-bold m-0">MARKA 1</h4>
-            <h4 class="text-secondary fw-bold m-0">MARKA 2</h4>
-            <h4 class="text-secondary fw-bold m-0">MARKA 3</h4>
-            <h4 class="text-secondary fw-bold m-0">MARKA 4</h4>
-            <h4 class="text-secondary fw-bold m-0">MARKA 5</h4>
-        </div>
-    </div>
-</section>
-
-<section class="py-5 bg-light">
-    <div class="container py-5">
-        <div class="text-center mb-5" data-aos="fade-up">
-            <h6 class="text-primary fw-bold text-uppercase">Neden Pika?</h6>
-            <h2 class="fw-bold display-6">İşletmeniz İçin Uçtan Uca Çözümler</h2>
-        </div>
+<section class="section-space">
+    <div class="container">
         <div class="row g-4">
-            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                <div class="feature-card p-4">
-                    <div class="icon-box">
-                        <i class="bi bi-people-fill"></i>
-                    </div>
-                    <h4>Müşteri Tanıma</h4>
-                    <p class="text-muted">Müşterilerinizi 360 derece tanıyın, alışveriş alışkanlıklarını analiz edin ve segmentlere ayırın.</p>
-                </div>
-            </div>
-            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-                <div class="feature-card p-4">
-                    <div class="icon-box">
-                        <i class="bi bi-gift-fill"></i>
-                    </div>
-                    <h4>Akıllı Ödüllendirme</h4>
-                    <p class="text-muted">Puan, kupon veya deneyim odaklı ödül sistemleri ile müşterilerinizi mutlu edin.</p>
-                </div>
-            </div>
-            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-                <div class="feature-card p-4">
-                    <div class="icon-box">
-                        <i class="bi bi-graph-up-arrow"></i>
-                    </div>
-                    <h4>Gerçek Zamanlı Rapor</h4>
-                    <p class="text-muted">Kampanya performanslarını anlık izleyin, ROI analizi yapın ve stratejinizi geliştirin.</p>
-                </div>
-            </div>
+            <div class="col-md-4" data-aos="fade-up"><div class="feature-card"><div class="icon-badge"><i class="bi bi-person-hearts"></i></div><h5>Sadakat Motoru</h5><p>Müşteri segmentlerine göre puan, seviye ve ödül akışlarını koşullandırın.</p></div></div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100"><div class="feature-card"><div class="icon-badge"><i class="bi bi-lightning-charge"></i></div><h5>Kampanya Otomasyonu</h5><p>Gerçek zamanlı tetikleyicilerle çok kanallı kampanyaları otomatik çalıştırın.</p></div></div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200"><div class="feature-card"><div class="icon-badge"><i class="bi bi-graph-up-arrow"></i></div><h5>Karar Destek Paneli</h5><p>RFM, churn ve gelir performansını tek ekranda takip edin.</p></div></div>
         </div>
     </div>
 </section>
