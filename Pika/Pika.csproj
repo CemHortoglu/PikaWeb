@@ -6,4 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\web\assets\images\app\category\" />
+    <Folder Include="wwwroot\web\images\app\category\" />
+  </ItemGroup>
+
 </Project>
