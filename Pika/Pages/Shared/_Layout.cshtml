@@ -3,131 +3,114 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Pika Loyalty</title>
+    <title>@ViewData["Title"] - Pika</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="page-bg"></div>
+    <header class="site-header">
+        <nav class="navbar navbar-expand-xl navbar-dark py-3">
             <div class="container">
-                <a class="navbar-brand" asp-page="/Index">
-                    <i class="bi bi-rocket-takeoff-fill me-2"></i>Pika
+                <a class="navbar-brand d-flex align-items-center gap-2" asp-page="/Index">
+                    <img src="~/images/logo.png" alt="Pika" class="logo-mark" />
+                    <span>Pika</span>
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
-                        <li class="nav-item"><a class="nav-link" asp-page="/Index">Ana Sayfa</a></li>
 
+                <div class="collapse navbar-collapse" id="mainNav">
+                    <ul class="navbar-nav ms-auto align-items-xl-center gap-xl-2">
+                        <li class="nav-item"><a class="nav-link" asp-page="/Index" data-i18n="menu.home">Ana Sayfa</a></li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                                Çözümlerimiz
-                            </a>
-                            <ul class="dropdown-menu border-0 shadow">
-                                <li><a class="dropdown-item" asp-page="/Cozumler/Loyalty">Müşteri Sadakati</a></li>
-                                <li><a class="dropdown-item" asp-page="/Cozumler/Campaign">Kampanya Yönetimi</a></li>
-                                <li><a class="dropdown-item" asp-page="/Cozumler/Insights">Veri Analitiği</a></li>
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" data-i18n="menu.solutions">Çözümlerimiz</a>
+                            <ul class="dropdown-menu dropdown-menu-dark border-0 shadow-lg rounded-4 p-2">
+                                <li><a class="dropdown-item" asp-page="/Cozumlerimiz" data-i18n="menu.solutions.overview">Genel Bakış</a></li>
+                                <li><a class="dropdown-item" asp-page="/Cozumler/Loyalty" data-i18n="menu.solutions.loyalty">Sadakat Programı</a></li>
+                                <li><a class="dropdown-item" asp-page="/Cozumler/Campaign" data-i18n="menu.solutions.campaign">Kampanya Yönetimi</a></li>
+                                <li><a class="dropdown-item" asp-page="/Cozumler/Insights" data-i18n="menu.solutions.analytics">Müşteri Analitiği</a></li>
                             </ul>
                         </li>
+                        <li class="nav-item"><a class="nav-link" asp-page="/Fiyatlandirma" data-i18n="menu.pricing">Fiyatlandırma</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-page="/Kurumsal" data-i18n="menu.corporate">Kurumsal</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-page="/Iletisim" data-i18n="menu.contact">İletişim</a></li>
 
-                        <li class="nav-item"><a class="nav-link" asp-page="/Fiyatlandirma">Fiyatlandırma</a></li>
-                        <li class="nav-item"><a class="nav-link" asp-page="/Kurumsal">Kurumsal</a></li>
-                        <li class="nav-item"><a class="nav-link" asp-page="/Iletisim">İletişim</a></li>
-
-                        <li class="nav-item dropdown ms-2">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                                <i class="bi bi-globe"></i> TR
-                            </a>
-                            <ul class="dropdown-menu border-0 shadow dropdown-menu-end">
-                                <li><a class="dropdown-item" href="#">EN (English)</a></li>
+                        <li class="nav-item dropdown ms-xl-2">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><i class="bi bi-globe2"></i></a>
+                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark border-0 shadow rounded-4">
+                                <li><button class="dropdown-item" type="button" data-lang-btn="tr">Türkçe</button></li>
+                                <li><button class="dropdown-item" type="button" data-lang-btn="en">English</button></li>
                             </ul>
                         </li>
-
-                        <li class="nav-item ms-3">
-                            <button class="btn btn-primary-custom" data-bs-toggle="modal" data-bs-target="#demoModal">
-                                Demo Talep Et
-                            </button>
-                        </li>
-                        <li class="nav-item ms-2">
-                            <a asp-page="/Login" class="btn btn-outline-dark rounded-pill px-4">Giriş</a>
-                        </li>
+                        <li class="nav-item ms-xl-3 mt-3 mt-xl-0"><a class="btn btn-ghost" asp-page="/Login" data-i18n="menu.login">Giriş</a></li>
+                        <li class="nav-item mt-2 mt-xl-0"><button class="btn btn-brand" data-bs-toggle="modal" data-bs-target="#demoModal" data-i18n="menu.demo">Demo Talep Et</button></li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
 
-    <main role="main" class="pb-3">
+    <main>
         @RenderBody()
     </main>
 
-    <footer>
-        <div class="container">
+    <footer class="site-footer">
+        <div class="container py-5">
             <div class="row g-4">
-                <div class="col-lg-4 col-md-6">
-                    <h5 class="fw-bold"><i class="bi bi-rocket-takeoff-fill me-2"></i>Pika</h5>
-                    <p class="small text-muted mb-4">Müşteri sadakatini artırmanın en akıllı yolu. Pika ile veriye dayalı kararlar alın, müşterilerinizi markanıza aşık edin.</p>
-                    <div class="d-flex gap-3">
-                        <a href="#"><i class="bi bi-linkedin fs-5"></i></a>
-                        <a href="#"><i class="bi bi-twitter fs-5"></i></a>
-                        <a href="#"><i class="bi bi-instagram fs-5"></i></a>
+                <div class="col-lg-4">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <img src="~/images/white-logo.png" alt="Pika" class="logo-mark" />
+                        <h5 class="mb-0">Pika</h5>
+                    </div>
+                    <p class="footer-copy" data-i18n="footer.about">Pika, markaların müşteri sadakati yolculuğunu hızlandıran kurumsal bir bağlılık ve deneyim platformudur.</p>
+                    <div class="d-flex gap-3 text-white-50">
+                        <i class="bi bi-linkedin"></i><i class="bi bi-instagram"></i><i class="bi bi-twitter-x"></i>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-6">
-                    <h5>Çözümler</h5>
-                    <a asp-page="/Cozumler/Loyalty">Sadakat Programı</a>
-                    <a asp-page="/Cozumler/Campaign">Gamification</a>
-                    <a asp-page="/Cozumler/Insights">Müşteri Analitiği</a>
+                <div class="col-sm-6 col-lg-2">
+                    <h6 data-i18n="footer.product">Ürün</h6>
+                    <a asp-page="/Cozumler/Loyalty" data-i18n="footer.loyalty">Sadakat Programı</a>
+                    <a asp-page="/Cozumler/Campaign" data-i18n="footer.campaign">Kampanyalar</a>
+                    <a asp-page="/Cozumler/Insights" data-i18n="footer.analytics">Analitik</a>
                 </div>
-                <div class="col-lg-2 col-md-6">
-                    <h5>Kurumsal</h5>
-                    <a asp-page="/Kurumsal">Hakkımızda</a>
-                    <a href="#">Kariyer</a>
-                    <a href="#">Blog</a>
+                <div class="col-sm-6 col-lg-2">
+                    <h6 data-i18n="footer.company">Şirket</h6>
+                    <a asp-page="/Kurumsal" data-i18n="footer.aboutUs">Hakkımızda</a>
+                    <a asp-page="/Iletisim" data-i18n="footer.contact">İletişim</a>
+                    <a asp-page="/Fiyatlandirma" data-i18n="footer.pricing">Fiyatlandırma</a>
                 </div>
-                <div class="col-lg-4 col-md-6">
-                    <h5>Bültenimize Katılın</h5>
-                    <p class="small text-muted">Sadakat dünyasındaki yeniliklerden haberdar olun.</p>
-                    <form class="d-flex gap-2">
-                        <input type="email" class="form-control form-control-sm" placeholder="E-posta adresiniz">
-                        <button class="btn btn-primary-custom btn-sm">Abone Ol</button>
-                    </form>
+                <div class="col-lg-4">
+                    <h6 data-i18n="footer.reach">Bize Ulaşın</h6>
+                    <p class="footer-copy mb-1">Maslak Mah. Büyükdere Cad. No:123, İstanbul</p>
+                    <p class="footer-copy mb-1">+90 212 000 00 00</p>
+                    <p class="footer-copy">hello@pika.com.tr</p>
                 </div>
             </div>
-            <hr class="my-5 border-secondary" />
-            <div class="text-center small text-muted">
-                &copy; 2026 Pika Teknoloji A.Ş. Tüm hakları saklıdır. | <a href="#" class="d-inline text-muted">Gizlilik</a> | <a href="#" class="d-inline text-muted">Kullanım Şartları</a>
-            </div>
+            <hr class="border-secondary my-4" />
+            <p class="small text-white-50 mb-0">© 2026 Pika. <span data-i18n="footer.rights">Tüm hakları saklıdır.</span></p>
         </div>
     </footer>
 
     <div class="modal fade" id="demoModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content border-0 shadow-lg rounded-4">
-                <div class="modal-header border-0 pb-0">
-                    <h5 class="modal-title fw-bold ms-2 mt-2">Pika'yı Keşfedin</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-content bg-dark text-white border-0 rounded-4">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title" data-i18n="demo.title">Demo Talep Formu</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
-                <div class="modal-body p-4">
-                    <p class="text-muted small mb-4">Formu doldurun, uzman ekibimiz size özel bir demo sunumu için iletişime geçsin.</p>
-                    <form id="rdemotalep">
-                        <div class="mb-3">
-                            <label class="form-label small fw-bold">Ad Soyad</label>
-                            <input type="text" class="form-control bg-light border-0" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label small fw-bold">Kurumsal E-posta</label>
-                            <input type="email" class="form-control bg-light border-0" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label small fw-bold">Telefon</label>
-                            <input type="tel" class="form-control bg-light border-0" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary-custom w-100 mt-2">Demo Talep Et</button>
+                <div class="modal-body">
+                    <form id="rdemotalep" class="row g-3">
+                        <div class="col-12"><input class="form-control" data-i18n-ph="demo.name" placeholder="Ad Soyad" required></div>
+                        <div class="col-12"><input type="email" class="form-control" data-i18n-ph="demo.email" placeholder="E-posta" required></div>
+                        <div class="col-12"><input class="form-control" data-i18n-ph="demo.company" placeholder="Şirket" required></div>
+                        <div class="col-12"><textarea class="form-control" rows="3" data-i18n-ph="demo.note" placeholder="İhtiyacınızı kısaca yazın"></textarea></div>
+                        <div class="col-12"><button class="btn btn-brand w-100" type="submit" data-i18n="demo.submit">Talep Gönder</button></div>
                     </form>
                 </div>
             </div>
@@ -139,10 +122,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script>
-        AOS.init({
-            duration: 800,
-            once: true
-        });
+        AOS.init({ duration: 700, once: true, offset: 80 });
     </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

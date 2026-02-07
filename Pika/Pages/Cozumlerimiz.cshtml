@@ -1,21 +1,21 @@
-﻿@page
+@page
 @{
     ViewData["Title"] = "Çözümlerimiz";
 }
 
-<section class="hero">
+<section class="inner-hero">
     <div class="container">
-        <h1>İş hedeflerinize göre uyarlanabilir çözümler</h1>
-        <p>Pika modüler yapısıyla farklı sektörlere özel sadakat ve müşteri etkileşimi senaryolarını hızlıca devreye alır.</p>
+        <h1>Çözümlerimiz</h1>
+        <p class="text-secondary">Kurumsal sadakat yolculuğunuzu uçtan uca yöneten modüler altyapı.</p>
     </div>
 </section>
 
-<section class="section">
+<section class="section-space pt-3">
     <div class="container">
         <div class="row g-4">
-            <div class="col-md-4"><div class="feature-card"><h5>Sadakat Programı</h5><p>Puan, statü, görev ve ödül akışlarını kural motoruyla yönetin.</p><a asp-page="/Cozumler/Loyalty" class="btn btn-sm btn-ghost mt-2">Detay</a></div></div>
-            <div class="col-md-4"><div class="feature-card"><h5>Kampanya Otomasyonu</h5><p>Doğru müşteriye doğru anda tetiklenen otomatik kampanyalar oluşturun.</p><a asp-page="/Cozumler/Campaign" class="btn btn-sm btn-ghost mt-2">Detay</a></div></div>
-            <div class="col-md-4"><div class="feature-card"><h5>Analitik ve İçgörü</h5><p>KPI dashboard, kohort analizi ve sadakat metriği takibini tek ekranda görün.</p><a asp-page="/Cozumler/Insights" class="btn btn-sm btn-ghost mt-2">Detay</a></div></div>
+            <div class="col-lg-4"><div class="feature-card"><h4>Sadakat Programı</h4><p>Puan, seviye ve ödül mekanikleri.</p><a asp-page="/Cozumler/Loyalty" class="btn btn-ghost btn-sm">Detaya Git</a></div></div>
+            <div class="col-lg-4"><div class="feature-card"><h4>Kampanya Yönetimi</h4><p>Oyunlaştırma, kupon ve hedefli aksiyon kurguları.</p><a asp-page="/Cozumler/Campaign" class="btn btn-ghost btn-sm">Detaya Git</a></div></div>
+            <div class="col-lg-4"><div class="feature-card"><h4>Müşteri Analitiği</h4><p>KPI dashboard, kohort ve kayıp müşteri uyarıları.</p><a asp-page="/Cozumler/Insights" class="btn btn-ghost btn-sm">Detaya Git</a></div></div>
         </div>
     </div>
 </section>

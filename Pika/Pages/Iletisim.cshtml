@@ -1,38 +1,30 @@
-﻿@page
+@page
 @{
     ViewData["Title"] = "İletişim";
 }
 
-<section class="hero">
+<section class="inner-hero">
     <div class="container">
-        <h1>Bizimle iletişime geçin</h1>
-        <p>Ekibimiz kurumsal ihtiyaçlarınıza uygun yol haritasını birlikte planlamak için hazır.</p>
+        <h1>İletişim</h1>
+        <p class="text-secondary">Demo, teklif veya ürün danışmanlığı için bize yazın.</p>
     </div>
 </section>
 
-<section class="section">
+<section class="section-space pt-2">
     <div class="container">
         <div class="row g-4">
-            <div class="col-lg-7">
-                <form class="contact-form glass-card">
-                    <div class="row g-3">
-                        <div class="col-md-6"><input class="form-control" placeholder="Ad Soyad" required></div>
-                        <div class="col-md-6"><input type="email" class="form-control" placeholder="E-posta" required></div>
-                        <div class="col-12"><input class="form-control" placeholder="Şirket Adı"></div>
-                        <div class="col-12"><textarea rows="4" class="form-control" placeholder="Mesajınız"></textarea></div>
-                        <div class="col-12"><button class="btn btn-primary-gradient" type="submit">Gönder</button></div>
-                    </div>
-                </form>
-            </div>
             <div class="col-lg-5">
-                <div class="glass-card h-100">
-                    <h5>Ofis</h5>
-                    <p>Maslak Mah. Büyükdere Cad. No:123 Sarıyer/İstanbul</p>
-                    <h5>Telefon</h5>
-                    <p>+90 212 000 00 00</p>
-                    <h5>E-posta</h5>
-                    <p>hello@pika.com</p>
-                </div>
+                <div class="contact-box"><h5>Ofis</h5><p>Maslak Mah. Büyükdere Cad. No:123 Sarıyer / İstanbul</p></div>
+                <div class="contact-box mt-3"><h5>İletişim</h5><p class="mb-1">hello@pika.com.tr</p><p>+90 212 000 00 00</p></div>
+            </div>
+            <div class="col-lg-7">
+                <form class="glass-card row g-3">
+                    <div class="col-md-6"><input class="form-control" placeholder="Ad Soyad" required></div>
+                    <div class="col-md-6"><input type="email" class="form-control" placeholder="E-posta" required></div>
+                    <div class="col-12"><input class="form-control" placeholder="Şirket"></div>
+                    <div class="col-12"><textarea class="form-control" rows="5" placeholder="Mesajınız"></textarea></div>
+                    <div class="col-12"><button class="btn btn-brand" type="submit">Gönder</button></div>
+                </form>
             </div>
         </div>
     </div>

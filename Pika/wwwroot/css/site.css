@@ -1,0 +1,53 @@
+:root {
+  --bg: #07121a;
+  --panel: #0f1f2c;
+  --soft: #1b3243;
+  --brand: #8de80a;
+  --brand-dark: #76c705;
+  --text: #eaf1f5;
+  --muted: #9db3c3;
+}
+* { font-family: 'Inter', sans-serif; }
+body { background: radial-gradient(circle at 10% 10%, #153247 0%, var(--bg) 55%); color: var(--text); }
+.page-bg { position: fixed; inset: 0; pointer-events: none; background: radial-gradient(circle at 85% 20%, rgba(141,232,10,.12), transparent 35%); z-index: -1; }
+.site-header { position: sticky; top: 0; z-index: 99; backdrop-filter: blur(14px); background: rgba(7,18,26,.74); border-bottom: 1px solid rgba(255,255,255,.06); }
+.navbar-brand { font-weight: 800; color: #fff; }
+.logo-mark { width: 34px; height: 34px; object-fit: contain; }
+.nav-link { color: rgba(255,255,255,.83) !important; font-weight: 500; }
+.nav-link:hover, .nav-link.active { color: #fff !important; }
+.dropdown-menu-dark { background: #0f2431; }
+.btn-brand { background: linear-gradient(135deg, var(--brand), #66ca00); color: #10210f; font-weight: 700; border: 0; border-radius: 999px; padding: .7rem 1.4rem; }
+.btn-brand:hover { background: linear-gradient(135deg, #9df522, #70d608); }
+.btn-ghost { border: 1px solid rgba(255,255,255,.3); color: #fff; border-radius: 999px; padding: .55rem 1.1rem; }
+.btn-ghost:hover { border-color: #fff; color: #fff; }
+.section-space { padding: 90px 0; }
+.hero { padding: 100px 0 70px; }
+.hero h1 { font-size: clamp(2rem, 4vw, 3.8rem); font-weight: 800; line-height: 1.1; }
+.hero p { color: var(--muted); max-width: 620px; }
+.hero-visual { background: linear-gradient(170deg, #17364a, #0e1e2b); border: 1px solid rgba(255,255,255,.12); border-radius: 26px; padding: 14px; box-shadow: 0 24px 50px rgba(0,0,0,.35); }
+.hero-visual img { border-radius: 18px; width: 100%; }
+.badge-soft { background: rgba(141,232,10,.14); color: #b9ff67; border: 1px solid rgba(141,232,10,.5); }
+.glass-card { background: linear-gradient(150deg, rgba(255,255,255,.04), rgba(255,255,255,.01)); border: 1px solid rgba(255,255,255,.1); border-radius: 20px; padding: 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,.25); }
+.feature-card { background: #0d202d; border: 1px solid rgba(255,255,255,.08); border-radius: 18px; padding: 1.4rem; height: 100%; transition: .25s ease; }
+.feature-card:hover { transform: translateY(-6px); border-color: rgba(141,232,10,.55); }
+.icon-badge { width: 48px; height: 48px; border-radius: 14px; display: inline-grid; place-items: center; background: rgba(141,232,10,.15); color: #b9ff67; margin-bottom: 12px; }
+.metric { background: #0f2636; border: 1px solid rgba(255,255,255,.08); border-radius: 16px; padding: 1rem; }
+.metric h3 { font-weight: 800; margin-bottom: 0; }
+.table-soft { background: #0c1d29; border-radius: 18px; overflow: hidden; border: 1px solid rgba(255,255,255,.09); }
+.table-soft td, .table-soft th { background: transparent !important; color: #deecf4; border-color: rgba(255,255,255,.08); }
+.plan-card { border: 1px solid rgba(255,255,255,.1); border-radius: 20px; background: #0d1f2c; padding: 1.8rem; height: 100%; }
+.plan-card.popular { border-color: rgba(141,232,10,.75); box-shadow: 0 0 0 1px rgba(141,232,10,.4), 0 20px 45px rgba(0,0,0,.3); }
+.plan-price { font-size: 2.6rem; font-weight: 800; }
+.inner-hero { padding: 78px 0 42px; }
+.inner-hero h1 { font-weight: 800; }
+.contact-box, .timeline-item { background: #0e202d; border: 1px solid rgba(255,255,255,.1); border-radius: 16px; padding: 1.1rem; }
+.site-footer { background: #050d13; margin-top: 70px; border-top: 1px solid rgba(255,255,255,.08); }
+.site-footer a { display: block; color: #c7d7e1; text-decoration: none; margin-bottom: .45rem; }
+.footer-copy { color: #9cb1bf; }
+.form-control, .form-select { background: #102534; border: 1px solid rgba(255,255,255,.1); color: #e7f3fa; }
+.form-control::placeholder { color: #83a0b3; }
+.form-control:focus, .form-select:focus { background: #102534; color: #fff; border-color: rgba(141,232,10,.65); box-shadow: 0 0 0 .2rem rgba(141,232,10,.15); }
+@media (max-width: 991px) {
+  .navbar-nav { padding-top: 1rem; }
+  .hero { padding-top: 70px; }
+}

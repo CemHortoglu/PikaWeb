@@ -1,61 +1,21 @@
-﻿@page
+@page
 @{
     ViewData["Title"] = "Fiyatlandırma";
 }
 
-<div class="bg-light py-5">
-    <div class="container py-5 text-center">
-        <h6 class="text-primary fw-bold text-uppercase">Paketler</h6>
-        <h1 class="display-5 fw-bold mb-3">İhtiyacınıza Uygun Planlar</h1>
-        <p class="lead text-muted mb-5">Şeffaf fiyatlandırma, gizli ücret yok.</p>
+<section class="inner-hero">
+    <div class="container text-center">
+        <h1>Kurumsal ölçekte şeffaf fiyatlandırma</h1>
+        <p class="text-secondary">İş hacminize göre ölçeklenen planlarla hızlı başlayın.</p>
+    </div>
+</section>
 
-        <div class="row g-4 justify-content-center">
-            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                <div class="card border-0 shadow-sm h-100 rounded-4">
-                    <div class="card-body p-5">
-                        <h5 class="fw-bold text-muted">Başlangıç</h5>
-                        <h2 class="display-4 fw-bold my-4">₺1.999<span class="fs-6 text-muted">/ay</span></h2>
-                        <ul class="list-unstyled mb-4 text-start small">
-                            <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i> 1000 Müşteri Kapasitesi</li>
-                            <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i> Temel Raporlama</li>
-                            <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i> E-posta Desteği</li>
-                        </ul>
-                        <button class="btn btn-outline-primary w-100 rounded-pill py-2">Seçim Yap</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
-                <div class="card border-primary shadow h-100 rounded-4 position-relative overflow-hidden">
-                    <div class="bg-primary text-white text-center py-1 small fw-bold">EN POPÜLER</div>
-                    <div class="card-body p-5">
-                        <h5 class="fw-bold text-primary">Profesyonel</h5>
-                        <h2 class="display-4 fw-bold my-4">₺4.999<span class="fs-6 text-muted">/ay</span></h2>
-                        <ul class="list-unstyled mb-4 text-start small">
-                            <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i> 10.000 Müşteri Kapasitesi</li>
-                            <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i> Gelişmiş Segmentasyon</li>
-                            <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i> SMS & Push Bildirim</li>
-                            <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i> 7/24 Öncelikli Destek</li>
-                        </ul>
-                        <button class="btn btn-primary-custom w-100 py-2 shadow-sm">Hemen Başla</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
-                <div class="card border-0 shadow-sm h-100 rounded-4">
-                    <div class="card-body p-5">
-                        <h5 class="fw-bold text-muted">Kurumsal</h5>
-                        <h2 class="display-4 fw-bold my-4">Özel<span class="fs-6 text-muted">/teklif</span></h2>
-                        <ul class="list-unstyled mb-4 text-start small">
-                            <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i> Sınırsız Müşteri</li>
-                            <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i> Özel Entegrasyonlar</li>
-                            <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i> Özel Hesap Yöneticisi</li>
-                        </ul>
-                        <button class="btn btn-outline-dark w-100 rounded-pill py-2">İletişime Geç</button>
-                    </div>
-                </div>
-            </div>
+<section class="section-space pt-2">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-4"><div class="plan-card"><h5>Start</h5><div class="plan-price">₺2.500<small class="fs-6">/ay</small></div><ul><li>5.000 üye</li><li>Temel sadakat akışları</li><li>E-posta desteği</li></ul><button class="btn btn-ghost w-100">Başla</button></div></div>
+            <div class="col-lg-4"><div class="plan-card popular"><span class="badge badge-soft mb-2">En çok tercih edilen</span><h5>Growth</h5><div class="plan-price">₺7.900<small class="fs-6">/ay</small></div><ul><li>50.000 üye</li><li>Oyunlaştırma + Kupon</li><li>Öncelikli destek</li></ul><button class="btn btn-brand w-100">Satış ile Görüş</button></div></div>
+            <div class="col-lg-4"><div class="plan-card"><h5>Enterprise</h5><div class="plan-price">Özel</div><ul><li>Sınırsız kullanım</li><li>Özel entegrasyonlar</li><li>Dedicated CSM</li></ul><button class="btn btn-ghost w-100">Teklif Al</button></div></div>
         </div>
     </div>
-</div>
+</section>
