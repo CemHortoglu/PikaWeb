@@ -149,7 +149,7 @@ body {
 .ai-section {
   background: #07453d;
   color: #ddf2ed;
-  padding: 4.5rem 0;
+  padding: 4.5rem 0 3.2rem;
 }
 .ai-grid {
   display: grid;
@@ -157,10 +157,15 @@ body {
   gap: 2.5rem;
   align-items: center;
 }
+.ai-visual-card {
+  background: var(--lime);
+  border-radius: 18px;
+  padding: 1.2rem;
+}
 .ai-visual img {
   width: 100%;
-  border-radius: 16px;
-  background: var(--lime);
+  border-radius: 14px;
+  background: #fff;
 }
 .ai-section h2 { color: #fff; font-size: clamp(1.7rem, 3vw, 3rem); font-weight: 800; }
 .ai-section p { color: #b8d4cf; }
@@ -171,6 +176,31 @@ body {
   margin-bottom: .6rem;
   padding: .75rem .9rem;
   font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+}
+.ai-list li::before {
+  content: "?";
+  display: inline-flex;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  align-items: center;
+  justify-content: center;
+  background: var(--lime);
+  color: #1d3a35;
+  font-size: .75rem;
+  font-weight: 900;
+}
+.ai-footer-label {
+  text-align: center;
+  margin-top: 2.2rem;
+  color: #b8d4cf;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  font-size: .72rem;
 }
 
 .faq-section { padding: 3.8rem 0; background: #efefef; }
