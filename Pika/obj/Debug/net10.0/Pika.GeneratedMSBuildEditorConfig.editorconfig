@@ -22,12 +22,44 @@ build_property._RazorSourceGeneratorDebug =
 build_property.EffectiveAnalysisLevelStyle = 10.0
 build_property.EnableCodeStyleSeverity = 
 
+[C:/Projects/PikaWeb/Pika/Pages/Cozumlerimiz.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ296dW1sZXJpbWl6LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/PikaWeb/Pika/Pages/Cozumler/Campaign.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ296dW1sZXJcQ2FtcGFpZ24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/PikaWeb/Pika/Pages/Cozumler/Insights.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ296dW1sZXJcSW5zaWdodHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/PikaWeb/Pika/Pages/Cozumler/Loyalty.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ296dW1sZXJcTG95YWx0eS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Projects/PikaWeb/Pika/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Projects/PikaWeb/Pika/Pages/Fiyatlandirma.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRml5YXRsYW5kaXJtYS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/PikaWeb/Pika/Pages/Iletisim.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSWxldGlzaW0uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Projects/PikaWeb/Pika/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/PikaWeb/Pika/Pages/Kurumsal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcS3VydW1zYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/PikaWeb/Pika/Pages/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Projects/PikaWeb/Pika/Pages/Privacy.cshtml]

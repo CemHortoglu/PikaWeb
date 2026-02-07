@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Pika")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+85c07f41f8c054f8f1bf834487023773fedaed2d")]
 [assembly: System.Reflection.AssemblyProductAttribute("Pika")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Pika")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
