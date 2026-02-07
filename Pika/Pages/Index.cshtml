@@ -1,10 +1,48 @@
 ﻿@page
-@model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Ana Sayfa";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<section class="hero">
+    <div class="container">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-7">
+                <span class="badge bg-info-subtle text-info-emphasis mb-3">Yeni Nesil Sadakat Platformu</span>
+                <h1>Müşteri sadakatini büyüten <span class="text-info">kurumsal</span> deneyim platformu.</h1>
+                <p class="mt-3">Pika ile kişiselleştirilmiş kampanyalar, segment bazlı iletişim ve gerçek zamanlı puan/mil yönetimi tek panelden kontrol edilir. Markanıza özel modern bir sadakat deneyimi sunun.</p>
+                <div class="d-flex gap-2 mt-4">
+                    <button class="btn btn-primary-gradient" data-bs-toggle="modal" data-bs-target="#demoModal">Demo Alın</button>
+                    <a class="btn btn-ghost" asp-page="/Cozumlerimiz">Çözümleri İnceleyin</a>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="glass-card">
+                    <div class="row text-center g-3">
+                        <div class="col-6">
+                            <div class="stat">%43</div>
+                            <small>Tekrar satın alma artışı</small>
+                        </div>
+                        <div class="col-6">
+                            <div class="stat">4.2x</div>
+                            <small>Kampanya dönüşümü</small>
+                        </div>
+                        <div class="col-12">
+                            <img src="https://images.unsplash.com/photo-1551281044-8fbd157f47ef?auto=format&fit=crop&w=1000&q=80" class="img-fluid rounded-3 mt-2" alt="Dashboard" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">Öne Çıkan Yetenekler</h2>
+        <div class="row g-4">
+            <div class="col-md-4"><div class="feature-card"><h5>Omnichannel Sadakat</h5><p>Online ve fiziksel temas noktalarında tek müşteri kimliğiyle puan, seviye ve ödül yönetimi.</p></div></div>
+            <div class="col-md-4"><div class="feature-card"><h5>Akıllı Segmentasyon</h5><p>Davranışsal veriler ile hedef kitleleri otomatik gruplayarak kişiselleştirilmiş öneriler üretin.</p></div></div>
+            <div class="col-md-4"><div class="feature-card"><h5>Anlık İçgörü</h5><p>Gerçek zamanlı panelde kampanya performansı, müşteri yaşam boyu değeri ve churn riski raporları.</p></div></div>
+        </div>
+    </div>
+</section>

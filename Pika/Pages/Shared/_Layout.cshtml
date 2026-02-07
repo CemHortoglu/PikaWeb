@@ -1,47 +1,122 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="tr" data-lang="tr">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Pika</title>
     <script type="importmap"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Pika.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <div class="bg-blur bg-blur-1"></div>
+    <div class="bg-blur bg-blur-2"></div>
+
+    <header class="header-wrap">
+        <nav class="navbar navbar-expand-lg navbar-dark pika-nav">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">Pika</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand d-flex align-items-center gap-2" asp-area="" asp-page="/Index">
+                    <span class="logo-dot"></span>
+                    <span>Pika</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#pikaNav" aria-controls="pikaNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+
+                <div class="collapse navbar-collapse" id="pikaNav">
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" asp-page="/Index" data-i18n="menu.home">Ana Sayfa</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="menu.solutions">Çözümlerimiz</a>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li><a class="dropdown-item" asp-page="/Cozumlerimiz" data-i18n="menu.solutions.overview">Çözümler Genel Bakış</a></li>
+                                <li><a class="dropdown-item" asp-page="/Cozumler/Loyalty" data-i18n="menu.solutions.loyalty">Sadakat Programı</a></li>
+                                <li><a class="dropdown-item" asp-page="/Cozumler/Campaign" data-i18n="menu.solutions.campaign">Kampanya Otomasyonu</a></li>
+                                <li><a class="dropdown-item" asp-page="/Cozumler/Insights" data-i18n="menu.solutions.analytics">Analitik ve İçgörü</a></li>
+                            </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
+                        <li class="nav-item"><a class="nav-link" asp-page="/Fiyatlandirma" data-i18n="menu.pricing">Fiyatlandırma</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-page="/Kurumsal" data-i18n="menu.corporate">Kurumsal</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-page="/Iletisim" data-i18n="menu.contact">İletişim</a></li>
                     </ul>
+
+                    <div class="d-flex align-items-center gap-2 nav-actions">
+                        <div class="lang-switch" role="group" aria-label="Language switch">
+                            <button class="btn btn-sm btn-outline-light active" type="button" data-lang-btn="tr">TR</button>
+                            <button class="btn btn-sm btn-outline-light" type="button" data-lang-btn="en">EN</button>
+                        </div>
+                        <a class="btn btn-ghost" asp-page="/Login" data-i18n="menu.login">Giriş</a>
+                        <button class="btn btn-primary-gradient" data-bs-toggle="modal" data-bs-target="#demoModal" data-i18n="menu.demo">Demo Talebi</button>
+                    </div>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
+    <main role="main" class="page-content">
+        @RenderBody()
+    </main>
+
+    <footer class="site-footer">
         <div class="container">
-            &copy; 2026 - Pika - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            <div class="row g-4 footer-top">
+                <div class="col-lg-4">
+                    <h5>Pika</h5>
+                    <p data-i18n="footer.about">Pika, markaların müşteri sadakati yolculuğunu hızlandıran kurumsal bir bağlılık ve deneyim platformudur.</p>
+                </div>
+                <div class="col-sm-6 col-lg-2">
+                    <h6 data-i18n="footer.product">Ürün</h6>
+                    <ul class="footer-links">
+                        <li><a asp-page="/Cozumler/Loyalty" data-i18n="footer.loyalty">Sadakat Programı</a></li>
+                        <li><a asp-page="/Cozumler/Campaign" data-i18n="footer.campaign">Kampanyalar</a></li>
+                        <li><a asp-page="/Cozumler/Insights" data-i18n="footer.analytics">Analitik</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-6 col-lg-2">
+                    <h6 data-i18n="footer.company">Şirket</h6>
+                    <ul class="footer-links">
+                        <li><a asp-page="/Kurumsal" data-i18n="footer.aboutUs">Hakkımızda</a></li>
+                        <li><a asp-page="/Iletisim" data-i18n="footer.contact">İletişim</a></li>
+                        <li><a asp-page="/Fiyatlandirma" data-i18n="footer.pricing">Fiyatlandırma</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h6 data-i18n="footer.reach">Bize Ulaşın</h6>
+                    <p class="mb-1">Maslak, İstanbul</p>
+                    <p class="mb-1">+90 (212) 000 00 00</p>
+                    <p>hello@pika.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© @DateTime.Now.Year Pika</span>
+                <span data-i18n="footer.rights">Tüm hakları saklıdır.</span>
+            </div>
         </div>
     </footer>
+
+    <div class="modal fade" id="demoModal" tabindex="-1" aria-labelledby="demoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content demo-modal">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title" id="demoModalLabel" data-i18n="demo.title">Demo Talep Formu</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3"><input type="text" class="form-control" placeholder="Ad Soyad" required data-i18n-ph="demo.name" /></div>
+                        <div class="mb-3"><input type="email" class="form-control" placeholder="E-posta" required data-i18n-ph="demo.email" /></div>
+                        <div class="mb-3"><input type="text" class="form-control" placeholder="Şirket" required data-i18n-ph="demo.company" /></div>
+                        <div class="mb-3"><textarea class="form-control" rows="3" placeholder="İhtiyacınızı kısaca yazın" data-i18n-ph="demo.note"></textarea></div>
+                        <button type="submit" class="btn btn-primary-gradient w-100" data-i18n="demo.submit">Talep Gönder</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
