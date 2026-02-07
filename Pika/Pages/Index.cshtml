@@ -1,90 +1,86 @@
 @page
+@model IndexModel
 @{
     ViewData["Title"] = "Ana Sayfa";
 }
 
-<section class="homepage-hero">
-    <div class="hero-blur blur-one"></div>
-    <div class="hero-blur blur-two"></div>
-    <div class="container">
-        <div class="hero-grid">
-            <div>
-                <p class="hero-label">PIKA ANALYSIS PLATFORM</p>
-                <h1>E-Ticaret Markaları için<br />Yeni Nesil Reklam<br />Operasyon Sistemi</h1>
-                <p class="hero-lead">Kampanya kurulumundan optimizasyona, raporlamadan büyüme önerilerine kadar tüm reklam süreçlerini tek bir merkezde yönetin.</p>
-                <div class="hero-actions">
-                    <a class="btn btn-primary-gradient" asp-page="/Iletisim">Ücretsiz Danışmanlık ↗</a>
-                    <a class="btn btn-outline-dark" asp-page="/Cozumlerimiz">Çözümleri İncele</a>
+<section class="hero-section d-flex align-items-center">
+    <div class="container position-relative" style="z-index: 2;">
+        <div class="row align-items-center">
+            <div class="col-lg-6" data-aos="fade-right">
+                <span class="badge bg-white text-primary mb-3 px-3 py-2 rounded-pill shadow-sm">
+                    <i class="bi bi-star-fill me-1"></i> Yeni Nesil Sadakat Sistemi
+                </span>
+                <h1 class="display-3 fw-bold mb-4 lh-sm">Müşterilerinizi <br /> Markanıza <span class="text-info">Bağlayın</span></h1>
+                <p class="lead text-white-50 mb-5">
+                    Pika ile müşteri davranışlarını analiz edin, kişiselleştirilmiş kampanyalar sunun ve sadakati kâra dönüştürün.
+                </p>
+                <div class="d-flex gap-3">
+                    <button class="btn btn-lg btn-primary-custom px-5" data-bs-toggle="modal" data-bs-target="#demoModal">
+                        Hemen Başlayın
+                    </button>
+                    <a asp-page="/Cozumlerimiz" class="btn btn-lg btn-outline-light px-4">
+                        Çözümleri İncele
+                    </a>
                 </div>
             </div>
-            <div class="hero-insight-card">
-                <span class="insight-tag">Canlı Performans</span>
-                <h3>Son 30 gün ROAS artışı</h3>
-                <div class="insight-value">+48.2%</div>
-                <p>Yapay zeka destekli teklifleme ve kitle segmentasyonu ile kampanyalarınızın performansını düzenli olarak artırın.</p>
-                <div class="insight-bars">
-                    <div><span>Meta Ads</span><strong>89</strong></div>
-                    <div><span>Google Ads</span><strong>77</strong></div>
-                    <div><span>TikTok Ads</span><strong>63</strong></div>
-                </div>
+            <div class="col-lg-6 mt-5 mt-lg-0 text-center" data-aos="fade-left" data-aos-delay="200">
+                <img src="https://cdn.dribbble.com/users/1615584/screenshots/15865225/media/30e38a221256372d8e4827011b90559f.jpg?compress=1&resize=1200x900"
+                     class="img-fluid rounded-4 shadow-lg border border-white border-opacity-10"
+                     alt="Pika Dashboard Önizleme"
+                     style="transform: perspective(1000px) rotateY(-5deg) rotateX(5deg);">
             </div>
-        </div>
-
-        <div class="hero-cards">
-            <article class="hero-card dark">
-                <h3>Akıllı
-                    Kampanya
-                    Motoru</h3>
-                <p>Hedef kitle, bütçe ve kreatifleri platforma tanımlayın; öneri motoru kampanya yapısını sizin için oluştursun.</p>
-            </article>
-            <article class="hero-card lime featured">
-                <h3>Merkezi Gösterge Paneli</h3>
-                <p>Tüm reklam platformları tek panelde birleşir. KPI, satış ve maliyet verisini anlık takip edin.</p>
-                <div class="revenue-box">
-                    <small>Aylık Ek Gelir Potansiyeli</small>
-                    <strong>₺124.900</strong>
-                </div>
-            </article>
-            <article class="hero-card image-card">
-                <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=900&q=80" alt="Pika kontrol merkezi" />
-            </article>
         </div>
     </div>
 </section>
 
-<section class="ai-section">
-    <div class="container ai-grid">
-        <div class="ai-visual-card">
-            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80" alt="Veri analizi ekranı" />
-        </div>
-        <div>
-            <p class="hero-label">YAPAY ZEKA DESTEKLİ OPTİMİZASYON</p>
-            <h2>Markanız için her gün
-                daha iyi kararlar</h2>
-            <p>Makine öğrenimi tabanlı sinyaller, en iyi dönüşüm alan reklam setlerini tespit eder ve bütçe dağılımını otomatik olarak günceller.</p>
-            <ul class="ai-list">
-                <li>Otomatik teklif ve bütçe yönetimi</li>
-                <li>Ürün bazlı reklam skorlaması</li>
-                <li>Çok kanallı attribution analizi</li>
-                <li>Alarm ve aksiyon öneri sistemi</li>
-            </ul>
+<section class="py-4 bg-white border-bottom">
+    <div class="container text-center">
+        <p class="text-muted small fw-bold mb-3">TÜRKİYE'NİN LİDER MARKALARI PİKA'YI TERCİH EDİYOR</p>
+        <div class="d-flex justify-content-center flex-wrap gap-5 opacity-50 grayscale-logos">
+            <h4 class="text-secondary fw-bold m-0">MARKA 1</h4>
+            <h4 class="text-secondary fw-bold m-0">MARKA 2</h4>
+            <h4 class="text-secondary fw-bold m-0">MARKA 3</h4>
+            <h4 class="text-secondary fw-bold m-0">MARKA 4</h4>
+            <h4 class="text-secondary fw-bold m-0">MARKA 5</h4>
         </div>
     </div>
 </section>
 
-<section class="faq-section">
-    <div class="container faq-grid">
-        <article class="faq-intro">
-            <p class="hero-label">S.S.S.</p>
-            <h2>Sık Sorulan Sorular</h2>
-            <p>Pika Analysis süreçlerinizi nasıl dönüştürür? En çok gelen soruları tek noktada topladık.</p>
-            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1000&q=80" alt="Toplantı" />
-        </article>
-        <div class="faq-listing">
-            <details open><summary>Kurulum ne kadar sürer?</summary><p>Temel kurulum 1 iş günü içinde tamamlanır, entegrasyonlara göre 3 güne kadar uzayabilir.</p></details>
-            <details><summary>Ajans ile çalışırken de kullanabilir miyim?</summary><p>Evet. Ajans paneli ve rol bazlı yetkiler sayesinde ekiplerle birlikte yönetim yapılabilir.</p></details>
-            <details><summary>Hangi platformlarla entegresiniz?</summary><p>Meta, Google, TikTok, Shopify ve WooCommerce entegrasyonları hazır olarak sunulur.</p></details>
-            <details><summary>Raporları dışarı aktarabilir miyim?</summary><p>Raporları PDF, CSV ve Looker Studio bağlantısı ile paylaşabilirsiniz.</p></details>
+<section class="py-5 bg-light">
+    <div class="container py-5">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h6 class="text-primary fw-bold text-uppercase">Neden Pika?</h6>
+            <h2 class="fw-bold display-6">İşletmeniz İçin Uçtan Uca Çözümler</h2>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="feature-card p-4">
+                    <div class="icon-box">
+                        <i class="bi bi-people-fill"></i>
+                    </div>
+                    <h4>Müşteri Tanıma</h4>
+                    <p class="text-muted">Müşterilerinizi 360 derece tanıyın, alışveriş alışkanlıklarını analiz edin ve segmentlere ayırın.</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="feature-card p-4">
+                    <div class="icon-box">
+                        <i class="bi bi-gift-fill"></i>
+                    </div>
+                    <h4>Akıllı Ödüllendirme</h4>
+                    <p class="text-muted">Puan, kupon veya deneyim odaklı ödül sistemleri ile müşterilerinizi mutlu edin.</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="feature-card p-4">
+                    <div class="icon-box">
+                        <i class="bi bi-graph-up-arrow"></i>
+                    </div>
+                    <h4>Gerçek Zamanlı Rapor</h4>
+                    <p class="text-muted">Kampanya performanslarını anlık izleyin, ROI analizi yapın ve stratejinizi geliştirin.</p>
+                </div>
+            </div>
         </div>
     </div>
 </section>

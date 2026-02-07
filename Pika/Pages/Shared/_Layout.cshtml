@@ -1,102 +1,133 @@
 <!DOCTYPE html>
-<html lang="tr" data-lang="tr">
+<html lang="tr">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Pika</title>
-    <script type="importmap"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>@ViewData["Title"] - Pika Loyalty</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Pika.styles.css" asp-append-version="true" />
 </head>
 <body>
     <header>
-        <div class="top-strip">
-            <div class="container d-flex justify-content-between flex-wrap gap-2">
-                <div class="d-flex gap-3">
-                    <span>Kampanya Yönetimi için Akıllı Çözümler</span>
-                    <span>Telefon: +90 (312) 325 41 14</span>
-                    <span>E-mail: Adres: info@pikaanalysis.com</span>
-                </div>
-                <div>Destek · TR</div>
-            </div>
-        </div>
-
-        <nav class="navbar navbar-expand-lg pika-nav">
+        <nav class="navbar navbar-expand-lg fixed-top">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">PiK<span>Analysis</span></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#pikaNav" aria-controls="pikaNav" aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand" asp-page="/Index">
+                    <i class="bi bi-rocket-takeoff-fill me-2"></i>Pika
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="pikaNav">
-                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                <div class="collapse navbar-collapse" id="navbarContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
                         <li class="nav-item"><a class="nav-link" asp-page="/Index">Ana Sayfa</a></li>
-                        <li class="nav-item"><a class="nav-link" asp-page="/Cozumlerimiz">Çözümlerimiz</a></li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                Çözümlerimiz
+                            </a>
+                            <ul class="dropdown-menu border-0 shadow">
+                                <li><a class="dropdown-item" asp-page="/Cozumler/Loyalty">Müşteri Sadakati</a></li>
+                                <li><a class="dropdown-item" asp-page="/Cozumler/Campaign">Kampanya Yönetimi</a></li>
+                                <li><a class="dropdown-item" asp-page="/Cozumler/Insights">Veri Analitiği</a></li>
+                            </ul>
+                        </li>
+
                         <li class="nav-item"><a class="nav-link" asp-page="/Fiyatlandirma">Fiyatlandırma</a></li>
                         <li class="nav-item"><a class="nav-link" asp-page="/Kurumsal">Kurumsal</a></li>
-                        <li class="nav-item"><a class="nav-link" asp-page="/Iletisim">Kişiler</a></li>
                         <li class="nav-item"><a class="nav-link" asp-page="/Iletisim">İletişim</a></li>
+
+                        <li class="nav-item dropdown ms-2">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                <i class="bi bi-globe"></i> TR
+                            </a>
+                            <ul class="dropdown-menu border-0 shadow dropdown-menu-end">
+                                <li><a class="dropdown-item" href="#">EN (English)</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item ms-3">
+                            <button class="btn btn-primary-custom" data-bs-toggle="modal" data-bs-target="#demoModal">
+                                Demo Talep Et
+                            </button>
+                        </li>
+                        <li class="nav-item ms-2">
+                            <a asp-page="/Login" class="btn btn-outline-dark rounded-pill px-4">Giriş</a>
+                        </li>
                     </ul>
-                    <div class="d-flex align-items-center gap-2 nav-actions">
-                        <a class="btn btn-search" asp-page="/Cozumlerimiz">Ara</a>
-                        <a class="btn btn-login" asp-page="/Login">Giriş</a>
-                        <button class="btn btn-primary-gradient" data-bs-toggle="modal" data-bs-target="#demoModal">Demo Talebi ↗</button>
-                    </div>
                 </div>
             </div>
         </nav>
     </header>
 
-    <main role="main" class="page-content">
+    <main role="main" class="pb-3">
         @RenderBody()
     </main>
 
-    <footer class="site-footer">
-        <div class="container footer-grid">
-            <div>
-                <h4>Bültene Abone Ol</h4>
-                <div class="subscribe-row">
-                    <input type="email" placeholder="E-postanızı girin" />
-                    <button>Abone Ol ↗</button>
+    <footer>
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="fw-bold"><i class="bi bi-rocket-takeoff-fill me-2"></i>Pika</h5>
+                    <p class="small text-muted mb-4">Müşteri sadakatini artırmanın en akıllı yolu. Pika ile veriye dayalı kararlar alın, müşterilerinizi markanıza aşık edin.</p>
+                    <div class="d-flex gap-3">
+                        <a href="#"><i class="bi bi-linkedin fs-5"></i></a>
+                        <a href="#"><i class="bi bi-twitter fs-5"></i></a>
+                        <a href="#"><i class="bi bi-instagram fs-5"></i></a>
+                    </div>
                 </div>
-                <p class="social">Bizi Takip edin: ○ ○ ○ ○</p>
+                <div class="col-lg-2 col-md-6">
+                    <h5>Çözümler</h5>
+                    <a asp-page="/Cozumler/Loyalty">Sadakat Programı</a>
+                    <a asp-page="/Cozumler/Campaign">Gamification</a>
+                    <a asp-page="/Cozumler/Insights">Müşteri Analitiği</a>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h5>Kurumsal</h5>
+                    <a asp-page="/Kurumsal">Hakkımızda</a>
+                    <a href="#">Kariyer</a>
+                    <a href="#">Blog</a>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <h5>Bültenimize Katılın</h5>
+                    <p class="small text-muted">Sadakat dünyasındaki yeniliklerden haberdar olun.</p>
+                    <form class="d-flex gap-2">
+                        <input type="email" class="form-control form-control-sm" placeholder="E-posta adresiniz">
+                        <button class="btn btn-primary-custom btn-sm">Abone Ol</button>
+                    </form>
+                </div>
             </div>
-            <div>
-                <h6>Hızlı Linkler</h6>
-                <ul><li>Çözümlerimiz</li><li>Hakkımızda</li><li>Neden Pika?</li><li>Fiyatlandırma</li><li>İletişim</li></ul>
+            <hr class="my-5 border-secondary" />
+            <div class="text-center small text-muted">
+                &copy; 2026 Pika Teknoloji A.Ş. Tüm hakları saklıdır. | <a href="#" class="d-inline text-muted">Gizlilik</a> | <a href="#" class="d-inline text-muted">Kullanım Şartları</a>
             </div>
-            <div>
-                <h6>Kurumsal</h6>
-                <ul><li>Giriş</li><li>Müşteri Hizmetleri</li><li>Kurumsal Destek Hizmetleri</li><li>S.S.S.</li><li>Kariyer</li></ul>
-            </div>
-            <div>
-                <h6>İletişim</h6>
-                <ul><li>E-posta: info@pikaanalysis.com</li><li>Telefon: +90 (312) 325 41 14</li></ul>
-            </div>
-        </div>
-        <div class="container footer-bottom">
-            <span>© Pika Analysis Tüm hakları saklıdır</span>
-            <span>Gizlilik Politikası • Şartlar ve Koşullar • v0.5.20269002</span>
         </div>
     </footer>
 
-    <div class="modal fade" id="demoModal" tabindex="-1" aria-labelledby="demoModalLabel" aria-hidden="true">
+    <div class="modal fade" id="demoModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content demo-modal">
-                <div class="modal-header border-0">
-                    <h5 class="modal-title" id="demoModalLabel">Demo Talep Formu</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-content border-0 shadow-lg rounded-4">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold ms-2 mt-2">Pika'yı Keşfedin</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="mb-3"><input type="text" class="form-control" placeholder="Ad Soyad" required /></div>
-                        <div class="mb-3"><input type="email" class="form-control" placeholder="E-posta" required /></div>
-                        <div class="mb-3"><input type="text" class="form-control" placeholder="Şirket" required /></div>
-                        <div class="mb-3"><textarea class="form-control" rows="3" placeholder="İhtiyacınızı kısaca yazın"></textarea></div>
-                        <button type="submit" class="btn btn-primary-gradient w-100">Talep Gönder</button>
+                <div class="modal-body p-4">
+                    <p class="text-muted small mb-4">Formu doldurun, uzman ekibimiz size özel bir demo sunumu için iletişime geçsin.</p>
+                    <form id="rdemotalep">
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">Ad Soyad</label>
+                            <input type="text" class="form-control bg-light border-0" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">Kurumsal E-posta</label>
+                            <input type="email" class="form-control bg-light border-0" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">Telefon</label>
+                            <input type="tel" class="form-control bg-light border-0" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary-custom w-100 mt-2">Demo Talep Et</button>
                     </form>
                 </div>
             </div>
@@ -105,8 +136,14 @@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
