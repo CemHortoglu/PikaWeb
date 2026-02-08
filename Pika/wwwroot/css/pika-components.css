@@ -1,14 +1,22 @@
 /* wwwroot/css/pika-components.css */
 :root {
     --pika-bg: #ffffff;
-    --pika-bg2: #f0f2f5;
+    --pika-bg2: #f3f7f5;
     --pika-card: #ffffff;
-    --pika-border: #dee2e6;
-    --pika-text: #212529;
-    --pika-muted: #6c757d;
-    --pika-primary: #0d6efd;
-    --pika-primary2: #0b5ed7;
+    --pika-border: #d7e3dd;
+    --pika-text: #12362c;
+    --pika-muted: #4f685f;
+    --pika-primary: #84c225;
+    --pika-primary2: #6fa91a;
     --pika-radius: 6px;
+}
+
+.top-header-info {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
 }
 
 .pika-body {
@@ -22,12 +30,12 @@
 }
 
 .pika-link {
-    color: #212529;
+    color: var(--pika-text);
     text-decoration: none;
 }
 
     .pika-link:hover {
-        color: #0d6efd;
+        color: var(--pika-primary2);
         text-decoration: underline;
     }
 
@@ -80,16 +88,16 @@
 
 .pika-btn-outline {
     background: transparent;
-    border: 1px solid #ced4da;
-    color: #212529;
+    border: 1px solid #bfd1c9;
+    color: var(--pika-text);
     font-weight: 600;
     border-radius: var(--pika-radius);
 }
 
     .pika-btn-outline:hover {
-        background: #f8f9fa;
-        color: #000000;
-        border-color: #adb5bd;
+        background: #ecf4ef;
+        color: #0e2c24;
+        border-color: #9fb8ad;
     }
 
 .pika-hero {
@@ -233,8 +241,8 @@
     display: grid;
     place-items: center;
     border-radius: var(--pika-radius);
-    background: #e7f0fe;
-    border: 1px solid #cde0fd;
+    background: #eaf4dd;
+    border: 1px solid #cfe5b4;
     margin-bottom: 14px;
 }
 
@@ -278,7 +286,7 @@
 }
 
 .pika-cta-card {
-    background: #e7f0fe;
+    background: #edf6e3;
     border: 1px solid var(--pika-border);
     border-radius: var(--pika-radius);
     padding: 22px;
@@ -356,15 +364,15 @@
 
 .pika-price-card--featured {
     border-color: var(--pika-primary);
-    box-shadow: 0 14px 40px rgba(13, 110, 253, .16);
+    box-shadow: 0 14px 40px rgba(132, 194, 37, .22);
 }
 
 .pika-featured-badge {
     display: inline-block;
     padding: .35rem .7rem;
     border-radius: 999px;
-    background: #e7f0fe;
-    border: 1px solid #cde0fd;
+    background: #edf6e3;
+    border: 1px solid #cfe5b4;
     color: var(--pika-text);
     font-size: .85rem;
     margin-bottom: 10px;
