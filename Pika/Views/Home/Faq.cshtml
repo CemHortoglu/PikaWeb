@@ -1,49 +1,49 @@
 @{
-    ViewData["Title"] = "Sık Sorulan Sorular";
+    var lang = (ViewContext.RouteData.Values["lang"]?.ToString() ?? "tr").ToLowerInvariant();
+    ViewData["Title"] = lang == "en" ? "Frequently Asked Questions" : "Sık Sorulan Sorular";
 }
 
 <section class="faq-pro-hero">
     <div class="container">
         <div class="faq-pro-hero-grid">
             <div>
-                <span class="faq-chip">Pika Yardım Merkezi</span>
-                <h1 class="faq-pro-title">Sık Sorulan Sorular</h1>
-                <p class="faq-pro-lead">
-                    Entegrasyon, güvenlik, onboarding ve operasyon süreçleriyle ilgili en sık gelen soruları tek ekranda bir araya getirdik.
-                    Hızlı cevaplar için kategori kartlarını, detaylı bilgi için aşağıdaki akordeon bloklarını kullanabilirsiniz.
+                <span class="faq-chip" data-i18n="faqpro.chip">Pika Yardım Merkezi</span>
+                <h1 class="faq-pro-title" data-i18n="faqpro.title">Sık Sorulan Sorular</h1>
+                <p class="faq-pro-lead" data-i18n="faqpro.lead">
+                    Entegrasyon, güvenlik, onboarding ve operasyon süreçleriyle ilgili en sık gelen soruları tek ekranda bir araya getirdik. Hızlı cevaplar için kategori kartlarını, detaylı bilgi için aşağıdaki akordeon bloklarını kullanabilirsiniz.
                 </p>
                 <div class="faq-pro-stats">
                     <div class="faq-stat-card">
-                        <strong>12+</strong>
-                        <span>Entegrasyon bağlantısı</span>
+                        <strong data-i18n="faqpro.stat1Value">12+</strong>
+                        <span data-i18n="faqpro.stat1Label">Entegrasyon bağlantısı</span>
                     </div>
                     <div class="faq-stat-card">
-                        <strong>&lt; 7 gün</strong>
-                        <span>Ortalama canlıya geçiş</span>
+                        <strong data-i18n="faqpro.stat2Value">&lt; 7 gün</strong>
+                        <span data-i18n="faqpro.stat2Label">Ortalama canlıya geçiş</span>
                     </div>
                     <div class="faq-stat-card">
-                        <strong>7/24</strong>
-                        <span>İzleme ve bildirim</span>
+                        <strong data-i18n="faqpro.stat3Value">7/24</strong>
+                        <span data-i18n="faqpro.stat3Label">İzleme ve bildirim</span>
                     </div>
                 </div>
             </div>
 
             <aside class="faq-hero-panel" aria-label="SSS kategorileri">
-                <h3>Öne Çıkan Konular</h3>
-                <p>Aradığınız başlığa göre doğrudan ilgili soruları açabilirsiniz.</p>
+                <h3 data-i18n="faqpro.topicsTitle">Öne Çıkan Konular</h3>
+                <p data-i18n="faqpro.topicsLead">Aradığınız başlığa göre doğrudan ilgili soruları açabilirsiniz.</p>
 
                 <div class="faq-topic-list">
                     <a href="#faqAccordion" class="faq-topic-item">
-                        <span class="faq-topic-title">Entegrasyon</span>
-                        <span class="faq-topic-copy">API, veri akışı, sistem bağlantıları</span>
+                        <span class="faq-topic-title" data-i18n="faqpro.topic1Title">Entegrasyon</span>
+                        <span class="faq-topic-copy" data-i18n="faqpro.topic1Copy">API, veri akışı, sistem bağlantıları</span>
                     </a>
                     <a href="#faqAccordion" class="faq-topic-item">
-                        <span class="faq-topic-title">Güvenlik</span>
-                        <span class="faq-topic-copy">KVKK, yetkilendirme, denetim kayıtları</span>
+                        <span class="faq-topic-title" data-i18n="faqpro.topic2Title">Güvenlik</span>
+                        <span class="faq-topic-copy" data-i18n="faqpro.topic2Copy">KVKK, yetkilendirme, denetim kayıtları</span>
                     </a>
                     <a href="#faqAccordion" class="faq-topic-item">
-                        <span class="faq-topic-title">Onboarding</span>
-                        <span class="faq-topic-copy">Kurulum takvimi, ekip rolleri, eğitim</span>
+                        <span class="faq-topic-title" data-i18n="faqpro.topic3Title">Onboarding</span>
+                        <span class="faq-topic-copy" data-i18n="faqpro.topic3Copy">Kurulum takvimi, ekip rolleri, eğitim</span>
                     </a>
                 </div>
             </aside>
@@ -55,19 +55,19 @@
     <div class="container">
         <div class="faq-category-grid mb-4">
             <article class="faq-category-card">
-                <p class="faq-category-label">Başlangıç</p>
-                <h3>Kurulum ve Onboarding</h3>
-                <p>Kurumsal kurulum adımları, erişim rolleri ve ekip eğitim süreci ile ilgili temel sorular.</p>
+                <p class="faq-category-label" data-i18n="faqpro.cat1Label">Başlangıç</p>
+                <h3 data-i18n="faqpro.cat1Title">Kurulum ve Onboarding</h3>
+                <p data-i18n="faqpro.cat1Desc">Kurumsal kurulum adımları, erişim rolleri ve ekip eğitim süreci ile ilgili temel sorular.</p>
             </article>
             <article class="faq-category-card">
-                <p class="faq-category-label">Teknik</p>
-                <h3>Entegrasyon ve Veri</h3>
-                <p>ERP, CRM, e-ticaret altyapıları ve veri ambarı bağlantılarında sık yaşanan teknik senaryolar.</p>
+                <p class="faq-category-label" data-i18n="faqpro.cat2Label">Teknik</p>
+                <h3 data-i18n="faqpro.cat2Title">Entegrasyon ve Veri</h3>
+                <p data-i18n="faqpro.cat2Desc">ERP, CRM, e-ticaret altyapıları ve veri ambarı bağlantılarında sık yaşanan teknik senaryolar.</p>
             </article>
             <article class="faq-category-card">
-                <p class="faq-category-label">Operasyon</p>
-                <h3>Performans ve Destek</h3>
-                <p>SLA, destek kanalları, sürüm yönetimi ve üretim ortamı operasyonlarıyla ilgili açıklamalar.</p>
+                <p class="faq-category-label" data-i18n="faqpro.cat3Label">Operasyon</p>
+                <h3 data-i18n="faqpro.cat3Title">Performans ve Destek</h3>
+                <p data-i18n="faqpro.cat3Desc">SLA, destek kanalları, sürüm yönetimi ve üretim ortamı operasyonlarıyla ilgili açıklamalar.</p>
             </article>
         </div>
 
@@ -75,56 +75,46 @@
             <div class="accordion faq-pro-accordion" id="faqAccordion">
                 <div class="accordion-item">
                     <h2 class="accordion-header">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true" aria-controls="faq1">
-                            Pika hangi sektörlerde kullanılabilir?
-                        </button>
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true" aria-controls="faq1" data-i18n="faqpro.q1">Pika hangi sektörlerde kullanılabilir?</button>
                     </h2>
                     <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">Perakende, finans, telekom, e-ticaret ve üyelik tabanlı sektörlerin tamamında kullanılabilir. Modüler mimarisi sayesinde kurumunuza göre ölçeklenir.</div>
+                        <div class="accordion-body" data-i18n="faqpro.a1">Perakende, finans, telekom, e-ticaret ve üyelik tabanlı sektörlerin tamamında kullanılabilir. Modüler mimarisi sayesinde kurumunuza göre ölçeklenir.</div>
                     </div>
                 </div>
 
                 <div class="accordion-item">
                     <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">
-                            Demo süreci nasıl ilerliyor?
-                        </button>
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2" data-i18n="faqpro.q2">Demo süreci nasıl ilerliyor?</button>
                     </h2>
                     <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">Demo talebiniz sonrası satış mühendislerimiz ihtiyaç analizi yapar. Ardından kurumunuza özel senaryo seti hazırlanır ve canlı demo toplantısı planlanır.</div>
+                        <div class="accordion-body" data-i18n="faqpro.a2">Demo talebiniz sonrası satış mühendislerimiz ihtiyaç analizi yapar. Ardından kurumunuza özel senaryo seti hazırlanır ve canlı demo toplantısı planlanır.</div>
                     </div>
                 </div>
 
                 <div class="accordion-item">
                     <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">
-                            Mevcut sistemlerimizle entegrasyon mümkün mü?
-                        </button>
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3" data-i18n="faqpro.q3">Mevcut sistemlerimizle entegrasyon mümkün mü?</button>
                     </h2>
                     <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">Evet. Pika; CRM, ERP, e-ticaret altyapıları, çağrı merkezi ve veri ambarı çözümleriyle API üzerinden çift yönlü entegrasyon sağlar.</div>
+                        <div class="accordion-body" data-i18n="faqpro.a3">Evet. Pika; CRM, ERP, e-ticaret altyapıları, çağrı merkezi ve veri ambarı çözümleriyle API üzerinden çift yönlü entegrasyon sağlar.</div>
                     </div>
                 </div>
 
                 <div class="accordion-item">
                     <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false" aria-controls="faq4">
-                            Veri güvenliği ve yetkilendirme nasıl sağlanıyor?
-                        </button>
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false" aria-controls="faq4" data-i18n="faqpro.q4">Veri güvenliği ve yetkilendirme nasıl sağlanıyor?</button>
                     </h2>
                     <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">Rol bazlı erişim, işlem logları, şifrelenmiş veri aktarımı, audit kayıtları ve kurum politikalarına uyumlu saklama süreçleri birlikte uygulanır.</div>
+                        <div class="accordion-body" data-i18n="faqpro.a4">Rol bazlı erişim, işlem logları, şifrelenmiş veri aktarımı, audit kayıtları ve kurum politikalarına uyumlu saklama süreçleri birlikte uygulanır.</div>
                     </div>
                 </div>
 
                 <div class="accordion-item">
                     <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5" aria-expanded="false" aria-controls="faq5">
-                            Destek ekibine hangi kanallardan ve ne kadar sürede ulaşabiliriz?
-                        </button>
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5" aria-expanded="false" aria-controls="faq5" data-i18n="faqpro.q5">Destek ekibine hangi kanallardan ve ne kadar sürede ulaşabiliriz?</button>
                     </h2>
                     <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">Destek taleplerinizi portal, e-posta ve öncelikli hat üzerinden iletebilirsiniz. Kritik kayıtlar için 30 dakika içinde geri dönüş, standart taleplerde aynı iş günü içinde yanıt hedeflenir.</div>
+                        <div class="accordion-body" data-i18n="faqpro.a5">Destek taleplerinizi portal, e-posta ve öncelikli hat üzerinden iletebilirsiniz. Kritik kayıtlar için 30 dakika içinde geri dönüş, standart taleplerde aynı iş günü içinde yanıt hedeflenir.</div>
                     </div>
                 </div>
             </div>
