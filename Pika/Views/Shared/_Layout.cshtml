@@ -78,13 +78,10 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="nav.corporate">Corporate</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="@Url.Action("Corporate", "Home")" data-i18n="corp.h1">Why Pika</a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("Corporate", "Home")" data-i18n="corp.m1t">About Us</a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("Corporate", "Home")" data-i18n="home.faqTitle">FAQ</a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("Login", "Auth")" data-i18n="nav.login">Login</a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("Corporate", "Home")" data-i18n="contact.infoTitle">Customer Services</a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("Corporate", "Home")" data-i18n="footer.security">Corporate Support Services</a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("Corporate", "Home")" data-i18n="corp.m2t">Career</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Pika", "Home")">Pika</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("DemoRequest", "Home")">Demo Talebi</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Login", "Auth")">Giriş</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Faq", "Home")">Sık Sorulan Sorular</a></li>
                             </ul>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="@Url.Action("Contact", "Home")" data-i18n="nav.contact">Contact</a></li>
@@ -136,7 +133,14 @@
                     </ul>
                 </li>
                 <li class="mobile-menu-list without-icon"><a href="@Url.Action("Pricing", "Home")" class="nav-link" data-i18n="nav.pricing">Pricing</a></li>
-                <li class="mobile-menu-list without-icon"><a href="@Url.Action("Corporate", "Home")" class="nav-link" data-i18n="nav.corporate">Corporate</a></li>
+                <li class="mobile-menu-list"><a href="javascript:void(0);" data-i18n="nav.corporate">Corporate</a>
+                    <ul class="mobile-menu-items">
+                        <li><a class="dropdown-item" href="@Url.Action("Pika", "Home")">Pika</a></li>
+                        <li><a class="dropdown-item" href="@Url.Action("DemoRequest", "Home")">Demo Talebi</a></li>
+                        <li><a class="dropdown-item" href="@Url.Action("Login", "Auth")">Giriş</a></li>
+                        <li><a class="dropdown-item" href="@Url.Action("Faq", "Home")">Sık Sorulan Sorular</a></li>
+                    </ul>
+                </li>
                 <li class="mobile-menu-list without-icon"><a href="@Url.Action("Contact", "Home")" class="nav-link" data-i18n="nav.contact">Contact</a></li>
             </ul>
 
@@ -194,8 +198,10 @@
                         <div class="footer-weight part-three ps-5">
                             <h3 class="text-white" data-i18n="nav.corporate">Corporate</h3>
                             <ul class="service-link">
-                                <li><a href="@Url.Action("Corporate", "Home")" data-i18n="nav.corporate">Corporate</a></li>
-                                <li><a href="@Url.Action("Login", "Auth")" data-i18n="nav.login">Login</a></li>
+                                <li><a href="@Url.Action("Pika", "Home")">Pika</a></li>
+                                <li><a href="@Url.Action("DemoRequest", "Home")">Demo Talebi</a></li>
+                                <li><a href="@Url.Action("Login", "Auth")">Giriş</a></li>
+                                <li><a href="@Url.Action("Faq", "Home")">Sık Sorulan Sorular</a></li>
                             </ul>
                         </div>
                     </div>

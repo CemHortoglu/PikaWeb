@@ -1,0 +1,65 @@
+@{
+    ViewData["Title"] = "Demo Talebi";
+}
+
+<section class="pika-page-hero">
+    <div class="container">
+        <div class="row g-4 align-items-center">
+            <div class="col-lg-7">
+                <h1 class="pika-h1">Demo Talebi</h1>
+                <p class="pika-lead">
+                    Ekibinize özel bir oturum planlayalım. İhtiyaçlarınıza göre senaryoları birlikte çalışalım ve Pika'nın kurumunuza nasıl değer katacağını canlı olarak gösterelim.
+                </p>
+            </div>
+            <div class="col-lg-5">
+                <div class="pika-card">
+                    <h3 class="pika-h3 mb-3">Neler Dahil?</h3>
+                    <ul class="text-white-50 mb-0">
+                        <li>45 dakikalık canlı ürün sunumu</li>
+                        <li>Sektörünüze özel kullanım senaryoları</li>
+                        <li>Teknik entegrasyon yaklaşımı</li>
+                        <li>Soru-cevap ve yol haritası önerisi</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="pika-section pt-0">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="pika-card">
+                    <h2 class="pika-h3 mb-4">Talep Formu</h2>
+                    <form class="row g-3" method="post" action="#">
+                        <div class="col-md-6">
+                            <label class="form-label text-white">Ad Soyad</label>
+                            <input type="text" class="form-control" placeholder="Ad Soyad" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label text-white">E-posta</label>
+                            <input type="email" class="form-control" placeholder="ornek@firma.com" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label text-white">Şirket</label>
+                            <input type="text" class="form-control" placeholder="Şirket Adı" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label text-white">Telefon</label>
+                            <input type="tel" class="form-control" placeholder="+90" required>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label text-white">Kısa İhtiyaç Notu</label>
+                            <textarea class="form-control" rows="4" placeholder="Hangi modüllerle ilgileniyorsunuz?"></textarea>
+                        </div>
+                        <div class="col-12 d-flex gap-2 flex-wrap">
+                            <button type="submit" class="btn pika-btn-primary">Demo Talebini Gönder</button>
+                            <a class="btn pika-btn-outline" href="@Url.Action("Pika", "Home")">Önce Pika'yı İnceleyin</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

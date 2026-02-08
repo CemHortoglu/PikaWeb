@@ -1,0 +1,61 @@
+@{
+    ViewData["Title"] = "Pika";
+}
+
+<section class="pika-page-hero">
+    <div class="container">
+        <div class="row g-4 align-items-center">
+            <div class="col-lg-7">
+                <h1 class="pika-h1">Pika Nedir?</h1>
+                <p class="pika-lead">
+                    Pika, kurumların müşteri deneyimini tek merkezden yöneteceği bir sadakat ve kampanya otomasyon platformudur.
+                    Veri toplama, segmentasyon, çok kanallı iletişim ve performans analitiği modüllerini aynı çatı altında birleştirir.
+                </p>
+                <div class="d-flex gap-2 flex-wrap">
+                    <a class="btn pika-btn-primary" href="@Url.Action("DemoRequest", "Home")">Demo Talep Et</a>
+                    <a class="btn pika-btn-outline" href="@Url.Action("Contact", "Home")">Bizimle İletişime Geçin</a>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <img class="img-fluid rounded-4" src="~/web/images/service/service-image-1.jpg" alt="Pika platformu" />
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="pika-section">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="pika-card h-100">
+                    <h3 class="pika-h3">360° Müşteri Görünümü</h3>
+                    <p class="text-white-50">Online ve offline temas noktalarından gelen verileri tek müşteri profilinde birleştirerek daha doğru karar almanızı sağlar.</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="pika-card h-100">
+                    <h3 class="pika-h3">Akıllı Segmentasyon</h3>
+                    <p class="text-white-50">Davranış, sıklık, sepet değeri ve yaşam döngüsü bazlı segmentler ile doğru müşteriye doğru teklif sunmanızı kolaylaştırır.</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="pika-card h-100">
+                    <h3 class="pika-h3">Gerçek Zamanlı Aksiyon</h3>
+                    <p class="text-white-50">Müşteri aksiyonlarına anında tetiklenen kampanyalar sayesinde dönüşüm oranlarını artırır ve manuel operasyon yükünü azaltır.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="pika-cta-card mt-5">
+            <h3>Pika ile Neler Kazanırsınız?</h3>
+            <p class="text-white-50 mb-3">Daha yüksek müşteri bağlılığı, daha verimli kampanya yönetimi ve ölçülebilir ticari büyüme.</p>
+            <ul class="text-white-50 mb-4">
+                <li>Sadakat programlarını tek panelden yönetme</li>
+                <li>Omnichannel kampanya kurgusu ve otomasyonu</li>
+                <li>Detaylı KPI takibi, ROI ölçümü ve karşılaştırmalı raporlar</li>
+                <li>Kurumsal güvenlik, rol bazlı yetkilendirme ve audit log desteği</li>
+            </ul>
+            <a class="btn pika-btn-primary" href="@Url.Action("DemoRequest", "Home")">Platformu Canlı Görün</a>
+        </div>
+    </div>
+</section>
