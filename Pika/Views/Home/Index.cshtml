@@ -1,181 +1,117 @@
-﻿@{
+@{
     ViewData["Title"] = "Ana Sayfa";
+    ViewData["BodyClass"] = "pika-home-ref";
 }
 
-<section class="pika-hero">
+<section class="home-hero-ref">
     <div class="container">
-        <div class="row align-items-center g-5">
-            <div class="col-lg-6" data-aos="fade-up">
-                <div class="pika-badge mb-3">
-                    <i class="fa-solid fa-sparkles me-2"></i><span data-i18n="home.badge">Kurumsal Sadakat & Kampanya Otomasyonu</span>
-                </div>
-                <h1 class="pika-h1" data-i18n="home.h1">
-                    Sadakati ölçülebilir büyümeye çevirin.
-                </h1>
-                <p class="pika-lead" data-i18n="home.lead">
-                    Segmentasyon, kampanya akışları ve analitik ile müşteriyi doğru anda doğru teklifle yakalayın.
-                </p>
-
-                <div class="d-flex flex-column flex-sm-row gap-2 mt-4">
-                    <button class="btn pika-btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#demoModal">
-                        <i class="fa-solid fa-wand-magic-sparkles me-2"></i><span data-i18n="home.cta1">Demo Talebi</span>
-                    </button>
-                    <a class="btn pika-btn-outline btn-lg" href="@Url.Action("Solutions", "Home")">
-                        <span data-i18n="home.cta2">Çözümleri İncele</span>
-                        <i class="fa-solid fa-arrow-right ms-2"></i>
-                    </a>
-                </div>
-
-                <div class="pika-trust mt-4">
-                    <div class="pika-trust-item"><i class="fa-solid fa-shield-halved"></i><span data-i18n="home.trust1">KVKK Odaklı</span></div>
-                    <div class="pika-trust-item"><i class="fa-solid fa-bolt"></i><span data-i18n="home.trust2">Hızlı Kurulum</span></div>
-                    <div class="pika-trust-item"><i class="fa-solid fa-chart-simple"></i><span data-i18n="home.trust3">Ölçülebilir ROI</span></div>
-                </div>
+        <div class="row align-items-center g-4">
+            <div class="col-lg-6">
+                <span class="hero-mini">PİKA'YA HOŞ GELDİNİZ</span>
+                <h1 class="hero-title mt-3">Müşteriniz Özel<br />Reklam Yönetimi</h1>
             </div>
-
-            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="150">
-                <div class="pika-hero-visual">
-                    <img src="~/web/hero-mockup.png" class="img-fluid" alt="Pika Dashboard" onerror="this.style.display='none'">
-                    <div class="pika-glow"></div>
-                    <div class="pika-float-card pika-float-1">
-                        <div class="small text-white-50" data-i18n="home.kpi1Title">Dönüşüm</div>
-                        <div class="fw-semibold fs-5">+24%</div>
+            <div class="col-lg-6">
+                <p class="hero-desc">
+                    Pika Analysis olarak, online mağazaların reklam yönetimi süreçlerini gelişmiş otomasyon çözümleriyle dönüştürüyoruz.
+                    Misyonumuz, e-ticaret işletmelerinin büyümeye ve müşteri memnuniyetine odaklanabilmesi için reklam yönetimini kolaylaştırmak ve optimize etmektir.
+                </p>
+                <div class="hero-rating d-flex align-items-center gap-3 mt-3">
+                    <div class="avatar-stack">
+                        <img src="~/web/images/user/user-image-1.jpg" alt="kullanıcı" />
+                        <img src="~/web/images/user/user-image-2.jpg" alt="kullanıcı" />
+                        <img src="~/web/images/user/user-image-3.jpg" alt="kullanıcı" />
+                        <span>8k+</span>
                     </div>
-                    <div class="pika-float-card pika-float-2">
-                        <div class="small text-white-50" data-i18n="home.kpi2Title">Tekrar Satın Alma</div>
-                        <div class="fw-semibold fs-5">+18%</div>
+                    <div>
+                        <div class="stars">★★★★★</div>
+                        <small>%23 Gelecek 1k+ Takip Ede</small>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="pika-logos mt-5" data-aos="fade-up">
-            <div class="text-white-50 small mb-3" data-i18n="home.logosTitle">Birçok ekip Pika ile büyüyor</div>
-            <div class="pika-logo-grid">
-                <div class="pika-logo-pill">Retail</div>
-                <div class="pika-logo-pill">E-commerce</div>
-                <div class="pika-logo-pill">F&B</div>
-                <div class="pika-logo-pill">Services</div>
-                <div class="pika-logo-pill">Enterprise</div>
+        <div class="row g-4 mt-3">
+            <div class="col-lg-4">
+                <article class="hero-box soft">
+                    <h3>Şirketinizi Verimlilikle Büyütelim</h3>
+                    <img src="~/web/images/service/service-image-1.png" alt="verimlilik" class="img-fluid" />
+                </article>
+            </div>
+            <div class="col-lg-4">
+                <article class="hero-box lime">
+                    <h3>İşlerinizi Otomatize Edin,<br />Karlılığınızı Artırın</h3>
+                    <p>Akıllı çözümlerimizle finansman takibi ve yönetimini otomatikleştiriyoruz.</p>
+                    <div class="price-tag">Ekstra Kâr<br /><strong>₺ 9,647.00 ₺</strong></div>
+                    <img src="~/web/images/user/user-image-7.png" alt="karlılık" class="hero-mid-img" />
+                </article>
+            </div>
+            <div class="col-lg-4">
+                <article class="hero-box soft">
+                    <h3>Müşterilerinizin İhtiyaçlarından İlk Sizde</h3>
+                    <img src="~/web/images/app/app-image-4.png" alt="mobil" class="img-fluid" />
+                </article>
             </div>
         </div>
     </div>
 </section>
 
-<section class="pika-section">
+<section class="home-ai-ref">
     <div class="container">
-        <div class="row g-4 align-items-stretch">
-            <div class="col-lg-4" data-aos="fade-up">
-                <div class="pika-card h-100">
-                    <div class="pika-card-icon"><i class="fa-solid fa-diagram-project"></i></div>
-                    <h3 class="pika-h3" data-i18n="home.f1Title">Akış Bazlı Kampanyalar</h3>
-                    <p class="text-white-50" data-i18n="home.f1Desc">Koşullara göre tetiklenen otomasyonlar: hoş geldin, terk edilen sepet, geri kazanım.</p>
-                    <a class="pika-link mt-2 d-inline-block" href="/solutions/campaigns"><span data-i18n="home.learnMore">Detay</span> <i class="fa-solid fa-arrow-right ms-1"></i></a>
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6">
+                <div class="ai-image-wrap">
+                    <img src="~/web/images/hero/data.png" class="img-fluid" alt="data" />
                 </div>
             </div>
-
-            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                <div class="pika-card h-100">
-                    <div class="pika-card-icon"><i class="fa-solid fa-star"></i></div>
-                    <h3 class="pika-h3" data-i18n="home.f2Title">Sadakat Programları</h3>
-                    <p class="text-white-50" data-i18n="home.f2Desc">Puan, seviye, ödül kataloğu ve kişiselleştirilmiş avantajlarla bağlılık oluşturun.</p>
-                    <a class="pika-link mt-2 d-inline-block" href="/solutions/loyalty"><span data-i18n="home.learnMore">Detay</span> <i class="fa-solid fa-arrow-right ms-1"></i></a>
-                </div>
-            </div>
-
-            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
-                <div class="pika-card h-100">
-                    <div class="pika-card-icon"><i class="fa-solid fa-chart-line"></i></div>
-                    <h3 class="pika-h3" data-i18n="home.f3Title">Analitik & İçgörü</h3>
-                    <p class="text-white-50" data-i18n="home.f3Desc">Kohortlar, LTV, kampanya performansı ve kanal bazlı katkıyı tek panelde görün.</p>
-                    <a class="pika-link mt-2 d-inline-block" href="/solutions/analytics"><span data-i18n="home.learnMore">Detay</span> <i class="fa-solid fa-arrow-right ms-1"></i></a>
-                </div>
-            </div>
-        </div>
-
-        <div class="row g-5 align-items-center mt-5">
-            <div class="col-lg-6" data-aos="fade-up">
-                <div class="pika-media">
-                    <div class="pika-media-bg"></div>
-                    <img src="~/web/feature-1.png" class="img-fluid rounded-4" alt="Automation" onerror="this.style.display='none'">
-                </div>
-            </div>
-            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                <h2 class="pika-h2" data-i18n="home.blockTitle">Kampanyadan sadakate: uçtan uca büyüme akışı</h2>
-                <p class="text-white-50" data-i18n="home.blockDesc">
-                    Pika; veri, segment ve aksiyonu aynı yerde toplar. Ekipler daha hızlı iterasyon yapar, daha az operasyonla daha çok sonuç alır.
-                </p>
-
-                <div class="pika-checklist mt-4">
-                    <div class="pika-check"><i class="fa-solid fa-circle-check"></i><span data-i18n="home.check1">Hazır şablonlar ve hızlı devreye alma</span></div>
-                    <div class="pika-check"><i class="fa-solid fa-circle-check"></i><span data-i18n="home.check2">Gelişmiş segment filtreleri ve kural motoru</span></div>
-                    <div class="pika-check"><i class="fa-solid fa-circle-check"></i><span data-i18n="home.check3">Gerçek zamanlı raporlama, export ve API</span></div>
-                </div>
-
-                <div class="d-flex flex-column flex-sm-row gap-2 mt-4">
-                    <a class="btn pika-btn-outline" href="@Url.Action("Pricing", "Home")">
-                        <span data-i18n="home.seePricing">Fiyatları Gör</span>
-                    </a>
-                    <button class="btn pika-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal">
-                        <span data-i18n="home.requestDemo">Demo İste</span>
-                    </button>
+            <div class="col-lg-6 text-white">
+                <span class="hero-mini text-lime">ÖNE ÇIKIYORUZ</span>
+                <h2 class="ai-title mt-2">Yapay Zeka Desteği ile<br />Rakiplerinizin Önüne Geçin</h2>
+                <p class="ai-desc">Kullandığınız kanala özel akıllı içgörüler sayesinde büyümeyi hızlandırın ve reklam performansını net bir şekilde görün.</p>
+                <div class="ai-list mt-4">
+                    <div>Yapay Zeka Desteği</div>
+                    <div>Bireyselleştirilmiş Kampanya</div>
+                    <div>İş Zekası (BI) Desteği</div>
+                    <div>Kapsamlı Raporlama</div>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<section class="pika-section pika-section-alt">
+<section class="home-faq-ref">
     <div class="container">
-        <div class="d-flex justify-content-between align-items-end flex-wrap gap-3 mb-4">
+        <div class="row g-4 align-items-start">
+            <div class="col-lg-5">
+                <div class="faq-card-left">
+                    <span class="hero-mini">S.S.S.</span>
+                    <h2 class="mt-2">Sık Sorulan Sorular</h2>
+                    <p>Pika Analysis olarak sunduğumuz hizmetler ve çözümler hakkında en sık sorulan soruların cevaplarına burada ulaşabilirsiniz.</p>
+                    <img src="~/web/images/about/about-image-6.jpg" class="img-fluid rounded-4" alt="faq" />
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="faq-list-ref">
+                    <div class="faq-item active">1. Pika Analysis Nedir ve Nasıl Çalışır?</div>
+                    <div class="faq-item">2. Reklam Yönetimi Nasıl Otomatikleştiriliyor?</div>
+                    <div class="faq-item">3. Hangi Platformlar ile Entegrasyon Sağlıyorsunuz?</div>
+                    <div class="faq-item">4. Pika Analysis ile Hangi Reklam Kampanyalarını Yürütebilirim?</div>
+                    <div class="faq-item">5. Pika Analysis'i Kullanmak İçin Teknik Bilgi Gerekir mi?</div>
+                    <div class="faq-item">6. Maliyetler Nasıl Hesaplanır?</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="app-banner-ref mt-5">
             <div>
-                <h2 class="pika-h2 mb-2" data-i18n="home.testTitle">Ekiplerin sevdiği deneyim</h2>
-                <p class="text-white-50 mb-0" data-i18n="home.testDesc">Kurumsal görünüm, net kullanıcı akışları, yüksek dönüşüm odaklı UI.</p>
-            </div>
-            <div class="d-flex gap-2">
-                <button class="btn pika-btn-outline btn-sm" id="swiperPrev"><i class="fa-solid fa-arrow-left"></i></button>
-                <button class="btn pika-btn-outline btn-sm" id="swiperNext"><i class="fa-solid fa-arrow-right"></i></button>
-            </div>
-        </div>
-
-        <div class="swiper" id="testimonialsSwiper" data-aos="fade-up">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <div class="pika-quote">
-                        <div class="pika-quote-stars">★★★★★</div>
-                        <p class="mb-3" data-i18n="home.q1">“Kampanya üretim süremiz ciddi azaldı. Operasyon yerine stratejiye zaman ayırıyoruz.”</p>
-                        <div class="small text-white-50">Growth Lead • Retail</div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="pika-quote">
-                        <div class="pika-quote-stars">★★★★★</div>
-                        <p class="mb-3" data-i18n="home.q2">“Segmentasyon ve analitik aynı yerde olunca kararlar hızlandı, sonuçlar netleşti.”</p>
-                        <div class="small text-white-50">CRM Manager • E-commerce</div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="pika-quote">
-                        <div class="pika-quote-stars">★★★★★</div>
-                        <p class="mb-3" data-i18n="home.q3">“Kurumsal görünüm ve kullanım kolaylığı, iç paydaşlarda güven oluşturdu.”</p>
-                        <div class="small text-white-50">Product Owner • Services</div>
-                    </div>
+                <span class="hero-mini">MOBİL UYGULAMA</span>
+                <h3>Tüm İşlemler<br />Parmaklarınızın Ucunda</h3>
+                <p>Tüm kampanya yönetimi ve analizleriniz cebinizde.</p>
+                <div class="stores">
+                    <span>Google Play</span>
+                    <span>App Store</span>
                 </div>
             </div>
-        </div>
-
-        <div class="pika-cta-card mt-5" data-aos="fade-up">
-            <div class="row align-items-center g-4">
-                <div class="col-lg-8">
-                    <h3 class="mb-2" data-i18n="home.ctaTitle">Demo ile ihtiyaçlarınıza uygun akışı birlikte kuralım</h3>
-                    <p class="text-white-50 mb-0" data-i18n="home.ctaDesc">15 dakikada hedeflerinizi çıkaralım, kurulum planını netleştirelim.</p>
-                </div>
-                <div class="col-lg-4 text-lg-end">
-                    <button class="btn pika-btn-primary btn-lg w-100 w-lg-auto" data-bs-toggle="modal" data-bs-target="#demoModal">
-                        <span data-i18n="home.ctaBtn">Demo Talebi</span>
-                    </button>
-                </div>
-            </div>
+            <img src="~/web/images/app/app-image-1.jpg" alt="app" />
         </div>
     </div>
 </section>

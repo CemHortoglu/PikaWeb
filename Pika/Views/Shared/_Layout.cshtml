@@ -1,5 +1,6 @@
 ﻿@{
     var title = ViewData["Title"] as string ?? "Pika";
+    var bodyClass = ViewData["BodyClass"] as string ?? string.Empty;
 }
 <!doctype html>
 <html lang="tr" data-lang="tr">
@@ -24,7 +25,7 @@
 
     <link rel="icon" href="~/web/favicon.ico" />
 </head>
-<body class="pika-body">
+<body class="pika-body @bodyClass">
 
     <!-- Top Notice Bar (optional) -->
     <div class="pika-topbar d-none d-lg-block">
