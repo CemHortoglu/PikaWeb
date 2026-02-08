@@ -30,11 +30,14 @@
     <!-- Top Notice Bar (optional) -->
     <div class="pika-topbar d-none d-lg-block">
         <div class="container d-flex justify-content-between align-items-center py-2">
-            <div class="small text-muted">
-                <i class="fa-solid fa-shield-halved me-2"></i><span data-i18n="topbar.security">Kurumsal güvenlik • KVKK uyumlu süreçler</span>
+            <div class="small text-muted d-flex align-items-center gap-3 topbar-group">
+                <span><i class="fa-solid fa-chart-line me-2"></i>Kampanya Yönetimi İçin Akıllı Çözümler</span>
+                <span><i class="fa-solid fa-phone-volume me-2"></i>Telefon: +90 (312) 325 41 14</span>
+                <span><i class="fa-regular fa-envelope me-2"></i>E-mail: destek@pikaanalysis.com</span>
             </div>
-            <div class="small text-muted">
-                <i class="fa-solid fa-headset me-2"></i><span data-i18n="topbar.support">Destek:</span> <a class="pika-link" href="mailto:destek@pika.com">destek@pika.com</a>
+            <div class="small text-muted d-flex align-items-center gap-3">
+                <span data-i18n="topbar.support">Destek</span>
+                <a class="pika-link" href="#"><img src="~/web/images/flag/tr.svg" alt="TR" width="16" class="me-1" />TR</a>
             </div>
         </div>
     </div>
@@ -84,6 +87,12 @@
                         </li>
 
                         <li class="nav-item ms-lg-2">
+                            <a class="btn btn-sm pika-btn-ghost" href="#" aria-label="Ara">
+                                <i class="fa-solid fa-magnifying-glass"></i><span class="ms-2">Ara</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
                             <a class="btn btn-sm pika-btn-outline" href="@Url.Action("Login", "Auth")">
                                 <span data-i18n="nav.login">Giriş</span>
                             </a>

@@ -728,3 +728,129 @@
     .app-banner-ref { flex-direction: column; align-items: flex-start; }
     .app-banner-ref img { width: 100%; }
 }
+
+/* Corporate home UX uplift */
+.pika-home-ref {
+    --pika-primary: #9bdd08;
+    --pika-primary2: #86c706;
+}
+
+.pika-home-ref.pika-body {
+    background:
+        linear-gradient(90deg, rgba(7, 67, 56, .05) 1px, transparent 1px) 0 0/72px 72px,
+        linear-gradient(rgba(7, 67, 56, .05) 1px, transparent 1px) 0 0/72px 72px,
+        #eef4dc;
+}
+
+.pika-home-ref .pika-topbar {
+    background: #074338;
+    border-bottom: 1px solid rgba(255,255,255,.16);
+}
+
+.pika-home-ref .pika-topbar .text-muted,
+.pika-home-ref .pika-topbar .pika-link {
+    color: #d8e9e1 !important;
+}
+
+.pika-home-ref .pika-topbar .pika-link:hover {
+    color: #9edd05 !important;
+    text-decoration: none;
+}
+
+.topbar-group {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pika-home-ref .pika-header {
+    background: rgba(239, 245, 220, .96);
+    border-bottom-color: rgba(7, 67, 56, .15);
+}
+
+.pika-home-ref .navbar .nav-link {
+    color: #123a33;
+    font-weight: 600;
+    font-size: .95rem;
+}
+
+.pika-home-ref .navbar .nav-link:hover,
+.pika-home-ref .navbar .nav-link:focus {
+    color: #0b2f27;
+}
+
+.pika-home-ref .pika-btn-primary {
+    background: #9edd05;
+    border-color: #9edd05;
+    color: #09332b;
+    border-radius: 10px;
+    box-shadow: 0 10px 22px rgba(111, 168, 3, .34);
+}
+
+.pika-home-ref .pika-btn-primary:hover {
+    background: #89cc00;
+    border-color: #89cc00;
+    color: #072d25;
+}
+
+.pika-home-ref .pika-btn-outline {
+    border: 1px solid rgba(7, 67, 56, .24);
+    color: #0f3f36;
+    background: #f7faee;
+    border-radius: 10px;
+}
+
+.pika-home-ref .pika-btn-outline:hover {
+    background: #edf3dc;
+    border-color: rgba(7, 67, 56, .45);
+    color: #0b322a;
+}
+
+.pika-btn-ghost {
+    border: 1px solid rgba(7, 67, 56, .14);
+    color: #0f3f36;
+    background: #f7faee;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.pika-btn-ghost:hover {
+    background: #edf3dc;
+    color: #0a332b;
+}
+
+.home-hero-ref {
+    padding-top: 56px;
+}
+
+.hero-box {
+    box-shadow: 0 18px 36px rgba(18, 58, 51, .08);
+}
+
+.hero-box.soft {
+    border: 1px solid #e2e8d2;
+}
+
+.hero-box.lime {
+    background: linear-gradient(180deg, #9edd05 0%, #8acb04 100%);
+}
+
+.ai-list div::before {
+    content: "\f058";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    margin-right: .55rem;
+    color: #9edd05;
+}
+
+@media (max-width: 1200px) {
+    .topbar-group span:nth-child(3) {
+        display: none;
+    }
+}
+
+@media (max-width: 991px) {
+    .pika-home-ref .pika-header {
+        background: #eff5dc;
+    }
+}
