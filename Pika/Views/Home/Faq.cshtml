@@ -4,68 +4,71 @@
 
 <section class="faq-pro-hero">
     <div class="container">
-        <div class="row g-4 align-items-center">
-            <div class="col-lg-7">
-                <span class="faq-chip">Pika Kurumsal Bilgi Merkezi</span>
+        <div class="faq-pro-hero-grid">
+            <div>
+                <span class="faq-chip">Pika Yardım Merkezi</span>
                 <h1 class="faq-pro-title">Sık Sorulan Sorular</h1>
                 <p class="faq-pro-lead">
-                    Pika Analysis platformu hakkında entegrasyon, güvenlik, canlıya geçiş ve operasyon süreçlerinde en çok sorulan soruları
-                    tek merkezde topladık. Cevaplarımız kurumsal ekiplerin karar alma sürecini hızlandıracak şekilde hazırlanmıştır.
+                    Entegrasyon, güvenlik, onboarding ve operasyon süreçleriyle ilgili en sık gelen soruları tek ekranda bir araya getirdik.
+                    Hızlı cevaplar için kategori kartlarını, detaylı bilgi için aşağıdaki akordeon bloklarını kullanabilirsiniz.
                 </p>
                 <div class="faq-pro-stats">
                     <div class="faq-stat-card">
-                        <strong>99.9%</strong>
-                        <span>Platform sürekliliği</span>
+                        <strong>12+</strong>
+                        <span>Entegrasyon bağlantısı</span>
                     </div>
                     <div class="faq-stat-card">
-                        <strong>KVKK</strong>
-                        <span>Uyumlu veri işleme</span>
+                        <strong>&lt; 7 gün</strong>
+                        <span>Ortalama canlıya geçiş</span>
                     </div>
                     <div class="faq-stat-card">
-                        <strong>API</strong>
-                        <span>Çift yönlü entegrasyon</span>
+                        <strong>7/24</strong>
+                        <span>İzleme ve bildirim</span>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-5">
-                <div class="faq-hero-panel">
-                    <h3>Balık Modülleri</h3>
-                    <p>Pika'nın balık kategorisi için sunduğu hazır içerik paketleri:</p>
-                    <div class="fish-pill-grid">
-                        <span class="fish-pill">Levrek</span>
-                        <span class="fish-pill">Çipura</span>
-                        <span class="fish-pill">Somon</span>
-                        <span class="fish-pill">Alabalık</span>
-                        <span class="fish-pill">Ton Balığı</span>
-                        <span class="fish-pill">Hamsi</span>
-                    </div>
+
+            <aside class="faq-hero-panel" aria-label="SSS kategorileri">
+                <h3>Öne Çıkan Konular</h3>
+                <p>Aradığınız başlığa göre doğrudan ilgili soruları açabilirsiniz.</p>
+
+                <div class="faq-topic-list">
+                    <a href="#faqAccordion" class="faq-topic-item">
+                        <span class="faq-topic-title">Entegrasyon</span>
+                        <span class="faq-topic-copy">API, veri akışı, sistem bağlantıları</span>
+                    </a>
+                    <a href="#faqAccordion" class="faq-topic-item">
+                        <span class="faq-topic-title">Güvenlik</span>
+                        <span class="faq-topic-copy">KVKK, yetkilendirme, denetim kayıtları</span>
+                    </a>
+                    <a href="#faqAccordion" class="faq-topic-item">
+                        <span class="faq-topic-title">Onboarding</span>
+                        <span class="faq-topic-copy">Kurulum takvimi, ekip rolleri, eğitim</span>
+                    </a>
                 </div>
-            </div>
+            </aside>
         </div>
     </div>
 </section>
 
 <section class="pika-section pt-5">
     <div class="container">
-        <div class="row g-4 mb-4">
-            <div class="col-md-4">
-                <div class="fish-content-card">
-                    <h4>Taze Balık</h4>
-                    <p>Günlük tedarik, menşei etiketi, stok güncelliği ve kampanya otomasyonu ile vitrinde doğruluk sağlar.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="fish-content-card">
-                    <h4>Dondurulmuş Balık</h4>
-                    <p>Soğuk zincir bilgileri, son tüketim tarihi odaklı akışlar ve fiyat optimizasyonu ile satış verimliliği artırılır.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="fish-content-card">
-                    <h4>İşlenmiş Ürünler</h4>
-                    <p>Marine, füme ve fileto ürünlerinde ürün varyasyonu bazlı reklam kurguları tek panelden yönetilir.</p>
-                </div>
-            </div>
+        <div class="faq-category-grid mb-4">
+            <article class="faq-category-card">
+                <p class="faq-category-label">Başlangıç</p>
+                <h3>Kurulum ve Onboarding</h3>
+                <p>Kurumsal kurulum adımları, erişim rolleri ve ekip eğitim süreci ile ilgili temel sorular.</p>
+            </article>
+            <article class="faq-category-card">
+                <p class="faq-category-label">Teknik</p>
+                <h3>Entegrasyon ve Veri</h3>
+                <p>ERP, CRM, e-ticaret altyapıları ve veri ambarı bağlantılarında sık yaşanan teknik senaryolar.</p>
+            </article>
+            <article class="faq-category-card">
+                <p class="faq-category-label">Operasyon</p>
+                <h3>Performans ve Destek</h3>
+                <p>SLA, destek kanalları, sürüm yönetimi ve üretim ortamı operasyonlarıyla ilgili açıklamalar.</p>
+            </article>
         </div>
 
         <div class="faq-pro-shell">
@@ -117,11 +120,11 @@
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5" aria-expanded="false" aria-controls="faq5">
-                            Balık kategorisi için hangi içerikler hazır geliyor?
+                            Destek ekibine hangi kanallardan ve ne kadar sürede ulaşabiliriz?
                         </button>
                     </h2>
                     <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">Levrek, çipura, somon, alabalık, ton balığı ve hamsi gibi alt kategoriler için ürün metni şablonları, kampanya segmentleri ve kreatif öneri setleri hazır olarak sunulur.</div>
+                        <div class="accordion-body">Destek taleplerinizi portal, e-posta ve öncelikli hat üzerinden iletebilirsiniz. Kritik kayıtlar için 30 dakika içinde geri dönüş, standart taleplerde aynı iş günü içinde yanıt hedeflenir.</div>
                     </div>
                 </div>
             </div>
