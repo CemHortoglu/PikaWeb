@@ -1,117 +1,145 @@
 @{
     ViewData["Title"] = "Ana Sayfa";
-    ViewData["BodyClass"] = "pika-home-ref";
+    ViewData["BodyClass"] = "pika-home-modern";
 }
 
-<section class="home-hero-ref">
-    <div class="container">
-        <div class="row align-items-center g-4">
-            <div class="col-lg-6">
-                <span class="hero-mini">PİKA'YA HOŞ GELDİNİZ</span>
-                <h1 class="hero-title mt-3">Müşteriniz Özel<br />Reklam Yönetimi</h1>
+<div class="main-banner-area overflow-hidden position-relative" style="background-image: url('@Url.Content("~/web/images/hero/hero-image-1.svg")')">
+    <div class="container-fluid side-padding pb-100">
+        <div class="row align-items-center">
+            <div class="col-xl-5 col-lg-12" data-cues="slideInRight" data-duration="800">
+                <div class="main-banner-content">
+                    <span class="sub-t">Pika'ya Hoş Geldiniz</span>
+                    <h1>Müşterinize Özel <span><img src="~/web/images/svg/your.svg" alt="vurgulama"> Reklam</span> Yönetimi</h1>
+                </div>
             </div>
-            <div class="col-lg-6">
-                <p class="hero-desc">
-                    Pika Analysis olarak, online mağazaların reklam yönetimi süreçlerini gelişmiş otomasyon çözümleriyle dönüştürüyoruz.
-                    Misyonumuz, e-ticaret işletmelerinin büyümeye ve müşteri memnuniyetine odaklanabilmesi için reklam yönetimini kolaylaştırmak ve optimize etmektir.
-                </p>
-                <div class="hero-rating d-flex align-items-center gap-3 mt-3">
-                    <div class="avatar-stack">
-                        <img src="~/web/images/user/user-image-1.jpg" alt="kullanıcı" />
-                        <img src="~/web/images/user/user-image-2.jpg" alt="kullanıcı" />
-                        <img src="~/web/images/user/user-image-3.jpg" alt="kullanıcı" />
-                        <span>8k+</span>
+            <div class="col-xl-7 col-lg-12" data-cues="slideInLeft" data-duration="800">
+                <div class="info">
+                    <p>Pika Analysis olarak online mağazaların reklam yönetimini gelişmiş otomasyonla dönüştürüyoruz. E-ticaret ekiplerinin büyümeye odaklanabilmesi için süreci sadeleştiriyor ve performansı artırıyoruz.</p>
+                    <div class="row align-items-center g-4">
+                        <div class="col-lg-5 col-md-5">
+                            <ul class="user bg-color-ffffff radius">
+                                <li><img class="rounded-circle" src="~/web/images/user/user-image-2.jpg" alt="kullanıcı"></li>
+                                <li><img class="rounded-circle" src="~/web/images/user/user-image-3.jpg" alt="kullanıcı"></li>
+                                <li><img class="rounded-circle" src="~/web/images/user/user-image-1.jpg" alt="kullanıcı"></li>
+                                <li>8k+</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="star-review">
+                                <ul>
+                                    <li>
+                                        <i class="flaticon-star-2"></i><i class="flaticon-star-2"></i><i class="flaticon-star-2"></i><i class="flaticon-star-2"></i><i class="flaticon-star-2"></i>
+                                    </li>
+                                    <li><i class="ri-arrow-left-up-line"></i> <strong>%23</strong></li>
+                                    <li><span>Tek Tıkla Bir Adım Önde</span></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <div class="stars">★★★★★</div>
-                        <small>%23 Gelecek 1k+ Takip Ede</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-area">
+        <div class="container-fluid side-padding">
+            <div class="row g-4 justify-content-center" data-cues="slideInUp" data-duration="800">
+                <div class="col-xl-4 col-lg-6 col-md-6">
+                    <div class="banner-card bg-color-ffffff radius-30">
+                        <div class="flex-warp position-relative">
+                            <i><img src="~/web/images/svg/grow.svg" alt="büyüme"></i>
+                            <h3>Şirketinizi Verimlilikle Büyütün</h3>
+                        </div>
+                        <div class="banner-card-body">
+                            <img src="~/web/images/hero/finance.png" style="max-height:348px;" alt="finans">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-6 col-md-6">
+                    <div class="banner-card part-two bg-color-9edd05 radius-30 position-relative">
+                        <div class="flex-warp position-relative">
+                            <i><img src="~/web/images/svg/corporation.svg" alt="otomasyon"></i>
+                            <h3>Otomasyonla Karlılığı Artırın</h3>
+                        </div>
+                        <p class="mb-0">Akıllı çözümlerimizle kampanya yönetimini hızlandırın, maliyeti azaltın.</p>
+                        <div class="banner-card-image"><div class="text-end"><img src="~/web/images/service/service-image-2.png" alt="hizmet"></div></div>
+                        <div class="total bg-color-ffffff radius">
+                            <h4>Ekstra Kâr</h4>
+                            <h5><i class="ri-arrow-left-up-line"></i> 9,647.00 ₺</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-6 col-md-6">
+                    <div class="banner-card part-three bg-color-ffffff radius-30 position-relative">
+                        <div class="flex-warp position-relative">
+                            <i><img src="~/web/images/svg/euro.svg" alt="müşteri"></i>
+                            <h3>Müşteri İhtiyaçlarını Önceleyin</h3>
+                        </div>
+                        <div class="banner-image-body">
+                            <div class="text-end">
+                                <img class="service-image-3" src="~/web/images/hero/data.png" style="max-height:352px;" alt="analiz">
+                            </div>
+                            <img class="service-image-4" src="~/web/images/service/service-image-4.png" alt="veri">
+                        </div>
+                        <i class="flaticon-star-5 star-5 moveHorizontal_reverse"></i>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="row g-4 mt-3">
-            <div class="col-lg-4">
-                <article class="hero-box soft">
-                    <h3>Şirketinizi Verimlilikle Büyütelim</h3>
-                    <img src="~/web/images/service/service-image-1.png" alt="verimlilik" class="img-fluid" />
-                </article>
-            </div>
-            <div class="col-lg-4">
-                <article class="hero-box lime">
-                    <h3>İşlerinizi Otomatize Edin,<br />Karlılığınızı Artırın</h3>
-                    <p>Akıllı çözümlerimizle finansman takibi ve yönetimini otomatikleştiriyoruz.</p>
-                    <div class="price-tag">Ekstra Kâr<br /><strong>₺ 9,647.00 ₺</strong></div>
-                    <img src="~/web/images/user/user-image-7.png" alt="karlılık" class="hero-mid-img" />
-                </article>
-            </div>
-            <div class="col-lg-4">
-                <article class="hero-box soft">
-                    <h3>Müşterilerinizin İhtiyaçlarından İlk Sizde</h3>
-                    <img src="~/web/images/app/app-image-4.png" alt="mobil" class="img-fluid" />
-                </article>
-            </div>
-        </div>
     </div>
-</section>
+</div>
 
-<section class="home-ai-ref">
+<div class="features-area bg-color-0c3a30 pt-120 overflow-hidden mb-5">
     <div class="container">
-        <div class="row g-5 align-items-center">
-            <div class="col-lg-6">
-                <div class="ai-image-wrap">
-                    <img src="~/web/images/hero/data.png" class="img-fluid" alt="data" />
+        <div class="row align-items-center">
+            <div class="col-xl-6 col-lg-12" data-cues="slideInRight" data-duration="800">
+                <div class="features-image bg-color-9edd05 radius-30 position-relative">
+                    <img class="feature-shape-1 animationFramesTwo" src="~/web/images/shape/feature-shape-1.png" alt="şekil">
+                    <img class="feature-image-1" src="~/web/images/hero/lod.png" alt="özellik">
+                    <img class="feature-shape-1 moveVertical" src="~/web/images/shape/feature-shape-1.png" alt="şekil">
                 </div>
             </div>
-            <div class="col-lg-6 text-white">
-                <span class="hero-mini text-lime">ÖNE ÇIKIYORUZ</span>
-                <h2 class="ai-title mt-2">Yapay Zeka Desteği ile<br />Rakiplerinizin Önüne Geçin</h2>
-                <p class="ai-desc">Kullandığınız kanala özel akıllı içgörüler sayesinde büyümeyi hızlandırın ve reklam performansını net bir şekilde görün.</p>
-                <div class="ai-list mt-4">
-                    <div>Yapay Zeka Desteği</div>
-                    <div>Bireyselleştirilmiş Kampanya</div>
-                    <div>İş Zekası (BI) Desteği</div>
-                    <div>Kapsamlı Raporlama</div>
+            <div class="col-xl-6 col-lg-12" data-cues="slideInLeft" data-duration="800">
+                <div class="features-content">
+                    <div class="section-heading">
+                        <span class="sub-title">Öne Çıkın</span>
+                        <h2 class="text-white">Yapay Zeka Desteği ile Rakiplerinizin Önüne Geçin</h2>
+                        <p class="text-white">Yapay zeka destekli içgörü ve raporlamalar sayesinde hızlı, ölçülebilir ve sürdürülebilir büyüme sağlayın.</p>
+                    </div>
+                    <ul>
+                        <li class="bg-color-29594b radius-20"><i class="flaticon-check"></i><h3 class="text-white">Yapay Zeka Desteği</h3></li>
+                        <li class="bg-color-29594b radius-20"><i class="flaticon-check"></i><h3 class="text-white">Kişiselleştirilmiş Kampanya</h3></li>
+                        <li class="bg-color-29594b radius-20"><i class="flaticon-check"></i><h3 class="text-white">BI Desteği</h3></li>
+                        <li class="bg-color-29594b radius-20"><i class="flaticon-check"></i><h3 class="text-white">Kapsamlı Raporlama</h3></li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
-</section>
+</div>
 
-<section class="home-faq-ref">
+<div class="faq-area pb-120 overflow-hidden">
     <div class="container">
-        <div class="row g-4 align-items-start">
-            <div class="col-lg-5">
-                <div class="faq-card-left">
-                    <span class="hero-mini">S.S.S.</span>
-                    <h2 class="mt-2">Sık Sorulan Sorular</h2>
-                    <p>Pika Analysis olarak sunduğumuz hizmetler ve çözümler hakkında en sık sorulan soruların cevaplarına burada ulaşabilirsiniz.</p>
-                    <img src="~/web/images/about/about-image-6.jpg" class="img-fluid rounded-4" alt="faq" />
+        <div class="row g-4 align-items-center">
+            <div class="col-lg-6 col-md-12" data-cues="slideInRight" data-duration="800">
+                <div class="question-card bg-color-9edd05 radius-30">
+                    <div class="section-heading">
+                        <span class="sub-title">S.S.S.</span>
+                        <h2>Sık Sorulan Sorular</h2>
+                        <p>Pika Analysis çözümleri ile ilgili sık sorulan soruların kısa cevaplarını aşağıda bulabilirsiniz.</p>
+                    </div>
+                    <img class="radius-30" src="~/web/images/blog/blog-image-4.jpg" alt="faq">
                 </div>
             </div>
-            <div class="col-lg-7">
-                <div class="faq-list-ref">
-                    <div class="faq-item active">1. Pika Analysis Nedir ve Nasıl Çalışır?</div>
-                    <div class="faq-item">2. Reklam Yönetimi Nasıl Otomatikleştiriliyor?</div>
-                    <div class="faq-item">3. Hangi Platformlar ile Entegrasyon Sağlıyorsunuz?</div>
-                    <div class="faq-item">4. Pika Analysis ile Hangi Reklam Kampanyalarını Yürütebilirim?</div>
-                    <div class="faq-item">5. Pika Analysis'i Kullanmak İçin Teknik Bilgi Gerekir mi?</div>
-                    <div class="faq-item">6. Maliyetler Nasıl Hesaplanır?</div>
+            <div class="col-lg-6 col-md-12" data-cues="slideInLeft" data-duration="800">
+                <div class="faq-content">
+                    <div class="accordion" id="accordionFAQ">
+                        <div class="accordion-item"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#q1">Pika Analysis nedir?</button><div id="q1" class="accordion-collapse collapse show" data-bs-parent="#accordionFAQ"><div class="accordion-body"><p>Pika, e-ticaret ekipleri için reklam ve kampanya otomasyonu sağlayan bir platformdur.</p></div></div></div>
+                        <div class="accordion-item"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2">Nasıl otomasyon sağlıyor?</button><div id="q2" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ"><div class="accordion-body"><p>Veri odaklı kurallar, segmentasyon ve hazır akışlarla manuel işleri azaltır.</p></div></div></div>
+                        <div class="accordion-item"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q3">Hangi platformlarla entegre olur?</button><div id="q3" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ"><div class="accordion-body"><p>Popüler reklam ve e-ticaret altyapılarıyla API üzerinden entegre çalışır.</p></div></div></div>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="app-banner-ref mt-5">
-            <div>
-                <span class="hero-mini">MOBİL UYGULAMA</span>
-                <h3>Tüm İşlemler<br />Parmaklarınızın Ucunda</h3>
-                <p>Tüm kampanya yönetimi ve analizleriniz cebinizde.</p>
-                <div class="stores">
-                    <span>Google Play</span>
-                    <span>App Store</span>
-                </div>
-            </div>
-            <img src="~/web/images/app/app-image-1.jpg" alt="app" />
         </div>
     </div>
-</section>
+</div>
