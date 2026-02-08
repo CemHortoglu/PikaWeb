@@ -499,6 +499,26 @@
         if (next) next.addEventListener("click", () => swiper.slideNext());
     }
 
+
+    function hidePreloader() {
+        const preloader = document.getElementById("preloader");
+        if (!preloader) return;
+        preloader.classList.add("is-hidden");
+        document.body.classList.remove("preloading");
+        setTimeout(() => preloader.remove(), 400);
+    }
+
+    function bindPreloader() {
+        document.body.classList.add("preloading");
+
+        if (document.readyState === "complete") {
+            hidePreloader();
+        } else {
+            window.addEventListener("load", hidePreloader, { once: true });
+            setTimeout(hidePreloader, 3000);
+        }
+    }
+
     // Header shrink on scroll
     function bindHeader() {
         const header = document.querySelector(".pika-header");
@@ -534,5 +554,6 @@
         initSwiper();
         bindHeader();
         showToastIfAny();
+        bindPreloader();
     });
 })();

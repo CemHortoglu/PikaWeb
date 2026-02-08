@@ -24,11 +24,13 @@
     <link rel="icon" href="~/web/assets/images/favicon.png" />
 </head>
 <body class="pika-body @bodyClass">
-    <div class="preloader-area text-center position-fixed top-0 bottom-0 start-0 end-0" id="preloader">
-        <div class="loader position-absolute start-0 end-0">
-            <div class="position-relative fw-light">
-                <span class="d-inline-block"><img src="~/web/assets/images/logo.png" alt="logo"></span>
+    <div id="preloader" class="modern-preloader" aria-live="polite" aria-label="Sayfa yükleniyor">
+        <div class="modern-preloader__card">
+            <img src="~/web/assets/images/logo.png" alt="Pika logo" class="modern-preloader__logo" />
+            <div class="modern-preloader__dots" aria-hidden="true">
+                <span></span><span></span><span></span>
             </div>
+            <p class="modern-preloader__text">İçerik hazırlanıyor...</p>
         </div>
     </div>
 
