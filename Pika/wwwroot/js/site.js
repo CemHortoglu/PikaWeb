@@ -228,7 +228,7 @@
             "search": "Ara",
             "home.faqTitle": "Sık Sorulan Sorular",
             "home.heroWelcome": "Pika'ya Hoş Geldiniz",
-            "home.heroTitle": "Müşterinize Özel Reklam Yönetimi",
+            "home.heroTitle": "Müşterinize <span><img src=\"/web/images/svg/your.svg\" alt=\"image\"> Özel </span> Reklam Yönetimi",
             "home.heroDesc": "Pika Analysis olarak online mağazaların reklam yönetimini gelişmiş otomasyonla dönüştürüyoruz. E-ticaret ekiplerinin büyümeye odaklanabilmesi için süreci sadeleştiriyor ve performansı artırıyoruz.",
             "home.heroBadge": "Tek Tıkla Bir Adım Önde",
             "home.card1": "Şirketinizi Verimlilikle Büyütün",
@@ -438,7 +438,7 @@
             "search": "Search",
             "home.faqTitle": "Frequently Asked Questions",
             "home.heroWelcome": "Welcome to Pika",
-            "home.heroTitle": "Custom Ad Management for Your Customers",
+            "home.heroTitle": "Ad Management <span><img src=\"/web/images/svg/your.svg\" alt=\"image\"> Tailored </span> for Your Customers",
             "home.heroDesc": "At Pika Analysis, we transform online store advertising with advanced automation so e-commerce teams can focus on growth.",
             "home.heroBadge": "One Click Ahead",
             "home.card1": "Grow Your Business Efficiently",
@@ -579,6 +579,12 @@
             const key = el.getAttribute("data-i18n");
             const value = i18n[safe][key];
             if (value) el.textContent = value;
+        });
+
+        qsa("[data-i18n-html]").forEach(el => {
+            const key = el.getAttribute("data-i18n-html");
+            const value = i18n[safe][key];
+            if (value) el.innerHTML = value;
         });
 
         qsa("[data-i18n-placeholder]").forEach(el => {
