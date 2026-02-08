@@ -85,14 +85,11 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="Solutions">Solutions</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/solutions/campaign-management" data-i18n="CampaignManagement">Campaign Management</a></li>
-                                <li><a class="dropdown-item" href="/solutions/email-marketing" data-i18n="EmailMarketing">Email Marketing</a></li>
-                                <li><a class="dropdown-item" href="/solutions/sms-marketing" data-i18n="SmsMarketing">Sms Marketing</a></li>
-                                <li><a class="dropdown-item" href="/solutions/push-notification" data-i18n="PushNotification">Push Notification</a></li>
-                                <li><a class="dropdown-item" href="/solutions/recommendation-engine" data-i18n="RecommendationEngine">Recommendation Engine</a></li>
-                                <li><a class="dropdown-item" href="/solutions/mobile-marketing" data-i18n="MobileMarketing">Mobile Marketing</a></li>
-                                <li><a class="dropdown-item" href="/solutions/advanced-bi-solutions" data-i18n="AdvancedBISolutions">Advanced BI Solutions</a></li>
-                                <li><a class="dropdown-item" href="/solutions/ai-transformations" data-i18n="AiTransformations">Ai Transformations</a></li>
+                                <li><a class="dropdown-item" href="/solutions/loyalty" data-i18n="Loyalty">Loyalty</a></li>
+                                <li><a class="dropdown-item" href="/solutions/campaigns" data-i18n="Campaigns">Campaigns</a></li>
+                                <li><a class="dropdown-item" href="/solutions/segmentation" data-i18n="Segmentation">Segmentation</a></li>
+                                <li><a class="dropdown-item" href="/solutions/analytics" data-i18n="Analytics">Analytics</a></li>
+                                <li><a class="dropdown-item" href="/solutions/integrations" data-i18n="Integrations">Integrations</a></li>
                             </ul>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="@Url.Action("Pricing", "Home")" data-i18n="Pricing">Pricing</a></li>
@@ -108,7 +105,6 @@
                                 <li><a class="dropdown-item" href="@Url.Action("Corporate", "Home")" data-i18n="Career">Career</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="/admin/contacts" data-i18n="Contacts">Contacts</a></li>
                         <li class="nav-item"><a class="nav-link" href="@Url.Action("Contact", "Home")" data-i18n="Contact">Contact</a></li>
                     </ul>
                 </div>
@@ -137,10 +133,11 @@
                 <li class="mobile-menu-list without-icon"><a href="@Url.Action("Index", "Home")" class="nav-link" data-i18n="Home">Home</a></li>
                 <li class="mobile-menu-list"><a href="javascript:void(0);" data-i18n="Solutions">Solutions</a>
                     <ul class="mobile-menu-items">
-                        <li><a class="dropdown-item" href="/solutions/campaign-management" data-i18n="CampaignManagement">Campaign Management</a></li>
-                        <li><a class="dropdown-item" href="/solutions/email-marketing" data-i18n="EmailMarketing">Email Marketing</a></li>
-                        <li><a class="dropdown-item" href="/solutions/sms-marketing" data-i18n="SmsMarketing">Sms Marketing</a></li>
-                        <li><a class="dropdown-item" href="/solutions/push-notification" data-i18n="PushNotification">Push Notification</a></li>
+                        <li><a class="dropdown-item" href="/solutions/loyalty" data-i18n="Loyalty">Loyalty</a></li>
+                        <li><a class="dropdown-item" href="/solutions/campaigns" data-i18n="Campaigns">Campaigns</a></li>
+                        <li><a class="dropdown-item" href="/solutions/segmentation" data-i18n="Segmentation">Segmentation</a></li>
+                        <li><a class="dropdown-item" href="/solutions/analytics" data-i18n="Analytics">Analytics</a></li>
+                        <li><a class="dropdown-item" href="/solutions/integrations" data-i18n="Integrations">Integrations</a></li>
                     </ul>
                 </li>
                 <li class="mobile-menu-list without-icon"><a href="@Url.Action("Pricing", "Home")" class="nav-link" data-i18n="Pricing">Pricing</a></li>
@@ -195,11 +192,11 @@
                         <div class="footer-weight part-two ps-5">
                             <h3 class="text-white" data-i18n="QuickLinks">Quick Links</h3>
                             <ul class="service-link">
-                                <li><a href="#" data-i18n="Solutions">Solutions</a></li>
-                                <li><a href="#" data-i18n="AboutUs">About Us</a></li>
-                                <li><a href="#" data-i18n="WhyPika">Why Pika</a></li>
-                                <li><a href="#" data-i18n="Pricing">Pricing</a></li>
-                                <li><a href="#" data-i18n="Contact">Contact</a></li>
+                                <li><a href="@Url.Action("Index", "Home")" data-i18n="Home">Home</a></li>
+                                <li><a href="@Url.Action("Solutions", "Home")" data-i18n="Solutions">Solutions</a></li>
+                                <li><a href="@Url.Action("Pricing", "Home")" data-i18n="Pricing">Pricing</a></li>
+                                <li><a href="@Url.Action("Corporate", "Home")" data-i18n="Corporate">Corporate</a></li>
+                                <li><a href="@Url.Action("Contact", "Home")" data-i18n="Contact">Contact</a></li>
                             </ul>
                         </div>
                     </div>
@@ -207,11 +204,8 @@
                         <div class="footer-weight part-three ps-5">
                             <h3 class="text-white" data-i18n="Corporate">Corporate</h3>
                             <ul class="service-link">
-                                <li><a href="#" data-i18n="Login">Login</a></li>
-                                <li><a href="#" data-i18n="CustomerServices">Customer Services</a></li>
-                                <li><a href="#" data-i18n="CorporateSupportServices">Corporate Support Services</a></li>
-                                <li><a href="#" data-i18n="FAQ">FAQ</a></li>
-                                <li><a href="#" data-i18n="Career">Career</a></li>
+                                <li><a href="@Url.Action("Corporate", "Home")" data-i18n="Corporate">Corporate</a></li>
+                                <li><a href="@Url.Action("Login", "Auth")" data-i18n="Login">Login</a></li>
                             </ul>
                         </div>
                     </div>
