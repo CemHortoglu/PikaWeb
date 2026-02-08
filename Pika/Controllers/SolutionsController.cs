@@ -19,5 +19,8 @@ namespace Pika.Controllers
 
         [HttpGet("integrations")]
         public IActionResult Integrations() => View();
+
+        [HttpGet("security")]
+        public IActionResult Security() => View();
     }
 }
