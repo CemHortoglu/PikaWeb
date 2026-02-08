@@ -1,3 +1,43 @@
-﻿@{ ViewData["Title"] = "Sadakat"; }
-<section class="pika-page-hero"><div class="container"><div class="row g-4 align-items-center"><div class="col-lg-7"><h1 class="pika-h1" data-i18n="loy.h1"></h1><p class="pika-lead" data-i18n="loy.lead"></p><div class="d-flex gap-2"><button class="btn pika-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal" data-i18n="loy.demo"></button><a class="btn pika-btn-outline" href="@Url.Action("Pricing", "Home")" data-i18n="loy.pricing"></a></div></div><div class="col-lg-5"><img class="img-fluid rounded-4" src="~/web/images/service/service-image-1.png" alt="Loyalty demo" /><p class="small text-white-50 mt-2">Demo image placeholder / Demo görsel alanı</p></div></div></div></section>
-<section class="pika-section"><div class="container"><div class="row g-4"><div class="col-lg-4"><div class="pika-card h-100"><h3 class="pika-h3" data-i18n="loy.f1t"></h3><p class="text-white-50" data-i18n="loy.f1d"></p></div></div><div class="col-lg-4"><div class="pika-card h-100"><h3 class="pika-h3" data-i18n="loy.f2t"></h3><p class="text-white-50" data-i18n="loy.f2d"></p></div></div><div class="col-lg-4"><div class="pika-card h-100"><h3 class="pika-h3" data-i18n="loy.f3t"></h3><p class="text-white-50" data-i18n="loy.f3d"></p></div></div></div><div class="pika-cta-card mt-5"><h3 data-i18n="loy.ctaT"></h3><p class="text-white-50" data-i18n="loy.ctaD"></p><button class="btn pika-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal" data-i18n="loy.ctaB"></button></div></div></section>
+@{ ViewData["Title"] = "Sadakat"; }
+
+<section class="pika-page-hero">
+    <div class="container">
+        <div class="row g-4 align-items-center">
+            <div class="col-lg-7">
+                <h1 class="pika-h1" data-i18n="loy.h1"></h1>
+                <p class="pika-lead" data-i18n="loy.lead"></p>
+                <div class="d-flex gap-2 flex-wrap">
+                    <button class="btn pika-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal" data-i18n="loy.demo"></button>
+                    <a class="btn pika-btn-outline" href="@Url.Action("Pricing", "Home")" data-i18n="loy.pricing"></a>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <img class="img-fluid rounded-4" src="~/web/images/service/service-image-1.png" alt="Loyalty" />
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="pika-section">
+    <div class="container">
+        <div class="pika-solution-showcase">
+            <div class="pika-solution-showcase__content">
+                <h2 class="pika-h2" data-i18n="loy.midT"></h2>
+                <p class="pika-lead mb-3" data-i18n="loy.midD"></p>
+                <ul class="pika-solution-list">
+                    <li data-i18n="loy.k1"></li>
+                    <li data-i18n="loy.k2"></li>
+                    <li data-i18n="loy.k3"></li>
+                </ul>
+            </div>
+            <div class="pika-solution-showcase__visual">
+                <img src="~/web/images/service/service-image-10.jpg" alt="Loyalty dashboard" class="img-fluid rounded-4" />
+            </div>
+        </div>
+        <div class="pika-cta-card mt-5">
+            <h3 data-i18n="loy.ctaT"></h3>
+            <p class="text-muted" data-i18n="loy.ctaD"></p>
+            <button class="btn pika-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal" data-i18n="loy.ctaB"></button>
+        </div>
+    </div>
+</section>
