@@ -19,6 +19,8 @@
             "nav.solutions.security": "Güvenlik",
             "nav.pricing": "Fiyatlandırma",
             "nav.corporate": "Kurumsal",
+            "nav.pika": "Pika",
+            "nav.faq": "Sık Sorulan Sorular",
             "nav.contact": "İletişim",
             "nav.login": "Giriş",
             "nav.demo": "Demo Talebi",
@@ -261,6 +263,17 @@
             "int.ctaD": "Teknik ekibinizle uyumlu bir geçiş planı için demo oluşturalım.",
             "int.ctaB": "Demo Talebi",
 
+            "faq.h1": "Sık Sorulan Sorular",
+            "faq.lead": "Pika platformu, demo süreci, güvenlik ve entegrasyon hakkında en çok merak edilen soruları bu sayfada topladık.",
+            "faq.q1": "Pika hangi sektörlerde kullanılabilir?",
+            "faq.a1": "Perakende, finans, telekom, e-ticaret ve üyelik tabanlı tüm sektörlerde kullanılabilir. Modüler yapısı sayesinde iş ihtiyaçlarına göre ölçeklenir.",
+            "faq.q2": "Demo süreci nasıl ilerliyor?",
+            "faq.a2": "Demo talep formunu doldurduktan sonra ekibimiz sizinle iletişime geçer. İhtiyaç toplantısı sonrası kurumunuza özel bir canlı demo planlanır.",
+            "faq.q3": "Mevcut sistemlerimizle entegrasyon mümkün mü?",
+            "faq.a3": "Evet. API tabanlı mimari ile CRM, ERP, e-ticaret, çağrı merkezi ve veri ambarı sistemleriyle çift yönlü entegrasyon sağlanabilir.",
+            "faq.q4": "Veri güvenliği ve yetkilendirme nasıl sağlanıyor?",
+            "faq.a4": "Rol bazlı erişim, işlem logları, güvenli veri aktarımı ve kurum politikalarına uyumlu saklama prensipleri ile güvenlik katmanları uygulanır.",
+
             "search": "Ara",
             "home.faqTitle": "Sık Sorulan Sorular",
             "home.heroWelcome": "Pika'ya Hoş Geldiniz",
@@ -332,6 +345,8 @@
             "nav.solutions.security": "Security",
             "nav.pricing": "Pricing",
             "nav.corporate": "Company",
+            "nav.pika": "Pika",
+            "nav.faq": "Frequently Asked Questions",
             "nav.contact": "Contact",
             "nav.login": "Login",
             "nav.demo": "Request a Demo",
@@ -622,7 +637,18 @@
             "int.k3": "Step-by-step path from sandbox to production",
             "int.ctaT": "Plan your integration scope",
             "int.ctaD": "Let's build a demo aligned with your technical architecture.",
-            "int.ctaB": "Request a Demo"
+            "int.ctaB": "Request a Demo",
+
+            "faq.h1": "Frequently Asked Questions",
+            "faq.lead": "We collected the most common questions about the Pika platform, demo process, security, and integrations on this page.",
+            "faq.q1": "Which industries can use Pika?",
+            "faq.a1": "It can be used in retail, finance, telecom, e-commerce, and all membership-based sectors. Its modular structure scales to business needs.",
+            "faq.q2": "How does the demo process work?",
+            "faq.a2": "After you submit the demo request form, our team contacts you. Following a needs meeting, we schedule a live demo tailored to your organization.",
+            "faq.q3": "Is integration with our existing systems possible?",
+            "faq.a3": "Yes. With API-based architecture, two-way integration can be provided with CRM, ERP, e-commerce, call center, and data warehouse systems.",
+            "faq.q4": "How are data security and authorization handled?",
+            "faq.a4": "Security layers are implemented with role-based access, activity logs, secure data transfer, and storage principles aligned with corporate policies."
         }
     };
 
