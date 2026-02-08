@@ -1,35 +1,42 @@
-﻿@{
-    ViewData["Title"] = "Çözümlerimiz";
-}
-<section class="pika-page-hero">
+@{ ViewData["Title"] = "Çözümlerimiz"; }
+<section class="pika-corp-hero">
     <div class="container">
-        <div class="row align-items-center g-4">
-            <div class="col-lg-7" data-aos="fade-up">
-                <h1 class="pika-h1" data-i18n="sol.h1">Çözümlerimiz</h1>
-                <p class="pika-lead" data-i18n="sol.lead">Sadakat, kampanya, segmentasyon ve analitiği tek çatı altında birleştirin.</p>
-                <div class="d-flex gap-2 flex-wrap">
-                    <a class="btn pika-btn-outline" href="@Url.Action("Integrations", "Solutions")"><span data-i18n="sol.integrations">Entegrasyonlar</span></a>
+        <div class="pika-corp-hero__grid">
+            <div>
+                <span class="pika-corp-chip">Kurumsal Çözüm Platformu</span>
+                <h1 class="pika-corp-title" data-i18n="sol.h1">Çözümlerimiz</h1>
+                <p class="pika-corp-lead" data-i18n="sol.lead">Sadakat, kampanya, segmentasyon ve analitiği tek çatı altında birleştirin.</p>
+                <div class="pika-corp-kpi-grid">
+                    <div class="pika-corp-kpi"><strong>7 Modül</strong><span>Uçtan uca yetenek seti</span></div>
+                    <div class="pika-corp-kpi"><strong>API-First</strong><span>Esnek entegrasyon</span></div>
+                    <div class="pika-corp-kpi"><strong>Enterprise</strong><span>Güvenlik ve yönetişim</span></div>
+                </div>
+                <div class="d-flex gap-2 flex-wrap mt-4">
                     <button class="btn pika-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal"><span data-i18n="sol.demo">Demo Talebi</span></button>
+                    <a class="btn pika-btn-ghost" href="@Url.Action("Integrations", "Solutions")"><span data-i18n="sol.integrations">Entegrasyonlar</span></a>
                 </div>
             </div>
-            <div class="col-lg-5" data-aos="fade-up" data-aos-delay="120">
-                <img class="img-fluid rounded-4" src="~/web/images/service/service-image-11.jpg" alt="Solutions demo placeholder" />
-                <p class="small text-white-50 mt-2 mb-0">Demo image placeholder / Demo görsel alanı</p>
-            </div>
+            <aside class="pika-corp-aside">
+                <h3>Modül Haritası</h3>
+                <div class="pika-corp-aside-list">
+                    <a class="pika-corp-aside-item text-decoration-none" href="@Url.Action("Journey", "Solutions")"><strong data-i18n="sol.c0t"></strong><span data-i18n="sol.c0d"></span></a>
+                    <a class="pika-corp-aside-item text-decoration-none" href="@Url.Action("Loyalty", "Solutions")"><strong data-i18n="sol.c1t"></strong><span data-i18n="sol.c1d"></span></a>
+                    <a class="pika-corp-aside-item text-decoration-none" href="@Url.Action("Campaigns", "Solutions")"><strong data-i18n="sol.c2t"></strong><span data-i18n="sol.c2d"></span></a>
+                </div>
+            </aside>
         </div>
     </div>
 </section>
-
-<section class="pika-section">
+<section class="pika-section pika-corp-section">
     <div class="container">
-        <div class="row g-4">
-            <div class="col-md-6 col-lg-4"><a class="pika-solution-card" href="@Url.Action("Journey", "Solutions")"><div class="fw-semibold fs-5" data-i18n="sol.c0t">Journey Orkestrasyonu</div><div class="text-white-50 mt-2" data-i18n="sol.c0d"></div></a></div>
-            <div class="col-md-6 col-lg-4"><a class="pika-solution-card" href="@Url.Action("Loyalty", "Solutions")"><div class="fw-semibold fs-5" data-i18n="sol.c1t">Sadakat Yönetimi</div><div class="text-white-50 mt-2" data-i18n="sol.c1d"></div></a></div>
-            <div class="col-md-6 col-lg-4"><a class="pika-solution-card" href="@Url.Action("Campaigns", "Solutions")"><div class="fw-semibold fs-5" data-i18n="sol.c2t"></div><div class="text-white-50 mt-2" data-i18n="sol.c2d"></div></a></div>
-            <div class="col-md-6 col-lg-4"><a class="pika-solution-card" href="@Url.Action("Segmentation", "Solutions")"><div class="fw-semibold fs-5" data-i18n="sol.c3t"></div><div class="text-white-50 mt-2" data-i18n="sol.c3d"></div></a></div>
-            <div class="col-md-6 col-lg-4"><a class="pika-solution-card" href="@Url.Action("Analytics", "Solutions")"><div class="fw-semibold fs-5" data-i18n="sol.c4t"></div><div class="text-white-50 mt-2" data-i18n="sol.c4d"></div></a></div>
-            <div class="col-md-6 col-lg-4"><a class="pika-solution-card" href="@Url.Action("Integrations", "Solutions")"><div class="fw-semibold fs-5" data-i18n="sol.c5t"></div><div class="text-white-50 mt-2" data-i18n="sol.c5d"></div></a></div>
-            <div class="col-md-6 col-lg-4"><a class="pika-solution-card" href="@Url.Action("Security", "Solutions")"><div class="fw-semibold fs-5" data-i18n="sol.c6t">Kurumsal Güvenlik ve Uyum</div><div class="text-white-50 mt-2" data-i18n="sol.c6d">RBAC, denetim izleri ve gizlilik odaklı yönetişim.</div></a></div>
+        <div class="pika-corp-card-grid">
+            <a class="pika-corp-card text-decoration-none" href="@Url.Action("Journey", "Solutions")"><h3 data-i18n="sol.c0t"></h3><p data-i18n="sol.c0d"></p></a>
+            <a class="pika-corp-card text-decoration-none" href="@Url.Action("Loyalty", "Solutions")"><h3 data-i18n="sol.c1t"></h3><p data-i18n="sol.c1d"></p></a>
+            <a class="pika-corp-card text-decoration-none" href="@Url.Action("Campaigns", "Solutions")"><h3 data-i18n="sol.c2t"></h3><p data-i18n="sol.c2d"></p></a>
+            <a class="pika-corp-card text-decoration-none" href="@Url.Action("Segmentation", "Solutions")"><h3 data-i18n="sol.c3t"></h3><p data-i18n="sol.c3d"></p></a>
+            <a class="pika-corp-card text-decoration-none" href="@Url.Action("Analytics", "Solutions")"><h3 data-i18n="sol.c4t"></h3><p data-i18n="sol.c4d"></p></a>
+            <a class="pika-corp-card text-decoration-none" href="@Url.Action("Integrations", "Solutions")"><h3 data-i18n="sol.c5t"></h3><p data-i18n="sol.c5d"></p></a>
+            <a class="pika-corp-card text-decoration-none" href="@Url.Action("Security", "Solutions")"><h3 data-i18n="sol.c6t"></h3><p data-i18n="sol.c6d"></p></a>
         </div>
     </div>
 </section>
