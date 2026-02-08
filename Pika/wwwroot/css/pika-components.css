@@ -1630,3 +1630,126 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* Corporate template shared across solution/pricing/contact pages */
+.pika-corp-hero {
+    padding: 58px 0 44px;
+    background: linear-gradient(140deg, #0b4d40 0%, #0f6a54 55%, #1a7c64 100%);
+}
+
+.pika-corp-hero__grid {
+    display: grid;
+    grid-template-columns: 1.25fr .75fr;
+    gap: 1.2rem;
+    align-items: start;
+}
+
+.pika-corp-chip {
+    display: inline-flex;
+    background: rgba(157, 221, 5, .2);
+    border: 1px solid rgba(157, 221, 5, .55);
+    color: #e6ffbe;
+    border-radius: 999px;
+    padding: .38rem .82rem;
+    font-size: .78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+}
+
+.pika-corp-title {
+    color: #fff;
+    font-size: clamp(2rem, 3.4vw, 3.2rem);
+    line-height: 1.1;
+    margin-top: .8rem;
+    margin-bottom: .6rem;
+    font-weight: 800;
+}
+
+.pika-corp-lead { color: rgba(234, 248, 242, .92); font-size: 1.08rem; }
+
+.pika-corp-kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: .7rem;
+}
+
+.pika-corp-kpi {
+    background: rgba(255,255,255,.12);
+    border: 1px solid rgba(224, 241, 235, .38);
+    border-radius: 11px;
+    padding: .82rem;
+}
+
+.pika-corp-kpi strong { display: block; color: #fff; font-size: 1.1rem; }
+.pika-corp-kpi span { color: #d8eee6; font-size: .85rem; }
+
+.pika-corp-aside {
+    background: #e7f5d3;
+    border: 1px solid #cce5ab;
+    border-radius: 16px;
+    padding: 1rem;
+}
+
+.pika-corp-aside h3 { font-size: 1.12rem; margin-bottom: .6rem; color: #103830; }
+.pika-corp-aside-list { display: grid; gap: .6rem; }
+
+.pika-corp-aside-item {
+    display: grid;
+    gap: .18rem;
+    border: 1px solid #d6e7be;
+    background: #f4faea;
+    border-radius: 10px;
+    padding: .7rem .74rem;
+    color: inherit;
+}
+
+.pika-corp-aside-item strong { color: #184339; font-size: .9rem; }
+.pika-corp-aside-item span { color: #3d655b; font-size: .84rem; }
+
+.pika-corp-section { background: #f2f7de; }
+
+.pika-corp-card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: .9rem;
+}
+
+.pika-corp-card {
+    border: 1px solid #d5e3c5;
+    border-radius: 14px;
+    background: #fff;
+    padding: 1rem;
+    color: var(--pika-text);
+}
+
+.pika-corp-card h3 { font-size: 1.06rem; color: #143930; margin-bottom: .45rem; }
+.pika-corp-card p { margin: 0; color: #4e675f; }
+
+.pika-corp-shell {
+    background: #fff;
+    border: 1px solid #d5e1d2;
+    border-radius: 16px;
+    padding: clamp(1rem, 2.1vw, 1.55rem);
+}
+
+.pika-btn-ghost {
+    background: rgba(255,255,255,.18);
+    color: #f3ffcf;
+    border: 1px solid rgba(208, 234, 186, .8);
+    font-weight: 600;
+}
+
+.pika-btn-ghost:hover {
+    background: #d8ef8d;
+    border-color: #d8ef8d;
+    color: #103b30;
+}
+
+@media (max-width: 991px) {
+    .pika-corp-hero__grid,
+    .pika-corp-kpi-grid,
+    .pika-corp-card-grid {
+        grid-template-columns: 1fr;
+    }
+}
