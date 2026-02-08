@@ -1,46 +1,46 @@
 /* wwwroot/css/pika-components.css */
 :root {
-    --pika-bg: #070B14;
-    --pika-bg2: #0B1220;
-    --pika-card: rgba(255,255,255,.04);
-    --pika-border: rgba(255,255,255,.10);
-    --pika-text: rgba(255,255,255,.92);
-    --pika-muted: rgba(255,255,255,.62);
-    --pika-primary: #7C3AED; /* mor */
-    --pika-primary2: #22D3EE; /* cyan */
+    --pika-bg: #f4f7ea;
+    --pika-bg2: #e8f0d7;
+    --pika-card: #ffffff;
+    --pika-border: #d8e3c3;
+    --pika-text: #10332c;
+    --pika-muted: #4f6f67;
+    --pika-primary: #9edd05;
+    --pika-primary2: #7cb906;
     --pika-radius: 18px;
 }
 
 .pika-body {
-    background: radial-gradient(1200px 600px at 20% -10%, rgba(124,58,237,.35), transparent 60%), radial-gradient(900px 500px at 85% 0%, rgba(34,211,238,.25), transparent 55%), linear-gradient(180deg, var(--pika-bg) 0%, var(--pika-bg2) 100%);
+    background: var(--pika-bg);
     color: var(--pika-text);
 }
 
 .pika-topbar {
-    background: linear-gradient(90deg, rgba(124,58,237,.30), rgba(34,211,238,.18));
-    border-bottom: 1px solid rgba(255,255,255,.08);
+    background: #0a4b3f;
+    border-bottom: 1px solid #0d5b4d;
 }
 
 .pika-link {
-    color: rgba(255,255,255,.85);
+    color: #e7f3ec;
     text-decoration: none;
 }
 
     .pika-link:hover {
-        color: #fff;
+        color: #ffffff;
         text-decoration: underline;
     }
 
 .pika-header {
-    background: rgba(7,11,20,.65);
+    background: rgba(244,247,234,.95);
     backdrop-filter: blur(14px);
-    border-bottom: 1px solid rgba(255,255,255,.08);
+    border-bottom: 1px solid #d8e3c3;
     transition: all .2s ease;
 }
 
 .pika-header--scrolled {
-    background: rgba(7,11,20,.85);
-    box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    background: rgba(244,247,234,.98);
+    box-shadow: 0 10px 24px rgba(12, 46, 40, .10);
 }
 
 .pika-logo {
@@ -49,7 +49,7 @@
 }
 
 .pika-dropdown {
-    border: 1px solid rgba(255,255,255,.10);
+    border: 1px solid #d8e3c3;
     border-radius: 14px;
 }
 
@@ -62,12 +62,12 @@
     }
 
 .pika-btn-primary {
-    background: linear-gradient(90deg, var(--pika-primary), var(--pika-primary2));
-    border: none;
-    color: #071016;
+    background: var(--pika-primary);
+    border: 1px solid #8ac704;
+    color: #10332c;
     font-weight: 700;
     border-radius: 14px;
-    box-shadow: 0 14px 40px rgba(124,58,237,.25);
+    box-shadow: 0 12px 24px rgba(122, 168, 26, .25);
 }
 
     .pika-btn-primary:hover {
@@ -76,15 +76,15 @@
     }
 
 .pika-btn-outline {
-    background: rgba(255,255,255,.03);
-    border: 1px solid rgba(255,255,255,.14);
-    color: rgba(255,255,255,.9);
+    background: #ffffff;
+    border: 1px solid #cbd9b3;
+    color: #16493f;
     border-radius: 14px;
 }
 
     .pika-btn-outline:hover {
-        background: rgba(255,255,255,.06);
-        color: #fff;
+        background: #f0f6e0;
+        color: #0d332c;
     }
 
 .pika-hero {
@@ -95,11 +95,11 @@
     display: inline-flex;
     align-items: center;
     gap: .5rem;
-    background: rgba(255,255,255,.05);
-    border: 1px solid rgba(255,255,255,.12);
+    background: #ffffff;
+    border: 1px solid #d8e3c3;
     border-radius: 999px;
     padding: .5rem .9rem;
-    color: rgba(255,255,255,.88);
+    color: #16493f;
 }
 
 .pika-h1 {
@@ -134,20 +134,20 @@
     gap: 10px;
     padding: .55rem .8rem;
     border-radius: 14px;
-    border: 1px solid rgba(255,255,255,.10);
-    background: rgba(255,255,255,.03);
-    color: rgba(255,255,255,.78);
+    border: 1px solid #d8e3c3;
+    background: #ffffff;
+    color: #3e6158;
 }
 
     .pika-trust-item i {
-        color: rgba(34,211,238,.95);
+        color: #83b31a;
     }
 
 .pika-hero-visual {
     position: relative;
     border-radius: 24px;
-    border: 1px solid rgba(255,255,255,.10);
-    background: rgba(255,255,255,.03);
+    border: 1px solid #d8e3c3;
+    background: #ffffff;
     padding: 18px;
     overflow: hidden;
 }
@@ -155,18 +155,18 @@
 .pika-glow {
     position: absolute;
     inset: -120px;
-    background: radial-gradient(circle at 30% 30%, rgba(124,58,237,.35), transparent 50%), radial-gradient(circle at 70% 20%, rgba(34,211,238,.22), transparent 55%);
+    background: none;
     filter: blur(18px);
     pointer-events: none;
 }
 
 .pika-float-card {
     position: absolute;
-    background: rgba(7,11,20,.70);
-    border: 1px solid rgba(255,255,255,.12);
+    background: #f0f6e0;
+    border: 1px solid #d8e3c3;
     border-radius: 16px;
     padding: 12px 14px;
-    box-shadow: 0 18px 60px rgba(0,0,0,.35);
+    box-shadow: 0 12px 28px rgba(12, 46, 40, .12);
 }
 
 .pika-float-1 {
@@ -180,7 +180,7 @@
 }
 
 .pika-logos {
-    border-top: 1px solid rgba(255,255,255,.08);
+    border-top: 1px solid #d8e3c3;
     padding-top: 18px;
 }
 
@@ -193,9 +193,9 @@
 .pika-logo-pill {
     padding: .45rem .75rem;
     border-radius: 999px;
-    border: 1px solid rgba(255,255,255,.10);
-    background: rgba(255,255,255,.02);
-    color: rgba(255,255,255,.72);
+    border: 1px solid #d8e3c3;
+    background: #ffffff;
+    color: #3e6158;
 }
 
 .pika-section {
@@ -203,9 +203,9 @@
 }
 
 .pika-section-alt {
-    background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
-    border-top: 1px solid rgba(255,255,255,.06);
-    border-bottom: 1px solid rgba(255,255,255,.06);
+    background: #eef4dd;
+    border-top: 1px solid #dbe6c7;
+    border-bottom: 1px solid #dbe6c7;
 }
 
 .pika-card {
@@ -218,8 +218,8 @@
 
     .pika-card:hover {
         transform: translateY(-2px);
-        background: rgba(255,255,255,.06);
-        border-color: rgba(255,255,255,.16);
+        background: #f4f9e9;
+        border-color: #cad8b1;
     }
 
 .pika-card-icon {
@@ -228,8 +228,8 @@
     display: grid;
     place-items: center;
     border-radius: 14px;
-    background: linear-gradient(90deg, rgba(124,58,237,.30), rgba(34,211,238,.18));
-    border: 1px solid rgba(255,255,255,.14);
+    background: #e6f2cf;
+    border: 1px solid #cad8b1;
     margin-bottom: 14px;
 }
 
@@ -238,11 +238,11 @@
     gap: 10px;
     align-items: flex-start;
     margin-top: 10px;
-    color: rgba(255,255,255,.78);
+    color: #3f5f57;
 }
 
 .pika-check i {
-    color: rgba(34,211,238,.95);
+    color: #83b31a;
     margin-top: 2px;
 }
 
@@ -253,14 +253,14 @@
 .pika-media-bg {
     position: absolute;
     inset: -20px;
-    background: radial-gradient(circle at 20% 30%, rgba(124,58,237,.22), transparent 55%), radial-gradient(circle at 80% 20%, rgba(34,211,238,.16), transparent 60%);
+    background: none;
     filter: blur(18px);
     z-index: -1;
 }
 
 .pika-quote {
-    background: rgba(255,255,255,.03);
-    border: 1px solid rgba(255,255,255,.10);
+    background: #ffffff;
+    border: 1px solid #d8e3c3;
     border-radius: 18px;
     padding: 18px;
     height: 100%;
@@ -273,21 +273,21 @@
 }
 
 .pika-cta-card {
-    background: linear-gradient(90deg, rgba(124,58,237,.22), rgba(34,211,238,.14));
-    border: 1px solid rgba(255,255,255,.12);
+    background: #eaf2d6;
+    border: 1px solid #d8e3c3;
     border-radius: 22px;
     padding: 22px;
 }
 
 .pika-page-hero {
     padding: 64px 0 22px;
-    border-bottom: 1px solid rgba(255,255,255,.06);
-    background: radial-gradient(900px 450px at 15% 0%, rgba(124,58,237,.22), transparent 55%), radial-gradient(800px 400px at 85% 0%, rgba(34,211,238,.14), transparent 55%);
+    border-bottom: 1px solid #d8e3c3;
+    background: #eef4dd;
 }
 
 .pika-hero-mini {
-    background: rgba(255,255,255,.03);
-    border: 1px solid rgba(255,255,255,.10);
+    background: #ffffff;
+    border: 1px solid #d8e3c3;
     border-radius: 20px;
     padding: 16px;
 }
@@ -300,33 +300,33 @@
 }
 
     .pika-mini-item i {
-        color: rgba(34,211,238,.95);
+        color: #83b31a;
         font-size: 18px;
         margin-top: 2px;
     }
 
     .pika-mini-item:hover {
-        background: rgba(255,255,255,.04);
+        background: #f0f6e0;
     }
 
 .pika-solution-card {
     display: block;
     position: relative;
-    background: rgba(255,255,255,.03);
-    border: 1px solid rgba(255,255,255,.10);
+    background: #ffffff;
+    border: 1px solid #d8e3c3;
     border-radius: 20px;
     padding: 20px;
     text-decoration: none;
-    color: rgba(255,255,255,.92);
+    color: #10332c;
     transition: transform .2s ease, border-color .2s ease, background .2s ease;
     height: 100%;
 }
 
     .pika-solution-card:hover {
         transform: translateY(-2px);
-        background: rgba(255,255,255,.06);
-        border-color: rgba(255,255,255,.16);
-        color: #fff;
+        background: #f4f9e9;
+        border-color: #cad8b1;
+        color: #0d332c;
     }
 
 .pika-card-arrow {
@@ -343,24 +343,24 @@
 }
 
 .pika-price-card {
-    background: rgba(255,255,255,.03);
-    border: 1px solid rgba(255,255,255,.10);
+    background: #ffffff;
+    border: 1px solid #d8e3c3;
     border-radius: 22px;
     padding: 22px;
 }
 
 .pika-price-card--featured {
-    border-color: rgba(34,211,238,.30);
-    box-shadow: 0 22px 80px rgba(34,211,238,.10);
+    border-color: #9ec85d;
+    box-shadow: 0 14px 40px rgba(122, 168, 26, .16);
 }
 
 .pika-featured-badge {
     display: inline-block;
     padding: .35rem .7rem;
     border-radius: 999px;
-    background: rgba(34,211,238,.18);
-    border: 1px solid rgba(34,211,238,.35);
-    color: rgba(255,255,255,.92);
+    background: #e6f2cf;
+    border: 1px solid #c7d8a9;
+    color: #10332c;
     font-size: .85rem;
     margin-bottom: 10px;
 }
@@ -379,7 +379,7 @@
 .pika-ul {
     margin: 14px 0 0;
     padding-left: 18px;
-    color: rgba(255,255,255,.75);
+    color: #486860;
 }
 
     .pika-ul li {
@@ -387,13 +387,13 @@
     }
 
 .pika-table {
-    --bs-table-bg: rgba(255,255,255,.02);
-    --bs-table-color: rgba(255,255,255,.86);
-    border-color: rgba(255,255,255,.08);
+    --bs-table-bg: #ffffff;
+    --bs-table-color: #10332c;
+    border-color: #d8e3c3;
 }
 
     .pika-table thead th {
-        color: rgba(255,255,255,.92);
+        color: #10332c;
     }
 
 .pika-stats {
@@ -403,8 +403,8 @@
 }
 
 .pika-stat {
-    background: rgba(255,255,255,.03);
-    border: 1px solid rgba(255,255,255,.10);
+    background: #ffffff;
+    border: 1px solid #d8e3c3;
     border-radius: 18px;
     padding: 14px;
 }
@@ -415,7 +415,7 @@
 }
 
 .pika-stat-lbl {
-    color: rgba(255,255,255,.62);
+    color: #4f6f67;
     font-size: .9rem;
 }
 
@@ -424,11 +424,11 @@
     gap: 12px;
     align-items: flex-start;
     padding: 12px 0;
-    border-bottom: 1px solid rgba(255,255,255,.06);
+    border-bottom: 1px solid #d8e3c3;
 }
 
     .pika-info-line i {
-        color: rgba(34,211,238,.95);
+        color: #83b31a;
         margin-top: 4px;
         width: 20px;
         text-align: center;
@@ -437,10 +437,10 @@
 .pika-map-placeholder {
     height: 210px;
     border-radius: 18px;
-    border: 1px dashed rgba(255,255,255,.16);
+    border: 1px dashed #b8c8a5;
     display: grid;
     place-items: center;
-    color: rgba(255,255,255,.55);
+    color: #5f7d76;
 }
 
 .pika-cta-mini {
@@ -450,44 +450,44 @@
     align-items: center;
     padding: 14px;
     border-radius: 18px;
-    border: 1px solid rgba(255,255,255,.10);
-    background: rgba(255,255,255,.02);
+    border: 1px solid #d8e3c3;
+    background: #ffffff;
 }
 
 .pika-input {
-    background: rgba(255,255,255,.03) !important;
-    border: 1px solid rgba(255,255,255,.12) !important;
-    color: rgba(255,255,255,.92) !important;
+    background: #ffffff !important;
+    border: 1px solid #d8e3c3 !important;
+    color: #10332c !important;
     border-radius: 14px !important;
 }
 
     .pika-input:focus {
-        box-shadow: 0 0 0 .2rem rgba(34,211,238,.15) !important;
-        border-color: rgba(34,211,238,.35) !important;
+        box-shadow: 0 0 0 .2rem rgba(158, 221, 5, .20) !important;
+        border-color: #9edd05 !important;
     }
 
 .pika-ig {
-    background: rgba(255,255,255,.03) !important;
-    border: 1px solid rgba(255,255,255,.12) !important;
-    color: rgba(255,255,255,.72) !important;
+    background: #f0f6e0 !important;
+    border: 1px solid #d8e3c3 !important;
+    color: #4f6f67 !important;
     border-radius: 14px 0 0 14px !important;
 }
 
 .pika-modal {
-    background: rgba(7,11,20,.92);
-    border: 1px solid rgba(255,255,255,.12);
+    background: #ffffff;
+    border: 1px solid #d8e3c3;
     border-radius: 22px;
 }
 
 .pika-alert {
     padding: 12px 14px;
     border-radius: 14px;
-    border: 1px solid rgba(255,255,255,.12);
+    border: 1px solid #d8e3c3;
 }
 
 .pika-alert--ok {
-    background: rgba(34,211,238,.10);
-    border-color: rgba(34,211,238,.25);
+    background: #eaf4d7;
+    border-color: #b7d482;
 }
 
 .pika-alert--err {
@@ -496,8 +496,8 @@
 }
 
 .pika-footer {
-    background: rgba(0,0,0,.28);
-    border-top: 1px solid rgba(255,255,255,.06);
+    background: #0a4b3f;
+    border-top: 1px solid #0d5b4d;
 }
 
 .pika-footer-title {
@@ -507,13 +507,13 @@
 
 .pika-footer-link {
     display: block;
-    color: rgba(255,255,255,.62);
+    color: #d5e8df;
     text-decoration: none;
     margin: 7px 0;
 }
 
     .pika-footer-link:hover {
-        color: #fff;
+        color: #ffffff;
         text-decoration: underline;
     }
 
@@ -523,31 +523,31 @@
     display: grid;
     place-items: center;
     border-radius: 12px;
-    background: rgba(255,255,255,.03);
-    border: 1px solid rgba(255,255,255,.10);
-    color: rgba(255,255,255,.80);
+    background: rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.20);
+    color: #e7f3ec;
     text-decoration: none;
 }
 
     .pika-icon-btn:hover {
-        background: rgba(255,255,255,.06);
-        color: #fff;
+        background: rgba(255,255,255,.22);
+        color: #ffffff;
     }
 
 .pika-hr {
-    border-color: rgba(255,255,255,.08);
+    border-color: rgba(255,255,255,.20);
 }
 
 .pika-mobile-link {
     display: block;
     padding: 10px 0;
-    color: rgba(255,255,255,.88);
+    color: #e7f3ec;
     text-decoration: none;
-    border-bottom: 1px solid rgba(255,255,255,.06);
+    border-bottom: 1px solid #d8e3c3;
 }
 
     .pika-mobile-link:hover {
-        color: #fff;
+        color: #ffffff;
     }
 
 .pika-mobile-sub {
@@ -562,12 +562,12 @@
     padding: 10px 0;
     background: transparent;
     border: none;
-    color: rgba(255,255,255,.88);
-    border-bottom: 1px solid rgba(255,255,255,.06);
+    color: #e7f3ec;
+    border-bottom: 1px solid #d8e3c3;
 }
 
 .pika-auth-body {
-    background: radial-gradient(1200px 600px at 20% -10%, rgba(124,58,237,.35), transparent 60%), radial-gradient(900px 500px at 85% 0%, rgba(34,211,238,.25), transparent 55%), linear-gradient(180deg, var(--pika-bg) 0%, var(--pika-bg2) 100%);
+    background: var(--pika-bg);
     color: var(--pika-text);
 }
 
@@ -580,16 +580,16 @@
 .pika-auth-glow {
     position: absolute;
     inset: -140px;
-    background: radial-gradient(circle at 30% 30%, rgba(124,58,237,.28), transparent 55%), radial-gradient(circle at 75% 20%, rgba(34,211,238,.18), transparent 60%);
+    background: none;
     filter: blur(22px);
 }
 
 .pika-auth-card {
-    background: rgba(7,11,20,.78);
-    border: 1px solid rgba(255,255,255,.12);
+    background: #ffffff;
+    border: 1px solid #d8e3c3;
     border-radius: 24px;
     padding: 22px;
-    box-shadow: 0 30px 120px rgba(0,0,0,.40);
+    box-shadow: 0 20px 60px rgba(12, 46, 40, .12);
     backdrop-filter: blur(14px);
 }
 
@@ -597,16 +597,16 @@
     font-size: .8rem;
     padding: .35rem .6rem;
     border-radius: 999px;
-    border: 1px solid rgba(255,255,255,.12);
-    color: rgba(255,255,255,.80);
-    background: rgba(255,255,255,.03);
+    border: 1px solid #d8e3c3;
+    color: #4f6f67;
+    background: #f0f6e0;
 }
 
 .pika-auth-divider {
     display: flex;
     align-items: center;
     gap: 10px;
-    color: rgba(255,255,255,.50);
+    color: #5f7d76;
     font-size: .85rem;
 }
 
@@ -615,15 +615,15 @@
         content: "";
         flex: 1;
         height: 1px;
-        background: rgba(255,255,255,.10);
+        background: #d8e3c3;
     }
 
 .pika-codebox {
-    background: rgba(0,0,0,.25);
-    border: 1px solid rgba(255,255,255,.10);
+    background: #f5f8eb;
+    border: 1px solid #d8e3c3;
     border-radius: 16px;
     padding: 12px;
-    color: rgba(255,255,255,.80);
+    color: #4f6f67;
     overflow: auto;
 }
 
@@ -644,12 +644,12 @@
     }
 
 .pika-toast-inner {
-    background: rgba(7,11,20,.92);
-    border: 1px solid rgba(255,255,255,.12);
+    background: #ffffff;
+    border: 1px solid #d8e3c3;
     border-radius: 16px;
     padding: 12px 14px;
-    color: rgba(255,255,255,.90);
-    box-shadow: 0 20px 80px rgba(0,0,0,.35);
+    color: #10332c;
+    box-shadow: 0 16px 36px rgba(12, 46, 40, .14);
 }
 
 /* Home page reference redesign */
@@ -662,7 +662,7 @@
 .pika-home-ref .pika-header,
 .pika-home-ref .pika-footer {
     background: #0a4b3f;
-    border-color: rgba(255,255,255,.08);
+    border-color: rgba(255,255,255,.20);
 }
 
 .pika-home-ref .navbar-dark .navbar-nav .nav-link,
@@ -676,7 +676,7 @@
 
 .home-hero-ref {
     padding: 64px 0 72px;
-    background: linear-gradient(180deg, #f1f6dd 0%, #e9f2d0 100%);
+    background: #f1f6dd;
 }
 
 .hero-mini { font-size: 12px; font-weight: 700; letter-spacing: .06em; color: #0f443a; }
