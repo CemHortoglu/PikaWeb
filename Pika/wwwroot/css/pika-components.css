@@ -292,6 +292,69 @@
     padding: 22px;
 }
 
+.pika-cta-card__badge {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: .8rem;
+    padding: .32rem .7rem;
+    border-radius: 999px;
+    border: 1px solid #c6dfaa;
+    background: #f3fbeb;
+    color: #2a5b4f;
+    font-size: .76rem;
+    font-weight: 700;
+    letter-spacing: .02em;
+    text-transform: uppercase;
+}
+
+.pika-cta-card__desc {
+    color: #4c6159;
+    margin-bottom: .9rem;
+}
+
+.pika-cta-card__list {
+    list-style: none;
+    padding-left: 0;
+    display: grid;
+    gap: .52rem;
+}
+
+.pika-cta-card__list li {
+    position: relative;
+    padding-left: 1.35rem;
+    color: #395a52;
+}
+
+.pika-cta-card__list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: .5rem;
+    width: .55rem;
+    height: .55rem;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #79c719, #2f8f4f);
+    box-shadow: 0 0 0 3px rgba(121, 199, 25, .14);
+}
+
+.pika-cta-card__actions {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.pika-cta-card--pika {
+    background: linear-gradient(180deg, #f8fdf2 0%, #edf8e2 100%);
+    border-color: #c9dfb1;
+    box-shadow: 0 14px 28px rgba(33, 68, 50, .08);
+}
+
+.pika-cta-card--pika h3 {
+    color: #0e362e;
+    font-size: clamp(1.6rem, 2.1vw, 2rem);
+    margin-bottom: .7rem;
+    max-width: 820px;
+}
+
 .pika-page-hero {
     padding: 64px 0 22px;
     border-bottom: 1px solid var(--pika-border);
