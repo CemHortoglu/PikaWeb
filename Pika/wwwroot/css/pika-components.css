@@ -787,3 +787,235 @@
   font-weight: 500;
   white-space: nowrap;
 }
+
+/* Modern split auth layout */
+.pika-auth-body {
+    min-height: 100vh;
+    background: linear-gradient(140deg, #eef3ff 0%, #f7fafc 45%, #edf6f1 100%);
+    color: #1c2b36;
+}
+
+.pika-auth-shell {
+    min-height: 100vh;
+    padding: 24px;
+    display: grid;
+    place-items: center;
+}
+
+.pika-auth-layout {
+    width: min(1180px, 100%);
+    min-height: min(760px, calc(100vh - 48px));
+    background: #ffffff;
+    border: 1px solid #dfe7ef;
+    border-radius: 24px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1.08fr .92fr;
+    box-shadow: 0 28px 70px rgba(17, 35, 56, .14);
+}
+
+.pika-auth-showcase {
+    position: relative;
+    background-image:
+        linear-gradient(to top, rgba(7, 16, 26, .78), rgba(7, 16, 26, .34)),
+        url('/images/auth/login-office-bg.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: clamp(28px, 4vw, 48px);
+    display: flex;
+    align-items: flex-end;
+}
+
+.pika-auth-showcase-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 18% 12%, rgba(255,255,255,.12), transparent 35%);
+}
+
+.pika-auth-showcase-content {
+    position: relative;
+    z-index: 1;
+    color: #f6f9ff;
+    max-width: 560px;
+}
+
+.pika-auth-tag {
+    display: inline-flex;
+    border: 1px solid rgba(255,255,255,.35);
+    border-radius: 999px;
+    padding: .35rem .85rem;
+    font-size: .8rem;
+    letter-spacing: .03em;
+    background: rgba(255,255,255,.14);
+    margin-bottom: 14px;
+}
+
+.pika-auth-hero-title {
+    font-size: clamp(2rem, 3vw, 3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 14px;
+}
+
+.pika-auth-hero-desc {
+    color: rgba(236, 245, 255, .88);
+    font-size: 1.05rem;
+    margin-bottom: 26px;
+}
+
+.pika-auth-feature-grid {
+    display: grid;
+    gap: 12px;
+}
+
+.pika-auth-feature-item {
+    display: flex;
+    gap: 12px;
+    background: rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 14px;
+    padding: 12px;
+    backdrop-filter: blur(3px);
+}
+
+.pika-auth-feature-item i {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    background: rgba(255,255,255,.2);
+}
+
+.pika-auth-feature-item strong {
+    font-size: .98rem;
+}
+
+.pika-auth-feature-item p {
+    margin: 2px 0 0;
+    color: rgba(238, 246, 255, .84);
+    font-size: .86rem;
+}
+
+.pika-auth-form-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(24px, 3.2vw, 48px);
+    background: #f8fbfd;
+}
+
+.pika-auth-card {
+    background: #ffffff;
+    border: 1px solid #e3eaf1;
+    border-radius: 18px;
+    padding: clamp(20px, 2.2vw, 32px);
+    box-shadow: 0 14px 36px rgba(15, 42, 59, .08);
+}
+
+.pika-auth-card h2 {
+    font-size: clamp(1.4rem, 2vw, 1.8rem);
+    font-weight: 700;
+    color: #1f2f3a;
+}
+
+.pika-auth-form-subtitle {
+    margin-bottom: 22px;
+    color: #667c8f;
+}
+
+.pika-auth-chip {
+    font-size: .78rem;
+    padding: .38rem .7rem;
+    border-radius: 999px;
+    border: 1px solid #d4e0ea;
+    color: #486071;
+    background: #f4f8fc;
+}
+
+.pika-auth-card .form-label {
+    font-weight: 600;
+    color: #334e60;
+    margin-bottom: .45rem;
+}
+
+.pika-auth-card .form-check-input:checked {
+    background-color: var(--pika-primary);
+    border-color: var(--pika-primary);
+}
+
+.pika-auth-divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #7b8d9c;
+    font-size: .85rem;
+}
+
+.pika-auth-divider::before,
+.pika-auth-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #d9e3ec;
+}
+
+.pika-auth-security-note {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: .85rem;
+    color: #6a7f8e;
+    background: #f1f6fb;
+    border: 1px solid #dbe6ef;
+    border-radius: 12px;
+    padding: 10px 12px;
+}
+
+.pika-auth-security-note i {
+    color: #3f88d0;
+    margin-top: 2px;
+}
+
+@media (max-width: 992px) {
+    .pika-auth-shell {
+        padding: 14px;
+    }
+
+    .pika-auth-layout {
+        min-height: auto;
+        grid-template-columns: 1fr;
+        border-radius: 18px;
+    }
+
+    .pika-auth-showcase {
+        min-height: 320px;
+        align-items: center;
+    }
+
+    .pika-auth-form-wrap {
+        padding-top: 20px;
+    }
+}
+
+
+.pika-auth-back-btn {
+    border: 1px solid #d7e3ec;
+    background: #ffffff;
+    color: #365268;
+    font-weight: 600;
+    border-radius: 999px;
+    padding: .42rem .8rem;
+}
+
+.pika-auth-back-btn:hover {
+    background: #eef4f9;
+    color: #223a4d;
+}
+
+.pika-auth-card .input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+    margin-left: calc(var(--bs-border-width) * -1);
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+}
