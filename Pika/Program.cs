@@ -44,7 +44,11 @@ app.MapGet("/", context =>
     context.Response.Redirect("/tr");
     return Task.CompletedTask;
 });
-
+app.MapGet("/{culture:regex(^(tr|en)$)}", (string culture, HttpContext context) =>
+{
+    context.Response.Redirect($"/{culture}/home");
+    return Task.CompletedTask;
+});
 app.MapControllerRoute(
     name: "default",
     pattern: "{culture=tr}/{controller=Home}/{action=Index}/{id?}",
