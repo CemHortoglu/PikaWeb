@@ -1,61 +1,53 @@
-@{
-    ViewData["Title"] = "Pika";
-}
+@{ ViewData["Title"] = "Pika"; }
 
-<section class="pika-page-hero">
+<section class="pika-corp-hero">
     <div class="container">
-        <div class="row g-4 align-items-center">
-            <div class="col-lg-7">
-                <h1 class="pika-h1">Pika Nedir?</h1>
-                <p class="pika-lead">
-                    Pika, kurumların müşteri deneyimini tek merkezden yöneteceği bir sadakat ve kampanya otomasyon platformudur.
-                    Veri toplama, segmentasyon, çok kanallı iletişim ve performans analitiği modüllerini aynı çatı altında birleştirir.
-                </p>
-                <div class="d-flex gap-2 flex-wrap">
-                    <a class="btn pika-btn-primary" href="@Url.Action("DemoRequest", "Home")">Demo Talep Et</a>
-                    <a class="btn pika-btn-outline" href="@Url.Action("Contact", "Home")">Bizimle İletişime Geçin</a>
+        <div class="pika-corp-hero__grid">
+            <div>
+                <span class="pika-corp-chip" data-i18n="pika.chip"></span>
+                <h1 class="pika-corp-title" data-i18n="pika.h1"></h1>
+                <p class="pika-corp-lead" data-i18n="pika.lead"></p>
+                <div class="pika-corp-kpi-grid">
+                    <div class="pika-corp-kpi"><strong data-i18n="pika.kpi1v"></strong><span data-i18n="pika.kpi1l"></span></div>
+                    <div class="pika-corp-kpi"><strong data-i18n="pika.kpi2v"></strong><span data-i18n="pika.kpi2l"></span></div>
+                    <div class="pika-corp-kpi"><strong data-i18n="pika.kpi3v"></strong><span data-i18n="pika.kpi3l"></span></div>
+                </div>
+                <div class="d-flex gap-2 flex-wrap mt-4">
+                    <button class="btn pika-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal" data-i18n="pika.demo"></button>
+                    <a class="btn pika-btn-ghost" href="@Url.Action("Contact", "Home")" data-i18n="pika.contact"></a>
                 </div>
             </div>
-            <div class="col-lg-5">
-                <img class="img-fluid rounded-4" src="~/web/images/service/service-image-1.jpg" alt="Pika platformu" />
-            </div>
+            <aside class="pika-corp-aside">
+                <h3 data-i18n="pika.boardT"></h3>
+                <div class="pika-corp-aside-list">
+                    <div class="pika-corp-aside-item"><strong data-i18n="pika.boardL1"></strong><span data-i18n="pika.boardV1"></span></div>
+                    <div class="pika-corp-aside-item"><strong data-i18n="pika.boardL2"></strong><span data-i18n="pika.boardV2"></span></div>
+                    <div class="pika-corp-aside-item"><strong data-i18n="pika.boardL3"></strong><span data-i18n="pika.boardV3"></span></div>
+                    <div class="pika-corp-aside-item"><strong data-i18n="pika.boardL4"></strong><span data-i18n="pika.boardV4"></span></div>
+                </div>
+            </aside>
         </div>
     </div>
 </section>
 
-<section class="pika-section">
+<section class="pika-section pika-corp-section">
     <div class="container">
-        <div class="row g-4">
-            <div class="col-lg-4">
-                <div class="pika-card h-100">
-                    <h3 class="pika-h3">360° Müşteri Görünümü</h3>
-                    <p class="text-white-50">Online ve offline temas noktalarından gelen verileri tek müşteri profilinde birleştirerek daha doğru karar almanızı sağlar.</p>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="pika-card h-100">
-                    <h3 class="pika-h3">Akıllı Segmentasyon</h3>
-                    <p class="text-white-50">Davranış, sıklık, sepet değeri ve yaşam döngüsü bazlı segmentler ile doğru müşteriye doğru teklif sunmanızı kolaylaştırır.</p>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="pika-card h-100">
-                    <h3 class="pika-h3">Gerçek Zamanlı Aksiyon</h3>
-                    <p class="text-white-50">Müşteri aksiyonlarına anında tetiklenen kampanyalar sayesinde dönüşüm oranlarını artırır ve manuel operasyon yükünü azaltır.</p>
-                </div>
-            </div>
+        <div class="pika-corp-card-grid">
+            <article class="pika-corp-card"><h3 data-i18n="pika.f1t"></h3><p data-i18n="pika.f1d"></p></article>
+            <article class="pika-corp-card"><h3 data-i18n="pika.f2t"></h3><p data-i18n="pika.f2d"></p></article>
+            <article class="pika-corp-card"><h3 data-i18n="pika.f3t"></h3><p data-i18n="pika.f3d"></p></article>
         </div>
 
         <div class="pika-cta-card mt-5">
-            <h3>Pika ile Neler Kazanırsınız?</h3>
-            <p class="text-white-50 mb-3">Daha yüksek müşteri bağlılığı, daha verimli kampanya yönetimi ve ölçülebilir ticari büyüme.</p>
-            <ul class="text-white-50 mb-4">
-                <li>Sadakat programlarını tek panelden yönetme</li>
-                <li>Omnichannel kampanya kurgusu ve otomasyonu</li>
-                <li>Detaylı KPI takibi, ROI ölçümü ve karşılaştırmalı raporlar</li>
-                <li>Kurumsal güvenlik, rol bazlı yetkilendirme ve audit log desteği</li>
+            <h3 data-i18n="pika.ctaT"></h3>
+            <p class="text-muted" data-i18n="pika.ctaD"></p>
+            <ul class="text-muted mb-4 ps-3">
+                <li data-i18n="pika.ctaL1"></li>
+                <li data-i18n="pika.ctaL2"></li>
+                <li data-i18n="pika.ctaL3"></li>
+                <li data-i18n="pika.ctaL4"></li>
             </ul>
-            <a class="btn pika-btn-primary" href="@Url.Action("DemoRequest", "Home")">Platformu Canlı Görün</a>
+            <button class="btn pika-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal" data-i18n="pika.ctaB"></button>
         </div>
     </div>
 </section>
