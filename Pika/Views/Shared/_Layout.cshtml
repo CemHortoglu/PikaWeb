@@ -1,6 +1,8 @@
-﻿@{
+@{
     var title = ViewData["Title"] as string ?? "Pika";
     var bodyClass = ViewData["BodyClass"] as string ?? string.Empty;
+    var appVersion = System.Reflection.Assembly.GetEntryAssembly()?.GetName().Version?.ToString(3) ?? "1.0.0";
+    var toast = TempData["Toast"] as string;
 }
 <!doctype html>
 <html lang="tr" data-lang="tr">
@@ -10,232 +12,245 @@
     <title>@title - Pika</title>
 
     <meta name="description" content="Pika — Kullanıcı sadakat ve kampanya otomasyon platformu." />
-    <meta name="theme-color" content="#0B1220" />
 
-    <!-- Vendor -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="~/web/css/remixicon.css" rel="stylesheet" />
 
-    <!-- Your CSS -->
     <link href="~/css/style.css" rel="stylesheet" />
-    <!-- Small UI additions -->
     <link href="~/css/pika-components.css" rel="stylesheet" />
 
-    <link rel="icon" href="~/web/favicon.ico" />
+    <link rel="icon" href="~/web/assets/images/favicon.png" />
 </head>
 <body class="pika-body @bodyClass">
-
-    <!-- Top Notice Bar (optional) -->
-    <div class="pika-topbar d-none d-lg-block">
-        <div class="container d-flex justify-content-between align-items-center py-2">
-            <div class="small text-muted">
-                <i class="fa-solid fa-shield-halved me-2"></i><span data-i18n="topbar.security">Kurumsal güvenlik • KVKK uyumlu süreçler</span>
-            </div>
-            <div class="small text-muted">
-                <i class="fa-solid fa-headset me-2"></i><span data-i18n="topbar.support">Destek:</span> <a class="pika-link" href="mailto:destek@pika.com">destek@pika.com</a>
+    <div class="preloader-area text-center position-fixed top-0 bottom-0 start-0 end-0" id="preloader">
+        <div class="loader position-absolute start-0 end-0">
+            <div class="position-relative fw-light">
+                <span class="d-inline-block"><img src="~/web/assets/images/logo.png" alt="logo"></span>
             </div>
         </div>
     </div>
 
-    <!-- Header -->
-    <header class="pika-header sticky-top">
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <div class="container">
-                <a class="navbar-brand d-flex align-items-center gap-2" href="@Url.Action("Index", "Home")">
-                    <img src="~/logo.png" alt="Pika" width="90">
+    <div class="top-header-info">
+        <div class="top-header-area bg-color-0c3a30">
+            <div class="container-fluid side-padding">
+                <div class="row">
+                    <div class="col-lg-8 col-md-12">
+                        <ul class="left-side">
+                            <li><span data-i18n="CampaignSlogan">Campaign Slogan</span></li>
+                            <li><a href="tel:+903123254114"><i class="flaticon-phone-call"></i> <b data-i18n="Telephone">Telephone</b>: +90 (312) 325 41 14</a></li>
+                            <li><a href="mailto:info@pikaanalysis.com"><i class="flaticon-email-1"></i> <b data-i18n="EMailAddress">E-Mail</b>: info@pikaanalysis.com</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                        <ul class="right-side">
+                            <li><a href="#" data-i18n="Support">Support</a></li>
+                            <li>
+                                <div class="flag position-relative language-dropdown dropdown">
+                                    <button class="btn btn-link p-0 border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <img id="currentLangFlag" src="~/web/assets/images/svg/tr.svg" width="16" height="16" class="me-1 rounded-circle" alt="lang" />
+                                        <span id="langLabel">TR</span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><button class="dropdown-item d-flex align-items-center" type="button" data-lang-set="tr"><img src="~/web/assets/images/svg/tr.svg" width="16" height="16" class="me-2" alt="tr" />TR</button></li>
+                                        <li><button class="dropdown-item d-flex align-items-center" type="button" data-lang-set="en"><img src="~/web/assets/images/svg/flag.svg" width="16" height="16" class="me-2" alt="en" />EN</button></li>
+                                        <li><button class="dropdown-item d-flex align-items-center" type="button" data-lang-set="de"><img src="~/web/assets/images/svg/euro.svg" width="16" height="16" class="me-2" alt="de" />DE</button></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-expand-lg bg-color-ffffff" id="navbar">
+            <div class="container-fluid side-padding position-relative">
+                <a class="navbar-brand logo-brand p-0" href="@Url.Action("Index", "Home")">
+                    <img src="~/web/assets/images/logo.png" alt="image">
                 </a>
-
-                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse">
-                    <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
-                        <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Index", "Home")" data-i18n="nav.home">Ana Sayfa</a>
-                        </li>
-
-                        <!-- Dropdown: Solutions -->
+                <a class="navbar-toggler" data-bs-toggle="offcanvas" href="#navbarOffcanvas" role="button" aria-controls="navbarOffcanvas">
+                    <span class="burger-menu">
+                        <span class="top-bar"></span>
+                        <span class="middle-bar"></span>
+                        <span class="bottom-bar"></span>
+                    </span>
+                </a>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Home")" data-i18n="Home">Home</a></li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-i18n="nav.solutions">
-                                Çözümlerimiz
-                            </a>
-                            <ul class="dropdown-menu pika-dropdown">
-                                <li><a class="dropdown-item" href="@Url.Action("Solutions", "Home")"><i class="fa-regular fa-compass me-2"></i><span data-i18n="nav.solutions.overview">Genel Bakış</span></a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="/solutions/loyalty"><i class="fa-solid fa-star me-2"></i><span data-i18n="nav.solutions.loyalty">Sadakat</span></a></li>
-                                <li><a class="dropdown-item" href="/solutions/campaigns"><i class="fa-solid fa-bullhorn me-2"></i><span data-i18n="nav.solutions.campaigns">Kampanyalar</span></a></li>
-                                <li><a class="dropdown-item" href="/solutions/segmentation"><i class="fa-solid fa-filter me-2"></i><span data-i18n="nav.solutions.segmentation">Segmentasyon</span></a></li>
-                                <li><a class="dropdown-item" href="/solutions/analytics"><i class="fa-solid fa-chart-line me-2"></i><span data-i18n="nav.solutions.analytics">Analitik</span></a></li>
-                                <li><a class="dropdown-item" href="/solutions/integrations"><i class="fa-solid fa-plug me-2"></i><span data-i18n="nav.solutions.integrations">Entegrasyonlar</span></a></li>
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="Solutions">Solutions</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/solutions/campaign-management" data-i18n="CampaignManagement">Campaign Management</a></li>
+                                <li><a class="dropdown-item" href="/solutions/email-marketing" data-i18n="EmailMarketing">Email Marketing</a></li>
+                                <li><a class="dropdown-item" href="/solutions/sms-marketing" data-i18n="SmsMarketing">Sms Marketing</a></li>
+                                <li><a class="dropdown-item" href="/solutions/push-notification" data-i18n="PushNotification">Push Notification</a></li>
+                                <li><a class="dropdown-item" href="/solutions/recommendation-engine" data-i18n="RecommendationEngine">Recommendation Engine</a></li>
+                                <li><a class="dropdown-item" href="/solutions/mobile-marketing" data-i18n="MobileMarketing">Mobile Marketing</a></li>
+                                <li><a class="dropdown-item" href="/solutions/advanced-bi-solutions" data-i18n="AdvancedBISolutions">Advanced BI Solutions</a></li>
+                                <li><a class="dropdown-item" href="/solutions/ai-transformations" data-i18n="AiTransformations">Ai Transformations</a></li>
                             </ul>
                         </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Pricing", "Home")" data-i18n="nav.pricing">Fiyatlandırma</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Corporate", "Home")" data-i18n="nav.corporate">Kurumsal</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Contact", "Home")" data-i18n="nav.contact">İletişim</a>
-                        </li>
-
-                        <li class="nav-item ms-lg-2">
-                            <a class="btn btn-sm pika-btn-outline" href="@Url.Action("Login", "Auth")">
-                                <span data-i18n="nav.login">Giriş</span>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <button class="btn btn-sm pika-btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#demoModal">
-                                <span data-i18n="nav.demo">Demo Talebi</span>
-                            </button>
-                        </li>
-
-                        <!-- Language -->
-                        <li class="nav-item dropdown ms-lg-2">
-                            <a class="nav-link dropdown-toggle pika-lang" href="#" role="button" data-bs-toggle="dropdown">
-                                <i class="fa-solid fa-globe"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li><button class="dropdown-item" type="button" data-lang-set="tr"><span class="me-2">🇹🇷</span> Türkçe</button></li>
-                                <li><button class="dropdown-item" type="button" data-lang-set="en"><span class="me-2">🇬🇧</span> English</button></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Pricing", "Home")" data-i18n="Pricing">Pricing</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="Corporate">Corporate</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="@Url.Action("Corporate", "Home")" data-i18n="WhyPika">Why Pika</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Corporate", "Home")" data-i18n="AboutUs">About Us</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Corporate", "Home")" data-i18n="FAQ">FAQ</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Login", "Auth")" data-i18n="Login">Login</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Corporate", "Home")" data-i18n="CustomerServices">Customer Services</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Corporate", "Home")" data-i18n="CorporateSupportServices">Corporate Support Services</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Corporate", "Home")" data-i18n="Career">Career</a></li>
                             </ul>
                         </li>
+                        <li class="nav-item"><a class="nav-link" href="/admin/contacts" data-i18n="Contacts">Contacts</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Contact", "Home")" data-i18n="Contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="others-options">
+                    <ul class="d-flex align-items-center ps-0 mb-0 list-unstyled">
+                        <li><button type="button" class="search-btn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="ri-search-line"></i> <span data-i18n="Search">Search</span></button></li>
+                        <li><a href="@Url.Action("Login", "Auth")" class="search-btn login"><i class="ri-account-circle-line"></i> <span data-i18n="Login">Login</span></a></li>
+                        <li><button type="button" class="default-btn" data-bs-toggle="modal" data-bs-target="#demoModal"><span data-i18n="DemoRequest">Demo Request</span> <i class="ri-arrow-right-up-line"></i></button></li>
                     </ul>
                 </div>
             </div>
         </nav>
-    </header>
+    </div>
 
-    <!-- Mobile Offcanvas -->
-    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="mobileNav">
+    <div class="mobile-navbar offcanvas offcanvas-end border-0" data-bs-backdrop="static" tabindex="-1" id="navbarOffcanvas">
         <div class="offcanvas-header">
-            <div class="d-flex align-items-center gap-2">
-                <img src="~/web/logo.svg" alt="Pika" class="pika-logo" onerror="this.style.display='none'">
-                <strong>Pika</strong>
-            </div>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+            <a href="@Url.Action("Index", "Home")" class="logo d-inline-block">
+                <img src="~/web/assets/images/white-logo.png" alt="logo">
+            </a>
+            <button type="button" class="close-btn bg-transparent position-relative lh-1 p-0 border-0" data-bs-dismiss="offcanvas" aria-label="close">
+                <i class="ri-close-fill"></i>
+            </button>
         </div>
         <div class="offcanvas-body">
-            <a class="pika-mobile-link" href="@Url.Action("Index", "Home")" data-i18n="nav.home">Ana Sayfa</a>
+            <ul class="mobile-menu">
+                <li class="mobile-menu-list without-icon"><a href="@Url.Action("Index", "Home")" class="nav-link" data-i18n="Home">Home</a></li>
+                <li class="mobile-menu-list"><a href="javascript:void(0);" data-i18n="Solutions">Solutions</a>
+                    <ul class="mobile-menu-items">
+                        <li><a class="dropdown-item" href="/solutions/campaign-management" data-i18n="CampaignManagement">Campaign Management</a></li>
+                        <li><a class="dropdown-item" href="/solutions/email-marketing" data-i18n="EmailMarketing">Email Marketing</a></li>
+                        <li><a class="dropdown-item" href="/solutions/sms-marketing" data-i18n="SmsMarketing">Sms Marketing</a></li>
+                        <li><a class="dropdown-item" href="/solutions/push-notification" data-i18n="PushNotification">Push Notification</a></li>
+                    </ul>
+                </li>
+                <li class="mobile-menu-list without-icon"><a href="@Url.Action("Pricing", "Home")" class="nav-link" data-i18n="Pricing">Pricing</a></li>
+                <li class="mobile-menu-list without-icon"><a href="@Url.Action("Corporate", "Home")" class="nav-link" data-i18n="Corporate">Corporate</a></li>
+                <li class="mobile-menu-list without-icon"><a href="@Url.Action("Contact", "Home")" class="nav-link" data-i18n="Contact">Contact</a></li>
+            </ul>
 
-            <button class="pika-accordion-btn" type="button" data-bs-toggle="collapse" data-bs-target="#mobileSolutions">
-                <span data-i18n="nav.solutions">Çözümlerimiz</span> <i class="fa-solid fa-chevron-down"></i>
-            </button>
-            <div class="collapse" id="mobileSolutions">
-                <div class="pika-mobile-sub">
-                    <a class="pika-mobile-link" href="@Url.Action("Solutions", "Home")" data-i18n="nav.solutions.overview">Genel Bakış</a>
-                    <a class="pika-mobile-link" href="/solutions/loyalty" data-i18n="nav.solutions.loyalty">Sadakat</a>
-                    <a class="pika-mobile-link" href="/solutions/campaigns" data-i18n="nav.solutions.campaigns">Kampanyalar</a>
-                    <a class="pika-mobile-link" href="/solutions/segmentation" data-i18n="nav.solutions.segmentation">Segmentasyon</a>
-                    <a class="pika-mobile-link" href="/solutions/analytics" data-i18n="nav.solutions.analytics">Analitik</a>
-                    <a class="pika-mobile-link" href="/solutions/integrations" data-i18n="nav.solutions.integrations">Entegrasyonlar</a>
+            <div class="others-options">
+                <ul class="d-flex align-items-center ps-0 mb-0 list-unstyled">
+                    <li><button type="button" class="search-btn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="ri-search-line"></i> <span data-i18n="Search">Search</span></button></li>
+                    <li><a href="@Url.Action("Login", "Auth")" class="search-btn login"><i class="ri-account-circle-line"></i> <span data-i18n="Login">Login</span></a></li>
+                    <li><button type="button" class="default-btn" data-bs-toggle="modal" data-bs-target="#demoModal"><span data-i18n="DemoRequest">Demo Request</span> <i class="ri-arrow-right-up-line"></i></button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="search-modal modal fade" id="exampleModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header position-relative">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-            </div>
-
-            <a class="pika-mobile-link" href="@Url.Action("Pricing", "Home")" data-i18n="nav.pricing">Fiyatlandırma</a>
-            <a class="pika-mobile-link" href="@Url.Action("Corporate", "Home")" data-i18n="nav.corporate">Kurumsal</a>
-            <a class="pika-mobile-link" href="@Url.Action("Contact", "Home")" data-i18n="nav.contact">İletişim</a>
-
-            <div class="mt-3 d-grid gap-2">
-                <a class="btn pika-btn-outline" href="@Url.Action("Login", "Auth")"><span data-i18n="nav.login">Giriş</span></a>
-                <button class="btn pika-btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#demoModal">
-                    <span data-i18n="nav.demo">Demo Talebi</span>
-                </button>
-            </div>
-
-            <div class="mt-4">
-                <div class="small text-white-50 mb-2" data-i18n="nav.language">Dil</div>
-                <div class="d-flex gap-2">
-                    <button class="btn btn-sm btn-outline-light" data-lang-set="tr">TR</button>
-                    <button class="btn btn-sm btn-outline-light" data-lang-set="en">EN</button>
+                <div class="modal-body">
+                    <form class="popup-form">
+                        <input type="text" class="form-control" placeholder="Arama">
+                        <button type="submit" class="popup-btn"><i class="ri-search-line"></i></button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Page content -->
     <main>
         @RenderBody()
     </main>
 
-    <!-- Footer -->
-    <footer class="pika-footer">
-        <div class="container py-5">
-            <div class="row g-4">
-                <div class="col-lg-4">
-                    <div class="d-flex align-items-center gap-2 mb-3">
-                        <img src="~/web/logo.svg" alt="Pika" class="pika-logo" onerror="this.style.display='none'">
-                        <span class="fw-semibold fs-5">Pika</span>
+    <footer>
+        <div class="footer-area bg-color-0c3a30 pt-120">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-4 col-lg-9 col-md-6">
+                        <div class="footer-weight">
+                            <h2 class="text-white" data-i18n="NewsletterTitle">Newsletter</h2>
+                            <form class="footer-form position-relative">
+                                <input type="email" class="form-control" data-i18n-placeholder="EnterEmail" placeholder="Enter Email">
+                                <button type="submit" class="default-btn"><span data-i18n="SubscribeButton">Subscribe</span> <i class="ri-arrow-right-up-line"></i></button>
+                            </form>
+                        </div>
                     </div>
-                    <p class="text-white-50 mb-3" data-i18n="footer.desc">
-                        Pika ile sadakat programınızı yönetin, kampanyaları otomatikleştirin ve veriyi aksiyona dönüştürün.
-                    </p>
-                    <div class="d-flex gap-2">
-                        <a class="pika-icon-btn" href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-                        <a class="pika-icon-btn" href="#"><i class="fa-brands fa-x-twitter"></i></a>
-                        <a class="pika-icon-btn" href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <div class="col-xl-2 col-lg-4 col-md-6">
+                        <div class="footer-weight part-two ps-5">
+                            <h3 class="text-white" data-i18n="QuickLinks">Quick Links</h3>
+                            <ul class="service-link">
+                                <li><a href="#" data-i18n="Solutions">Solutions</a></li>
+                                <li><a href="#" data-i18n="AboutUs">About Us</a></li>
+                                <li><a href="#" data-i18n="WhyPika">Why Pika</a></li>
+                                <li><a href="#" data-i18n="Pricing">Pricing</a></li>
+                                <li><a href="#" data-i18n="Contact">Contact</a></li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-
-                <div class="col-6 col-lg-2">
-                    <div class="pika-footer-title" data-i18n="footer.product">Ürün</div>
-                    <a class="pika-footer-link" href="@Url.Action("Solutions", "Home")" data-i18n="nav.solutions">Çözümlerimiz</a>
-                    <a class="pika-footer-link" href="@Url.Action("Pricing", "Home")" data-i18n="nav.pricing">Fiyatlandırma</a>
-                    <a class="pika-footer-link" href="/solutions/integrations" data-i18n="nav.solutions.integrations">Entegrasyonlar</a>
-                    <a class="pika-footer-link" href="#" data-i18n="footer.security">Güvenlik</a>
-                </div>
-
-                <div class="col-6 col-lg-2">
-                    <div class="pika-footer-title" data-i18n="footer.company">Şirket</div>
-                    <a class="pika-footer-link" href="@Url.Action("Corporate", "Home")" data-i18n="nav.corporate">Kurumsal</a>
-                    <a class="pika-footer-link" href="@Url.Action("Contact", "Home")" data-i18n="nav.contact">İletişim</a>
-                    <a class="pika-footer-link" href="#" data-i18n="footer.kvkk">KVKK</a>
-                    <a class="pika-footer-link" href="#" data-i18n="footer.terms">Kullanım Şartları</a>
-                </div>
-
-                <div class="col-lg-4">
-                    <div class="pika-footer-title" data-i18n="footer.ctaTitle">Daha fazla gelir, daha yüksek sadakat</div>
-                    <p class="text-white-50" data-i18n="footer.ctaDesc">Demo ile 15 dakikada ihtiyacınıza uygun akışı kuralım.</p>
-
-                    <div class="d-flex flex-column flex-sm-row gap-2">
-                        <button class="btn pika-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal">
-                            <span data-i18n="nav.demo">Demo Talebi</span>
-                        </button>
-                        <a class="btn pika-btn-outline" href="@Url.Action("Contact", "Home")">
-                            <span data-i18n="footer.contactSales">Satış ile Görüş</span>
-                        </a>
+                    <div class="col-xl-3 col-lg-4 col-md-6">
+                        <div class="footer-weight part-three ps-5">
+                            <h3 class="text-white" data-i18n="Corporate">Corporate</h3>
+                            <ul class="service-link">
+                                <li><a href="#" data-i18n="Login">Login</a></li>
+                                <li><a href="#" data-i18n="CustomerServices">Customer Services</a></li>
+                                <li><a href="#" data-i18n="CorporateSupportServices">Corporate Support Services</a></li>
+                                <li><a href="#" data-i18n="FAQ">FAQ</a></li>
+                                <li><a href="#" data-i18n="Career">Career</a></li>
+                            </ul>
+                        </div>
                     </div>
-
-                    <div class="mt-3 small text-white-50">
-                        <i class="fa-regular fa-envelope me-2"></i>info@pika.com •
-                        <i class="fa-solid fa-phone ms-2 me-2"></i>+90 (000) 000 00 00
+                    <div class="col-xl-3 col-lg-4 col-md-6">
+                        <div class="footer-weight ps-5">
+                            <h3 class="text-white" data-i18n="Contact">Contact</h3>
+                            <ul class="get-touch">
+                                <li><img class="phone" src="~/web/assets/images/svg/mail.svg" alt="image"><span class="text-white"><b>Email:</b></span><a href="mailto:info@pikaanalysis.com" class="text-white text-decoration-none">info@pikaanalysis.com</a></li>
+                                <li><img class="phone" src="~/web/assets/images/svg/phone.svg" alt="image"><span class="text-white"><b>Phone:</b></span><a href="tel:+903123254114">+90 (312) 325 41 14</a></li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-            </div>
-
-            <hr class="pika-hr my-4" />
-            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2">
-                <div class="small text-white-50">© @DateTime.Now.Year Pika. <span data-i18n="footer.rights">Tüm hakları saklıdır.</span></div>
-                <div class="small text-white-50">
-                    <span data-i18n="footer.made">Kurumsal sadakat ürünleri için tasarlandı.</span>
                 </div>
             </div>
         </div>
+
+        <div class="copyright-area bg-color-0c3a30">
+            <div class="container">
+                <div class="copyright-border">
+                    <div class="row g-4 align-items-center">
+                        <div class="col-lg-4 col-md-6"><p>© <span>Pika Analysis</span> <span data-i18n="AllRightsReserved">All rights reserved.</span></p></div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="copy-image"><a href="@Url.Action("Index", "Home")" class="d-block"><img src="~/web/assets/images/white-logo.png" alt="image"></a></div>
+                        </div>
+                        <div class="col-lg-4 col-md-12 d-flex justify-content-between align-items-center">
+                            <ul>
+                                <li><a href="#" data-i18n="PrivacyPolicy">Privacy Policy</a></li>
+                                <li><a href="#" data-i18n="TermsConditions">Terms Conditions</a></li>
+                            </ul>
+                            <span class="text-white version-badge">v@appVersion</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="go-top"><i class="ri-arrow-up-fill"></i></div>
     </footer>
 
-    <!-- Demo Modal (global) -->
     @await Html.PartialAsync("_DemoRequestModal")
 
-    <!-- Vendor JS -->
-    _toggleToast:@{
-    var toast = TempData["Toast"] as string;
-        }
-    @* Optional toast *@
     @if (!string.IsNullOrWhiteSpace(toast))
     {
         <div class="pika-toast" data-toast="@toast"></div>
@@ -244,8 +259,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-    <!-- Your JS -->
     <script src="~/js/site.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
