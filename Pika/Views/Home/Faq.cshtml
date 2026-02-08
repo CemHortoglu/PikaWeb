@@ -2,61 +2,127 @@
     ViewData["Title"] = "Sık Sorulan Sorular";
 }
 
-<section class="pika-page-hero">
+<section class="faq-pro-hero">
     <div class="container">
         <div class="row g-4 align-items-center">
-            <div class="col-lg-8">
-                <h1 class="pika-h1" data-i18n="faq.h1">Sık Sorulan Sorular</h1>
-                <p class="pika-lead" data-i18n="faq.lead">Pika platformu, demo süreci, güvenlik ve entegrasyon hakkında en çok merak edilen soruları bu sayfada topladık.</p>
+            <div class="col-lg-7">
+                <span class="faq-chip">Pika Kurumsal Bilgi Merkezi</span>
+                <h1 class="faq-pro-title">Sık Sorulan Sorular</h1>
+                <p class="faq-pro-lead">
+                    Pika Analysis platformu hakkında entegrasyon, güvenlik, canlıya geçiş ve operasyon süreçlerinde en çok sorulan soruları
+                    tek merkezde topladık. Cevaplarımız kurumsal ekiplerin karar alma sürecini hızlandıracak şekilde hazırlanmıştır.
+                </p>
+                <div class="faq-pro-stats">
+                    <div class="faq-stat-card">
+                        <strong>99.9%</strong>
+                        <span>Platform sürekliliği</span>
+                    </div>
+                    <div class="faq-stat-card">
+                        <strong>KVKK</strong>
+                        <span>Uyumlu veri işleme</span>
+                    </div>
+                    <div class="faq-stat-card">
+                        <strong>API</strong>
+                        <span>Çift yönlü entegrasyon</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="faq-hero-panel">
+                    <h3>Balık Modülleri</h3>
+                    <p>Pika'nın balık kategorisi için sunduğu hazır içerik paketleri:</p>
+                    <div class="fish-pill-grid">
+                        <span class="fish-pill">Levrek</span>
+                        <span class="fish-pill">Çipura</span>
+                        <span class="fish-pill">Somon</span>
+                        <span class="fish-pill">Alabalık</span>
+                        <span class="fish-pill">Ton Balığı</span>
+                        <span class="fish-pill">Hamsi</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<section class="pika-section pt-0">
+<section class="pika-section pt-5">
     <div class="container">
-        <div class="accordion" id="faqAccordion">
-            <div class="accordion-item bg-transparent border-secondary mb-3 rounded-3 overflow-hidden">
-                <h2 class="accordion-header">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true" aria-controls="faq1" data-i18n="faq.q1">
-                        Pika hangi sektörlerde kullanılabilir?
-                    </button>
-                </h2>
-                <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body text-white-50" data-i18n="faq.a1">Perakende, finans, telekom, e-ticaret ve üyelik tabanlı tüm sektörlerde kullanılabilir. Modüler yapısı sayesinde iş ihtiyaçlarına göre ölçeklenir.</div>
+        <div class="row g-4 mb-4">
+            <div class="col-md-4">
+                <div class="fish-content-card">
+                    <h4>Taze Balık</h4>
+                    <p>Günlük tedarik, menşei etiketi, stok güncelliği ve kampanya otomasyonu ile vitrinde doğruluk sağlar.</p>
                 </div>
             </div>
-
-            <div class="accordion-item bg-transparent border-secondary mb-3 rounded-3 overflow-hidden">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2" data-i18n="faq.q2">
-                        Demo süreci nasıl ilerliyor?
-                    </button>
-                </h2>
-                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body text-white-50" data-i18n="faq.a2">Demo talep formunu doldurduktan sonra ekibimiz sizinle iletişime geçer. İhtiyaç toplantısı sonrası kurumunuza özel bir canlı demo planlanır.</div>
+            <div class="col-md-4">
+                <div class="fish-content-card">
+                    <h4>Dondurulmuş Balık</h4>
+                    <p>Soğuk zincir bilgileri, son tüketim tarihi odaklı akışlar ve fiyat optimizasyonu ile satış verimliliği artırılır.</p>
                 </div>
             </div>
-
-            <div class="accordion-item bg-transparent border-secondary mb-3 rounded-3 overflow-hidden">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3" data-i18n="faq.q3">
-                        Mevcut sistemlerimizle entegrasyon mümkün mü?
-                    </button>
-                </h2>
-                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body text-white-50" data-i18n="faq.a3">Evet. API tabanlı mimari ile CRM, ERP, e-ticaret, çağrı merkezi ve veri ambarı sistemleriyle çift yönlü entegrasyon sağlanabilir.</div>
+            <div class="col-md-4">
+                <div class="fish-content-card">
+                    <h4>İşlenmiş Ürünler</h4>
+                    <p>Marine, füme ve fileto ürünlerinde ürün varyasyonu bazlı reklam kurguları tek panelden yönetilir.</p>
                 </div>
             </div>
+        </div>
 
-            <div class="accordion-item bg-transparent border-secondary rounded-3 overflow-hidden">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false" aria-controls="faq4" data-i18n="faq.q4">
-                        Veri güvenliği ve yetkilendirme nasıl sağlanıyor?
-                    </button>
-                </h2>
-                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body text-white-50" data-i18n="faq.a4">Rol bazlı erişim, işlem logları, güvenli veri aktarımı ve kurum politikalarına uyumlu saklama prensipleri ile güvenlik katmanları uygulanır.</div>
+        <div class="faq-pro-shell">
+            <div class="accordion faq-pro-accordion" id="faqAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true" aria-controls="faq1">
+                            Pika hangi sektörlerde kullanılabilir?
+                        </button>
+                    </h2>
+                    <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">Perakende, finans, telekom, e-ticaret ve üyelik tabanlı sektörlerin tamamında kullanılabilir. Modüler mimarisi sayesinde kurumunuza göre ölçeklenir.</div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">
+                            Demo süreci nasıl ilerliyor?
+                        </button>
+                    </h2>
+                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">Demo talebiniz sonrası satış mühendislerimiz ihtiyaç analizi yapar. Ardından kurumunuza özel senaryo seti hazırlanır ve canlı demo toplantısı planlanır.</div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">
+                            Mevcut sistemlerimizle entegrasyon mümkün mü?
+                        </button>
+                    </h2>
+                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">Evet. Pika; CRM, ERP, e-ticaret altyapıları, çağrı merkezi ve veri ambarı çözümleriyle API üzerinden çift yönlü entegrasyon sağlar.</div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false" aria-controls="faq4">
+                            Veri güvenliği ve yetkilendirme nasıl sağlanıyor?
+                        </button>
+                    </h2>
+                    <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">Rol bazlı erişim, işlem logları, şifrelenmiş veri aktarımı, audit kayıtları ve kurum politikalarına uyumlu saklama süreçleri birlikte uygulanır.</div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5" aria-expanded="false" aria-controls="faq5">
+                            Balık kategorisi için hangi içerikler hazır geliyor?
+                        </button>
+                    </h2>
+                    <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">Levrek, çipura, somon, alabalık, ton balığı ve hamsi gibi alt kategoriler için ürün metni şablonları, kampanya segmentleri ve kreatif öneri setleri hazır olarak sunulur.</div>
+                    </div>
                 </div>
             </div>
         </div>
