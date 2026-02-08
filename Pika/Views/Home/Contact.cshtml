@@ -1,0 +1,89 @@
+﻿@{
+    ViewData["Title"] = "İletişim";
+}
+<section class="pika-page-hero">
+    <div class="container" data-aos="fade-up">
+        <h1 class="pika-h1" data-i18n="contact.h1">İletişim</h1>
+        <p class="pika-lead" data-i18n="contact.lead">Sorunuz mu var? Satış ve teknik ekiplerimizle hızlıca bağlantı kurun.</p>
+    </div>
+</section>
+
+<section class="pika-section">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-6" data-aos="fade-up">
+                <div class="pika-card">
+                    <h3 class="pika-h3 mb-3" data-i18n="contact.formTitle">Bize Yazın</h3>
+
+                    <form class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label" data-i18n="form.fullName">Ad Soyad</label>
+                            <input class="form-control pika-input" placeholder="Ad Soyad">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" data-i18n="form.email">E-posta</label>
+                            <input type="email" class="form-control pika-input" placeholder="mail@firma.com">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label" data-i18n="form.message">Mesaj</label>
+                            <textarea class="form-control pika-input" rows="5" placeholder="Mesajınız..."></textarea>
+                        </div>
+                        <div class="col-12 d-flex gap-2 flex-wrap">
+                            <button type="button" class="btn pika-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal" data-i18n="contact.demo">Demo Talebi</button>
+                            <button type="submit" class="btn pika-btn-outline" data-i18n="contact.send">Gönder</button>
+                        </div>
+                        <div class="small text-white-50" data-i18n="form.privacy">Bilgileriniz gizli tutulur.</div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="120">
+                <div class="pika-card h-100">
+                    <h3 class="pika-h3 mb-3" data-i18n="contact.infoTitle">İletişim Bilgileri</h3>
+
+                    <div class="pika-info-line">
+                        <i class="fa-regular fa-envelope"></i>
+                        <div>
+                            <div class="fw-semibold" data-i18n="contact.mail">E-posta</div>
+                            <a class="pika-link" href="mailto:info@pika.com">info@pika.com</a>
+                        </div>
+                    </div>
+
+                    <div class="pika-info-line">
+                        <i class="fa-solid fa-phone"></i>
+                        <div>
+                            <div class="fw-semibold" data-i18n="contact.phone">Telefon</div>
+                            <div class="text-white-50">+90 (000) 000 00 00</div>
+                        </div>
+                    </div>
+
+                    <div class="pika-info-line">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div>
+                            <div class="fw-semibold" data-i18n="contact.address">Adres</div>
+                            <div class="text-white-50">İstanbul, Türkiye</div>
+                        </div>
+                    </div>
+
+                    <div class="pika-map mt-3">
+                        <!-- isterseniz gerçek harita embed koyun -->
+                        <div class="pika-map-placeholder">
+                            <i class="fa-regular fa-map"></i>
+                            <div class="text-white-50 small mt-2" data-i18n="contact.map">Harita alanı</div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <div class="pika-cta-mini">
+                            <div>
+                                <div class="fw-semibold" data-i18n="contact.ctaT">Kurumsal teklif mi?</div>
+                                <div class="text-white-50 small" data-i18n="contact.ctaD">Kapsam ve entegrasyonlara göre netleştirelim.</div>
+                            </div>
+                            <a class="btn btn-sm pika-btn-outline" href="@Url.Action("Pricing", "Home")" data-i18n="contact.ctaB">Fiyatlandırma</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,102 @@
+﻿@{
+    ViewData["Title"] = "Fiyatlandırma";
+}
+<section class="pika-page-hero">
+    <div class="container" data-aos="fade-up">
+        <h1 class="pika-h1" data-i18n="price.h1">Fiyatlandırma</h1>
+        <p class="pika-lead" data-i18n="price.lead">İhtiyacınıza göre ölçeklenen planlar. Kurumsal için özel sözleşme seçenekleri.</p>
+    </div>
+</section>
+
+<section class="pika-section">
+    <div class="container">
+        <div class="row g-4 align-items-stretch">
+            <div class="col-lg-4" data-aos="fade-up">
+                <div class="pika-price-card h-100">
+                    <div class="pika-price-title" data-i18n="price.p1t">Start</div>
+                    <div class="pika-price-value">₺<span>9.900</span><small class="text-white-50">/ay</small></div>
+                    <div class="text-white-50" data-i18n="price.p1d">Küçük ekipler için hızlı başlangıç.</div>
+                    <ul class="pika-ul">
+                        <li data-i18n="price.p1f1">Temel segmentasyon</li>
+                        <li data-i18n="price.p1f2">Kampanya şablonları</li>
+                        <li data-i18n="price.p1f3">Standart raporlar</li>
+                    </ul>
+                    <button class="btn pika-btn-outline w-100 mt-2" data-bs-toggle="modal" data-bs-target="#demoModal" data-i18n="price.choose">Teklif Al</button>
+                </div>
+            </div>
+
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="pika-price-card pika-price-card--featured h-100">
+                    <div class="pika-featured-badge" data-i18n="price.best">En Popüler</div>
+                    <div class="pika-price-title" data-i18n="price.p2t">Growth</div>
+                    <div class="pika-price-value">₺<span>24.900</span><small class="text-white-50">/ay</small></div>
+                    <div class="text-white-50" data-i18n="price.p2d">Büyüyen ekipler için otomasyon ve analitik.</div>
+                    <ul class="pika-ul">
+                        <li data-i18n="price.p2f1">Gelişmiş segment & dinamik kitle</li>
+                        <li data-i18n="price.p2f2">Otomasyon akışları</li>
+                        <li data-i18n="price.p2f3">Kohort & kampanya performansı</li>
+                        <li data-i18n="price.p2f4">Webhook/API erişimi</li>
+                    </ul>
+                    <button class="btn pika-btn-primary w-100 mt-2" data-bs-toggle="modal" data-bs-target="#demoModal" data-i18n="price.choose">Teklif Al</button>
+                </div>
+            </div>
+
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="pika-price-card h-100">
+                    <div class="pika-price-title" data-i18n="price.p3t">Enterprise</div>
+                    <div class="pika-price-value"><span data-i18n="price.custom">Özel</span></div>
+                    <div class="text-white-50" data-i18n="price.p3d">Kurumsal SLA, güvenlik ve özel entegrasyonlar.</div>
+                    <ul class="pika-ul">
+                        <li data-i18n="price.p3f1">SSO / RBAC</li>
+                        <li data-i18n="price.p3f2">Özel raporlar & BI entegrasyonu</li>
+                        <li data-i18n="price.p3f3">Özel SLA & danışmanlık</li>
+                    </ul>
+                    <a class="btn pika-btn-outline w-100 mt-2" href="@Url.Action("Contact", "Home")" data-i18n="price.contact">Satış ile Görüş</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="pika-compare mt-5" data-aos="fade-up">
+            <h2 class="pika-h2 mb-3" data-i18n="price.compare">Plan Karşılaştırma</h2>
+            <div class="table-responsive">
+                <table class="table pika-table align-middle">
+                    <thead>
+                        <tr>
+                            <th data-i18n="price.feature">Özellik</th>
+                            <th>Start</th>
+                            <th>Growth</th>
+                            <th>Enterprise</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-i18n="price.row1">Segmentasyon</td>
+                            <td><i class="fa-solid fa-check"></i></td>
+                            <td><i class="fa-solid fa-check"></i></td>
+                            <td><i class="fa-solid fa-check"></i></td>
+                        </tr>
+                        <tr>
+                            <td data-i18n="price.row2">Otomasyon Akışları</td>
+                            <td>—</td>
+                            <td><i class="fa-solid fa-check"></i></td>
+                            <td><i class="fa-solid fa-check"></i></td>
+                        </tr>
+                        <tr>
+                            <td data-i18n="price.row3">Gelişmiş Analitik</td>
+                            <td>—</td>
+                            <td><i class="fa-solid fa-check"></i></td>
+                            <td><i class="fa-solid fa-check"></i></td>
+                        </tr>
+                        <tr>
+                            <td data-i18n="price.row4">SSO / RBAC</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td><i class="fa-solid fa-check"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="text-white-50 small mt-2" data-i18n="price.note">Not: Fiyatlar örnek amaçlıdır; gerçek fiyatlar kullanım ve kapsamla netleşir.</div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Entegrasyonlar";
+}
+<section class="pika-page-hero">
+    <div class="container" data-aos="fade-up">
+        <h1 class="pika-h1" data-i18n="int.h1">Entegrasyonlar</h1>
+        <p class="pika-lead" data-i18n="int.lead">API & webhook yaklaşımıyla mevcut sistemlerinize hızlıca bağlanın.</p>
+        <div class="d-flex gap-2 flex-wrap">
+            <button class="btn pika-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal" data-i18n="int.demo">Demo Talebi</button>
+            <a class="btn pika-btn-outline" href="@Url.Action("Contact", "Home")" data-i18n="int.contact">Teknik Görüşme</a>
+        </div>
+    </div>
+</section>
+
+<section class="pika-section">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-6" data-aos="fade-up">
+                <div class="pika-card h-100">
+                    <h3 class="pika-h3" data-i18n="int.f1t">REST API</h3>
+                    <p class="text-white-50" data-i18n="int.f1d">Müşteri, işlem ve etkinlik verilerini güvenli şekilde gönderin.</p>
+                    <div class="pika-codebox mt-3">
+                        <code>POST /api/events<br />{"customerId":"...","type":"purchase","amount":1200}</code>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="120">
+                <div class="pika-card h-100">
+                    <h3 class="pika-h3" data-i18n="int.f2t">Webhook</h3>
+                    <p class="text-white-50" data-i18n="int.f2d">Kampanya ve sadakat aksiyonlarını sisteminize geri bildirin.</p>
+                    <div class="pika-checklist mt-3">
+                        <div class="pika-check"><i class="fa-solid fa-circle-check"></i><span data-i18n="int.c1">Event tabanlı mimari</span></div>
+                        <div class="pika-check"><i class="fa-solid fa-circle-check"></i><span data-i18n="int.c2">Retry & signature (önerilir)</span></div>
+                        <div class="pika-check"><i class="fa-solid fa-circle-check"></i><span data-i18n="int.c3">Dokümantasyon & örnek payload</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

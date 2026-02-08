@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Segmentasyon";
+}
+<section class="pika-page-hero">
+    <div class="container" data-aos="fade-up">
+        <h1 class="pika-h1" data-i18n="seg.h1">Segmentasyon</h1>
+        <p class="pika-lead" data-i18n="seg.lead">Dinamik kitleler oluşturun; doğru müşteriye doğru anda ulaşın.</p>
+        <div class="d-flex gap-2 flex-wrap">
+            <button class="btn pika-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal" data-i18n="seg.demo">Demo Talebi</button>
+            <a class="btn pika-btn-outline" href="/solutions/analytics" data-i18n="seg.next">Analitik</a>
+        </div>
+    </div>
+</section>
+
+<section class="pika-section">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-6" data-aos="fade-up">
+                <div class="pika-card h-100">
+                    <h3 class="pika-h3" data-i18n="seg.f1t">Kural Motoru</h3>
+                    <p class="text-white-50" data-i18n="seg.f1d">Davranış, sıklık, sepet, kategori ve zaman pencereleriyle filtreler.</p>
+                    <div class="pika-checklist mt-3">
+                        <div class="pika-check"><i class="fa-solid fa-circle-check"></i><span data-i18n="seg.c1">Dinamik güncellenen segmentler</span></div>
+                        <div class="pika-check"><i class="fa-solid fa-circle-check"></i><span data-i18n="seg.c2">Kohort ve LTV bazlı hedefleme</span></div>
+                        <div class="pika-check"><i class="fa-solid fa-circle-check"></i><span data-i18n="seg.c3">Export / API ile dış sistemler</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="120">
+                <div class="pika-card h-100">
+                    <h3 class="pika-h3" data-i18n="seg.f2t">Örnek Kullanım</h3>
+                    <p class="text-white-50" data-i18n="seg.f2d">“Son 30 günde 2+ alışveriş yapan ama 14 gündür pasif olan” gibi hedefler.</p>
+                    <div class="pika-codebox mt-3">
+                        <code>
+                            lastPurchaseDays &gt; 14 AND<br />
+                            ordersLast30Days &gt;= 2 AND<br />
+                            totalSpendLast90Days &gt; 1500
+                        </code>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
