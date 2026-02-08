@@ -737,11 +737,45 @@
     .app-banner-ref img { width: 100%; }
 }
 
-.language-dropdown button {
-  min-width: 120px;
-  border-radius: 20px;
-  background: transparent;
-  border: none;
+.nav-language-dropdown {
+  min-width: 116px;
+}
+
+.nav-language-dropdown .nav-language-trigger {
+  min-width: 116px;
+  height: 42px;
+  border-radius: 999px;
+  background: #f4f7f6;
+  border: 1px solid #dce5e3;
+  color: #0c3a30;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-decoration: none;
+}
+
+.nav-language-dropdown .nav-language-trigger::after {
+  margin-right: 0;
+}
+
+.nav-language-dropdown .nav-language-trigger:hover,
+.nav-language-dropdown .nav-language-trigger:focus {
+  background: #e9f2f0;
+  color: #0c3a30;
+}
+
+.nav-language-dropdown .dropdown-menu {
+  border-radius: 12px;
+  border: 1px solid #dce5e3;
+  padding: 6px;
+  min-width: 165px;
+}
+
+.nav-language-dropdown .dropdown-item {
+  border-radius: 8px;
+  font-weight: 500;
 }
 
 .demo-request-modal .form-control {

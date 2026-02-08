@@ -41,18 +41,6 @@
                     <div class="col-lg-4 col-md-12">
                         <ul class="right-side">
                             <li><a href="#" data-i18n="nav.contact">Support</a></li>
-                            <li>
-                                <div class="flag position-relative language-dropdown dropdown">
-                                    <button class="btn btn-link p-0 border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <img id="currentLangFlag" src="~/web/assets/images/svg/tr.svg" width="16" height="16" class="me-1 rounded-circle" alt="lang" />
-                                        <span id="langLabel">TR</span>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><button class="dropdown-item d-flex align-items-center" type="button" data-lang-set="tr"><img src="~/web/assets/images/svg/tr.svg" width="16" height="16" class="me-2" alt="tr" />TR</button></li>
-                                        <li><button class="dropdown-item d-flex align-items-center" type="button" data-lang-set="en"><img src="~/web/assets/images/svg/flag.svg" width="16" height="16" class="me-2" alt="en" />EN</button></li>
-                                                                            </ul>
-                                </div>
-                            </li>
                         </ul>
                     </div>
                 </div>
@@ -102,7 +90,18 @@
                 </div>
                 <div class="others-options">
                     <ul class="d-flex align-items-center ps-0 mb-0 list-unstyled">
-                        <li><button type="button" class="search-btn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="ri-search-line"></i> <span data-i18n="search">Search</span></button></li>
+                        <li>
+                            <div class="flag position-relative language-dropdown dropdown nav-language-dropdown">
+                                <button class="btn btn-link p-0 border-0 dropdown-toggle nav-language-trigger" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Language selector">
+                                    <i class="ri-global-line"></i>
+                                    <span id="langLabel" data-lang-label>@culture.ToUpperInvariant()</span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><button class="dropdown-item" type="button" data-lang-set="tr">Türkçe (TR)</button></li>
+                                    <li><button class="dropdown-item" type="button" data-lang-set="en">English (EN)</button></li>
+                                </ul>
+                            </div>
+                        </li>
                         <li><a href="@Url.Action("Login", "Auth")" class="search-btn login"><i class="ri-account-circle-line"></i> <span data-i18n="nav.login">Login</span></a></li>
                         <li><button type="button" class="default-btn" data-bs-toggle="modal" data-bs-target="#demoModal"><span data-i18n="nav.demo">Demo Request</span> <i class="ri-arrow-right-up-line"></i></button></li>
                     </ul>
@@ -139,26 +138,21 @@
 
             <div class="others-options">
                 <ul class="d-flex align-items-center ps-0 mb-0 list-unstyled">
-                    <li><button type="button" class="search-btn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="ri-search-line"></i> <span data-i18n="search">Search</span></button></li>
+                    <li>
+                        <div class="flag position-relative language-dropdown dropdown nav-language-dropdown">
+                            <button class="btn btn-link p-0 border-0 dropdown-toggle nav-language-trigger" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Language selector">
+                                <i class="ri-global-line"></i>
+                                <span data-lang-label>@culture.ToUpperInvariant()</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><button class="dropdown-item" type="button" data-lang-set="tr">Türkçe (TR)</button></li>
+                                <li><button class="dropdown-item" type="button" data-lang-set="en">English (EN)</button></li>
+                            </ul>
+                        </div>
+                    </li>
                     <li><a href="@Url.Action("Login", "Auth")" class="search-btn login"><i class="ri-account-circle-line"></i> <span data-i18n="nav.login">Login</span></a></li>
                     <li><button type="button" class="default-btn" data-bs-toggle="modal" data-bs-target="#demoModal"><span data-i18n="nav.demo">Demo Request</span> <i class="ri-arrow-right-up-line"></i></button></li>
                 </ul>
-            </div>
-        </div>
-    </div>
-
-    <div class="search-modal modal fade" id="exampleModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header position-relative">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form class="popup-form">
-                        <input type="text" class="form-control" placeholder="Ara" data-i18n-placeholder="search">
-                        <button type="submit" class="popup-btn"><i class="ri-search-line"></i></button>
-                    </form>
-                </div>
             </div>
         </div>
     </div>
