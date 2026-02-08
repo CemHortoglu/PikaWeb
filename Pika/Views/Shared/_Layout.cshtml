@@ -30,10 +30,10 @@
     <!-- Top Notice Bar (optional) -->
     <div class="pika-topbar d-none d-lg-block">
         <div class="container d-flex justify-content-between align-items-center py-2">
-            <div class="small text-white-50">
+            <div class="small text-muted">
                 <i class="fa-solid fa-shield-halved me-2"></i><span data-i18n="topbar.security">Kurumsal güvenlik • KVKK uyumlu süreçler</span>
             </div>
-            <div class="small text-white-50">
+            <div class="small text-muted">
                 <i class="fa-solid fa-headset me-2"></i><span data-i18n="topbar.support">Destek:</span> <a class="pika-link" href="mailto:destek@pika.com">destek@pika.com</a>
             </div>
         </div>
@@ -41,11 +41,10 @@
 
     <!-- Header -->
     <header class="pika-header sticky-top">
-        <nav class="navbar navbar-expand-lg navbar-dark">
+        <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center gap-2" href="@Url.Action("Index", "Home")">
-                    <img src="~/web/logo.svg" alt="Pika" class="pika-logo" onerror="this.style.display='none'">
-                    <span class="fw-semibold">Pika</span>
+                    <img src="~/logo.png" alt="Pika" width="90">
                 </a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileNav">
@@ -63,7 +62,7 @@
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-i18n="nav.solutions">
                                 Çözümlerimiz
                             </a>
-                            <ul class="dropdown-menu dropdown-menu-dark pika-dropdown">
+                            <ul class="dropdown-menu pika-dropdown">
                                 <li><a class="dropdown-item" href="@Url.Action("Solutions", "Home")"><i class="fa-regular fa-compass me-2"></i><span data-i18n="nav.solutions.overview">Genel Bakış</span></a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="/solutions/loyalty"><i class="fa-solid fa-star me-2"></i><span data-i18n="nav.solutions.loyalty">Sadakat</span></a></li>
@@ -86,24 +85,24 @@
 
                         <li class="nav-item ms-lg-2">
                             <a class="btn btn-sm pika-btn-outline" href="@Url.Action("Login", "Auth")">
-                                <i class="fa-regular fa-user me-2"></i><span data-i18n="nav.login">Giriş</span>
+                                <span data-i18n="nav.login">Giriş</span>
                             </a>
                         </li>
 
                         <li class="nav-item">
                             <button class="btn btn-sm pika-btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#demoModal">
-                                <i class="fa-solid fa-wand-magic-sparkles me-2"></i><span data-i18n="nav.demo">Demo Talebi</span>
+                                <span data-i18n="nav.demo">Demo Talebi</span>
                             </button>
                         </li>
 
                         <!-- Language -->
                         <li class="nav-item dropdown ms-lg-2">
                             <a class="nav-link dropdown-toggle pika-lang" href="#" role="button" data-bs-toggle="dropdown">
-                                <i class="fa-solid fa-globe me-2"></i><span id="langLabel">TR</span>
+                                <i class="fa-solid fa-globe"></i>
                             </a>
-                            <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
-                                <li><button class="dropdown-item" type="button" data-lang-set="tr">Türkçe</button></li>
-                                <li><button class="dropdown-item" type="button" data-lang-set="en">English</button></li>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><button class="dropdown-item" type="button" data-lang-set="tr"><span class="me-2">🇹🇷</span> Türkçe</button></li>
+                                <li><button class="dropdown-item" type="button" data-lang-set="en"><span class="me-2">🇬🇧</span> English</button></li>
                             </ul>
                         </li>
                     </ul>

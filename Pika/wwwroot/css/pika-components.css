@@ -1,14 +1,14 @@
 /* wwwroot/css/pika-components.css */
 :root {
-    --pika-bg: #f4f7ea;
-    --pika-bg2: #e8f0d7;
+    --pika-bg: #ffffff;
+    --pika-bg2: #f0f2f5;
     --pika-card: #ffffff;
-    --pika-border: #d8e3c3;
-    --pika-text: #10332c;
-    --pika-muted: #4f6f67;
-    --pika-primary: #9edd05;
-    --pika-primary2: #7cb906;
-    --pika-radius: 18px;
+    --pika-border: #dee2e6;
+    --pika-text: #212529;
+    --pika-muted: #6c757d;
+    --pika-primary: #0d6efd;
+    --pika-primary2: #0b5ed7;
+    --pika-radius: 6px;
 }
 
 .pika-body {
@@ -17,30 +17,30 @@
 }
 
 .pika-topbar {
-    background: #0a4b3f;
-    border-bottom: 1px solid #0d5b4d;
+    background: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
 }
 
 .pika-link {
-    color: #e7f3ec;
+    color: #212529;
     text-decoration: none;
 }
 
     .pika-link:hover {
-        color: #ffffff;
+        color: #0d6efd;
         text-decoration: underline;
     }
 
 .pika-header {
-    background: rgba(244,247,234,.95);
+    background: rgba(255,255,255,.95);
     backdrop-filter: blur(14px);
-    border-bottom: 1px solid #d8e3c3;
+    border-bottom: 1px solid var(--pika-border);
     transition: all .2s ease;
 }
 
 .pika-header--scrolled {
-    background: rgba(244,247,234,.98);
-    box-shadow: 0 10px 24px rgba(12, 46, 40, .10);
+    background: rgba(255,255,255,.98);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, .05);
 }
 
 .pika-logo {
@@ -49,8 +49,8 @@
 }
 
 .pika-dropdown {
-    border: 1px solid #d8e3c3;
-    border-radius: 14px;
+    border: 1px solid var(--pika-border);
+    border-radius: var(--pika-radius);
 }
 
 .pika-lang {
@@ -63,28 +63,33 @@
 
 .pika-btn-primary {
     background: var(--pika-primary);
-    border: 1px solid #8ac704;
-    color: #10332c;
-    font-weight: 700;
-    border-radius: 14px;
-    box-shadow: 0 12px 24px rgba(122, 168, 26, .25);
+    border: 1px solid var(--pika-primary);
+    color: #ffffff;
+    font-weight: 600;
+    border-radius: var(--pika-radius);
+    box-shadow: 0 4px 12px rgba(13, 110, 253, .2);
 }
 
     .pika-btn-primary:hover {
-        filter: brightness(1.05);
+        background: var(--pika-primary2);
+        border-color: var(--pika-primary2);
+        filter: none;
         transform: translateY(-1px);
+        box-shadow: 0 6px 16px rgba(13, 110, 253, .25);
     }
 
 .pika-btn-outline {
-    background: #ffffff;
-    border: 1px solid #cbd9b3;
-    color: #16493f;
-    border-radius: 14px;
+    background: transparent;
+    border: 1px solid #ced4da;
+    color: #212529;
+    font-weight: 600;
+    border-radius: var(--pika-radius);
 }
 
     .pika-btn-outline:hover {
-        background: #f0f6e0;
-        color: #0d332c;
+        background: #f8f9fa;
+        color: #000000;
+        border-color: #adb5bd;
     }
 
 .pika-hero {
@@ -96,10 +101,10 @@
     align-items: center;
     gap: .5rem;
     background: #ffffff;
-    border: 1px solid #d8e3c3;
+    border: 1px solid var(--pika-border);
     border-radius: 999px;
     padding: .5rem .9rem;
-    color: #16493f;
+    color: var(--pika-text);
 }
 
 .pika-h1 {
@@ -133,20 +138,20 @@
     align-items: center;
     gap: 10px;
     padding: .55rem .8rem;
-    border-radius: 14px;
-    border: 1px solid #d8e3c3;
+    border-radius: var(--pika-radius);
+    border: 1px solid var(--pika-border);
     background: #ffffff;
-    color: #3e6158;
+    color: #495057;
 }
 
     .pika-trust-item i {
-        color: #83b31a;
+        color: var(--pika-primary);
     }
 
 .pika-hero-visual {
     position: relative;
-    border-radius: 24px;
-    border: 1px solid #d8e3c3;
+    border-radius: var(--pika-radius);
+    border: 1px solid var(--pika-border);
     background: #ffffff;
     padding: 18px;
     overflow: hidden;
@@ -162,11 +167,11 @@
 
 .pika-float-card {
     position: absolute;
-    background: #f0f6e0;
-    border: 1px solid #d8e3c3;
-    border-radius: 16px;
+    background: #f8f9fa;
+    border: 1px solid var(--pika-border);
+    border-radius: var(--pika-radius);
     padding: 12px 14px;
-    box-shadow: 0 12px 28px rgba(12, 46, 40, .12);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, .08);
 }
 
 .pika-float-1 {
@@ -180,7 +185,7 @@
 }
 
 .pika-logos {
-    border-top: 1px solid #d8e3c3;
+    border-top: 1px solid var(--pika-border);
     padding-top: 18px;
 }
 
@@ -193,9 +198,9 @@
 .pika-logo-pill {
     padding: .45rem .75rem;
     border-radius: 999px;
-    border: 1px solid #d8e3c3;
+    border: 1px solid var(--pika-border);
     background: #ffffff;
-    color: #3e6158;
+    color: #495057;
 }
 
 .pika-section {
@@ -203,9 +208,9 @@
 }
 
 .pika-section-alt {
-    background: #eef4dd;
-    border-top: 1px solid #dbe6c7;
-    border-bottom: 1px solid #dbe6c7;
+    background: var(--pika-bg2);
+    border-top: 1px solid var(--pika-border);
+    border-bottom: 1px solid var(--pika-border);
 }
 
 .pika-card {
@@ -218,8 +223,8 @@
 
     .pika-card:hover {
         transform: translateY(-2px);
-        background: #f4f9e9;
-        border-color: #cad8b1;
+        background: #f8f9fa;
+        border-color: #ced4da;
     }
 
 .pika-card-icon {
@@ -227,9 +232,9 @@
     height: 44px;
     display: grid;
     place-items: center;
-    border-radius: 14px;
-    background: #e6f2cf;
-    border: 1px solid #cad8b1;
+    border-radius: var(--pika-radius);
+    background: #e7f0fe;
+    border: 1px solid #cde0fd;
     margin-bottom: 14px;
 }
 
@@ -238,11 +243,11 @@
     gap: 10px;
     align-items: flex-start;
     margin-top: 10px;
-    color: #3f5f57;
+    color: #495057;
 }
 
 .pika-check i {
-    color: #83b31a;
+    color: var(--pika-primary);
     margin-top: 2px;
 }
 
@@ -260,8 +265,8 @@
 
 .pika-quote {
     background: #ffffff;
-    border: 1px solid #d8e3c3;
-    border-radius: 18px;
+    border: 1px solid var(--pika-border);
+    border-radius: var(--pika-radius);
     padding: 18px;
     height: 100%;
 }
@@ -273,22 +278,22 @@
 }
 
 .pika-cta-card {
-    background: #eaf2d6;
-    border: 1px solid #d8e3c3;
-    border-radius: 22px;
+    background: #e7f0fe;
+    border: 1px solid var(--pika-border);
+    border-radius: var(--pika-radius);
     padding: 22px;
 }
 
 .pika-page-hero {
     padding: 64px 0 22px;
-    border-bottom: 1px solid #d8e3c3;
-    background: #eef4dd;
+    border-bottom: 1px solid var(--pika-border);
+    background: var(--pika-bg2);
 }
 
 .pika-hero-mini {
     background: #ffffff;
-    border: 1px solid #d8e3c3;
-    border-radius: 20px;
+    border: 1px solid var(--pika-border);
+    border-radius: var(--pika-radius);
     padding: 16px;
 }
 
@@ -296,37 +301,37 @@
     display: flex;
     gap: 12px;
     padding: 12px;
-    border-radius: 16px;
+    border-radius: var(--pika-radius);
 }
 
     .pika-mini-item i {
-        color: #83b31a;
+        color: var(--pika-primary);
         font-size: 18px;
         margin-top: 2px;
     }
 
     .pika-mini-item:hover {
-        background: #f0f6e0;
+        background: #f0f2f5;
     }
 
 .pika-solution-card {
     display: block;
     position: relative;
     background: #ffffff;
-    border: 1px solid #d8e3c3;
-    border-radius: 20px;
+    border: 1px solid var(--pika-border);
+    border-radius: var(--pika-radius);
     padding: 20px;
     text-decoration: none;
-    color: #10332c;
+    color: var(--pika-text);
     transition: transform .2s ease, border-color .2s ease, background .2s ease;
     height: 100%;
 }
 
     .pika-solution-card:hover {
         transform: translateY(-2px);
-        background: #f4f9e9;
-        border-color: #cad8b1;
-        color: #0d332c;
+        background: #f8f9fa;
+        border-color: #ced4da;
+        color: #000000;
     }
 
 .pika-card-arrow {
@@ -344,23 +349,23 @@
 
 .pika-price-card {
     background: #ffffff;
-    border: 1px solid #d8e3c3;
-    border-radius: 22px;
+    border: 1px solid var(--pika-border);
+    border-radius: var(--pika-radius);
     padding: 22px;
 }
 
 .pika-price-card--featured {
-    border-color: #9ec85d;
-    box-shadow: 0 14px 40px rgba(122, 168, 26, .16);
+    border-color: var(--pika-primary);
+    box-shadow: 0 14px 40px rgba(13, 110, 253, .16);
 }
 
 .pika-featured-badge {
     display: inline-block;
     padding: .35rem .7rem;
     border-radius: 999px;
-    background: #e6f2cf;
-    border: 1px solid #c7d8a9;
-    color: #10332c;
+    background: #e7f0fe;
+    border: 1px solid #cde0fd;
+    color: var(--pika-text);
     font-size: .85rem;
     margin-bottom: 10px;
 }
@@ -379,7 +384,7 @@
 .pika-ul {
     margin: 14px 0 0;
     padding-left: 18px;
-    color: #486860;
+    color: #495057;
 }
 
     .pika-ul li {
@@ -388,12 +393,12 @@
 
 .pika-table {
     --bs-table-bg: #ffffff;
-    --bs-table-color: #10332c;
-    border-color: #d8e3c3;
+    --bs-table-color: var(--pika-text);
+    border-color: var(--pika-border);
 }
 
     .pika-table thead th {
-        color: #10332c;
+        color: var(--pika-text);
     }
 
 .pika-stats {
@@ -404,8 +409,8 @@
 
 .pika-stat {
     background: #ffffff;
-    border: 1px solid #d8e3c3;
-    border-radius: 18px;
+    border: 1px solid var(--pika-border);
+    border-radius: var(--pika-radius);
     padding: 14px;
 }
 
@@ -415,7 +420,7 @@
 }
 
 .pika-stat-lbl {
-    color: #4f6f67;
+    color: var(--pika-muted);
     font-size: .9rem;
 }
 
@@ -424,11 +429,11 @@
     gap: 12px;
     align-items: flex-start;
     padding: 12px 0;
-    border-bottom: 1px solid #d8e3c3;
+    border-bottom: 1px solid var(--pika-border);
 }
 
     .pika-info-line i {
-        color: #83b31a;
+        color: var(--pika-primary);
         margin-top: 4px;
         width: 20px;
         text-align: center;
@@ -436,11 +441,11 @@
 
 .pika-map-placeholder {
     height: 210px;
-    border-radius: 18px;
-    border: 1px dashed #b8c8a5;
+    border-radius: var(--pika-radius);
+    border: 1px dashed #ced4da;
     display: grid;
     place-items: center;
-    color: #5f7d76;
+    color: #6c757d;
 }
 
 .pika-cta-mini {
@@ -449,45 +454,45 @@
     gap: 12px;
     align-items: center;
     padding: 14px;
-    border-radius: 18px;
-    border: 1px solid #d8e3c3;
+    border-radius: var(--pika-radius);
+    border: 1px solid var(--pika-border);
     background: #ffffff;
 }
 
 .pika-input {
     background: #ffffff !important;
-    border: 1px solid #d8e3c3 !important;
-    color: #10332c !important;
-    border-radius: 14px !important;
+    border: 1px solid var(--pika-border) !important;
+    color: var(--pika-text) !important;
+    border-radius: var(--pika-radius) !important;
 }
 
     .pika-input:focus {
-        box-shadow: 0 0 0 .2rem rgba(158, 221, 5, .20) !important;
-        border-color: #9edd05 !important;
+        box-shadow: 0 0 0 .2rem rgba(13, 110, 253, .25) !important;
+        border-color: var(--pika-primary) !important;
     }
 
 .pika-ig {
-    background: #f0f6e0 !important;
-    border: 1px solid #d8e3c3 !important;
-    color: #4f6f67 !important;
-    border-radius: 14px 0 0 14px !important;
+    background: #f8f9fa !important;
+    border: 1px solid var(--pika-border) !important;
+    color: var(--pika-muted) !important;
+    border-radius: var(--pika-radius) 0 0 var(--pika-radius) !important;
 }
 
 .pika-modal {
     background: #ffffff;
-    border: 1px solid #d8e3c3;
-    border-radius: 22px;
+    border: 1px solid var(--pika-border);
+    border-radius: var(--pika-radius);
 }
 
 .pika-alert {
     padding: 12px 14px;
-    border-radius: 14px;
-    border: 1px solid #d8e3c3;
+    border-radius: var(--pika-radius);
+    border: 1px solid var(--pika-border);
 }
 
 .pika-alert--ok {
-    background: #eaf4d7;
-    border-color: #b7d482;
+    background: #e7f0fe;
+    border-color: #cde0fd;
 }
 
 .pika-alert--err {
@@ -496,8 +501,8 @@
 }
 
 .pika-footer {
-    background: #0a4b3f;
-    border-top: 1px solid #0d5b4d;
+    background: #212529;
+    border-top: 1px solid #343a40;
 }
 
 .pika-footer-title {
@@ -507,7 +512,7 @@
 
 .pika-footer-link {
     display: block;
-    color: #d5e8df;
+    color: #adb5bd;
     text-decoration: none;
     margin: 7px 0;
 }
@@ -522,15 +527,15 @@
     height: 38px;
     display: grid;
     place-items: center;
-    border-radius: 12px;
-    background: rgba(255,255,255,.12);
+    border-radius: var(--pika-radius);
+    background: rgba(255,255,255,.1);
     border: 1px solid rgba(255,255,255,.20);
-    color: #e7f3ec;
+    color: #f8f9fa;
     text-decoration: none;
 }
 
     .pika-icon-btn:hover {
-        background: rgba(255,255,255,.22);
+        background: rgba(255,255,255,.15);
         color: #ffffff;
     }
 
@@ -541,9 +546,9 @@
 .pika-mobile-link {
     display: block;
     padding: 10px 0;
-    color: #e7f3ec;
+    color: #adb5bd;
     text-decoration: none;
-    border-bottom: 1px solid #d8e3c3;
+    border-bottom: 1px solid #343a40;
 }
 
     .pika-mobile-link:hover {
@@ -562,8 +567,8 @@
     padding: 10px 0;
     background: transparent;
     border: none;
-    color: #e7f3ec;
-    border-bottom: 1px solid #d8e3c3;
+    color: #adb5bd;
+    border-bottom: 1px solid #343a40;
 }
 
 .pika-auth-body {
@@ -586,10 +591,10 @@
 
 .pika-auth-card {
     background: #ffffff;
-    border: 1px solid #d8e3c3;
-    border-radius: 24px;
+    border: 1px solid var(--pika-border);
+    border-radius: var(--pika-radius);
     padding: 22px;
-    box-shadow: 0 20px 60px rgba(12, 46, 40, .12);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .08);
     backdrop-filter: blur(14px);
 }
 
@@ -597,16 +602,16 @@
     font-size: .8rem;
     padding: .35rem .6rem;
     border-radius: 999px;
-    border: 1px solid #d8e3c3;
-    color: #4f6f67;
-    background: #f0f6e0;
+    border: 1px solid var(--pika-border);
+    color: var(--pika-muted);
+    background: #f8f9fa;
 }
 
 .pika-auth-divider {
     display: flex;
     align-items: center;
     gap: 10px;
-    color: #5f7d76;
+    color: #6c757d;
     font-size: .85rem;
 }
 
@@ -615,15 +620,15 @@
         content: "";
         flex: 1;
         height: 1px;
-        background: #d8e3c3;
+        background: var(--pika-border);
     }
 
 .pika-codebox {
-    background: #f5f8eb;
-    border: 1px solid #d8e3c3;
-    border-radius: 16px;
+    background: #f8f9fa;
+    border: 1px solid var(--pika-border);
+    border-radius: var(--pika-radius);
     padding: 12px;
-    color: #4f6f67;
+    color: #495057;
     overflow: auto;
 }
 
@@ -645,11 +650,11 @@
 
 .pika-toast-inner {
     background: #ffffff;
-    border: 1px solid #d8e3c3;
-    border-radius: 16px;
+    border: 1px solid var(--pika-border);
+    border-radius: var(--pika-radius);
     padding: 12px 14px;
-    color: #10332c;
-    box-shadow: 0 16px 36px rgba(12, 46, 40, .14);
+    color: var(--pika-text);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, .1);
 }
 
 /* Home page reference redesign */
@@ -659,14 +664,13 @@
 }
 
 .pika-home-ref .pika-topbar,
-.pika-home-ref .pika-header,
+
 .pika-home-ref .pika-footer {
     background: #0a4b3f;
     border-color: rgba(255,255,255,.20);
 }
 
-.pika-home-ref .navbar-dark .navbar-nav .nav-link,
-.pika-home-ref .navbar-dark .navbar-brand,
+
 .pika-home-ref .pika-footer,
 .pika-home-ref .pika-footer .pika-footer-link,
 .pika-home-ref .pika-footer .text-white-50,
