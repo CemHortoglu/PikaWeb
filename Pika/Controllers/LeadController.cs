@@ -6,12 +6,19 @@ namespace Pika.Controllers
     [Route("lead")]
     public class LeadController : ControllerBase
     {
-        public record DemoRequestDto(string FullName, string Company, string Email, string Phone, string Message, string? Lang);
+        public record DemoRequestDto(
+            string FirstName,
+            string LastName,
+            string Email,
+            string Phone,
+            string CompanyName,
+            string Website,
+            string Message,
+            string? Lang);
 
         [HttpPost("demo-request")]
         public IActionResult DemoRequest([FromBody] DemoRequestDto dto)
         {
-            // TODO: DB/CRM/email entegrasyonu
             return Ok(new { ok = true, message = "Demo talebiniz alındı. Ekibimiz en kısa sürede dönüş yapacak." });
         }
     }

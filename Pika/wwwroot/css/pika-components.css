@@ -728,3 +728,20 @@
     .app-banner-ref { flex-direction: column; align-items: flex-start; }
     .app-banner-ref img { width: 100%; }
 }
+
+.language-dropdown button {
+  min-width: 120px;
+  border-radius: 20px;
+  background: transparent;
+  border: none;
+}
+
+.demo-request-modal .form-control {
+  border: 1px solid #ced4da;
+}
+
+.version-badge {
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+}

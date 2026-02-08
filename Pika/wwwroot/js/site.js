@@ -394,6 +394,14 @@
         const label = qs("#langLabel");
         if (label) label.textContent = safe.toUpperCase();
 
+        const flag = qs("#currentLangFlag");
+        const flagByLang = {
+            tr: "/web/assets/images/svg/tr.svg",
+            en: "/web/assets/images/svg/flag.svg",
+            de: "/web/assets/images/svg/euro.svg"
+        };
+        if (flag && flagByLang[safe]) flag.setAttribute("src", flagByLang[safe]);
+
         qsa("[data-i18n]").forEach(el => {
             const key = el.getAttribute("data-i18n");
             const value = i18n[safe][key];
@@ -417,25 +425,35 @@
     }
 
     // Demo modal submit
-    async function bindDemoForm() {
+    function bindDemoForm() {
         const form = qs("#demoRequestForm");
         if (!form) return;
 
         const result = qs("#demoResult");
+        const showResult = (ok, msg) => {
+            if (!result) return;
+            result.classList.remove("d-none");
+            result.classList.toggle("pika-alert--ok", !!ok);
+            result.classList.toggle("pika-alert--err", !ok);
+            result.textContent = msg;
+        };
+
         form.addEventListener("submit", async (e) => {
             e.preventDefault();
 
             const lang = getLang();
             const payload = {
-                fullName: form.fullName?.value?.trim() || "",
-                company: form.company?.value?.trim() || "",
+                firstName: form.firstName?.value?.trim() || "",
+                lastName: form.lastName?.value?.trim() || "",
                 email: form.email?.value?.trim() || "",
                 phone: form.phone?.value?.trim() || "",
+                companyName: form.companyName?.value?.trim() || "",
+                website: form.website?.value?.trim() || "",
                 message: form.message?.value?.trim() || "",
                 lang
             };
 
-            if (!payload.fullName || !payload.company || !payload.email) {
+            if (!payload.firstName || !payload.lastName || !payload.email || !payload.phone || !payload.companyName || !payload.website) {
                 showResult(false, lang === "en" ? "Please fill required fields." : "Lütfen zorunlu alanları doldurun.");
                 return;
             }
@@ -457,14 +475,6 @@
                 showResult(false, lang === "en" ? "Network error." : "Ağ hatası.");
             }
         });
-
-        crc: function showResult(ok, msg) {
-            if (!result) return;
-            result.classList.remove("d-none");
-            result.classList.toggle("pika-alert--ok", !!ok);
-            result.classList.toggle("pika-alert--err", !ok);
-            result.textContent = msg;
-        }
     }
 
     // AOS init
