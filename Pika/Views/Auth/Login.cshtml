@@ -1,4 +1,4 @@
-﻿@{
+@{
     Layout = null;
     ViewData["Title"] = "Giriş";
 }
@@ -16,24 +16,55 @@
 </head>
 <body class="pika-auth-body">
 
-    <div class="pika-auth-bg">
-        <div class="pika-auth-glow"></div>
-    </div>
+    <div class="pika-auth-shell">
+        <div class="pika-auth-layout">
+            <section class="pika-auth-showcase">
+                <div class="pika-auth-showcase-overlay"></div>
+                <div class="pika-auth-showcase-content">
+                    <a class="d-inline-flex align-items-center gap-2 text-decoration-none mb-4" href="@Url.Action("Index", "Home")">
+                        <img src="~/web/logo.svg" alt="Pika" class="pika-logo" onerror="this.style.display='none'">
+                        <span class="fw-semibold text-white fs-5">Pika</span>
+                    </a>
 
-    <div class="container">
-        <div class="row justify-content-center align-items-center min-vh-100 py-5">
-            <div class="col-12 col-md-10 col-lg-5">
+                    <span class="pika-auth-tag">Kurumsal Platform</span>
+                    <h1 class="pika-auth-hero-title">Dijital büyümenizi tek panelden yönetin.</h1>
+                    <p class="pika-auth-hero-desc">
+                        Kampanya otomasyonu, segmentasyon ve analitik çözümlerini güvenli altyapı üzerinde birleştirin.
+                    </p>
+
+                    <div class="pika-auth-feature-grid">
+                        <div class="pika-auth-feature-item">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <div>
+                                <strong>Güvenli Altyapı</strong>
+                                <p>KVKK odaklı veri işleme ve kurumsal güvenlik standartları.</p>
+                            </div>
+                        </div>
+                        <div class="pika-auth-feature-item">
+                            <i class="fa-solid fa-chart-line"></i>
+                            <div>
+                                <strong>Ölçülebilir Performans</strong>
+                                <p>Gerçek zamanlı raporlama ile net KPI takibi.</p>
+                            </div>
+                        </div>
+                        <div class="pika-auth-feature-item">
+                            <i class="fa-solid fa-bolt"></i>
+                            <div>
+                                <strong>Hızlı Operasyon</strong>
+                                <p>Tekrarlayan süreçleri otomatikleştiren akıllı iş akışları.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="pika-auth-form-wrap">
                 <div class="pika-auth-card">
                     <div class="d-flex align-items-center justify-content-between mb-3">
-                        <a class="d-flex align-items-center gap-2 text-decoration-none" href="@Url.Action("Index", "Home")">
-                            <img src="~/web/logo.svg" alt="Pika" class="pika-logo" onerror="this.style.display='none'">
-                            <span class="fw-semibold text-white">Pika</span>
-                        </a>
-                        <span class="pika-auth-chip"><i class="fa-solid fa-shield-halved me-2"></i><span data-i18n="login.secure">Secure</span></span>
+                        <h2 class="mb-0">Hoş geldiniz</h2>
+                        <span class="pika-auth-chip"><i class="fa-solid fa-lock me-2"></i><span data-i18n="login.secure">Güvenli</span></span>
                     </div>
-
-                    <h1 class="h4 mb-1" data-i18n="login.title">Kurumsal Giriş</h1>
-                    <p class="text-white-50 mb-4" data-i18n="login.subtitle">Panelinize erişmek için bilgilerinizi girin.</p>
+                    <p class="pika-auth-form-subtitle">Yönetim panelinize erişmek için hesap bilgilerinizi girin.</p>
 
                     <form method="post" action="@Url.Action("Login", "Auth")" class="vstack gap-3">
                         <div>
@@ -52,8 +83,8 @@
                             </div>
                         </div>
 
-                        <div class="d-flex justify-content-between align-items-center">
-                            <label class="d-flex align-items-center gap-2 small text-white-50">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                            <label class="d-flex align-items-center gap-2 small text-secondary">
                                 <input class="form-check-input m-0" type="checkbox" name="rememberMe">
                                 <span data-i18n="login.remember">Beni hatırla</span>
                             </label>
@@ -69,17 +100,18 @@
                         <button class="btn pika-btn-outline w-100" type="button" onclick="window.location.href='@Url.Action("Contact", "Home")'">
                             <i class="fa-solid fa-handshake me-2"></i><span data-i18n="login.contactSales">Kurumsal teklif al</span>
                         </button>
-
-                        <div class="small text-white-50 mt-2">
-                            <i class="fa-solid fa-lock me-2"></i><span data-i18n="login.note">Giriş denemeleri loglanır ve güvenlik politikalarına tabidir.</span>
-                        </div>
                     </form>
+
+                    <div class="pika-auth-security-note mt-4">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <span data-i18n="login.note">Giriş denemeleri loglanır ve güvenlik politikalarına tabidir.</span>
+                    </div>
                 </div>
 
-                <div class="text-center mt-3 small text-white-50">
+                <div class="text-center mt-3 small text-secondary">
                     © @DateTime.Now.Year Pika
                 </div>
-            </div>
+            </section>
         </div>
     </div>
 
