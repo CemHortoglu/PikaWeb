@@ -3,7 +3,7 @@
 namespace Pika.Controllers
 {
     [ApiController]
-    [Route("lead")]
+    [Route("{culture:regex(^(tr|en)$)}/lead")]
     public class LeadController : ControllerBase
     {
         public record DemoRequestDto(
@@ -19,7 +19,11 @@ namespace Pika.Controllers
         [HttpPost("demo-request")]
         public IActionResult DemoRequest([FromBody] DemoRequestDto dto)
         {
-            return Ok(new { ok = true, message = "Demo talebiniz alındı. Ekibimiz en kısa sürede dönüş yapacak." });
+            var message = dto.Lang?.ToLowerInvariant() == "en"
+                ? "Your demo request has been received. Our team will contact you shortly."
+                : "Demo talebiniz alındı. Ekibimiz en kısa sürede dönüş yapacak.";
+
+            return Ok(new { ok = true, message });
         }
     }
 }

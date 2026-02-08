@@ -3,26 +3,26 @@
         <div class="modal-content">
             <form id="demoRequestForm">
                 <div class="modal-header">
-                    <h5 class="modal-title" data-i18n="DemoRequest">Demo Request</h5>
+                    <h5 class="modal-title" data-i18n="demo.title">Demo Request</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body demo-request-modal">
-                    <p class="mb-3" data-i18n="DemoRequestInfo">Please fill in your contact information and we will call you back.</p>
+                    <p class="mb-3" data-i18n="demo.subtitle">Please fill in your contact information and we will call you back.</p>
                     <div class="row g-2">
-                        <div class="col-md-6"><input class="form-control" name="firstName" required placeholder="Name" data-i18n-placeholder="Name" /></div>
-                        <div class="col-md-6"><input class="form-control" name="lastName" required placeholder="Surname" data-i18n-placeholder="Surname" /></div>
-                        <div class="col-md-6"><input class="form-control" type="email" name="email" required placeholder="Email" /></div>
-                        <div class="col-md-6"><input class="form-control" name="phone" required placeholder="+90 (___) ___ __ __" /></div>
-                        <div class="col-md-6"><input class="form-control" name="companyName" required placeholder="Company Name" data-i18n-placeholder="CompanyName" /></div>
-                        <div class="col-md-6"><input class="form-control" name="website" required placeholder="Website" data-i18n-placeholder="Website" /></div>
+                        <div class="col-md-6"><input class="form-control" name="firstName" required placeholder="Ad" data-i18n-placeholder="form.fullNamePh" /></div>
+                        <div class="col-md-6"><input class="form-control" name="lastName" required placeholder="Soyad" data-i18n-placeholder="form.lastNamePh" /></div>
+                        <div class="col-md-6"><input class="form-control" type="email" name="email" required placeholder="mail@firma.com" data-i18n-placeholder="form.emailPh" /></div>
+                        <div class="col-md-6"><input class="form-control" name="phone" required placeholder="+90 ..." data-i18n-placeholder="form.phonePh" /></div>
+                        <div class="col-md-6"><input class="form-control" name="companyName" required placeholder="Şirket" data-i18n-placeholder="form.companyPh" /></div>
+                        <div class="col-md-6"><input class="form-control" name="website" required placeholder="Website" data-i18n-placeholder="form.websitePh" /></div>
                     </div>
                     <div class="mt-2">
-                        <textarea class="form-control" rows="6" name="message" placeholder="Message" data-i18n-placeholder="Message"></textarea>
+                        <textarea class="form-control" rows="6" name="message" placeholder="Mesaj" data-i18n-placeholder="form.messagePh"></textarea>
                     </div>
                     <div id="demoResult" class="pika-alert d-none mt-3"></div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" data-i18n="Send">Send</button>
+                    <button type="submit" class="btn btn-primary" data-i18n="form.send">Send</button>
                 </div>
             </form>
         </div>
