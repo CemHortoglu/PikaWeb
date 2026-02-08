@@ -5,6 +5,9 @@ namespace Pika.Controllers
     [Route("{culture:regex(^(tr|en)$)}/solutions")]
     public class SolutionsController : Controller
     {
+        [HttpGet("journey")]
+        public IActionResult Journey() => View();
+
         [HttpGet("loyalty")]
         public IActionResult Loyalty() => View();
 

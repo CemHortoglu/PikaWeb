@@ -1,0 +1,24 @@
+@{ ViewData["Title"] = "Journey Orkestrasyonu"; }
+
+<section class="pika-page-hero">
+    <div class="container">
+        <div class="row g-4 align-items-center">
+            <div class="col-lg-7">
+                <h1 class="pika-h1" data-i18n="jour.h1"></h1>
+                <p class="pika-lead" data-i18n="jour.lead"></p>
+                <div class="d-flex gap-2 flex-wrap"><button class="btn pika-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal" data-i18n="jour.demo"></button><a class="btn pika-btn-outline" href="@Url.Action("Campaigns", "Solutions")" data-i18n="jour.next"></a></div>
+            </div>
+            <div class="col-lg-5"><img class="img-fluid rounded-4" src="~/web/images/service/service-image-7.jpg" alt="Journey" /></div>
+        </div>
+    </div>
+</section>
+
+<section class="pika-section">
+    <div class="container">
+        <div class="pika-solution-showcase">
+            <div class="pika-solution-showcase__content"><h2 class="pika-h2" data-i18n="jour.midT"></h2><p class="pika-lead mb-3" data-i18n="jour.midD"></p><ul class="pika-solution-list"><li data-i18n="jour.k1"></li><li data-i18n="jour.k2"></li><li data-i18n="jour.k3"></li></ul></div>
+            <div class="pika-solution-showcase__visual"><img src="~/web/images/service/service-image-12.jpg" alt="Journey canvas" class="img-fluid rounded-4" /></div>
+        </div>
+        <div class="pika-cta-card mt-5"><h3 data-i18n="jour.ctaT"></h3><p class="text-muted" data-i18n="jour.ctaD"></p><button class="btn pika-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal" data-i18n="jour.ctaB"></button></div>
+    </div>
+</section>

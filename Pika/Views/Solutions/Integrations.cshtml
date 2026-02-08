@@ -1,3 +1,24 @@
-﻿@{ ViewData["Title"] = "Entegrasyonlar"; }
-<section class="pika-page-hero"><div class="container"><div class="row g-4 align-items-center"><div class="col-lg-7"><h1 class="pika-h1" data-i18n="int.h1"></h1><p class="pika-lead" data-i18n="int.lead"></p><div class="d-flex gap-2"><button class="btn pika-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal" data-i18n="int.demo"></button><a class="btn pika-btn-outline" href="@Url.Action("Contact", "Home")" data-i18n="int.contact"></a></div></div><div class="col-lg-5"><img class="img-fluid rounded-4" src="~/web/images/service/service-image-5.jpg" alt="Integrations demo" /><p class="small text-white-50 mt-2">Demo image placeholder / Demo görsel alanı</p></div></div></div></section>
-<section class="pika-section"><div class="container"><div class="row g-4"><div class="col-lg-6"><div class="pika-card h-100"><h3 class="pika-h3" data-i18n="int.f1t"></h3><p class="text-white-50" data-i18n="int.f1d"></p></div></div><div class="col-lg-6"><div class="pika-card h-100"><h3 class="pika-h3" data-i18n="int.f2t"></h3><p class="text-white-50" data-i18n="int.f2d"></p><div class="pika-checklist mt-3"><div class="pika-check"><span data-i18n="int.c1"></span></div><div class="pika-check"><span data-i18n="int.c2"></span></div><div class="pika-check"><span data-i18n="int.c3"></span></div></div></div></div></div></div></section>
+@{ ViewData["Title"] = "Entegrasyonlar"; }
+
+<section class="pika-page-hero">
+    <div class="container">
+        <div class="row g-4 align-items-center">
+            <div class="col-lg-7">
+                <h1 class="pika-h1" data-i18n="int.h1"></h1>
+                <p class="pika-lead" data-i18n="int.lead"></p>
+                <div class="d-flex gap-2 flex-wrap"><button class="btn pika-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal" data-i18n="int.demo"></button><a class="btn pika-btn-outline" href="@Url.Action("Contact", "Home")" data-i18n="int.contact"></a></div>
+            </div>
+            <div class="col-lg-5"><img class="img-fluid rounded-4" src="~/web/images/service/service-image-5.jpg" alt="Integrations" /></div>
+        </div>
+    </div>
+</section>
+
+<section class="pika-section">
+    <div class="container">
+        <div class="pika-solution-showcase">
+            <div class="pika-solution-showcase__content"><h2 class="pika-h2" data-i18n="int.midT"></h2><p class="pika-lead mb-3" data-i18n="int.midD"></p><ul class="pika-solution-list"><li data-i18n="int.k1"></li><li data-i18n="int.k2"></li><li data-i18n="int.k3"></li></ul></div>
+            <div class="pika-solution-showcase__visual"><img src="~/web/images/service/service-image-8.jpg" alt="Integration architecture" class="img-fluid rounded-4" /></div>
+        </div>
+        <div class="pika-cta-card mt-5"><h3 data-i18n="int.ctaT"></h3><p class="text-muted" data-i18n="int.ctaD"></p><button class="btn pika-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal" data-i18n="int.ctaB"></button></div>
+    </div>
+</section>
