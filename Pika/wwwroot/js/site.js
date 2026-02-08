@@ -571,13 +571,9 @@
 
         const label = qs("#langLabel");
         if (label) label.textContent = safe.toUpperCase();
-
-        const flag = qs("#currentLangFlag");
-        const flagByLang = {
-            tr: "/web/assets/images/svg/tr.svg",
-            en: "/web/assets/images/svg/flag.svg"
-        };
-        if (flag && flagByLang[safe]) flag.setAttribute("src", flagByLang[safe]);
+        qsa("[data-lang-label]").forEach(el => {
+            el.textContent = safe.toUpperCase();
+        });
 
         qsa("[data-i18n]").forEach(el => {
             const key = el.getAttribute("data-i18n");
