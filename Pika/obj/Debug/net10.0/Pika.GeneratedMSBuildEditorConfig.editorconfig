@@ -34,8 +34,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDb3Jwb3JhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Projects/PikaWeb/Pika/Views/Home/DemoRequest.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxEZW1vUmVxdWVzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/PikaWeb/Pika/Views/Home/Faq.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxGYXEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Projects/PikaWeb/Pika/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/PikaWeb/Pika/Views/Home/Pika.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQaWthLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Projects/PikaWeb/Pika/Views/Home/Pricing.cshtml]
@@ -64,6 +76,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Projects/PikaWeb/Pika/Views/Solutions/Integrations.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXEludGVncmF0aW9ucy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/PikaWeb/Pika/Views/Solutions/Journey.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXEpvdXJuZXkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Projects/PikaWeb/Pika/Views/Solutions/Loyalty.cshtml]
