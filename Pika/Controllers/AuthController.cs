@@ -2,12 +2,13 @@
 
 namespace Pika.Controllers
 {
+    [Route("{culture:regex(^(tr|en)$)}/[controller]")]
     public class AuthController : Controller
     {
-        [HttpGet]
+        [HttpGet("login")]
         public IActionResult Login() => View();
 
-        [HttpPost]
+        [HttpPost("login")]
         public IActionResult Login(string email, string password, bool rememberMe)
         {
             // TODO: gerçek auth burada

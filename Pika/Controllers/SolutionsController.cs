@@ -2,7 +2,7 @@
 
 namespace Pika.Controllers
 {
-    [Route("solutions")]
+    [Route("{culture:regex(^(tr|en)$)}/solutions")]
     public class SolutionsController : Controller
     {
         [HttpGet("loyalty")]

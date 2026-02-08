@@ -3,9 +3,10 @@
     var bodyClass = ViewData["BodyClass"] as string ?? string.Empty;
     var appVersion = System.Reflection.Assembly.GetEntryAssembly()?.GetName().Version?.ToString(3) ?? "1.0.0";
     var toast = TempData["Toast"] as string;
+    var culture = (ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").ToLowerInvariant();
 }
 <!doctype html>
-<html lang="tr" data-lang="tr">
+<html lang="@culture" data-lang="@culture">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -32,14 +33,14 @@
                 <div class="row">
                     <div class="col-lg-8 col-md-12">
                         <ul class="left-side">
-                            <li><span data-i18n="CampaignSlogan">Campaign Slogan</span></li>
-                            <li><a href="tel:+903123254114"><i class="flaticon-phone-call"></i> <b data-i18n="Telephone">Telephone</b>: +90 (312) 325 41 14</a></li>
-                            <li><a href="mailto:info@pikaanalysis.com"><i class="flaticon-email-1"></i> <b data-i18n="EMailAddress">E-Mail</b>: info@pikaanalysis.com</a></li>
+                            <li><span data-i18n="topbar.security">Campaign Slogan</span></li>
+                            <li><a href="tel:+903123254114"><i class="flaticon-phone-call"></i> <b data-i18n="topbar.support">Telephone</b>: +90 (312) 325 41 14</a></li>
+                            <li><a href="mailto:info@pikaanalysis.com"><i class="flaticon-email-1"></i> <b data-i18n="contact.mail">E-Mail</b>: info@pikaanalysis.com</a></li>
                         </ul>
                     </div>
                     <div class="col-lg-4 col-md-12">
                         <ul class="right-side">
-                            <li><a href="#" data-i18n="Support">Support</a></li>
+                            <li><a href="#" data-i18n="nav.contact">Support</a></li>
                             <li>
                                 <div class="flag position-relative language-dropdown dropdown">
                                     <button class="btn btn-link p-0 border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -49,8 +50,7 @@
                                     <ul class="dropdown-menu">
                                         <li><button class="dropdown-item d-flex align-items-center" type="button" data-lang-set="tr"><img src="~/web/assets/images/svg/tr.svg" width="16" height="16" class="me-2" alt="tr" />TR</button></li>
                                         <li><button class="dropdown-item d-flex align-items-center" type="button" data-lang-set="en"><img src="~/web/assets/images/svg/flag.svg" width="16" height="16" class="me-2" alt="en" />EN</button></li>
-                                        <li><button class="dropdown-item d-flex align-items-center" type="button" data-lang-set="de"><img src="~/web/assets/images/svg/euro.svg" width="16" height="16" class="me-2" alt="de" />DE</button></li>
-                                    </ul>
+                                                                            </ul>
                                 </div>
                             </li>
                         </ul>
@@ -73,38 +73,38 @@
                 </a>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto">
-                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Home")" data-i18n="Home">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Home")" data-i18n="nav.home">Home</a></li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="Solutions">Solutions</a>
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="nav.solutions">Solutions</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/solutions/loyalty" data-i18n="Loyalty">Loyalty</a></li>
-                                <li><a class="dropdown-item" href="/solutions/campaigns" data-i18n="Campaigns">Campaigns</a></li>
-                                <li><a class="dropdown-item" href="/solutions/segmentation" data-i18n="Segmentation">Segmentation</a></li>
-                                <li><a class="dropdown-item" href="/solutions/analytics" data-i18n="Analytics">Analytics</a></li>
-                                <li><a class="dropdown-item" href="/solutions/integrations" data-i18n="Integrations">Integrations</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Loyalty", "Solutions")" data-i18n="nav.solutions.loyalty">Loyalty</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Campaigns", "Solutions")" data-i18n="nav.solutions.campaigns">Campaigns</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Segmentation", "Solutions")" data-i18n="nav.solutions.segmentation">Segmentation</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Analytics", "Solutions")" data-i18n="nav.solutions.analytics">Analytics</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Integrations", "Solutions")" data-i18n="nav.solutions.integrations">Integrations</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Pricing", "Home")" data-i18n="Pricing">Pricing</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Pricing", "Home")" data-i18n="nav.pricing">Pricing</a></li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="Corporate">Corporate</a>
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="nav.corporate">Corporate</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="@Url.Action("Corporate", "Home")" data-i18n="WhyPika">Why Pika</a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("Corporate", "Home")" data-i18n="AboutUs">About Us</a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("Corporate", "Home")" data-i18n="FAQ">FAQ</a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("Login", "Auth")" data-i18n="Login">Login</a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("Corporate", "Home")" data-i18n="CustomerServices">Customer Services</a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("Corporate", "Home")" data-i18n="CorporateSupportServices">Corporate Support Services</a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("Corporate", "Home")" data-i18n="Career">Career</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Corporate", "Home")" data-i18n="corp.h1">Why Pika</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Corporate", "Home")" data-i18n="corp.m1t">About Us</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Corporate", "Home")" data-i18n="home.faqTitle">FAQ</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Login", "Auth")" data-i18n="nav.login">Login</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Corporate", "Home")" data-i18n="contact.infoTitle">Customer Services</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Corporate", "Home")" data-i18n="footer.security">Corporate Support Services</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Corporate", "Home")" data-i18n="corp.m2t">Career</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Contact", "Home")" data-i18n="Contact">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Contact", "Home")" data-i18n="nav.contact">Contact</a></li>
                     </ul>
                 </div>
                 <div class="others-options">
                     <ul class="d-flex align-items-center ps-0 mb-0 list-unstyled">
-                        <li><button type="button" class="search-btn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="ri-search-line"></i> <span data-i18n="Search">Search</span></button></li>
-                        <li><a href="@Url.Action("Login", "Auth")" class="search-btn login"><i class="ri-account-circle-line"></i> <span data-i18n="Login">Login</span></a></li>
-                        <li><button type="button" class="default-btn" data-bs-toggle="modal" data-bs-target="#demoModal"><span data-i18n="DemoRequest">Demo Request</span> <i class="ri-arrow-right-up-line"></i></button></li>
+                        <li><button type="button" class="search-btn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="ri-search-line"></i> <span data-i18n="search">Search</span></button></li>
+                        <li><a href="@Url.Action("Login", "Auth")" class="search-btn login"><i class="ri-account-circle-line"></i> <span data-i18n="nav.login">Login</span></a></li>
+                        <li><button type="button" class="default-btn" data-bs-toggle="modal" data-bs-target="#demoModal"><span data-i18n="nav.demo">Demo Request</span> <i class="ri-arrow-right-up-line"></i></button></li>
                     </ul>
                 </div>
             </div>
@@ -122,26 +122,26 @@
         </div>
         <div class="offcanvas-body">
             <ul class="mobile-menu">
-                <li class="mobile-menu-list without-icon"><a href="@Url.Action("Index", "Home")" class="nav-link" data-i18n="Home">Home</a></li>
-                <li class="mobile-menu-list"><a href="javascript:void(0);" data-i18n="Solutions">Solutions</a>
+                <li class="mobile-menu-list without-icon"><a href="@Url.Action("Index", "Home")" class="nav-link" data-i18n="nav.home">Home</a></li>
+                <li class="mobile-menu-list"><a href="javascript:void(0);" data-i18n="nav.solutions">Solutions</a>
                     <ul class="mobile-menu-items">
-                        <li><a class="dropdown-item" href="/solutions/loyalty" data-i18n="Loyalty">Loyalty</a></li>
-                        <li><a class="dropdown-item" href="/solutions/campaigns" data-i18n="Campaigns">Campaigns</a></li>
-                        <li><a class="dropdown-item" href="/solutions/segmentation" data-i18n="Segmentation">Segmentation</a></li>
-                        <li><a class="dropdown-item" href="/solutions/analytics" data-i18n="Analytics">Analytics</a></li>
-                        <li><a class="dropdown-item" href="/solutions/integrations" data-i18n="Integrations">Integrations</a></li>
+                        <li><a class="dropdown-item" href="@Url.Action("Loyalty", "Solutions")" data-i18n="nav.solutions.loyalty">Loyalty</a></li>
+                        <li><a class="dropdown-item" href="@Url.Action("Campaigns", "Solutions")" data-i18n="nav.solutions.campaigns">Campaigns</a></li>
+                        <li><a class="dropdown-item" href="@Url.Action("Segmentation", "Solutions")" data-i18n="nav.solutions.segmentation">Segmentation</a></li>
+                        <li><a class="dropdown-item" href="@Url.Action("Analytics", "Solutions")" data-i18n="nav.solutions.analytics">Analytics</a></li>
+                        <li><a class="dropdown-item" href="@Url.Action("Integrations", "Solutions")" data-i18n="nav.solutions.integrations">Integrations</a></li>
                     </ul>
                 </li>
-                <li class="mobile-menu-list without-icon"><a href="@Url.Action("Pricing", "Home")" class="nav-link" data-i18n="Pricing">Pricing</a></li>
-                <li class="mobile-menu-list without-icon"><a href="@Url.Action("Corporate", "Home")" class="nav-link" data-i18n="Corporate">Corporate</a></li>
-                <li class="mobile-menu-list without-icon"><a href="@Url.Action("Contact", "Home")" class="nav-link" data-i18n="Contact">Contact</a></li>
+                <li class="mobile-menu-list without-icon"><a href="@Url.Action("Pricing", "Home")" class="nav-link" data-i18n="nav.pricing">Pricing</a></li>
+                <li class="mobile-menu-list without-icon"><a href="@Url.Action("Corporate", "Home")" class="nav-link" data-i18n="nav.corporate">Corporate</a></li>
+                <li class="mobile-menu-list without-icon"><a href="@Url.Action("Contact", "Home")" class="nav-link" data-i18n="nav.contact">Contact</a></li>
             </ul>
 
             <div class="others-options">
                 <ul class="d-flex align-items-center ps-0 mb-0 list-unstyled">
-                    <li><button type="button" class="search-btn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="ri-search-line"></i> <span data-i18n="Search">Search</span></button></li>
-                    <li><a href="@Url.Action("Login", "Auth")" class="search-btn login"><i class="ri-account-circle-line"></i> <span data-i18n="Login">Login</span></a></li>
-                    <li><button type="button" class="default-btn" data-bs-toggle="modal" data-bs-target="#demoModal"><span data-i18n="DemoRequest">Demo Request</span> <i class="ri-arrow-right-up-line"></i></button></li>
+                    <li><button type="button" class="search-btn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="ri-search-line"></i> <span data-i18n="search">Search</span></button></li>
+                    <li><a href="@Url.Action("Login", "Auth")" class="search-btn login"><i class="ri-account-circle-line"></i> <span data-i18n="nav.login">Login</span></a></li>
+                    <li><button type="button" class="default-btn" data-bs-toggle="modal" data-bs-target="#demoModal"><span data-i18n="nav.demo">Demo Request</span> <i class="ri-arrow-right-up-line"></i></button></li>
                 </ul>
             </div>
         </div>
@@ -155,7 +155,7 @@
                 </div>
                 <div class="modal-body">
                     <form class="popup-form">
-                        <input type="text" class="form-control" placeholder="Arama">
+                        <input type="text" class="form-control" placeholder="Ara" data-i18n-placeholder="search">
                         <button type="submit" class="popup-btn"><i class="ri-search-line"></i></button>
                     </form>
                 </div>
@@ -173,37 +173,37 @@
                 <div class="row">
                     <div class="col-xl-4 col-lg-9 col-md-6">
                         <div class="footer-weight">
-                            <h2 class="text-white" data-i18n="NewsletterTitle">Newsletter</h2>
+                            <h2 class="text-white" data-i18n="footer.ctaTitle">Newsletter</h2>
                             <form class="footer-form position-relative">
-                                <input type="email" class="form-control" data-i18n-placeholder="EnterEmail" placeholder="Enter Email">
-                                <button type="submit" class="default-btn"><span data-i18n="SubscribeButton">Subscribe</span> <i class="ri-arrow-right-up-line"></i></button>
+                                <input type="email" class="form-control" data-i18n-placeholder="form.emailPh" placeholder="Enter Email">
+                                <button type="submit" class="default-btn"><span data-i18n="form.send">Subscribe</span> <i class="ri-arrow-right-up-line"></i></button>
                             </form>
                         </div>
                     </div>
                     <div class="col-xl-2 col-lg-4 col-md-6">
                         <div class="footer-weight part-two ps-5">
-                            <h3 class="text-white" data-i18n="QuickLinks">Quick Links</h3>
+                            <h3 class="text-white" data-i18n="footer.product">Quick Links</h3>
                             <ul class="service-link">
-                                <li><a href="@Url.Action("Index", "Home")" data-i18n="Home">Home</a></li>
-                                <li><a href="@Url.Action("Solutions", "Home")" data-i18n="Solutions">Solutions</a></li>
-                                <li><a href="@Url.Action("Pricing", "Home")" data-i18n="Pricing">Pricing</a></li>
-                                <li><a href="@Url.Action("Corporate", "Home")" data-i18n="Corporate">Corporate</a></li>
-                                <li><a href="@Url.Action("Contact", "Home")" data-i18n="Contact">Contact</a></li>
+                                <li><a href="@Url.Action("Index", "Home")" data-i18n="nav.home">Home</a></li>
+                                <li><a href="@Url.Action("Solutions", "Home")" data-i18n="nav.solutions">Solutions</a></li>
+                                <li><a href="@Url.Action("Pricing", "Home")" data-i18n="nav.pricing">Pricing</a></li>
+                                <li><a href="@Url.Action("Corporate", "Home")" data-i18n="nav.corporate">Corporate</a></li>
+                                <li><a href="@Url.Action("Contact", "Home")" data-i18n="nav.contact">Contact</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-4 col-md-6">
                         <div class="footer-weight part-three ps-5">
-                            <h3 class="text-white" data-i18n="Corporate">Corporate</h3>
+                            <h3 class="text-white" data-i18n="nav.corporate">Corporate</h3>
                             <ul class="service-link">
-                                <li><a href="@Url.Action("Corporate", "Home")" data-i18n="Corporate">Corporate</a></li>
-                                <li><a href="@Url.Action("Login", "Auth")" data-i18n="Login">Login</a></li>
+                                <li><a href="@Url.Action("Corporate", "Home")" data-i18n="nav.corporate">Corporate</a></li>
+                                <li><a href="@Url.Action("Login", "Auth")" data-i18n="nav.login">Login</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-4 col-md-6">
                         <div class="footer-weight ps-5">
-                            <h3 class="text-white" data-i18n="Contact">Contact</h3>
+                            <h3 class="text-white" data-i18n="nav.contact">Contact</h3>
                             <ul class="get-touch">
                                 <li><img class="phone" src="~/web/assets/images/svg/mail.svg" alt="image"><span class="text-white"><b>Email:</b></span><a href="mailto:info@pikaanalysis.com" class="text-white text-decoration-none">info@pikaanalysis.com</a></li>
                                 <li><img class="phone" src="~/web/assets/images/svg/phone.svg" alt="image"><span class="text-white"><b>Phone:</b></span><a href="tel:+903123254114">+90 (312) 325 41 14</a></li>
@@ -218,14 +218,14 @@
             <div class="container">
                 <div class="copyright-border">
                     <div class="row g-4 align-items-center">
-                        <div class="col-lg-4 col-md-6"><p>© <span>Pika Analysis</span> <span data-i18n="AllRightsReserved">All rights reserved.</span></p></div>
+                        <div class="col-lg-4 col-md-6"><p>© <span>Pika Analysis</span> <span data-i18n="footer.rights">All rights reserved.</span></p></div>
                         <div class="col-lg-4 col-md-6">
                             <div class="copy-image"><a href="@Url.Action("Index", "Home")" class="d-block"><img src="~/web/assets/images/white-logo.png" alt="image"></a></div>
                         </div>
                         <div class="col-lg-4 col-md-12 d-flex justify-content-between align-items-center">
                             <ul>
-                                <li><a href="#" data-i18n="PrivacyPolicy">Privacy Policy</a></li>
-                                <li><a href="#" data-i18n="TermsConditions">Terms Conditions</a></li>
+                                <li><a href="#" data-i18n="footer.kvkk">Privacy Policy</a></li>
+                                <li><a href="#" data-i18n="footer.terms">Terms Conditions</a></li>
                             </ul>
                             <span class="text-white version-badge">v@appVersion</span>
                         </div>

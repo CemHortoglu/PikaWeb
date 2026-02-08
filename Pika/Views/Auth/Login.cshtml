@@ -3,7 +3,7 @@
     ViewData["Title"] = "Giriş";
 }
 <!doctype html>
-<html lang="tr" data-lang="tr">
+<html lang="@(ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr")" data-lang="@(ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr")">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -29,7 +29,7 @@
                             <img src="~/web/logo.svg" alt="Pika" class="pika-logo" onerror="this.style.display='none'">
                             <span class="fw-semibold text-white">Pika</span>
                         </a>
-                        <span class="pika-auth-chip"><i class="fa-solid fa-shield-halved me-2"></i>Secure</span>
+                        <span class="pika-auth-chip"><i class="fa-solid fa-shield-halved me-2"></i><span data-i18n="login.secure">Secure</span></span>
                     </div>
 
                     <h1 class="h4 mb-1" data-i18n="login.title">Kurumsal Giriş</h1>
@@ -40,7 +40,7 @@
                             <label class="form-label" data-i18n="form.email">E-posta</label>
                             <div class="input-group">
                                 <span class="input-group-text pika-ig"><i class="fa-regular fa-envelope"></i></span>
-                                <input name="email" type="email" class="form-control pika-input" placeholder="mail@firma.com" required>
+                                <input name="email" type="email" class="form-control pika-input" placeholder="mail@firma.com" data-i18n-placeholder="form.emailPh" required>
                             </div>
                         </div>
 
@@ -48,7 +48,7 @@
                             <label class="form-label" data-i18n="login.password">Şifre</label>
                             <div class="input-group">
                                 <span class="input-group-text pika-ig"><i class="fa-solid fa-key"></i></span>
-                                <input name="password" type="password" class="form-control pika-input" placeholder="••••••••" required>
+                                <input name="password" type="password" class="form-control pika-input" placeholder="••••••••" data-i18n-placeholder="login.passwordPh" required>
                             </div>
                         </div>
 

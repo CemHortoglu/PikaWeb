@@ -223,7 +223,63 @@
             "int.f2d": "Kampanya ve sadakat aksiyonlarını sisteminize geri bildirin.",
             "int.c1": "Event tabanlı mimari",
             "int.c2": "Retry & signature (önerilir)",
-            "int.c3": "Dokümantasyon & örnek payload"
+            "int.c3": "Dokümantasyon & örnek payload",
+
+            "search": "Ara",
+            "home.faqTitle": "Sık Sorulan Sorular",
+            "home.heroWelcome": "Pika'ya Hoş Geldiniz",
+            "home.heroTitle": "Müşterinize Özel Reklam Yönetimi",
+            "home.heroDesc": "Pika Analysis olarak online mağazaların reklam yönetimini gelişmiş otomasyonla dönüştürüyoruz. E-ticaret ekiplerinin büyümeye odaklanabilmesi için süreci sadeleştiriyor ve performansı artırıyoruz.",
+            "home.heroBadge": "Tek Tıkla Bir Adım Önde",
+            "home.card1": "Şirketinizi Verimlilikle Büyütün",
+            "home.card2": "Otomasyonla Karlılığı Artırın",
+            "home.card2Desc": "Akıllı çözümlerimizle kampanya yönetimini hızlandırın, maliyeti azaltın.",
+            "home.extraProfit": "Ekstra Kâr",
+            "home.card3": "Müşteri İhtiyaçlarını Önceleyin",
+            "home.highlight": "Öne Çıkın",
+            "home.aiTitle": "Yapay Zeka Desteği ile Rakiplerinizin Önüne Geçin",
+            "home.aiDesc": "Yapay zeka destekli içgörü ve raporlamalar sayesinde hızlı, ölçülebilir ve sürdürülebilir büyüme sağlayın.",
+            "home.ai1": "Yapay Zeka Desteği",
+            "home.ai2": "Kişiselleştirilmiş Kampanya",
+            "home.ai3": "BI Desteği",
+            "home.ai4": "Kapsamlı Raporlama",
+            "home.faqSub": "S.S.S.",
+            "home.faqDesc": "Pika Analysis çözümleri ile ilgili sık sorulan soruların kısa cevaplarını aşağıda bulabilirsiniz.",
+            "home.faqQ1": "Pika Analysis nedir?",
+            "home.faqA1": "Pika, e-ticaret ekipleri için reklam ve kampanya otomasyonu sağlayan bir platformdur.",
+            "home.faqQ2": "Nasıl otomasyon sağlıyor?",
+            "home.faqA2": "Veri odaklı kurallar, segmentasyon ve hazır akışlarla manuel işleri azaltır.",
+            "home.faqQ3": "Hangi platformlarla entegre olur?",
+            "home.faqA3": "Popüler reklam ve e-ticaret altyapılarıyla API üzerinden entegre çalışır.",
+            "form.lastNamePh": "Soyad",
+            "form.websitePh": "Web sitesi",
+            "login.passwordPh": "••••••••",
+            "login.secure": "Güvenli",
+
+            "sol.m1t": "Sadakat",
+            "sol.m1d": "Puan, seviye, ödül",
+            "sol.m2t": "Kampanya",
+            "sol.m2d": "Akış & otomasyon",
+            "sol.m3t": "Segment",
+            "sol.m3d": "Kural motoru",
+            "sol.m4t": "Analitik",
+            "sol.m4d": "KPI & içgörü",
+            "price.p1t": "Start",
+            "price.p1d": "Küçük ekipler için hızlı başlangıç.",
+            "price.p1f1": "Temel segmentasyon",
+            "price.p1f2": "Kampanya şablonları",
+            "price.p1f3": "Standart raporlar",
+            "price.p2t": "Growth",
+            "price.p2d": "Büyüyen ekipler için otomasyon ve analitik.",
+            "price.p2f1": "Gelişmiş segment & dinamik kitle",
+            "price.p2f2": "Otomasyon akışları",
+            "price.p2f3": "Kohort & kampanya performansı",
+            "price.p2f4": "Webhook/API erişimi",
+            "price.p3t": "Enterprise",
+            "price.p3d": "Kurumsal SLA, güvenlik ve özel entegrasyonlar.",
+            "price.p3f1": "SSO / RBAC",
+            "price.p3f2": "Özel raporlar & BI entegrasyonu",
+            "price.p3f3": "Özel SLA & danışmanlık"
         },
         en: {
             "topbar.security": "Enterprise security • Privacy-first processes",
@@ -377,15 +433,137 @@
             "login.signin": "Sign in",
             "login.or": "or",
             "login.contactSales": "Get an enterprise quote",
-            "login.note": "Login attempts are logged and subject to security policies."
+            "login.note": "Login attempts are logged and subject to security policies.",
+
+            "search": "Search",
+            "home.faqTitle": "Frequently Asked Questions",
+            "home.heroWelcome": "Welcome to Pika",
+            "home.heroTitle": "Custom Ad Management for Your Customers",
+            "home.heroDesc": "At Pika Analysis, we transform online store advertising with advanced automation so e-commerce teams can focus on growth.",
+            "home.heroBadge": "One Click Ahead",
+            "home.card1": "Grow Your Business Efficiently",
+            "home.card2": "Increase Profitability with Automation",
+            "home.card2Desc": "Speed up campaign management and reduce costs with smart solutions.",
+            "home.extraProfit": "Extra Profit",
+            "home.card3": "Prioritize Customer Needs",
+            "home.highlight": "Stand Out",
+            "home.aiTitle": "Get Ahead of Competitors with AI Support",
+            "home.aiDesc": "Achieve fast, measurable, and sustainable growth with AI-powered insights and reporting.",
+            "home.ai1": "AI Support",
+            "home.ai2": "Personalized Campaigns",
+            "home.ai3": "BI Support",
+            "home.ai4": "Comprehensive Reporting",
+            "home.faqSub": "FAQ",
+            "home.faqDesc": "Find quick answers to frequently asked questions about Pika Analysis solutions.",
+            "home.faqQ1": "What is Pika Analysis?",
+            "home.faqA1": "Pika is a platform that provides ad and campaign automation for e-commerce teams.",
+            "home.faqQ2": "How does it automate?",
+            "home.faqA2": "It reduces manual tasks with data-driven rules, segmentation, and ready-to-use flows.",
+            "home.faqQ3": "Which platforms does it integrate with?",
+            "home.faqA3": "It integrates via API with popular advertising and e-commerce infrastructures.",
+            "form.lastNamePh": "Last name",
+            "form.websitePh": "Website",
+            "login.passwordPh": "••••••••",
+            "login.secure": "Secure",
+
+            "sol.m1t": "Loyalty",
+            "sol.m1d": "Points, tiers, rewards",
+            "sol.m2t": "Campaign",
+            "sol.m2d": "Flows & automation",
+            "sol.m3t": "Segment",
+            "sol.m3d": "Rule engine",
+            "sol.m4t": "Analytics",
+            "sol.m4d": "KPI & insight",
+            "price.p1t": "Start",
+            "price.p1d": "Quick start for small teams.",
+            "price.p1f1": "Basic segmentation",
+            "price.p1f2": "Campaign templates",
+            "price.p1f3": "Standard reports",
+            "price.p2t": "Growth",
+            "price.p2d": "Automation and analytics for growing teams.",
+            "price.p2f1": "Advanced segmentation & dynamic audiences",
+            "price.p2f2": "Automation flows",
+            "price.p2f3": "Cohort & campaign performance",
+            "price.p2f4": "Webhook/API access",
+            "price.p3t": "Enterprise",
+            "price.p3d": "Enterprise SLA, security, and custom integrations.",
+            "price.p3f1": "SSO / RBAC",
+            "price.p3f2": "Custom reports & BI integration",
+            "price.p3f3": "Custom SLA & consulting",
+            "loy.h1": "Loyalty Management",
+            "loy.lead": "Build sustainable customer loyalty with points, tiers, and rewards.",
+            "loy.demo": "Request a Demo",
+            "loy.pricing": "Pricing",
+            "loy.m1t": "Reward Catalog",
+            "loy.m1d": "Flexible reward design",
+            "loy.m2t": "Tiers",
+            "loy.m2d": "Tier-based benefits",
+            "loy.m3t": "Rules",
+            "loy.m3d": "Automatic scoring",
+            "loy.f1t": "Points & Redemption",
+            "loy.f1d": "Earn and redeem points by purchase, category, or action.",
+            "loy.f2t": "Membership Experience",
+            "loy.f2d": "Enterprise UI showing points/tier status clearly.",
+            "loy.f3t": "Fraud Prevention",
+            "loy.f3d": "Rule limits, audit trails, and role-based authorization.",
+            "loy.ctaT": "Let’s design your loyalty setup together",
+            "loy.ctaD": "Define your points/tier model with KPI alignment.",
+            "loy.ctaB": "Request a Demo",
+            "camp.h1": "Campaign Automation",
+            "camp.lead": "Reduce operations and increase conversion with triggers, coupons, and flows.",
+            "camp.demo": "Request a Demo",
+            "camp.next": "Segmentation",
+            "camp.f1t": "Triggers",
+            "camp.f1d": "Event-based flows: signup, first purchase, abandoned cart, winback.",
+            "camp.f2t": "Coupon & Offer",
+            "camp.f2d": "Rule-based coupon generation, limits, durations, and conditions.",
+            "camp.f3t": "Channel Management",
+            "camp.f3d": "Planning and performance tracking across email/SMS/push.",
+            "seg.h1": "Segmentation",
+            "seg.lead": "Build dynamic audiences and reach the right customer at the right moment.",
+            "seg.demo": "Request a Demo",
+            "seg.next": "Analytics",
+            "seg.f1t": "Rule Engine",
+            "seg.f1d": "Filters by behavior, frequency, cart, category, and time windows.",
+            "seg.c1": "Dynamically updated segments",
+            "seg.c2": "Cohort and LTV-based targeting",
+            "seg.c3": "External systems via export/API",
+            "seg.f2t": "Example Use Case",
+            "seg.f2d": "Targets like: bought 2+ times in 30 days but inactive for 14 days.",
+            "ana.h1": "Analytics",
+            "ana.lead": "See real campaign impact; make decisions with LTV and cohorts.",
+            "ana.demo": "Request a Demo",
+            "ana.next": "Integrations",
+            "ana.f1t": "KPI Dashboard",
+            "ana.f1d": "Conversion, repeat purchase, basket and channel contribution.",
+            "ana.f2t": "Cohort",
+            "ana.f2d": "Track behavior change over time and monitor retention.",
+            "ana.f3t": "Reporting",
+            "ana.f3d": "CSV export and BI/warehouse flows via API.",
+            "int.h1": "Integrations",
+            "int.lead": "Connect quickly to your existing systems with API & webhooks.",
+            "int.demo": "Request a Demo",
+            "int.contact": "Technical Meeting",
+            "int.f1t": "REST API",
+            "int.f1d": "Send customer, transaction and event data securely.",
+            "int.f2t": "Webhook",
+            "int.f2d": "Send campaign and loyalty actions back to your systems.",
+            "int.c1": "Event-driven architecture",
+            "int.c2": "Retry & signature (recommended)",
+            "int.c3": "Documentation & sample payload"
         }
     };
 
-    function getLang() {
-        return localStorage.getItem("pika_lang") || document.documentElement.getAttribute("data-lang") || "tr";
+    function getPathLang() {
+        const part = window.location.pathname.split("/").filter(Boolean)[0];
+        return part === "tr" || part === "en" ? part : null;
     }
 
-    function setLang(lang) {
+    function getLang() {
+        return getPathLang() || localStorage.getItem("pika_lang") || document.documentElement.getAttribute("data-lang") || "tr";
+    }
+
+    function setLang(lang, syncUrl = false) {
         const safe = i18n[lang] ? lang : "tr";
         localStorage.setItem("pika_lang", safe);
         document.documentElement.setAttribute("lang", safe);
@@ -397,8 +575,7 @@
         const flag = qs("#currentLangFlag");
         const flagByLang = {
             tr: "/web/assets/images/svg/tr.svg",
-            en: "/web/assets/images/svg/flag.svg",
-            de: "/web/assets/images/svg/euro.svg"
+            en: "/web/assets/images/svg/flag.svg"
         };
         if (flag && flagByLang[safe]) flag.setAttribute("src", flagByLang[safe]);
 
@@ -413,13 +590,23 @@
             const value = i18n[safe][key];
             if (value) el.setAttribute("placeholder", value);
         });
+
+        if (syncUrl) {
+            const pathLang = getPathLang();
+            if (pathLang !== safe) {
+                const parts = window.location.pathname.split("/").filter(Boolean);
+                const rest = pathLang ? parts.slice(1) : parts;
+                const nextPath = `/${safe}${rest.length ? `/${rest.join("/")}` : ""}`;
+                window.location.assign(`${nextPath}${window.location.search}${window.location.hash}`);
+            }
+        }
     }
 
     // Language buttons
     function bindLangButtons() {
         qsa("[data-lang-set]").forEach(btn => {
             btn.addEventListener("click", () => {
-                setLang(btn.getAttribute("data-lang-set"));
+                setLang(btn.getAttribute("data-lang-set"), true);
             });
         });
     }
@@ -459,7 +646,7 @@
             }
 
             try {
-                const res = await fetch("/lead/demo-request", {
+                const res = await fetch(`/${lang}/lead/demo-request`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(payload)
