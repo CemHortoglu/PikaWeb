@@ -22,9 +22,11 @@ namespace Pika.Controllers
         public IActionResult Pika() => View();
 
         [HttpGet("demo-talebi")]
+        [HttpGet("demo-request")]
         public IActionResult DemoRequest() => View();
 
         [HttpGet("sss")]
+        [HttpGet("faq")]
         public IActionResult Faq() => View();
 
         [HttpGet("contact")]
