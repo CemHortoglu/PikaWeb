@@ -18,6 +18,15 @@ namespace Pika.Controllers
         [HttpGet("corporate")]
         public IActionResult Corporate() => View();
 
+        [HttpGet("pika")]
+        public IActionResult Pika() => View();
+
+        [HttpGet("demo-talebi")]
+        public IActionResult DemoRequest() => View();
+
+        [HttpGet("sss")]
+        public IActionResult Faq() => View();
+
         [HttpGet("contact")]
         public IActionResult Contact() => View();
     }

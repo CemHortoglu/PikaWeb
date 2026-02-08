@@ -1,0 +1,64 @@
+@{
+    ViewData["Title"] = "Sık Sorulan Sorular";
+}
+
+<section class="pika-page-hero">
+    <div class="container">
+        <div class="row g-4 align-items-center">
+            <div class="col-lg-8">
+                <h1 class="pika-h1">Sık Sorulan Sorular</h1>
+                <p class="pika-lead">Pika platformu, demo süreci, güvenlik ve entegrasyon hakkında en çok merak edilen soruları bu sayfada topladık.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="pika-section pt-0">
+    <div class="container">
+        <div class="accordion" id="faqAccordion">
+            <div class="accordion-item bg-transparent border-secondary mb-3 rounded-3 overflow-hidden">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true" aria-controls="faq1">
+                        Pika hangi sektörlerde kullanılabilir?
+                    </button>
+                </h2>
+                <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body text-white-50">Perakende, finans, telekom, e-ticaret ve üyelik tabanlı tüm sektörlerde kullanılabilir. Modüler yapısı sayesinde iş ihtiyaçlarına göre ölçeklenir.</div>
+                </div>
+            </div>
+
+            <div class="accordion-item bg-transparent border-secondary mb-3 rounded-3 overflow-hidden">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">
+                        Demo süreci nasıl ilerliyor?
+                    </button>
+                </h2>
+                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body text-white-50">Demo talep formunu doldurduktan sonra ekibimiz sizinle iletişime geçer. İhtiyaç toplantısı sonrası kurumunuza özel bir canlı demo planlanır.</div>
+                </div>
+            </div>
+
+            <div class="accordion-item bg-transparent border-secondary mb-3 rounded-3 overflow-hidden">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">
+                        Mevcut sistemlerimizle entegrasyon mümkün mü?
+                    </button>
+                </h2>
+                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body text-white-50">Evet. API tabanlı mimari ile CRM, ERP, e-ticaret, çağrı merkezi ve veri ambarı sistemleriyle çift yönlü entegrasyon sağlanabilir.</div>
+                </div>
+            </div>
+
+            <div class="accordion-item bg-transparent border-secondary rounded-3 overflow-hidden">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false" aria-controls="faq4">
+                        Veri güvenliği ve yetkilendirme nasıl sağlanıyor?
+                    </button>
+                </h2>
+                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body text-white-50">Rol bazlı erişim, işlem logları, güvenli veri aktarımı ve kurum politikalarına uyumlu saklama prensipleri ile güvenlik katmanları uygulanır.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
