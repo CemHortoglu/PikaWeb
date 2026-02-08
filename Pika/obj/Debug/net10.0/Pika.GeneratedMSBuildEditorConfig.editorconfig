@@ -70,6 +70,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXExveWFsdHkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Projects/PikaWeb/Pika/Views/Solutions/Security.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXFNlY3VyaXR5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Projects/PikaWeb/Pika/Views/Solutions/Segmentation.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXFNlZ21lbnRhdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

@@ -21,10 +21,10 @@
             <section class="pika-auth-showcase">
                 <div class="pika-auth-showcase-overlay"></div>
                 <div class="pika-auth-showcase-content">
-                    <a class="d-inline-flex align-items-center gap-2 text-decoration-none mb-4" href="@Url.Action("Index", "Home")">
-                        <img src="~/web/logo.svg" alt="Pika" class="pika-logo" onerror="this.style.display='none'">
-                        <span class="fw-semibold text-white fs-5">Pika</span>
-                    </a>
+                    <div class="row login-logo"><div class="col-12">
+                        <img src="~/web/images/white-logo.png" alt="Pika" height="90">
+                        </div>
+                    </div>
 
                     <span class="pika-auth-tag">Kurumsal Platform</span>
                     <h1 class="pika-auth-hero-title">Dijital büyümenizi tek panelden yönetin.</h1>
@@ -74,10 +74,10 @@
 
                     <form method="post" action="@Url.Action("Login", "Auth")" class="vstack gap-3">
                         <div>
-                            <label class="form-label" data-i18n="form.email">E-posta</label>
+                            <label class="form-label" data-i18n="form.email">Kullanıcı Adı</label>
                             <div class="input-group">
                                 <span class="input-group-text pika-ig"><i class="fa-regular fa-envelope"></i></span>
-                                <input name="email" type="email" class="form-control pika-input" placeholder="mail@firma.com" data-i18n-placeholder="form.emailPh" required>
+                                <input name="email" type="email" class="form-control pika-input" placeholder="Kullanıcı Adı" data-i18n-placeholder="form.emailPh" required>
                             </div>
                         </div>
 
