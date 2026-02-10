@@ -3,3 +3,8 @@ Pika/obj
 Pika/bin
 Pika/.vs/
 Pika/obj/
+Pika/obj/Debug/net10.0/Pika.GeneratedMSBuildEditorConfig.editorconfig
+/Pika/obj
+/Pika/obj/Debug
+/Pika/obj/Debug/net10.0
+*.editorconfig
