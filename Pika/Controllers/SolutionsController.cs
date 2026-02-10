@@ -26,7 +26,6 @@ namespace Pika.Controllers
         public IActionResult InAppMessaging() => View();
 
         [HttpGet("personalization")]
-        [HttpGet("[action]")]
         public IActionResult Personalization() => View();
 
         [HttpGet("template-management")]
@@ -38,7 +37,6 @@ namespace Pika.Controllers
         public IActionResult ABTesting() => View();
 
         [HttpGet("reporting")]
-        [HttpGet("[action]")]
         public IActionResult Reporting() => View();
 
         [HttpGet("deliverability-compliance")]
