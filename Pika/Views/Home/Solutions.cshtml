@@ -1,23 +1,26 @@
-@{ ViewData["Title"] = "Çözümlerimiz"; }
+@{
+    ViewData["Title"] = "Çözümlerimiz";
+    ViewData["TitleKey"] = "solutions.overview.title";
+}
 <section class="pika-corp-hero">
     <div class="container">
         <div class="pika-corp-hero__grid">
             <div>
-                <span class="pika-corp-chip">Kurumsal Mesajlaşma ve Veri Platformu</span>
-                <h1 class="pika-corp-title" data-i18n="sol.h1">Çözümlerimiz</h1>
-                <p class="pika-corp-lead" data-i18n="sol.lead">Kanal orkestrasyonu, kişiselleştirme ve raporlamayı tek mimaride yönetin.</p>
+                <span class="pika-corp-chip" data-i18n="sol.chip"></span>
+                <h1 class="pika-corp-title" data-i18n="sol.h1"></h1>
+                <p class="pika-corp-lead" data-i18n="sol.lead"></p>
                 <div class="pika-corp-kpi-grid">
-                    <div class="pika-corp-kpi"><strong>12 Modül</strong><span>Yeni bilgi mimarisi</span></div>
-                    <div class="pika-corp-kpi"><strong>Omnichannel</strong><span>Tüm temas noktaları</span></div>
-                    <div class="pika-corp-kpi"><strong>Data-Driven</strong><span>Gerçek zamanlı karar</span></div>
+                    <div class="pika-corp-kpi"><strong data-i18n="sol.kpi.1.title"></strong><span data-i18n="sol.kpi.1.desc"></span></div>
+                    <div class="pika-corp-kpi"><strong data-i18n="sol.kpi.2.title"></strong><span data-i18n="sol.kpi.2.desc"></span></div>
+                    <div class="pika-corp-kpi"><strong data-i18n="sol.kpi.3.title"></strong><span data-i18n="sol.kpi.3.desc"></span></div>
                 </div>
                 <div class="d-flex gap-2 flex-wrap mt-4">
-                    <button class="btn pika-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal"><span data-i18n="sol.demo">Demo Talebi</span></button>
-                    <a class="btn pika-btn-ghost" href="@Url.Action("Reporting", "Solutions")"><span data-i18n="sol.reporting">Raporlama</span></a>
+                    <button class="btn pika-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal"><span data-i18n="sol.demo"></span></button>
+                    <a class="btn pika-btn-ghost" href="@Url.Action("Reporting", "Solutions")"><span data-i18n="sol.reporting"></span></a>
                 </div>
             </div>
             <aside class="pika-corp-aside">
-                <h3 data-i18n="sol.map">Çözüm Haritası</h3>
+                <h3 data-i18n="sol.map"></h3>
                 <div class="pika-corp-aside-list">
                     <a class="pika-corp-aside-item text-decoration-none" href="@Url.Action("EmailMarketing", "Solutions")"><strong data-i18n="sol.page.EmailMarketing.title"></strong><span data-i18n="sol.page.EmailMarketing.lead"></span></a>
                     <a class="pika-corp-aside-item text-decoration-none" href="@Url.Action("TemplateManagement", "Solutions")"><strong data-i18n="sol.page.TemplateManagement.title"></strong><span data-i18n="sol.page.TemplateManagement.lead"></span></a>
