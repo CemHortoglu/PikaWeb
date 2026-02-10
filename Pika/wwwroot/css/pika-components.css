@@ -1780,6 +1780,10 @@
 
 .pika-corp-section { background: #f2f7de; }
 
+.pika-corp-hero + .pika-corp-section {
+    margin-top: .8rem;
+}
+
 .pika-corp-card-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
