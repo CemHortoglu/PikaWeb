@@ -4,28 +4,39 @@
     ViewData["MetaDescription"] = tr ? "Journey, segmentasyon, kampanya otomasyonu, kanal yönetimi, analitik, entegrasyon ve güvenlik çözümleri." : "Journey, segmentation, campaign automation, channel operations, analytics, integration, and security solutions.";
     ViewData["MetaKeywords"] = "solutions,journey,segmentation,campaign,email,sms,whatsapp,analytics,integration,security";
 }
-<section class="pika-corp-hero">
+<section class="pika-corp-hero pika-solution-hero pika-solutions-hub-hero">
     <div class="container">
+        <span class="pika-corp-chip">@(tr ? "Pika Solutions" : "Pika Solutions")</span>
         <h1 class="pika-corp-title">@(tr ? "Çözümlerimiz" : "Our Solutions")</h1>
-        <p class="pika-corp-lead">@(tr ? "Pika’nın tüm çözüm modüllerini Türkçe / İngilizce içerik ve SEO uyumlu sayfa yapısıyla keşfedin." : "Explore all Pika solution modules with Turkish/English content and SEO-ready pages.")</p>
+        <p class="pika-corp-lead">@(tr ? "Her temas noktasını tek platformda birleştiren modüler yapıyı keşfedin: veriden segmentasyona, orkestrasyondan kanallara kadar uçtan uca büyüme altyapısı." : "Explore a modular stack that unifies every touchpoint: from data and segmentation to orchestration and channels.")</p>
     </div>
 </section>
-<section class="pika-section pika-corp-section pt-0">
+
+<section class="pika-section pika-corp-section pika-solutions-hub pt-0">
     <div class="container">
-        <div class="pika-corp-card-grid">
-            <a class="pika-corp-card text-decoration-none" href="@Url.Action("PersonalizationPage", "Solutions")"><h3>Journey Orchestration</h3></a>
-            <a class="pika-corp-card text-decoration-none" href="@Url.Action("TemplateManagement", "Solutions")"><h3>Audience Segmentation & Targeting</h3></a>
-            <a class="pika-corp-card text-decoration-none" href="@Url.Action("ABTesting", "Solutions")"><h3>Campaign Automation & Scheduling</h3></a>
-            <a class="pika-corp-card text-decoration-none" href="@Url.Action("EmailMarketing", "Solutions")"><h3>Email Marketing</h3></a>
-            <a class="pika-corp-card text-decoration-none" href="@Url.Action("WhatsAppMessaging", "Solutions")"><h3>WhatsApp Messaging</h3></a>
-            <a class="pika-corp-card text-decoration-none" href="@Url.Action("SmsCampaigns", "Solutions")"><h3>SMS Campaigns</h3></a>
-            <a class="pika-corp-card text-decoration-none" href="@Url.Action("Reporting", "Solutions")"><h3>Analytics & Reporting</h3></a>
-            <a class="pika-corp-card text-decoration-none" href="@Url.Action("DeliverabilityCompliance", "Solutions")"><h3>Deliverability & Compliance</h3></a>
-            <a class="pika-corp-card text-decoration-none" href="@Url.Action("Integrations", "Solutions")"><h3>Integrations & APIs</h3></a>
-            <a class="pika-corp-card text-decoration-none" href="@Url.Action("DataManagementEtl", "Solutions")"><h3>Data Management & ETL</h3></a>
-            <a class="pika-corp-card text-decoration-none" href="@Url.Action("RealTimeEventProcessing", "Solutions")"><h3>Real-time Event Processing</h3></a>
-            <a class="pika-corp-card text-decoration-none" href="@Url.Action("SecurityPrivacy", "Solutions")"><h3>Security & Privacy</h3></a>
-            <a class="pika-corp-card text-decoration-none" href="@Url.Action("PushNotifications", "Solutions")"><h3>Push Notifications (Roadmap)</h3></a>
+        <div class="pika-solution-domain-grid">
+            <a class="pika-solution-domain text-decoration-none" href="@Url.Action("PersonalizationPage", "Solutions")">
+                <h3>Journey Orchestration</h3>
+                <p>@(tr ? "Müşteri yolculuğunu olay bazlı, tetiklemeli ve ölçülebilir akışlara dönüştürün." : "Turn customer journeys into event-driven, measurable flows.")</p>
+            </a>
+            <a class="pika-solution-domain text-decoration-none" href="@Url.Action("TemplateManagement", "Solutions")">
+                <h3>Audience Segmentation & Targeting</h3>
+                <p>@(tr ? "Kural, skor ve davranış sinyalleriyle doğru kitleyi otomatik üretin." : "Generate the right audience automatically with rules, scores, and behavior signals.")</p>
+            </a>
+            <a class="pika-solution-domain text-decoration-none" href="@Url.Action("ABTesting", "Solutions")">
+                <h3>Campaign Automation & Scheduling</h3>
+                <p>@(tr ? "Takvim, kontrol grubu ve deney tasarımıyla operasyonu standardize edin." : "Standardize operations with calendar logic, control groups, and experiment design.")</p>
+            </a>
+            <a class="pika-solution-domain text-decoration-none" href="@Url.Action("EmailMarketing", "Solutions")"><h3>Email Marketing</h3><p>@(tr ? "Kişiselleştirilmiş e-posta üretimi ve performans odaklı teslimat." : "Personalized email production with performance-driven delivery.")</p></a>
+            <a class="pika-solution-domain text-decoration-none" href="@Url.Action("WhatsAppMessaging", "Solutions")"><h3>WhatsApp Messaging</h3><p>@(tr ? "Opt-in odaklı WhatsApp operasyonunu güvenli ve ölçeklenebilir yönetin." : "Run opt-in-first WhatsApp operations safely at scale.")</p></a>
+            <a class="pika-solution-domain text-decoration-none" href="@Url.Action("SmsCampaigns", "Solutions")"><h3>SMS Campaigns</h3><p>@(tr ? "Hızlı erişim ve maliyet dengesi için yüksek hacimli SMS akışları." : "High-volume SMS flows for rapid reach and cost balance.")</p></a>
+            <a class="pika-solution-domain text-decoration-none" href="@Url.Action("Reporting", "Solutions")"><h3>Analytics & Reporting</h3><p>@(tr ? "KPI, segment ve kanal etkisini tek panelde görünür kılın." : "Unify KPI, segment, and channel impact in one layer.")</p></a>
+            <a class="pika-solution-domain text-decoration-none" href="@Url.Action("DeliverabilityCompliance", "Solutions")"><h3>Deliverability & Compliance</h3><p>@(tr ? "İzin, hijyen ve domain sağlığıyla sürdürülebilir teslimat kalitesi." : "Sustainable delivery quality through consent, hygiene, and domain health.")</p></a>
+            <a class="pika-solution-domain text-decoration-none" href="@Url.Action("Integrations", "Solutions")"><h3>Integrations & APIs</h3><p>@(tr ? "CRM, POS ve e-ticaret sistemlerinizle çift yönlü entegrasyon." : "Two-way integration with CRM, POS, and e-commerce stacks.")</p></a>
+            <a class="pika-solution-domain text-decoration-none" href="@Url.Action("DataManagementEtl", "Solutions")"><h3>Data Management & ETL</h3><p>@(tr ? "Dağınık veriyi normalize edip 360° müşteri profiline dönüştürün." : "Normalize fragmented data into 360° customer profiles.")</p></a>
+            <a class="pika-solution-domain text-decoration-none" href="@Url.Action("RealTimeEventProcessing", "Solutions")"><h3>Real-time Event Processing</h3><p>@(tr ? "Olayı yakalayın, milisaniyeler içinde aksiyona dönüştürün." : "Capture events and activate campaigns in milliseconds.")</p></a>
+            <a class="pika-solution-domain text-decoration-none" href="@Url.Action("SecurityPrivacy", "Solutions")"><h3>Security & Privacy</h3><p>@(tr ? "Kurumsal güvenlik standartlarını pazarlama altyapısına gömün." : "Embed enterprise-grade security standards into marketing infrastructure.")</p></a>
+            <a class="pika-solution-domain text-decoration-none" href="@Url.Action("PushNotifications", "Solutions")"><h3>Push Notifications (Roadmap)</h3><p>@(tr ? "Mobil uygulama etkileşimini push orkestrasyonuyla büyütün." : "Scale app engagement with orchestrated push notifications.")</p></a>
         </div>
     </div>
 </section>
