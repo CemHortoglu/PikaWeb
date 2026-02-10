@@ -1731,6 +1731,14 @@
 
 .pika-corp-lead { color: rgba(234, 248, 242, .92); font-size: 1.08rem; }
 
+.pika-corp-hero p {
+    color: rgba(224, 242, 234, .84);
+}
+
+.pika-corp-hero .pika-corp-lead {
+    color: rgba(234, 248, 242, .92);
+}
+
 .pika-corp-kpi-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1772,6 +1780,10 @@
 
 .pika-corp-section { background: #f2f7de; }
 
+.pika-corp-hero + .pika-corp-section {
+    margin-top: .8rem;
+}
+
 .pika-corp-card-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1806,6 +1818,18 @@
 .pika-btn-ghost:hover {
     background: #d8ef8d;
     border-color: #d8ef8d;
+    color: #103b30;
+}
+
+.pika-corp-section .pika-btn-ghost {
+    background: #e8f5c8;
+    color: #173f35;
+    border-color: #badc86;
+}
+
+.pika-corp-section .pika-btn-ghost:hover {
+    background: #d8ef8d;
+    border-color: #c8e67f;
     color: #103b30;
 }
 
