@@ -21,10 +21,6 @@ namespace Pika.Controllers
         [HttpGet("[action]")]
         public IActionResult PushNotifications() => View();
 
-        [HttpGet("in-app-messaging")]
-        [HttpGet("[action]")]
-        public IActionResult InAppMessaging() => View();
-
         [HttpGet("personalization")]
         [HttpGet("[action]")]
         public IActionResult PersonalizationPage() => View("Personalization");
