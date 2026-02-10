@@ -26,6 +26,7 @@ namespace Pika.Controllers
         public IActionResult InAppMessaging() => View();
 
         [HttpGet("personalization")]
+        [HttpGet("[action]")]
         public IActionResult PersonalizationPage() => View("Personalization");
 
         [HttpGet("template-management")]
