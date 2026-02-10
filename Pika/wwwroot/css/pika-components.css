@@ -1781,7 +1781,7 @@
 .pika-corp-section { background: #f2f7de; }
 
 .pika-corp-hero + .pika-corp-section {
-    margin-top: .8rem;
+    padding-top: 1.8rem !important;
 }
 
 .pika-corp-card-grid {
