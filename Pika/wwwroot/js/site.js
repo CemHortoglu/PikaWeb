@@ -93,7 +93,14 @@
             "home.ctaBtn": "Demo Talebi",
 
             "sol.h1": "Çözümlerimiz",
+            "sol.chip": "Kurumsal Mesajlaşma ve Veri Platformu",
             "sol.lead": "Kanal orkestrasyonu, kişiselleştirme ve raporlamayı tek mimaride yönetin.",
+            "sol.kpi.1.title": "12 Modül",
+            "sol.kpi.1.desc": "Yeni bilgi mimarisi",
+            "sol.kpi.2.title": "Omnichannel",
+            "sol.kpi.2.desc": "Tüm temas noktaları",
+            "sol.kpi.3.title": "Data-Driven",
+            "sol.kpi.3.desc": "Gerçek zamanlı karar",
             "sol.reporting": "Raporlama",
             "sol.demo": "Demo Talebi",
             "sol.map": "Çözüm Haritası",
@@ -783,7 +790,14 @@
             "home.ctaBtn": "Request a Demo",
 
             "sol.h1": "Solutions",
+            "sol.chip": "Enterprise Messaging and Data Platform",
             "sol.lead": "Manage channel orchestration, personalization, and reporting in one architecture.",
+            "sol.kpi.1.title": "12 Modules",
+            "sol.kpi.1.desc": "Modern information architecture",
+            "sol.kpi.2.title": "Omnichannel",
+            "sol.kpi.2.desc": "All customer touchpoints",
+            "sol.kpi.3.title": "Data-Driven",
+            "sol.kpi.3.desc": "Real-time decisions",
             "sol.reporting": "Reporting",
             "sol.demo": "Request a Demo",
             "sol.map": "Solution Map",
@@ -1418,6 +1432,11 @@
             const value = i18n[safe][key];
             if (value) el.setAttribute("placeholder", value);
         });
+
+        const titleKey = document.body?.getAttribute("data-title-key");
+        const titleFallback = document.body?.getAttribute("data-title-fallback") || "Pika";
+        const titleValue = titleKey ? i18n[safe][titleKey] : null;
+        document.title = `${titleValue || titleFallback} - Pika`;
 
         if (syncUrl) {
             const pathLang = getPathLang();
