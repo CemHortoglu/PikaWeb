@@ -66,32 +66,56 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/PikaWeb/Pika/Views/Solutions/Analytics.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXEFuYWx5dGljcy5jc2h0bWw=
+[C:/Projects/PikaWeb/Pika/Views/Solutions/ABTesting.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXEFCVGVzdGluZy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/PikaWeb/Pika/Views/Solutions/Campaigns.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXENhbXBhaWducy5jc2h0bWw=
+[C:/Projects/PikaWeb/Pika/Views/Solutions/DataManagementEtl.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXERhdGFNYW5hZ2VtZW50RXRsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/PikaWeb/Pika/Views/Solutions/DeliverabilityCompliance.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXERlbGl2ZXJhYmlsaXR5Q29tcGxpYW5jZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/PikaWeb/Pika/Views/Solutions/EmailMarketing.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXEVtYWlsTWFya2V0aW5nLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Projects/PikaWeb/Pika/Views/Solutions/Integrations.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXEludGVncmF0aW9ucy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/PikaWeb/Pika/Views/Solutions/Journey.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXEpvdXJuZXkuY3NodG1s
+[C:/Projects/PikaWeb/Pika/Views/Solutions/Personalization.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXFBlcnNvbmFsaXphdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/PikaWeb/Pika/Views/Solutions/Loyalty.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXExveWFsdHkuY3NodG1s
+[C:/Projects/PikaWeb/Pika/Views/Solutions/PushNotifications.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXFB1c2hOb3RpZmljYXRpb25zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/PikaWeb/Pika/Views/Solutions/Security.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXFNlY3VyaXR5LmNzaHRtbA==
+[C:/Projects/PikaWeb/Pika/Views/Solutions/RealTimeEventProcessing.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXFJlYWxUaW1lRXZlbnRQcm9jZXNzaW5nLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/PikaWeb/Pika/Views/Solutions/Segmentation.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXFNlZ21lbnRhdGlvbi5jc2h0bWw=
+[C:/Projects/PikaWeb/Pika/Views/Solutions/Reporting.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXFJlcG9ydGluZy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/PikaWeb/Pika/Views/Solutions/SecurityPrivacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXFNlY3VyaXR5UHJpdmFjeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/PikaWeb/Pika/Views/Solutions/SmsCampaigns.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXFNtc0NhbXBhaWducy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/PikaWeb/Pika/Views/Solutions/TemplateManagement.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXFRlbXBsYXRlTWFuYWdlbWVudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/PikaWeb/Pika/Views/Solutions/WhatsAppMessaging.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXFdoYXRzQXBwTWVzc2FnaW5nLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Projects/PikaWeb/Pika/Views/_ViewImports.cshtml]
