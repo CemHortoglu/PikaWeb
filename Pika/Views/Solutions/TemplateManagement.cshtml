@@ -1,53 +1,28 @@
 @{
-    ViewData["Title"] = "TemplateManagement";
-    ViewData["TitleKey"] = "solutions.templateManagement.title";
+    var tr = (ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").Equals("tr", StringComparison.OrdinalIgnoreCase);
+    ViewData["Title"] = tr ? "Audience Segmentation & Targeting (Kitle Segmentasyonu ve Hedefleme)" : "Audience Segmentation & Targeting";
+    ViewData["MetaDescription"] = tr ? "Kural tabanlı segmentlerle kitleyi dinamik oluşturun; üyelikleri otomatik güncelleyin." : "Build dynamic audiences with rule-based segmentation and automatic membership updates.";
+    ViewData["MetaKeywords"] = "audience segmentation,targeting,dynamic segments,rule engine";
 }
-<section class="pika-corp-hero">
-    <div class="container">
-        <div class="pika-corp-hero__grid">
-            <div>
-                <span class="pika-corp-chip" data-i18n="solutions.templateManagement.corp"></span>
-                <h1 class="pika-corp-title" data-i18n="solutions.templateManagement.title"></h1>
-                <p class="pika-corp-lead" data-i18n="solutions.templateManagement.subtitle"></p>
-                <p data-i18n="solutions.templateManagement.summary"></p>
-            </div>
-            <aside class="pika-corp-aside">
-                <h3 data-i18n="solutions.sections.capabilities"></h3>
-                <div class="pika-corp-aside-list">
-                    <div class="pika-corp-aside-item"><strong data-i18n="solutions.templateManagement.capabilities.1"></strong></div>
-                    <div class="pika-corp-aside-item"><strong data-i18n="solutions.templateManagement.capabilities.2"></strong></div>
-                    <div class="pika-corp-aside-item"><strong data-i18n="solutions.templateManagement.capabilities.3"></strong></div>
-                </div>
-            </aside>
-        </div>
-    </div>
-</section>
-
-<section class="pika-section pika-corp-section pt-0">
-    <div class="container">
-        <h3 data-i18n="solutions.sections.workflow"></h3>
-        <ol>
-            <li data-i18n="solutions.templateManagement.workflow.step1"></li>
-            <li data-i18n="solutions.templateManagement.workflow.step2"></li>
-            <li data-i18n="solutions.templateManagement.workflow.step3"></li>
-        </ol>
-
-        <h3 data-i18n="solutions.sections.integrations"></h3>
-        <p data-i18n="solutions.templateManagement.integrations"></p>
-        <p class="text-muted" data-i18n="solutions.templateManagement.repoUnspecified1"></p>
-
-        <h3 data-i18n="solutions.sections.kpi"></h3>
-        <p data-i18n="solutions.templateManagement.kpi"></p>
-
-        <h3 data-i18n="solutions.sections.compliance"></h3>
-        <p data-i18n="solutions.templateManagement.compliance"></p>
-        <p class="text-muted" data-i18n="solutions.templateManagement.repoUnspecified2"></p>
-
-        <h3 data-i18n="solutions.sections.scenarios"></h3>
-        <p data-i18n="solutions.templateManagement.scenarios"></p>
-
-        <a class="btn pika-btn-ghost" href="@Url.Action("ABTesting", "Solutions")">
-            <span data-i18n="solutions.next"></span>: <strong data-i18n="solutions.abTesting.title"></strong>
-        </a>
-    </div>
-</section>
+<section class="pika-corp-hero"><div class="container"><h1 class="pika-corp-title">Audience Segmentation & Targeting @(tr ? "(Kitle Segmentasyonu ve Hedefleme)" : "")</h1><p class="pika-corp-lead">@(tr ? "Kural tabanlı segmentlerle kitleyi dinamik oluşturun; üyelikler otomatik güncellensin, otomasyonlar doğru hedefle çalışsın." : "Create audiences dynamically with rule-based segments; keep memberships auto-updated so automations run on the right target.")</p></div></section>
+<section class="pika-section pika-corp-section"><div class="container">
+<p>@(tr ? "Segmentasyon, Pika’da otomasyonun “beyni” gibi çalışır. Amaç sadece “liste yapmak” değil; davranış ve işlem verisini kurallara bağlayıp, kitleyi sürekli güncel tutmaktır. Bu sayede kampanyalar elle filtrelenmek zorunda kalmaz; her şey tanımlı kurallara göre otomatikleşir." : "Segmentation acts as the ‘brain’ of automation in Pika. It is not just list building; it links behavioral and transactional data to rules and keeps audiences continuously updated, removing manual filtering.")</p>
+<h3>@(tr?"Ne sağlar?":"What does it provide?")</h3>
+<ul>
+<li>@(tr?"Kural ağacı: AND/OR gruplarıyla esnek koşullar (ör. 30 gündür satın almadı VE ortalama sepet > X).":"Rule tree: flexible AND/OR conditions (e.g., no purchase in 30 days AND avg basket > X).")</li>
+<li>@(tr?"Parametrik segment şablonları: aynı segmenti farklı markalara/mağazalara aynı yapıda uygulayabilme.":"Parametric segment templates: apply the same structure across brands/stores.")</li>
+<li>@(tr?"Üyelik yönetimi: segmente giren/çıkanları otomatik işleme ve bu değişimi event olarak kullanma.":"Membership management: process join/leave events automatically and use them as triggers.")</li>
+<li>@(tr?"Kanal uygunluğu: WhatsApp opt-in gibi izin koşullarını segment kuralına dönüştürme.":"Channel eligibility: encode consent constraints like WhatsApp opt-in into segment rules.")</li>
+</ul>
+<h3>@(tr?"Nasıl çalışır (özet akış):":"How it works (summary):")</h3>
+<ol>
+<li>@(tr?"Segment tipi seçilir (inactivity, high-value, cross-sell, engagement vb.).":"Select segment type (inactivity, high-value, cross-sell, engagement, etc.).")</li>
+<li>@(tr?"Parametreler girilir (gün sayısı, minimum tutar, kategori, etkileşim eşiği…).":"Enter parameters (days, minimum amount, category, engagement threshold...).")</li>
+<li>@(tr?"Sistem periyodik veya olay bazlı değerlendirir.":"System evaluates periodically or event-based.")</li>
+<li>@(tr?"Üyelik değişiklikleri kaydedilir ve otomasyona tetik olur.":"Membership changes are recorded and trigger automations.")</li>
+<li>@(tr?"Kampanya/journey hedeflemesinde segment doğrudan kullanılır.":"Segments are directly used in campaign/journey targeting.")</li>
+</ol>
+<p><strong>KPI:</strong> @(tr?"segment büyüklüğü trendi, segment churn oranı (çıkış), segment→kampanya dönüşüm oranı, değerlendirme süresi.":"segment size trend, segment churn (exit), segment-to-campaign conversion rate, evaluation duration.")</p>
+<h3>@(tr?"Örnek senaryolar:":"Example scenarios:")</h3>
+<ul><li>@(tr?"Son 14 günde 2+ alışveriş yapan → VIP bakım akışı":"2+ purchases in the last 14 days → VIP care flow")</li><li>@(tr?"WhatsApp izni olanlar → hızlı bilgilendirme hattı":"Users with WhatsApp consent → fast information line")</li><li>@(tr?"X kategorisine ilgi gösteren → kategori bazlı öneri kampanyası":"Users interested in category X → category-based recommendation campaign")</li></ul>
+</div></section>

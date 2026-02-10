@@ -1,53 +1,15 @@
 @{
-    ViewData["Title"] = "Reporting";
-    ViewData["TitleKey"] = "solutions.reporting.title";
+    var tr = (ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").Equals("tr", StringComparison.OrdinalIgnoreCase);
+    ViewData["Title"] = tr ? "Analytics & Reporting (Analitik ve Raporlama)" : "Analytics & Reporting";
+    ViewData["MetaDescription"] = tr ? "Kanal ve davranış metriklerini tek çatı altında toplayın; ne oldu değil neden oldu'yu görün." : "Unify channel and behavioral metrics to understand not only what happened, but why.";
+    ViewData["MetaKeywords"] = "analytics,reporting,attribution,ctr,conversion,uplift";
 }
-<section class="pika-corp-hero">
-    <div class="container">
-        <div class="pika-corp-hero__grid">
-            <div>
-                <span class="pika-corp-chip" data-i18n="solutions.reporting.corp"></span>
-                <h1 class="pika-corp-title" data-i18n="solutions.reporting.title"></h1>
-                <p class="pika-corp-lead" data-i18n="solutions.reporting.subtitle"></p>
-                <p data-i18n="solutions.reporting.summary"></p>
-            </div>
-            <aside class="pika-corp-aside">
-                <h3 data-i18n="solutions.sections.capabilities"></h3>
-                <div class="pika-corp-aside-list">
-                    <div class="pika-corp-aside-item"><strong data-i18n="solutions.reporting.capabilities.1"></strong></div>
-                    <div class="pika-corp-aside-item"><strong data-i18n="solutions.reporting.capabilities.2"></strong></div>
-                    <div class="pika-corp-aside-item"><strong data-i18n="solutions.reporting.capabilities.3"></strong></div>
-                </div>
-            </aside>
-        </div>
-    </div>
-</section>
-
-<section class="pika-section pika-corp-section pt-0">
-    <div class="container">
-        <h3 data-i18n="solutions.sections.workflow"></h3>
-        <ol>
-            <li data-i18n="solutions.reporting.workflow.step1"></li>
-            <li data-i18n="solutions.reporting.workflow.step2"></li>
-            <li data-i18n="solutions.reporting.workflow.step3"></li>
-        </ol>
-
-        <h3 data-i18n="solutions.sections.integrations"></h3>
-        <p data-i18n="solutions.reporting.integrations"></p>
-        <p class="text-muted" data-i18n="solutions.reporting.repoUnspecified1"></p>
-
-        <h3 data-i18n="solutions.sections.kpi"></h3>
-        <p data-i18n="solutions.reporting.kpi"></p>
-
-        <h3 data-i18n="solutions.sections.compliance"></h3>
-        <p data-i18n="solutions.reporting.compliance"></p>
-        <p class="text-muted" data-i18n="solutions.reporting.repoUnspecified2"></p>
-
-        <h3 data-i18n="solutions.sections.scenarios"></h3>
-        <p data-i18n="solutions.reporting.scenarios"></p>
-
-        <a class="btn pika-btn-ghost" href="@Url.Action("DeliverabilityCompliance", "Solutions")">
-            <span data-i18n="solutions.next"></span>: <strong data-i18n="solutions.deliverabilityCompliance.title"></strong>
-        </a>
-    </div>
-</section>
+<section class="pika-corp-hero"><div class="container"><h1 class="pika-corp-title">Analytics & Reporting @(tr?"(Analitik ve Raporlama)":"")</h1><p class="pika-corp-lead">@(tr?"Kanal ve davranış metriklerini tek çatı altında toplayın; “ne oldu?” değil “neden oldu?”yu görün.":"Bring channel and behavioral metrics together; see not just “what happened” but “why it happened.”")</p></div></section>
+<section class="pika-section pika-corp-section"><div class="container">
+<p>@(tr?"Pika’da analitik tarafı sadece rapor ekranı değil; otomasyonu besleyen geri bildirim mekanizması olarak konumlanmalı. Etkileşim sinyallerini (open/click vb.) tek tek toplamak önemli, ama asıl değer; bunları journey/kampanya kararlarına geri bağlayıp iteratif iyileştirme yapabilmektir.":"In Pika, analytics should not be only dashboards; it should be the feedback loop that powers automation. Collecting interaction signals (open/click etc.) matters, but the key value is feeding them back into journey/campaign decisions for iterative improvement.")</p>
+<h3>@(tr?"Ne sağlar?":"What does it provide?")</h3>
+<ul><li>@(tr?"Kanal bazlı performans: e-posta/SMS/WhatsApp karşılaştırmaları.":"Channel-level performance: email/SMS/WhatsApp comparisons.")</li><li>@(tr?"Davranış sinyalleri: etkileşim kalitesi (ör. erken tıklama, tekrar etkileşim).":"Behavioral signals: engagement quality (e.g., early click, repeat interaction).")</li><li>@(tr?"Atıf (attribution) zemini: UTM/referrer mantığıyla kaynak analizi (web event ingestion varsa).":"Attribution layer: source analysis via UTM/referrer logic (if web event ingestion exists).")</li><li>@(tr?"Deney analizi: varyant/kontrol grubu karşılaştırması için ölçüm altyapısı.":"Experiment analysis: measurement infrastructure for variant/control comparison.")</li></ul>
+<h3>@(tr?"Nasıl çalışır (özet akış):":"How it works (summary):")</h3>
+<ol><li>@(tr?"Gönderimler tracking parametreleriyle üretilir.":"Generate sends with tracking parameters.")</li><li>@(tr?"Etkileşim event’leri toplanır ve normalize edilir.":"Collect and normalize interaction events.")</li><li>@(tr?"Kampanya/journey kimliği ile ilişkilendirilir.":"Link them to campaign/journey IDs.")</li><li>@(tr?"Dashboard/raporlar metrikleri gösterir.":"Display metrics in dashboards/reports.")</li><li>@(tr?"Sonuçlar segmente/journey’e geri beslenir (örn. “yüksek etkileşimli” segment).":"Feed results back to segments/journeys (e.g., “high-engagement” segment).")</li></ol>
+<p><strong>KPI:</strong> CTR, conversion rate, time-to-first-action, segment→kampanya dönüşüm oranı, uplift.</p>
+</div></section>

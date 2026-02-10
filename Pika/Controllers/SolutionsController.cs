@@ -50,5 +50,14 @@ namespace Pika.Controllers
         [HttpGet("real-time-event-processing")]
         [HttpGet("[action]")]
         public IActionResult RealTimeEventProcessing() => View();
+
+
+        [HttpGet("integrations")]
+        [HttpGet("[action]")]
+        public IActionResult Integrations() => View();
+
+        [HttpGet("security-privacy")]
+        [HttpGet("[action]")]
+        public IActionResult SecurityPrivacy() => View();
     }
 }

@@ -1,53 +1,15 @@
 @{
-    ViewData["Title"] = "DataManagementEtl";
-    ViewData["TitleKey"] = "solutions.dataManagementEtl.title";
+    var tr = (ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").Equals("tr", StringComparison.OrdinalIgnoreCase);
+    ViewData["Title"] = tr ? "Data Management & ETL (Veri Yönetimi)" : "Data Management & ETL";
+    ViewData["MetaDescription"] = tr ? "Dağınık veriyi normalize edin; müşteri profiline dönüştürün, segment ve otomasyonu besleyin." : "Normalize fragmented data, build customer profiles, and power segmentation and automation.";
+    ViewData["MetaKeywords"] = "data management,etl,normalization,customer profile,ingestion";
 }
-<section class="pika-corp-hero">
-    <div class="container">
-        <div class="pika-corp-hero__grid">
-            <div>
-                <span class="pika-corp-chip" data-i18n="solutions.dataManagementEtl.corp"></span>
-                <h1 class="pika-corp-title" data-i18n="solutions.dataManagementEtl.title"></h1>
-                <p class="pika-corp-lead" data-i18n="solutions.dataManagementEtl.subtitle"></p>
-                <p data-i18n="solutions.dataManagementEtl.summary"></p>
-            </div>
-            <aside class="pika-corp-aside">
-                <h3 data-i18n="solutions.sections.capabilities"></h3>
-                <div class="pika-corp-aside-list">
-                    <div class="pika-corp-aside-item"><strong data-i18n="solutions.dataManagementEtl.capabilities.1"></strong></div>
-                    <div class="pika-corp-aside-item"><strong data-i18n="solutions.dataManagementEtl.capabilities.2"></strong></div>
-                    <div class="pika-corp-aside-item"><strong data-i18n="solutions.dataManagementEtl.capabilities.3"></strong></div>
-                </div>
-            </aside>
-        </div>
-    </div>
-</section>
-
-<section class="pika-section pika-corp-section pt-0">
-    <div class="container">
-        <h3 data-i18n="solutions.sections.workflow"></h3>
-        <ol>
-            <li data-i18n="solutions.dataManagementEtl.workflow.step1"></li>
-            <li data-i18n="solutions.dataManagementEtl.workflow.step2"></li>
-            <li data-i18n="solutions.dataManagementEtl.workflow.step3"></li>
-        </ol>
-
-        <h3 data-i18n="solutions.sections.integrations"></h3>
-        <p data-i18n="solutions.dataManagementEtl.integrations"></p>
-        <p class="text-muted" data-i18n="solutions.dataManagementEtl.repoUnspecified1"></p>
-
-        <h3 data-i18n="solutions.sections.kpi"></h3>
-        <p data-i18n="solutions.dataManagementEtl.kpi"></p>
-
-        <h3 data-i18n="solutions.sections.compliance"></h3>
-        <p data-i18n="solutions.dataManagementEtl.compliance"></p>
-        <p class="text-muted" data-i18n="solutions.dataManagementEtl.repoUnspecified2"></p>
-
-        <h3 data-i18n="solutions.sections.scenarios"></h3>
-        <p data-i18n="solutions.dataManagementEtl.scenarios"></p>
-
-        <a class="btn pika-btn-ghost" href="@Url.Action("RealTimeEventProcessing", "Solutions")">
-            <span data-i18n="solutions.next"></span>: <strong data-i18n="solutions.realTimeEventProcessing.title"></strong>
-        </a>
-    </div>
-</section>
+<section class="pika-corp-hero"><div class="container"><h1 class="pika-corp-title">Data Management & ETL @(tr?"(Veri Yönetimi)":"")</h1><p class="pika-corp-lead">@(tr?"Dağınık veriyi normalize edin; müşteri profiline dönüştürün, segment ve otomasyonu besleyin.":"Normalize fragmented data, convert it into customer profiles, and feed segmentation and automation.")</p></div></section>
+<section class="pika-section pika-corp-section"><div class="container">
+<p>@(tr?"Birçok ekip “veri var ama kullanamıyoruz” noktasında takılır. ETL katmanı, Pika için sadece import ekranı değil; müşteri profilinin sürekli güncel kaldığı, transactional verinin anlamlı sinyale dönüştüğü katmandır. Böylece segment kuralları ve personalization daha “gerçek” hale gelir.":"Many teams struggle with “we have data but cannot use it.” In Pika, ETL is not just an import screen; it keeps customer profiles continuously updated and transforms transactional data into actionable signals. This makes segment rules and personalization more real.")</p>
+<h3>@(tr?"Ne sağlar?":"What does it provide?")</h3>
+<ul><li>@(tr?"Normalize etme: farklı kaynaklardan gelen veriyi ortak şemaya çekme.":"Normalization: map data from different sources into a common schema.")</li><li>@(tr?"Müşteri profili güncelleme: contact/customer birleştirme mantığı.":"Customer profile updates: contact/customer merge logic.")</li><li>@(tr?"Loyalty / skor güncelleme: satın alma ve davranış verisini skora bağlama.":"Loyalty/score updates: map purchase and behavior data into scoring.")</li><li>@(tr?"Olay üretme: satın alma gibi kritik event’lerle otomasyonu tetikleme.":"Event generation: trigger automation with critical events like purchases.")</li></ul>
+<h3>@(tr?"Nasıl çalışır (özet akış):":"How it works (summary):")</h3>
+<ol><li>@(tr?"Kaynaktan veri gelir (POS/e-ticaret/CRM).":"Data arrives from source systems (POS/e-commerce/CRM).")</li><li>@(tr?"Validasyon + normalize yapılır.":"Validate and normalize.")</li><li>@(tr?"Profil güncellenir (alanlar, etiketler, skorlar).":"Update profile (fields, tags, scores).")</li><li>@(tr?"Segment üyelikleri güncellenir.":"Update segment memberships.")</li><li>@(tr?"Event publish edilir; journey/campaign çalışır.":"Publish event; journey/campaign runs.")</li></ol>
+<p><strong>KPI:</strong> @(tr?"import başarı oranı, duplicate oranı, normalize hata oranı, ingestion→tetik süresi.":"import success rate, duplicate ratio, normalization error rate, ingestion-to-trigger time.")</p>
+</div></section>

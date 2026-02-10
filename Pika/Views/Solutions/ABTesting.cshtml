@@ -1,53 +1,17 @@
 @{
-    ViewData["Title"] = "ABTesting";
-    ViewData["TitleKey"] = "solutions.abTesting.title";
+    var tr = (ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").Equals("tr", StringComparison.OrdinalIgnoreCase);
+    ViewData["Title"] = tr ? "Campaign Automation & Scheduling (Kampanya Otomasyonu ve Zamanlama)" : "Campaign Automation & Scheduling";
+    ViewData["MetaDescription"] = tr ? "Kampanyayı planlayın; sistem hedefi üretsin, doğru zamanda çalıştırsın, kontrol grubuyla etkisini ölçsün." : "Plan campaigns, auto-generate targets, execute at the right time, and measure impact with control groups.";
+    ViewData["MetaKeywords"] = "campaign automation,scheduling,control group,ab testing,uplift";
 }
-<section class="pika-corp-hero">
-    <div class="container">
-        <div class="pika-corp-hero__grid">
-            <div>
-                <span class="pika-corp-chip" data-i18n="solutions.abTesting.corp"></span>
-                <h1 class="pika-corp-title" data-i18n="solutions.abTesting.title"></h1>
-                <p class="pika-corp-lead" data-i18n="solutions.abTesting.subtitle"></p>
-                <p data-i18n="solutions.abTesting.summary"></p>
-            </div>
-            <aside class="pika-corp-aside">
-                <h3 data-i18n="solutions.sections.capabilities"></h3>
-                <div class="pika-corp-aside-list">
-                    <div class="pika-corp-aside-item"><strong data-i18n="solutions.abTesting.capabilities.1"></strong></div>
-                    <div class="pika-corp-aside-item"><strong data-i18n="solutions.abTesting.capabilities.2"></strong></div>
-                    <div class="pika-corp-aside-item"><strong data-i18n="solutions.abTesting.capabilities.3"></strong></div>
-                </div>
-            </aside>
-        </div>
-    </div>
-</section>
-
-<section class="pika-section pika-corp-section pt-0">
-    <div class="container">
-        <h3 data-i18n="solutions.sections.workflow"></h3>
-        <ol>
-            <li data-i18n="solutions.abTesting.workflow.step1"></li>
-            <li data-i18n="solutions.abTesting.workflow.step2"></li>
-            <li data-i18n="solutions.abTesting.workflow.step3"></li>
-        </ol>
-
-        <h3 data-i18n="solutions.sections.integrations"></h3>
-        <p data-i18n="solutions.abTesting.integrations"></p>
-        <p class="text-muted" data-i18n="solutions.abTesting.repoUnspecified1"></p>
-
-        <h3 data-i18n="solutions.sections.kpi"></h3>
-        <p data-i18n="solutions.abTesting.kpi"></p>
-
-        <h3 data-i18n="solutions.sections.compliance"></h3>
-        <p data-i18n="solutions.abTesting.compliance"></p>
-        <p class="text-muted" data-i18n="solutions.abTesting.repoUnspecified2"></p>
-
-        <h3 data-i18n="solutions.sections.scenarios"></h3>
-        <p data-i18n="solutions.abTesting.scenarios"></p>
-
-        <a class="btn pika-btn-ghost" href="@Url.Action("Reporting", "Solutions")">
-            <span data-i18n="solutions.next"></span>: <strong data-i18n="solutions.reporting.title"></strong>
-        </a>
-    </div>
-</section>
+<section class="pika-corp-hero"><div class="container"><h1 class="pika-corp-title">Campaign Automation & Scheduling @(tr ? "(Kampanya Otomasyonu ve Zamanlama)" : "")</h1><p class="pika-corp-lead">@(tr?"Kampanyayı planlayın; sistem hedefi üretsin, doğru zamanda çalıştırsın, kontrol grubuyla etkisini ölçsün.":"Plan campaigns; let the system generate targets, execute at the right time, and measure impact with control groups.")</p></div></section>
+<section class="pika-section pika-corp-section"><div class="container">
+<p>@(tr?"Kampanya otomasyonu Pika’da “takvim + hedefleme + üretim” bütünlüğüyle ele alınır. Sadece “şu gün gönder” değil: aktif kampanyalar için hedef kitlenin otomatik hazırlanması, uygunluk kontrolleri, varyant dağıtımı ve çalıştırma sürecinin standardize edilmesi hedeflenir.":"In Pika, campaign automation is handled as an integrated “calendar + targeting + generation” capability. It standardizes audience preparation, eligibility checks, variant allocation, and execution—not just scheduling a send date.")</p>
+<h3>@(tr?"Ne sağlar?":"What does it provide?")</h3>
+<ul><li>@(tr?"Zaman bazlı çalıştırma: tarih aralığı, gün/saat koşulları ile otomatik yürütme.":"Time-based execution: automate by date range and day/hour conditions.")</li><li>@(tr?"Hedef üretimi: kural uyumu, skor/prediction yaklaşımıyla daha kaliteli hedef listesi.":"Target generation: higher-quality lists using rule compliance and score/prediction logic.")</li><li>@(tr?"Deney tasarımı: varyant + kontrol grubu oranları ile ölçülebilir kampanya yönetimi.":"Experiment design: measurable management with variant + control group ratios.")</li><li>@(tr?"Tek pipeline: şablondan kanal payload’ına, alıcıdan log’a kadar uçtan uca üretim.":"Single pipeline: end-to-end flow from template to channel payload, recipients, and logs.")</li></ul>
+<h3>@(tr?"Nasıl çalışır (özet akış):":"How it works (summary):")</h3>
+<ol><li>@(tr?"Kampanya penceresi tanımlanır (başlangıç/bitiş, gün/saat).":"Define campaign window (start/end, day/hour).")</li><li>@(tr?"Hedefleme kuralları çalışır; uygun kitle belirlenir.":"Run targeting rules and determine eligible audience.")</li><li>@(tr?"Varyant/kontrol grubu ataması yapılır.":"Assign variant/control groups.")</li><li>@(tr?"Mesaj üretimi yapılır ve gönderim kuyruğuna düşer.":"Generate messages and enqueue sends.")</li><li>@(tr?"Sonuçlar (delivery/interaction) analitik katmana akar.":"Stream delivery/interaction results to analytics.")</li></ol>
+<p><strong>KPI:</strong> @(tr?"eligible vs sendable hedef sayısı, kontrol grubu baseline, ROI, dönüşüm uplift.":"eligible vs sendable audience count, control-group baseline, ROI, conversion uplift.")</p>
+<h3>@(tr?"Örnek senaryolar:":"Example scenarios:")</h3>
+<ul><li>@(tr?"Haftalık “cuma fırsatı” kampanyası: sessiz saat + frekans limiti ile":"Weekly Friday-deals campaign with quiet hours and frequency caps")</li><li>@(tr?"“Yeni ürün lansmanı” A/B testli: iki farklı kreatif + kontrol grubu":"New product launch with A/B creatives + control group")</li><li>@(tr?"“Bölge bazlı stok eritme” kampanyası: şehir/kategori filtreleriyle":"Region-based stock-clearance campaign with city/category filters")</li></ul>
+</div></section>
