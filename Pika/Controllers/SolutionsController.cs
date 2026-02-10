@@ -26,6 +26,7 @@ namespace Pika.Controllers
         public IActionResult InAppMessaging() => View();
 
         [HttpGet("personalization")]
+        [HttpGet("[action]")]
         public IActionResult PersonalizationPage() => View("Personalization");
 
         [HttpGet("template-management")]
@@ -50,5 +51,14 @@ namespace Pika.Controllers
         [HttpGet("real-time-event-processing")]
         [HttpGet("[action]")]
         public IActionResult RealTimeEventProcessing() => View();
+
+
+        [HttpGet("integrations")]
+        [HttpGet("[action]")]
+        public IActionResult Integrations() => View();
+
+        [HttpGet("security-privacy")]
+        [HttpGet("[action]")]
+        public IActionResult SecurityPrivacy() => View();
     }
 }

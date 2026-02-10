@@ -1,53 +1,16 @@
 @{
-    ViewData["Title"] = "WhatsAppMessaging";
-    ViewData["TitleKey"] = "solutions.whatsAppMessaging.title";
+    var tr = (ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").Equals("tr", StringComparison.OrdinalIgnoreCase);
+    ViewData["Title"] = tr ? "WhatsApp Messaging (WhatsApp Mesajlaşma)" : "WhatsApp Messaging";
+    ViewData["MetaDescription"] = tr ? "İzin kontrollü WhatsApp bildirimlerini şablonlu, ölçülebilir ve güvenli şekilde yönetin." : "Manage permission-controlled WhatsApp notifications in a templated, measurable, and secure way.";
+    ViewData["MetaKeywords"] = "whatsapp messaging,opt-in,template messaging,provider routing";
 }
-<section class="pika-corp-hero">
-    <div class="container">
-        <div class="pika-corp-hero__grid">
-            <div>
-                <span class="pika-corp-chip" data-i18n="solutions.whatsAppMessaging.corp"></span>
-                <h1 class="pika-corp-title" data-i18n="solutions.whatsAppMessaging.title"></h1>
-                <p class="pika-corp-lead" data-i18n="solutions.whatsAppMessaging.subtitle"></p>
-                <p data-i18n="solutions.whatsAppMessaging.summary"></p>
-            </div>
-            <aside class="pika-corp-aside">
-                <h3 data-i18n="solutions.sections.capabilities"></h3>
-                <div class="pika-corp-aside-list">
-                    <div class="pika-corp-aside-item"><strong data-i18n="solutions.whatsAppMessaging.capabilities.1"></strong></div>
-                    <div class="pika-corp-aside-item"><strong data-i18n="solutions.whatsAppMessaging.capabilities.2"></strong></div>
-                    <div class="pika-corp-aside-item"><strong data-i18n="solutions.whatsAppMessaging.capabilities.3"></strong></div>
-                </div>
-            </aside>
-        </div>
-    </div>
-</section>
-
-<section class="pika-section pika-corp-section pt-0">
-    <div class="container">
-        <h3 data-i18n="solutions.sections.workflow"></h3>
-        <ol>
-            <li data-i18n="solutions.whatsAppMessaging.workflow.step1"></li>
-            <li data-i18n="solutions.whatsAppMessaging.workflow.step2"></li>
-            <li data-i18n="solutions.whatsAppMessaging.workflow.step3"></li>
-        </ol>
-
-        <h3 data-i18n="solutions.sections.integrations"></h3>
-        <p data-i18n="solutions.whatsAppMessaging.integrations"></p>
-        <p class="text-muted" data-i18n="solutions.whatsAppMessaging.repoUnspecified1"></p>
-
-        <h3 data-i18n="solutions.sections.kpi"></h3>
-        <p data-i18n="solutions.whatsAppMessaging.kpi"></p>
-
-        <h3 data-i18n="solutions.sections.compliance"></h3>
-        <p data-i18n="solutions.whatsAppMessaging.compliance"></p>
-        <p class="text-muted" data-i18n="solutions.whatsAppMessaging.repoUnspecified2"></p>
-
-        <h3 data-i18n="solutions.sections.scenarios"></h3>
-        <p data-i18n="solutions.whatsAppMessaging.scenarios"></p>
-
-        <a class="btn pika-btn-ghost" href="@Url.Action("PushNotifications", "Solutions")">
-            <span data-i18n="solutions.next"></span>: <strong data-i18n="solutions.pushNotifications.title"></strong>
-        </a>
-    </div>
-</section>
+<section class="pika-corp-hero"><div class="container"><h1 class="pika-corp-title">WhatsApp Messaging @(tr?"(WhatsApp Mesajlaşma)":"")</h1><p class="pika-corp-lead">@(tr?"İzin kontrollü WhatsApp bildirimlerini şablonlu, ölçülebilir ve güvenli şekilde yönetin.":"Run consent-controlled WhatsApp notifications with templates, security, and measurable outcomes.")</p></div></section>
+<section class="pika-section pika-corp-section"><div class="container">
+<p>@(tr?"WhatsApp, yüksek okunma oranlarıyla çok güçlü; ama kuralları net: izin (opt-in) ve şablon (template) disiplinine uymak gerekir. Pika’da yaklaşım; opt-in kontrolünü, şablon üretimini ve sağlayıcı yönlendirmesini (provider routing) standart bir hat üzerinden yönetmeye odaklanır.":"WhatsApp has very high read rates, but strict rules: consent (opt-in) and template discipline. Pika focuses on a standard line that manages opt-in checks, template generation, and provider routing.")</p>
+<h3>@(tr?"Ne sağlar?":"What does it provide?")</h3>
+<ul><li>@(tr?"Opt-in odaklı gönderim: izin yoksa gönderme, izin varsa güvenle yürütme.":"Opt-in-first sending: block sends without consent, execute safely with consent.")</li><li>@(tr?"Şablon → payload dönüşümü: tek bir template yönetimiyle WhatsApp formatına uyum.":"Template → payload conversion: align to WhatsApp format with single template management.")</li><li>@(tr?"Provider routing: firma/tenant bazında sağlayıcı seçimi ve yönetim kolaylığı.":"Provider routing: select/manage providers per company/tenant.")</li><li>@(tr?"Operasyonel kontrol: hata nedenleri, başarısızlıklar, yeniden deneme stratejileri için altyapı.":"Operational control: infrastructure for error causes, failures, and retry strategies.")</li></ul>
+<h3>@(tr?"Nasıl çalışır (özet akış):":"How it works (summary):")</h3>
+<ol><li>@(tr?"WhatsApp şablonu oluşturulur (tip: bilgilendirme / pazarlama vb.).":"Create WhatsApp template (informational/marketing etc.).")</li><li>@(tr?"Hedef kitle, WhatsApp numarası + opt-in koşuluyla filtrelenir/segmentlenir.":"Filter/segment audience by WhatsApp number + opt-in condition.")</li><li>@(tr?"Gönderim anında adaptör payload üretir; sağlayıcıya yönlendirilir.":"At send time, adapter builds payload and routes to provider.")</li><li>@(tr?"Sonuçlar loglanır ve analitik/operasyon ekranlarına veri olur.":"Results are logged for analytics and operations screens.")</li><li>@(tr?"İhtiyaç halinde aynı akış içinde alternatif kanal fallback uygulanır (ör. e-posta).":"Apply fallback channel in the same flow if needed (e.g., email).")</li></ol>
+<p><strong>KPI:</strong> @(tr?"opt-in coverage, gönderim başarı oranı, hata oranı, yanıt/etkileşim oranı, kampanya dönüşümü.":"opt-in coverage, send success rate, error rate, response/engagement rate, campaign conversion.")</p>
+<p><strong>@(tr?"Uyum notu":"Compliance note"):</strong> @(tr?"WhatsApp ekosisteminde opt-in kuralı “nice to have” değil, temel şarttır.":"In the WhatsApp ecosystem, opt-in is not optional; it is a baseline requirement.")</p>
+</div></section>

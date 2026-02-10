@@ -1,53 +1,15 @@
 @{
-    ViewData["Title"] = "DeliverabilityCompliance";
-    ViewData["TitleKey"] = "solutions.deliverabilityCompliance.title";
+    var tr = (ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").Equals("tr", StringComparison.OrdinalIgnoreCase);
+    ViewData["Title"] = tr ? "Deliverability & Compliance (Teslim Edilebilirlik ve Uyumluluk)" : "Deliverability & Compliance";
+    ViewData["MetaDescription"] = tr ? "İzin, liste hijyeni ve teknik doğrulama ile teslimat kalitesini sürdürülebilir hale getirin." : "Sustain delivery quality with consent, list hygiene, and technical validation.";
+    ViewData["MetaKeywords"] = "deliverability,compliance,spf,dkim,dmarc,unsubscribe,suppression,kvkk";
 }
-<section class="pika-corp-hero">
-    <div class="container">
-        <div class="pika-corp-hero__grid">
-            <div>
-                <span class="pika-corp-chip" data-i18n="solutions.deliverabilityCompliance.corp"></span>
-                <h1 class="pika-corp-title" data-i18n="solutions.deliverabilityCompliance.title"></h1>
-                <p class="pika-corp-lead" data-i18n="solutions.deliverabilityCompliance.subtitle"></p>
-                <p data-i18n="solutions.deliverabilityCompliance.summary"></p>
-            </div>
-            <aside class="pika-corp-aside">
-                <h3 data-i18n="solutions.sections.capabilities"></h3>
-                <div class="pika-corp-aside-list">
-                    <div class="pika-corp-aside-item"><strong data-i18n="solutions.deliverabilityCompliance.capabilities.1"></strong></div>
-                    <div class="pika-corp-aside-item"><strong data-i18n="solutions.deliverabilityCompliance.capabilities.2"></strong></div>
-                    <div class="pika-corp-aside-item"><strong data-i18n="solutions.deliverabilityCompliance.capabilities.3"></strong></div>
-                </div>
-            </aside>
-        </div>
-    </div>
-</section>
-
-<section class="pika-section pika-corp-section pt-0">
-    <div class="container">
-        <h3 data-i18n="solutions.sections.workflow"></h3>
-        <ol>
-            <li data-i18n="solutions.deliverabilityCompliance.workflow.step1"></li>
-            <li data-i18n="solutions.deliverabilityCompliance.workflow.step2"></li>
-            <li data-i18n="solutions.deliverabilityCompliance.workflow.step3"></li>
-        </ol>
-
-        <h3 data-i18n="solutions.sections.integrations"></h3>
-        <p data-i18n="solutions.deliverabilityCompliance.integrations"></p>
-        <p class="text-muted" data-i18n="solutions.deliverabilityCompliance.repoUnspecified1"></p>
-
-        <h3 data-i18n="solutions.sections.kpi"></h3>
-        <p data-i18n="solutions.deliverabilityCompliance.kpi"></p>
-
-        <h3 data-i18n="solutions.sections.compliance"></h3>
-        <p data-i18n="solutions.deliverabilityCompliance.compliance"></p>
-        <p class="text-muted" data-i18n="solutions.deliverabilityCompliance.repoUnspecified2"></p>
-
-        <h3 data-i18n="solutions.sections.scenarios"></h3>
-        <p data-i18n="solutions.deliverabilityCompliance.scenarios"></p>
-
-        <a class="btn pika-btn-ghost" href="@Url.Action("DataManagementEtl", "Solutions")">
-            <span data-i18n="solutions.next"></span>: <strong data-i18n="solutions.dataManagementEtl.title"></strong>
-        </a>
-    </div>
-</section>
+<section class="pika-corp-hero"><div class="container"><h1 class="pika-corp-title">Deliverability & Compliance @(tr?"(Teslim Edilebilirlik ve Uyumluluk)":"")</h1><p class="pika-corp-lead">@(tr?"İzin, liste hijyeni ve teknik doğrulama ile teslimat kalitesini sürdürülebilir hale getirin.":"Make delivery quality sustainable through consent, hygiene, and technical validation.")</p></div></section>
+<section class="pika-section pika-corp-section"><div class="container">
+<p>@(tr?"Burası pazarlama metninde genelde “sıkıcı” gibi görünür ama satışta en büyük güven artırıcılardan biridir. Çünkü iyi otomasyon “gönderiyor olmak” değil; inbox’a düşmek, şikayet almamak ve itibar (sender reputation) yönetmektir. Özellikle e-posta tarafında bulk sender gereksinimleri netleştiği için bu başlığı ayrı bir çözüm olarak sunmak kurumsal duruşu güçlendirir.":"This topic may look ‘boring’ in marketing copy but is one of the biggest trust boosters in sales. Good automation is not merely sending; it is landing in inbox, avoiding complaints, and managing sender reputation. Especially with clear bulk sender requirements, presenting this as a standalone solution strengthens enterprise positioning.")</p>
+<h3>@(tr?"Ne sağlar?":"What does it provide?")</h3>
+<ul><li>@(tr?"Unsubscribe ve suppression yaklaşımı: istemeyen kullanıcıya tekrar gönderimi engelleme.":"Unsubscribe and suppression: prevent re-sending to users who opt out.")</li><li>@(tr?"Bounce yönetimi: hard/soft bounce ayrımı ve liste hijyeni için temel.":"Bounce management: hard/soft bounce separation and list hygiene baseline.")</li><li>@(tr?"Domain doğrulama disiplini: SPF/DKIM/DMARC çerçevesiyle gönderici kimliği.":"Domain validation discipline: sender identity with SPF/DKIM/DMARC.")</li><li>@(tr?"İzin yönetimi: özellikle WhatsApp gibi kanallarda opt-in şartlarına uyum.":"Consent governance: compliance with opt-in requirements, especially for WhatsApp.")</li></ul>
+<h3>@(tr?"Nasıl çalışır (özet akış):":"How it works (summary):")</h3>
+<ol><li>@(tr?"Teknik doğrulama (SPF/DKIM/DMARC) ve gönderim altyapısı netleştirilir.":"Establish technical validation (SPF/DKIM/DMARC) and sender infrastructure.")</li><li>@(tr?"Unsubscribe mekanizması aktif edilir, suppression list uygulanır.":"Enable unsubscribe mechanism and apply suppression list.")</li><li>@(tr?"Bounce/complaint sinyalleri izlenir, liste temizliği yapılır.":"Track bounce/complaint signals and clean lists.")</li><li>@(tr?"Kampanya/journey seviyesinde frekans ve sessiz saat kuralları uygulanır.":"Apply frequency and quiet-hour rules at campaign/journey level.")</li><li>@(tr?"Süreç raporlanır: uyum durumu + teslimat kalitesi trendleri.":"Report process: compliance status + delivery quality trends.")</li></ol>
+<p>@(tr?"Uyum tarafı: Türkiye’de Kişisel Verileri Koruma Kurumu çerçevesi (KVKK) kapsamında aydınlatma, rıza ve saklama prensipleri pazarlama otomasyonunda net bir operasyon gerektirir.":"Compliance side: under KVKK/GDPR-style requirements, notice, consent, and retention principles need clear operational execution in marketing automation.")</p>
+</div></section>

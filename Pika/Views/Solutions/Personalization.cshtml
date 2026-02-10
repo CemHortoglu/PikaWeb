@@ -1,53 +1,46 @@
 @{
-    ViewData["Title"] = "Personalization";
-    ViewData["TitleKey"] = "solutions.personalization.title";
+    var tr = (ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").Equals("tr", StringComparison.OrdinalIgnoreCase);
+    ViewData["Title"] = tr ? "Journey Orchestration (Müşteri Yolculuğu Otomasyonu)" : "Journey Orchestration";
+    ViewData["MetaDescription"] = tr
+        ? "Olay, zaman ve kurallara göre çok adımlı müşteri akışlarını otomatik çalıştırın; her adımı ölçün ve iyileştirin."
+        : "Automate multi-step customer journeys based on events, time, and rules; measure and optimize every step.";
+    ViewData["MetaKeywords"] = "journey orchestration,müşteri yolculuğu otomasyonu,multichannel automation,customer lifecycle";
 }
 <section class="pika-corp-hero">
     <div class="container">
-        <div class="pika-corp-hero__grid">
-            <div>
-                <span class="pika-corp-chip" data-i18n="solutions.personalization.corp"></span>
-                <h1 class="pika-corp-title" data-i18n="solutions.personalization.title"></h1>
-                <p class="pika-corp-lead" data-i18n="solutions.personalization.subtitle"></p>
-                <p data-i18n="solutions.personalization.summary"></p>
-            </div>
-            <aside class="pika-corp-aside">
-                <h3 data-i18n="solutions.sections.capabilities"></h3>
-                <div class="pika-corp-aside-list">
-                    <div class="pika-corp-aside-item"><strong data-i18n="solutions.personalization.capabilities.1"></strong></div>
-                    <div class="pika-corp-aside-item"><strong data-i18n="solutions.personalization.capabilities.2"></strong></div>
-                    <div class="pika-corp-aside-item"><strong data-i18n="solutions.personalization.capabilities.3"></strong></div>
-                </div>
-            </aside>
-        </div>
+        <h1 class="pika-corp-title">@(tr ? "Journey Orchestration (Müşteri Yolculuğu Otomasyonu)" : "Journey Orchestration")</h1>
+        <p class="pika-corp-lead">@(tr ? "Olay, zaman ve kurallara göre çok adımlı müşteri akışlarını otomatik çalıştırın; her adım ölçülsün, iyileşsin." : "Automate multi-step customer flows using events, time, and rules; ensure every step is measured and improved.")</p>
     </div>
 </section>
-
-<section class="pika-section pika-corp-section pt-0">
+<section class="pika-section pika-corp-section">
     <div class="container">
-        <h3 data-i18n="solutions.sections.workflow"></h3>
+        <p>@(tr ? "Pika’da journey yaklaşımı, tek seferlik kampanyalardan daha ileri bir noktada durur: müşteri bir aksiyon aldığında (satın alma, belirli bir segment koşulu, belirli bir süre etkileşimsizlik vb.) süreci başlatır ve mesajlaşmayı, beklemeyi, kontrol etmeyi, tekrar denemeyi aynı akış içinde yönetir. Böylece ekipler “kampanya gönderdik mi?” yerine “akış doğru mu çalışıyor, hedefe doğru gidiyor mu?” sorusuna odaklanır." : "In Pika, the journey approach goes beyond one-off campaigns: when a customer takes an action (purchase, matching a segment condition, inactivity for a period, etc.), the process starts and handles messaging, waiting, checks, and retries within one flow. Teams focus on “is the flow running correctly and moving toward the goal?” instead of “did we send a campaign?”")</p>
+
+        <h3>@(tr ? "Ne sağlar?" : "What does it provide?")</h3>
+        <ul>
+            <li>@(tr ? "Akış tasarımı: adım adım ilerleyen journey’ler (kanal seçimi, koşul, bekleme, tekrar deneme, sonlandırma)." : "Flow design: step-by-step journeys (channel selection, conditions, waiting, retry, termination).")</li>
+            <li>@(tr ? "Otomatik hedefleme: segment ve davranış sinyalleriyle doğru kişiyi doğru akışa dahil etme." : "Automatic targeting: include the right person in the right flow using segment and behavioral signals.")</li>
+            <li>@(tr ? "Çok kanallı yürütme: Email / SMS / WhatsApp gibi kanalları aynı mantıkla orkestre etme." : "Multichannel execution: orchestrate channels like Email / SMS / WhatsApp with one logic.")</li>
+            <li>@(tr ? "İzlenebilirlik: adım bazlı başarı/başarısızlık, gecikme, drop-off ve dönüşüm analizi için sağlam zemin." : "Observability: strong foundation for step-level success/failure, latency, drop-off, and conversion analysis.")</li>
+        </ul>
+
+        <h3>@(tr ? "Nasıl çalışır (özet akış):" : "How it works (summary):")</h3>
         <ol>
-            <li data-i18n="solutions.personalization.workflow.step1"></li>
-            <li data-i18n="solutions.personalization.workflow.step2"></li>
-            <li data-i18n="solutions.personalization.workflow.step3"></li>
+            <li>@(tr ? "Journey’nin başlangıç tetikleyicisi tanımlanır (ör. satın alma tamamlandı)." : "Define the journey start trigger (e.g., purchase completed).")</li>
+            <li>@(tr ? "Hedef kitlenin uygunluğu kontrol edilir (segment, izin, frekans limiti gibi kurallar)." : "Validate audience eligibility (segment, consent, frequency cap rules).")</li>
+            <li>@(tr ? "Akış adımları sırayla çalışır: mesaj gönder, bekle, koşul kontrol et, sonraki adıma geç." : "Execute flow steps in order: send message, wait, check condition, move to next step.")</li>
+            <li>@(tr ? "Her adım sonucu loglanır; gerekli olaylar analitik katmana akıtılır." : "Log each step outcome; stream required events to analytics.")</li>
+            <li>@(tr ? "Başarısızlık durumunda yeniden deneme / alternatif kanal / akıştan çıkarma stratejisi uygulanır." : "Apply retry / alternative channel / exit strategy on failures.")</li>
         </ol>
 
-        <h3 data-i18n="solutions.sections.integrations"></h3>
-        <p data-i18n="solutions.personalization.integrations"></p>
-        <p class="text-muted" data-i18n="solutions.personalization.repoUnspecified1"></p>
+        <h3>KPI @(tr ? "önerileri" : "suggestions")</h3>
+        <p>@(tr ? "enrolment sayısı, adım geçiş oranı, adım bazlı drop-off, time-to-convert, kanal bazlı maliyet/dönüşüm." : "enrolment count, step transition rate, step-level drop-off, time-to-convert, channel-level cost/conversion.")</p>
 
-        <h3 data-i18n="solutions.sections.kpi"></h3>
-        <p data-i18n="solutions.personalization.kpi"></p>
-
-        <h3 data-i18n="solutions.sections.compliance"></h3>
-        <p data-i18n="solutions.personalization.compliance"></p>
-        <p class="text-muted" data-i18n="solutions.personalization.repoUnspecified2"></p>
-
-        <h3 data-i18n="solutions.sections.scenarios"></h3>
-        <p data-i18n="solutions.personalization.scenarios"></p>
-
-        <a class="btn pika-btn-ghost" href="@Url.Action("TemplateManagement", "Solutions")">
-            <span data-i18n="solutions.next"></span>: <strong data-i18n="solutions.templateManagement.title"></strong>
-        </a>
+        <h3>@(tr ? "Örnek senaryolar:" : "Example scenarios:")</h3>
+        <ul>
+            <li>@(tr ? "İlk satın alma → 2 gün sonra teşekkür + 7 gün sonra çapraz satış önerisi" : "First purchase → thank-you after 2 days + cross-sell suggestion after 7 days")</li>
+            <li>@(tr ? "Sepet bırakma → 30 dk bekle → e-posta → 24 saat sonra SMS" : "Cart abandonment → wait 30 min → email → SMS after 24 hours")</li>
+            <li>@(tr ? "Uzun süredir pasif segmenti → geri kazanım akışı → dönüşene kadar frekans kontrollü iletişim" : "Long-inactive segment → win-back flow → frequency-controlled communication until conversion")</li>
+        </ul>
     </div>
 </section>

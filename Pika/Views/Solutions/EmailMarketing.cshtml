@@ -1,53 +1,18 @@
 @{
-    ViewData["Title"] = "EmailMarketing";
-    ViewData["TitleKey"] = "solutions.emailMarketing.title";
+    var tr = (ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").Equals("tr", StringComparison.OrdinalIgnoreCase);
+    ViewData["Title"] = tr ? "Email Marketing (E-posta Pazarlama)" : "Email Marketing";
+    ViewData["MetaDescription"] = tr ? "Şablon, kişiselleştirme ve etkileşim takibi ile ölçeklenebilir e-posta iletişimi." : "Scalable email communication with templates, personalization, and interaction tracking.";
+    ViewData["MetaKeywords"] = "email marketing,personalization,unsubscribe,deliverability,open rate,ctr";
 }
-<section class="pika-corp-hero">
-    <div class="container">
-        <div class="pika-corp-hero__grid">
-            <div>
-                <span class="pika-corp-chip" data-i18n="solutions.emailMarketing.corp"></span>
-                <h1 class="pika-corp-title" data-i18n="solutions.emailMarketing.title"></h1>
-                <p class="pika-corp-lead" data-i18n="solutions.emailMarketing.subtitle"></p>
-                <p data-i18n="solutions.emailMarketing.summary"></p>
-            </div>
-            <aside class="pika-corp-aside">
-                <h3 data-i18n="solutions.sections.capabilities"></h3>
-                <div class="pika-corp-aside-list">
-                    <div class="pika-corp-aside-item"><strong data-i18n="solutions.emailMarketing.capabilities.1"></strong></div>
-                    <div class="pika-corp-aside-item"><strong data-i18n="solutions.emailMarketing.capabilities.2"></strong></div>
-                    <div class="pika-corp-aside-item"><strong data-i18n="solutions.emailMarketing.capabilities.3"></strong></div>
-                </div>
-            </aside>
-        </div>
-    </div>
-</section>
-
-<section class="pika-section pika-corp-section pt-0">
-    <div class="container">
-        <h3 data-i18n="solutions.sections.workflow"></h3>
-        <ol>
-            <li data-i18n="solutions.emailMarketing.workflow.step1"></li>
-            <li data-i18n="solutions.emailMarketing.workflow.step2"></li>
-            <li data-i18n="solutions.emailMarketing.workflow.step3"></li>
-        </ol>
-
-        <h3 data-i18n="solutions.sections.integrations"></h3>
-        <p data-i18n="solutions.emailMarketing.integrations"></p>
-        <p class="text-muted" data-i18n="solutions.emailMarketing.repoUnspecified1"></p>
-
-        <h3 data-i18n="solutions.sections.kpi"></h3>
-        <p data-i18n="solutions.emailMarketing.kpi"></p>
-
-        <h3 data-i18n="solutions.sections.compliance"></h3>
-        <p data-i18n="solutions.emailMarketing.compliance"></p>
-        <p class="text-muted" data-i18n="solutions.emailMarketing.repoUnspecified2"></p>
-
-        <h3 data-i18n="solutions.sections.scenarios"></h3>
-        <p data-i18n="solutions.emailMarketing.scenarios"></p>
-
-        <a class="btn pika-btn-ghost" href="@Url.Action("SmsCampaigns", "Solutions")">
-            <span data-i18n="solutions.next"></span>: <strong data-i18n="solutions.smsCampaigns.title"></strong>
-        </a>
-    </div>
-</section>
+<section class="pika-corp-hero"><div class="container"><h1 class="pika-corp-title">Email Marketing @(tr?"(E-posta Pazarlama)":"")</h1><p class="pika-corp-lead">@(tr?"Şablon, kişiselleştirme ve etkileşim takibi ile ölçeklenebilir e-posta iletişimi.":"Scalable email communication with templates, personalization, and interaction tracking.")</p></div></section>
+<section class="pika-section pika-corp-section"><div class="container">
+<p>@(tr?"E-posta, performansın ölçülebildiği ve içerik zenginliğinin yüksek olduğu bir kanal. Pika’da e-posta tarafı sadece “gönder” değil: şablon hazırlama, içerik doğrulama, takip parametreleri, abonelikten çıkma (unsubscribe) ve etkileşim sinyallerinin toplanmasıyla birlikte ele alınır.":"Email is a high-content, highly measurable channel. In Pika, email is not just “send”: it includes template creation, content validation, tracking parameters, unsubscribe handling, and interaction signal collection.")</p>
+<h3>@(tr?"Ne sağlar?":"What does it provide?")</h3>
+<ul><li>@(tr?"Şablon bazlı üretim: kurumsal mail tasarımları, dinamik alanlar, konu/önizleme metni.":"Template-based production: corporate layouts, dynamic fields, subject/preview text.")</li><li>@(tr?"Kişiselleştirme: müşteri alanları + metadata ile dinamik içerik.":"Personalization: dynamic content via customer fields + metadata.")</li><li>@(tr?"Etkileşim ölçümü: open/click yanında davranış sinyalleriyle zengin analiz zemini.":"Interaction measurement: enriched analytics with behavior signals beyond open/click.")</li><li>@(tr?"Uyum: unsubscribe akışı ve suppression yaklaşımına uygun temel.":"Compliance: unsubscribe flow and suppression-first baseline.")</li></ul>
+<h3>@(tr?"Nasıl çalışır (özet akış):":"How it works (summary):")</h3>
+<ol><li>@(tr?"Template hazırlanır (HTML + dinamik alanlar).":"Prepare template (HTML + dynamic fields).")</li><li>@(tr?"Hedef kitle segment/kural ile seçilir.":"Select target audience via segment/rules.")</li><li>@(tr?"Gönderim öncesi içerik “gönderilebilir” hale getirilir (preview, link/izleme kurgusu).":"Make content send-ready (preview, links, tracking setup).")</li><li>@(tr?"Gönderim gerçekleşir; open/click etkileşimleri toplanır.":"Execute send and collect open/click interactions.")</li><li>@(tr?"Sonuçlara göre otomasyon kararları (yeniden hedefleme, segment güncelleme) çalıştırılır.":"Trigger automation decisions (retargeting, segment updates) based on outcomes.")</li></ol>
+<p><strong>KPI:</strong> delivered rate, bounce rate, open rate, CTR, unsubscribe rate, conversion rate.</p>
+<p><strong>@(tr?"Not (teslim edilebilirlik)":"Note (deliverability)"):</strong> @(tr?"Büyük gönderimlerde Google / Yahoo gibi ekosistemlerin bulk sender beklentileri kritik; Pika metninde “Deliverability” başlığını ayrıca konumlamak satışta güç katar.":"At large volumes, bulk sender expectations in ecosystems like Google/Yahoo are critical; positioning “Deliverability” separately strengthens enterprise sales credibility.")</p>
+<h3>@(tr?"Örnek senaryolar:":"Example scenarios:")</h3>
+<ul><li>@(tr?"Sepet hatırlatma + kişiselleştirilmiş ürün önerileri":"Cart reminder + personalized product recommendations")</li><li>@(tr?"Aylık özet raporu + çapraz satış CTA":"Monthly summary report + cross-sell CTA")</li><li>@(tr?"Pasif müşteri geri kazanım: 3 adımlı nurturing serisi":"Win-back for inactive customers: 3-step nurturing series")</li></ul>
+</div></section>

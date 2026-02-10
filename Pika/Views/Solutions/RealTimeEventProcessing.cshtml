@@ -1,53 +1,15 @@
 @{
-    ViewData["Title"] = "RealTimeEventProcessing";
-    ViewData["TitleKey"] = "solutions.realTimeEventProcessing.title";
+    var tr = (ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").Equals("tr", StringComparison.OrdinalIgnoreCase);
+    ViewData["Title"] = tr ? "Real-time Event Processing (Gerçek Zamanlı Olay İşleme)" : "Real-time Event Processing";
+    ViewData["MetaDescription"] = tr ? "Olayı yakalayın, anında aksiyon alın: doğru mesaj, doğru zamanda." : "Capture events and act instantly with the right message at the right time.";
+    ViewData["MetaKeywords"] = "real-time event processing,ingestion,latency,journey trigger,rate limit";
 }
-<section class="pika-corp-hero">
-    <div class="container">
-        <div class="pika-corp-hero__grid">
-            <div>
-                <span class="pika-corp-chip" data-i18n="solutions.realTimeEventProcessing.corp"></span>
-                <h1 class="pika-corp-title" data-i18n="solutions.realTimeEventProcessing.title"></h1>
-                <p class="pika-corp-lead" data-i18n="solutions.realTimeEventProcessing.subtitle"></p>
-                <p data-i18n="solutions.realTimeEventProcessing.summary"></p>
-            </div>
-            <aside class="pika-corp-aside">
-                <h3 data-i18n="solutions.sections.capabilities"></h3>
-                <div class="pika-corp-aside-list">
-                    <div class="pika-corp-aside-item"><strong data-i18n="solutions.realTimeEventProcessing.capabilities.1"></strong></div>
-                    <div class="pika-corp-aside-item"><strong data-i18n="solutions.realTimeEventProcessing.capabilities.2"></strong></div>
-                    <div class="pika-corp-aside-item"><strong data-i18n="solutions.realTimeEventProcessing.capabilities.3"></strong></div>
-                </div>
-            </aside>
-        </div>
-    </div>
-</section>
-
-<section class="pika-section pika-corp-section pt-0">
-    <div class="container">
-        <h3 data-i18n="solutions.sections.workflow"></h3>
-        <ol>
-            <li data-i18n="solutions.realTimeEventProcessing.workflow.step1"></li>
-            <li data-i18n="solutions.realTimeEventProcessing.workflow.step2"></li>
-            <li data-i18n="solutions.realTimeEventProcessing.workflow.step3"></li>
-        </ol>
-
-        <h3 data-i18n="solutions.sections.integrations"></h3>
-        <p data-i18n="solutions.realTimeEventProcessing.integrations"></p>
-        <p class="text-muted" data-i18n="solutions.realTimeEventProcessing.repoUnspecified1"></p>
-
-        <h3 data-i18n="solutions.sections.kpi"></h3>
-        <p data-i18n="solutions.realTimeEventProcessing.kpi"></p>
-
-        <h3 data-i18n="solutions.sections.compliance"></h3>
-        <p data-i18n="solutions.realTimeEventProcessing.compliance"></p>
-        <p class="text-muted" data-i18n="solutions.realTimeEventProcessing.repoUnspecified2"></p>
-
-        <h3 data-i18n="solutions.sections.scenarios"></h3>
-        <p data-i18n="solutions.realTimeEventProcessing.scenarios"></p>
-
-        <a class="btn pika-btn-ghost" href="@Url.Action("Solutions", "Home")">
-            <span data-i18n="solutions.next"></span>: <strong data-i18n="solutions.overview.title"></strong>
-        </a>
-    </div>
-</section>
+<section class="pika-corp-hero"><div class="container"><h1 class="pika-corp-title">Real-time Event Processing @(tr?"(Gerçek Zamanlı Olay İşleme)":"")</h1><p class="pika-corp-lead">@(tr?"Olayı yakalayın, anında aksiyon alın: doğru mesaj, doğru zamanda.":"Capture events and take action instantly: right message, right time.")</p></div></section>
+<section class="pika-section pika-corp-section"><div class="container">
+<p>@(tr?"Gerçek zamanlı otomasyon, müşteri deneyimini “gecikmeli pazarlama”dan çıkarıp “anlık etkileşim”e taşır. Burada kritik olan iki şey var: (1) güvenli ingestion (kötü niyetli trafik ve hata) ve (2) doğru tetik mantığı (gereksiz spam’e düşmeden otomasyon).":"Real-time automation moves customer experience from “delayed marketing” to “instant engagement.” Two things are critical: (1) secure ingestion (malicious traffic and errors) and (2) correct trigger logic (automation without unnecessary spam).")</p>
+<h3>@(tr?"Ne sağlar?":"What does it provide?")</h3>
+<ul><li>@(tr?"Satın alma gibi kritik olaylarda anında tetikleme":"Instant triggers for critical events like purchase")</li><li>@(tr?"Web davranış event’lerinden (sayfa görüntüleme/aksiyon) sinyal üretme":"Signal generation from web behavior events (page views/actions)")</li><li>@(tr?"Rate limit + doğrulama ile güvenli çalışma":"Secure operation with rate limits + validation")</li><li>@(tr?"Olay bazlı segment güncelleme ve journey enrolment":"Event-based segment updates and journey enrolment")</li></ul>
+<h3>@(tr?"Nasıl çalışır (özet akış):":"How it works (summary):")</h3>
+<ol><li>@(tr?"Event kaynağı event’i gönderir.":"Event source sends event.")</li><li>@(tr?"Sistem key/origin/limit doğrular.":"System validates key/origin/limits.")</li><li>@(tr?"Event depolanır ve ilgili iş akışına bağlanır.":"Event is stored and linked to relevant workflow.")</li><li>@(tr?"Journey başlar, kanal adımları çalışır.":"Journey starts and channel steps execute.")</li><li>@(tr?"Sonuçlar analitik katmana aktarılır.":"Results are transferred to analytics layer.")</li></ol>
+<p><strong>KPI:</strong> @(tr?"event kabul oranı, reject oranı, tetiklenen journey sayısı, end-to-end latency.":"event acceptance rate, reject rate, number of triggered journeys, end-to-end latency.")</p>
+</div></section>

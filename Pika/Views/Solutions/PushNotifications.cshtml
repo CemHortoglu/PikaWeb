@@ -1,53 +1,13 @@
 @{
-    ViewData["Title"] = "PushNotifications";
-    ViewData["TitleKey"] = "solutions.pushNotifications.title";
+    var tr = (ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").Equals("tr", StringComparison.OrdinalIgnoreCase);
+    ViewData["Title"] = tr ? "Push Notifications (Yol Haritası)" : "Push Notifications (Roadmap)";
+    ViewData["MetaDescription"] = tr ? "Mobil bildirimleri segment ve otomasyonla birleştirin; cihaz bazlı hedeflemeyi ürünleştirin." : "Combine mobile notifications with segmentation and automation; productize device-level targeting.";
+    ViewData["MetaKeywords"] = "push notifications,roadmap,fcm,apns,token management,telemetry";
 }
-<section class="pika-corp-hero">
-    <div class="container">
-        <div class="pika-corp-hero__grid">
-            <div>
-                <span class="pika-corp-chip" data-i18n="solutions.pushNotifications.corp"></span>
-                <h1 class="pika-corp-title" data-i18n="solutions.pushNotifications.title"></h1>
-                <p class="pika-corp-lead" data-i18n="solutions.pushNotifications.subtitle"></p>
-                <p data-i18n="solutions.pushNotifications.summary"></p>
-            </div>
-            <aside class="pika-corp-aside">
-                <h3 data-i18n="solutions.sections.capabilities"></h3>
-                <div class="pika-corp-aside-list">
-                    <div class="pika-corp-aside-item"><strong data-i18n="solutions.pushNotifications.capabilities.1"></strong></div>
-                    <div class="pika-corp-aside-item"><strong data-i18n="solutions.pushNotifications.capabilities.2"></strong></div>
-                    <div class="pika-corp-aside-item"><strong data-i18n="solutions.pushNotifications.capabilities.3"></strong></div>
-                </div>
-            </aside>
-        </div>
-    </div>
-</section>
-
-<section class="pika-section pika-corp-section pt-0">
-    <div class="container">
-        <h3 data-i18n="solutions.sections.workflow"></h3>
-        <ol>
-            <li data-i18n="solutions.pushNotifications.workflow.step1"></li>
-            <li data-i18n="solutions.pushNotifications.workflow.step2"></li>
-            <li data-i18n="solutions.pushNotifications.workflow.step3"></li>
-        </ol>
-
-        <h3 data-i18n="solutions.sections.integrations"></h3>
-        <p data-i18n="solutions.pushNotifications.integrations"></p>
-        <p class="text-muted" data-i18n="solutions.pushNotifications.repoUnspecified1"></p>
-
-        <h3 data-i18n="solutions.sections.kpi"></h3>
-        <p data-i18n="solutions.pushNotifications.kpi"></p>
-
-        <h3 data-i18n="solutions.sections.compliance"></h3>
-        <p data-i18n="solutions.pushNotifications.compliance"></p>
-        <p class="text-muted" data-i18n="solutions.pushNotifications.repoUnspecified2"></p>
-
-        <h3 data-i18n="solutions.sections.scenarios"></h3>
-        <p data-i18n="solutions.pushNotifications.scenarios"></p>
-
-        <a class="btn pika-btn-ghost" href="@Url.Action("InAppMessaging", "Solutions")">
-            <span data-i18n="solutions.next"></span>: <strong data-i18n="solutions.inAppMessaging.title"></strong>
-        </a>
-    </div>
-</section>
+<section class="pika-corp-hero"><div class="container"><h1 class="pika-corp-title">Push Notifications</h1><p class="pika-corp-lead">@(tr?"Mobil bildirimleri segment ve otomasyonla birleştirin; cihaz bazlı hedeflemeyi ürünleştirin.":"Combine mobile notifications with segmentation and automation; productize device-level targeting.")</p></div></section>
+<section class="pika-section pika-corp-section"><div class="container">
+<p><strong>@(tr?"Yol Haritası":"Roadmap")</strong> — @(tr?"Repo’da çekirdek var / entegrasyon genişletilebilir":"Core exists in the repo / integration can be extended")</p>
+<p>@(tr?"Şu an repo seviyesinde “sender iskeleti” yaklaşımı varsa bile, gerçek değer için Firebase (FCM) / APNs entegrasyonu, token yönetimi ve delivery/open telemetry eklenmesi gerekir. Bunu “yakında” diye değil; açık bir yol haritası maddesi olarak koymak daha profesyonel durur.":"Even if there is a sender skeleton at repo level, real value requires Firebase (FCM)/APNs integration, token lifecycle management, and delivery/open telemetry. Positioning this as an explicit roadmap item is more professional than calling it “coming soon.”")</p>
+<h3>@(tr?"Eklenmesi gereken ürün parçaları (pratik):":"Required product components (practical):")</h3>
+<ul><li>@(tr?"Device token kayıt/yenileme API’si":"Device token registration/refresh API")</li><li>@(tr?"Segment→token eşlemesi":"Segment-to-token mapping")</li><li>@(tr?"FCM/APNs gönderim pipeline’ı (queue, rate limit)":"FCM/APNs send pipeline (queue, rate limit)")</li><li>@(tr?"Delivery/open event’lerinin analitik katmana akması":"Delivery/open event flow into analytics layer")</li></ul>
+</div></section>

@@ -1,53 +1,10 @@
 @{
-    ViewData["Title"] = "InAppMessaging";
-    ViewData["TitleKey"] = "solutions.inAppMessaging.title";
+    var tr = (ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").Equals("tr", StringComparison.OrdinalIgnoreCase);
+    ViewData["Title"] = tr ? "In-App Messaging (Yol Haritası)" : "In-App Messaging (Roadmap)";
+    ViewData["MetaDescription"] = tr ? "Uygulama içi mesajları davranış tetikleriyle kişiselleştirin; gösterim/etkileşim ölçün." : "Personalize in-app messaging with behavioral triggers and measure impression/engagement.";
+    ViewData["MetaKeywords"] = "in-app messaging,roadmap,placement,frequency cap,sdk";
 }
-<section class="pika-corp-hero">
-    <div class="container">
-        <div class="pika-corp-hero__grid">
-            <div>
-                <span class="pika-corp-chip" data-i18n="solutions.inAppMessaging.corp"></span>
-                <h1 class="pika-corp-title" data-i18n="solutions.inAppMessaging.title"></h1>
-                <p class="pika-corp-lead" data-i18n="solutions.inAppMessaging.subtitle"></p>
-                <p data-i18n="solutions.inAppMessaging.summary"></p>
-            </div>
-            <aside class="pika-corp-aside">
-                <h3 data-i18n="solutions.sections.capabilities"></h3>
-                <div class="pika-corp-aside-list">
-                    <div class="pika-corp-aside-item"><strong data-i18n="solutions.inAppMessaging.capabilities.1"></strong></div>
-                    <div class="pika-corp-aside-item"><strong data-i18n="solutions.inAppMessaging.capabilities.2"></strong></div>
-                    <div class="pika-corp-aside-item"><strong data-i18n="solutions.inAppMessaging.capabilities.3"></strong></div>
-                </div>
-            </aside>
-        </div>
-    </div>
-</section>
-
-<section class="pika-section pika-corp-section pt-0">
-    <div class="container">
-        <h3 data-i18n="solutions.sections.workflow"></h3>
-        <ol>
-            <li data-i18n="solutions.inAppMessaging.workflow.step1"></li>
-            <li data-i18n="solutions.inAppMessaging.workflow.step2"></li>
-            <li data-i18n="solutions.inAppMessaging.workflow.step3"></li>
-        </ol>
-
-        <h3 data-i18n="solutions.sections.integrations"></h3>
-        <p data-i18n="solutions.inAppMessaging.integrations"></p>
-        <p class="text-muted" data-i18n="solutions.inAppMessaging.repoUnspecified1"></p>
-
-        <h3 data-i18n="solutions.sections.kpi"></h3>
-        <p data-i18n="solutions.inAppMessaging.kpi"></p>
-
-        <h3 data-i18n="solutions.sections.compliance"></h3>
-        <p data-i18n="solutions.inAppMessaging.compliance"></p>
-        <p class="text-muted" data-i18n="solutions.inAppMessaging.repoUnspecified2"></p>
-
-        <h3 data-i18n="solutions.sections.scenarios"></h3>
-        <p data-i18n="solutions.inAppMessaging.scenarios"></p>
-
-        <a class="btn pika-btn-ghost" href="@Url.Action("PersonalizationPage", "Solutions")">
-            <span data-i18n="solutions.next"></span>: <strong data-i18n="solutions.personalization.title"></strong>
-        </a>
-    </div>
-</section>
+<section class="pika-corp-hero"><div class="container"><h1 class="pika-corp-title">In-App Messaging</h1><p class="pika-corp-lead">@(tr?"Uygulama içi mesajları davranış tetikleriyle kişiselleştirin; gösterim/etkileşim ölçün.":"Personalize in-app messages with behavior triggers; measure impression and engagement.")</p></div></section>
+<section class="pika-section pika-corp-section"><div class="container">
+<p>@(tr?"In-app mesajlaşma yaklaşımı, doğru anda doğru kullanıcıya bağlamsal içerik göstermeyi ve gösterim/etkileşim sonuçlarını ölçerek sürekli iyileştirmeyi hedefler.":"The in-app messaging approach focuses on showing contextual content to the right user at the right moment and continuously improving with impression/engagement outcomes.")</p>
+</div></section>
