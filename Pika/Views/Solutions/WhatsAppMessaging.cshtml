@@ -1,18 +1,19 @@
-@{ ViewData["Title"] = "WhatsApp Messaging"; }
+@{ ViewData["Title"] = "WhatsAppMessaging"; }
 <section class="pika-corp-hero">
     <div class="container">
         <div class="pika-corp-hero__grid">
             <div>
-                <span class="pika-corp-chip" data-i18n="sol.page.WhatsAppMessaging.chip"></span>
-                <h1 class="pika-corp-title" data-i18n="sol.page.WhatsAppMessaging.title">WhatsApp Messaging</h1>
-                <p class="pika-corp-lead" data-i18n="sol.page.WhatsAppMessaging.lead"></p>
+                <span class="pika-corp-chip" data-i18n="solutions.whatsAppMessaging.corp"></span>
+                <h1 class="pika-corp-title" data-i18n="solutions.whatsAppMessaging.title"></h1>
+                <p class="pika-corp-lead" data-i18n="solutions.whatsAppMessaging.subtitle"></p>
+                <p data-i18n="solutions.whatsAppMessaging.summary"></p>
             </div>
             <aside class="pika-corp-aside">
-                <h3 data-i18n="sol.page.highlights">Öne Çıkanlar</h3>
+                <h3 data-i18n="solutions.sections.capabilities"></h3>
                 <div class="pika-corp-aside-list">
-                    <div class="pika-corp-aside-item"><strong data-i18n="sol.page.WhatsAppMessaging.h1"></strong></div>
-                    <div class="pika-corp-aside-item"><strong data-i18n="sol.page.WhatsAppMessaging.h2"></strong></div>
-                    <div class="pika-corp-aside-item"><strong data-i18n="sol.page.WhatsAppMessaging.h3"></strong></div>
+                    <div class="pika-corp-aside-item"><strong data-i18n="solutions.whatsAppMessaging.capabilities.1"></strong></div>
+                    <div class="pika-corp-aside-item"><strong data-i18n="solutions.whatsAppMessaging.capabilities.2"></strong></div>
+                    <div class="pika-corp-aside-item"><strong data-i18n="solutions.whatsAppMessaging.capabilities.3"></strong></div>
                 </div>
             </aside>
         </div>
@@ -21,8 +22,29 @@
 
 <section class="pika-section pika-corp-section pt-0">
     <div class="container">
+        <h3 data-i18n="solutions.sections.workflow"></h3>
+        <ol>
+            <li data-i18n="solutions.whatsAppMessaging.workflow.step1"></li>
+            <li data-i18n="solutions.whatsAppMessaging.workflow.step2"></li>
+            <li data-i18n="solutions.whatsAppMessaging.workflow.step3"></li>
+        </ol>
+
+        <h3 data-i18n="solutions.sections.integrations"></h3>
+        <p data-i18n="solutions.whatsAppMessaging.integrations"></p>
+        <p class="text-muted" data-i18n="solutions.whatsAppMessaging.repoUnspecified1"></p>
+
+        <h3 data-i18n="solutions.sections.kpi"></h3>
+        <p data-i18n="solutions.whatsAppMessaging.kpi"></p>
+
+        <h3 data-i18n="solutions.sections.compliance"></h3>
+        <p data-i18n="solutions.whatsAppMessaging.compliance"></p>
+        <p class="text-muted" data-i18n="solutions.whatsAppMessaging.repoUnspecified2"></p>
+
+        <h3 data-i18n="solutions.sections.scenarios"></h3>
+        <p data-i18n="solutions.whatsAppMessaging.scenarios"></p>
+
         <a class="btn pika-btn-ghost" href="@Url.Action("PushNotifications", "Solutions")">
-            <span data-i18n="sol.page.next">Sonraki</span>: <strong data-i18n="sol.page.PushNotifications.title"></strong>
+            <span data-i18n="solutions.next"></span>: <strong data-i18n="solutions.pushNotifications.title"></strong>
         </a>
     </div>
 </section>
