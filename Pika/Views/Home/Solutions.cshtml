@@ -3,25 +3,25 @@
     <div class="container">
         <div class="pika-corp-hero__grid">
             <div>
-                <span class="pika-corp-chip">Kurumsal Çözüm Platformu</span>
+                <span class="pika-corp-chip">Kurumsal Mesajlaşma ve Veri Platformu</span>
                 <h1 class="pika-corp-title" data-i18n="sol.h1">Çözümlerimiz</h1>
-                <p class="pika-corp-lead" data-i18n="sol.lead">Sadakat, kampanya, segmentasyon ve analitiği tek çatı altında birleştirin.</p>
+                <p class="pika-corp-lead" data-i18n="sol.lead">Kanal orkestrasyonu, kişiselleştirme ve raporlamayı tek mimaride yönetin.</p>
                 <div class="pika-corp-kpi-grid">
-                    <div class="pika-corp-kpi"><strong>7 Modül</strong><span>Uçtan uca yetenek seti</span></div>
-                    <div class="pika-corp-kpi"><strong>API-First</strong><span>Esnek entegrasyon</span></div>
-                    <div class="pika-corp-kpi"><strong>Enterprise</strong><span>Güvenlik ve yönetişim</span></div>
+                    <div class="pika-corp-kpi"><strong>12 Modül</strong><span>Yeni bilgi mimarisi</span></div>
+                    <div class="pika-corp-kpi"><strong>Omnichannel</strong><span>Tüm temas noktaları</span></div>
+                    <div class="pika-corp-kpi"><strong>Data-Driven</strong><span>Gerçek zamanlı karar</span></div>
                 </div>
                 <div class="d-flex gap-2 flex-wrap mt-4">
                     <button class="btn pika-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal"><span data-i18n="sol.demo">Demo Talebi</span></button>
-                    <a class="btn pika-btn-ghost" href="@Url.Action("Integrations", "Solutions")"><span data-i18n="sol.integrations">Entegrasyonlar</span></a>
+                    <a class="btn pika-btn-ghost" href="@Url.Action("Reporting", "Solutions")"><span data-i18n="sol.reporting">Raporlama</span></a>
                 </div>
             </div>
             <aside class="pika-corp-aside">
-                <h3>Modül Haritası</h3>
+                <h3 data-i18n="sol.map">Çözüm Haritası</h3>
                 <div class="pika-corp-aside-list">
-                    <a class="pika-corp-aside-item text-decoration-none" href="@Url.Action("Journey", "Solutions")"><strong data-i18n="sol.c0t"></strong><span data-i18n="sol.c0d"></span></a>
-                    <a class="pika-corp-aside-item text-decoration-none" href="@Url.Action("Loyalty", "Solutions")"><strong data-i18n="sol.c1t"></strong><span data-i18n="sol.c1d"></span></a>
-                    <a class="pika-corp-aside-item text-decoration-none" href="@Url.Action("Campaigns", "Solutions")"><strong data-i18n="sol.c2t"></strong><span data-i18n="sol.c2d"></span></a>
+                    <a class="pika-corp-aside-item text-decoration-none" href="@Url.Action("EmailMarketing", "Solutions")"><strong data-i18n="sol.c0t"></strong><span data-i18n="sol.c0d"></span></a>
+                    <a class="pika-corp-aside-item text-decoration-none" href="@Url.Action("Personalization", "Solutions")"><strong data-i18n="sol.c5t"></strong><span data-i18n="sol.c5d"></span></a>
+                    <a class="pika-corp-aside-item text-decoration-none" href="@Url.Action("DataManagementEtl", "Solutions")"><strong data-i18n="sol.c10t"></strong><span data-i18n="sol.c10d"></span></a>
                 </div>
             </aside>
         </div>
@@ -30,13 +30,18 @@
 <section class="pika-section pika-corp-section">
     <div class="container">
         <div class="pika-corp-card-grid">
-            <a class="pika-corp-card text-decoration-none" href="@Url.Action("Journey", "Solutions")"><h3 data-i18n="sol.c0t"></h3><p data-i18n="sol.c0d"></p></a>
-            <a class="pika-corp-card text-decoration-none" href="@Url.Action("Loyalty", "Solutions")"><h3 data-i18n="sol.c1t"></h3><p data-i18n="sol.c1d"></p></a>
-            <a class="pika-corp-card text-decoration-none" href="@Url.Action("Campaigns", "Solutions")"><h3 data-i18n="sol.c2t"></h3><p data-i18n="sol.c2d"></p></a>
-            <a class="pika-corp-card text-decoration-none" href="@Url.Action("Segmentation", "Solutions")"><h3 data-i18n="sol.c3t"></h3><p data-i18n="sol.c3d"></p></a>
-            <a class="pika-corp-card text-decoration-none" href="@Url.Action("Analytics", "Solutions")"><h3 data-i18n="sol.c4t"></h3><p data-i18n="sol.c4d"></p></a>
-            <a class="pika-corp-card text-decoration-none" href="@Url.Action("Integrations", "Solutions")"><h3 data-i18n="sol.c5t"></h3><p data-i18n="sol.c5d"></p></a>
-            <a class="pika-corp-card text-decoration-none" href="@Url.Action("Security", "Solutions")"><h3 data-i18n="sol.c6t"></h3><p data-i18n="sol.c6d"></p></a>
+            <a class="pika-corp-card text-decoration-none" href="@Url.Action("EmailMarketing", "Solutions")"><h3 data-i18n="sol.c0t"></h3><p data-i18n="sol.c0d"></p></a>
+            <a class="pika-corp-card text-decoration-none" href="@Url.Action("SmsCampaigns", "Solutions")"><h3 data-i18n="sol.c1t"></h3><p data-i18n="sol.c1d"></p></a>
+            <a class="pika-corp-card text-decoration-none" href="@Url.Action("WhatsAppMessaging", "Solutions")"><h3 data-i18n="sol.c2t"></h3><p data-i18n="sol.c2d"></p></a>
+            <a class="pika-corp-card text-decoration-none" href="@Url.Action("PushNotifications", "Solutions")"><h3 data-i18n="sol.c3t"></h3><p data-i18n="sol.c3d"></p></a>
+            <a class="pika-corp-card text-decoration-none" href="@Url.Action("InAppMessaging", "Solutions")"><h3 data-i18n="sol.c4t"></h3><p data-i18n="sol.c4d"></p></a>
+            <a class="pika-corp-card text-decoration-none" href="@Url.Action("Personalization", "Solutions")"><h3 data-i18n="sol.c5t"></h3><p data-i18n="sol.c5d"></p></a>
+            <a class="pika-corp-card text-decoration-none" href="@Url.Action("TemplateManagement", "Solutions")"><h3 data-i18n="sol.c6t"></h3><p data-i18n="sol.c6d"></p></a>
+            <a class="pika-corp-card text-decoration-none" href="@Url.Action("ABTesting", "Solutions")"><h3 data-i18n="sol.c7t"></h3><p data-i18n="sol.c7d"></p></a>
+            <a class="pika-corp-card text-decoration-none" href="@Url.Action("Reporting", "Solutions")"><h3 data-i18n="sol.c8t"></h3><p data-i18n="sol.c8d"></p></a>
+            <a class="pika-corp-card text-decoration-none" href="@Url.Action("DeliverabilityCompliance", "Solutions")"><h3 data-i18n="sol.c9t"></h3><p data-i18n="sol.c9d"></p></a>
+            <a class="pika-corp-card text-decoration-none" href="@Url.Action("DataManagementEtl", "Solutions")"><h3 data-i18n="sol.c10t"></h3><p data-i18n="sol.c10d"></p></a>
+            <a class="pika-corp-card text-decoration-none" href="@Url.Action("RealTimeEventProcessing", "Solutions")"><h3 data-i18n="sol.c11t"></h3><p data-i18n="sol.c11d"></p></a>
         </div>
     </div>
 </section>

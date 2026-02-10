@@ -5,25 +5,52 @@ namespace Pika.Controllers
     [Route("{culture:regex(^(tr|en)$)}/solutions")]
     public class SolutionsController : Controller
     {
-        [HttpGet("journey")]
-        public IActionResult Journey() => View();
+        [HttpGet("email-marketing")]
+        [HttpGet("[action]")]
+        public IActionResult EmailMarketing() => View();
 
-        [HttpGet("loyalty")]
-        public IActionResult Loyalty() => View();
+        [HttpGet("sms-campaigns")]
+        [HttpGet("[action]")]
+        public IActionResult SmsCampaigns() => View();
 
-        [HttpGet("campaigns")]
-        public IActionResult Campaigns() => View();
+        [HttpGet("whatsapp-messaging")]
+        [HttpGet("[action]")]
+        public IActionResult WhatsAppMessaging() => View();
 
-        [HttpGet("segmentation")]
-        public IActionResult Segmentation() => View();
+        [HttpGet("push-notifications")]
+        [HttpGet("[action]")]
+        public IActionResult PushNotifications() => View();
 
-        [HttpGet("analytics")]
-        public IActionResult Analytics() => View();
+        [HttpGet("in-app-messaging")]
+        [HttpGet("[action]")]
+        public IActionResult InAppMessaging() => View();
 
-        [HttpGet("integrations")]
-        public IActionResult Integrations() => View();
+        [HttpGet("personalization")]
+        [HttpGet("[action]")]
+        public IActionResult Personalization() => View();
 
-        [HttpGet("security")]
-        public IActionResult Security() => View();
+        [HttpGet("template-management")]
+        [HttpGet("[action]")]
+        public IActionResult TemplateManagement() => View();
+
+        [HttpGet("ab-testing")]
+        [HttpGet("[action]")]
+        public IActionResult ABTesting() => View();
+
+        [HttpGet("reporting")]
+        [HttpGet("[action]")]
+        public IActionResult Reporting() => View();
+
+        [HttpGet("deliverability-compliance")]
+        [HttpGet("[action]")]
+        public IActionResult DeliverabilityCompliance() => View();
+
+        [HttpGet("data-management-etl")]
+        [HttpGet("[action]")]
+        public IActionResult DataManagementEtl() => View();
+
+        [HttpGet("real-time-event-processing")]
+        [HttpGet("[action]")]
+        public IActionResult RealTimeEventProcessing() => View();
     }
 }
