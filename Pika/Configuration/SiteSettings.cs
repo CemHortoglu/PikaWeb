@@ -26,4 +26,16 @@ public sealed class MailSettings
 {
     public string ContactFormRecipientEmail { get; set; } = "iletisim@pikaanalysis.com";
     public string DemoRequestRecipientEmail { get; set; } = "demo@pikaanalysis.com";
+    public SmtpSettings Smtp { get; set; } = new();
+}
+
+public sealed class SmtpSettings
+{
+    public string Host { get; set; } = string.Empty;
+    public int Port { get; set; } = 587;
+    public bool EnableSsl { get; set; } = true;
+    public string Username { get; set; } = string.Empty;
+    public string Password { get; set; } = string.Empty;
+    public string FromEmail { get; set; } = string.Empty;
+    public string FromName { get; set; } = "Pika Web";
 }

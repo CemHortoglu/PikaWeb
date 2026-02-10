@@ -36,12 +36,13 @@
             <div class="col-lg-6">
                 <div class="pika-corp-shell h-100">
                     <h3 class="pika-h3 mb-3">@site.ContactFormTitle</h3>
-                    <form class="row g-3" data-recipient-email="@site.Mail.ContactFormRecipientEmail">
-                        <div class="col-md-6"><label class="form-label" data-i18n="form.fullName"></label><input class="form-control pika-input" placeholder="Ad Soyad"></div>
-                        <div class="col-md-6"><label class="form-label" data-i18n="form.email"></label><input type="email" class="form-control pika-input" placeholder="mail@firma.com"></div>
-                        <div class="col-12"><label class="form-label" data-i18n="form.message"></label><textarea class="form-control pika-input" rows="5" placeholder="Mesajınız..."></textarea></div>
+                    <form id="contactForm" class="row g-3" data-recipient-email="@site.Mail.ContactFormRecipientEmail">
+                        <div class="col-md-6"><label class="form-label" data-i18n="form.fullName"></label><input class="form-control pika-input" name="fullName" placeholder="Ad Soyad" required></div>
+                        <div class="col-md-6"><label class="form-label" data-i18n="form.email"></label><input type="email" class="form-control pika-input" name="email" placeholder="mail@firma.com" required></div>
+                        <div class="col-12"><label class="form-label" data-i18n="form.message"></label><textarea class="form-control pika-input" rows="5" name="message" placeholder="Mesajınız..." required></textarea></div>
                         <div class="col-12 d-flex gap-2 flex-wrap"><button type="button" class="btn pika-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal" data-i18n="contact.demo"></button><button type="submit" class="btn pika-btn-outline" data-i18n="contact.send"></button></div>
                         <div class="small text-secondary" data-i18n="form.privacy"></div>
+                        <div id="contactResult" class="pika-alert d-none mt-2"></div>
                     </form>
                 </div>
             </div>

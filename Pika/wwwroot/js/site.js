@@ -1466,6 +1466,55 @@
         });
     }
 
+
+    function bindContactForm() {
+        const form = qs("#contactForm");
+        if (!form) return;
+
+        const result = qs("#contactResult");
+        const showResult = (ok, msg) => {
+            if (!result) return;
+            result.classList.remove("d-none");
+            result.classList.toggle("pika-alert--ok", !!ok);
+            result.classList.toggle("pika-alert--err", !ok);
+            result.textContent = msg;
+        };
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const lang = getLang();
+            const payload = {
+                fullName: form.fullName?.value?.trim() || "",
+                email: form.email?.value?.trim() || "",
+                message: form.message?.value?.trim() || "",
+                lang
+            };
+
+            if (!payload.fullName || !payload.email || !payload.message) {
+                showResult(false, lang === "en" ? "Please fill required fields." : "Lütfen zorunlu alanları doldurun.");
+                return;
+            }
+
+            try {
+                const res = await fetch(`/${lang}/lead/contact`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+                if (res.ok && data.ok) {
+                    showResult(true, data.message || (lang === "en" ? "Message sent." : "Mesaj gönderildi."));
+                    form.reset();
+                } else {
+                    showResult(false, data.message || (lang === "en" ? "Something went wrong." : "Bir hata oluştu."));
+                }
+            } catch {
+                showResult(false, lang === "en" ? "Network error." : "Ağ hatası.");
+            }
+        });
+    }
+
     // AOS init
     function initAOS() {
         if (window.AOS) AOS.init({ duration: 650, once: true, offset: 80 });
@@ -1539,6 +1588,7 @@
         bindLangButtons();
         setLang(getLang());
         bindDemoForm();
+        bindContactForm();
         initAOS();
         initSwiper();
         bindHeader();
