@@ -1,7 +1,11 @@
+@using Microsoft.Extensions.Options
+@using Pika.Configuration
+@inject IOptions<SiteSettings> SiteOptions
+
 <div class="modal fade" id="demoModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
-            <form id="demoRequestForm">
+            <form id="demoRequestForm" data-recipient-email="@SiteOptions.Value.Mail.DemoRequestRecipientEmail">
                 <div class="modal-header">
                     <h5 class="modal-title" data-i18n="demo.title">Demo Request</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

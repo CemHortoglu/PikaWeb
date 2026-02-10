@@ -1,10 +1,12 @@
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Localization.Routing;
+using Pika.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
+builder.Services.Configure<SiteSettings>(builder.Configuration.GetSection("SiteSettings"));
 
 var supportedCultures = new[] { new CultureInfo("tr"), new CultureInfo("en") };
 

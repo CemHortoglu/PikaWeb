@@ -1390,7 +1390,8 @@
         const titleKey = document.body?.getAttribute("data-title-key");
         const titleFallback = document.body?.getAttribute("data-title-fallback") || "Pika";
         const titleValue = titleKey ? i18n[safe][titleKey] : null;
-        document.title = `${titleValue || titleFallback} - Pika`;
+        const siteName = document.body?.getAttribute("data-site-name") || "Pika";
+        document.title = `${titleValue || titleFallback} - ${siteName}`;
 
         if (syncUrl) {
             const pathLang = getPathLang();
