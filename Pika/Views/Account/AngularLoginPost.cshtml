@@ -1,0 +1,21 @@
+@model Pika.Models.Auth.AngularLoginPostViewModel
+@{
+    Layout = null;
+}
+<!doctype html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Yönlendiriliyor...</title>
+</head>
+<body>
+    <form id="angular-login-post" method="post" action="@Model.TargetUrl">
+        <input type="hidden" name="authResponse" value='@Model.PayloadJson' />
+    </form>
+
+    <script>
+        document.getElementById('angular-login-post')?.submit();
+    </script>
+</body>
+</html>

@@ -32,11 +32,6 @@ public class AccountController : Controller
     [HttpGet("Login")]
     public IActionResult Login(string? returnUrl = null)
     {
-        if (User.Identity?.IsAuthenticated == true)
-        {
-            return Redirect(GetSafeReturnUrl(returnUrl));
-        }
-
         return View(new LoginViewModel { ReturnUrl = returnUrl });
     }
 
@@ -86,7 +81,11 @@ public class AccountController : Controller
             principal,
             authProperties);
 
-        return Redirect(GetSafeReturnUrl(model.ReturnUrl));
+        return View("AngularLoginPost", new AngularLoginPostViewModel
+        {
+            TargetUrl = GetAngularLoginPostUrl(),
+            PayloadJson = JsonSerializer.Serialize(loginResult)
+        });
     }
 
     [Authorize]
@@ -147,13 +146,13 @@ public class AccountController : Controller
         return claims;
     }
 
-    private string GetSafeReturnUrl(string? returnUrl)
+    private string GetAngularLoginPostUrl()
     {
-        if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
+        if (Uri.TryCreate(_authSettings.AngularAppUrl, UriKind.Absolute, out var angularBaseUri))
         {
-            return returnUrl;
+            return new Uri(angularBaseUri, "/login").ToString();
         }
 
-        return _authSettings.AngularAppUrl;
+        return "http://localhost:4200/login";
     }
 }
