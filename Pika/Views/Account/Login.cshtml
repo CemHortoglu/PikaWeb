@@ -1,0 +1,92 @@
+@model Pika.Models.Auth.LoginViewModel
+@{
+    Layout = null;
+    ViewData["Title"] = "Giriş";
+}
+<!doctype html>
+<html lang="tr" data-lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>@ViewData["Title"] - Pika</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="~/css/style.css" rel="stylesheet" />
+    <link href="~/css/pika-components.css" rel="stylesheet" />
+</head>
+<body class="pika-auth-body">
+
+    <div class="pika-auth-shell">
+        <div class="pika-auth-layout">
+            <section class="pika-auth-showcase">
+                <div class="pika-auth-showcase-overlay"></div>
+                <div class="pika-auth-showcase-content">
+                    <div class="row login-logo">
+                        <div class="col-12">
+                            <img src="~/web/images/white-logo.png" alt="Pika" height="90">
+                        </div>
+                    </div>
+
+                    <span class="pika-auth-tag">Kurumsal Platform</span>
+                    <h1 class="pika-auth-hero-title">Dijital büyümenizi tek panelden yönetin.</h1>
+                    <p class="pika-auth-hero-desc">
+                        Kampanya otomasyonu, segmentasyon ve analitik çözümlerini güvenli altyapı üzerinde birleştirin.
+                    </p>
+                </div>
+            </section>
+
+            <section class="pika-auth-form-wrap">
+                <div class="pika-auth-card">
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <h2 class="mb-0">Hoş geldiniz</h2>
+                        <span class="pika-auth-chip"><i class="fa-solid fa-lock me-2"></i>Güvenli</span>
+                    </div>
+                    <p class="pika-auth-form-subtitle">Yönetim panelinize erişmek için hesap bilgilerinizi girin.</p>
+
+                    <form method="post" asp-controller="Account" asp-action="Login" class="vstack gap-3">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" asp-for="ReturnUrl" />
+
+                        @if (!ViewData.ModelState.IsValid)
+                        {
+                            <div class="alert alert-danger" asp-validation-summary="ModelOnly"></div>
+                        }
+
+                        <div>
+                            <label class="form-label" asp-for="Username"></label>
+                            <div class="input-group">
+                                <span class="input-group-text pika-ig"><i class="fa-regular fa-envelope"></i></span>
+                                <input asp-for="Username" class="form-control pika-input" placeholder="Kullanıcı Adı" required>
+                            </div>
+                            <span asp-validation-for="Username" class="text-danger small"></span>
+                        </div>
+
+                        <div>
+                            <label class="form-label" asp-for="Password"></label>
+                            <div class="input-group">
+                                <span class="input-group-text pika-ig"><i class="fa-solid fa-key"></i></span>
+                                <input asp-for="Password" class="form-control pika-input" placeholder="••••••••" required>
+                            </div>
+                            <span asp-validation-for="Password" class="text-danger small"></span>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                            <label class="d-flex align-items-center gap-2 small text-secondary">
+                                <input class="form-check-input m-0" type="checkbox" asp-for="RememberMe">
+                                <span>Beni hatırla</span>
+                            </label>
+                        </div>
+
+                        <button class="btn pika-btn-primary btn-lg w-100" type="submit">
+                            Giriş Yap <i class="fa-solid fa-arrow-right ms-2"></i>
+                        </button>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
