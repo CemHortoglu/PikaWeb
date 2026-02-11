@@ -13,7 +13,7 @@ public class AuthApiController : ControllerBase
 {
     [Authorize]
     [HttpGet("me")]
-    public ActionResult<AuthMeResponse> Me()
+    public async Task<ActionResult<AuthMeResponse>> Me()
     {
         var userName = User.Identity?.Name ?? User.FindFirstValue(ClaimTypes.Name);
         var roles = User.FindAll(ClaimTypes.Role).Select(x => x.Value).Distinct().ToArray();
@@ -22,12 +22,23 @@ public class AuthApiController : ControllerBase
             .GroupBy(c => c.Type)
             .ToDictionary(g => g.Key, g => g.Select(c => c.Value).Distinct().ToArray());
 
+        var authResult = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        var token = new AuthTokenInfo
+        {
+            AccessToken = authResult.Properties?.GetTokenValue("access_token") ?? string.Empty,
+            RefreshToken = authResult.Properties?.GetTokenValue("refresh_token") ?? string.Empty,
+            Expiration = ParseDate(authResult.Properties?.GetTokenValue("expires_at")),
+            RefreshTokenExpiration = ParseDate(authResult.Properties?.GetTokenValue("refresh_expires_at"))
+        };
+
         return Ok(new AuthMeResponse
         {
             IsAuthenticated = true,
             UserName = userName,
             Roles = roles,
-            Claims = claims
+            Claims = claims,
+            Token = token,
+            LanguageCode = authResult.Properties?.GetTokenValue("language_code") ?? "tr"
         });
     }
 
@@ -37,5 +48,15 @@ public class AuthApiController : ControllerBase
     {
         await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         return Ok();
+    }
+
+    private static DateTime? ParseDate(string? value)
+    {
+        if (DateTime.TryParse(value, out var dateTime))
+        {
+            return dateTime;
+        }
+
+        return null;
     }
 }
