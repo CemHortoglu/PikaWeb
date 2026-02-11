@@ -60,6 +60,11 @@
             </section>
 
             <section class="pika-auth-form-wrap">
+                <div class="d-flex justify-content-end mb-3">
+                    <a class="btn btn-sm pika-auth-back-btn" href="@Url.Action("Index", "Home")">
+                        <i class="fa-solid fa-arrow-left me-2"></i>Ana sayfaya dön
+                    </a>
+                </div>
                 <div class="pika-auth-card">
                     <div class="d-flex align-items-center justify-content-between mb-3">
                         <h2 class="mb-0">Hoş geldiniz</h2>
@@ -104,7 +109,21 @@
                         <button class="btn pika-btn-primary btn-lg w-100" type="submit">
                             Giriş Yap <i class="fa-solid fa-arrow-right ms-2"></i>
                         </button>
+
+                        <div class="pika-auth-divider"><span data-i18n="login.or">veya</span></div>
+
+                        <button class="btn pika-btn-outline w-100" type="button" onclick="window.location.href='@Url.Action("Contact", "Home")'">
+                            <i class="fa-solid fa-handshake me-2"></i><span data-i18n="login.contactSales">Kurumsal teklif al</span>
+                        </button>
                     </form>
+                    <div class="pika-auth-security-note mt-4">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <span data-i18n="login.note">Giriş denemeleri loglanır ve güvenlik politikalarına tabidir.</span>
+                    </div>
+                </div>
+
+                <div class="text-center mt-3 small text-secondary">
+                    © @DateTime.Now.Year Pika
                 </div>
             </section>
         </div>
