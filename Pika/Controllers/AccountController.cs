@@ -1,5 +1,6 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Text.Encodings.Web;
 using System.Text;
 using System.Text.Json;
 using Microsoft.AspNetCore.Authentication;
@@ -81,11 +82,11 @@ public class AccountController : Controller
             principal,
             authProperties);
 
-        return View("AngularLoginPost", new AngularLoginPostViewModel
-        {
-            TargetUrl = GetAngularLoginPostUrl(),
-            PayloadJson = JsonSerializer.Serialize(loginResult)
-        });
+        var credentials = $"{model.Username}:{model.Password}";
+        var encodedToken = Convert.ToBase64String(Encoding.UTF8.GetBytes(credentials));
+        var redirectUrl = BuildPublishLoginUrl(encodedToken);
+
+        return Redirect(redirectUrl);
     }
 
     [Authorize]
@@ -112,6 +113,21 @@ public class AccountController : Controller
 
         var content = await response.Content.ReadAsStringAsync();
         return JsonSerializer.Deserialize<ExternalLoginResponse>(content, JsonOptions);
+    }
+
+    private string BuildPublishLoginUrl(string encodedToken)
+    {
+        var publishBaseUrl = string.IsNullOrWhiteSpace(_authSettings.PublishAppUrl)
+            ? "https://app.publish.tr"
+            : _authSettings.PublishAppUrl;
+
+        if (!Uri.TryCreate(publishBaseUrl, UriKind.Absolute, out var publishBaseUri))
+        {
+            publishBaseUri = new Uri("https://app.publish.tr");
+        }
+
+        var loginUri = new Uri(publishBaseUri, "/login");
+        return $"{loginUri}?token={UrlEncoder.Default.Encode(encodedToken)}";
     }
 
     private static List<Claim> BuildClaimsFromJwt(string accessToken)
@@ -146,13 +162,4 @@ public class AccountController : Controller
         return claims;
     }
 
-    private string GetAngularLoginPostUrl()
-    {
-        if (Uri.TryCreate(_authSettings.AngularAppUrl, UriKind.Absolute, out var angularBaseUri))
-        {
-            return new Uri(angularBaseUri, "/login").ToString();
-        }
-
-        return "http://localhost:4200/login";
-    }
 }
