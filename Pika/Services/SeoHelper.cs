@@ -5,7 +5,6 @@ public static class SeoHelper
     public const string BaseDomain = "https://pika.tr";
 
     public record HreflangEntry(string Lang, string Url);
-
     public record PageSeoMetadata(
         string AlternatePathTr,
         string AlternatePathEn,
@@ -18,441 +17,103 @@ public static class SeoHelper
 
     private static readonly Dictionary<string, PageSeoMetadata> RouteMetadata = new(StringComparer.OrdinalIgnoreCase)
     {
-        // Homepage
-        ["Home.Index"] = new(
-            "/",
-            "/en/",
-            "Müşteri Zekâsı ve Omnichannel Pazarlama Platformu",
-            "Customer Intelligence & Omnichannel Marketing Platform",
-            "Pika, müşteri ve ürün verisinden fırsatları tespit eden, yöneticiye doğru kararı sunan ve doğru anda aksiyona dönüştüren B2B SaaS platformudur. Günün Fırsatları, Journey, Campaign ve tüm kanallar tek platformda.",
-            "Pika detects revenue opportunities from customer and product data, surfaces the right decisions, and drives timely omnichannel action. Daily Opportunities, Journey automation, Campaign and all channels — one platform."),
+        ["Home.Index"] = new("/", "/en/",
+            "Pika | Müşteri ve Ürün Zekâsından Doğru Aksiyona",
+            "Pika | From Customer & Product Intelligence to Action",
+            "Pika; müşteri, ürün ve işlem verisini anlamlandırır, Günün Fırsatları'nı görünür kılar ve yöneticinin seçtiği aksiyonu Campaign, Journey, Email, SMS, WhatsApp ve Push ile uygulamasına yardımcı olur.",
+            "Pika turns customer, product and transaction data into understandable intelligence, surfaces Daily Opportunities, and helps teams execute controlled actions through Campaign, Journey and communication channels."),
+        ["Home.EnglishIndex"] = new("/", "/en/",
+            "Pika | Müşteri ve Ürün Zekâsından Doğru Aksiyona",
+            "Pika | From Customer & Product Intelligence to Action",
+            "Pika; müşteri, ürün ve işlem verisini anlamlandırır, Günün Fırsatları'nı görünür kılar ve doğru aksiyonu uygulamaya yardımcı olur.",
+            "Pika turns customer, product and transaction data into understandable intelligence, surfaces Daily Opportunities, and helps teams execute controlled actions."),
+        ["Home.Pika"] = new("/pika", "/en/pika", "Pika Nedir?", "What is Pika?",
+            "Pika'nın veriden müşteri ve ürün zekâsına, fırsattan Campaign/Journey aksiyonuna ve ölçüme uzanan çalışma modelini keşfedin.",
+            "Understand how Pika connects data, customer and product intelligence, opportunities, controlled Campaign/Journey execution and measurement."),
+        ["Home.Corporate"] = new("/kurumsal", "/en/corporate", "Kurumsal", "Company",
+            "Pika'nın ürün yaklaşımı, çalışma ilkeleri ve kurumsal iletişim bilgileri.",
+            "Pika's product approach, working principles and company information."),
+        ["Home.DemoRequest"] = new("/demo-talebi", "/en/demo-request", "Demo Talebi", "Request a Demo",
+            "Pika'yı kendi veri ve kullanım senaryonuz üzerinden değerlendirmek için demo talep edin.",
+            "Request a Pika demo around your data and use case."),
+        ["Home.Faq"] = new("/kaynaklar/sss", "/en/resources/faq", "Sık Sorulan Sorular", "Frequently Asked Questions",
+            "Pika, veri, Customer Intelligence, Product Intelligence, Günün Fırsatları, Campaign, Journey, kanallar, AI, izin ve kurulum hakkında sık sorulan sorular.",
+            "Frequently asked questions about Pika, data, intelligence, opportunities, Campaign, Journey, channels, AI, consent and onboarding."),
+        ["Home.Contact"] = new("/iletisim", "/en/contact", "İletişim", "Contact", "Pika ekibiyle satış, destek ve iş birliği konularında iletişime geçin.", "Contact Pika for sales, support and partnership inquiries."),
+        ["Home.Career"] = new("/kariyer", "/en/careers", "Kariyer", "Careers", "Pika kariyer fırsatları ve ekip bilgileri.", "Careers and team opportunities at Pika."),
+        ["Home.TermsOfUse"] = new("/kullanim-sartlari", "/en/terms-of-use", "Kullanım Şartları", "Terms of Use", "Pika web sitesi ve hizmetleri için kullanım şartları.", "Terms governing use of the Pika website and services."),
+        ["Home.PrivacyPolicy"] = new("/gizlilik-politikasi", "/en/privacy-policy", "Gizlilik Politikası", "Privacy Policy", "Pika web sitesi gizlilik ve kişisel veri bilgilendirmesi.", "Pika website privacy and personal-data information."),
 
-        // Home Subpages
-        ["Home.Pika"] = new(
-            "/pika",
-            "/en/pika",
-            "Pika Nedir?",
-            "What is Pika?",
-            "Pika, müşteri ve ürün verisini anlayarak günün fırsatlarını tespit eden, yöneticiye karar sunan ve doğru anda aksiyona dönüştüren müşteri zekâsı ve omnichannel pazarlama platformudur.",
-            "Pika is a customer intelligence and omnichannel marketing platform that understands customer and product data, identifies daily opportunities, and converts decisions into timely action.",
-            "Pika Nedir?",
-            "What is Pika?"),
+        ["Platform.CustomerIntelligence"] = new("/platform/customer-intelligence", "/en/platform/customer-intelligence", "Customer Intelligence | Müşteri Zekâsı", "Customer Intelligence",
+            "Müşteri davranışı, gerçekleşmiş alışveriş bağlamı, değer ve risk sinyallerini birlikte değerlendirerek daha anlamlı hedefleme ve fırsat kararları üretin.",
+            "Bring customer behavior, observed purchases, value and risk signals together to support better targeting and opportunity decisions."),
+        ["Platform.ProductIntelligence"] = new("/platform/product-intelligence", "/en/platform/product-intelligence", "Product Intelligence | Ürün Zekâsı", "Product Intelligence",
+            "Ürünleri kategori, ihtiyaç, ürün rolü ve satın alma ilişkileri bağlamında anlamlandırarak tekrar satın alma ve cross-sell gibi kullanım senaryolarını güçlendirin.",
+            "Add category, need, product-role and purchase-relationship context to support repeat-purchase and cross-sell scenarios."),
+        ["Platform.Pika360"] = new("/platform/pika-360", "/en/platform/pika-360", "Pika 360 | Müşteri Karar Görünümü", "Pika 360 | Customer Decision View",
+            "Müşteri profilini davranış, satın alma, segment, fırsat ve aksiyon bağlamıyla tek görünümde değerlendirin.",
+            "Review customer profile, behavior, purchases, segments, opportunities and action context in a single view."),
+        ["Platform.Opportunities"] = new("/platform/gunun-firsatlari", "/en/platform/opportunities", "Günün Fırsatları | Pika", "Daily Opportunities | Pika",
+            "Pika'nın müşteri ve ürün verisinden aksiyona dönüştürülebilir ticari durumları görünür kıldığı Günün Fırsatları çalışma alanını keşfedin.",
+            "Explore Daily Opportunities, where Pika surfaces actionable commercial situations from customer and product context."),
 
-        ["Home.Corporate"] = new(
-            "/kurumsal",
-            "/en/corporate",
-            "Kurumsal",
-            "Corporate",
-            "Pika kurumsal çözümleri, yüksek güvenlik standartları, ölçeklenebilir mimari ve KVKK/IYS uyumlu süreçlerle işletmenizin büyümesini destekler.",
-            "Pika enterprise solutions support your business growth with high security standards, scalable architecture, and compliance.",
-            "Kurumsal",
-            "Corporate"),
+        ["Solutions.AudienceManager"] = new("/platform/audience-manager", "/en/platform/audience-manager", "Audience Manager | Segmentasyon", "Audience Manager | Segmentation",
+            "Müşteri zekâsını yönetilebilir hedef kitlelere dönüştürün; doğrulanmış işlem, davranış ve iş kurallarıyla segmentler oluşturun.",
+            "Turn customer intelligence into manageable audiences using verified transaction, behavior and business rules."),
+        ["Solutions.CampaignManager"] = new("/platform/campaign-manager", "/en/platform/campaign-manager", "Campaign Manager | Kampanya Yönetimi", "Campaign Manager",
+            "Hedef kitle, kanal, içerik ve zamanlamayı kontrollü bir kampanya akışında bir araya getirin ve desteklenen sonuçları ölçün.",
+            "Bring audience, channel, content and scheduling into a controlled campaign workflow and measure supported outcomes."),
+        ["Solutions.JourneyManager"] = new("/platform/journey-manager", "/en/platform/journey-manager", "Journey Manager | Müşteri Akışları", "Journey Manager",
+            "Tetikleyici, karar, bekleme ve aksiyon adımlarıyla çok aşamalı müşteri akışları tasarlayın.",
+            "Design multi-step customer flows using triggers, decisions, waits and actions."),
+        ["Solutions.ContentStudio"] = new("/platform/content-studio", "/en/platform/content-studio", "Content Studio | İçerik Tasarımı", "Content Studio",
+            "Kampanya ve Journey iletişim içeriklerini düzenleyin, yeniden kullanılabilir şablonlarla operasyonu sadeleştirin.",
+            "Create and manage communication content for Campaign and Journey workflows with reusable templates."),
+        ["Solutions.ConsentManagement"] = new("/platform/consent-management", "/en/platform/consent-management", "Consent Management | İzin ve Kanal Uygunluğu", "Consent Management",
+            "Kanal izni, opt-out, ulaşılabilirlik ve İYS bağlamını gönderim kararlarında birlikte değerlendirin. Pika hukuki danışmanlık veya mutlak uyum garantisi sunmaz.",
+            "Evaluate channel consent, opt-out, reachability and IYS context before delivery. Pika does not replace legal advice or provide an absolute compliance guarantee."),
+        ["Solutions.Reporting"] = new("/platform/analytics", "/en/platform/analytics", "Analytics | Ölçüm ve Raporlama", "Analytics | Measurement & Reporting",
+            "Kampanya, Journey, kanal ve desteklenen satış/etkileşim sonuçlarını aynı ölçüm çerçevesinde değerlendirin.",
+            "Review Campaign, Journey, channel and supported sales/engagement outcomes in a consistent measurement layer."),
+        ["Solutions.Integrations"] = new("/platform/integrations", "/en/platform/integrations", "Entegrasyonlar | Pika", "Integrations | Pika",
+            "Excel/CSV ile kontrollü başlangıçtan düzenli API veri akışına kadar Pika'nın veri entegrasyonu yaklaşımını inceleyin.",
+            "Explore Pika's data-integration approach from controlled Excel/CSV onboarding to regular API data flows."),
+        ["Solutions.AiCampaignAssistant"] = new("/platform/ai-kampanya-asistani", "/en/platform/ai-campaign-assistant", "Pika AI Kampanya Asistanı", "Pika AI Campaign Assistant",
+            "Pika AI, hesaplanmış verileri açıklama, kampanya yaklaşımı ve içerik taslağı hazırlama gibi görevlerde kullanıcıya yardımcı olur; aksiyon kontrolünü kullanıcıdan devralmaz.",
+            "Pika AI helps explain calculated context and prepare campaign approaches or content drafts while keeping execution under user control."),
 
-        ["Home.DemoRequest"] = new(
-            "/demo-talebi",
-            "/en/demo-request",
-            "Demo Talebi",
-            "Request a Demo",
-            "Pika omnichannel pazarlama platformunu canlı keşfedin. 15 dakikalık demo ile ihtiyacınıza özel akışları birlikte kuralım.",
-            "Discover the Pika omnichannel marketing platform live. Schedule a 15-minute tailored demo with our team.",
-            "Demo Talebi",
-            "Demo Request"),
-
-        ["Home.Contact"] = new(
-            "/iletisim",
-            "/en/contact",
-            "İletişim",
-            "Contact",
-            "Pika ekibiyle iletişime geçin. Satış, destek ve iş birliği talepleriniz için bize ulaşın.",
-            "Get in touch with the Pika team for sales, support, and partnership inquiries.",
-            "İletişim",
-            "Contact"),
-
-        ["Home.Career"] = new(
-            "/kariyer",
-            "/en/careers",
-            "Kariyer",
-            "Careers",
-            "Pika ailesine katılın. Yenilikçi omnichannel pazarlama teknolojileri geliştiren tutkulu ekibimizde açık pozisyonları inceleyin.",
-            "Join the Pika team. Explore open positions in our passionate team building next-generation omnichannel marketing technology.",
-            "Kariyer",
-            "Careers"),
-
-        ["Home.Faq"] = new(
-            "/kaynaklar/sss",
-            "/en/resources/faq",
-            "Sıkça Sorulan Sorular",
-            "Frequently Asked Questions",
-            "Pika omnichannel kampanya yönetimi, entegrasyonlar, izin süreçleri ve yapay zekâ özellikleri hakkında merak edilen soruların yanıtları.",
-            "Answers to frequently asked questions about Pika omnichannel campaign management, integrations, consent, and AI features.",
-            "S.S.S.",
-            "FAQ"),
-
-        ["Home.TermsOfUse"] = new(
-            "/kullanim-sartlari",
-            "/en/terms-of-use",
-            "Kullanım Şartları",
-            "Terms of Use",
-            "Pika web sitesi ve hizmetlerinin kullanımına ilişkin şartlar ve yasal koşullar.",
-            "Terms and legal conditions governing the use of Pika website and services.",
-            "Kullanım Şartları",
-            "Terms of Use"),
-
-        ["Home.PrivacyPolicy"] = new(
-            "/gizlilik-politikasi",
-            "/en/privacy-policy",
-            "Gizlilik Politikası",
-            "Privacy Policy",
-            "Pika gizlilik politikası ve kişisel verilerin korunması (KVKK) hakkındaki aydınlatma metni.",
-            "Pika privacy policy and personal data protection principles.",
-            "Gizlilik Politikası",
-            "Privacy Policy"),
-
-        // Solutions Controller
-        ["Solutions.CampaignManager"] = new(
-            "/cozumler/campaign-manager",
-            "/en/solutions/campaign-manager",
-            "Campaign Manager | Çok Kanallı Kampanya Yönetimi",
-            "Campaign Manager | Multi-Channel Campaign Management",
-            "SMS, WhatsApp, Email ve Push kampanyalarını tek merkezden oluşturun, zamanlayın, kişiselleştirin ve yönetin.",
-            "Create, schedule, personalize and manage SMS, WhatsApp, Email and Push campaigns from a single hub.",
-            "Campaign Manager",
-            "Campaign Manager"),
-
-        ["Solutions.AudienceManager"] = new(
-            "/cozumler/audience-manager",
-            "/en/solutions/audience-manager",
-            "Audience Manager | Hedef Kitle ve Segmentasyon",
-            "Audience Manager | Audience & Segmentation",
-            "İşlem, davranış ve özel kurallara göre dinamik müşteri segmentleri oluşturun ve kampanyalarınızda hedefleyin.",
-            "Create dynamic customer segments based on transactions, behaviors, and custom rules for targeted campaigns.",
-            "Audience Manager",
-            "Audience Manager"),
-
-        ["Solutions.JourneyManager"] = new(
-            "/cozumler/journey-manager",
-            "/en/solutions/journey-manager",
-            "Journey Manager | Müşteri Yolculuğu Otomasyonu",
-            "Journey Manager | Customer Journey Automation",
-            "Tetikleyici ve olay bazlı otomatik pazarlama akışları kurgulayın; müşterinize doğru anda doğru kanaldan ulaşın.",
-            "Design event-driven automated marketing journeys to reach customers at the right moment across channels.",
-            "Journey Manager",
-            "Journey Manager"),
-
-        ["Solutions.ContentStudio"] = new(
-            "/cozumler/content-studio",
-            "/en/solutions/content-studio",
-            "Content Studio | İçerik ve Şablon Tasarımı",
-            "Content Studio | Content & Template Design",
-            "Sürükle-bırak görsel editör ve AI destekli metin üretimi ile çok kanallı kampanya içeriklerini dakikalar içinde tasarlayın.",
-            "Design multi-channel campaign content in minutes with a drag-and-drop editor and AI-assisted copywriting.",
-            "Content Studio",
-            "Content Studio"),
-
-        ["Solutions.ConsentManagement"] = new(
-            "/cozumler/consent-management",
-            "/en/solutions/consent-management",
-            "Consent Management | İzin ve Uyumluluk Yönetimi",
-            "Consent Management | Consent & Compliance Management",
-            "IYS ve KVKK uyumlu ticari elektronik ileti izinlerini merkezi olarak yönetin, onaysız gönderimleri engelleyin.",
-            "Centrally manage opt-in consents and ensure strict regulatory compliance across all communication channels.",
-            "Consent Management",
-            "Consent Management"),
-
-        ["Solutions.EmailMarketing"] = new(
-            "/kanallar/email",
-            "/en/channels/email",
-            "Email Marketing | E-Posta Pazarlama Çözümleri",
-            "Email Marketing | Email Marketing Solutions",
-            "Zengin görsel şablonlar, dinamik kişiselleştirme ve yüksek teslimat oranları ile e-posta kampanyalarınızı ölçekleyin.",
-            "Scale your email marketing with rich templates, dynamic personalization, and high deliverability rates.",
-            "Email Marketing",
-            "Email Marketing"),
-
-        ["Solutions.SmsCampaigns"] = new(
-            "/kanallar/sms",
-            "/en/channels/sms",
-            "SMS Campaigns | SMS Kampanya Yönetimi",
-            "SMS Campaigns | SMS Campaign Management",
-            "Kritik duyurular ve anlık fırsatlar için yüksek teslimatlı, zamanlanmış ve kişiselleştirilmiş SMS gönderimleri yapın.",
-            "Deliver high-impact, scheduled, and personalized SMS messages with reliable delivery performance.",
-            "SMS Campaigns",
-            "SMS Campaigns"),
-
-        ["Solutions.WhatsAppMessaging"] = new(
-            "/kanallar/whatsapp",
-            "/en/channels/whatsapp",
-            "WhatsApp Messaging | WhatsApp Kampanya ve Mesajlaşma",
-            "WhatsApp Messaging | WhatsApp Marketing & Messaging",
-            "WhatsApp Business API ile onaylı şablonlar, zengin medya ve etkileşimli mesajlaşma kampanyaları yönetin.",
-            "Manage verified WhatsApp Business campaigns with rich media, interactive buttons, and template approvals.",
-            "WhatsApp Messaging",
-            "WhatsApp Messaging"),
-
-        ["Solutions.PushNotifications"] = new(
-            "/kanallar/push",
-            "/en/channels/push",
-            "Push Notifications | Anlık Bildirim Yönetimi",
-            "Push Notifications | Push Notification Management",
-            "Web ve mobil uygulamalarda kullanıcı davranışlarına göre anlık tetiklenen zengin bildirimler gönderin.",
-            "Engage web and mobile app users with real-time, behavior-triggered rich push notifications.",
-            "Push Notifications",
-            "Push Notifications"),
-
-        ["Solutions.Personalization"] = new(
-            "/cozumler/personalization",
-            "/en/solutions/personalization",
-            "Personalization | Kişiselleştirme Çözümleri",
-            "Personalization | Personalization Solutions",
-            "Müşteri öznitelikleri ve geçmiş alışveriş verilerine göre içerik, teklif ve ürün önerilerini dinamik olarak özelleştirin.",
-            "Dynamically tailor content, offers, and recommendations based on customer attributes and transaction history.",
-            "Personalization",
-            "Personalization"),
-
-        ["Solutions.TemplateManagement"] = new(
-            "/cozumler/template-management",
-            "/en/solutions/template-management",
-            "Template Management | Şablon Yönetimi",
-            "Template Management | Template Management",
-            "Tüm iletişim kanalları için şablonları merkezi olarak sürümleyin, onaylayın ve marka standartlarını koruyun.",
-            "Centrally version, approve, and maintain templates across all channels while preserving brand consistency.",
-            "Template Management",
-            "Template Management"),
-
-        ["Solutions.ABTesting"] = new(
-            "/cozumler/ab-testing",
-            "/en/solutions/ab-testing",
-            "A/B Testing | Kampanya A/B Testleri",
-            "A/B Testing | Campaign A/B Testing",
-            "Başlık, metin, kanal ve gönderim zamanı varyasyonlarını test ederek en yüksek dönüşüm getiren kurguyu belirleyin.",
-            "Test headlines, copy, channels, and send times to scientifically identify the highest-converting variations.",
-            "A/B Testing",
-            "A/B Testing"),
-
-        ["Solutions.Reporting"] = new(
-            "/cozumler/analytics-reporting",
-            "/en/solutions/analytics-reporting",
-            "Analytics & Reporting | Performans ve Raporlama",
-            "Analytics & Reporting | Analytics & Reporting",
-            "Kampanya, kanal ve segment bazında anlık açılma, tıklama, dönüşüm ve gelir metriklerini canlı takip edin.",
-            "Monitor live delivery, open, click, conversion, and revenue metrics across campaigns, channels, and segments.",
-            "Analytics & Reporting",
-            "Analytics & Reporting"),
-
-        ["Solutions.DeliverabilityCompliance"] = new(
-            "/cozumler/deliverability-compliance",
-            "/en/solutions/deliverability-compliance",
-            "Deliverability & Compliance | Teslim Edilebilirlik ve Uyumluluk",
-            "Deliverability & Compliance | Deliverability & Compliance",
-            "Gönderici itibarını koruyun, spam riskini minimize edin ve regülasyon uyumluluğunu uçtan uca güvenceye alın.",
-            "Protect sender reputation, minimize spam placement, and ensure end-to-end regulatory compliance.",
-            "Deliverability & Compliance",
-            "Deliverability & Compliance"),
-
-        ["Solutions.DataManagementEtl"] = new(
-            "/cozumler/data-management-etl",
-            "/en/solutions/data-management-etl",
-            "Data Management ETL | Veri Yönetimi ve Entegrasyon",
-            "Data Management ETL | Data Management ETL",
-            "Farklı veri kaynaklarını birleştirin, temizleyin ve pazarlama kampanyaları için gerçek zamanlı kullanılabilir hale getirin.",
-            "Ingest, transform, and synchronize customer data from multiple sources for real-time marketing activation.",
-            "Data Management ETL",
-            "Data Management ETL"),
-
-        ["Solutions.RealTimeEventProcessing"] = new(
-            "/cozumler/real-time-event-processing",
-            "/en/solutions/real-time-event-processing",
-            "Real-Time Event Processing | Gerçek Zamanlı Olay İşleme",
-            "Real-Time Event Processing | Real-Time Event Processing",
-            "Kullanıcı eylemlerini milisaniyeler içinde işleyerek anlık otomatik tetikleyicilerle etkileşim sağlayın.",
-            "Process customer events in milliseconds to trigger instant, contextual omnichannel interactions.",
-            "Real-Time Event Processing",
-            "Real-Time Event Processing"),
-
-        ["Solutions.Integrations"] = new(
-            "/entegrasyonlar",
-            "/en/integrations",
-            "Integrations | Entegrasyonlar",
-            "Integrations | Integrations",
-            "CRM, e-ticaret altyapıları, ERP ve veri ambarları ile çift yönlü kesintisiz API entegrasyonu.",
-            "Seamless two-way API integrations with CRM, e-commerce platforms, ERP, and data warehouses.",
-            "Entegrasyonlar",
-            "Integrations"),
-
-        ["Solutions.SecurityPrivacy"] = new(
-            "/guvenlik-ve-gizlilik",
-            "/en/security-and-privacy",
-            "Security & Privacy | Güvenlik ve Gizlilik",
-            "Security & Privacy | Security & Privacy",
-            "Kurumsal düzeyde veri şifreleme, rol bazlı erişim denetimi (RBAC), SSO ve KVKK uyumlu veri güvenliği altyapısı.",
-            "Enterprise-grade data encryption, role-based access control (RBAC), SSO, and strict data security compliance.",
-            "Güvenlik ve Gizlilik",
-            "Security & Privacy"),
-
-        // Special routes
-        ["Solutions.AiCampaignAssistant"] = new(
-            "/urunler/ai-kampanya-asistani",
-            "/en/products/ai-campaign-assistant",
-            "Pika AI Kampanya Asistanı | Yapay Zekâ Destekli Kampanya Üretimi",
-            "Pika AI Campaign Assistant | AI-Powered Campaign Creation",
-            "Kampanya fikrinizi yazın; Pika AI taslak, hedef kitle önerisi ve email şablonunu saniyeler içinde oluştursun.",
-            "Enter your campaign idea; Pika AI generates the campaign draft, audience recommendations, and email template in seconds.",
-            "AI Kampanya Asistanı",
-            "AI Campaign Assistant"),
-
-        ["Solutions.EcommerceAiCampaign"] = new(
-            "/cozumler/e-ticaret-ai-kampanya-yonetimi",
-            "/en/solutions/ecommerce-ai-campaign",
-            "E-Ticaret AI Kampanya Yönetimi",
-            "E-Commerce AI Campaign Management",
-            "E-ticaret markaları için sepet terk, dinamik indirim ve kişiselleştirilmiş çapraz satış kampanyaları.",
-            "AI campaign automation for e-commerce: abandoned cart recovery, dynamic discounts, and personalized cross-selling.",
-            "E-Ticaret AI",
-            "E-Commerce AI"),
-
-        ["Solutions.WhatsAppCampaignManagement"] = new(
-            "/kanallar/whatsapp-kampanya-yonetimi",
-            "/en/channels/whatsapp-campaign-management",
-            "WhatsApp Kampanya Yönetimi",
-            "WhatsApp Campaign Management",
-            "WhatsApp Business API ile kurumsal şablon onayları, otomatik akışlar ve zengin medya kampanyaları.",
-            "Enterprise WhatsApp campaign management with verified templates, automated workflows, and rich media delivery.",
-            "WhatsApp Kampanya",
-            "WhatsApp Campaigns"),
-
-        ["Solutions.IysKvkkCompliance"] = new(
-            "/cozumler/iys-kvkk-uyumlu-kampanya-yonetimi",
-            "/en/solutions/iys-kvkk-compliance",
-            "İYS ve KVKK Uyumlu Kampanya Yönetimi",
-            "IYS & KVKK Compliant Campaign Management",
-            "Ticari elektronik ileti mevzuatı ve KVKK gereksinimlerine tam uyumlu izin kontrolü ve denetim kayıtları.",
-            "Full compliance with commercial electronic messaging regulations, consent validation, and audit logs.",
-            "İYS & KVKK Uyumu",
-            "IYS & KVKK Compliance"),
-
-        ["Solutions.EmailMarketingTemplateStudio"] = new(
-            "/kanallar/email-marketing-template-studio",
-            "/en/channels/email-marketing-template-studio",
-            "Email Marketing ve Template Studio",
-            "Email Marketing & Template Studio",
-            "Görsel sürükle-bırak şablon stüdyosu ile responsive, markanıza uygun e-posta tasarımları oluşturun.",
-            "Create responsive, on-brand email marketing templates with an intuitive visual drag-and-drop studio.",
-            "Email Template Studio",
-            "Email Template Studio"),
-
-        ["Solutions.UseCases"] = new(
-            "/kullanim-senaryolari",
-            "/en/use-cases",
-            "Kullanım Senaryoları | Pika Omnichannel Çözümleri",
-            "Use Cases | Pika Omnichannel Solutions",
-            "Perakende, e-ticaret ve hizmet sektörlerinde omnichannel pazarlama otomasyonu kullanım senaryoları ve başarı hikayeleri.",
-            "Omnichannel marketing automation use cases and customer journey blueprints for retail, e-commerce, and services.",
-            "Kullanım Senaryoları",
-            "Use Cases"),
-
-        // Platform Controller — Semantic Architecture
-        ["Platform.CustomerIntelligence"] = new(
-            "/platform/customer-intelligence",
-            "/en/platform/customer-intelligence",
-            "Customer Intelligence | Müşteri Zekâsı",
-            "Customer Intelligence | Customer Analytics",
-            "Pika Customer Intelligence, müşteri davranışı ve transaction verisinden anlam çıkararak segmentasyon, değer analizi ve fırsat tespitine zemin hazırlar.",
-            "Pika Customer Intelligence extracts meaning from customer behavior and transaction data to enable segmentation, value analysis, and opportunity detection.",
-            "Customer Intelligence",
-            "Customer Intelligence"),
-
-        ["Platform.ProductIntelligence"] = new(
-            "/platform/product-intelligence",
-            "/en/platform/product-intelligence",
-            "Product Intelligence | Ürün Zekâsı",
-            "Product Intelligence | Product Analytics",
-            "Pika Product Intelligence, ürünleri yalnızca katalog kaydı değil müşteri ihtiyacı, ticari rol ve analitik bağlamla anlamlandıran ürün zekâsı katmanıdır.",
-            "Pika Product Intelligence enriches products beyond catalog records — with customer need, commercial role, and analytic context to power smarter decisions.",
-            "Product Intelligence",
-            "Product Intelligence"),
-
-        ["Platform.Pika360"] = new(
-            "/platform/pika-360",
-            "/en/platform/pika-360",
-            "Pika 360 | Bütünleşik Müşteri Karar Ekranı",
-            "Pika 360 | Unified Customer Decision View",
-            "Pika 360, tek bir müşteriyi yalnızca profil olarak değil; değer, davranış, risk, iletişim erişimi ve açık fırsat bağlamıyla birlikte değerlendiren karar ekranıdır.",
-            "Pika 360 is a unified customer decision screen combining value, behavior, risk, channel access, and open opportunities in a single view.",
-            "Pika 360",
-            "Pika 360"),
-
-        ["Platform.Opportunities"] = new(
-            "/platform/gunun-firsatlari",
-            "/en/platform/opportunities",
-            "Günün Fırsatları | Fırsat ve Karar Motoru",
-            "Daily Opportunities | Opportunity & Decision Engine",
-            "Pika'nın fırsat motoru, müşteri ve ürün verisinden tekrar satın alma, cross-sell, upsell ve geri kazanım fırsatlarını tespit ederek günlük aksiyon öncelikleri oluşturur.",
-            "Pika's opportunity engine detects repeat purchase, cross-sell, upsell, and win-back signals from customer and product data to build daily action priorities.",
-            "Günün Fırsatları",
-            "Daily Opportunities"),
+        ["Solutions.EmailMarketing"] = new("/kanallar/email", "/en/channels/email", "Email | Pika Kanalları", "Email | Pika Channels", "Pika'da e-posta; fırsat, segment, Campaign ve Journey kararlarının uygulanabildiği iletişim kanallarından biridir.", "In Pika, email is an execution channel for opportunity, audience, Campaign and Journey decisions."),
+        ["Solutions.SmsCampaigns"] = new("/kanallar/sms", "/en/channels/sms", "SMS | Pika Kanalları", "SMS | Pika Channels", "Pika'da SMS kanalını izin, uygunluk, hedef kitle ve zamanlama bağlamıyla yönetin.", "Use SMS in Pika with consent, eligibility, audience and timing context."),
+        ["Solutions.WhatsAppMessaging"] = new("/kanallar/whatsapp", "/en/channels/whatsapp", "WhatsApp | Pika Kanalları", "WhatsApp | Pika Channels", "Pika'da WhatsApp kanalını izin, şablon ve Campaign/Journey bağlamıyla yönetin.", "Use WhatsApp in Pika within consent, template and Campaign/Journey workflows."),
+        ["Solutions.PushNotifications"] = new("/kanallar/push", "/en/channels/push", "Push | Pika Kanalları", "Push | Pika Channels", "Pika'da Push bildirimlerini uygun hedef kitle ve Journey/Campaign bağlamında kullanın.", "Use Push notifications with suitable audiences and Journey/Campaign context in Pika."),
+        ["Solutions.SecurityPrivacy"] = new("/guvenlik-ve-gizlilik", "/en/security-and-privacy", "Güvenlik ve Gizlilik | Pika", "Security & Privacy | Pika", "Pika'nın doğrulanmış erişim, izin, opt-out, veri ve operasyon güvenliği yaklaşımını; ürün ile müşteri sorumluluk sınırlarını inceleyin.", "Review Pika's verified approach to access, consent, opt-out, data and operational safeguards, including product/customer responsibility boundaries."),
+        ["Solutions.UseCases"] = new("/kullanim-senaryolari", "/en/use-cases", "Kullanım Senaryoları | Pika", "Use Cases | Pika", "Tekrar satın alma, pasifleşme, cross-sell, Journey, kanal seçimi ve ölçüm gibi gerçek iş sorularının Pika içinde nasıl ele alındığını görün.", "See how Pika addresses real business questions such as repeat purchase, inactivity, cross-sell, Journey automation, channel choice and measurement.")
     };
 
     public static PageSeoMetadata? GetMetadata(string? controller, string? action)
     {
-        if (string.IsNullOrWhiteSpace(controller) || string.IsNullOrWhiteSpace(action))
-            return null;
-
+        if (string.IsNullOrWhiteSpace(controller) || string.IsNullOrWhiteSpace(action)) return null;
         var key = $"{controller}.{action}";
-        if (RouteMetadata.TryGetValue(key, out var meta))
-        {
-            return meta;
-        }
-
-        // Action normalization mappings
-        if (controller.Equals("Solutions", StringComparison.OrdinalIgnoreCase))
-        {
-            if (action.Equals("PersonalizationPage", StringComparison.OrdinalIgnoreCase))
-                return RouteMetadata["Solutions.Personalization"];
-        }
-
-        return null;
+        return RouteMetadata.TryGetValue(key, out var meta) ? meta : null;
     }
 
-    public static string GetCanonicalUrl(string? controller, string? action, string culture, string? explicitCanonical = null)
+    public static string? GetCanonicalUrl(string? controller, string? action, string culture, string? explicitCanonical = null)
     {
         if (!string.IsNullOrWhiteSpace(explicitCanonical))
-        {
             return explicitCanonical.StartsWith("http", StringComparison.OrdinalIgnoreCase)
                 ? explicitCanonical
                 : $"{BaseDomain}{(explicitCanonical.StartsWith('/') ? explicitCanonical : "/" + explicitCanonical)}";
-        }
 
-        var isTr = culture.Equals("tr", StringComparison.OrdinalIgnoreCase);
         var meta = GetMetadata(controller, action);
-        if (meta != null)
-        {
-            var path = isTr ? meta.AlternatePathTr : meta.AlternatePathEn;
-            return $"{BaseDomain}{path}";
-        }
-
-        // Default fallback
-        if (string.Equals(controller, "Home", StringComparison.OrdinalIgnoreCase) &&
-            (string.Equals(action, "Index", StringComparison.OrdinalIgnoreCase) || string.Equals(action, "EnglishIndex", StringComparison.OrdinalIgnoreCase)))
-        {
-            return isTr ? $"{BaseDomain}/" : $"{BaseDomain}/en/";
-        }
-
-        return isTr ? $"{BaseDomain}/" : $"{BaseDomain}/en/";
+        if (meta == null) return null;
+        var path = culture.Equals("en", StringComparison.OrdinalIgnoreCase) ? meta.AlternatePathEn : meta.AlternatePathTr;
+        return $"{BaseDomain}{path}";
     }
 
     public static List<HreflangEntry> GetHreflangAlternates(string? controller, string? action)
     {
         var meta = GetMetadata(controller, action);
-        if (meta == null)
-        {
-            return
-            [
-                new("tr", $"{BaseDomain}/"),
-                new("en", $"{BaseDomain}/en/"),
-                new("x-default", $"{BaseDomain}/")
-            ];
-        }
-
+        if (meta == null) return [];
         return
         [
             new("tr", $"{BaseDomain}{meta.AlternatePathTr}"),
@@ -461,21 +122,12 @@ public static class SeoHelper
         ];
     }
 
+    public static IReadOnlyCollection<PageSeoMetadata> GetAllPublicMetadata() => RouteMetadata.Values.Distinct().ToArray();
+
     public static string FormatPageTitle(string pageTitle, string brandName = "Pika")
     {
-        if (string.IsNullOrWhiteSpace(pageTitle) || pageTitle.Trim().Equals(brandName, StringComparison.OrdinalIgnoreCase))
-        {
-            return $"{brandName} | Omnichannel Pazarlama Otomasyonu";
-        }
-
+        if (string.IsNullOrWhiteSpace(pageTitle)) return brandName;
         var trimmed = pageTitle.Trim();
-        if (trimmed.EndsWith($"| {brandName}", StringComparison.OrdinalIgnoreCase) ||
-            trimmed.EndsWith($"- {brandName}", StringComparison.OrdinalIgnoreCase) ||
-            trimmed.Contains(brandName, StringComparison.OrdinalIgnoreCase))
-        {
-            return trimmed;
-        }
-
-        return $"{trimmed} | {brandName}";
+        return trimmed.Contains(brandName, StringComparison.OrdinalIgnoreCase) ? trimmed : $"{trimmed} | {brandName}";
     }
 }

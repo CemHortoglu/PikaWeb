@@ -14,4 +14,7 @@ Disallow: /api/
 Disallow: /error/
 Disallow: /internal/
 
+# GPTBot is intentionally governed separately from ChatGPT Search/OAI-SearchBot.
+# No training-crawler policy is changed in this recovery pass.
+
 Sitemap: https://pika.tr/sitemap.xml

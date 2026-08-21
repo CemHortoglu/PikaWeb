@@ -1,103 +1,66 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Pika.Controllers
+namespace Pika.Controllers;
+
+/// <summary>
+/// Public marketing actions. Route names are an explicit public contract and are
+/// intentionally decoupled from controller/action names.
+/// </summary>
+public class SolutionsController : Controller
 {
-    public class SolutionsController : Controller
-    {
-        [HttpGet("/cozumler/campaign-manager")]
-        [HttpGet("/en/solutions/campaign-manager")]
-        public IActionResult CampaignManager() => View();
+    [HttpGet("/platform/campaign-manager")]
+    [HttpGet("/en/platform/campaign-manager")]
+    public IActionResult CampaignManager() => View();
 
-        [HttpGet("/cozumler/audience-manager")]
-        [HttpGet("/en/solutions/audience-manager")]
-        public IActionResult AudienceManager() => View();
+    [HttpGet("/platform/audience-manager")]
+    [HttpGet("/en/platform/audience-manager")]
+    public IActionResult AudienceManager() => View();
 
-        [HttpGet("/cozumler/journey-manager")]
-        [HttpGet("/en/solutions/journey-manager")]
-        public IActionResult JourneyManager() => View();
+    [HttpGet("/platform/journey-manager")]
+    [HttpGet("/en/platform/journey-manager")]
+    public IActionResult JourneyManager() => View();
 
-        [HttpGet("/cozumler/content-studio")]
-        [HttpGet("/en/solutions/content-studio")]
-        public IActionResult ContentStudio() => View();
+    [HttpGet("/platform/content-studio")]
+    [HttpGet("/en/platform/content-studio")]
+    public IActionResult ContentStudio() => View();
 
-        [HttpGet("/cozumler/consent-management")]
-        [HttpGet("/en/solutions/consent-management")]
-        public IActionResult ConsentManagement() => View();
+    [HttpGet("/platform/consent-management")]
+    [HttpGet("/en/platform/consent-management")]
+    public IActionResult ConsentManagement() => View();
 
-        [HttpGet("/kanallar/email")]
-        [HttpGet("/en/channels/email")]
-        public IActionResult EmailMarketing() => View();
+    [HttpGet("/platform/analytics")]
+    [HttpGet("/en/platform/analytics")]
+    public IActionResult Reporting() => View();
 
-        [HttpGet("/kanallar/sms")]
-        [HttpGet("/en/channels/sms")]
-        public IActionResult SmsCampaigns() => View();
+    [HttpGet("/platform/integrations")]
+    [HttpGet("/en/platform/integrations")]
+    public IActionResult Integrations() => View();
 
-        [HttpGet("/kanallar/whatsapp")]
-        [HttpGet("/en/channels/whatsapp")]
-        public IActionResult WhatsAppMessaging() => View();
+    [HttpGet("/platform/ai-kampanya-asistani")]
+    [HttpGet("/en/platform/ai-campaign-assistant")]
+    public IActionResult AiCampaignAssistant() => View();
 
-        [HttpGet("/kanallar/push")]
-        [HttpGet("/en/channels/push")]
-        public IActionResult PushNotifications() => View();
+    [HttpGet("/kanallar/email")]
+    [HttpGet("/en/channels/email")]
+    public IActionResult EmailMarketing() => View();
 
-        [HttpGet("/cozumler/personalization")]
-        [HttpGet("/en/solutions/personalization")]
-        public IActionResult PersonalizationPage() => View("Personalization");
+    [HttpGet("/kanallar/sms")]
+    [HttpGet("/en/channels/sms")]
+    public IActionResult SmsCampaigns() => View();
 
-        [HttpGet("/cozumler/template-management")]
-        [HttpGet("/en/solutions/template-management")]
-        public IActionResult TemplateManagement() => View();
+    [HttpGet("/kanallar/whatsapp")]
+    [HttpGet("/en/channels/whatsapp")]
+    public IActionResult WhatsAppMessaging() => View();
 
-        [HttpGet("/cozumler/ab-testing")]
-        [HttpGet("/en/solutions/ab-testing")]
-        public IActionResult ABTesting() => View();
+    [HttpGet("/kanallar/push")]
+    [HttpGet("/en/channels/push")]
+    public IActionResult PushNotifications() => View();
 
-        [HttpGet("/cozumler/analytics-reporting")]
-        [HttpGet("/en/solutions/analytics-reporting")]
-        public IActionResult Reporting() => View();
+    [HttpGet("/guvenlik-ve-gizlilik")]
+    [HttpGet("/en/security-and-privacy")]
+    public IActionResult SecurityPrivacy() => View();
 
-        [HttpGet("/cozumler/deliverability-compliance")]
-        [HttpGet("/en/solutions/deliverability-compliance")]
-        public IActionResult DeliverabilityCompliance() => View();
-
-        [HttpGet("/cozumler/data-management-etl")]
-        [HttpGet("/en/solutions/data-management-etl")]
-        public IActionResult DataManagementEtl() => View();
-
-        [HttpGet("/cozumler/real-time-event-processing")]
-        [HttpGet("/en/solutions/real-time-event-processing")]
-        public IActionResult RealTimeEventProcessing() => View();
-
-        [HttpGet("/entegrasyonlar")]
-        [HttpGet("/en/integrations")]
-        public IActionResult Integrations() => View();
-
-        [HttpGet("/guvenlik-ve-gizlilik")]
-        [HttpGet("/en/security-and-privacy")]
-        public IActionResult SecurityPrivacy() => View();
-
-        [HttpGet("/urunler/ai-kampanya-asistani", Name = "AiCampaignAssistant")]
-        [HttpGet("/en/products/ai-campaign-assistant", Name = "AiCampaignAssistantEn")]
-        public IActionResult AiCampaignAssistant() => View();
-
-        [HttpGet("/cozumler/e-ticaret-ai-kampanya-yonetimi", Name = "EcommerceAiCampaign")]
-        [HttpGet("/en/solutions/ecommerce-ai-campaign", Name = "EcommerceAiCampaignEn")]
-        public IActionResult EcommerceAiCampaign() => View();
-
-        [HttpGet("/kanallar/whatsapp-kampanya-yonetimi", Name = "WhatsAppCampaignManagement")]
-        [HttpGet("/en/channels/whatsapp-campaign-management", Name = "WhatsAppCampaignManagementEn")]
-        public IActionResult WhatsAppCampaignManagement() => View();
-
-        [HttpGet("/cozumler/iys-kvkk-uyumlu-kampanya-yonetimi", Name = "IysKvkkCompliance")]
-        [HttpGet("/en/solutions/iys-kvkk-compliance", Name = "IysKvkkComplianceEn")]
-        public IActionResult IysKvkkCompliance() => View();
-
-        [HttpGet("/kanallar/email-marketing-template-studio", Name = "EmailMarketingTemplateStudio")]
-        [HttpGet("/en/channels/email-marketing-template-studio", Name = "EmailMarketingTemplateStudioEn")]
-        public IActionResult EmailMarketingTemplateStudio() => View();
-
-        [HttpGet("/kullanim-senaryolari", Name = "UseCases")]
-        [HttpGet("/en/use-cases", Name = "UseCasesEn")]
-        public IActionResult UseCases() => View();
-    }
+    [HttpGet("/kullanim-senaryolari")]
+    [HttpGet("/en/use-cases")]
+    public IActionResult UseCases() => View();
 }
