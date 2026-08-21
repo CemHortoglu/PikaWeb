@@ -1,792 +1,123 @@
 @{
     var culture = (ViewData["culture"] as string ?? ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").ToLowerInvariant();
-    var isTr = culture == "tr";
-    var tr = isTr;
-
-    ViewData["Title"] = isTr 
-        ? "Omnichannel Pazarlama Otomasyonu ve Müşteri Yolculuğu Platformu" 
-        : "Omnichannel Marketing Automation & Customer Journey Platform";
-    ViewData["MetaDescription"] = isTr 
-        ? "Pika ile SMS, WhatsApp, Email ve Push kanallarında kişiselleştirilmiş kampanya yönetimi, segmentasyon ve journey otomasyonunu tek platformda yönetin. Hızlı kurulum, güvenli altyapı ve ölçülebilir sonuçlar." 
-        : "Manage personalized campaigns, segmentation, and journey automation across SMS, WhatsApp, Email, and Push on a single platform with Pika. Fast deployment, secure architecture, and measurable growth.";
-    ViewData["MetaKeywords"] = isTr
-        ? "pazarlama otomasyonu, omnichannel pazarlama, müşteri yolculuğu, segmentasyon, kişiselleştirme, kampanya yönetimi, WhatsApp pazarlama, SMS pazarlama, email marketing, push bildirim"
-        : "marketing automation, omnichannel marketing, customer journey, segmentation, personalization, campaign management, WhatsApp marketing, SMS marketing, email marketing, push notification";
-    ViewData["BodyClass"] = "pika-home-modern";
+    var tr = culture == "tr";
+    ViewData["Title"] = tr ? "Pika | Müşteri ve Ürün Zekâsından Doğru Aksiyona" : "Pika | From Customer & Product Intelligence to Action";
+    ViewData["MetaDescription"] = tr
+        ? "Pika; müşteri, ürün ve işlem verisini anlamlandırır, Günün Fırsatları'nı görünür kılar ve yöneticinin seçtiği aksiyonu Campaign, Journey ve iletişim kanallarıyla uygulamasına yardımcı olur."
+        : "Pika turns customer, product and transaction data into intelligence, surfaces Daily Opportunities and helps teams execute controlled actions through Campaign, Journey and communication channels.";
+    ViewData["BodyClass"] = "pk-page";
 }
-
 @section JsonLd {
 <script type="@Html.Raw("application/ld+json")">
-{
-  "@@context": "https://schema.org",
-  "@@graph": [
-    {
-      "@@type": "WebSite",
-      "@@id": "https://pika.tr/#website",
-      "url": "https://pika.tr/",
-      "name": "Pika",
-      "description": "@(isTr ? "Omnichannel Pazarlama Otomasyonu ve Müşteri Yolculuğu Platformu" : "Omnichannel Marketing Automation & Customer Journey Platform")",
-      "inLanguage": ["tr-TR", "en-US"]
-    },
-    {
-      "@@type": "SoftwareApplication",
-      "@@id": "https://pika.tr/#software",
-      "name": "Pika Omnichannel Pazarlama Platformu",
-      "alternateName": ["Pika Marketing Automation", "Pika Müşteri Yolculuğu Platformu"],
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "Web",
-      "url": "https://pika.tr",
-      "description": "@(isTr ? "SMS, WhatsApp, Email ve Push kanallarında kampanya yönetimi, segmentasyon, müşteri yolculuğu otomasyonu, izin yönetimi ve raporlamayı tek platformda birleştiren yapay zekâ destekli omnichannel pazarlama otomasyonu çözümü." : "AI-powered omnichannel marketing automation platform uniting campaign management, segmentation, journey flows, consent management, and analytics across SMS, WhatsApp, Email, and Push.")",
-      "featureList": [
-        "@(isTr ? "Omnichannel kampanya yönetimi" : "Omnichannel campaign management")",
-        "@(isTr ? "Müşteri yolculuğu otomasyonu" : "Customer journey automation")",
-        "@(isTr ? "Transaction bazlı segmentasyon" : "Transaction-based segmentation")",
-        "@(isTr ? "AI destekli kampanya üretimi" : "AI-powered campaign generation")",
-        "WhatsApp, SMS, Email, Push",
-        "@(isTr ? "IYS uyumlu izin yönetimi" : "Consent & compliance management")",
-        "@(isTr ? "Gerçek zamanlı tetikleyiciler" : "Real-time behavioral triggers")",
-        "@(isTr ? "KVKK uyumlu veri yönetimi" : "Privacy & data protection compliance")"
-      ],
-      "offers": {
-        "@@type": "Offer",
-        "url": "@(isTr ? "https://pika.tr/demo-talebi" : "https://pika.tr/en/demo-request")"
-      },
-      "provider": {
-        "@@id": "https://pika.tr/#organization"
-      }
-    },
-    {
-      "@@type": "FAQPage",
-      "@@id": "https://pika.tr/#faq",
-      "mainEntity": [
-        {
-          "@@type": "Question",
-          "name": "@(isTr ? "Omnichannel pazarlama otomasyonu nedir?" : "What is omnichannel marketing automation?")",
-          "acceptedAnswer": {
-            "@@type": "Answer",
-            "text": "@(isTr ? "Omnichannel pazarlama otomasyonu, SMS, WhatsApp, Email ve Push gibi birden fazla iletişim kanalını tek bir platform üzerinden yöneterek müşterilere doğru anda, doğru mesajı otomatik olarak iletmeyi sağlayan teknoloji çözümüdür. Pika bu süreci; segmentasyon, journey otomasyonu, kişiselleştirme ve raporlama ile tek merkezde sunar." : "Omnichannel marketing automation is a unified solution that orchestrates customer communications across SMS, WhatsApp, Email, and Push to deliver the right message at the right moment. Pika brings segmentation, journey workflows, personalization, and analytics together under one roof.")"
-          }
-        },
-        {
-          "@@type": "Question",
-          "name": "@(isTr ? "Müşteri yolculuğu platformu (Customer Journey Platform) ne işe yarar?" : "What is a Customer Journey Platform?")",
-          "acceptedAnswer": {
-            "@@type": "Answer",
-            "text": "@(isTr ? "Müşteri yolculuğu platformu, bir müşterinin farkındalık aşamasından satın alma ve sadakat aşamasına kadar geçirdiği her temas noktasında otomatik ve kişiselleştirilmiş iletişim kurulmasını sağlar. Sepet hatırlatma, doğum günü kampanyası, yeniden kazanım akışı gibi olay bazlı süreçler bu platform üzerinden yönetilir." : "A customer journey platform orchestrates automated, personalized touchpoints throughout the entire customer lifecycle—from awareness to purchase and retention. Event-driven flows like abandoned cart recovery, birthday offers, and win-back sequences run automatically.")"
-          }
-        },
-        {
-          "@@type": "Question",
-          "name": "@(isTr ? "Pika hangi iletişim kanallarını destekliyor?" : "Which communication channels does Pika support?")",
-          "acceptedAnswer": {
-            "@@type": "Answer",
-            "text": "@(isTr ? "Pika; WhatsApp Business API, SMS, Email ve Push Notification kanallarını tek platformda desteklemektedir. Tüm kanallardaki kampanyalar aynı arayüzden oluşturulabilir, zamanlanabilir ve analiz edilebilir." : "Pika natively supports WhatsApp Business API, SMS, Email, and Push Notifications on a single platform. Campaigns across all channels can be created, scheduled, and analyzed in one dashboard.")"
-          }
-        },
-        {
-          "@@type": "Question",
-          "name": "@(isTr ? "IYS uyumlu pazarlama platformu nedir?" : "How does Pika handle consent and compliance?")",
-          "acceptedAnswer": {
-            "@@type": "Answer",
-            "text": "@(isTr ? "IYS (İleti Yönetim Sistemi) uyumlu pazarlama platformu, Türkiye'deki ticari elektronik ileti mevzuatına göre müşteri izinlerini merkezi olarak yöneten, onaysız iletişimi engelleyen ve KVKK gerekliliklerini karşılayan bir yapıya sahip platformdur. Pika bu gereksinimleri Consent Management modülüyle karşılar." : "Pika's Consent Management module manages opt-ins, communication preferences, and regulatory compliance (KVKK / IYS / GDPR), preventing unauthorized messaging and securing customer trust.")"
-          }
-        },
-        {
-          "@@type": "Question",
-          "name": "@(isTr ? "Transaction bazlı segmentasyon nasıl çalışır?" : "How does transaction-based segmentation work?")",
-          "acceptedAnswer": {
-            "@@type": "Answer",
-            "text": "@(isTr ? "Transaction bazlı segmentasyon; müşterilerin gerçek satın alma verilerini (hangi mağazadan, hangi ürünü, kaç kez aldığı gibi) kullanarak dinamik hedef kitle grupları oluşturmayı sağlar. Pika'nın Audience Manager modülü ile bu segmentler kaydedilebilir ve farklı kampanyalarda yeniden kullanılabilir." : "Transaction-based segmentation uses granular purchase history—such as store location, product categories, and purchase frequency—to build dynamic audiences. Pika's Audience Manager allows you to save and reuse these segments across multiple campaigns.")"
-          }
-        },
-        {
-          "@@type": "Question",
-          "name": "@(isTr ? "Pika ile yapay zekâ destekli kampanya nasıl oluşturulur?" : "How does AI-assisted campaign creation work in Pika?")",
-          "acceptedAnswer": {
-            "@@type": "Answer",
-            "text": "@(isTr ? "Pika AI Kampanya Asistanı sayesinde, bir kampanya fikri doğal dil ile yazıldığında sistem otomatik olarak kampanya taslağı, hedef kitle önerisi, email metni ve template oluşturur. Bu özellik kampanya hazırlık süresini önemli ölçüde kısaltır." : "With Pika's AI Campaign Assistant, entering a campaign concept in natural language instantly drafts copy, selects recommended audience segments, and generates ready-to-send email templates, dramatically reducing time to market.")"
-          }
-        }
-      ]
-    }
-  ]
-}
+{"@@context":"https://schema.org","@@graph":[
+ {"@@type":"WebSite","@@id":"https://pika.tr/#website","url":"https://pika.tr/","name":"Pika","inLanguage":["tr-TR","en-US"]},
+ {"@@type":"SoftwareApplication","@@id":"https://pika.tr/#software","name":"Pika","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://pika.tr/","description":"@(tr ? "Müşteri ve ürün verisini anlamlandıran, fırsatları görünür kılan ve kontrollü pazarlama aksiyonlarına bağlayan B2B SaaS platformu." : "A B2B SaaS platform that turns customer and product context into opportunities and controlled marketing actions.")","provider":{"@@id":"https://pika.tr/#organization"}}
+]}
 </script>
 }
 
-@* ══════════════════════════════════════════════════════════════════════════
-   1. HERO — "Doğru Anda" Anchor
-   ══════════════════════════════════════════════════════════════════════ *@
-<section class="ph-hero">
-    <div class="container">
-        <div class="row align-items-center g-5">
-            <div class="col-lg-6" data-aos="fade-right" data-aos-duration="700">
-                <span class="ph-eyebrow" data-i18n="home.heroEyebrow">@(isTr ? "Doğru Anda · Akıllı Pazarlama Platformu" : "At The Right Moment · Intelligent Marketing Platform")</span>
-                <h1 class="ph-hero-title" data-i18n="home.heroTitle">@(isTr ? "Müşteriyi Doğru Anda Anla, Doğru Aksiyonu Al" : "Understand Customers at the Right Moment, Take the Right Action")</h1>
-                <p class="ph-hero-desc" data-i18n="home.heroDesc">@(isTr ? "Pika; müşteri ve ürün verisinden anlam çıkarır, ticari fırsatları tespit eder ve SMS, WhatsApp, Email, Push kanallarında doğru aksiyonu doğru anda almanızı sağlar. Veriden karara, karardan çok kanallı iletişime tek platform." : "Pika extracts context from customer and product data, detects revenue opportunities, and enables you to execute the right action across SMS, WhatsApp, Email, and Push. One platform from data to decision, from decision to omnichannel dispatches.")</p>
-                <div class="ph-hero-actions">
-                    <button type="button" class="ph-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal"><span data-i18n="nav.demo">@(isTr ? "Demo Talep Et" : "Request a Demo")</span> <i class="ri-arrow-right-up-line"></i></button>
-                    <a href="#ph-intelligence" class="ph-btn-outline" data-i18n="home.heroCta2">@(isTr ? "Platformu İncele" : "Explore Platform")</a>
-                </div>
-                <div class="ph-hero-tags">
-                    <span class="ph-tag"><i class="ri-brain-line"></i> Customer &amp; Product Intelligence</span>
-                    <span class="ph-tag"><i class="ri-focus-3-line"></i> @(isTr ? "Günün Fırsatları" : "Daily Opportunities")</span>
-                    <span class="ph-tag"><i class="ri-pie-chart-line"></i> @(isTr ? "Transaction Segmentasyon" : "Transaction Segmentation")</span>
-                    <span class="ph-tag"><i class="ri-route-line"></i> @(isTr ? "Journey Otomasyonu" : "Journey Automation")</span>
-                    <span class="ph-tag"><i class="ri-message-2-line"></i> WhatsApp, SMS, Email, Push</span>
-                </div>
+<section class="pk-hero">
+    <div class="pk-container pk-hero-grid">
+        <div>
+            <span class="pk-eyebrow">Doğru Anda</span>
+            <h1>@(tr ? "Müşterinizi anlayın. Fırsatı görün. Doğru anda aksiyon alın." : "Understand customers. See the opportunity. Act at the right moment.")</h1>
+            <p>@(tr ? "Pika, müşteri, ürün ve işlem verisini yalnız raporlamak için değil; bugün nerede anlamlı bir fırsat oluştuğunu görmek ve bu fırsatı kontrollü bir aksiyona dönüştürmek için bir araya getirir." : "Pika brings customer, product and transaction data together not just to report what happened, but to show where a meaningful opportunity exists today and turn it into controlled action.")</p>
+            <div class="pk-actions">
+                <button class="pk-btn pk-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal">@(tr ? "Demo Talep Et" : "Request a Demo")</button>
+                <a class="pk-btn pk-btn-ghost" href="@(tr ? "/pika" : "/en/pika")">@(tr ? "Pika'yı Tanıyın" : "What is Pika?")</a>
             </div>
-            <div class="col-lg-6" data-aos="fade-left" data-aos-duration="700">
-                <div class="ph-mock">
-                    <div class="ph-mock-header">
-                        <span class="ph-mock-dot"></span>
-                        <span class="ph-mock-dot"></span>
-                        <span class="ph-mock-dot"></span>
-                    </div>
-                    <div class="ph-mock-body">
-                        <div class="ph-mock-sidebar d-none d-md-block">
-                            <div class="ph-mock-nav-item active"><i class="ri-dashboard-line"></i> Dashboard</div>
-                            <div class="ph-mock-nav-item"><i class="ri-focus-3-line"></i> @(isTr ? "Fırsatlar" : "Opportunities")</div>
-                            <div class="ph-mock-nav-item"><i class="ri-brain-line"></i> @(isTr ? "Müşteri Zekâsı" : "Customer Intel")</div>
-                            <div class="ph-mock-nav-item"><i class="ri-megaphone-line"></i> Campaigns</div>
-                            <div class="ph-mock-nav-item"><i class="ri-group-line"></i> Audiences</div>
-                            <div class="ph-mock-nav-item"><i class="ri-route-line"></i> Journeys</div>
-                            <div class="ph-mock-nav-item"><i class="ri-bar-chart-box-line"></i> Analytics</div>
-                        </div>
-                        <div class="ph-mock-main">
-                            <div class="row g-2 mb-3">
-                                <div class="col-4">
-                                    <div class="ph-mock-stat">
-                                        <div class="ph-mock-stat-val">12.4K</div>
-                                        <div class="ph-mock-stat-lbl" data-i18n="home.mock.send">@(isTr ? "Gönderim" : "Dispatched")</div>
-                                        <div class="ph-mock-bar"><div class="ph-mock-bar-fill" style="width:82%"></div></div>
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="ph-mock-stat">
-                                        <div class="ph-mock-stat-val">%68</div>
-                                        <div class="ph-mock-stat-lbl" data-i18n="home.mock.open">@(isTr ? "Açılma" : "Open Rate")</div>
-                                        <div class="ph-mock-bar"><div class="ph-mock-bar-fill" style="width:68%"></div></div>
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="ph-mock-stat">
-                                        <div class="ph-mock-stat-val">%24</div>
-                                        <div class="ph-mock-stat-lbl" data-i18n="home.mock.conversion">@(isTr ? "Dönüşüm" : "Conversion")</div>
-                                        <div class="ph-mock-bar"><div class="ph-mock-bar-fill" style="width:24%"></div></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="ph-mock-stat p-2" style="min-height:100px">
-                                <div class="d-flex justify-content-between mb-2" style="font-size:.75rem;color:var(--pika-muted)">
-                                    <span data-i18n="home.mock.campPerf">@(isTr ? "Kampanya Performansı" : "Campaign Performance")</span><span data-i18n="home.mock.last7">@(isTr ? "Son 7 gün" : "Last 7 days")</span>
-                                </div>
-                                <div class="d-flex align-items-end gap-1" style="height:60px">
-                                    <div style="flex:1;background:#eaf4dd;border-radius:3px;height:40%"></div>
-                                    <div style="flex:1;background:#eaf4dd;border-radius:3px;height:55%"></div>
-                                    <div style="flex:1;background:#eaf4dd;border-radius:3px;height:45%"></div>
-                                    <div style="flex:1;background:#84c225;border-radius:3px;height:80%"></div>
-                                    <div style="flex:1;background:#eaf4dd;border-radius:3px;height:65%"></div>
-                                    <div style="flex:1;background:#eaf4dd;border-radius:3px;height:72%"></div>
-                                    <div style="flex:1;background:#9edd05;border-radius:3px;height:90%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ph-mock-overlay ph-mock-overlay-1 d-none d-lg-block">
-                        <div class="d-flex align-items-center gap-2 mb-1">
-                            <i class="ri-focus-3-line" style="color:var(--pika-primary2)"></i>
-                            <span style="font-size:.8rem;font-weight:600">@(isTr ? "Günün Fırsatları" : "Daily Opportunities")</span>
-                        </div>
-                        <span style="font-size:.72rem;color:var(--pika-muted)">@(isTr ? "Tekrar satın alma & cross-sell hazır" : "Repeat purchase & cross-sell ready")</span>
-                    </div>
-                    <div class="ph-mock-overlay ph-mock-overlay-2 d-none d-lg-block">
-                        <div class="d-flex align-items-center gap-2 mb-1">
-                            <i class="ri-robot-line" style="color:var(--pika-primary2)"></i>
-                            <span style="font-size:.8rem;font-weight:600" data-i18n="nav.aiAssistant">@(isTr ? "AI Kampanya Asistanı" : "AI Campaign Assistant")</span>
-                        </div>
-                        <span style="font-size:.72rem;color:var(--pika-muted)" data-i18n="home.mock.aiCampaignCreated">@(isTr ? "Kampanya oluşturuldu ✓" : "Campaign generated ✓")</span>
-                    </div>
-                </div>
-            </div>
+        </div>
+        <figure class="pk-proof" data-aos="fade-left">
+            <img src="/wiki/assets/images/img_gunun-firsatlari.png" alt="@(tr ? "Pika Günün Fırsatları ürün ekranı" : "Pika Daily Opportunities product screen")" width="1200" height="760" fetchpriority="high" />
+            <figcaption>@(tr ? "Günün Fırsatları: hesaplanan müşteri ve ürün bağlamından aksiyona dönüştürülebilir durumları tek çalışma alanında değerlendirin." : "Daily Opportunities: review actionable situations derived from customer and product context in one workspace.")</figcaption>
+        </figure>
+    </div>
+</section>
+
+<section class="pk-section pk-section-lg" id="firsatlar">
+    <div class="pk-container pk-opportunity">
+        <div>
+            <span class="pk-eyebrow">@(tr ? "Günün Fırsatları" : "Daily Opportunities")</span>
+            <h2>@(tr ? "Bugün neye bakmanız gerektiğini görün." : "See what deserves attention today.")</h2>
+            <p class="pk-lead">@(tr ? "Her müşteri için aynı mesajı üretmek yerine Pika; gerçekleşmiş davranış, alışveriş ritmi, ürün bağlamı ve uygunluk sinyallerini birlikte değerlendirerek aksiyona aday durumları görünür kılar." : "Instead of treating every customer the same, Pika combines observed behavior, purchase rhythm, product context and eligibility signals to surface situations that may justify action.")</p>
+            <div class="pk-actions"><a class="pk-btn pk-btn-ghost" href="@(tr ? "/platform/gunun-firsatlari" : "/en/platform/opportunities")">@(tr ? "Günün Fırsatları'nı İnceleyin" : "Explore Daily Opportunities")</a></div>
+        </div>
+        <div class="pk-opportunity-list" aria-label="@(tr ? "Örnek fırsat türleri" : "Example opportunity types")">
+            <div class="pk-opportunity-row"><div class="pk-opportunity-icon"><i class="ri-refresh-line"></i></div><div><strong>@(tr ? "Tekrar satın alma" : "Repeat purchase")</strong><span>@(tr ? "Müşterinin kendi alışveriş ritmine göre yaklaşan ihtiyaç penceresi" : "An approaching need window based on the customer's own purchase rhythm")</span></div><span class="pk-status">@(tr ? "İncele" : "Review")</span></div>
+            <div class="pk-opportunity-row"><div class="pk-opportunity-icon"><i class="ri-links-line"></i></div><div><strong>Cross-sell</strong><span>@(tr ? "Sepet birlikteliği ve ürün bağlamıyla desteklenen tamamlayıcı ilişki" : "A complementary relationship supported by basket evidence and product context")</span></div><span class="pk-status">@(tr ? "İncele" : "Review")</span></div>
+            <div class="pk-opportunity-row"><div class="pk-opportunity-icon"><i class="ri-user-unfollow-line"></i></div><div><strong>@(tr ? "Geri kazanım" : "Win-back")</strong><span>@(tr ? "Beklenen davranış ritminden uzaklaşan müşteri sinyali" : "A signal that customer behavior is drifting from its expected rhythm")</span></div><span class="pk-status">@(tr ? "İncele" : "Review")</span></div>
         </div>
     </div>
 </section>
 
-@* ══════════════════════════════════════════════════════════════════════════
-   2. GÜNÜN FIRSATLARI TEASER — "Pika bugün ne buldu?"
-   ══════════════════════════════════════════════════════════════════════ *@
-<section class="ph-section" style="background:linear-gradient(135deg,#f8fdf0 0%,#eef7e0 100%)">
-    <div class="container">
-        <div class="row align-items-center g-5">
-            <div class="col-lg-6" data-aos="fade-right" data-aos-duration="700">
-                <div class="d-inline-block mb-3">
-                    <span class="badge rounded-pill" style="background:#c8f542;color:#12362c;font-weight:600;font-size:.8rem;padding:6px 14px"><i class="ri-focus-3-line me-1"></i> @(isTr ? "Fırsat & Karar Motoru" : "Opportunity & Decision Engine")</span>
-                </div>
-                <h2 class="pika-h2 fw-bold mb-3">@(isTr ? "Pika bugün hangi fırsatları buldu?" : "What opportunities did Pika discover today?")</h2>
-                <p class="ph-muted mb-4">@(isTr ? "Geniş kitlelere rastgele kampanya göndermek yerine, müşteri ve ürün verisinden çıkan günlük öncelikli fırsatları keşfedin. Tekrar satın alma, cross-sell, upsell ve geri kazanım sinyalleri aksiyona hazır." : "Instead of blasting random campaigns to broad audiences, unlock daily prioritized opportunities derived from customer and product behavior. Repeat purchase, cross-sell, upsell, and retention signals primed for action.")</p>
-                <div class="d-flex gap-3 flex-wrap">
-                    <a href="@(isTr ? "/platform/firsatlar" : "/en/platform/opportunities")" class="ph-btn-primary">@(isTr ? "Günün Fırsatlarını İncele" : "Explore Daily Opportunities") <i class="ri-arrow-right-line"></i></a>
-                    <a href="@(isTr ? "/urunler/ai-kampanya-asistani" : "/en/products/ai-campaign-assistant")" class="ph-btn-outline"><i class="ri-magic-line me-1"></i> <span data-i18n="nav.aiAssistant">@(isTr ? "AI Kampanya Asistanı" : "AI Campaign Assistant")</span></a>
-                </div>
-            </div>
-            <div class="col-lg-6" data-aos="fade-left" data-aos-duration="700">
-                <div class="ph-module-card p-4" style="border:1px solid #d4e8b0">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <span class="fw-bold" style="font-size:.85rem;color:var(--pika-primary)"><i class="ri-sun-line me-1" style="color:#f59e0b"></i> @(isTr ? "Günlük Fırsat Akışı" : "Daily Opportunity Feed")</span>
-                        <span class="badge bg-light text-muted" style="font-size:.7rem">@(isTr ? "Öncelik Sıralı" : "Ranked by Priority")</span>
-                    </div>
-                    <div class="d-flex flex-column gap-2">
-                        <div class="d-flex align-items-center gap-3 p-2 rounded" style="background:#fff8e1">
-                            <span class="badge" style="background:#f59e0b;color:#fff;font-size:.65rem">@(isTr ? "Tekrar Alım" : "Repurchase")</span>
-                            <div class="flex-grow-1" style="font-size:.8rem">@(isTr ? "İhtiyaç döngüsü yaklaşan müşteriler" : "Customers approaching predicted repurchase window")</div>
-                            <i class="ri-arrow-right-s-line text-muted"></i>
-                        </div>
-                        <div class="d-flex align-items-center gap-3 p-2 rounded" style="background:#f0fdf4">
-                            <span class="badge" style="background:#22c55e;color:#fff;font-size:.65rem">Cross-sell</span>
-                            <div class="flex-grow-1" style="font-size:.8rem">@(isTr ? "Tamamlayıcı ürün ihtiyacı oluşan kitle" : "Audience ready for complementary item recommendations")</div>
-                            <i class="ri-arrow-right-s-line text-muted"></i>
-                        </div>
-                        <div class="d-flex align-items-center gap-3 p-2 rounded" style="background:#fef2f2">
-                            <span class="badge" style="background:#ef4444;color:#fff;font-size:.65rem">@(isTr ? "Geri Kazanım" : "Win-back")</span>
-                            <div class="flex-grow-1" style="font-size:.8rem">@(isTr ? "Pasifleşme riski taşıyan değerli müşteriler" : "High-value customers with early churn indicators")</div>
-                            <i class="ri-arrow-right-s-line text-muted"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<section class="pk-section pk-section-soft">
+    <div class="pk-container">
+        <div class="pk-chapter">
+            <div><span class="pk-eyebrow">@(tr ? "Pika nasıl çalışır?" : "How Pika works")</span><h2>@(tr ? "Veriden sonuca tek karar zinciri." : "One decision chain from data to outcome.")</h2></div>
+            <p class="pk-lead">@(tr ? "Pika'nın farkı tek bir modülde değil, birbirini besleyen katmanların birlikte çalışmasındadır. İletişim kanalı başlangıç noktası değil, karar zincirinin aksiyon aşamasıdır." : "Pika's value is not a single module but the way its layers work together. Communication channels are the action layer, not the starting point.")</p>
+        </div>
+        <div class="pk-flow" role="list">
+            <div class="pk-flow-item" role="listitem"><small>01</small><strong>@(tr ? "Veri" : "Data")</strong><span>@(tr ? "Müşteri, ürün, satış ve etkileşim bağlamı" : "Customer, product, sales and engagement context")</span></div>
+            <div class="pk-flow-item" role="listitem"><small>02</small><strong>@(tr ? "Zekâ" : "Intelligence")</strong><span>Customer Intelligence · Product Intelligence · Pika 360</span></div>
+            <div class="pk-flow-item" role="listitem"><small>03</small><strong>@(tr ? "Fırsat" : "Opportunity")</strong><span>@(tr ? "Günün Fırsatları ve karar sinyalleri" : "Daily Opportunities and decision signals")</span></div>
+            <div class="pk-flow-item" role="listitem"><small>04</small><strong>@(tr ? "Karar" : "Decision")</strong><span>@(tr ? "Kullanıcı kanıtı görür ve aksiyonu seçer" : "The user reviews evidence and chooses action")</span></div>
+            <div class="pk-flow-item" role="listitem"><small>05</small><strong>@(tr ? "Aksiyon" : "Action")</strong><span>Audience · Campaign · Journey · Channels</span></div>
+            <div class="pk-flow-item" role="listitem"><small>06</small><strong>@(tr ? "Ölçüm" : "Measure")</strong><span>@(tr ? "Desteklenen etkileşim ve satış sonuçları" : "Supported engagement and sales outcomes")</span></div>
         </div>
     </div>
 </section>
 
-@* ══════════════════════════════════════════════════════════════════════════
-   D. GÜVEN / KISA METRİK ALANI
-   ══════════════════════════════════════════════════════════════════════ *@
-<section class="ph-section-sm ph-section-alt">
-    <div class="container">
-        <div class="row g-4" data-aos="fade-up" data-aos-duration="600">
-            <div class="col-lg-3 col-md-6">
-                <div class="ph-trust-card">
-                    <div class="ph-trust-icon"><i class="ri-send-plane-line"></i></div>
-                    <h6 class="fw-bold mb-1" data-i18n="home.trust1Title">@(isTr ? "Çok kanallı kampanya yönetimi" : "Omnichannel campaign management")</h6>
-                    <p class="mb-0 small ph-muted" data-i18n="home.trust1Desc">@(isTr ? "SMS, WhatsApp, Email ve Push tek merkezde" : "SMS, WhatsApp, Email, and Push in one place")</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="ph-trust-card">
-                    <div class="ph-trust-icon"><i class="ri-timer-flash-line"></i></div>
-                    <h6 class="fw-bold mb-1" data-i18n="home.trust2Title">@(isTr ? "Gerçek zamanlı tetikleyiciler" : "Real-time triggers")</h6>
-                    <p class="mb-0 small ph-muted" data-i18n="home.trust2Desc">@(isTr ? "Davranış ve işlem bazlı otomasyon akışları" : "Behavioral and transactional automation flows")</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="ph-trust-card">
-                    <div class="ph-trust-icon"><i class="ri-shield-check-line"></i></div>
-                    <h6 class="fw-bold mb-1" data-i18n="home.trust3Title">@(isTr ? "İzin ve uyumluluk yönetimi" : "Consent & compliance management")</h6>
-                    <p class="mb-0 small ph-muted" data-i18n="home.trust3Desc">@(isTr ? "IYS ve iletişim tercihleri kontrol altında" : "Compliance, opt-ins, and communication preferences")</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="ph-trust-card">
-                    <div class="ph-trust-icon"><i class="ri-robot-line"></i></div>
-                    <h6 class="fw-bold mb-1" data-i18n="home.trust4Title">@(isTr ? "AI destekli operasyon" : "AI-powered operations")</h6>
-                    <p class="mb-0 small ph-muted" data-i18n="home.trust4Desc">@(isTr ? "Kampanya üretim süresini kısaltan akıllı yardımcı katman" : "Smart assistant layer speeding up campaign rollout")</p>
-                </div>
-            </div>
+<section class="pk-section pk-section-lg">
+    <div class="pk-container">
+        <span class="pk-eyebrow">@(tr ? "Müşteriyi ve ürünü anlayın" : "Understand customers and products")</span>
+        <div class="pk-chapter"><h2>@(tr ? "Rapor görmekten karar bağlamına geçin." : "Move from reporting to decision context.")</h2><p class="pk-lead">@(tr ? "Customer Intelligence müşteriyi, Product Intelligence ürünü ve satın alma ilişkilerini anlamlandırır. Pika 360 bu bağlamı tek müşteri üzerinde birlikte okumayı kolaylaştırır." : "Customer Intelligence explains the customer, Product Intelligence explains products and purchase relationships, while Pika 360 brings that context together around an individual customer.")</p></div>
+        <div class="pk-columns">
+            <a class="pk-feature text-decoration-none" href="@(tr ? "/platform/customer-intelligence" : "/en/platform/customer-intelligence")"><i class="ri-user-search-line"></i><h3>Customer Intelligence</h3><p>@(tr ? "Müşteri değeri, alışveriş davranışı, ritim ve risk/fırsat bağlamını birlikte değerlendirin." : "Review customer value, purchase behavior, rhythm and risk/opportunity context together.")</p></a>
+            <a class="pk-feature text-decoration-none" href="@(tr ? "/platform/product-intelligence" : "/en/platform/product-intelligence")"><i class="ri-shopping-bag-3-line"></i><h3>Product Intelligence</h3><p>@(tr ? "Ürünü yalnız kod olarak değil; kategori, ihtiyaç, Product Role ve satın alma ilişkileriyle okuyun." : "Understand products beyond codes through category, need, Product Role and purchase relationships.")</p></a>
+            <a class="pk-feature text-decoration-none" href="@(tr ? "/platform/pika-360" : "/en/platform/pika-360")"><i class="ri-focus-2-line"></i><h3>Pika 360</h3><p>@(tr ? "Profil, davranış, işlem, segment, fırsat ve aksiyon bağlamını tek müşteri görünümünde değerlendirin." : "Review profile, behavior, transactions, segments, opportunities and action context in one customer view.")</p></a>
         </div>
     </div>
 </section>
 
-@* ══════════════════════════════════════════════════════════════════════════
-   E. "NE ÇÖZÜYORUZ?" ALANI
-   ══════════════════════════════════════════════════════════════════════ *@
-<section class="ph-section">
-    <div class="container">
-        <div class="text-center mb-5" data-aos="fade-up">
-            <span class="ph-eyebrow" data-i18n="home.problemEyebrow">@(isTr ? "Problem & Çözüm" : "Problem & Solution")</span>
-            <h2 class="pika-h2 fw-bold" data-i18n="home.problemTitle">@(isTr ? "Dağınık kampanya süreçlerini tek merkezde toplayın" : "Unify fragmented campaign operations in one hub")</h2>
-            <p class="ph-muted mx-auto" style="max-width:640px" data-i18n="home.problemDesc">@(isTr ? "Farklı kanallar, parçalı araçlar ve manuel süreçler pazarlama ekiplerini yavaşlatır. Pika, veri, kampanya, otomasyon ve raporlamayı tek çatı altında birleştirir." : "Disconnected tools and manual overhead slow marketing teams down. Pika unites customer data, campaigns, automation, and analytics under a single roof.")</p>
+<section class="pk-section pk-section-soft">
+    <div class="pk-container pk-screen-band">
+        <div>
+            <span class="pk-eyebrow">@(tr ? "Aksiyona dönüştürün" : "Turn insight into action")</span>
+            <h2>@(tr ? "Kampanya mı, Journey mi? Kararı ihtiyaca göre verin." : "Campaign or Journey? Choose based on the job.")</h2>
+            <p class="pk-lead">@(tr ? "Campaign Manager tanımlı bir hedef kitle ve gönderim için kontrollü yürütme sağlar. Journey Manager ise tetikleyici, karar, bekleme ve aksiyon adımlarından oluşan sürekli akışları yönetir." : "Campaign Manager provides controlled execution for defined audiences and sends. Journey Manager manages ongoing flows composed of triggers, decisions, waits and actions.")</p>
+            <div class="pk-actions"><a class="pk-btn pk-btn-ghost" href="@(tr ? "/platform/campaign-manager" : "/en/platform/campaign-manager")">Campaign Manager</a><a class="pk-btn pk-btn-ghost" href="@(tr ? "/platform/journey-manager" : "/en/platform/journey-manager")">Journey Manager</a></div>
         </div>
-        <div class="row g-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-            <div class="col-lg-4 col-md-6">
-                <div class="ph-problem-card">
-                    <div class="ph-problem-icon"><i class="ri-git-branch-line"></i></div>
-                    <h6 class="fw-bold mb-2" data-i18n="home.prob1Title">@(isTr ? "Parçalı kanal yönetimi" : "Fragmented channel management")</h6>
-                    <p class="small ph-muted mb-0" data-i18n="home.prob1Desc">@(isTr ? "Her kanalda ayrı araç kullanmak ekiplerin hızını ve görünürlüğünü düşürür." : "Using separate tools for each channel degrades team agility and obscures customer visibility.")</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="ph-problem-card">
-                    <div class="ph-problem-icon"><i class="ri-hand-coin-line"></i></div>
-                    <h6 class="fw-bold mb-2" data-i18n="home.prob2Title">@(isTr ? "Manuel kampanya operasyonu" : "Manual campaign operations")</h6>
-                    <p class="small ph-muted mb-0" data-i18n="home.prob2Desc">@(isTr ? "İçerik üretimi, segment hazırlama ve zamanlama süreçleri ekipleri yorar." : "Content drafting, segment building, and manual scheduling create operational bottlenecks.")</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="ph-problem-card">
-                    <div class="ph-problem-icon"><i class="ri-database-2-line"></i></div>
-                    <h6 class="fw-bold mb-2" data-i18n="home.prob3Title">@(isTr ? "Veriyi aksiyona çevirememe" : "Inability to act on data")</h6>
-                    <p class="small ph-muted mb-0" data-i18n="home.prob3Desc">@(isTr ? "Transaction verisi kullanılamadığında kampanyalar geniş ama etkisiz kalır." : "When transaction history is siloed, marketing turns into generic, ineffective blasts.")</p>
-                </div>
-            </div>
-        </div>
-        <div class="row g-4" data-aos="fade-up" data-aos-delay="200">
-            <div class="col-lg-4 col-md-6">
-                <div class="ph-solution-card">
-                    <div class="ph-solution-icon"><i class="ri-layout-grid-line"></i></div>
-                    <h6 class="fw-bold mb-2" data-i18n="home.sol1Title">@(isTr ? "Tek merkezden yönetim" : "Unified centralized control")</h6>
-                    <p class="small ph-muted mb-0" data-i18n="home.sol1Desc">@(isTr ? "Tüm ana kampanya kanallarını tek panelde yönetin." : "Orchestrate every major campaign channel through one interface.")</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="ph-solution-card">
-                    <div class="ph-solution-icon"><i class="ri-flashlight-line"></i></div>
-                    <h6 class="fw-bold mb-2" data-i18n="home.sol2Title">@(isTr ? "AI ile hızlanan operasyon" : "Accelerated AI workflows")</h6>
-                    <p class="small ph-muted mb-0" data-i18n="home.sol2Desc">@(isTr ? "İçerik ve kampanya kurulum süreçlerini hızlandırın." : "Speed up content generation and campaign launch timelines.")</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="ph-solution-card">
-                    <div class="ph-solution-icon"><i class="ri-focus-3-line"></i></div>
-                    <h6 class="fw-bold mb-2" data-i18n="home.sol3Title">@(isTr ? "Veriye dayalı hedefleme" : "Data-driven targeting")</h6>
-                    <p class="small ph-muted mb-0" data-i18n="home.sol3Desc">@(isTr ? "Müşteri davranışına göre segmentler oluşturun ve journey'ler başlatın." : "Build precise behavioral segments and launch automated multi-step journeys.")</p>
-                </div>
-            </div>
-        </div>
+        <img src="/wiki/assets/images/img_journey-tasarim-tuvali_18.png" alt="@(tr ? "Pika Journey tasarım tuvali" : "Pika Journey design canvas")" loading="lazy" width="1200" height="760" />
     </div>
 </section>
 
-@* ══════════════════════════════════════════════════════════════════════════
-   3. ANLA (INTELLIGENCE) — Müşteri ve Ürün Zekâsı
-   ══════════════════════════════════════════════════════════════════════ *@
-<section class="ph-section" id="ph-intelligence">
-    <div class="container">
-        <div class="text-center mb-5" data-aos="fade-up">
-            <span class="ph-eyebrow">@(isTr ? "Zekâ Katmanı" : "Intelligence Layer")</span>
-            <h2 class="pika-h2 fw-bold">@(isTr ? "Müşteriyi ve ürünü doğru bağlamda anlayın" : "Understand customers and products in deep context")</h2>
-            <p class="ph-muted mx-auto" style="max-width:640px">@(isTr ? "Veri tablolarında kaybolmak yerine; müşteri değerini, davranışını ve ürünlerin gerçek ihtiyacını görünür kılan zekâ katmanı." : "Instead of getting lost in raw database tables, illuminate customer value, behavioral rhythms, and underlying product intent.")</p>
+<section class="pk-section">
+    <div class="pk-container">
+        <div class="pk-chapter"><div><span class="pk-eyebrow">@(tr ? "Kanallar" : "Channels")</span><h2>@(tr ? "Kanalı ürünün kendisi değil, aksiyon aracı olarak düşünün." : "Treat channels as execution tools, not the product itself.")</h2></div><p class="pk-lead">@(tr ? "Email, SMS, WhatsApp ve Push; hedef kitle, izin, uygunluk, Campaign veya Journey kararı oluştuktan sonra kullanılan uygulama katmanıdır." : "Email, SMS, WhatsApp and Push are execution channels used after audience, consent, eligibility and Campaign/Journey context is established.")</p></div>
+        <div class="pk-columns">
+            <div class="pk-feature"><i class="ri-mail-line"></i><h3>Email</h3><p>@(tr ? "Zengin içerik ve uzun biçimli iletişim için." : "For rich content and longer communication.")</p></div>
+            <div class="pk-feature"><i class="ri-message-2-line"></i><h3>SMS</h3><p>@(tr ? "Kısa ve zaman duyarlı iletişim için." : "For concise, time-sensitive communication.")</p></div>
+            <div class="pk-feature"><i class="ri-whatsapp-line"></i><h3>WhatsApp</h3><p>@(tr ? "Uygun izin ve şablon bağlamında mesajlaşma için." : "For messaging within appropriate consent and template context.")</p></div>
         </div>
-        <div class="row g-4" data-aos="fade-up" data-aos-delay="100">
-            <div class="col-lg-4 col-md-6">
-                <div class="ph-module-card h-100">
-                    <div class="ph-module-icon"><i class="ri-brain-line"></i></div>
-                    <h6 class="fw-bold mb-2">Customer Intelligence</h6>
-                    <p class="small ph-muted mb-3">@(isTr ? "Müşteri davranışı, değer skoru, segment dağılımı ve kayıp riski analizi ile hedef kitlenizi derinlemesine tanıyın." : "Analyze customer behavior, value scoring, cohort distribution, and churn risk to know your audience inside out.")</p>
-                    <a href="@Url.Action("CustomerIntelligence", "Platform", new { culture })" class="small fw-bold" style="color:var(--pika-primary)">@(isTr ? "Customer Intelligence İncele" : "Explore Customer Intelligence") <i class="ri-arrow-right-line"></i></a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="ph-module-card h-100">
-                    <div class="ph-module-icon"><i class="ri-shopping-bag-line"></i></div>
-                    <h6 class="fw-bold mb-2">Product Intelligence</h6>
-                    <p class="small ph-muted mb-3">@(isTr ? "Ürünleri yalnızca katalog kodu değil; müşteri ihtiyacı (Need Group) ve ticari rol (Product Role) ile anlamlandırın." : "Contextualize products not merely as SKUs, but through customer Need Groups and commercial Product Roles.")</p>
-                    <a href="@Url.Action("ProductIntelligence", "Platform", new { culture })" class="small fw-bold" style="color:var(--pika-primary)">@(isTr ? "Product Intelligence İncele" : "Explore Product Intelligence") <i class="ri-arrow-right-line"></i></a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="ph-module-card h-100">
-                    <div class="ph-module-icon"><i class="ri-user-heart-line"></i></div>
-                    <h6 class="fw-bold mb-2">Pika 360</h6>
-                    <p class="small ph-muted mb-3">@(isTr ? "Tek bir müşterinin değerini, risk sinyallerini, iletişim erişimini ve açık fırsatlarını bir arada sunan karar ekranı." : "A unified decision overview showcasing individual customer value, churn risk, channel reachability, and open opportunities.")</p>
-                    <a href="@Url.Action("Pika360", "Platform", new { culture })" class="small fw-bold" style="color:var(--pika-primary)">@(isTr ? "Pika 360 İncele" : "Explore Pika 360") <i class="ri-arrow-right-line"></i></a>
-                </div>
-            </div>
-        </div>
+        <div class="pk-actions"><a class="pk-btn pk-btn-ghost" href="@(tr ? "/kanallar/email" : "/en/channels/email")">@(tr ? "Kanalları inceleyin" : "Explore channels")</a></div>
     </div>
 </section>
 
-@* ══════════════════════════════════════════════════════════════════════════
-   4. AKSIYON (ACT) — Kampanya, Journey, İçerik
-   ══════════════════════════════════════════════════════════════════════ *@
-<section class="ph-section ph-section-alt" id="ph-products">
-    <div class="container">
-        <div class="text-center mb-5" data-aos="fade-up">
-            <span class="ph-eyebrow" data-i18n="home.productsEyebrow">@(isTr ? "Aksiyon Katmanı" : "Action Layer")</span>
-            <h2 class="pika-h2 fw-bold">@(isTr ? "Karardan aksiyona: Kampanya ve otomasyon" : "From decision to action: Campaigns & automation")</h2>
-            <p class="ph-muted mx-auto" style="max-width:640px">@(isTr ? "Zekâ katmanından elde edilen fırsatları dakikalar içinde çok kanallı kampanyaya ve otomatik akışa dönüştürün." : "Convert intelligence insights and opportunity feeds into omnichannel campaigns and automated journeys in minutes.")</p>
+<section class="pk-section pk-section-deep">
+    <div class="pk-container pk-screen-band">
+        <div>
+            <span class="pk-eyebrow" style="color:#d1ea88">@(tr ? "AI destekler, kullanıcı yönetir" : "AI assists, people stay in control")</span>
+            <h2>@(tr ? "Hesaplanmış veri ile AI yorumunu birbirine karıştırmayın." : "Keep calculated evidence distinct from AI interpretation.")</h2>
+            <p class="pk-lead">@(tr ? "Pika AI; sistemin hesapladığı müşteri ve ürün bağlamını açıklama, kampanya yaklaşımı hazırlama ve içerik taslağı üretme gibi görevlerde yardımcı olur. Gönderim ve aksiyon kontrolü kullanıcıdadır." : "Pika AI helps explain system-calculated customer and product context, prepare campaign approaches and draft content. Execution remains under user control.")</p>
+            <div class="pk-actions"><a class="pk-btn pk-btn-light" href="@(tr ? "/platform/ai-kampanya-asistani" : "/en/platform/ai-campaign-assistant")">@(tr ? "Pika AI'yı İnceleyin" : "Explore Pika AI")</a></div>
         </div>
-        <div class="row g-4" data-aos="fade-up" data-aos-delay="100">
-            <div class="col-lg-4 col-md-6">
-                <div class="ph-module-card h-100">
-                    <div class="ph-module-icon"><i class="ri-megaphone-line"></i></div>
-                    <h6 class="fw-bold mb-2">Campaign Manager</h6>
-                    <p class="small ph-muted mb-3" data-i18n="home.mod1Desc">@(isTr ? "SMS, WhatsApp, Email ve Push kampanyalarını oluşturun, zamanlayın ve yönetin." : "Create, schedule, and orchestrate campaigns across SMS, WhatsApp, Email, and Push.")</p>
-                    <a href="@Url.Action("CampaignManager", "Solutions", new { culture })" class="small fw-bold" style="color:var(--pika-primary)">Campaign Manager <i class="ri-arrow-right-line"></i></a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="ph-module-card h-100">
-                    <div class="ph-module-icon"><i class="ri-route-line"></i></div>
-                    <h6 class="fw-bold mb-2">Journey Manager</h6>
-                    <p class="small ph-muted mb-3" data-i18n="home.mod3Desc">@(isTr ? "Olay bazlı otomatik akışlar kurgulayın ve süreci manuel yükten kurtarın." : "Build event-driven automated customer journeys and eliminate repetitive manual workflows.")</p>
-                    <a href="@Url.Action("JourneyManager", "Solutions", new { culture })" class="small fw-bold" style="color:var(--pika-primary)">Journey Manager <i class="ri-arrow-right-line"></i></a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="ph-module-card h-100">
-                    <div class="ph-module-icon"><i class="ri-group-line"></i></div>
-                    <h6 class="fw-bold mb-2">Audience Manager</h6>
-                    <p class="small ph-muted mb-3" data-i18n="home.mod2Desc">@(isTr ? "Transaction, davranış ve özel kurallara göre hedef kitleler oluşturun." : "Build targeted audiences based on transaction history, behaviors, and custom filtering rules.")</p>
-                    <a href="@Url.Action("AudienceManager", "Solutions", new { culture })" class="small fw-bold" style="color:var(--pika-primary)">Audience Manager <i class="ri-arrow-right-line"></i></a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="ph-module-card h-100">
-                    <div class="ph-module-icon"><i class="ri-palette-line"></i></div>
-                    <h6 class="fw-bold mb-2">Content Studio</h6>
-                    <p class="small ph-muted mb-3" data-i18n="home.mod4Desc">@(isTr ? "Sürükle bırak tasarım ve AI destekli içerik üretimi ile kampanya hazırlığını hızlandırın." : "Accelerate campaign preparation with drag-and-drop design tools and AI-assisted copywriting.")</p>
-                    <a href="@Url.Action("ContentStudio", "Solutions", new { culture })" class="small fw-bold" style="color:var(--pika-primary)">Content Studio <i class="ri-arrow-right-line"></i></a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="ph-module-card h-100">
-                    <div class="ph-module-icon"><i class="ri-bar-chart-box-line"></i></div>
-                    <h6 class="fw-bold mb-2">Analytics &amp; Reporting</h6>
-                    <p class="small ph-muted mb-3" data-i18n="home.mod5Desc">@(isTr ? "Kanal, kampanya ve segment performansını anlık ve periyodik olarak ölçün." : "Track channel, campaign, and segment performance in real time and scheduled intervals.")</p>
-                    <a href="@Url.Action("Reporting", "Solutions", new { culture })" class="small fw-bold" style="color:var(--pika-primary)">Analytics &amp; Reporting <i class="ri-arrow-right-line"></i></a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="ph-module-card h-100">
-                    <div class="ph-module-icon"><i class="ri-shield-check-line"></i></div>
-                    <h6 class="fw-bold mb-2">Consent Management</h6>
-                    <p class="small ph-muted mb-3" data-i18n="home.mod6Desc">@(isTr ? "İzin yönetimi, abonelik tercihleri ve KVKK/IYS uyumluluk süreçlerini tek yerden yönetin." : "Centrally manage opt-ins, subscription preferences, and KVKK/IYS/GDPR compliance workflows.")</p>
-                    <a href="@Url.Action("ConsentManagement", "Solutions", new { culture })" class="small fw-bold" style="color:var(--pika-primary)">Consent Management <i class="ri-arrow-right-line"></i></a>
-                </div>
-            </div>
-        </div>
+        <img src="/wiki/assets/images/img_ai-musteri-ozeti_8.png" alt="@(tr ? "Pika AI müşteri özeti ekranı" : "Pika AI customer summary screen")" loading="lazy" width="1200" height="760" />
     </div>
 </section>
 
-@* ══════════════════════════════════════════════════════════════════════════
-   G. KANAL YÖNETİMİ
-   ══════════════════════════════════════════════════════════════════════ *@
-<section class="ph-section">
-    <div class="container">
-        <div class="text-center mb-5" data-aos="fade-up">
-            <span class="ph-eyebrow" data-i18n="home.channelsEyebrow">@(isTr ? "Kanallar" : "Channels")</span>
-            <h2 class="pika-h2 fw-bold" data-i18n="home.channelsTitle">@(isTr ? "Tüm ana iletişim kanalları tek merkezde" : "All core communication channels in one hub")</h2>
-            <p class="ph-muted mx-auto" style="max-width:580px" data-i18n="home.channelsDesc">@(isTr ? "Kampanyalarınızı ve otomasyon akışlarınızı farklı araçlara bölmeden yönetin." : "Orchestrate your campaigns and automated journeys seamlessly without switching tools.")</p>
-        </div>
-        <div class="row g-4" data-aos="fade-up" data-aos-delay="100">
-            <div class="col-lg-3 col-md-6">
-                <div class="ph-channel-card">
-                    <div class="ph-channel-icon ph-channel-icon--wa"><i class="ri-whatsapp-line"></i></div>
-                    <h6 class="fw-bold mb-2">WhatsApp</h6>
-                    <p class="small ph-muted mb-0" data-i18n="home.ch1Desc">@(isTr ? "Template yönetimi, kişiselleştirilmiş mesajlar, kampanya gönderimi ve süreç bazlı kullanım." : "Template management, dynamic personalized messaging, bulk campaigns, and transactional delivery.")</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="ph-channel-card">
-                    <div class="ph-channel-icon ph-channel-icon--sms"><i class="ri-message-2-line"></i></div>
-                    <h6 class="fw-bold mb-2">SMS</h6>
-                    <p class="small ph-muted mb-0" data-i18n="home.ch2Desc">@(isTr ? "Hızlı erişim, kritik bildirimler ve yüksek görünürlük gerektiren iletişimler." : "Instant delivery, mission-critical notifications, and high-visibility outreach.")</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="ph-channel-card">
-                    <div class="ph-channel-icon ph-channel-icon--email"><i class="ri-mail-line"></i></div>
-                    <h6 class="fw-bold mb-2">Email</h6>
-                    <p class="small ph-muted mb-0" data-i18n="home.ch3Desc">@(isTr ? "Görsel olarak zengin, kişiselleştirilmiş ve sürükle bırak tasarlanabilen kampanyalar." : "Visually engaging, dynamic email templates crafted with intuitive drag-and-drop builders.")</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="ph-channel-card">
-                    <div class="ph-channel-icon ph-channel-icon--push"><i class="ri-notification-3-line"></i></div>
-                    <h6 class="fw-bold mb-2">Push Notification</h6>
-                    <p class="small ph-muted mb-0" data-i18n="home.ch4Desc">@(isTr ? "Gerçek zamanlı olaylara anında tepki verin ve uygulama içi etkileşimi güçlendirin." : "Respond to real-time events instantly and drive higher in-app engagement.")</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-@* ══════════════════════════════════════════════════════════════════════════
-   H. JOURNEY OTOMASYONU
-   ══════════════════════════════════════════════════════════════════════ *@
-<section class="ph-section ph-section-dark">
-    <div class="container">
-        <div class="row align-items-center g-5">
-            <div class="col-lg-6" data-aos="fade-right" data-aos-duration="700">
-                <span class="ph-eyebrow" data-i18n="home.journeyEyebrow">@(isTr ? "Journey Otomasyonu" : "Journey Automation")</span>
-                <h2 class="pika-h2 fw-bold text-white mb-3" data-i18n="home.journeyTitle">@(isTr ? "Müşteri davranışlarına göre otomatik aksiyon alın" : "Trigger automated actions tailored to customer actions")</h2>
-                <p class="ph-muted mb-4" style="color:rgba(255,255,255,.7)" data-i18n="home.journeyDesc">@(isTr ? "Pika'nın journey yapısı sayesinde, bir işlem olduğunda sonraki adımı sistem otomatik başlatır." : "With Pika's journey engine, any customer event automatically triggers the precise next engagement step.")</p>
-                <ul class="list-unstyled mb-4">
-                    <li class="d-flex align-items-center gap-2 mb-2"><i class="ri-check-line" style="color:#9edd05"></i> <span class="text-white small" data-i18n="home.j1">@(isTr ? "Sepet hareketi sonrası otomatik hatırlatma" : "Automated abandoned cart recovery nudges")</span></li>
-                    <li class="d-flex align-items-center gap-2 mb-2"><i class="ri-check-line" style="color:#9edd05"></i> <span class="text-white small" data-i18n="home.j2">@(isTr ? "Doğum gününde özel kampanya" : "Personalized birthday & anniversary offers")</span></li>
-                    <li class="d-flex align-items-center gap-2 mb-2"><i class="ri-check-line" style="color:#9edd05"></i> <span class="text-white small" data-i18n="home.j3">@(isTr ? "Segment değişiminde yeni iletişim akışı" : "Dynamic onboarding when moving across tiers")</span></li>
-                    <li class="d-flex align-items-center gap-2 mb-2"><i class="ri-check-line" style="color:#9edd05"></i> <span class="text-white small" data-i18n="home.j4">@(isTr ? "İşlem girişi sonrası tetiklenen kampanya" : "Real-time campaigns triggered by point-of-sale events")</span></li>
-                    <li class="d-flex align-items-center gap-2"><i class="ri-check-line" style="color:#9edd05"></i> <span class="text-white small" data-i18n="home.j5">@(isTr ? "Özel gün veya davranış bazlı otomatik süreçler" : "Contextual milestone & engagement sequences")</span></li>
-                </ul>
-                <p class="fst-italic small" style="color:rgba(255,255,255,.55)" data-i18n="home.journeyQuote">@(isTr ? "Doğru anda doğru aksiyonu almak için manuel operasyon değil, kurallı otomasyon kullanın." : "To take the right action at the exact right moment, rely on rules-based automation rather than manual ops.")</p>
-            </div>
-            <div class="col-lg-6" data-aos="fade-left" data-aos-duration="700">
-                <div class="ph-flow">
-                    <div class="ph-flow-node ph-flow-node--trigger"><i class="ri-flashlight-line"></i> <span data-i18n="home.flow.trigger">@(isTr ? "Tetikleyici: Sepete ürün eklendi" : "Trigger: Product added to cart")</span></div>
-                    <div class="ph-flow-line"></div>
-                    <div class="ph-flow-node ph-flow-node--condition"><i class="ri-git-branch-line"></i> <span data-i18n="home.flow.condition1">@(isTr ? "Koşul: 2 saat içinde satın alma yok" : "Condition: No purchase within 2 hours")</span></div>
-                    <div class="ph-flow-line"></div>
-                    <div class="ph-flow-node ph-flow-node--action"><i class="ri-whatsapp-line"></i> <span data-i18n="home.flow.action1">@(isTr ? "Aksiyon: WhatsApp hatırlatma gönder" : "Action: Send WhatsApp reminder")</span></div>
-                    <div class="ph-flow-line"></div>
-                    <div class="ph-flow-node ph-flow-node--condition"><i class="ri-time-line"></i> <span data-i18n="home.flow.wait">@(isTr ? "Bekleme: 24 saat" : "Wait: 24 hours")</span></div>
-                    <div class="ph-flow-line"></div>
-                    <div class="ph-flow-node ph-flow-node--action"><i class="ri-mail-line"></i> <span data-i18n="home.flow.action2">@(isTr ? "Aksiyon: Email ile indirim kodu gönder" : "Action: Send discount code via Email")</span></div>
-                    <div class="ph-flow-line"></div>
-                    <div class="ph-flow-node ph-flow-node--end"><i class="ri-flag-line"></i> <span data-i18n="home.flow.end">@(isTr ? "Bitiş: Kampanya tamamlandı" : "End: Journey completed")</span></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-@* ══════════════════════════════════════════════════════════════════════════
-   I. AI İLE KAMPANYA ÜRETİMİ
-   ══════════════════════════════════════════════════════════════════════ *@
-<section class="ph-section">
-    <div class="container">
-        <div class="row align-items-center g-5">
-            <div class="col-lg-6 order-lg-2" data-aos="fade-left" data-aos-duration="700">
-                <span class="ph-eyebrow" data-i18n="home.aiEyebrow">@(isTr ? "Yapay Zekâ" : "Artificial Intelligence")</span>
-                <h2 class="pika-h2 fw-bold mb-3" data-i18n="home.aiTitle">@(isTr ? "Yapay zekâ ile kampanya üretim sürecini hızlandırın" : "Accelerate campaign creation with artificial intelligence")</h2>
-                <p class="ph-muted mb-4" data-i18n="home.aiDesc">@(isTr ? "Pika'nın AI destekli yapısı, ekiplerin kampanya metni, içerik taslağı ve kampanya kurulum süreçlerini daha hızlı ve daha verimli yönetmesine yardımcı olur." : "Pika's AI assistant layer empowers your team to generate copy, design drafts, and configure targeted dispatches with unmatched speed.")</p>
-                <div class="d-flex flex-wrap gap-2 mb-4">
-                    <span class="ph-tag"><i class="ri-quill-pen-line"></i> <span data-i18n="home.ai1">@(isTr ? "Kampanya metni üretimi" : "Campaign copywriting")</span></span>
-                    <span class="ph-tag"><i class="ri-calendar-event-line"></i> <span data-i18n="home.ai2">@(isTr ? "Özel gün kampanyası oluşturma" : "Event & holiday templates")</span></span>
-                    <span class="ph-tag"><i class="ri-user-star-line"></i> <span data-i18n="home.ai3">@(isTr ? "Segmente uygun içerik önerileri" : "Segment-matched suggestions")</span></span>
-                    <span class="ph-tag"><i class="ri-mail-add-line"></i> <span data-i18n="home.ai4">@(isTr ? "Email içeriği taslağı hazırlama" : "Email layout drafting")</span></span>
-                    <span class="ph-tag"><i class="ri-speed-line"></i> <span data-i18n="home.ai5">@(isTr ? "Operasyon süresini kısaltma" : "Shorter cycle times")</span></span>
-                </div>
-                <p class="small fst-italic ph-muted" data-i18n="home.aiExample">@(isTr ? "\"Sevgililer Günü için bir indirim kampanyası oluştur ve bu segmente gönder\" gibi komutlarla ekip operasyonunu hızlandırın." : "\"Create a Valentine's Day discount campaign and target VIP shoppers\" — simple prompts powering full-scale marketing execution.")</p>
-            </div>
-            <div class="col-lg-6 order-lg-1" data-aos="fade-right" data-aos-duration="700">
-                <div class="ph-ai-panel">
-                    <div class="ph-ai-panel-header">
-                        <i class="ri-robot-line" style="color:var(--pika-primary2)"></i> <span data-i18n="home.aiPanel.header">@(isTr ? "Pika AI Asistan" : "Pika AI Assistant")</span>
-                    </div>
-                    <div class="ph-ai-panel-body">
-                        <div class="ph-ai-msg ph-ai-msg--user" data-i18n="home.aiPanel.userMsg1">@(isTr ? "Yılbaşı için VIP müşterilere özel bir WhatsApp kampanyası oluştur" : "Create a special WhatsApp campaign for VIP customers for New Year's Eve")</div>
-                        <div class="ph-ai-msg ph-ai-msg--bot">
-                            <strong class="d-block mb-1" data-i18n="home.aiPanel.botDraft">@(isTr ? "Kampanya Taslağı Hazır ✓" : "Campaign Draft Ready ✓")</strong>
-                            <span class="d-block mb-1" data-i18n="home.aiPanel.botChannel">@(isTr ? "📋 Kanal: WhatsApp" : "📋 Channel: WhatsApp")</span>
-                            <span class="d-block mb-1" data-i18n="home.aiPanel.botSegment">@(isTr ? "👥 Segment: VIP Müşteriler (2,340 kişi)" : "👥 Segment: VIP Customers (2,340 recipients)")</span>
-                            <span class="d-block mb-1" data-i18n="home.aiPanel.botMessage">@(isTr ? "📝 Mesaj: \"Yeni yıla özel %20 indirim sizin için hazır!\"" : "📝 Message: \"Your exclusive 20% New Year celebration reward is ready!\"")</span>
-                            <span class="d-block" data-i18n="home.aiPanel.botTiming">@(isTr ? "⏰ Zamanlama: Bugün 18:00" : "⏰ Scheduled: Today at 18:00")</span>
-                        </div>
-                        <div class="ph-ai-msg ph-ai-msg--user" data-i18n="home.aiPanel.userApprove">@(isTr ? "Onaylıyorum, gönder" : "Approved, dispatch now")</div>
-                        <div class="ph-ai-msg ph-ai-msg--bot" data-i18n="home.aiPanel.botSent">@(isTr ? "Kampanya gönderime alındı. ✅ Sonuçları Analytics panelinden takip edebilirsiniz." : "Campaign queued for delivery. ✅ Track real-time engagement in the Analytics dashboard.")</div>
-                        <div class="d-flex flex-wrap gap-2 mt-1">
-                            <span class="ph-ai-chip"><i class="ri-bar-chart-line"></i> <span data-i18n="home.aiPanel.chipResults">@(isTr ? "Sonuçları Gör" : "View Results")</span></span>
-                            <span class="ph-ai-chip"><i class="ri-edit-line"></i> <span data-i18n="home.aiPanel.chipEdit">@(isTr ? "Düzenle" : "Edit")</span></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-@* ══════════════════════════════════════════════════════════════════════════
-   J. SEGMENTASYON VE VERİ
-   ══════════════════════════════════════════════════════════════════════ *@
-<section class="ph-section ph-section-alt">
-    <div class="container">
-        <div class="row align-items-center g-5">
-            <div class="col-lg-6" data-aos="fade-right" data-aos-duration="700">
-                <span class="ph-eyebrow" data-i18n="home.segEyebrow">@(isTr ? "Segmentasyon" : "Segmentation")</span>
-                <h2 class="pika-h2 fw-bold mb-3" data-i18n="home.segTitle">@(isTr ? "Transaction verisini hedeflemeye dönüştürün" : "Turn transaction history into precise targeting")</h2>
-                <p class="ph-muted mb-4" data-i18n="home.segDesc">@(isTr ? "Sadece iletişim listeleriyle değil, gerçek müşteri davranışlarıyla çalışın." : "Work with real customer transactional behavior, not just static email lists.")</p>
-                <ul class="list-unstyled mb-4">
-                    <li class="d-flex align-items-center gap-2 mb-2"><i class="ri-check-line" style="color:var(--pika-primary2)"></i> <span class="small" data-i18n="home.seg1">@(isTr ? "Mağaza bazlı filtreleme" : "Store location filtering")</span></li>
-                    <li class="d-flex align-items-center gap-2 mb-2"><i class="ri-check-line" style="color:var(--pika-primary2)"></i> <span class="small" data-i18n="home.seg2">@(isTr ? "Ürün bazlı segmentasyon" : "SKU and category segmentation")</span></li>
-                    <li class="d-flex align-items-center gap-2 mb-2"><i class="ri-check-line" style="color:var(--pika-primary2)"></i> <span class="small" data-i18n="home.seg3">@(isTr ? "Tekrar satın alma davranışı" : "Repurchase frequency tracking")</span></li>
-                    <li class="d-flex align-items-center gap-2 mb-2"><i class="ri-check-line" style="color:var(--pika-primary2)"></i> <span class="small" data-i18n="home.seg4">@(isTr ? "İşlem sıklığı ve sepet tutarı" : "Order cadence & basket size")</span></li>
-                    <li class="d-flex align-items-center gap-2 mb-2"><i class="ri-check-line" style="color:var(--pika-primary2)"></i> <span class="small" data-i18n="home.seg5">@(isTr ? "Davranış bazlı hedefleme" : "Real-time behavioral triggers")</span></li>
-                    <li class="d-flex align-items-center gap-2"><i class="ri-check-line" style="color:var(--pika-primary2)"></i> <span class="small" data-i18n="home.seg6">@(isTr ? "Tekrar kullanılabilir dinamik kitleler" : "Reusable dynamic cohorts")</span></li>
-                </ul>
-                <p class="small fst-italic ph-muted" data-i18n="home.segQuote">@(isTr ? "Belirli mağazadan belirli ürünü en az 3 kez alan müşterileri tek adımda segmente edin ve yeniden kullanın." : "Segment customers who bought running shoes at least 3 times at a specific store in one click, and reuse across campaigns.")</p>
-            </div>
-            <div class="col-lg-6" data-aos="fade-left" data-aos-duration="700">
-                <div class="ph-seg-visual">
-                    <h6 class="fw-bold mb-3" style="font-size:.88rem"><i class="ri-filter-3-line me-1"></i> <span data-i18n="home.segBuilder.title">Segment Builder</span></h6>
-                    <div class="ph-seg-row">
-                        <span class="ph-seg-badge ph-seg-badge--green" data-i18n="home.segBuilder.storeLabel">@(isTr ? "Mağaza" : "Store")</span>
-                        <span data-i18n="home.segBuilder.storeValue">@(isTr ? "Kadıköy Mağaza" : "Downtown Store")</span>
-                        <span class="ms-auto small ph-muted" data-i18n="home.segBuilder.storeCount">@(isTr ? "1,240 müşteri" : "1,240 customers")</span>
-                    </div>
-                    <div class="ph-seg-row">
-                        <span class="ph-seg-badge ph-seg-badge--blue" data-i18n="home.segBuilder.productLabel">@(isTr ? "Ürün" : "Product")</span>
-                        <span data-i18n="home.segBuilder.productValue">@(isTr ? "Spor Ayakkabı" : "Running Shoes")</span>
-                        <span class="ms-auto small ph-muted" data-i18n="home.segBuilder.productCount">@(isTr ? "856 müşteri" : "856 customers")</span>
-                    </div>
-                    <div class="ph-seg-row">
-                        <span class="ph-seg-badge ph-seg-badge--orange" data-i18n="home.segBuilder.behaviorLabel">@(isTr ? "Davranış" : "Behavior")</span>
-                        <span data-i18n="home.segBuilder.behaviorValue">@(isTr ? "Son 30 günde ≥ 3 satın alma" : "≥ 3 orders in last 30 days")</span>
-                        <span class="ms-auto small ph-muted" data-i18n="home.segBuilder.behaviorCount">@(isTr ? "342 müşteri" : "342 customers")</span>
-                    </div>
-                    <div class="ph-seg-row fw-bold" style="background:#eaf4dd;border-radius:6px;padding:10px">
-                        <i class="ri-check-double-line" style="color:var(--pika-primary2)"></i>
-                        <span data-i18n="home.segBuilder.resultLabel">@(isTr ? "Sonuç Segment" : "Resulting Segment")</span>
-                        <span class="ms-auto" style="color:var(--pika-primary2)" data-i18n="home.segBuilder.resultCount">@(isTr ? "342 müşteri" : "342 matched")</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-@* ══════════════════════════════════════════════════════════════════════════
-   K. KULLANIM SENARYOLARI
-   ══════════════════════════════════════════════════════════════════════ *@
-<section class="ph-section">
-    <div class="container">
-        <div class="text-center mb-5" data-aos="fade-up">
-            <span class="ph-eyebrow" data-i18n="home.scenariosEyebrow">@(isTr ? "Kullanım Senaryoları" : "Use Cases")</span>
-            <h2 class="pika-h2 fw-bold" data-i18n="home.scenariosTitle">@(isTr ? "Pika ile neler yapabilirsiniz?" : "What can you achieve with Pika?")</h2>
-        </div>
-        <div class="row g-4" data-aos="fade-up" data-aos-delay="100">
-            <div class="col-lg-4 col-md-6">
-                <div class="ph-scenario-card">
-                    <div class="ph-scenario-icon"><i class="ri-calendar-event-line"></i></div>
-                    <h6 class="fw-bold mb-2" data-i18n="home.sc1Title">@(isTr ? "Özel Gün Kampanyaları" : "Special Day Campaigns")</h6>
-                    <p class="small ph-muted mb-0" data-i18n="home.sc1Desc">@(isTr ? "Belirli segmentlere kişiselleştirilmiş çok kanallı kampanyalar oluşturun." : "Launch personalized omnichannel campaigns for targeted cohorts during key moments.")</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="ph-scenario-card">
-                    <div class="ph-scenario-icon"><i class="ri-gift-line"></i></div>
-                    <h6 class="fw-bold mb-2" data-i18n="home.sc2Title">@(isTr ? "Doğum günü akışı" : "Birthday & Anniversary Flows")</h6>
-                    <p class="small ph-muted mb-0" data-i18n="home.sc2Desc">@(isTr ? "Özel tarihlerde otomatik başlayan teklif akışları kurun." : "Automate personalized celebratory greetings and promotions on critical dates.")</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="ph-scenario-card">
-                    <div class="ph-scenario-icon"><i class="ri-shopping-cart-line"></i></div>
-                    <h6 class="fw-bold mb-2" data-i18n="home.sc3Title">@(isTr ? "Sepet hatırlatma" : "Abandoned Cart Recovery")</h6>
-                    <p class="small ph-muted mb-0" data-i18n="home.sc3Desc">@(isTr ? "Davranış bazlı hatırlatma akışları ile geri dönüşü artırın." : "Re-engage intent-driven shoppers through multi-stage smart reminders.")</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="ph-scenario-card">
-                    <div class="ph-scenario-icon"><i class="ri-refresh-line"></i></div>
-                    <h6 class="fw-bold mb-2" data-i18n="home.sc4Title">@(isTr ? "Yeniden satın alım kampanyası" : "Replenishment & Repurchase")</h6>
-                    <p class="small ph-muted mb-0" data-i18n="home.sc4Desc">@(isTr ? "Belirli ürün veya mağaza davranışına göre hedefleme yapın." : "Target customers right before replenishment cycles expire based on SKU purchase patterns.")</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="ph-scenario-card">
-                    <div class="ph-scenario-icon"><i class="ri-user-star-line"></i></div>
-                    <h6 class="fw-bold mb-2" data-i18n="home.sc5Title">@(isTr ? "Özel müşteri segmentleri" : "VIP & High-Value Tiers")</h6>
-                    <p class="small ph-muted mb-0" data-i18n="home.sc5Desc">@(isTr ? "Satın alma desenine göre yüksek değerli müşteri grupları oluşturun." : "Isolate top-tier patrons based on spend patterns and reward them with dedicated experiences.")</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="ph-scenario-card">
-                    <div class="ph-scenario-icon"><i class="ri-route-line"></i></div>
-                    <h6 class="fw-bold mb-2" data-i18n="home.sc6Title">@(isTr ? "Omnichannel journey yönetimi" : "Omnichannel Journey Control")</h6>
-                    <p class="small ph-muted mb-0" data-i18n="home.sc6Desc">@(isTr ? "Email, WhatsApp, SMS ve Push aksiyonlarını aynı akışta yönetin." : "Orchestrate Email, WhatsApp, SMS, and Push interactions seamlessly within unified workflows.")</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-@* ══════════════════════════════════════════════════════════════════════════
-   L. UYUM / ENTEGRASYON
-   ══════════════════════════════════════════════════════════════════════ *@
-<section class="ph-section ph-section-alt">
-    <div class="container">
-        <div class="text-center mb-5" data-aos="fade-up">
-            <span class="ph-eyebrow" data-i18n="home.complianceEyebrow">@(isTr ? "Entegrasyon & Uyum" : "Integration & Compliance")</span>
-            <h2 class="pika-h2 fw-bold" data-i18n="home.complianceTitle">@(isTr ? "Uyumlu, ölçeklenebilir ve entegre çalışmaya hazır" : "Compliant, scalable, and ready for deep integration")</h2>
-            <p class="ph-muted mx-auto" style="max-width:640px" data-i18n="home.complianceDesc">@(isTr ? "Pika; veri akışları, olay bazlı tetikleyiciler ve kurumsal süreçlerle uyumlu çalışacak şekilde modüler olarak genişletilebilir." : "Pika scales modularly with data pipelines, webhook event triggers, and enterprise governance frameworks.")</p>
-        </div>
-        <div class="row g-4" data-aos="fade-up" data-aos-delay="100">
-            <div class="col-lg-3 col-md-6">
-                <div class="ph-compliance-card">
-                    <div class="ph-compliance-icon"><i class="ri-code-s-slash-line"></i></div>
-                    <div>
-                        <h6 class="fw-bold mb-1" data-i18n="home.comp1Title">@(isTr ? "API entegrasyonlarına uygun yapı" : "Robust RESTful APIs")</h6>
-                        <p class="small ph-muted mb-0" data-i18n="home.comp1Desc">@(isTr ? "Mevcut sistemlerinizle kolayca bağlantı kurun." : "Connect easily with existing CRMs, ERPs, and e-commerce stacks.")</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="ph-compliance-card">
-                    <div class="ph-compliance-icon"><i class="ri-timer-flash-line"></i></div>
-                    <div>
-                        <h6 class="fw-bold mb-1" data-i18n="home.comp2Title">@(isTr ? "Gerçek zamanlı olay işleme" : "Real-time event streaming")</h6>
-                        <p class="small ph-muted mb-0" data-i18n="home.comp2Desc">@(isTr ? "Anlık tetikleyicilerle hızlı aksiyon alın." : "Capture instantaneous telemetry and trigger timely interactions.")</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="ph-compliance-card">
-                    <div class="ph-compliance-icon"><i class="ri-database-2-line"></i></div>
-                    <div>
-                        <h6 class="fw-bold mb-1" data-i18n="home.comp3Title">@(isTr ? "Veri yönetimi" : "Secure data warehousing")</h6>
-                        <p class="small ph-muted mb-0" data-i18n="home.comp3Desc">@(isTr ? "Güvenli ve düzenli veri akışı sağlayın." : "Ensure secure, structured, and compliant customer data architecture.")</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="ph-compliance-card">
-                    <div class="ph-compliance-icon"><i class="ri-lock-line"></i></div>
-                    <div>
-                        <h6 class="fw-bold mb-1" data-i18n="home.comp4Title">@(isTr ? "İzin ve uyumluluk süreçleri" : "Consent governance")</h6>
-                        <p class="small ph-muted mb-0" data-i18n="home.comp4Desc">@(isTr ? "KVKK ve IYS gereksinimlerini karşılayın." : "Fully meet KVKK, GDPR, and IYS regulatory mandates.")</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-@* ══════════════════════════════════════════════════════════════════════════
-   M. OPSİYONEL MODÜLLER
-   ══════════════════════════════════════════════════════════════════════ *@
-<section class="ph-section">
-    <div class="container">
-        <div class="text-center mb-5" data-aos="fade-up">
-            <span class="ph-eyebrow" data-i18n="home.optionalEyebrow">@(isTr ? "Opsiyonel Modüller" : "Optional Modules")</span>
-            <h2 class="pika-h2 fw-bold" data-i18n="home.optionalTitle">@(isTr ? "İhtiyacınız büyüdükçe platformunuzu genişletin" : "Expand your platform as enterprise needs grow")</h2>
-            <p class="ph-muted mx-auto" style="max-width:600px" data-i18n="home.optionalDesc">@(isTr ? "Pika, modüler yapısıyla ileri seviye çözümler ve kurumsal ihtiyaçlara göre genişletilebilir." : "Pika's modular architecture scales effortlessly with enterprise integrations and conversational solutions.")</p>
-        </div>
-        <div class="row g-4 justify-content-center" data-aos="fade-up" data-aos-delay="100">
-            <div class="col-lg-4 col-md-6">
-                <div class="ph-optional-card">
-                    <span class="ph-optional-badge" data-i18n="home.optBadge">@(isTr ? "Opsiyonel" : "Optional")</span>
-                    <h6 class="fw-bold mb-2">Voice Assistant</h6>
-                    <p class="small ph-muted mb-0" data-i18n="home.opt1Desc">@(isTr ? "Telefon üzerinden otomatik sesli etkileşim ve self-service akışları." : "Automated interactive voice response and telephony self-service flows.")</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="ph-optional-card">
-                    <span class="ph-optional-badge" data-i18n="home.optBadge">@(isTr ? "Opsiyonel" : "Optional")</span>
-                    <h6 class="fw-bold mb-2">Conversational Solutions</h6>
-                    <p class="small ph-muted mb-0" data-i18n="home.opt2Desc">@(isTr ? "Yazılı ve sesli etkileşim senaryoları için genişletilebilir çözüm yapısı." : "Extensible multi-modal dialog frameworks for chat and voice engagements.")</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="ph-optional-card">
-                    <span class="ph-optional-badge" data-i18n="home.optBadge">@(isTr ? "Opsiyonel" : "Optional")</span>
-                    <h6 class="fw-bold mb-2">Enterprise Integrations</h6>
-                    <p class="small ph-muted mb-0" data-i18n="home.opt3Desc">@(isTr ? "Özel kurumsal sistemler ve veri akışlarıyla genişletilebilir mimari." : "Custom enterprise ERP, data lake, and proprietary system connectors.")</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-@* ══════════════════════════════════════════════════════════════════════════
-   N. KAPANIŞ CTA
-   ══════════════════════════════════════════════════════════════════════ *@
-<section class="ph-cta-section">
-    <div class="container text-center" data-aos="fade-up">
-        <h2 class="ph-cta-title text-white mx-auto" style="max-width:680px" data-i18n="home.ctaTitle">@(isTr ? "Kampanya operasyonunuzu tek merkezden yönetin" : "Orchestrate your campaign operations from a single hub")</h2>
-        <p class="ph-cta-desc mx-auto" data-i18n="home.ctaDesc">@(isTr ? "Pika ile müşteri verisini aksiyona dönüştürün, kampanya üretimini hızlandırın ve çok kanallı iletişimi daha akıllı hale getirin." : "Transform customer data into action, accelerate campaign rollouts, and make omnichannel engagement smarter with Pika.")</p>
-        <div class="d-flex gap-3 justify-content-center flex-wrap">
-            <button type="button" class="ph-btn-light" data-bs-toggle="modal" data-bs-target="#demoModal"><span data-i18n="nav.demo">@(isTr ? "Demo Talep Et" : "Request a Demo")</span> <i class="ri-arrow-right-up-line"></i></button>
-            <a href="@Url.Action("Contact", "Home", new { culture })" class="ph-btn-outline-light"><span data-i18n="nav.contact">@(isTr ? "İletişime Geçin" : "Contact Us")</span></a>
-        </div>
+<section class="pk-section">
+    <div class="pk-container pk-screen-band">
+        <img src="/wiki/assets/images/img_bi-kokpit_5.png" alt="@(tr ? "Pika BI kokpit ekranı" : "Pika BI cockpit screen")" loading="lazy" width="1200" height="760" />
+        <div><span class="pk-eyebrow">@(tr ? "Ölçün" : "Measure")</span><h2>@(tr ? "Aksiyonun sonunda yeniden veriye dönün." : "Return to evidence after action.")</h2><p class="pk-lead">@(tr ? "BI ve Analytics katmanı kampanya, kanal, müşteri ve satış bağlamını desteklenen metriklerle birlikte okumayı sağlar. İlişkilendirme, nedensellik iddiası değildir; sonuçları kanıtın izin verdiği ölçüde yorumlayın." : "BI and Analytics bring supported campaign, channel, customer and sales metrics together. Attribution is not the same as causation; interpret results only as far as the evidence supports.")</p><div class="pk-actions"><a class="pk-btn pk-btn-ghost" href="@(tr ? "/platform/analytics" : "/en/platform/analytics")">Analytics</a><a class="pk-btn pk-btn-ghost" href="/wiki/">@(tr ? "Bilgi Bankası" : "Knowledge Base")</a></div></div>
     </div>
 </section>
