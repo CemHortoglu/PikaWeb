@@ -1,3 +1,5 @@
 <Solution>
   <Project Path="Pika.csproj" />
+  <Project Path="Pika.Web.Tests/Pika.Web.Tests.csproj" />
 </Solution>
+

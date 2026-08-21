@@ -1,16 +1,205 @@
 @{
     var tr = (ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").Equals("tr", StringComparison.OrdinalIgnoreCase);
-    ViewData["Title"] = tr ? "SMS Campaigns (SMS Kampanyaları)" : "SMS Campaigns";
-    ViewData["MetaDescription"] = tr ? "Hızlı erişim için SMS’i hedefleme ve loglama ile yönetin; maliyeti kontrol altında tutun." : "Manage SMS with targeting and logging for fast reach while controlling costs.";
-    ViewData["MetaKeywords"] = "sms campaigns,delivery rate,sms cost,opt-out,suppression";
+    ViewData["Title"] = tr ? "SMS Kampanya Yönetimi ve Otomasyon - Pika" : "SMS Campaign Management & Automation - Pika";
+    ViewData["MetaDescription"] = tr ? "Pika SMS kampanya platformu ile segment bazlı hedefleme, kişiselleştirme ve zamanlı gönderim yaparak dönüşümü artırın." : "Increase conversions with segmented targeting, personalization, and scheduled delivery using the Pika SMS campaign platform.";
+    ViewData["MetaKeywords"] = "sms kampanya, sms pazarlama, segmentasyon, otomasyon, kişiselleştirme, sms gönderim";
 }
-<section class="pika-corp-hero pika-solution-hero"><div class="container"><h1 class="pika-corp-title">SMS Campaigns @(tr?"(SMS Kampanyaları)":"")</h1><p class="pika-corp-lead">@(tr?"Hızlı erişim için SMS’i hedefleme ve loglama ile yönetir; maliyeti kontrol altında tutarsınız.":"Manage SMS for rapid reach with targeting and logging while controlling costs.")</p></div></section>
-<section class="pika-section pika-corp-section pika-solution-detail"><div class="container">
-<p>@(tr?"SMS, özellikle kritik bildirimlerde ve hızlı erişim senaryolarında çok değerli. Pika tarafında doğru SMS yönetimi; hedefleme, içerik standardı, gönderim logları ve maliyet (kredi/usage) kontrolüyle birlikte ele alınmalı.":"SMS is highly valuable for critical alerts and fast-reach scenarios. In Pika, proper SMS management includes targeting, content standards, send logs, and cost (credit/usage) control.")</p>
-<h3>@(tr?"Ne sağlar?":"What does it provide?")</h3>
-<ul><li>@(tr?"Hedefleme: segment/kural ile doğru kitle.":"Targeting: the right audience via segment/rules.")</li><li>@(tr?"Mesaj standardı: kısa, net ve kişiselleştirilmiş içerik (token/metadata ile).":"Message standard: short, clear, personalized content (with token/metadata).")</li><li>@(tr?"İzlenebilirlik: send log + hata sebepleriyle operasyonel görünürlük.":"Observability: operational visibility with send logs + failure reasons.")</li><li>@(tr?"Maliyet disiplini: kredi/usage kontrolü (özellikle yoğun kampanyalarda).":"Cost discipline: credit/usage control (especially in high-volume campaigns).")</li></ul>
-<h3>@(tr?"Nasıl çalışır (özet akış):":"How it works (summary):")</h3>
-<ol><li>@(tr?"SMS şablonu yazılır (kısa link/CTA stratejisi belirlenir).":"Create SMS template (define short-link/CTA strategy).")</li><li>@(tr?"Hedef kitle segment/kural ile seçilir.":"Select target audience using segment/rules.")</li><li>@(tr?"Gönderim öncesi numara doğrulama ve uygunluk kontrolleri yapılır.":"Perform number validation and eligibility checks before send.")</li><li>@(tr?"Gateway üzerinden gönderim yapılır; sonuç loglanır.":"Send via gateway; log outcomes.")</li><li>@(tr?"Kampanya sonrası performans/harcama analiziyle optimize edilir.":"Optimize with post-campaign performance/spend analysis.")</li></ol>
-<p><strong>KPI:</strong> @(tr?"delivery rate, fail reason dağılımı, maliyet/mesaj, kampanya başına hedef ve erişim.":"delivery rate, failure-reason distribution, cost per message, target and reach per campaign.")</p>
-<p><strong>@(tr?"Not":"Note"):</strong> @(tr?"SMS opt-out modeli ürünleştirilerek e-posta unsubscribe disiplinine benzer şekilde kurgulanmalı (suppression list). (Repo’da e-posta tarafı daha net; SMS’te bu kısım “standartlaştırma” fırsatı.)":"SMS opt-out should be productized similar to email unsubscribe discipline (suppression list). (In the repo, email is clearer; SMS presents a standardization opportunity.)")</p>
-</div></section>
+
+<!-- Hero -->
+<section class="pika-sol-hero">
+    <div class="container">
+        <nav class="pika-sol-breadcrumb" data-aos="fade-down" data-aos-duration="500">
+            <a href="@(tr ? "/" : "/en/")">@(tr ? "Ana Sayfa" : "Home")</a>
+            <span class="sep">/</span>
+            <a href="@(tr ? "/" : "/en/")">@(tr ? "Çözümler" : "Solutions")</a>
+            <span class="sep">/</span>
+            <span>SMS Campaigns</span>
+        </nav>
+        <div class="pika-sol-hero-grid">
+            <div data-aos="fade-right" data-aos-duration="700">
+                <h1>@(tr ? "Doğru zamanda, doğru hedef kitleye SMS kampanyaları gönderin" : "Send SMS campaigns to the right audience at the right time")</h1>
+                <p class="pika-sol-hero-desc">@(tr ? "Pika SMS Campaigns; segment bazlı hedefleme, kişiselleştirme, zamanlı veya anlık gönderim, otomasyon entegrasyonu ve raporlama ile SMS iletişim süreçlerini tek panelden yönetmenizi sağlar." : "Pika SMS Campaigns lets you manage SMS communication processes from one panel with segment-based targeting, personalization, scheduled or instant delivery, automation integration, and reporting.")</p>
+                <div class="pika-sol-hero-actions">
+                    <button type="button" class="btn pika-btn-primary px-4 py-2" data-bs-toggle="modal" data-bs-target="#demoModal">@(tr ? "Demo Talep Et" : "Request a Demo") <i class="ri-arrow-right-up-line"></i></button>
+                    <a href="#features" class="btn pika-btn-ghost px-4 py-2">@(tr ? "SMS Çözümünü İncele" : "Explore SMS Solution")</a>
+                </div>
+                <div class="pika-sol-hero-tags">
+                    <span class="pika-sol-tag"><i class="ri-eye-line"></i> @(tr ? "Yüksek görünürlük" : "High visibility")</span>
+                    <span class="pika-sol-tag"><i class="ri-flashlight-line"></i> @(tr ? "Hızlı iletişim" : "Fast communication")</span>
+                    <span class="pika-sol-tag"><i class="ri-focus-3-line"></i> @(tr ? "Segment bazlı SMS" : "Segment-based SMS")</span>
+                    <span class="pika-sol-tag"><i class="ri-route-line"></i> @(tr ? "Journey entegrasyonu" : "Journey integration")</span>
+                </div>
+            </div>
+            <div class="pika-sol-hero-visual" data-aos="fade-left" data-aos-duration="700" data-aos-delay="200">
+                <div class="pika-sol-mock-row">
+                    <div class="pika-sol-mock-block wide"><i class="ri-message-2-line"></i> @(tr ? "SMS Kampanya Oluşturma" : "SMS Campaign Builder")</div>
+                </div>
+                <div class="pika-sol-mock-row">
+                    <div class="pika-sol-mock-block"><i class="ri-group-line"></i> @(tr ? "Segment Alanı" : "Segment Area")</div>
+                    <div class="pika-sol-mock-block"><i class="ri-calendar-schedule-line"></i> @(tr ? "Zamanlama" : "Scheduling")</div>
+                </div>
+                <div class="pika-sol-mock-row">
+                    <div class="pika-sol-mock-block wide"><i class="ri-pie-chart-line"></i> @(tr ? "Kısa Rapor Kartı" : "Quick Report Card")</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Değer Kutuları -->
+<section class="pika-sol-section">
+    <div class="container">
+        <div class="pika-sol-value-grid">
+            <div class="pika-sol-value-card" data-aos="fade-up" data-aos-duration="500">
+                <div class="pika-sol-value-icon"><i class="ri-flashlight-line"></i></div>
+                <h4>@(tr ? "Hızlı Teslim" : "Fast Delivery")</h4>
+                <p>@(tr ? "Zaman hassasiyeti olan iletişimlerde etkili kanal." : "Effective channel for time-sensitive communications.")</p>
+            </div>
+            <div class="pika-sol-value-card" data-aos="fade-up" data-aos-duration="500" data-aos-delay="100">
+                <div class="pika-sol-value-icon"><i class="ri-eye-line"></i></div>
+                <h4>@(tr ? "Yüksek Görünürlük" : "High Visibility")</h4>
+                <p>@(tr ? "Kullanıcıya doğrudan ulaşan net iletişim yapısı." : "Clear communication structure reaching users directly.")</p>
+            </div>
+            <div class="pika-sol-value-card" data-aos="fade-up" data-aos-duration="500" data-aos-delay="200">
+                <div class="pika-sol-value-icon"><i class="ri-focus-3-line"></i></div>
+                <h4>@(tr ? "Segmentli Kullanım" : "Segmented Usage")</h4>
+                <p>@(tr ? "Genel toplu gönderim yerine hedefli kullanım." : "Targeted usage instead of generic mass sends.")</p>
+            </div>
+            <div class="pika-sol-value-card" data-aos="fade-up" data-aos-duration="500" data-aos-delay="300">
+                <div class="pika-sol-value-icon"><i class="ri-loop-right-line"></i></div>
+                <h4>@(tr ? "Otomasyonla Birlikte Çalışma" : "Works with Automation")</h4>
+                <p>@(tr ? "SMS'i journey akışlarının parçası haline getirin." : "Make SMS part of journey flows.")</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Ne Yapabilirsiniz? -->
+<section class="pika-sol-section pika-sol-section-alt">
+    <div class="container">
+        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "SMS'i sadece toplu mesaj değil, stratejik aksiyon kanalı olarak kullanın" : "Use SMS as a strategic action channel, not just bulk messaging")</h2>
+        <p class="pika-sol-section-desc" data-aos="fade-up" data-aos-delay="100">@(tr ? "Kampanyalar, hatırlatmalar, anlık duyurular ve davranış tetiklemeli aksiyonlar için SMS'i kontrollü ve ölçülebilir şekilde yönetin." : "Manage SMS in a controlled and measurable way for campaigns, reminders, instant announcements, and behavior-triggered actions.")</p>
+        <div class="pika-sol-card-grid">
+            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="pika-sol-card-icon"><i class="ri-megaphone-line"></i></div>
+                <h4>@(tr ? "Kampanya SMS'leri" : "Campaign SMS")</h4>
+                <p>@(tr ? "İndirim, özel gün ve promosyon iletişimleri." : "Discount, special occasion, and promotional communications.")</p>
+            </div>
+            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="pika-sol-card-icon"><i class="ri-alarm-line"></i></div>
+                <h4>@(tr ? "Hatırlatma SMS'leri" : "Reminder SMS")</h4>
+                <p>@(tr ? "Davranış veya zaman bazlı hatırlatmalar." : "Behavior or time-based reminders.")</p>
+            </div>
+            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="pika-sol-card-icon"><i class="ri-route-line"></i></div>
+                <h4>@(tr ? "Journey İçi SMS Aksiyonları" : "In-Journey SMS Actions")</h4>
+                <p>@(tr ? "Belirli kurallara göre tetiklenen süreçler." : "Processes triggered by specific rules.")</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Özellikler / Capability Grid -->
+<section class="pika-sol-section" id="features">
+    <div class="container">
+        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "SMS kampanyalarını daha kontrollü yönetin" : "Manage SMS campaigns with more control")</h2>
+        <div class="pika-sol-card-grid">
+            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="pika-sol-card-icon"><i class="ri-focus-3-line"></i></div>
+                <h4>@(tr ? "Segment Bazlı Gönderim" : "Segment-Based Delivery")</h4>
+                <p>@(tr ? "SMS'i doğru hedef kitleyle buluşturun." : "Match SMS with the right target audience.")</p>
+            </div>
+            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="pika-sol-card-icon"><i class="ri-user-heart-line"></i></div>
+                <h4>@(tr ? "Kişiselleştirilmiş Mesajlar" : "Personalized Messages")</h4>
+                <p>@(tr ? "İsim, teklif veya kullanıcı bilgisine göre özelleştirin." : "Customize by name, offer, or user data.")</p>
+            </div>
+            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="pika-sol-card-icon"><i class="ri-time-line"></i></div>
+                <h4>@(tr ? "Zamanlı ve Anlık Gönderim" : "Scheduled & Instant Delivery")</h4>
+                <p>@(tr ? "Planlı veya anlık aksiyon senaryoları oluşturun." : "Create scheduled or instant action scenarios.")</p>
+            </div>
+            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="pika-sol-card-icon"><i class="ri-route-line"></i></div>
+                <h4>@(tr ? "Journey Entegrasyonu" : "Journey Integration")</h4>
+                <p>@(tr ? "SMS'i email, WhatsApp ve Push ile birlikte kullanın." : "Use SMS together with email, WhatsApp, and Push.")</p>
+            </div>
+            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="pika-sol-card-icon"><i class="ri-shield-check-line"></i></div>
+                <h4>@(tr ? "İzin ve Uyumluluk Yönetimi" : "Consent & Compliance")</h4>
+                <p>@(tr ? "İletişim izinlerini ve süreç uyumunu yönetin." : "Manage communication consents and process compliance.")</p>
+            </div>
+            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="pika-sol-card-icon"><i class="ri-line-chart-line"></i></div>
+                <h4>@(tr ? "Raporlama" : "Reporting")</h4>
+                <p>@(tr ? "Gönderim performansını izleyin." : "Monitor delivery performance.")</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Kullanım Senaryoları -->
+<section class="pika-sol-section pika-sol-section-alt">
+    <div class="container">
+        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "Pika SMS Campaigns ile örnek kullanım alanları" : "Example use cases with Pika SMS Campaigns")</h2>
+        <div class="pika-sol-usecase-grid">
+            <div class="pika-sol-usecase" data-aos="fade-up" data-aos-delay="50"><i class="ri-check-line"></i> @(tr ? "İndirim duyuruları" : "Discount announcements")</div>
+            <div class="pika-sol-usecase" data-aos="fade-up" data-aos-delay="100"><i class="ri-check-line"></i> @(tr ? "Sepet veya işlem hatırlatmaları" : "Cart or transaction reminders")</div>
+            <div class="pika-sol-usecase" data-aos="fade-up" data-aos-delay="150"><i class="ri-check-line"></i> @(tr ? "Sadakat kampanyaları" : "Loyalty campaigns")</div>
+            <div class="pika-sol-usecase" data-aos="fade-up" data-aos-delay="200"><i class="ri-check-line"></i> @(tr ? "Özel gün tebrikleri" : "Special occasion greetings")</div>
+            <div class="pika-sol-usecase" data-aos="fade-up" data-aos-delay="250"><i class="ri-check-line"></i> @(tr ? "Belirli segmentlere hızlı kampanyalar" : "Fast campaigns to specific segments")</div>
+            <div class="pika-sol-usecase" data-aos="fade-up" data-aos-delay="300"><i class="ri-check-line"></i> @(tr ? "Zaman hassasiyetli bildirimler" : "Time-sensitive notifications")</div>
+        </div>
+    </div>
+</section>
+
+<!-- Nasıl Çalışır? -->
+<section class="pika-sol-section">
+    <div class="container">
+        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "SMS kampanyanızı 4 adımda yönetin" : "Manage your SMS campaign in 4 steps")</h2>
+        <div class="pika-sol-steps">
+            <div class="pika-sol-step" data-aos="fade-up" data-aos-delay="100"><div class="pika-sol-step-num"></div><p>@(tr ? "Hedef kitlenizi belirleyin" : "Define your target audience")</p></div>
+            <div class="pika-sol-step" data-aos="fade-up" data-aos-delay="200"><div class="pika-sol-step-num"></div><p>@(tr ? "Mesaj içeriğini oluşturun" : "Create the message content")</p></div>
+            <div class="pika-sol-step" data-aos="fade-up" data-aos-delay="300"><div class="pika-sol-step-num"></div><p>@(tr ? "Gönderimi planlayın veya tetikleyiciye bağlayın" : "Schedule the send or link to a trigger")</p></div>
+            <div class="pika-sol-step" data-aos="fade-up" data-aos-delay="400"><div class="pika-sol-step-num"></div><p>@(tr ? "Sonuçları izleyin" : "Monitor results")</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- Neden SMS? -->
+<section class="pika-sol-section pika-sol-section-alt">
+    <div class="container" data-aos="fade-up">
+        <div class="pika-sol-highlight">
+            <h3>@(tr ? "Görünürlük gerektiren iletişimlerde güçlü kanal" : "A powerful channel for high-visibility communications")</h3>
+            <p>@(tr ? "SMS; hızlı aksiyon, yüksek görünürlük ve kısa iletişim senaryolarında kritik rol oynar. Pika ile bu gücü daha akıllı hedefleme ve otomasyonla birleştirin." : "SMS plays a critical role in fast-action, high-visibility, and short-message scenarios. Combine this power with smarter targeting and automation through Pika.")</p>
+        </div>
+    </div>
+</section>
+
+<!-- Çok Kanallı Kullanım -->
+<section class="pika-sol-section">
+    <div class="container" data-aos="fade-up">
+        <div class="pika-sol-omni">
+            <h2 class="pika-sol-section-title">@(tr ? "SMS'i tek başına değil, journey'nin parçası olarak kullanın" : "Use SMS as part of the journey, not in isolation")</h2>
+            <p class="pika-sol-section-desc" style="margin-left:auto;margin-right:auto">@(tr ? "Email, WhatsApp ve Push ile birlikte çalışan SMS aksiyonlarıyla daha tutarlı müşteri deneyimi oluşturun." : "Create a more consistent customer experience with SMS actions that work alongside Email, WhatsApp, and Push.")</p>
+            <div class="pika-sol-omni-icons">
+                <div class="pika-sol-omni-icon" style="background:#e3f2fd;color:#1976d2"><i class="ri-message-2-line"></i></div>
+                <div class="pika-sol-omni-icon" style="background:#fff3e0;color:#f57c00"><i class="ri-mail-line"></i></div>
+                <div class="pika-sol-omni-icon" style="background:#dcf8c6;color:#25d366"><i class="ri-whatsapp-line"></i></div>
+                <div class="pika-sol-omni-icon" style="background:#fce4ec;color:#e91e63"><i class="ri-notification-3-line"></i></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Kapanış CTA -->
+<section class="pika-sol-cta-section">
+    <div class="container" data-aos="fade-up">
+        <h2>@(tr ? "SMS kampanyalarını daha hızlı, daha hedefli ve daha ölçülebilir yönetin" : "Manage SMS campaigns faster, more targeted, and more measurable")</h2>
+        <p>@(tr ? "Pika SMS Campaigns ile görünürlüğü yüksek kampanyaları tek panelden yönetin." : "Manage high-visibility campaigns from a single panel with Pika SMS Campaigns.")</p>
+        <div class="pika-sol-cta-actions">
+            <button type="button" class="btn pika-btn-primary px-4 py-2" data-bs-toggle="modal" data-bs-target="#demoModal">@(tr ? "Demo Talep Et" : "Request a Demo") <i class="ri-arrow-right-up-line"></i></button>
+            <a href="@Url.Action("Contact", "Home")" class="btn pika-btn-ghost px-4 py-2">@(tr ? "Bizimle İletişime Geçin" : "Contact Us")</a>
+        </div>
+    </div>
+</section>

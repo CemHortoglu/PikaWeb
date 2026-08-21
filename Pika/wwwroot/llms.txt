@@ -1,0 +1,41 @@
+# Pika — Müşteri Zekâsı ve Omnichannel Pazarlama Platformu
+
+> Pika; müşteri, ürün, satış ve etkileşim verilerini anlamlandırarak işletmenin hangi müşteride hangi fırsatın oluştuğunu görmesine ve bu fırsatı doğru aksiyona dönüştürmesine yardımcı olan B2B SaaS müşteri zekâsı ve pazarlama platformudur.
+
+## Temel Ürün Konumlandırması
+
+Pika'nın başlangıç noktası mesaj göndermek değil, anlamaktır.
+Doğru Anda (Right Moment) ilkesiyle veriden ölçüme uzanan 6 adımlı karar zincirini işletir:
+
+1. **Veri ve Entegrasyon**: Müşteri, ürün ve satış hareketlerinin Excel, CSV ve Ingestion API ile alınması ve doğrulanması.
+2. **Müşteri ve Ürün Zekâsı**: Pika 360 müşteri profili ve Product Intelligence ile ürün rollerinin (Need Group, Product Role) anlamlandırılması.
+3. **Fırsat ve Karar**: Günün Fırsatları, tekrar satın alma ritmi, cross-sell/sepet birlikteliği ve Next Best Action sinyalleri.
+4. **Aksiyon ve Otomasyon**: Audience Manager, Campaign Manager, Journey Manager ve Content Studio ile hedeflenen iletişimler.
+5. **Kanallar**: E-posta, SMS, WhatsApp ve Push bildirimleri üzerinden izin/IYS uyumlu gönderimler.
+6. **Ölçümleme ve BI**: Kampanya sonuçları, mağaza/kanal performansı ve öğrenme döngüsü.
+
+## Temel Bilgi Kaynakları ve Dokümantasyon
+
+- Ana Sayfa: https://pika.tr/
+- Pika Nedir?: https://pika.tr/pika
+- Bilgi Bankası Ana Sayfası: https://pika.tr/wiki/
+- Pika Nedir? (Wiki): https://pika.tr/wiki/pika-nedir
+- Pika Nasıl Çalışır?: https://pika.tr/wiki/pika-nasil-calisir
+- Ürün Haritası: https://pika.tr/wiki/urun-haritasi
+- Customer Intelligence (Sayfa): https://pika.tr/platform/customer-intelligence
+- Customer Intelligence (Wiki): https://pika.tr/wiki/customer-intelligence-nedir
+- Product Intelligence (Sayfa): https://pika.tr/platform/product-intelligence
+- Product Intelligence (Wiki): https://pika.tr/wiki/product-intelligence-nedir
+- Pika 360 (Sayfa): https://pika.tr/platform/pika-360
+- Pika 360 (Wiki): https://pika.tr/wiki/pika-360
+- Günün Fırsatları (Sayfa): https://pika.tr/platform/gunun-firsatlari
+- Günün Fırsatları (Wiki): https://pika.tr/wiki/gunun-firsatlari-ve-karar-motoru
+- Campaign Manager: https://pika.tr/cozumler/campaign-manager
+- Journey Manager (Wiki): https://pika.tr/wiki/kampanya-journey-orkestrasyonu
+- Kişi Aktarımı (Gmail ve Outlook): https://pika.tr/wiki/gmail-kisi-aktarimi
+- İzinler ve İYS Yönetimi: https://pika.tr/wiki/izin-optout-iys
+- İletişim Listeleri ve Tercih Yönetimi: https://pika.tr/wiki/iletisim-listeleri-ve-opt-out
+- Güvenlik ve Gizlilik: https://pika.tr/guvenlik-ve-gizlilik
+- Sık Sorulan Sorular (Pazarlama): https://pika.tr/kaynaklar/sss
+- Sık Sorulan Sorular (Wiki): https://pika.tr/wiki/sss
+- Pika Sözlüğü: https://pika.tr/wiki/sozluk

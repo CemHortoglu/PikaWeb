@@ -1,10 +1,10 @@
 @{
     var tr = (ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").Equals("tr", StringComparison.OrdinalIgnoreCase);
-    ViewData["Title"] = tr ? "Campaign Automation & Scheduling (Kampanya Otomasyonu ve Zamanlama)" : "Campaign Automation & Scheduling";
+    ViewData["Title"] = tr ? "Kampanya Otomasyonu ve Zamanlama" : "Campaign Automation & Scheduling";
     ViewData["MetaDescription"] = tr ? "Kampanyayı planlayın; sistem hedefi üretsin, doğru zamanda çalıştırsın, kontrol grubuyla etkisini ölçsün." : "Plan campaigns, auto-generate targets, execute at the right time, and measure impact with control groups.";
     ViewData["MetaKeywords"] = "campaign automation,scheduling,control group,ab testing,uplift";
 }
-<section class="pika-corp-hero pika-solution-hero"><div class="container"><h1 class="pika-corp-title">Campaign Automation & Scheduling @(tr ? "(Kampanya Otomasyonu ve Zamanlama)" : "")</h1><p class="pika-corp-lead">@(tr?"Kampanyayı planlayın; sistem hedefi üretsin, doğru zamanda çalıştırsın, kontrol grubuyla etkisini ölçsün.":"Plan campaigns; let the system generate targets, execute at the right time, and measure impact with control groups.")</p></div></section>
+<section class="pika-corp-hero pika-solution-hero"><div class="container"><h1 class="pika-corp-title">@(tr ? "Kampanya Otomasyonu ve Zamanlama" : "Campaign Automation & Scheduling")</h1><p class="pika-corp-lead">@(tr?"Kampanyayı planlayın; sistem hedefi üretsin, doğru zamanda çalıştırsın, kontrol grubuyla etkisini ölçsün.":"Plan campaigns; let the system generate targets, execute at the right time, and measure impact with control groups.")</p></div></section>
 <section class="pika-section pika-corp-section pika-solution-detail"><div class="container">
 <p>@(tr?"Kampanya otomasyonu Pika’da “takvim + hedefleme + üretim” bütünlüğüyle ele alınır. Sadece “şu gün gönder” değil: aktif kampanyalar için hedef kitlenin otomatik hazırlanması, uygunluk kontrolleri, varyant dağıtımı ve çalıştırma sürecinin standardize edilmesi hedeflenir.":"In Pika, campaign automation is handled as an integrated “calendar + targeting + generation” capability. It standardizes audience preparation, eligibility checks, variant allocation, and execution—not just scheduling a send date.")</p>
 <h3>@(tr?"Ne sağlar?":"What does it provide?")</h3>

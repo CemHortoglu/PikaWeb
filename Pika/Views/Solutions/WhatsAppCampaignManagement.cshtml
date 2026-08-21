@@ -1,0 +1,105 @@
+@{
+    var tr = (ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").Equals("tr", StringComparison.OrdinalIgnoreCase);
+    ViewData["Title"] = tr ? "WhatsApp Kampanya Yönetimi | Pika" : "WhatsApp Campaign Management | Pika";
+    ViewData["MetaDescription"] = tr ? "Pika ile WhatsApp kampanyalarınızı segment, journey, mesaj durumu takibi ve raporlama süreçleriyle birlikte yönetin." : "Manage your WhatsApp campaigns with Pika including segmentation, journey, message status tracking and reporting.";
+    ViewData["MetaKeywords"] = "whatsapp kampanya,whatsapp business api,whatsapp marketing,segment bazlı gönderim,pika whatsapp";
+}
+
+<!-- HERO -->
+<section class="pika-sol-hero" data-module="whatsapp">
+    <div class="container">
+        <nav class="pika-sol-breadcrumb" data-aos="fade-down" data-aos-duration="500">
+            <a href="@(tr ? "/" : "/en/")">@(tr ? "Ana Sayfa" : "Home")</a>
+            <span class="sep">/</span>
+            <span>@(tr ? "WhatsApp Kampanya Yönetimi" : "WhatsApp Campaign Management")</span>
+        </nav>
+        <div class="pika-sol-hero-grid">
+            <div data-aos="fade-right" data-aos-duration="700">
+                <h1>@(tr ? "WhatsApp Kampanya Yönetimi" : "WhatsApp Campaign Management")</h1>
+                <p class="pika-sol-hero-desc">@(tr ? "WhatsApp Business API ile izinli müşteri segmentlerinize kampanya, bilgilendirme ve otomasyon mesajları gönderin. Pika ile WhatsApp gönderimlerinizi kampanya, journey ve raporlama süreçlerinizle birlikte yönetin." : "Send campaign, informational and automation messages to your consented customer segments via WhatsApp Business API. Manage your WhatsApp deliveries alongside your campaign, journey and reporting processes with Pika.")</p>
+                <div class="pika-sol-hero-actions">
+                    <button type="button" class="btn pika-btn-primary px-4 py-2" data-bs-toggle="modal" data-bs-target="#demoModal">@(tr ? "Demo Talep Et" : "Request a Demo") <i class="ri-arrow-right-up-line"></i></button>
+                </div>
+                <div class="pika-sol-hero-tags">
+                    <span class="pika-sol-tag"><i class="ri-whatsapp-line"></i> WhatsApp Business API</span>
+                    <span class="pika-sol-tag"><i class="ri-group-line"></i> @(tr ? "Segment bazlı gönderim" : "Segment-based delivery")</span>
+                    <span class="pika-sol-tag"><i class="ri-route-line"></i> @(tr ? "Journey entegrasyonu" : "Journey integration")</span>
+                </div>
+            </div>
+            <div class="pika-sol-hero-scene" data-aos="fade-left" data-aos-duration="700" data-aos-delay="200">
+                <div class="pika-sol-scene-main">
+                    <div class="pika-sol-scene-row">
+                        <div class="pika-sol-scene-block wide" style="border-left:3px solid #25d366"><i class="ri-whatsapp-line" style="color:#25d366"></i> @(tr ? "WhatsApp Kampanya" : "WhatsApp Campaign")</div>
+                    </div>
+                    <div class="pika-sol-scene-row">
+                        <div class="pika-sol-scene-block"><i class="ri-group-line"></i> @(tr ? "Segment" : "Segment")</div>
+                        <div class="pika-sol-scene-block"><i class="ri-file-text-line"></i> Template</div>
+                    </div>
+                    <div class="pika-sol-scene-row">
+                        <div class="pika-sol-scene-block wide"><i class="ri-bar-chart-box-line"></i> @(tr ? "Mesaj Durumu Takibi" : "Message Status Tracking")</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ANA İÇERİK -->
+<section class="pika-sol-section" style="background:var(--pika-bg2)">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2 class="pika-h2 fw-bold">@(tr ? "WhatsApp'ı kampanya akışlarınızın parçası haline getirin" : "Make WhatsApp part of your campaign workflows")</h2>
+            <p class="ph-muted mx-auto" style="max-width:700px">@(tr ? "Pika, WhatsApp mesajlarını tekil gönderim aracı olarak değil, kampanya ve journey yönetiminin bir parçası olarak kullanmanızı sağlar. Segment bazlı gönderimler, otomasyon akışları ve performans takibiyle WhatsApp iletişiminizi daha yönetilebilir hale getirir." : "Pika enables you to use WhatsApp messages as part of your campaign and journey management, not as a standalone sending tool. It makes your WhatsApp communication more manageable with segment-based deliveries, automation workflows and performance tracking.")</p>
+        </div>
+    </div>
+</section>
+
+<!-- ÖZELLİKLER -->
+<section class="pika-sol-section">
+    <div class="container">
+        <div class="row g-4" data-aos="fade-up">
+            @{
+                var features = tr
+                    ? new (string t, string d, string i)[] {
+                        ("Segment bazlı WhatsApp gönderimi", "Doğru müşteri grubuna doğru mesajı gönderin.", "ri-group-line"),
+                        ("Journey içinde WhatsApp kullanımı", "Email, SMS ve push bildirimleriyle birlikte WhatsApp adımlarını akışlarınıza ekleyin.", "ri-route-line"),
+                        ("Mesaj durumu takibi", "Gönderildi, teslim edildi, okundu gibi durumları kampanya performansı içinde takip edin.", "ri-checkbox-circle-line"),
+                        ("Onaylı template yönetimi", "WhatsApp Business mesaj şablonlarınızı kampanya süreçlerinizle birlikte yönetin.", "ri-file-text-line"),
+                        ("AI destekli mesaj üretimi", "Kampanya amacınıza uygun WhatsApp mesaj taslakları oluşturun.", "ri-robot-line"),
+                        ("Performans raporlama", "WhatsApp kampanyalarınızın dönüşüm ve etkileşim performansını analiz edin.", "ri-bar-chart-box-line")
+                    }
+                    : new (string t, string d, string i)[] {
+                        ("Segment-based WhatsApp delivery", "Send the right message to the right customer group.", "ri-group-line"),
+                        ("WhatsApp in journeys", "Add WhatsApp steps to your workflows alongside email, SMS and push notifications.", "ri-route-line"),
+                        ("Message status tracking", "Track sent, delivered, read statuses within campaign performance.", "ri-checkbox-circle-line"),
+                        ("Approved template management", "Manage your WhatsApp Business message templates alongside your campaign processes.", "ri-file-text-line"),
+                        ("AI-powered message generation", "Create WhatsApp message drafts suitable for your campaign purpose.", "ri-robot-line"),
+                        ("Performance reporting", "Analyze the conversion and engagement performance of your WhatsApp campaigns.", "ri-bar-chart-box-line")
+                    };
+            }
+            @foreach (var f in features)
+            {
+                <div class="col-lg-4 col-md-6">
+                    <div class="ph-module-card">
+                        <div class="ph-module-icon"><i class="@f.i"></i></div>
+                        <h6 class="fw-bold mb-2">@f.t</h6>
+                        <p class="small ph-muted mb-0">@f.d</p>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="text-center mt-4">
+            <a href="@Url.RouteUrl("AiCampaignAssistant", new { culture = ViewContext.RouteData.Values["culture"] ?? "tr" })" class="btn pika-btn-primary px-4 py-2">@(tr ? "AI Kampanya Asistanını İncele" : "Explore AI Campaign Assistant") <i class="ri-arrow-right-line"></i></a>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="ph-cta-section">
+    <div class="container text-center" data-aos="fade-up">
+        <h2 class="ph-cta-title text-white mx-auto" style="max-width:680px">@(tr ? "WhatsApp Kampanyalarını Pika ile Yönetin" : "Manage WhatsApp Campaigns with Pika")</h2>
+        <div class="d-flex gap-3 justify-content-center flex-wrap">
+            <button type="button" class="ph-btn-light" data-bs-toggle="modal" data-bs-target="#demoModal"><span>@(tr ? "Demo Talep Et" : "Request a Demo")</span> <i class="ri-arrow-right-up-line"></i></button>
+        </div>
+    </div>
+</section>

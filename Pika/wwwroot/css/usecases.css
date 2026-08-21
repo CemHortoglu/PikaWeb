@@ -1,0 +1,188 @@
+/* Use Cases Styles */
+.uc-hero-section {
+    padding: 3.5rem 0 3rem;
+    background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+    border-bottom: 1px solid #f1f5f9;
+}
+.uc-breadcrumb {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin-bottom: 1rem;
+}
+.uc-breadcrumb a {
+    color: #64748b;
+    text-decoration: none;
+}
+.uc-breadcrumb a:hover {
+    color: #0f172a;
+}
+.uc-breadcrumb .sep {
+    margin: 0 0.5rem;
+    color: #cbd5e1;
+}
+.max-w-750 {
+    max-width: 750px;
+}
+.uc-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    background: #ecfdf5;
+    color: #047857;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    margin-bottom: 1.25rem;
+}
+.uc-hero-title {
+    font-size: 2.25rem;
+    font-weight: 800;
+    line-height: 1.25;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+}
+@media (min-width: 992px) {
+    .uc-hero-title {
+        font-size: 2.75rem;
+    }
+}
+.uc-hero-lead {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #475569;
+    margin-bottom: 0;
+}
+.uc-section {
+    padding: 4rem 0 5rem;
+}
+.uc-scenarios-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+.uc-scenario-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 1.25rem;
+    padding: 2.5rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.02);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.uc-scenario-card:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+}
+.uc-scenario-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #f1f5f9;
+}
+.uc-q-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #059669;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+}
+.uc-scenario-q {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.01em;
+    margin-bottom: 0;
+}
+.uc-flow-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+@media (min-width: 992px) {
+    .uc-flow-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+.uc-flow-col {
+    background: #f8fafc;
+    border: 1px solid #f1f5f9;
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+}
+.uc-step-badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #0284c7;
+    background: #e0f2fe;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    display: inline-block;
+    align-self: flex-start;
+    margin-bottom: 0.75rem;
+}
+.uc-step-badge--opp {
+    color: #d97706;
+    background: #fef3c7;
+}
+.uc-step-badge--ctrl {
+    color: #7c3aed;
+    background: #f3e8ff;
+}
+.uc-step-badge--act {
+    color: #16a34a;
+    background: #dcfce7;
+}
+.uc-flow-col h5 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 0.5rem;
+}
+.uc-flow-col p {
+    font-size: 0.82rem;
+    color: #64748b;
+    line-height: 1.5;
+    margin-bottom: 0;
+    flex-grow: 1;
+}
+.uc-scenario-footer {
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid #f1f5f9;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+}
+.uc-tag-link {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #334155;
+    background: #f1f5f9;
+    padding: 0.25rem 0.65rem;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+}
+.uc-tag-link:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+}
+.uc-tag-wiki {
+    color: #047857;
+    background: #ecfdf5;
+}
+.uc-tag-wiki:hover {
+    background: #d1fae5;
+    color: #065f46;
+}
+.uc-cta-section {
+    padding: 0 0 5rem;
+}
+.uc-cta-box {
+    border: 1px solid #e2e8f0;
+}

@@ -1,0 +1,286 @@
+@{
+    var culture = ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr";
+    var tr = culture.Equals("tr", StringComparison.OrdinalIgnoreCase);
+    var wikiBase = "/wiki/";
+    ViewData["Title"] = tr ? "Product Intelligence | Ürün Zekâsı" : "Product Intelligence | Product Analytics & Categorization";
+    ViewData["MetaDescription"] = tr ? "Pika Product Intelligence, ürünleri yalnızca katalog kaydı değil müşteri ihtiyacı ve ticari rol bağlamında anlamlandıran zekâ katmanıdır." : "Pika Product Intelligence adds context to products beyond SKUs — mapping need groups, product roles, and industry playbooks for accurate customer analytics.";
+    ViewData["BodyClass"] = "pika-platform-page";
+    var canonicalUrl = tr ? "https://pika.tr/platform/product-intelligence" : "https://pika.tr/en/platform/product-intelligence";
+}
+
+@section JsonLd {
+<script type="@Html.Raw("application/ld+json")">
+{
+  "@@context": "https://schema.org",
+  "@@type": "WebPage",
+  "@@id": "@canonicalUrl",
+  "name": "@(tr ? "Product Intelligence | Ürün Zekâsı — Pika" : "Product Intelligence | Product Analytics & Categorization — Pika")",
+  "description": "@(tr ? "Pika Product Intelligence: ürünleri yalnızca katalog kaydı değil, müşteri ihtiyacı, ticari rol ve analizde kullanılabilir bağlamla anlamlandıran ürün zekâsı katmanı." : "Pika Product Intelligence: contextualizing products through need groups, commercial roles, and sector playbooks for precision targeting.")",
+  "url": "@canonicalUrl",
+  "isPartOf": { "@@id": "https://pika.tr/#website" },
+  "breadcrumb": {
+    "@@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@@type": "ListItem", "position": 1, "name": "@(tr ? "Ana Sayfa" : "Home")", "item": "@(tr ? "https://pika.tr/" : "https://pika.tr/en/")" },
+      { "@@type": "ListItem", "position": 2, "name": "Platform", "item": "@(tr ? "https://pika.tr/" : "https://pika.tr/en/")" },
+      { "@@type": "ListItem", "position": 3, "name": "Product Intelligence", "item": "@canonicalUrl" }
+    ]
+  }
+}
+</script>
+}
+
+<section class="ph-hero">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-7" data-aos="fade-right" data-aos-duration="700">
+                <span class="ph-eyebrow">@(tr ? "Platform — Zekâ" : "Platform — Intelligence")</span>
+                <h1 class="ph-hero-title">Product Intelligence</h1>
+                <p class="ph-hero-desc">
+                    @(tr ? "Pika için bir ürün yalnızca ürün kodu, adı ve fiyatından ibaret değildir. Product Intelligence; ürünün ne olduğunu, hangi ihtiyacı temsil ettiğini, ticari rolünü ve müşteri analizlerinde güvenle kullanılabilmesi için gereken bağlamı tanımlayan ürün zekâsı katmanıdır." : "For Pika, a product is far more than a SKU, title, and price tag. Product Intelligence is the intelligence layer defining what a product represents, the customer need it fulfills, its commercial role, and the context required for reliable customer analytics.")
+                </p>
+                <div class="ph-hero-actions">
+                    <button type="button" class="ph-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal">
+                        @(tr ? "Demo Talep Et" : "Request a Demo") <i class="ri-arrow-right-up-line"></i>
+                    </button>
+                    <a href="@(wikiBase)product-intelligence-nedir" class="ph-btn-outline">
+                        @(tr ? "Teknik Detay — Wiki" : "Technical Specs — Wiki") <i class="ri-external-link-line"></i>
+                    </a>
+                </div>
+                <div class="ph-hero-tags mt-3">
+                    <span class="ph-tag"><i class="ri-book-open-line"></i> Playbook</span>
+                    <span class="ph-tag"><i class="ri-list-check-3"></i> Need Group</span>
+                    <span class="ph-tag"><i class="ri-price-tag-3-line"></i> Product Role</span>
+                    <span class="ph-tag"><i class="ri-settings-4-line"></i> @(tr ? "Dinamik Sınıflandırma" : "Dynamic Classification")</span>
+                </div>
+            </div>
+            <div class="col-lg-5" data-aos="fade-left" data-aos-duration="700">
+                <div class="ph-module-card p-4" style="border:1px solid #d4e8b0">
+                    <div class="mb-3" style="font-size:.78rem;color:var(--pika-muted);font-weight:600;text-transform:uppercase;letter-spacing:.05em">@(tr ? "Ham Katalog → Anlamlandırılmış Ürün" : "Raw Catalog → Contextualized Product")</div>
+                    <div class="d-flex align-items-start gap-3 mb-3">
+                        <div class="flex-shrink-0 ph-trust-icon" style="width:36px;height:36px;background:#f5f5f5;color:#999">
+                            <i class="ri-close-circle-line"></i>
+                        </div>
+                        <div>
+                            <div class="fw-bold" style="font-size:.82rem;color:#888">@(tr ? "Ham katalog" : "Raw catalog")</div>
+                            <div style="font-size:.78rem;color:#aaa">SKU-10492 · 10 KG · 2.450 TL</div>
+                            <div style="font-size:.75rem;color:#bbb">@(tr ? "Satış kaydı var, müşteri ihtiyacı hakkında bağlam yok" : "Sales record present, zero context regarding customer need")</div>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center mb-3">
+                        <i class="ri-arrow-down-line" style="color:var(--pika-primary);font-size:1.2rem"></i>
+                        <span class="ms-2 small fw-bold" style="color:var(--pika-primary)">Product Intelligence</span>
+                    </div>
+                    <div class="d-flex align-items-start gap-3">
+                        <div class="flex-shrink-0 ph-trust-icon" style="width:36px;height:36px">
+                            <i class="ri-check-line"></i>
+                        </div>
+                        <div>
+                            <div class="fw-bold" style="font-size:.82rem">@(tr ? "Anlamlandırılmış ürün" : "Contextualized product")</div>
+                            <div style="font-size:.78rem;color:var(--pika-muted)">@(tr ? "Kedi maması · Özel formül · Tekrar alınabilir · Ana ihtiyaç ürünü" : "Cat food · Special formula · Repurchasable · Core need role")</div>
+                            <div style="font-size:.75rem;color:var(--pika-primary)">@(tr ? "Tekrar satın alma, cross-sell ve müşteri analizi için hazır" : "Primed for repeat purchase, cross-sell, and cohort intelligence")</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── NEDEN ÖNEMLİ ───────────────────────────────────────────── *@
+<section class="ph-section ph-section-alt">
+    <div class="container">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6" data-aos="fade-right">
+                <span class="ph-eyebrow">@(tr ? "Temel Soru" : "Core Question")</span>
+                <h2 class="pika-h2 fw-bold">@(tr ? "\"Bu ürün gerçekte ne ifade ediyor?\"" : "\"What does this product truly signify?\"")</h2>
+                <p class="ph-muted">
+                    @(tr ? "Müşteri davranışını doğru yorumlamak için önce satın alınan ürünün anlamı güvenilir olmalıdır. Ürün kodu tek başına yeterli değildir." : "To interpret customer behavior accurately, the significance of purchased products must first be reliable. A SKU alone is insufficient.")
+                </p>
+                <p class="ph-muted">
+                    @(tr ? "Pika'nın amacı, \"Müşteri X ürünü aldı\" bilgisini \"Müşteri şu ihtiyaca ait, şu roldeki ve tekrar davranışı taşıyan ürünü aldı\" seviyesine çıkarmaktır." : "Pika elevates \"Customer bought product X\" into \"Customer purchased a product fulfilling Need Y in Role Z with a high-probability repurchase rhythm.\"")
+                </p>
+                <a href="@(wikiBase)product-intelligence-nedir" class="ph-btn-outline">
+                    @(tr ? "Daha fazla — Wiki" : "More details — Wiki") <i class="ri-external-link-line"></i>
+                </a>
+            </div>
+            <div class="col-lg-6" data-aos="fade-left">
+                <h3 class="fw-bold mb-4" style="font-size:1rem">@(tr ? "Pika ürün bilgisini katmanlar halinde kurar" : "Pika structures product context in layers")</h3>
+                <div class="d-flex flex-column gap-2">
+                    @{
+                        var stepsTr = new[]
+                        {
+                            ("01", "Katalog", "Product · Category · Brand · kodlar"),
+                            ("02", "Playbook", "Sektöre göre sınıflandırma dünyası"),
+                            ("03", "İhtiyaç & Rol", "Need Group · Product Role"),
+                            ("04", "Dinamik Özellikler", "Field · Option · doğrulama kuralları"),
+                            ("05", "Analitik olarak kullanılabilir ürün", "Müşteri zekâsı ve fırsat üretimine hazır bağlam"),
+                        };
+                        var stepsEn = new[]
+                        {
+                            ("01", "Catalog", "Product · Category · Brand · IDs"),
+                            ("02", "Playbook", "Industry-specific categorization framework"),
+                            ("03", "Need & Role", "Need Group · Product Role"),
+                            ("04", "Dynamic Attributes", "Field · Option · validation rules"),
+                            ("05", "Analytics-Ready Product", "Context ready for customer intelligence and opportunity generation"),
+                        };
+                        var steps = tr ? stepsTr : stepsEn;
+                    }
+                    @foreach (var (num, title, desc) in steps)
+                    {
+                        <div class="d-flex align-items-center gap-3 p-3 rounded"
+                             style="background:@(num == "05" ? "#f0f9e4" : "#fafafa");border:1px solid @(num == "05" ? "#c8f542" : "#eee")">
+                            <div class="fw-bold" style="font-size:.8rem;color:var(--pika-primary);min-width:24px">@num</div>
+                            <div>
+                                <div class="fw-bold" style="font-size:.88rem">@title</div>
+                                <div style="font-size:.75rem;color:var(--pika-muted)">@desc</div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── TEMEL KAVRAMLAR ────────────────────────────────────────── *@
+<section class="ph-section">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="ph-eyebrow">@(tr ? "Kavramlar" : "Core Concepts")</span>
+            <h2 class="pika-h2 fw-bold">@(tr ? "Product Intelligence temel bileşenleri" : "Product Intelligence core components")</h2>
+        </div>
+        <div class="row g-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-4 col-md-6">
+                <div class="ph-module-card h-100">
+                    <div class="ph-module-icon"><i class="ri-book-open-line"></i></div>
+                    <h3 class="fw-bold mb-2" style="font-size:1rem">Playbook</h3>
+                    <p class="small ph-muted mb-0">
+                        @(tr ? "Sektöre göre ürün sınıflandırma çerçevesi. Farklı kategorilerdeki ürünlerin hangi anlamlandırma boyutlarıyla değerlendirileceğini belirler." : "Industry-specific product classification framework defining the dimensional depth of products across retail, telco, finance, or grocery.")
+                    </p>
+                    <div class="mt-3">
+                        <a href="@(wikiBase)playbook-sektorel-anlam" class="small" style="color:var(--pika-primary)">
+                            @(tr ? "Wiki'de oku" : "Read in Wiki") <i class="ri-arrow-right-line"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="ph-module-card h-100">
+                    <div class="ph-module-icon"><i class="ri-list-check-3"></i></div>
+                    <h3 class="fw-bold mb-2" style="font-size:1rem">Need Group & Product Role</h3>
+                    <p class="small ph-muted mb-0">
+                        @(tr ? "Ürünün hangi müşteri ihtiyacına hitap ettiği (Need Group) ve o ihtiyaç içindeki rolü (ana ürün, tamamlayıcı, ikame) bilgisi." : "Maps which customer need the item solves (Need Group) and its relative role within that need (core, accessory, substitute).")
+                    </p>
+                    <div class="mt-3">
+                        <a href="@(wikiBase)need-group-product-role" class="small" style="color:var(--pika-primary)">
+                            @(tr ? "Wiki'de oku" : "Read in Wiki") <i class="ri-arrow-right-line"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="ph-module-card h-100">
+                    <div class="ph-module-icon"><i class="ri-settings-4-line"></i></div>
+                    <h3 class="fw-bold mb-2" style="font-size:1rem">@(tr ? "Dinamik Sınıflandırma" : "Dynamic Classification")</h3>
+                    <p class="small ph-muted mb-0">
+                        @(tr ? "Ürünlere playbook içinde özel özellik alanları (field) ve seçenekler (option) tanımlayan, doğrulama kurallarıyla desteklenen sınıflandırma mekanizması." : "Defines custom attribute fields, valid option dictionaries, and type constraints enforced across catalog ingestion.")
+                    </p>
+                    <div class="mt-3">
+                        <a href="@(wikiBase)dinamik-siniflandirma-alanlari" class="small" style="color:var(--pika-primary)">
+                            @(tr ? "Wiki'de oku" : "Read in Wiki") <i class="ri-arrow-right-line"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="ph-module-card h-100">
+                    <div class="ph-module-icon"><i class="ri-tools-line"></i></div>
+                    <h3 class="fw-bold mb-2" style="font-size:1rem">@(tr ? "Ürün Sınıflandırma Workbench" : "Classification Workbench")</h3>
+                    <p class="small ph-muted mb-0">
+                        @(tr ? "Ürünlere playbook ve özellik atamalarının yapıldığı, toplu işlem ve inceleme destekli çalışma alanı." : "Interactive workspace for bulk classification, validation audits, and rule inspection.")
+                    </p>
+                    <div class="mt-3">
+                        <a href="@(wikiBase)urun-siniflandirma-workbench" class="small" style="color:var(--pika-primary)">
+                            @(tr ? "Wiki'de oku" : "Read in Wiki") <i class="ri-arrow-right-line"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="ph-module-card h-100">
+                    <div class="ph-module-icon"><i class="ri-link"></i></div>
+                    <h3 class="fw-bold mb-2" style="font-size:1rem">@(tr ? "Kategori Playbook Bağlantısı" : "Category Playbook Mapping")</h3>
+                    <p class="small ph-muted mb-0">
+                        @(tr ? "Ürün kategorisi ile sektörel playbook arasındaki bağlantı; hangi kategori hangi sınıflandırma çerçevesinde değerlendirileceğini belirler." : "Binds raw catalog categories to industry playbooks to govern appropriate attribute sets.")
+                    </p>
+                    <div class="mt-3">
+                        <a href="@(wikiBase)kategori-playbook-baglantisi" class="small" style="color:var(--pika-primary)">
+                            @(tr ? "Wiki'de oku" : "Read in Wiki") <i class="ri-arrow-right-line"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="ph-module-card h-100">
+                    <div class="ph-module-icon"><i class="ri-focus-3-line"></i></div>
+                    <h3 class="fw-bold mb-2" style="font-size:1rem">Product Intelligence → @(tr ? "Müşteri Fırsatı" : "Customer Opportunity")</h3>
+                    <p class="small ph-muted mb-0">
+                        @(tr ? "Anlamlandırılmış ürün bilgisinin müşteri davranış analiziyle birleşerek fırsat üretimine nasıl katkı sağladığı." : "How contextual product attributes join with behavioral customer signals to spark concrete opportunities.")
+                    </p>
+                    <div class="mt-3">
+                        <a href="@(wikiBase)product-intelligence-musteri-firsati" class="small" style="color:var(--pika-primary)">
+                            @(tr ? "Wiki'de oku" : "Read in Wiki") <i class="ri-arrow-right-line"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── CUSTOMER vs PRODUCT INTELLIGENCE ──────────────────────── *@
+<section class="ph-section ph-section-alt">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="ph-eyebrow">@(tr ? "Fark" : "Comparison")</span>
+            <h2 class="pika-h2 fw-bold">@(tr ? "Customer Intelligence ile farkı ne?" : "How does it differ from Customer Intelligence?")</h2>
+        </div>
+        <div class="row g-4 justify-content-center" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-5">
+                <div class="ph-module-card h-100 p-4" style="border-top:3px solid var(--pika-primary)">
+                    <div class="ph-module-icon mb-3"><i class="ri-user-heart-line"></i></div>
+                    <h3 class="fw-bold mb-3" style="font-size:1.05rem">Customer Intelligence</h3>
+                    <p class="ph-muted small">@(tr ? "Müşteri merkezlidir. Kim satın aldı, ne sıklıkta, ne değerde, hangi kanaldan, şu anda hangi risk ve fırsat bağlamında?" : "Customer-centric. Who purchased, at what cadence, at what monetary value, through which channel, and under what risk/opportunity context?")</p>
+                    <a href="@Url.Action("CustomerIntelligence", "Platform", new { culture })" class="small" style="color:var(--pika-primary)">
+                        @(tr ? "Customer Intelligence sayfası" : "Customer Intelligence page") <i class="ri-arrow-right-line"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="ph-module-card h-100 p-4" style="border-top:3px solid #c8f542">
+                    <div class="ph-module-icon mb-3"><i class="ri-shopping-bag-line"></i></div>
+                    <h3 class="fw-bold mb-3" style="font-size:1.05rem">Product Intelligence</h3>
+                    <p class="ph-muted small">@(tr ? "Ürün merkezlidir. Ne satın alındı, bu ürün hangi ihtiyacı karşılıyor, tekrar alınabilir mi, cross-sell adayı var mı?" : "Product-centric. What was bought, what underlying need does it serve, is it repurchasable, and what are its natural cross-sell accessories?")</p>
+                    <span class="small fw-bold" style="color:#666">@(tr ? "Şu an burada" : "Current location")</span>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-4" data-aos="fade-up">
+            <p class="ph-muted small">@(tr ? "İki zekâ katmanı birbirini tamamlar: doğru müşteri + doğru ürün bağlamı → doğru fırsat." : "The two layers complement each other: the right customer + the right product context → the right opportunity.")</p>
+        </div>
+    </div>
+</section>
+
+@* ── CTA ───────────────────────────────────────────────────── *@
+<section class="ph-section">
+    <div class="container">
+        <div class="text-center" data-aos="fade-up">
+            <h2 class="pika-h2 fw-bold mb-3">@(tr ? "Ürün verinizden daha fazla anlam çıkarın" : "Extract greater context from your product data")</h2>
+            <p class="ph-muted mb-4">@(tr ? "Pika Product Intelligence'ı canlı görün." : "Experience Pika Product Intelligence live.")</p>
+            <button type="button" class="ph-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal">
+                @(tr ? "Demo Talep Et" : "Request a Demo") <i class="ri-arrow-right-up-line"></i>
+            </button>
+        </div>
+    </div>
+</section>

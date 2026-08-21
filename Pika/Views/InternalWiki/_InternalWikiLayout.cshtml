@@ -1,0 +1,290 @@
+@using Pika.Models
+@{
+    var title = ViewData["Title"] as string ?? "Pika Dahili Mühendislik Wiki [GÜVENLİ]";
+    var currentSlug = ViewData["CurrentSlug"] as string ?? "";
+    var categories = ViewData["Categories"] as List<WikiCategory> ?? new List<WikiCategory>();
+    var userName = User.Identity?.Name ?? "Yetkili Mühendis";
+}
+<!doctype html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@title</title>
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="~/web/assets/images/favicon.png">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="~/web/css/remixicon.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="~/wiki/assets/style.css">
+
+    <style>
+        :root {
+            --accent: #0284c7;
+            --accent-dark: #0369a1;
+            --accent-soft: #e0f2fe;
+            --bg-sidebar: #0f172a;
+            --sidebar-ink: #f8fafc;
+            --sidebar-muted: #94a3b8;
+            --sidebar-line: #1e293b;
+        }
+        .internal-badge {
+            background: #ef4444;
+            color: #fff;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 6px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 6px;
+        }
+        .user-pill {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            background: #f1f5f9;
+            border-radius: 20px;
+            font-size: 12.5px;
+            color: #334155;
+            font-weight: 600;
+        }
+        .sidebar {
+            background: #0f172a !important;
+            border-right: 1px solid #1e293b !important;
+        }
+        .brand strong {
+            color: #f8fafc !important;
+        }
+        .brand small {
+            color: #38bdf8 !important;
+        }
+        .nav-group-title .nav-group-text {
+            color: #cbd5e1 !important;
+        }
+        .nav-group-arrow {
+            color: #64748b !important;
+        }
+        .nav-link {
+            color: #94a3b8 !important;
+        }
+        .nav-link:hover {
+            color: #f8fafc !important;
+            background: rgba(255,255,255,0.06) !important;
+        }
+        .nav-link.active {
+            color: #38bdf8 !important;
+            background: rgba(56,189,248,0.12) !important;
+        }
+        .nav-link.active .nav-link-dot {
+            background: #38bdf8 !important;
+        }
+        .side-footer {
+            border-top: 1px solid #1e293b !important;
+            color: #64748b !important;
+        }
+        .side-footer a {
+            color: #94a3b8 !important;
+        }
+        .search input {
+            background: #1e293b !important;
+            border-color: #334155 !important;
+            color: #f8fafc !important;
+        }
+        .search .search-icon, .search .search-kbd {
+            color: #64748b !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="side-inner">
+                <!-- Brand Header -->
+                <div class="brand">
+                    <a href="/internal/wiki/">
+                        <div class="brand-mark" style="background:#0284c7;">
+                            <i class="ri-shield-keyhole-line" style="color:#fff;font-size:18px;"></i>
+                        </div>
+                        <div>
+                            <strong>Pika Internal Wiki <span class="internal-badge">GİZLİ</span></strong>
+                            <small>Mühendislik &amp; Operasyon</small>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Search Input -->
+                <div class="search">
+                    <i class="ri-search-line search-icon"></i>
+                    <input id="searchInput" type="search" placeholder="Mühendislik konusu ara…" aria-label="Dahili wikide ara" autocomplete="off">
+                    <span class="search-kbd">/</span>
+                    <div id="searchResults" class="results hidden"></div>
+                </div>
+
+                <!-- Navigation Tree -->
+                <nav id="nav" class="sidebar-nav" aria-label="Dahili Wiki Gezinme">
+                    @for (int i = 0; i < categories.Count; i++)
+                    {
+                        var cat = categories[i];
+                        var isCurrentCategory = cat.Pages.Any(p => string.Equals(p.Slug, currentSlug, StringComparison.OrdinalIgnoreCase));
+                        if (string.IsNullOrEmpty(currentSlug) && i == 0)
+                        {
+                            isCurrentCategory = true;
+                        }
+
+                        <div class="nav-group @(isCurrentCategory ? "expanded" : "")">
+                            <button type="button" class="nav-group-header" aria-expanded="@(isCurrentCategory ? "true" : "false")">
+                                <span class="nav-group-title">
+                                    <span class="nav-group-badge" style="background:rgba(56,189,248,0.15);color:#38bdf8;">@(i + 1)</span>
+                                    <span class="nav-group-text">@cat.Title</span>
+                                </span>
+                                <i class="ri-arrow-down-s-line nav-group-arrow"></i>
+                            </button>
+                            <div class="nav-group-items">
+                                @foreach (var p in cat.Pages)
+                                {
+                                    var isActive = string.Equals(p.Slug, currentSlug, StringComparison.OrdinalIgnoreCase);
+                                    <a href="/internal/wiki/@p.Slug" class="nav-link @(isActive ? "active" : "")" data-slug="@p.Slug" data-title="@p.Title" data-section="@p.Section" data-summary="@p.Summary">
+                                        <span class="nav-link-dot"></span>
+                                        <span class="nav-link-text">@p.Title</span>
+                                    </a>
+                                }
+                            </div>
+                        </div>
+                    }
+                </nav>
+            </div>
+
+            <div class="side-footer">
+                <div style="font-size:11px;color:#94a3b8;margin-bottom:8px;">
+                    <i class="ri-user-smile-line"></i> Oturum: <strong>@userName</strong>
+                </div>
+                <a href="/Account/Login">
+                    <i class="ri-logout-box-r-line"></i>
+                    <span>Çıkış Yap / Profil</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main">
+            <header class="topbar">
+                <button id="menuBtn" class="menu-btn" aria-label="Menüyü aç" type="button">
+                    <i class="ri-menu-2-line"></i>
+                </button>
+
+                <nav id="breadcrumb" class="breadcrumb" aria-label="Ekmek Kırıntısı">
+                    @RenderSection("Breadcrumb", required: false)
+                </nav>
+
+                <div class="topbar-actions">
+                    <div class="user-pill">
+                        <i class="ri-shield-check-fill" style="color:#059669;"></i>
+                        <span>@userName</span>
+                    </div>
+                    <a href="/wiki/" class="back-pill" style="border-color:#cbd5e1;">
+                        <i class="ri-external-link-line"></i>
+                        <span>Public Wiki</span>
+                    </a>
+                </div>
+            </header>
+
+            <article id="article" class="article">
+                @RenderBody()
+            </article>
+        </main>
+    </div>
+
+    <script>
+        // Mobile sidebar toggle
+        var menuBtn = document.getElementById('menuBtn');
+        var sidebar = document.querySelector('.sidebar');
+        if (menuBtn && sidebar) {
+            menuBtn.addEventListener('click', function() {
+                sidebar.classList.toggle('open');
+            });
+            document.addEventListener('click', function(e) {
+                if (sidebar.classList.contains('open') && !sidebar.contains(e.target) && !menuBtn.contains(e.target)) {
+                    sidebar.classList.remove('open');
+                }
+            });
+        }
+
+        // Accordion Category Toggles
+        document.querySelectorAll('.nav-group-header').forEach(function(header) {
+            header.addEventListener('click', function() {
+                var group = this.closest('.nav-group');
+                if (group) {
+                    var isExpanded = group.classList.contains('expanded');
+                    group.classList.toggle('expanded');
+                    this.setAttribute('aria-expanded', !isExpanded);
+                }
+            });
+        });
+
+        // Quick Search with '/' shortcut
+        var searchInput = document.getElementById('searchInput');
+        var searchResults = document.getElementById('searchResults');
+        if (searchInput && searchResults) {
+            window.addEventListener('keydown', function(e) {
+                if (e.key === '/' && document.activeElement !== searchInput && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
+                    e.preventDefault();
+                    searchInput.focus();
+                }
+            });
+
+            var links = Array.from(document.querySelectorAll('.sidebar-nav .nav-link'));
+            var items = links.map(function(a) {
+                return {
+                    slug: a.dataset.slug,
+                    title: a.dataset.title || a.textContent.trim(),
+                    section: a.dataset.section || '',
+                    summary: a.dataset.summary || '',
+                    url: a.getAttribute('href')
+                };
+            });
+
+            searchInput.addEventListener('input', function(e) {
+                var q = e.target.value.trim().toLowerCase();
+                if (!q) {
+                    searchResults.classList.add('hidden');
+                    searchResults.innerHTML = '';
+                    return;
+                }
+
+                var matches = items.filter(function(item) {
+                    return item.title.toLowerCase().includes(q) ||
+                           item.section.toLowerCase().includes(q) ||
+                           item.summary.toLowerCase().includes(q);
+                }).slice(0, 8);
+
+                if (matches.length === 0) {
+                    searchResults.innerHTML = '<div class="result"><small>Sonuç bulunamadı.</small></div>';
+                } else {
+                    searchResults.innerHTML = matches.map(function(m) {
+                        return '<a href="' + m.url + '" class="result">' +
+                               '<strong>' + m.title + '</strong>' +
+                               '<small>' + m.section + (m.summary ? ' — ' + m.summary : '') + '</small>' +
+                               '</a>';
+                    }).join('');
+                }
+                searchResults.classList.remove('hidden');
+            });
+
+            document.addEventListener('click', function(e) {
+                if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+                    searchResults.classList.add('hidden');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

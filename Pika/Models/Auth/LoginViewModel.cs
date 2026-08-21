@@ -17,4 +17,7 @@ public class LoginViewModel
     public bool RememberMe { get; set; }
 
     public string? ReturnUrl { get; set; }
+
+    [Microsoft.AspNetCore.Mvc.FromForm(Name = "g-recaptcha-response")]
+    public string? RecaptchaToken { get; set; }
 }

@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+Disallow: /Account/
+Disallow: /Auth/
+Disallow: /api/
+Disallow: /error/
+Disallow: /internal/
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /Account/
+Disallow: /Auth/
+Disallow: /api/
+Disallow: /error/
+Disallow: /internal/
+
+Sitemap: https://pika.tr/sitemap.xml

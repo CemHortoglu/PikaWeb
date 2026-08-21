@@ -1,0 +1,440 @@
+@using Pika.Models
+@{
+    var title = ViewData["Title"] as string ?? "Pika Bilgi Bankası — Müşteri Zekâsı ve Pazarlama Rehberi";
+    var description = ViewData["Description"] as string ?? "Pika müşteri zekâsı, ürün zekâsı, fırsat tespiti, Journey orkestrasyonu ve analitik ölçümleme bilgi bankası ve kullanım rehberi.";
+    var canonicalUrl = ViewData["CanonicalUrl"] as string ?? "https://pika.tr/wiki/";
+    var currentSlug = ViewData["CurrentSlug"] as string ?? "";
+    var categories = ViewData["Categories"] as List<WikiCategory> ?? new List<WikiCategory>();
+}
+<!doctype html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@title</title>
+    <meta name="description" content="@description">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="@canonicalUrl" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="@(string.IsNullOrEmpty(currentSlug) ? "website" : "article")">
+    <meta property="og:site_name" content="Pika">
+    <meta property="og:title" content="@title">
+    <meta property="og:description" content="@description">
+    <meta property="og:url" content="@canonicalUrl">
+    <meta property="og:locale" content="tr_TR">
+    <meta property="og:image" content="https://pika.tr/web/assets/images/logo.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="@title">
+    <meta name="twitter:description" content="@description">
+    <meta name="twitter:image" content="https://pika.tr/web/assets/images/logo.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="~/web/assets/images/favicon.png">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="~/web/css/remixicon.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="~/wiki/assets/style.css">
+
+    @RenderSection("StructuredData", required: false)
+</head>
+<body>
+    <div class="app">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="side-inner">
+                <!-- Brand Header -->
+                <div class="brand">
+                    <a href="/wiki/">
+                        <div class="brand-mark">
+                            <img src="~/web/assets/images/favicon.png" alt="Pika logo">
+                        </div>
+                        <div>
+                            <strong>Pika Bilgi Bankası</strong>
+                            <small>Ürün &amp; Kullanım Rehberi</small>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Search Input -->
+                <div class="search">
+                    <i class="ri-search-line search-icon"></i>
+                    <input id="searchInput" type="search" placeholder="Konu veya özellik ara…" aria-label="Bilgi bankasında ara" autocomplete="off">
+                    <span class="search-kbd">/</span>
+                    <div id="searchResults" class="results hidden"></div>
+                </div>
+
+                <!-- Navigation Tree -->
+                <nav id="nav" class="sidebar-nav" aria-label="Bilgi Bankası Gezinme">
+                    @for (int i = 0; i < categories.Count; i++)
+                    {
+                        var cat = categories[i];
+                        var isCurrentCategory = cat.Pages.Any(p => string.Equals(p.Slug, currentSlug, StringComparison.OrdinalIgnoreCase));
+                        // If no article is selected (homepage), keep first category expanded by default
+                        if (string.IsNullOrEmpty(currentSlug) && i == 0)
+                        {
+                            isCurrentCategory = true;
+                        }
+
+                        <div class="nav-group @(isCurrentCategory ? "expanded" : "")">
+                            <button type="button" class="nav-group-header" aria-expanded="@(isCurrentCategory ? "true" : "false")">
+                                <span class="nav-group-title">
+                                    <span class="nav-group-badge">@(i + 1)</span>
+                                    <span class="nav-group-text">@cat.Title</span>
+                                </span>
+                                <i class="ri-arrow-down-s-line nav-group-arrow"></i>
+                            </button>
+                            <div class="nav-group-items">
+                                @foreach (var p in cat.Pages)
+                                {
+                                    var isActive = string.Equals(p.Slug, currentSlug, StringComparison.OrdinalIgnoreCase);
+                                    <a href="/wiki/@p.Slug" class="nav-link @(isActive ? "active" : "")" data-slug="@p.Slug" data-title="@p.Title" data-section="@p.Section" data-summary="@p.Summary">
+                                        <span class="nav-link-dot"></span>
+                                        <span class="nav-link-text">@p.Title</span>
+                                    </a>
+                                }
+                            </div>
+                        </div>
+                    }
+                </nav>
+            </div>
+
+            <div class="side-footer">
+                <a href="/">
+                    <i class="ri-arrow-left-line"></i>
+                    <span>pika.tr ana sayfaya dön</span>
+                </a>
+                <div>Müşteri zekâsı · Ürün zekâsı · Fırsat · Journey</div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main">
+            <header class="topbar">
+                <button id="menuBtn" class="menu-btn" aria-label="Menüyü aç" type="button">
+                    <i class="ri-menu-2-line"></i>
+                </button>
+
+                <nav id="breadcrumb" class="breadcrumb" aria-label="Ekmek Kırıntısı">
+                    @RenderSection("Breadcrumb", required: false)
+                </nav>
+
+                <div class="topbar-actions">
+                    <a href="/" class="back-pill">
+                        <i class="ri-arrow-left-s-line"></i>
+                        <span>pika.tr</span>
+                    </a>
+                    <button id="listenBtn" class="listen-btn" type="button" title="Bulunduğun sayfadan itibaren sesli dinle">
+                        <i class="ri-volume-up-line listen-icon"></i>
+                        <span class="listen-label">Sesli Dinle</span>
+                    </button>
+                </div>
+            </header>
+
+            <article id="article" class="article">
+                @RenderBody()
+            </article>
+        </main>
+    </div>
+
+    <!-- Narration Drawer (TTS) -->
+    <aside id="narrationDrawer" class="narration-drawer" aria-label="Dinleme Modu" aria-hidden="true">
+        <div class="narration-head">
+            <div>
+                <div class="narration-kicker">Pika Bilgi Bankası</div>
+                <strong style="font-size:16px;">Sesli Dinleme Modu</strong>
+            </div>
+            <button id="narrationClose" class="narration-close" type="button" aria-label="Paneli kapat">
+                <i class="ri-close-line"></i>
+            </button>
+        </div>
+        <div class="narration-now">
+            <div class="narration-status-row">
+                <span id="narrationStatusDot" class="narration-status-dot"></span>
+                <span id="narrationStatus">Hazır</span>
+            </div>
+            <div id="narrationPage" class="narration-page">@(ViewData["ArticleTitle"] as string ?? "Pika Bilgi Bankası")</div>
+            <div id="narrationProgress" class="narration-progress">0 / 0 cümle</div>
+            <div class="narration-progress-track"><span id="narrationProgressBar"></span></div>
+            <p id="narrationCurrentText" class="narration-current-text">“Sesli Dinle” düğmesine basıldığında bulunduğun sayfanın başından okumaya başlar.</p>
+        </div>
+        <div class="narration-controls-main">
+            <button id="narrationPrev" type="button" title="Önceki cümle"><i class="ri-skip-back-line"></i></button>
+            <button id="narrationPlayPause" class="narration-play" type="button" title="Başlat / duraklat"><i class="ri-play-fill"></i></button>
+            <button id="narrationNext" type="button" title="Sonraki cümle"><i class="ri-skip-forward-line"></i></button>
+            <button id="narrationStop" type="button" title="Durdur"><i class="ri-stop-fill"></i></button>
+        </div>
+        <div class="narration-settings">
+            <label>Okuma Hızı</label>
+            <div class="rate-row">
+                <input id="narrationRate" type="range" min="0.7" max="2.5" step="0.1" value="1">
+                <strong id="narrationRateValue">1.0×</strong>
+            </div>
+            <label>Ses Seçimi</label>
+            <select id="narrationVoice"></select>
+            <label class="narration-check" style="margin-top:10px;">
+                <input id="narrationAutoNext" type="checkbox" checked>
+                <span>Sayfa bitince sonraki konuya geç</span>
+            </label>
+        </div>
+    </aside>
+
+    <script>
+        // Legacy Hash compatibility: redirect /wiki/#/slug or /wiki/#slug -> /wiki/slug
+        (function() {
+            if (window.location.hash) {
+                var hash = window.location.hash.replace(/^#\/?/, '').trim();
+                if (hash && hash !== '') {
+                    var targetAnchor = document.getElementById(hash);
+                    if (!targetAnchor && hash.length > 2) {
+                        window.location.replace('/wiki/' + hash);
+                    }
+                }
+            }
+        })();
+
+        // Mobile sidebar toggle
+        var menuBtn = document.getElementById('menuBtn');
+        var sidebar = document.querySelector('.sidebar');
+        if (menuBtn && sidebar) {
+            menuBtn.addEventListener('click', function() {
+                sidebar.classList.toggle('open');
+            });
+            document.addEventListener('click', function(e) {
+                if (sidebar.classList.contains('open') && !sidebar.contains(e.target) && !menuBtn.contains(e.target)) {
+                    sidebar.classList.remove('open');
+                }
+            });
+        }
+
+        // Accordion Category Toggles
+        document.querySelectorAll('.nav-group-header').forEach(function(header) {
+            header.addEventListener('click', function() {
+                var group = this.closest('.nav-group');
+                if (group) {
+                    var isExpanded = group.classList.contains('expanded');
+                    group.classList.toggle('expanded');
+                    this.setAttribute('aria-expanded', !isExpanded);
+                }
+            });
+        });
+
+        // Quick Search with '/' shortcut
+        var searchInput = document.getElementById('searchInput');
+        var searchResults = document.getElementById('searchResults');
+        if (searchInput && searchResults) {
+            window.addEventListener('keydown', function(e) {
+                if (e.key === '/' && document.activeElement !== searchInput && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
+                    e.preventDefault();
+                    searchInput.focus();
+                }
+            });
+
+            var links = Array.from(document.querySelectorAll('.sidebar-nav .nav-link'));
+            var items = links.map(function(a) {
+                return {
+                    slug: a.dataset.slug,
+                    title: a.dataset.title || a.textContent.trim(),
+                    section: a.dataset.section || '',
+                    summary: a.dataset.summary || '',
+                    url: a.getAttribute('href')
+                };
+            });
+
+            searchInput.addEventListener('input', function(e) {
+                var q = e.target.value.trim().toLowerCase();
+                if (!q) {
+                    searchResults.classList.add('hidden');
+                    searchResults.innerHTML = '';
+                    return;
+                }
+
+                var matches = items.filter(function(item) {
+                    return item.title.toLowerCase().includes(q) ||
+                           item.section.toLowerCase().includes(q) ||
+                           item.summary.toLowerCase().includes(q);
+                }).slice(0, 8);
+
+                if (matches.length === 0) {
+                    searchResults.innerHTML = '<div class="result"><small>Sonuç bulunamadı.</small></div>';
+                } else {
+                    searchResults.innerHTML = matches.map(function(m) {
+                        return '<a href="' + m.url + '" class="result">' +
+                               '<strong>' + m.title + '</strong>' +
+                               '<small>' + m.section + (m.summary ? ' — ' + m.summary : '') + '</small>' +
+                               '</a>';
+                    }).join('');
+                }
+                searchResults.classList.remove('hidden');
+            });
+
+            document.addEventListener('click', function(e) {
+                if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+                    searchResults.classList.add('hidden');
+                }
+            });
+        }
+
+        // Web Speech Narration (TTS)
+        (function() {
+            var listenBtn = document.getElementById('listenBtn');
+            var narrationDrawer = document.getElementById('narrationDrawer');
+            var narrationClose = document.getElementById('narrationClose');
+            var playPauseBtn = document.getElementById('narrationPlayPause');
+            var stopBtn = document.getElementById('narrationStop');
+            var prevBtn = document.getElementById('narrationPrev');
+            var nextBtn = document.getElementById('narrationNext');
+            var rateInput = document.getElementById('narrationRate');
+            var rateValue = document.getElementById('narrationRateValue');
+            var voiceSelect = document.getElementById('narrationVoice');
+            var statusText = document.getElementById('narrationStatus');
+            var progressText = document.getElementById('narrationProgress');
+            var progressBar = document.getElementById('narrationProgressBar');
+            var currentSentenceEl = document.getElementById('narrationCurrentText');
+
+            if (!listenBtn || !window.speechSynthesis) return;
+
+            var sentences = [];
+            var currentIndex = 0;
+            var isPlaying = false;
+
+            function extractSentences() {
+                var articleEl = document.getElementById('article');
+                if (!articleEl) return [];
+                var walker = document.createTreeWalker(articleEl, NodeFilter.SHOW_ELEMENT);
+                var collected = [];
+                var node = walker.currentNode;
+                while (node) {
+                    if (['H1','H2','H3','H4','P','LI'].includes(node.tagName)) {
+                        var txt = node.textContent.trim();
+                        if (txt && txt.length > 2) {
+                            var parts = txt.split(/(?<=[.?!])\s+/);
+                            for (var i = 0; i < parts.length; i++) {
+                                var s = parts[i].trim();
+                                if (s) collected.push({ text: s, el: node });
+                            }
+                        }
+                    }
+                    node = walker.nextNode();
+                }
+                return collected;
+            }
+
+            function loadVoices() {
+                var voices = window.speechSynthesis.getVoices();
+                voiceSelect.innerHTML = '';
+                var trVoices = voices.filter(function(v) { return v.lang.startsWith('tr'); });
+                var list = trVoices.length > 0 ? trVoices : voices;
+                list.forEach(function(v) {
+                    var opt = document.createElement('option');
+                    opt.value = v.voiceURI;
+                    opt.textContent = v.name + ' (' + v.lang + ')';
+                    voiceSelect.appendChild(opt);
+                });
+            }
+
+            loadVoices();
+            if (window.speechSynthesis.onvoiceschanged !== undefined) {
+                window.speechSynthesis.onvoiceschanged = loadVoices;
+            }
+
+            function speakCurrent() {
+                if (currentIndex >= sentences.length) {
+                    stop();
+                    return;
+                }
+                var item = sentences[currentIndex];
+                currentSentenceEl.textContent = item.text;
+                progressText.textContent = (currentIndex + 1) + ' / ' + sentences.length + ' cümle';
+                progressBar.style.width = Math.round(((currentIndex + 1) / sentences.length) * 100) + '%';
+                statusText.textContent = 'Okunuyor…';
+
+                var utter = new SpeechSynthesisUtterance(item.text);
+                utter.rate = parseFloat(rateInput.value) || 1.0;
+                var selectedVoice = window.speechSynthesis.getVoices().find(function(v) { return v.voiceURI === voiceSelect.value; });
+                if (selectedVoice) utter.voice = selectedVoice;
+
+                utter.onend = function() {
+                    if (isPlaying) {
+                        currentIndex++;
+                        speakCurrent();
+                    }
+                };
+
+                utter.onerror = function() {
+                    if (isPlaying) {
+                        currentIndex++;
+                        speakCurrent();
+                    }
+                };
+
+                window.speechSynthesis.speak(utter);
+            }
+
+            function play() {
+                if (sentences.length === 0) {
+                    sentences = extractSentences();
+                }
+                if (sentences.length === 0) return;
+                isPlaying = true;
+                playPauseBtn.innerHTML = '<i class="ri-pause-fill"></i>';
+                narrationDrawer.classList.add('open');
+                narrationDrawer.setAttribute('aria-hidden', 'false');
+                speakCurrent();
+            }
+
+            function pause() {
+                isPlaying = false;
+                window.speechSynthesis.cancel();
+                playPauseBtn.innerHTML = '<i class="ri-play-fill"></i>';
+                statusText.textContent = 'Duraklatıldı';
+            }
+
+            function stop() {
+                isPlaying = false;
+                currentIndex = 0;
+                window.speechSynthesis.cancel();
+                playPauseBtn.innerHTML = '<i class="ri-play-fill"></i>';
+                statusText.textContent = 'Hazır';
+                progressBar.style.width = '0%';
+                progressText.textContent = '0 / ' + sentences.length + ' cümle';
+            }
+
+            listenBtn.addEventListener('click', function() {
+                if (isPlaying) pause(); else play();
+            });
+
+            playPauseBtn.addEventListener('click', function() {
+                if (isPlaying) pause(); else play();
+            });
+
+            stopBtn.addEventListener('click', stop);
+
+            prevBtn.addEventListener('click', function() {
+                window.speechSynthesis.cancel();
+                currentIndex = Math.max(0, currentIndex - 1);
+                if (isPlaying) speakCurrent();
+            });
+
+            nextBtn.addEventListener('click', function() {
+                window.speechSynthesis.cancel();
+                currentIndex = Math.min(sentences.length - 1, currentIndex + 1);
+                if (isPlaying) speakCurrent();
+            });
+
+            rateInput.addEventListener('input', function(e) {
+                rateValue.textContent = e.target.value + '×';
+            });
+
+            narrationClose.addEventListener('click', function() {
+                narrationDrawer.classList.remove('open');
+                narrationDrawer.setAttribute('aria-hidden', 'true');
+            });
+        })();
+    </script>
+</body>
+</html>

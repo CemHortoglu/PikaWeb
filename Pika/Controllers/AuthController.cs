@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Pika.Controllers;
 
@@ -6,6 +6,7 @@ namespace Pika.Controllers;
 public class AuthController : Controller
 {
     [HttpGet("login")]
+    [HttpGet("/[controller]/[action]")]
     public IActionResult Login(string? returnUrl = null)
     {
         return RedirectToAction("Login", "Account", new { returnUrl });

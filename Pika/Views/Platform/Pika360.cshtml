@@ -1,0 +1,249 @@
+@{
+    var culture = ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr";
+    var tr = culture.Equals("tr", StringComparison.OrdinalIgnoreCase);
+    var wikiBase = "/wiki/";
+    ViewData["Title"] = tr ? "Pika 360 | Bütünleşik Müşteri Karar Ekranı" : "Pika 360 | Unified Single-Customer Decision View";
+    ViewData["MetaDescription"] = tr ? "Pika 360, tek bir müşteriyi yalnızca profil olarak değil; değer, davranış, risk, iletişim erişimi ve açık fırsat bağlamıyla birlikte değerlendirmek için tasarlanmış karar ekranıdır." : "Pika 360 provides a unified single-customer decision view evaluating value, behavior, churn risk, channel reachability, and open opportunities.";
+    ViewData["BodyClass"] = "pika-platform-page";
+    var canonicalUrl = tr ? "https://pika.tr/platform/pika-360" : "https://pika.tr/en/platform/pika-360";
+}
+
+@section JsonLd {
+<script type="@Html.Raw("application/ld+json")">
+{
+  "@@context": "https://schema.org",
+  "@@type": "WebPage",
+  "@@id": "@canonicalUrl",
+  "name": "@(tr ? "Pika 360 | Bütünleşik Müşteri Karar Ekranı — Pika" : "Pika 360 | Unified Single-Customer Decision View — Pika")",
+  "description": "@(tr ? "Pika 360: tek bir müşteriyi değer, davranış, risk, iletişim erişimi ve açık fırsat bağlamıyla bir arada değerlendiren bütünleşik müşteri karar ekranı." : "Pika 360: unified single-customer decision view evaluating value, risk, channel reachability, and live opportunities.")",
+  "url": "@canonicalUrl",
+  "isPartOf": { "@@id": "https://pika.tr/#website" },
+  "breadcrumb": {
+    "@@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@@type": "ListItem", "position": 1, "name": "@(tr ? "Ana Sayfa" : "Home")", "item": "@(tr ? "https://pika.tr/" : "https://pika.tr/en/")" },
+      { "@@type": "ListItem", "position": 2, "name": "Platform", "item": "@(tr ? "https://pika.tr/" : "https://pika.tr/en/")" },
+      { "@@type": "ListItem", "position": 3, "name": "Pika 360", "item": "@canonicalUrl" }
+    ]
+  }
+}
+</script>
+}
+
+<section class="ph-hero">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-7" data-aos="fade-right" data-aos-duration="700">
+                <span class="ph-eyebrow">@(tr ? "Platform — Zekâ" : "Platform — Intelligence")</span>
+                <h1 class="ph-hero-title">Pika 360</h1>
+                <p class="ph-hero-desc">
+                    @(tr ? "Pika 360, tek bir müşteriyi yalnızca profil olarak değil; değer, davranış, risk, iletişim erişimi ve açık fırsat bağlamıyla birlikte değerlendirmek için tasarlanmış karar ekranıdır." : "Pika 360 evaluates an individual customer beyond basic profile fields — assembling value score, behavior, churn risk, channel access, and active opportunities into one unified decision screen.")
+                </p>
+                <p class="ph-hero-desc" style="font-size:.95rem">@(tr ? "\"Bu müşteri şu anda nasıl bir durumda?\" sorusunun en hızlı cevabı bu ekranda toplanır." : "The fastest answer to \"what is this customer's exact situation right now?\" lives on this screen.")</p>
+                <div class="ph-hero-actions">
+                    <button type="button" class="ph-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal">
+                        @(tr ? "Demo Talep Et" : "Request a Demo") <i class="ri-arrow-right-up-line"></i>
+                    </button>
+                    <a href="@(wikiBase)pika-360" class="ph-btn-outline">
+                        @(tr ? "Teknik Detay — Wiki" : "Technical Specs — Wiki") <i class="ri-external-link-line"></i>
+                    </a>
+                </div>
+                <div class="ph-hero-tags mt-3">
+                    <span class="ph-tag"><i class="ri-shield-star-line"></i> Customer 360</span>
+                    <span class="ph-tag"><i class="ri-heart-pulse-line"></i> @(tr ? "Müşteri Değeri" : "Customer Value")</span>
+                    <span class="ph-tag"><i class="ri-alarm-warning-line"></i> @(tr ? "Kayıp Riski" : "Churn Risk")</span>
+                    <span class="ph-tag"><i class="ri-focus-3-line"></i> @(tr ? "Açık Fırsatlar" : "Open Opportunities")</span>
+                </div>
+            </div>
+            <div class="col-lg-5" data-aos="fade-left" data-aos-duration="700">
+                <div class="ph-module-card p-4" style="border:1px solid #d4e8b0">
+                    <div class="mb-3" style="font-size:.78rem;color:var(--pika-muted);font-weight:600;text-transform:uppercase;letter-spacing:.05em">@(tr ? "Tek Müşteri — Bütünleşik Görünüm" : "Single Customer — Unified View")</div>
+                    <div class="d-flex flex-column gap-2">
+                        <div class="d-flex align-items-center gap-3 p-2 rounded" style="background:#f8fdf0">
+                            <div class="ph-trust-icon flex-shrink-0" style="width:32px;height:32px;font-size:.8rem">V</div>
+                            <div>
+                                <div class="fw-bold" style="font-size:.82rem">@(tr ? "Müşteri Değeri" : "Customer Value")</div>
+                                <div style="font-size:.73rem;color:var(--pika-muted)">@(tr ? "Göreli önem, ticari katkı" : "Relative importance & commercial yield")</div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center gap-3 p-2 rounded" style="background:#f8fdf0">
+                            <div class="ph-trust-icon flex-shrink-0" style="width:32px;height:32px;font-size:.8rem">R</div>
+                            <div>
+                                <div class="fw-bold" style="font-size:.82rem">@(tr ? "Risk Görünürlüğü" : "Risk Visibility")</div>
+                                <div style="font-size:.73rem;color:var(--pika-muted)">@(tr ? "Pasifleşme ve kayıp sinyalleri" : "Dormancy and attrition indicators")</div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center gap-3 p-2 rounded" style="background:#f8fdf0">
+                            <div class="ph-trust-icon flex-shrink-0" style="width:32px;height:32px;font-size:.8rem">C</div>
+                            <div>
+                                <div class="fw-bold" style="font-size:.82rem">@(tr ? "Kanal Erişimi" : "Channel Reach")</div>
+                                <div style="font-size:.73rem;color:var(--pika-muted)">@(tr ? "Hangi kanallara ulaşılabiliyor?" : "Which delivery channels are verified & permitted?")</div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center gap-3 p-2 rounded" style="background:#f8fdf0">
+                            <div class="ph-trust-icon flex-shrink-0" style="width:32px;height:32px;font-size:.8rem">F</div>
+                            <div>
+                                <div class="fw-bold" style="font-size:.82rem">@(tr ? "Açık Fırsatlar" : "Open Opportunities")</div>
+                                <div style="font-size:.73rem;color:var(--pika-muted)">@(tr ? "Mevcut aksiyon fırsatı bağlamı" : "Live repurchase or cross-sell recommendations")</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── NEDEN GÜÇLÜ ────────────────────────────────────────────── *@
+<section class="ph-section ph-section-alt">
+    <div class="container">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6" data-aos="fade-right">
+                <span class="ph-eyebrow">Problem</span>
+                <h2 class="pika-h2 fw-bold">@(tr ? "Dağınık müşteri ekranları yerine tek karar özeti" : "One decisive summary instead of fragmented dashboards")</h2>
+                <p class="ph-muted">
+                    @(tr ? "Müşteri bilgisi birçok farklı ekranda dağılmış durumdadır: profil sayfasında adres, başka bir ekranda sipariş geçmişi, bir diğerinde kampanya geçmişi." : "Customer records are typically scattered: addresses in CRM tables, orders in ERPs, campaign logs in messaging consoles.")
+                </p>
+                <p class="ph-muted">
+                    @(tr ? "Pika 360, karar vermeyi besleyecek özetleri tek yerde bir araya getirir. Kullanıcı önce müşterinin genel durumunu görür; isterse daha derin sayfalara iner." : "Pika 360 coalesces the essence into one decision cockpit. Operators assess overall health instantly, then dive into granular logs as needed.")
+                </p>
+            </div>
+            <div class="col-lg-6" data-aos="fade-left">
+                <span class="ph-eyebrow">@(tr ? "Pika'nın Yaklaşımı" : "Pika's Approach")</span>
+                <h2 class="pika-h2 fw-bold">@(tr ? "Pika 360 ne sağlar?" : "What does Pika 360 provide?")</h2>
+                <div class="row g-3 mt-2">
+                    <div class="col-6">
+                        <div class="ph-module-card h-100 p-3">
+                            <div class="ph-module-icon mb-2"><i class="ri-shield-star-line"></i></div>
+                            <div class="fw-bold mb-1" style="font-size:.9rem">@(tr ? "Müşteri Değeri" : "Customer Value")</div>
+                            <p class="small ph-muted mb-0">@(tr ? "Göreli önem ve ticari katkı daha görünür" : "Visible relative value and historical contribution")</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="ph-module-card h-100 p-3">
+                            <div class="ph-module-icon mb-2"><i class="ri-alarm-warning-line"></i></div>
+                            <div class="fw-bold mb-1" style="font-size:.9rem">@(tr ? "Risk Görünürlüğü" : "Risk Visibility")</div>
+                            <p class="small ph-muted mb-0">@(tr ? "Pasifleşme veriyle, hisle değil" : "Empirical churn alerts, not conjecture")</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="ph-module-card h-100 p-3">
+                            <div class="ph-module-icon mb-2"><i class="ri-wifi-line"></i></div>
+                            <div class="fw-bold mb-1" style="font-size:.9rem">@(tr ? "Kanal Erişimi" : "Channel Reach")</div>
+                            <p class="small ph-muted mb-0">@(tr ? "Aksiyon planı için iletişim kanalı bağlamı" : "Direct context for permissible communication")</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="ph-module-card h-100 p-3">
+                            <div class="ph-module-icon mb-2"><i class="ri-focus-3-line"></i></div>
+                            <div class="fw-bold mb-1" style="font-size:.9rem">@(tr ? "Açık Fırsatlar" : "Open Opportunities")</div>
+                            <p class="small ph-muted mb-0">@(tr ? "Mevcut fırsat bağlamı tek ekranda" : "Active trigger candidates in one view")</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── ZİNCİR İÇİNDEKİ YERİ ──────────────────────────────────── *@
+<section class="ph-section">
+    <div class="container">
+        <div class="text-center mb-4" data-aos="fade-up">
+            <span class="ph-eyebrow">@(tr ? "Platform Bütünü" : "Platform Context")</span>
+            <h2 class="pika-h2 fw-bold">@(tr ? "Pika 360, zekâ ve aksiyon arasındaki köprüdür" : "Pika 360 bridges intelligence and action")</h2>
+        </div>
+        <div class="row g-4 justify-content-center" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-8">
+                <div class="d-flex flex-column gap-2">
+                    <div class="d-flex align-items-center gap-3 p-3 rounded" style="background:#f8fdf0;border:1px solid #d4e8b0">
+                        <div class="ph-trust-icon flex-shrink-0"><i class="ri-brain-line"></i></div>
+                        <div class="flex-grow-1">
+                            <div class="fw-bold" style="font-size:.9rem">Customer Intelligence</div>
+                            <div style="font-size:.75rem;color:var(--pika-muted)">@(tr ? "Müşteri davranışı, segment, değer analizi" : "Customer behavior, segmentation, value modeling")</div>
+                        </div>
+                        <a href="@Url.Action("CustomerIntelligence", "Platform", new { culture })" class="small" style="color:var(--pika-primary)">@(tr ? "Detay" : "Details") <i class="ri-arrow-right-line"></i></a>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center py-1">
+                        <i class="ri-arrow-down-line" style="color:var(--pika-primary)"></i>
+                    </div>
+                    <div class="d-flex align-items-center gap-3 p-3 rounded" style="background:#f0f9e4;border:2px solid var(--pika-primary)">
+                        <div class="ph-trust-icon flex-shrink-0"><i class="ri-user-heart-line"></i></div>
+                        <div class="flex-grow-1">
+                            <div class="fw-bold" style="font-size:.9rem">Pika 360 <span class="badge ms-2" style="background:#c8f542;color:#12362c;font-size:.65rem">@(tr ? "Şu an burada" : "Current location")</span></div>
+                            <div style="font-size:.75rem;color:var(--pika-muted)">@(tr ? "Değer + risk + kanal + fırsat — tek müşteri kararı özeti" : "Value + risk + channel + opportunity — unified decision view")</div>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center py-1">
+                        <i class="ri-arrow-down-line" style="color:var(--pika-primary)"></i>
+                    </div>
+                    <div class="d-flex align-items-center gap-3 p-3 rounded" style="background:#f8fdf0;border:1px solid #d4e8b0">
+                        <div class="ph-trust-icon flex-shrink-0"><i class="ri-focus-3-line"></i></div>
+                        <div class="flex-grow-1">
+                            <div class="fw-bold" style="font-size:.9rem">@(tr ? "Günün Fırsatları" : "Opportunities")</div>
+                            <div style="font-size:.75rem;color:var(--pika-muted)">@(tr ? "Fırsattan aksiyona geçiş" : "Transition from insight to campaign execution")</div>
+                        </div>
+                        <a href="@(tr ? "/platform/firsatlar" : "/en/platform/opportunities")" class="small" style="color:var(--pika-primary)">@(tr ? "Detay" : "Details") <i class="ri-arrow-right-line"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── İLGİLİ WİKİ ────────────────────────────────────────────── *@
+<section class="ph-section ph-section-alt">
+    <div class="container">
+        <div class="text-center mb-4" data-aos="fade-up">
+            <h2 class="pika-h2 fw-bold">@(tr ? "İlgili Wiki Makaleleri" : "Related Wiki Articles")</h2>
+            <p class="ph-muted">@(tr ? "Pika 360 hakkında daha derin teknik ve ürün bilgisi" : "Deep technical documentation on Pika 360 capabilities")</p>
+        </div>
+        <div class="row g-3 justify-content-center" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <a href="@(wikiBase)pika-360" class="text-decoration-none">
+                    <div class="ph-module-card p-3 text-center">
+                        <i class="ri-article-line mb-2" style="font-size:1.2rem;color:var(--pika-primary)"></i>
+                        <div class="fw-bold small">Pika 360</div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <a href="@(wikiBase)ai-musteri-ozeti" class="text-decoration-none">
+                    <div class="ph-module-card p-3 text-center">
+                        <i class="ri-article-line mb-2" style="font-size:1.2rem;color:var(--pika-primary)"></i>
+                        <div class="fw-bold small">@(tr ? "AI Müşteri Özeti" : "AI Customer Summary")</div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <a href="@(wikiBase)aksiyon-calisma-alani" class="text-decoration-none">
+                    <div class="ph-module-card p-3 text-center">
+                        <i class="ri-article-line mb-2" style="font-size:1.2rem;color:var(--pika-primary)"></i>
+                        <div class="fw-bold small">@(tr ? "Aksiyon Çalışma Alanı" : "Action Workspace")</div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <a href="@(wikiBase)musteri-degeri-sadakat" class="text-decoration-none">
+                    <div class="ph-module-card p-3 text-center">
+                        <i class="ri-article-line mb-2" style="font-size:1.2rem;color:var(--pika-primary)"></i>
+                        <div class="fw-bold small">@(tr ? "Müşteri Değeri & Sadakat" : "Customer Value & Loyalty")</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── CTA ───────────────────────────────────────────────────── *@
+<section class="ph-section">
+    <div class="container">
+        <div class="text-center" data-aos="fade-up">
+            <h2 class="pika-h2 fw-bold mb-3">@(tr ? "Müşterinizi tek ekranda bütünleşik görün" : "View single-customer truth in one unified cockpit")</h2>
+            <p class="ph-muted mb-4">@(tr ? "Pika 360 karar ekranını canlı demo ile keşfedin." : "Explore the Pika 360 decision cockpit with a live demo.")</p>
+            <button type="button" class="ph-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal">
+                @(tr ? "Demo Talep Et" : "Request a Demo") <i class="ri-arrow-right-up-line"></i>
+            </button>
+        </div>
+    </div>
+</section>

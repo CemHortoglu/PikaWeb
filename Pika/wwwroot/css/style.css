@@ -14950,8 +14950,6 @@ img {
 }
 
 .navbar {
-    padding-top: 20px;
-    padding-bottom: 20px;
     position: relative;
     z-index: 999
 }
@@ -15030,6 +15028,7 @@ img {
     opacity: 0;
     width: 300px;
     padding: 15px 0;
+    padding-bottom:0;
     border-radius: 0;
     visibility: hidden;
     display: block !important;

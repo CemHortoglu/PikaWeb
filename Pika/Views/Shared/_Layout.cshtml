@@ -1,69 +1,194 @@
 @using Microsoft.Extensions.Options
 @using Pika.Configuration
+@using Pika.Services
 @inject IOptions<SiteSettings> SiteOptions
+@inject IOptions<RecaptchaSettings> RecaptchaOptions
 @{
     var site = SiteOptions.Value;
-    var title = ViewData["Title"] as string ?? site.BrandName;
+    var recaptcha = RecaptchaOptions.Value;
+    var ctrl = ViewContext.RouteData.Values["controller"]?.ToString() ?? "";
+    var act = ViewContext.RouteData.Values["action"]?.ToString() ?? "";
+    var culture = (ViewData["culture"] as string ?? ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").ToLowerInvariant();
+    var isTr = culture == "tr";
+    var seoMeta = SeoHelper.GetMetadata(ctrl, act);
+    
+    var rawTitle = ViewData["Title"] as string ?? (isTr ? seoMeta?.TitleTr : seoMeta?.TitleEn) ?? site.BrandName;
+    var fullTitle = SeoHelper.FormatPageTitle(rawTitle, site.BrandName);
     var titleKey = ViewData["TitleKey"] as string;
     var bodyClass = ViewData["BodyClass"] as string ?? string.Empty;
     var appVersion = System.Reflection.Assembly.GetEntryAssembly()?.GetName().Version?.ToString(3) ?? "1.0.0";
     var toast = TempData["Toast"] as string;
-    var culture = (ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").ToLowerInvariant();
     var baseName = site.BrandName;
-    var metaDescription = ViewData["MetaDescription"] as string ?? site.MetaDescription;
+    var metaDescription = ViewData["MetaDescription"] as string ?? (isTr ? seoMeta?.DescriptionTr : seoMeta?.DescriptionEn) ?? site.MetaDescription;
     var metaKeywords = ViewData["MetaKeywords"] as string ?? site.MetaKeywords;
+    var robotsMeta = ViewData["RobotsMeta"] as string ?? "index, follow";
+    var isNoIndex = robotsMeta.Contains("noindex", StringComparison.OrdinalIgnoreCase);
+
+    string? canonicalUrl = null;
+    if (ViewData["CanonicalUrl"] is string explicitCanonical)
+    {
+        canonicalUrl = string.IsNullOrWhiteSpace(explicitCanonical) ? null : explicitCanonical;
+    }
+    else if (!isNoIndex)
+    {
+        canonicalUrl = SeoHelper.GetCanonicalUrl(ctrl, act, culture);
+    }
+
+    var hreflangs = (!isNoIndex && !string.IsNullOrEmpty(canonicalUrl))
+        ? SeoHelper.GetHreflangAlternates(ctrl, act)
+        : [];
+
+    var homeUrl = isTr ? "/" : "/en/";
+    var ogImage = ViewData["OgImage"] as string ?? "https://pika.tr/logo.png";
+    var ogLocale = isTr ? "tr_TR" : "en_US";
 }
 <!doctype html>
 <html lang="@culture" data-lang="@culture">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>@title - @baseName</title>
+    <title>@fullTitle</title>
 
     <meta name="description" content="@metaDescription" />
     <meta name="keywords" content="@metaKeywords" />
-    <meta property="og:title" content="@title - @baseName" />
+    <meta name="robots" content="@robotsMeta" />
+    @if (!string.IsNullOrWhiteSpace(canonicalUrl))
+    {
+        <link rel="canonical" href="@canonicalUrl" />
+    }
+    @foreach (var entry in hreflangs)
+    {
+        <link rel="alternate" hreflang="@entry.Lang" href="@entry.Url" />
+    }
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="@baseName" />
+    <meta property="og:locale" content="@ogLocale" />
+    <meta property="og:title" content="@fullTitle" />
     <meta property="og:description" content="@metaDescription" />
+    @if (!string.IsNullOrWhiteSpace(canonicalUrl))
+    {
+        <meta property="og:url" content="@canonicalUrl" />
+    }
+    <meta property="og:image" content="@ogImage" />
+    <meta property="og:image:alt" content="@fullTitle" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="@fullTitle" />
+    <meta name="twitter:description" content="@metaDescription" />
+    <meta name="twitter:image" content="@ogImage" />
+    <meta name="twitter:image:alt" content="@fullTitle" />
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet">
     <link href="~/web/css/remixicon.css" rel="stylesheet" />
 
-    <link href="~/css/style.css" rel="stylesheet" />
-    <link href="~/css/pika-components.css" rel="stylesheet" />
+    <link href="~/css/style.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/css/pika-components.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/css/pika-home.css" rel="stylesheet" asp-append-version="true" />
 
-    <link rel="icon" href="~/web/assets/images/favicon.png" />
+    @RenderSection("Styles", required: false)
+
+    <link rel="icon" href="~/web/assets/images/favicon.ico" />
+
+    <!-- Organization JSON-LD -->
+    <script type="@Html.Raw("application/ld+json")">
+    {
+      "@@context": "https://schema.org",
+      "@@type": "Organization",
+      "@@id": "https://pika.tr/#organization",
+      "name": "Pika",
+      "alternateName": "Pika Omnichannel Pazarlama Platformu",
+      "url": "https://pika.tr/",
+      "logo": "https://pika.tr/logo.png",
+      "description": "Türkiye'de omnichannel pazarlama otomasyonu, müşteri yolculuğu yönetimi ve AI destekli kampanya çözümleri sunan B2B SaaS platformu.",
+      "foundingLocation": {
+        "@@type": "Place",
+        "address": {
+          "@@type": "PostalAddress",
+          "addressCountry": "TR",
+          "addressLocality": "İstanbul"
+        }
+      },
+      "contactPoint": [
+        {
+          "@@type": "ContactPoint",
+          "telephone": "@site.Contact.SupportPhone",
+          "contactType": "customer support",
+          "availableLanguage": ["Turkish", "English"]
+        },
+        {
+          "@@type": "ContactPoint",
+          "email": "@site.Contact.SupportEmail",
+          "contactType": "sales"
+        }
+      ],
+      "sameAs": [
+        "https://www.linkedin.com/company/pikatr"
+      ]
+    }
+    </script>
+    @if (seoMeta != null && (ctrl != "Home" || (act != "Index" && act != "EnglishIndex")) && !string.IsNullOrWhiteSpace(canonicalUrl))
+    {
+        var breadcrumbTitle = isTr ? (seoMeta.BreadcrumbTitleTr ?? seoMeta.TitleTr) : (seoMeta.BreadcrumbTitleEn ?? seoMeta.TitleEn);
+        <script type="@Html.Raw("application/ld+json")">
+        {
+          "@@context": "https://schema.org",
+          "@@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@@type": "ListItem",
+              "position": 1,
+              "name": "@(isTr ? "Ana Sayfa" : "Home")",
+              "item": "@(isTr ? "https://pika.tr/" : "https://pika.tr/en/")"
+            },
+            {
+              "@@type": "ListItem",
+              "position": 2,
+              "name": "@breadcrumbTitle",
+              "item": "@canonicalUrl"
+            }
+          ]
+        }
+        </script>
+    }
+    @RenderSection("JsonLd", required: false)
+    @if (recaptcha.IsEnabled)
+    {
+        <script src="https://www.google.com/recaptcha/api.js?render=@recaptcha.SiteKey" async defer></script>
+    }
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6K7BWPHK5B"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      var consent = document.cookie.match('(^|;) ?pika_cookie_consent=([^;]*)(;|$)');
+      var consentGranted = consent && consent[2] === 'accepted';
+
+      gtag('consent', 'default', {
+        'ad_storage': consentGranted ? 'granted' : 'denied',
+        'analytics_storage': consentGranted ? 'granted' : 'denied'
+      });
+
+      gtag('config', 'G-6K7BWPHK5B');
+    </script>
 </head>
-<body class="pika-body @bodyClass" data-title-key="@titleKey" data-title-fallback="@title" data-site-name="@baseName">
+<body class="pika-body @bodyClass" data-title-key="@titleKey" data-title-fallback="@rawTitle" data-site-name="@baseName">
 
 
-    <div class="top-header-info">
-        <div class="top-header-area bg-color-0c3a30">
-            <div class="container-fluid side-padding">
-                <div class="row">
-                    <div class="col-lg-8 col-md-12">
-                        <ul class="left-side">
-                            <li><span>@site.TopbarSecurityText</span></li>
-                            <li><a href="tel:@site.Contact.SupportPhone"><i class="flaticon-phone-call"></i> <b data-i18n="topbar.support">Telephone</b>: @site.Contact.SupportPhoneDisplay</a></li>
-                            <li><a href="mailto:@site.Contact.SupportEmail"><i class="flaticon-email-1"></i> <b data-i18n="contact.mail">E-Mail</b>: @site.Contact.SupportEmail</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-4 col-md-12">
-                        <ul class="right-side">
-                            <li><a href="@Url.Action("Contact", "Home")" data-i18n="nav.contact">Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <nav class="navbar navbar-expand-lg bg-color-ffffff" id="navbar">
+    <header class="top-header-info">
+        <nav class="navbar navbar-expand-lg bg-color-ffffff" id="navbar" aria-label="Ana Gezinme">
             <div class="container-fluid side-padding position-relative">
-                <a class="navbar-brand logo-brand p-0" href="@Url.Action("Index", "Home")">
-                    <img src="~/web/assets/images/logo.png" alt="image">
+                <a class="navbar-brand logo-brand p-0" href="@homeUrl">
+                    <img src="~/logo.png" alt="Pika Omnichannel Pazarlama Platformu Logosu" style="width: 80%;">
                 </a>
-                <a class="navbar-toggler" data-bs-toggle="offcanvas" href="#navbarOffcanvas" role="button" aria-controls="navbarOffcanvas">
+                <a class="navbar-toggler" data-bs-toggle="offcanvas" href="#navbarOffcanvas" role="button" aria-controls="navbarOffcanvas" aria-label="Menüyü aç">
                     <span class="burger-menu">
                         <span class="top-bar"></span>
                         <span class="middle-bar"></span>
@@ -72,34 +197,175 @@
                 </a>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto">
-                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Home")" data-i18n="nav.home">Home</a></li>
+                        @* Platform mega dropdown: Intelligence → Action → Measure/Platform *@
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="nav.solutions"></a>
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="nav.platform">Platform</a>
+                            <div class="dropdown-menu pika-mega-dropdown pika-mega-dropdown--wide">
+                                <div class="row g-0 pika-mega-grid">
+                                    @* Sütun 1: Zekâ / Intelligence *@
+                                    <div class="col-lg-4 pika-mega-col">
+                                        <div class="pika-mega-col-header">
+                                            <span class="pika-mega-col-badge pika-mega-col-badge--intelligence">
+                                                <i class="ri-brain-line"></i>
+                                                <span data-i18n="nav.mega.intelligence">@(isTr ? "Zekâ" : "Intelligence")</span>
+                                            </span>
+                                            <span class="pika-mega-col-sub" data-i18n="nav.mega.intelligenceSub">@(isTr ? "Veri & Analiz" : "Data & Context")</span>
+                                        </div>
+                                        <div class="pika-mega-items">
+                                            <a class="pika-mega-item" href="@(isTr ? "/platform/customer-intelligence" : "/en/platform/customer-intelligence")">
+                                                <div class="pika-mega-icon pika-mega-icon--intelligence"><i class="ri-user-search-line"></i></div>
+                                                <div class="pika-mega-content">
+                                                    <div class="pika-mega-title">Customer Intelligence</div>
+                                                    <div class="pika-mega-desc" data-i18n="nav.mega.customerIntelligenceDesc">@(isTr ? "Müşteri davranışı ve değer analizi" : "Customer behavior and value analytics")</div>
+                                                </div>
+                                            </a>
+                                            <a class="pika-mega-item" href="@(isTr ? "/platform/product-intelligence" : "/en/platform/product-intelligence")">
+                                                <div class="pika-mega-icon pika-mega-icon--intelligence"><i class="ri-shopping-bag-line"></i></div>
+                                                <div class="pika-mega-content">
+                                                    <div class="pika-mega-title">Product Intelligence</div>
+                                                    <div class="pika-mega-desc" data-i18n="nav.mega.productIntelligenceDesc">@(isTr ? "Ürün anlamlandırma ve bağlam" : "Product contextualization & roles")</div>
+                                                </div>
+                                            </a>
+                                            <a class="pika-mega-item" href="@(isTr ? "/platform/pika-360" : "/en/platform/pika-360")">
+                                                <div class="pika-mega-icon pika-mega-icon--intelligence"><i class="ri-user-heart-line"></i></div>
+                                                <div class="pika-mega-content">
+                                                    <div class="pika-mega-title">Pika 360</div>
+                                                    <div class="pika-mega-desc" data-i18n="nav.mega.pika360Desc">@(isTr ? "Bütünleşik müşteri karar özeti" : "Unified customer decision overview")</div>
+                                                </div>
+                                            </a>
+                                            <a class="pika-mega-item pika-mega-item--highlight" href="@(isTr ? "/platform/gunun-firsatlari" : "/en/platform/opportunities")">
+                                                <div class="pika-mega-icon pika-mega-icon--opportunity"><i class="ri-focus-3-line"></i></div>
+                                                <div class="pika-mega-content">
+                                                    <div class="pika-mega-title">
+                                                        <span data-i18n="nav.mega.opportunities">@(isTr ? "Günün Fırsatları" : "Daily Opportunities")</span>
+                                                        <span class="pika-badge-pulse" data-i18n="nav.mega.opportunitiesBadge">@(isTr ? "Öncelikli" : "Priority")</span>
+                                                    </div>
+                                                    <div class="pika-mega-desc" data-i18n="nav.mega.opportunitiesDesc">@(isTr ? "Fırsat ve karar motoru" : "Opportunity and decision engine")</div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    @* Sütun 2: Aksiyon / Action *@
+                                    <div class="col-lg-4 pika-mega-col">
+                                        <div class="pika-mega-col-header">
+                                            <span class="pika-mega-col-badge pika-mega-col-badge--action">
+                                                <i class="ri-flashlight-line"></i>
+                                                <span data-i18n="nav.mega.action">@(isTr ? "Aksiyon" : "Action")</span>
+                                            </span>
+                                            <span class="pika-mega-col-sub" data-i18n="nav.mega.actionSub">@(isTr ? "Kampanya & Otomasyon" : "Campaign & Flows")</span>
+                                        </div>
+                                        <div class="pika-mega-items">
+                                            <a class="pika-mega-item" href="@(isTr ? "/cozumler/campaign-manager" : "/en/solutions/campaign-manager")">
+                                                <div class="pika-mega-icon pika-mega-icon--action"><i class="ri-megaphone-line"></i></div>
+                                                <div class="pika-mega-content">
+                                                    <div class="pika-mega-title">Campaign Manager</div>
+                                                    <div class="pika-mega-desc" data-i18n="nav.mega.campaignManagerDesc">@(isTr ? "Kampanya oluşturma ve yönetim" : "Campaign creation and management")</div>
+                                                </div>
+                                            </a>
+                                            <a class="pika-mega-item" href="@(isTr ? "/cozumler/journey-manager" : "/en/solutions/journey-manager")">
+                                                <div class="pika-mega-icon pika-mega-icon--action"><i class="ri-route-line"></i></div>
+                                                <div class="pika-mega-content">
+                                                    <div class="pika-mega-title">Journey Manager</div>
+                                                    <div class="pika-mega-desc" data-i18n="nav.mega.journeyManagerDesc">@(isTr ? "Otomasyon akışları" : "Automation flows")</div>
+                                                </div>
+                                            </a>
+                                            <a class="pika-mega-item" href="@(isTr ? "/cozumler/audience-manager" : "/en/solutions/audience-manager")">
+                                                <div class="pika-mega-icon pika-mega-icon--action"><i class="ri-group-line"></i></div>
+                                                <div class="pika-mega-content">
+                                                    <div class="pika-mega-title">Audience Manager</div>
+                                                    <div class="pika-mega-desc" data-i18n="nav.mega.audienceManagerDesc">@(isTr ? "Hedef kitle ve segmentasyon" : "Audience and segmentation")</div>
+                                                </div>
+                                            </a>
+                                            <a class="pika-mega-item" href="@(isTr ? "/cozumler/content-studio" : "/en/solutions/content-studio")">
+                                                <div class="pika-mega-icon pika-mega-icon--action"><i class="ri-palette-line"></i></div>
+                                                <div class="pika-mega-content">
+                                                    <div class="pika-mega-title">Content Studio</div>
+                                                    <div class="pika-mega-desc" data-i18n="nav.mega.contentStudioDesc">@(isTr ? "İçerik tasarım ve üretim" : "Content design and production")</div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    @* Sütun 3: Ölçüm & Platform / Measure & Platform *@
+                                    <div class="col-lg-4 pika-mega-col pika-mega-col--last">
+                                        <div class="pika-mega-col-header">
+                                            <span class="pika-mega-col-badge pika-mega-col-badge--measure">
+                                                <i class="ri-bar-chart-box-line"></i>
+                                                <span data-i18n="nav.mega.measure">@(isTr ? "Ölçüm" : "Measure")</span>
+                                            </span>
+                                            <span class="pika-mega-col-sub" data-i18n="nav.mega.measureSub">@(isTr ? "Analitik & Entegrasyon" : "Analytics & Sync")</span>
+                                        </div>
+                                        <div class="pika-mega-items">
+                                            <a class="pika-mega-item" href="@(isTr ? "/cozumler/analytics-reporting" : "/en/solutions/analytics-reporting")">
+                                                <div class="pika-mega-icon pika-mega-icon--measure"><i class="ri-bar-chart-box-line"></i></div>
+                                                <div class="pika-mega-content">
+                                                    <div class="pika-mega-title">Analytics &amp; Reporting</div>
+                                                    <div class="pika-mega-desc" data-i18n="nav.mega.reportingDesc">@(isTr ? "Performans ölçümleme" : "Performance measurement")</div>
+                                                </div>
+                                            </a>
+                                            <a class="pika-mega-item" href="@(isTr ? "/entegrasyonlar" : "/en/integrations")">
+                                                <div class="pika-mega-icon pika-mega-icon--measure"><i class="ri-plug-line"></i></div>
+                                                <div class="pika-mega-content">
+                                                    <div class="pika-mega-title" data-i18n="nav.integrations">@(isTr ? "Entegrasyonlar" : "Integrations")</div>
+                                                    <div class="pika-mega-desc" data-i18n="nav.mega.integrationsDesc">@(isTr ? "API ve veri bağlantıları" : "API and data connectivity")</div>
+                                                </div>
+                                            </a>
+                                            <a class="pika-mega-item" href="@(isTr ? "/cozumler/consent-management" : "/en/solutions/consent-management")">
+                                                <div class="pika-mega-icon pika-mega-icon--measure"><i class="ri-shield-check-line"></i></div>
+                                                <div class="pika-mega-content">
+                                                    <div class="pika-mega-title">Consent Management</div>
+                                                    <div class="pika-mega-desc" data-i18n="nav.mega.consentManagementDesc">@(isTr ? "İzin ve uyumluluk yönetimi" : "Consent and compliance management")</div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                @* AI Kampanya Asistanı — featured footer card *@
+                                <div class="pika-mega-footer">
+                                    <a href="@(isTr ? "/urunler/ai-kampanya-asistani" : "/en/products/ai-campaign-assistant")" class="pika-mega-ai-link">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <div class="pika-mega-ai-icon"><i class="ri-magic-line"></i></div>
+                                            <div class="flex-grow-1">
+                                                <div class="d-flex align-items-center gap-2 mb-1">
+                                                    <span class="fw-bold pika-mega-ai-title" data-i18n="nav.mega.aiAssistantTitle">@(isTr ? "Pika AI Kampanya Asistanı" : "Pika AI Campaign Assistant")</span>
+                                                    <span class="pika-ai-badge" data-i18n="nav.mega.aiAssistantBadge">@(isTr ? "YENİ" : "NEW")</span>
+                                                </div>
+                                                <div class="pika-mega-ai-desc" data-i18n="nav.mega.aiAssistantDesc">@(isTr ? "Kampanya fikrinden hazır kampanya ve email template oluşturun." : "Turn campaign ideas into ready-to-send campaigns and email templates.")</div>
+                                            </div>
+                                            <div class="pika-mega-ai-arrow"><i class="ri-arrow-right-line"></i></div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        @* Kanallar: Email, SMS, WhatsApp, Push — aksiyon kanalları, ayrı katman *@
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="nav.channels">@(isTr ? "Kanallar" : "Channels")</a>
+                            <div class="dropdown-menu pika-mega-dropdown pika-mega-dropdown--sm">
+                                <a class="pika-mega-item" href="@(isTr ? "/kanallar/whatsapp" : "/en/channels/whatsapp")"><div class="pika-mega-icon" style="background:#dcf8c6;color:#25d366"><i class="ri-whatsapp-line"></i></div><div><div class="pika-mega-title">WhatsApp</div><div class="pika-mega-desc" data-i18n="nav.mega.whatsappDesc">@(isTr ? "Template ve kampanya gönderimi" : "Template and campaign delivery")</div></div></a>
+                                <a class="pika-mega-item" href="@(isTr ? "/kanallar/sms" : "/en/channels/sms")"><div class="pika-mega-icon" style="background:#e3f2fd;color:#1976d2"><i class="ri-message-2-line"></i></div><div><div class="pika-mega-title">SMS</div><div class="pika-mega-desc" data-i18n="nav.mega.smsDesc">@(isTr ? "Hızlı erişim ve bildirimler" : "Quick access and notifications")</div></div></a>
+                                <a class="pika-mega-item" href="@(isTr ? "/kanallar/email" : "/en/channels/email")"><div class="pika-mega-icon" style="background:#fff3e0;color:#f57c00"><i class="ri-mail-line"></i></div><div><div class="pika-mega-title">Email</div><div class="pika-mega-desc" data-i18n="nav.mega.emailDesc">@(isTr ? "Zengin içerikli kampanyalar" : "Rich content campaigns")</div></div></a>
+                                <a class="pika-mega-item" href="@(isTr ? "/kanallar/push" : "/en/channels/push")"><div class="pika-mega-icon" style="background:#fce4ec;color:#e91e63"><i class="ri-notification-3-line"></i></div><div><div class="pika-mega-title">Push Notification</div><div class="pika-mega-desc" data-i18n="nav.mega.pushDesc">@(isTr ? "Gerçek zamanlı bildirimler" : "Real-time notifications")</div></div></a>
+                            </div>
+                        </li>
+                        @* Kaynaklar: Wiki, SSS, Kullanım Senaryoları *@
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="nav.resources">@(isTr ? "Kaynaklar" : "Resources")</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="@Url.Action("EmailMarketing", "Solutions")" data-i18n="nav.solutions.emailMarketing"></a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("SmsCampaigns", "Solutions")" data-i18n="nav.solutions.smsCampaigns"></a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("WhatsAppMessaging", "Solutions")" data-i18n="nav.solutions.whatsAppMessaging"></a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("PushNotifications", "Solutions")" data-i18n="nav.solutions.pushNotifications"></a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("PersonalizationPage", "Solutions")" data-i18n="nav.solutions.personalization"></a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("TemplateManagement", "Solutions")" data-i18n="nav.solutions.templateManagement"></a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("ABTesting", "Solutions")" data-i18n="nav.solutions.abTesting"></a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("Reporting", "Solutions")" data-i18n="nav.solutions.reporting"></a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("DeliverabilityCompliance", "Solutions")" data-i18n="nav.solutions.deliverabilityCompliance"></a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("DataManagementEtl", "Solutions")" data-i18n="nav.solutions.dataManagementEtl"></a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("RealTimeEventProcessing", "Solutions")" data-i18n="nav.solutions.realTimeEventProcessing"></a></li>
+                                <li><a class="dropdown-item" href="/wiki/" data-i18n="nav.wiki"><i class="ri-book-2-line me-2"></i>@(isTr ? "Wiki / Bilgi Bankası" : "Wiki / Knowledge Base")</a></li>
+                                <li><a class="dropdown-item" href="@(isTr ? "/kullanim-senaryolari" : "/en/use-cases")" data-i18n="nav.useCases"><i class="ri-layout-masonry-line me-2"></i>@(isTr ? "Kullanım Senaryoları" : "Use Cases")</a></li>
+                                <li><a class="dropdown-item" href="@(isTr ? "/kaynaklar/sss" : "/en/resources/faq")" data-i18n="nav.faq"><i class="ri-question-line me-2"></i>@(isTr ? "S.S.S." : "FAQ")</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Pricing", "Home")" data-i18n="nav.pricing">Pricing</a></li>
+                        @* Kurumsal *@
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="nav.corporate">Corporate</a>
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="nav.corporate">@(isTr ? "Kurumsal" : "Company")</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="@Url.Action("Pika", "Home")" data-i18n="nav.pika">Pika</a></li>
-                                <li><button type="button" class="dropdown-item " data-bs-toggle="modal" data-bs-target="#demoModal"><span data-i18n="nav.demo">Demo Talebi</span></button></li>
-                                <li><a class="dropdown-item" href="@Url.Action("Login", "Auth")">Giriş</a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("Faq", "Home")" data-i18n="nav.faq">Sık Sorulan Sorular</a></li>
+                                <li><a class="dropdown-item" href="@(isTr ? "/pika" : "/en/pika")" data-i18n="nav.about">@(isTr ? "Hakkımızda" : "About Us")</a></li>
+                                <li><a class="dropdown-item" href="@(isTr ? "/guvenlik-ve-gizlilik" : "/en/security-and-privacy")" data-i18n="nav.security">@(isTr ? "Güvenlik ve Gizlilik" : "Security & Privacy")</a></li>
+                                <li><a class="dropdown-item pika-nav-career" href="@(isTr ? "/kariyer" : "/en/careers")" data-i18n="nav.career"><i class="ri-star-line me-1"></i>@(isTr ? "Kariyer" : "Career")</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Contact", "Home")" data-i18n="nav.contact">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@(isTr ? "/iletisim" : "/en/contact")" data-i18n="nav.contact">@(isTr ? "İletişim" : "Contact")</a></li>
                     </ul>
                 </div>
                 <div class="others-options">
@@ -116,52 +382,69 @@
                                 </ul>
                             </div>
                         </li>
-                        <li><a href="@Url.Action("Login", "Auth")" class="search-btn login"><i class="ri-account-circle-line"></i> <span data-i18n="nav.login">Login</span></a></li>
-                        <li><button type="button" class="default-btn" data-bs-toggle="modal" data-bs-target="#demoModal"><span data-i18n="nav.demo">Demo Request</span> <i class="ri-arrow-right-up-line"></i></button></li>
+                        <li><a href="/giris" class="search-btn login"><i class="ri-account-circle-line"></i> <span data-i18n="nav.login">@(isTr ? "Giriş" : "Login")</span></a></li>
+                        <li><button type="button" class="default-btn" data-bs-toggle="modal" data-bs-target="#demoModal"><span data-i18n="nav.demo">@(isTr ? "Demo Talebi" : "Demo Request")</span> <i class="ri-arrow-right-up-line"></i></button></li>
                     </ul>
                 </div>
             </div>
         </nav>
-    </div>
+    </header>
 
-    <div class="mobile-navbar offcanvas offcanvas-end border-0" data-bs-backdrop="static" tabindex="-1" id="navbarOffcanvas">
+    <div class="mobile-navbar offcanvas offcanvas-end border-0" data-bs-backdrop="static" tabindex="-1" id="navbarOffcanvas" aria-label="Mobil Gezinme">
         <div class="offcanvas-header">
-            <a href="@Url.Action("Index", "Home")" class="logo d-inline-block">
-                <img src="~/web/assets/images/white-logo.png" alt="logo">
+            <a href="@homeUrl" class="logo d-inline-block">
+                <img src="~/web/assets/images/white-logo.png" alt="Pika Omnichannel Pazarlama Platformu Logosu">
             </a>
-            <button type="button" class="close-btn bg-transparent position-relative lh-1 p-0 border-0" data-bs-dismiss="offcanvas" aria-label="close">
+            <button type="button" class="close-btn bg-transparent position-relative lh-1 p-0 border-0" data-bs-dismiss="offcanvas" aria-label="Menüyü kapat">
                 <i class="ri-close-fill"></i>
             </button>
         </div>
         <div class="offcanvas-body">
             <ul class="mobile-menu">
-                <li class="mobile-menu-list without-icon"><a href="@Url.Action("Index", "Home")" class="nav-link" data-i18n="nav.home">Home</a></li>
-                <li class="mobile-menu-list"><a href="javascript:void(0);" data-i18n="nav.solutions">Solutions</a>
+                <li class="mobile-menu-list"><a href="javascript:void(0);" data-i18n="nav.platform">Platform</a>
                     <ul class="mobile-menu-items">
-                        <li><a class="dropdown-item" href="@Url.Action("EmailMarketing", "Solutions")" data-i18n="nav.solutions.emailMarketing"></a></li>
-                        <li><a class="dropdown-item" href="@Url.Action("SmsCampaigns", "Solutions")" data-i18n="nav.solutions.smsCampaigns"></a></li>
-                        <li><a class="dropdown-item" href="@Url.Action("WhatsAppMessaging", "Solutions")" data-i18n="nav.solutions.whatsAppMessaging"></a></li>
-                        <li><a class="dropdown-item" href="@Url.Action("PushNotifications", "Solutions")" data-i18n="nav.solutions.pushNotifications"></a></li>
-                        <li><a class="dropdown-item" href="@Url.Action("PersonalizationPage", "Solutions")" data-i18n="nav.solutions.personalization"></a></li>
-                        <li><a class="dropdown-item" href="@Url.Action("TemplateManagement", "Solutions")" data-i18n="nav.solutions.templateManagement"></a></li>
-                        <li><a class="dropdown-item" href="@Url.Action("ABTesting", "Solutions")" data-i18n="nav.solutions.abTesting"></a></li>
-                        <li><a class="dropdown-item" href="@Url.Action("Reporting", "Solutions")" data-i18n="nav.solutions.reporting"></a></li>
-                        <li><a class="dropdown-item" href="@Url.Action("DeliverabilityCompliance", "Solutions")" data-i18n="nav.solutions.deliverabilityCompliance"></a></li>
-                        <li><a class="dropdown-item" href="@Url.Action("DataManagementEtl", "Solutions")" data-i18n="nav.solutions.dataManagementEtl"></a></li>
-                        <li><a class="dropdown-item" href="@Url.Action("RealTimeEventProcessing", "Solutions")" data-i18n="nav.solutions.realTimeEventProcessing"></a></li>
+                        <li class="mobile-menu-section-label" style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#a0b8af;padding:8px 12px 4px" data-i18n="nav.mega.intelligence">@(isTr ? "Zekâ" : "Intelligence")</li>
+                        <li><a class="dropdown-item" href="@(isTr ? "/platform/customer-intelligence" : "/en/platform/customer-intelligence")">Customer Intelligence</a></li>
+                        <li><a class="dropdown-item" href="@(isTr ? "/platform/product-intelligence" : "/en/platform/product-intelligence")">Product Intelligence</a></li>
+                        <li><a class="dropdown-item" href="@(isTr ? "/platform/pika-360" : "/en/platform/pika-360")">Pika 360</a></li>
+                        <li><a class="dropdown-item" href="@(isTr ? "/platform/gunun-firsatlari" : "/en/platform/opportunities")" data-i18n="nav.mega.opportunities">@(isTr ? "Günün Fırsatları" : "Daily Opportunities")</a></li>
+                        <li class="mobile-menu-section-label" style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#a0b8af;padding:12px 12px 4px" data-i18n="nav.mega.action">@(isTr ? "Aksiyon" : "Action")</li>
+                        <li><a class="dropdown-item" href="@(isTr ? "/cozumler/campaign-manager" : "/en/solutions/campaign-manager")">Campaign Manager</a></li>
+                        <li><a class="dropdown-item" href="@(isTr ? "/cozumler/journey-manager" : "/en/solutions/journey-manager")">Journey Manager</a></li>
+                        <li><a class="dropdown-item" href="@(isTr ? "/cozumler/audience-manager" : "/en/solutions/audience-manager")">Audience Manager</a></li>
+                        <li><a class="dropdown-item" href="@(isTr ? "/cozumler/content-studio" : "/en/solutions/content-studio")">Content Studio</a></li>
+                        <li class="mobile-menu-section-label" style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#a0b8af;padding:12px 12px 4px" data-i18n="nav.mega.measure">@(isTr ? "Ölçüm" : "Measure")</li>
+                        <li><a class="dropdown-item" href="@(isTr ? "/cozumler/analytics-reporting" : "/en/solutions/analytics-reporting")">Analytics &amp; Reporting</a></li>
+                        <li><a class="dropdown-item" href="@(isTr ? "/entegrasyonlar" : "/en/integrations")" data-i18n="nav.integrations">@(isTr ? "Entegrasyonlar" : "Integrations")</a></li>
+                        <li><a class="dropdown-item" href="@(isTr ? "/cozumler/consent-management" : "/en/solutions/consent-management")">Consent Management</a></li>
+                        <li><a class="dropdown-item" href="@(isTr ? "/urunler/ai-kampanya-asistani" : "/en/products/ai-campaign-assistant")" style="color:#6fa91a"><i class="ri-magic-line me-1"></i><span data-i18n="nav.aiAssistant">@(isTr ? "AI Kampanya Asistanı" : "AI Campaign Assistant")</span></a></li>
                     </ul>
                 </li>
-                <li class="mobile-menu-list without-icon"><a href="@Url.Action("Pricing", "Home")" class="nav-link" data-i18n="nav.pricing">Pricing</a></li>
-                <li class="mobile-menu-list"><a href="javascript:void(0);" data-i18n="nav.corporate">Corporate</a>
+                <li class="mobile-menu-list"><a href="javascript:void(0);" data-i18n="nav.channels">@(isTr ? "Kanallar" : "Channels")</a>
                     <ul class="mobile-menu-items">
-                        <li><a class="dropdown-item" href="@Url.Action("Pika", "Home")" data-i18n="nav.pika">Pika</a></li>
-                        <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#demoModal"><span data-i18n="nav.demo">Demo Talebi</span></button></li>
-                        <li><a class="dropdown-item" href="@Url.Action("Login", "Auth")">Giriş</a></li>
-                        <li><a class="dropdown-item" href="@Url.Action("Faq", "Home")" data-i18n="nav.faq">Sık Sorulan Sorular</a></li>
+                        <li><a class="dropdown-item" href="@(isTr ? "/kanallar/whatsapp" : "/en/channels/whatsapp")">WhatsApp</a></li>
+                        <li><a class="dropdown-item" href="@(isTr ? "/kanallar/sms" : "/en/channels/sms")">SMS</a></li>
+                        <li><a class="dropdown-item" href="@(isTr ? "/kanallar/email" : "/en/channels/email")">Email</a></li>
+                        <li><a class="dropdown-item" href="@(isTr ? "/kanallar/push" : "/en/channels/push")">Push Notification</a></li>
                     </ul>
                 </li>
-                <li class="mobile-menu-list without-icon"><a href="@Url.Action("Contact", "Home")" class="nav-link" data-i18n="nav.contact">Contact</a></li>
+                <li class="mobile-menu-list"><a href="javascript:void(0);" data-i18n="nav.resources">@(isTr ? "Kaynaklar" : "Resources")</a>
+                    <ul class="mobile-menu-items">
+                        <li><a class="dropdown-item" href="/wiki/" data-i18n="nav.wiki">@(isTr ? "Wiki / Bilgi Bankası" : "Wiki / Knowledge Base")</a></li>
+                        <li><a class="dropdown-item" href="@(isTr ? "/kullanim-senaryolari" : "/en/use-cases")" data-i18n="nav.useCases">@(isTr ? "Kullanım Senaryoları" : "Use Cases")</a></li>
+                        <li><a class="dropdown-item" href="@(isTr ? "/kaynaklar/sss" : "/en/resources/faq")" data-i18n="nav.faq">@(isTr ? "S.S.S." : "FAQ")</a></li>
+                    </ul>
+                </li>
+                <li class="mobile-menu-list"><a href="javascript:void(0);" data-i18n="nav.corporate">@(isTr ? "Kurumsal" : "Company")</a>
+                    <ul class="mobile-menu-items">
+                        <li><a class="dropdown-item" href="@(isTr ? "/pika" : "/en/pika")" data-i18n="nav.about">@(isTr ? "Hakkımızda" : "About Us")</a></li>
+                        <li><a class="dropdown-item" href="@(isTr ? "/guvenlik-ve-gizlilik" : "/en/security-and-privacy")" data-i18n="nav.security">@(isTr ? "Güvenlik ve Gizlilik" : "Security & Privacy")</a></li>
+                        <li><a class="dropdown-item pika-nav-career" href="@(isTr ? "/kariyer" : "/en/careers")" data-i18n="nav.career"><i class="ri-star-line me-1"></i>@(isTr ? "Kariyer" : "Career")</a></li>
+                    </ul>
+                </li>
+                <li class="mobile-menu-list without-icon"><a href="@(isTr ? "/iletisim" : "/en/contact")" class="nav-link" data-i18n="nav.contact">@(isTr ? "İletişim" : "Contact")</a></li>
             </ul>
+
 
             <div class="others-options">
                 <ul class="d-flex align-items-center ps-0 mb-0 list-unstyled">
@@ -177,8 +460,8 @@
                             </ul>
                         </div>
                     </li>
-                    <li><a href="@Url.Action("Login", "Auth")" class="search-btn login"><i class="ri-account-circle-line"></i> <span data-i18n="nav.login">Login</span></a></li>
-                    <li><button type="button" class="default-btn" data-bs-toggle="modal" data-bs-target="#demoModal"><span data-i18n="nav.demo">Demo Request</span> <i class="ri-arrow-right-up-line"></i></button></li>
+                    <li><a href="/giris" class="search-btn login"><i class="ri-account-circle-line"></i> <span data-i18n="nav.login">@(isTr ? "Giriş" : "Login")</span></a></li>
+                    <li><button type="button" class="default-btn" data-bs-toggle="modal" data-bs-target="#demoModal"><span data-i18n="nav.demo">@(isTr ? "Demo Talebi" : "Demo Request")</span> <i class="ri-arrow-right-up-line"></i></button></li>
                 </ul>
             </div>
         </div>
@@ -191,42 +474,73 @@
     <footer>
         <div class="footer-area bg-color-0c3a30 pt-5">
             <div class="container">
-                <div class="row">
-                    <div class="col-xl-4 col-lg-9 col-md-6">
-                        <div class="footer-weight mt-5">
-                            <h2 class="text-white" data-i18n="footer.ctaTitle">Newsletter</h2>
-                            
+                <div class="row g-4">
+                    @* Brand description col *@
+                    <div class="col-xl-3 col-lg-12 col-md-12">
+                        <div class="footer-weight mt-4">
+                            <a href="@homeUrl" class="d-inline-block mb-3"><img src="~/web/assets/images/white-logo.png" alt="Pika Omnichannel Pazarlama Platformu Logosu" style="height:32px"></a>
+                            <p class="text-white-50 small" data-i18n="footer.brandDesc">@(isTr ? "Pika, müşteri ve ürün verisinden anlam çıkaran, fırsatı tespit eden ve doğru aksiyonu doğru anda uygulayan omnichannel pazarlama platformudur." : "Pika is the omnichannel marketing platform that extracts insight from customer and product data, detects revenue opportunities, and orchestrates timely engagement.")</p>
                         </div>
                     </div>
-                    <div class="col-xl-2 col-lg-4 col-md-6">
-                        <div class="footer-weight part-two ps-5">
-                            <h3 class="text-white" data-i18n="footer.product">Quick Links</h3>
+                    @* Platform / Intelligence *@
+                    <div class="col-xl-2 col-lg-3 col-md-4">
+                        <div class="footer-weight mt-4">
+                            <h3 class="text-white" data-i18n="nav.platform">Platform</h3>
                             <ul class="service-link">
-                                <li><a href="@Url.Action("Index", "Home")" data-i18n="nav.home">Home</a></li>
-                                <li><a href="@Url.Action("Solutions", "Home")" data-i18n="nav.solutions">Solutions</a></li>
-                                <li><a href="@Url.Action("Pricing", "Home")" data-i18n="nav.pricing">Pricing</a></li>
-                                <li><a href="@Url.Action("Pika", "Home")" data-i18n="nav.corporate">Corporate</a></li>
-                                <li><a href="@Url.Action("Contact", "Home")" data-i18n="nav.contact">Contact</a></li>
+                                <li><a href="@(isTr ? "/platform/customer-intelligence" : "/en/platform/customer-intelligence")">Customer Intelligence</a></li>
+                                <li><a href="@(isTr ? "/platform/product-intelligence" : "/en/platform/product-intelligence")">Product Intelligence</a></li>
+                                <li><a href="@(isTr ? "/platform/pika-360" : "/en/platform/pika-360")">Pika 360</a></li>
+                                <li><a href="@(isTr ? "/platform/gunun-firsatlari" : "/en/platform/opportunities")" data-i18n="nav.mega.opportunities">@(isTr ? "Günün Fırsatları" : "Daily Opportunities")</a></li>
+                                <li><a href="@(isTr ? "/cozumler/analytics-reporting" : "/en/solutions/analytics-reporting")">Analytics &amp; Reporting</a></li>
+                                <li><a href="@(isTr ? "/entegrasyonlar" : "/en/integrations")" data-i18n="nav.integrations">@(isTr ? "Entegrasyonlar" : "Integrations")</a></li>
+                                <li><a href="@(isTr ? "/cozumler/consent-management" : "/en/solutions/consent-management")">Consent Management</a></li>
                             </ul>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="footer-weight part-three ps-5">
-                            <h3 class="text-white" data-i18n="nav.corporate">Corporate</h3>
+                    @* Engagement / Action *@
+                    <div class="col-xl-2 col-lg-3 col-md-4">
+                        <div class="footer-weight mt-4">
+                            <h3 class="text-white" data-i18n="nav.mega.action">@(isTr ? "Aksiyon" : "Action")</h3>
                             <ul class="service-link">
-                                <li><a href="@Url.Action("Pika", "Home")">Pika</a></li>
-                                <li><button type="button" class="dropdown-item p-0 border-0 bg-transparent text-start text-white" data-bs-toggle="modal" data-bs-target="#demoModal"><span data-i18n="nav.demo">Demo Talebi</span></button></li>
-                                <li><a href="@Url.Action("Login", "Auth")">Giriş</a></li>
-                                <li><a href="@Url.Action("Faq", "Home")" data-i18n="nav.faq">Sık Sorulan Sorular</a></li>
+                                <li><a href="@(isTr ? "/cozumler/campaign-manager" : "/en/solutions/campaign-manager")">Campaign Manager</a></li>
+                                <li><a href="@(isTr ? "/cozumler/journey-manager" : "/en/solutions/journey-manager")">Journey Manager</a></li>
+                                <li><a href="@(isTr ? "/cozumler/audience-manager" : "/en/solutions/audience-manager")">Audience Manager</a></li>
+                                <li><a href="@(isTr ? "/cozumler/content-studio" : "/en/solutions/content-studio")">Content Studio</a></li>
+                                <li><a href="@(isTr ? "/urunler/ai-kampanya-asistani" : "/en/products/ai-campaign-assistant")" style="color:#c8f542" data-i18n="nav.aiAssistant">@(isTr ? "AI Kampanya Asistanı" : "AI Campaign Assistant")</a></li>
                             </ul>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="footer-weight ps-5">
-                            <h3 class="text-white" data-i18n="nav.contact">Contact</h3>
+                    @* Channels *@
+                    <div class="col-xl-2 col-lg-3 col-md-4">
+                        <div class="footer-weight mt-4">
+                            <h3 class="text-white" data-i18n="nav.channels">@(isTr ? "Kanallar" : "Channels")</h3>
+                            <ul class="service-link">
+                                <li><a href="@(isTr ? "/kanallar/whatsapp" : "/en/channels/whatsapp")">WhatsApp</a></li>
+                                <li><a href="@(isTr ? "/kanallar/sms" : "/en/channels/sms")">SMS</a></li>
+                                <li><a href="@(isTr ? "/kanallar/email" : "/en/channels/email")">Email</a></li>
+                                <li><a href="@(isTr ? "/kanallar/push" : "/en/channels/push")">Push Notification</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    @* Kaynaklar + Kurumsal + İletişim *@
+                    <div class="col-xl-3 col-lg-3 col-md-6">
+                        <div class="footer-weight mt-4">
+                            <h3 class="text-white" data-i18n="nav.resources">@(isTr ? "Kaynaklar" : "Resources")</h3>
+                            <ul class="service-link mb-3">
+                                <li><a href="/wiki/" data-i18n="nav.wiki">@(isTr ? "Wiki / Bilgi Bankası" : "Wiki / Knowledge Base")</a></li>
+                                <li><a href="@(isTr ? "/kullanim-senaryolari" : "/en/use-cases")" data-i18n="nav.useCases">@(isTr ? "Kullanım Senaryoları" : "Use Cases")</a></li>
+                                <li><a href="@(isTr ? "/kaynaklar/sss" : "/en/resources/faq")" data-i18n="nav.faq">@(isTr ? "S.S.S." : "FAQ")</a></li>
+                            </ul>
+                            <h3 class="text-white" data-i18n="nav.corporate">@(isTr ? "Kurumsal" : "Company")</h3>
+                            <ul class="service-link mb-3">
+                                <li><a href="@(isTr ? "/pika" : "/en/pika")" data-i18n="nav.about">@(isTr ? "Hakkımızda" : "About Us")</a></li>
+                                <li><a href="@(isTr ? "/guvenlik-ve-gizlilik" : "/en/security-and-privacy")" data-i18n="nav.security">@(isTr ? "Güvenlik ve Gizlilik" : "Security & Privacy")</a></li>
+                                <li><a href="@(isTr ? "/kariyer" : "/en/careers")" data-i18n="nav.career">@(isTr ? "Kariyer" : "Career")</a></li>
+                                <li><a href="@(isTr ? "/iletisim" : "/en/contact")" data-i18n="nav.contact">@(isTr ? "İletişim" : "Contact")</a></li>
+                            </ul>
                             <ul class="get-touch">
-                                <li><img class="phone" src="~/web/assets/images/svg/mail.svg" alt="image"><span class="text-white"><b>Email:</b></span><a href="mailto:@site.Contact.SupportEmail" class="text-white text-decoration-none">@site.Contact.SupportEmail</a></li>
-                                <li><img class="phone" src="~/web/assets/images/svg/phone.svg" alt="image"><span class="text-white"><b>Phone:</b></span><a href="tel:@site.Contact.SupportPhone">@site.Contact.SupportPhoneDisplay</a></li>
+                                <li class="mb-2"><i class="ri-mail-line text-white-50 me-2"></i><a href="mailto:@site.Contact.SupportEmail" class="text-white text-decoration-none small">@site.Contact.SupportEmail</a></li>
+                                <li><i class="ri-phone-line text-white-50 me-2"></i><a href="tel:@site.Contact.SupportPhone" class="text-white text-decoration-none small">@site.Contact.SupportPhoneDisplay</a></li>
                             </ul>
                         </div>
                     </div>
@@ -238,25 +552,22 @@
             <div class="container">
                 <div class="copyright-border">
                     <div class="row g-4 align-items-center">
-                        <div class="col-lg-4 col-md-6"><p>© <span>Pika Analysis</span> <span data-i18n="footer.rights">All rights reserved.</span></p></div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="copy-image"><a href="@Url.Action("Index", "Home")" class="d-block"><img src="~/web/assets/images/white-logo.png" alt="image"></a></div>
-                        </div>
-                        <div class="col-lg-4 col-md-12 d-flex justify-content-between align-items-center">
+                        <div class="col-lg-6 col-md-6"><p>© @DateTime.Now.Year <span>Pika</span> — <span data-i18n="footer.rights">@(isTr ? "Tüm hakları saklıdır." : "All rights reserved.")</span></p></div>
+                        <div class="col-lg-6 col-md-6 d-flex justify-content-md-end">
                             <ul>
-                                <li><a href="#" data-i18n="footer.kvkk">Privacy Policy</a></li>
-                                <li><a href="#" data-i18n="footer.terms">Terms Conditions</a></li>
+                                <li><a href="@(isTr ? "/gizlilik-politikasi" : "/en/privacy-policy")" data-i18n="footer.kvkk">@(isTr ? "Gizlilik Politikası" : "Privacy Policy")</a></li>
+                                <li><a href="@(isTr ? "/kullanim-sartlari" : "/en/terms-of-use")" data-i18n="footer.terms">@(isTr ? "Kullanım Şartları" : "Terms of Use")</a></li>
                             </ul>
-                            <span class="text-white version-badge">v@appVersion</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="go-top"><i class="ri-arrow-up-fill"></i></div>
+        <div class="go-top" role="button" aria-label="Yukarı çık"><i class="ri-arrow-up-fill"></i></div>
     </footer>
 
+    @await Html.PartialAsync("_CookieConsent")
     @await Html.PartialAsync("_DemoRequestModal")
 
     @if (!string.IsNullOrWhiteSpace(toast))
@@ -267,7 +578,73 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="~/js/site.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @if (recaptcha.IsEnabled)
+    {
+        <script src="https://www.google.com/recaptcha/api.js?render=@recaptcha.SiteKey"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var forms = document.querySelectorAll('form');
+                var setFormLoading = function(form, isLoading) {
+                    if (!form) return;
+                    var button = form.querySelector('button[type="submit"], input[type="submit"]');
+                    if (!button) return;
+
+                    if (isLoading) {
+                        if (!button.dataset.originalContent) {
+                            button.dataset.originalContent = button.innerHTML;
+                        }
+                        button.disabled = true;
+                        button.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>' + (button.dataset.loadingText || 'Gönderiliyor');
+                    } else {
+                        if (button.dataset.originalContent) {
+                            button.innerHTML = button.dataset.originalContent;
+                            delete button.dataset.originalContent;
+                        }
+                        button.disabled = false;
+                    }
+                };
+                forms.forEach(function(form) {
+                    form.addEventListener('submit', function(e) {
+                        if (!e.defaultPrevented && !form.dataset.recaptchaPassed) {
+                            e.preventDefault();
+                            e.stopImmediatePropagation();
+
+                            if (typeof grecaptcha === 'undefined') {
+                                form.dataset.recaptchaPassed = "true";
+                                form.submit();
+                                return;
+                            }
+
+                            setFormLoading(form, true);
+                            grecaptcha.ready(function() {
+                                grecaptcha.execute('@recaptcha.SiteKey', { action: 'submit' }).then(function(token) {
+                                    var existing = form.querySelector('input[name="g-recaptcha-response"]');
+                                    if (existing) { existing.remove(); }
+
+                                    var input = document.createElement('input');
+                                    input.type = 'hidden';
+                                    input.name = 'g-recaptcha-response';
+                                    input.value = token;
+                                    form.appendChild(input);
+
+                                    form.dataset.recaptchaPassed = "true";
+                                    if (typeof form.requestSubmit === 'function') {
+                                        form.requestSubmit();
+                                    } else {
+                                        form.submit();
+                                    }
+                                }).catch(function() {
+                                    form.dataset.recaptchaPassed = "true";
+                                    form.submit();
+                                });
+                            });
+                        }
+                    }, true);
+                });
+            });
+        </script>
+    }
     @RenderSection("Scripts", required: false)
 </body>
 </html>

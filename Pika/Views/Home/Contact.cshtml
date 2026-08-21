@@ -3,27 +3,32 @@
 @inject IOptions<SiteSettings> SiteOptions
 @{
     var site = SiteOptions.Value;
-    ViewData["Title"] = "İletişim";
+    var culture = (ViewData["culture"] as string ?? ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").ToLowerInvariant();
+    var isTr = culture == "tr";
+    ViewData["Title"] = isTr ? "İletişim | Pika" : "Contact Us | Pika";
+    ViewData["MetaDescription"] = isTr
+        ? "Pika ekibiyle iletişime geçin. Satış, destek ve iş birliği talepleriniz için bize ulaşın."
+        : "Get in touch with the Pika team for sales, support, and partnership inquiries.";
 }
 <section class="pika-corp-hero">
     <div class="container">
         <div class="pika-corp-hero__grid">
             <div>
-                <span class="pika-corp-chip">Kurumsal İletişim</span>
-                <h1 class="pika-corp-title" data-i18n="contact.h1"></h1>
-                <p class="pika-corp-lead" data-i18n="contact.lead"></p>
+                <span class="pika-corp-chip" data-i18n="contact.chip">@(isTr ? "Kurumsal İletişim" : "Corporate Contact")</span>
+                <h1 class="pika-corp-title" data-i18n="contact.h1">@(isTr ? "İletişim & Destek" : "Contact & Support")</h1>
+                <p class="pika-corp-lead" data-i18n="contact.lead">@(isTr ? "Pika ekibiyle iletişime geçin. Satış, destek ve iş birliği talepleriniz için buradayız." : "Get in touch with the Pika team. We are here for sales, support, and partnership inquiries.")</p>
                 <div class="pika-corp-kpi-grid">
-                    <div class="pika-corp-kpi"><strong>30 dk</strong><span>Kritik taleplere dönüş</span></div>
-                    <div class="pika-corp-kpi"><strong>Aynı Gün</strong><span>Standart geri bildirim</span></div>
-                    <div class="pika-corp-kpi"><strong>Çok Kanal</strong><span>Mail, telefon, portal</span></div>
+                    <div class="pika-corp-kpi"><strong>@(isTr ? "30 dk" : "30 min")</strong><span data-i18n="contact.kpi1Label">@(isTr ? "Kritik taleplere dönüş" : "Response to critical requests")</span></div>
+                    <div class="pika-corp-kpi"><strong data-i18n="contact.kpi2Val">@(isTr ? "Aynı Gün" : "Same Day")</strong><span data-i18n="contact.kpi2Label">@(isTr ? "Standart geri bildirim" : "Standard turnaround")</span></div>
+                    <div class="pika-corp-kpi"><strong data-i18n="contact.kpi3Val">@(isTr ? "Çok Kanal" : "Omnichannel")</strong><span data-i18n="contact.kpi3Label">@(isTr ? "Mail, telefon, portal" : "Email, phone, portal")</span></div>
                 </div>
             </div>
             <aside class="pika-corp-aside">
-                <h3 data-i18n="contact.infoTitle"></h3>
+                <h3 data-i18n="contact.infoTitle">@(isTr ? "İletişim Bilgileri" : "Contact Information")</h3>
                 <div class="pika-corp-aside-list">
-                    <div class="pika-corp-aside-item"><strong data-i18n="contact.mail"></strong><span>@site.Contact.SupportEmail</span></div>
-                    <div class="pika-corp-aside-item"><strong data-i18n="contact.phone"></strong><span>@site.Contact.SupportPhoneDisplay</span></div>
-                    <div class="pika-corp-aside-item"><strong data-i18n="contact.address"></strong><span>@site.Contact.Address</span></div>
+                    <div class="pika-corp-aside-item"><strong data-i18n="contact.mail">@(isTr ? "E-posta" : "Email")</strong><span>@site.Contact.SupportEmail</span></div>
+                    <div class="pika-corp-aside-item"><strong data-i18n="contact.phone">@(isTr ? "Telefon" : "Phone")</strong><span>@site.Contact.SupportPhoneDisplay</span></div>
+                    <div class="pika-corp-aside-item"><strong data-i18n="contact.address">@(isTr ? "Adres" : "Address")</strong><span>@site.Contact.Address</span></div>
                 </div>
             </aside>
         </div>
@@ -35,23 +40,23 @@
         <div class="row g-4">
             <div class="col-lg-6">
                 <div class="pika-corp-shell h-100">
-                    <h3 class="pika-h3 mb-3">@site.ContactFormTitle</h3>
+                    <h3 class="pika-h3 mb-3" data-i18n="contact.formTitle">@(isTr ? "Bize Ulaşın" : "Send Us a Message")</h3>
                     <form id="contactForm" class="row g-3" data-recipient-email="@site.Mail.ContactFormRecipientEmail">
-                        <div class="col-md-6"><label class="form-label" data-i18n="form.fullName"></label><input class="form-control pika-input" name="fullName" placeholder="Ad Soyad" required></div>
-                        <div class="col-md-6"><label class="form-label" data-i18n="form.email"></label><input type="email" class="form-control pika-input" name="email" placeholder="mail@firma.com" required></div>
-                        <div class="col-12"><label class="form-label" data-i18n="form.message"></label><textarea class="form-control pika-input" rows="5" name="message" placeholder="Mesajınız..." required></textarea></div>
-                        <div class="col-12 d-flex gap-2 flex-wrap"><button type="button" class="btn pika-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal" data-i18n="contact.demo"></button><button type="submit" class="btn pika-btn-outline" data-i18n="contact.send"></button></div>
-                        <div class="small text-secondary" data-i18n="form.privacy"></div>
+                        <div class="col-md-6"><label class="form-label" data-i18n="form.fullName">@(isTr ? "Ad Soyad" : "Full Name")</label><input class="form-control pika-input" name="fullName" data-i18n-placeholder="contact.formNamePh" placeholder="@(isTr ? "Ad Soyad" : "Full Name")" required></div>
+                        <div class="col-md-6"><label class="form-label" data-i18n="form.email">@(isTr ? "E-posta" : "Email")</label><input type="email" class="form-control pika-input" name="email" data-i18n-placeholder="contact.formEmailPh" placeholder="@(isTr ? "mail@firma.com" : "name@company.com")" required></div>
+                        <div class="col-12"><label class="form-label" data-i18n="form.message">@(isTr ? "Mesajınız" : "Your Message")</label><textarea class="form-control pika-input" rows="5" name="message" data-i18n-placeholder="contact.formMsgPh" placeholder="@(isTr ? "Kısaca ihtiyacınızı yazın..." : "Tell us about your requirements...")" required></textarea></div>
+                        <div class="col-12 d-flex gap-2 flex-wrap"><button type="button" class="btn pika-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal" data-i18n="contact.demo">@(isTr ? "Demo Talep Et" : "Request a Demo")</button><button type="submit" class="btn pika-btn-outline" data-i18n="contact.send">@(isTr ? "Mesaj Gönder" : "Send Message")</button></div>
+                        <div class="small text-secondary" data-i18n="form.privacy">@(isTr ? "Bilgileriniz gizli tutulur." : "Your data is kept confidential.")</div>
                         <div id="contactResult" class="pika-alert d-none mt-2"></div>
                     </form>
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="pika-corp-shell h-100">
-                    <h3 class="pika-h3 mb-3" data-i18n="contact.infoTitle"></h3>
-                    <div class="pika-info-line"><i class="fa-regular fa-envelope"></i><div><div class="fw-semibold" data-i18n="contact.mail"></div><a class="pika-link" href="mailto:@site.Contact.SupportEmail">@site.Contact.SupportEmail</a></div></div>
-                    <div class="pika-info-line"><i class="fa-solid fa-phone"></i><div><div class="fw-semibold" data-i18n="contact.phone"></div><div class="text-secondary">@site.Contact.SupportPhoneDisplay</div></div></div>
-                    <div class="pika-info-line"><i class="fa-solid fa-location-dot"></i><div><div class="fw-semibold" data-i18n="contact.address"></div><div class="text-secondary">@site.Contact.Address</div></div></div>
+                    <h3 class="pika-h3 mb-3" data-i18n="contact.infoTitle">@(isTr ? "İletişim Bilgileri" : "Contact Information")</h3>
+                    <div class="pika-info-line"><i class="fa-regular fa-envelope"></i><div><div class="fw-semibold" data-i18n="contact.mail">@(isTr ? "E-posta" : "Email")</div><a class="pika-link" href="mailto:@site.Contact.SupportEmail">@site.Contact.SupportEmail</a></div></div>
+                    <div class="pika-info-line"><i class="fa-solid fa-phone"></i><div><div class="fw-semibold" data-i18n="contact.phone">@(isTr ? "Telefon" : "Phone")</div><div class="text-secondary">@site.Contact.SupportPhoneDisplay</div></div></div>
+                    <div class="pika-info-line"><i class="fa-solid fa-location-dot"></i><div><div class="fw-semibold" data-i18n="contact.address">@(isTr ? "Adres" : "Address")</div><div class="text-secondary">@site.Contact.Address</div></div></div>
                     @if (!string.IsNullOrWhiteSpace(site.Contact.MapEmbedUrl))
                     {
                         <div class="pika-map mt-3 ratio ratio-16x9">
@@ -60,9 +65,9 @@
                     }
                     else
                     {
-                        <div class="pika-map mt-3"><div class="pika-map-placeholder"><i class="fa-regular fa-map"></i><div class="text-secondary small mt-2" data-i18n="contact.map"></div></div></div>
+                        <div class="pika-map mt-3"><div class="pika-map-placeholder"><i class="fa-regular fa-map"></i><div class="text-secondary small mt-2" data-i18n="contact.map">@(isTr ? "Harita yüklenemedi" : "Map unavailable")</div></div></div>
                     }
-                    <div class="mt-4"><div class="pika-cta-mini"><div><div class="fw-semibold" data-i18n="contact.ctaT"></div><div class="text-secondary small" data-i18n="contact.ctaD"></div></div><a class="btn btn-sm pika-btn-outline" href="@Url.Action("Pricing", "Home")" data-i18n="contact.ctaB"></a></div></div>
+                    <div class="mt-4"><div class="pika-cta-mini"><div><div class="fw-semibold" data-i18n="contact.ctaT">@(isTr ? "Hızlı Bir Başlangıç Yapın" : "Get Started Quickly")</div><div class="text-secondary small" data-i18n="contact.ctaD">@(isTr ? "15 dakikalık demo ile platformun gücünü keşfedin." : "Discover the power of Pika with a 15-minute live walkthrough.")</div></div><button type="button" class="btn btn-sm pika-btn-outline" data-bs-toggle="modal" data-bs-target="#demoModal" data-i18n="contact.ctaB">@(isTr ? "Demo Al" : "Book Demo")</button></div></div>
                 </div>
             </div>
         </div>

@@ -1,5 +1,8 @@
 using System.Globalization;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Localization.Routing;
 using Pika.Configuration;
@@ -7,10 +10,22 @@ using Pika.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddSingleton(HtmlEncoder.Create(UnicodeRanges.All));
 builder.Services.AddControllersWithViews();
+builder.Services.Configure<ForwardedHeadersOptions>(options =>
+{
+    options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto | ForwardedHeaders.XForwardedHost;
+    options.KnownIPNetworks.Clear();
+    options.KnownProxies.Clear();
+});
 builder.Services.Configure<SiteSettings>(builder.Configuration.GetSection("SiteSettings"));
 builder.Services.Configure<AuthSettings>(builder.Configuration.GetSection("Auth"));
+builder.Services.Configure<RecaptchaSettings>(builder.Configuration.GetSection("SiteSettings:GoogleRecaptcha"));
 builder.Services.AddScoped<IEmailService, EmailService>();
+builder.Services.AddScoped<IRecaptchaService, RecaptchaService>();
+builder.Services.AddScoped<ITurnstileVerifier, TurnstileVerifier>();
+builder.Services.AddSingleton<IWikiService, WikiService>();
+builder.Services.AddSingleton<IInternalWikiService, InternalWikiService>();
 builder.Services.AddHttpClient();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -56,7 +71,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AngularClient", policy =>
     {
-        policy.WithOrigins("https://app.publish.tr", "https://localhost:4200")
+        policy.WithOrigins("https://app.pika.tr", "https://localhost:4200")
             .AllowAnyHeader()
             .AllowAnyMethod()
             .AllowCredentials();
@@ -71,50 +86,93 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
     options.SupportedCultures = supportedCultures;
     options.SupportedUICultures = supportedCultures;
 
-    var routeCultureProvider = new RouteDataRequestCultureProvider
+    options.RequestCultureProviders.Clear();
+    options.RequestCultureProviders.Add(new RouteDataRequestCultureProvider
     {
         RouteDataStringKey = "culture",
         UIRouteDataStringKey = "culture"
-    };
-
-    options.RequestCultureProviders.Insert(0, routeCultureProvider);
+    });
+    options.RequestCultureProviders.Add(new QueryStringRequestCultureProvider());
 });
 
 var app = builder.Build();
 
+app.UseForwardedHeaders();
+
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
+    app.UseExceptionHandler("/error/500");
     app.UseHsts();
 }
+
+app.UseStatusCodePagesWithReExecute("/error/{0}");
+
+app.Use(async (context, next) =>
+{
+    var host = context.Request.Host.Host;
+    var path = context.Request.Path.Value ?? "/";
+    var query = context.Request.QueryString.Value ?? string.Empty;
+
+    // Domain normalization: www.pika.tr -> pika.tr (301 Permanent Redirect)
+    if (host.Equals("www.pika.tr", StringComparison.OrdinalIgnoreCase))
+    {
+        var normalizedDomainUrl = $"https://pika.tr{context.Request.PathBase}{path}{query}";
+        context.Response.StatusCode = StatusCodes.Status301MovedPermanently;
+        context.Response.Headers.Location = normalizedDomainUrl;
+        return;
+    }
+
+    // Legacy Route Redirections (301 Permanent Redirect)
+    if (LegacyRouteMapper.TryGetRedirect(path, out var targetUrl) && targetUrl != null)
+    {
+        var targetWithQuery = string.IsNullOrEmpty(query) ? targetUrl : $"{targetUrl}{query}";
+        context.Response.StatusCode = StatusCodes.Status301MovedPermanently;
+        context.Response.Headers.Location = targetWithQuery;
+        return;
+    }
+
+    await next();
+});
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+app.UseRouting();
 app.UseRequestLocalization();
 
-app.UseRouting();
+app.Use(async (context, next) =>
+{
+    var routeData = context.GetRouteData();
+    if (routeData != null && (!routeData.Values.ContainsKey("culture") || string.IsNullOrEmpty(routeData.Values["culture"]?.ToString())))
+    {
+        var path = context.Request.Path.Value ?? "/";
+        var isEn = path.StartsWith("/en/", StringComparison.OrdinalIgnoreCase) || path.Equals("/en", StringComparison.OrdinalIgnoreCase);
+        routeData.Values["culture"] = isEn ? "en" : "tr";
+    }
+    await next();
+});
+
 app.UseCors("AngularClient");
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapGet("/", context =>
-{
-    context.Response.Redirect("/tr");
-    return Task.CompletedTask;
-});
-app.MapGet("/{culture:regex(^(tr|en)$)}", (string culture, HttpContext context) =>
-{
-    context.Response.Redirect($"/{culture}/home");
-    return Task.CompletedTask;
-});
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{culture=tr}/{controller=Home}/{action=Index}/{id?}",
-    constraints: new { culture = "tr|en" });
+app.MapControllers();
 
 app.MapControllerRoute(
     name: "account",
     pattern: "{controller=Account}/{action=Login}/{id?}");
 
+app.MapControllerRoute(
+    name: "auth",
+    pattern: "{controller=Auth}/{action=Login}/{id?}");
+
+app.MapControllerRoute(
+    name: "contactconsent",
+    pattern: "contactconsent/{action=Index}/{id?}",
+    defaults: new { controller = "ContactConsent" });
+
 app.Run();
+
+public partial class Program { }
+
+

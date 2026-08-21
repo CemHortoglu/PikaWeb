@@ -1,0 +1,495 @@
+@{
+    var culture = ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr";
+    var tr = culture.Equals("tr", StringComparison.OrdinalIgnoreCase);
+    var wikiBase = "/wiki/";
+    ViewData["Title"] = tr ? "AI Kampanya Asistanı | Pika Pilot ile Akıllı Üretim" : "AI Campaign Assistant | Smart Generation with Pika Pilot";
+    ViewData["MetaDescription"] = tr ? "Pika AI Kampanya Asistanı (Pika Pilot); tek bir fikirden hedef kitleyi, kanalı, metinleri ve HTML e-posta şablonunu saniyeler içinde oluşturan üretici zeka motorudur." : "Pika AI Campaign Assistant (Pika Pilot) drafts target cohorts, channel strategy, personalized copy, and HTML email templates from a single prompt.";
+    ViewData["BodyClass"] = "pika-platform-page";
+    var canonicalUrl = tr ? "https://pika.tr/urunler/ai-kampanya-asistani" : "https://pika.tr/en/products/ai-campaign-assistant";
+}
+
+@section JsonLd {
+<script type="@Html.Raw("application/ld+json")">
+{
+  "@@context": "https://schema.org",
+  "@@graph": [
+    {
+      "@@type": "WebPage",
+      "@@id": "@canonicalUrl",
+      "name": "@(tr ? "AI Kampanya Asistanı | Pika Pilot — Pika" : "AI Campaign Assistant | Pika Pilot — Pika")",
+      "description": "@(tr ? "Pika AI Kampanya Asistanı: Doğal dil komutlarıyla kampanya stratejisi, kitle seçimi ve çok kanallı içerik üreten yapay zeka asistanı." : "Pika AI Campaign Assistant: Generative AI assistant drafting campaign strategies, audience segments, and multi-channel content from natural language prompts.")",
+      "url": "@canonicalUrl",
+      "isPartOf": { "@@id": "https://pika.tr/#website" },
+      "breadcrumb": {
+        "@@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@@type": "ListItem", "position": 1, "name": "@(tr ? "Ana Sayfa" : "Home")", "item": "@(tr ? "https://pika.tr/" : "https://pika.tr/en/")" },
+          { "@@type": "ListItem", "position": 2, "name": "@(tr ? "Çözümler" : "Solutions")", "item": "@(tr ? "https://pika.tr/" : "https://pika.tr/en/")" },
+          { "@@type": "ListItem", "position": 3, "name": "AI Kampanya Asistanı", "item": "@canonicalUrl" }
+        ]
+      }
+    },
+    {
+      "@@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@@type": "Question",
+          "name": "@(tr ? "Pika AI Asistanı insan onayı olmadan mesaj gönderir mi?" : "Does Pika AI Assistant send messages autonomously without human review?")",
+          "acceptedAnswer": {
+            "@@type": "Answer",
+            "text": "@(tr ? "Kesinlikle hayır. Pika AI bir taslak üreticisidir (co-pilot). Oluşturulan hedef kitle, kanal, metin ve görsel şablonlar yetkili pazarlama kullanıcısının denetimine ve onayına sunulur; insan onayı olmadan hiçbir gönderim tetiklenmez." : "Never. Pika AI functions as an assistive co-pilot. All generated segments, channels, copy, and templates require explicit human review and approval before dispatch.")"
+          }
+        },
+        {
+          "@@type": "Question",
+          "name": "@(tr ? "AI Asistanı hangi içerik formatlarını üretebilir?" : "Which content formats can the AI Assistant generate?")",
+          "acceptedAnswer": {
+            "@@type": "Answer",
+            "text": "@(tr ? "WhatsApp mesaj metinleri ve butonları, SMS metinleri, duyarlı (responsive) HTML E-posta şablonları, mobil push bildirimleri ve hedef kitle filtreleme kuralları üretebilir." : "It generates WhatsApp copy & CTA buttons, SMS messages, responsive HTML email templates, mobile push alerts, and audience rule sets.")"
+          }
+        },
+        {
+          "@@type": "Question",
+          "name": "@(tr ? "AI asistanı işletmenin geçmiş verilerini kullanır mı?" : "Does the AI assistant leverage historical business data?")",
+          "acceptedAnswer": {
+            "@@type": "Answer",
+            "text": "@(tr ? "Evet. Pika veri tabanındaki RFM segmentleri, ürün kategorileri ve geçmiş kampanya etkileşim kalıpları bağlam olarak kullanılarak işletmeye özel, gerçekçi öneriler sunulur." : "Yes. It leverages RFM cohorts, catalog categories, and previous campaign response patterns to provide context-aware, hyper-relevant proposals.")"
+          }
+        },
+        {
+          "@@type": "Question",
+          "name": "@(tr ? "Üretilen HTML e-postalar mobil uyumlu mudur?" : "Are generated HTML emails responsive and mobile-friendly?")",
+          "acceptedAnswer": {
+            "@@type": "Answer",
+            "text": "@(tr ? "Evet. Üretilen tüm e-posta taslakları modern mobil e-posta istemcileriyle tam uyumlu, temiz ve test edilmiş HTML/CSS blok yapısına sahiptir." : "Yes. All drafted email layouts utilize clean, responsive, client-tested HTML/CSS blocks.")"
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+}
+
+@* ── CHAPTER 1: HERO ────────────────────────────────────────── *@
+<section class="ph-hero">
+    <div class="container position-relative">
+        <div class="row align-items-center g-5 ph-split-row">
+            <div class="col-lg-6" data-aos="fade-right" data-aos-duration="700">
+                <div class="ph-hero-eyebrow-pill">
+                    <i class="ri-sparkling-2-line" style="color:var(--pika-color-brand-primary-dark)"></i>
+                    <span>@(tr ? "Üretken Yapay Zekâ · Pika Pilot" : "Generative AI · Pika Pilot")</span>
+                </div>
+                <h1 class="ph-hero-title">
+                    AI Kampanya Asistanı
+                    <span class="ph-gradient-text d-block">@(tr ? "Fikirden Yayına 60 Saniye" : "From Concept to Dispatch in 60s")</span>
+                </h1>
+                <p class="ph-hero-desc">
+                    @(tr ? "Pika Pilot; pazarlama hedefinizi dinler, hedef kitle segmentini belirler, doğru kanalı önerir, kişiselleştirilmiş metinleri ve HTML e-posta şablonunu hazırlar." : "Pika Pilot transforms your marketing goal into target audience cohorts, channel mix, multi-variant copy, and responsive email templates.")
+                </p>
+                <div class="ph-hero-actions">
+                    <button type="button" class="ph-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal">
+                        @(tr ? "Demo Talep Et" : "Request a Demo") <i class="ri-arrow-right-line"></i>
+                    </button>
+                    <a href="@(wikiBase)pika-pilot-ai-kampanya-asistani" class="ph-btn-outline">
+                        @(tr ? "Teknik Detay — Wiki" : "Technical Specs — Wiki") <i class="ri-external-link-line"></i>
+                    </a>
+                </div>
+            </div>
+
+            @* Right: Pika Pilot Copilot Card *@
+            <div class="col-lg-6" data-aos="fade-left" data-aos-duration="700">
+                <div class="ph-trust-card p-4 p-md-5">
+                    <div class="d-flex align-items-center justify-content-between mb-4 pb-3 border-bottom">
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="ph-live-dot"></span>
+                            <span class="fw-bold small text-dark">@(tr ? "Pika Pilot Canlı Taslak" : "Pika Pilot Draft Engine")</span>
+                        </div>
+                        <span class="badge bg-success-subtle text-success border small font-monospace">AI Destekli Taslak</span>
+                    </div>
+
+                    <div class="p-3 rounded-3 bg-light border mb-3">
+                        <span class="small text-muted d-block mb-1"><i class="ri-chat-voice-line text-primary me-1"></i> Komut (Prompt):</span>
+                        <div class="small fw-semibold text-dark">"Son 45 gündür alışveriş yapmamış ayakkabı alıcılarına özel hafta sonu %20 indirim WhatsApp kampanyası hazırla."</div>
+                    </div>
+
+                    <div class="d-flex flex-column gap-2 mb-3">
+                        <div class="p-2 rounded-2 bg-white border d-flex align-items-center justify-content-between">
+                            <span class="small text-muted"><i class="ri-group-line text-primary me-2"></i> Hedef Kitle:</span>
+                            <span class="small font-monospace fw-bold text-dark">Riskli Ayakkabı Alıcıları (2.840 Kişi)</span>
+                        </div>
+                        <div class="p-2 rounded-2 bg-white border d-flex align-items-center justify-content-between">
+                            <span class="small text-muted"><i class="ri-whatsapp-line text-success me-2"></i> Önerilen Kanal:</span>
+                            <span class="small font-monospace fw-bold text-success">WhatsApp + Dinamik İndirim Kodu</span>
+                        </div>
+                        <div class="p-2 rounded-2 bg-white border d-flex align-items-center justify-content-between">
+                            <span class="small text-muted"><i class="ri-shield-check-line text-info me-2"></i> İYS Doğrulaması:</span>
+                            <span class="small font-monospace fw-bold text-success">İzinli GSM: %100 Uyumlu</span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center justify-content-between pt-3 border-top">
+                        <span class="small text-muted"><i class="ri-user-follow-line text-warning me-1"></i> İnsan Onayı Bekliyor</span>
+                        <a href="@(tr ? "/cozumler/campaign-manager" : "/en/solutions/campaign-manager")" class="btn btn-sm btn-dark px-3 fw-semibold">
+                            @(tr ? "İncele & Onayla" : "Review & Approve")
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── CHAPTER 2: LLM DEFINITION & BUSINESS PROBLEM ───────────── *@
+<section class="ph-section ph-section-alt">
+    <div class="container">
+        @* Plain LLM Definition Box *@
+        <div class="p-4 rounded-4 mb-5" style="background:#ffffff;border:1px solid #dcebc7" data-aos="fade-up">
+            <div class="d-flex align-items-center gap-2 mb-2">
+                <i class="ri-information-line text-success fw-bold"></i>
+                <span class="fw-bold text-dark text-uppercase small" style="letter-spacing:0.06em">@(tr ? "AI Kampanya Asistanı Nedir?" : "What is AI Campaign Assistant?")</span>
+            </div>
+            <p class="mb-0 text-secondary" style="font-size:1.02rem;line-height:1.6">
+                @(tr ? "AI Kampanya Asistanı (Pika Pilot); pazarlama uzmanlarının doğal dilde yazdığı kampanya briflerini analiz ederek hedef kitle kuralını, en verimli iletişim kanalını, kişiselleştirilmiş mesaj varyantlarını ve HTML e-posta şablonunu otomatik olarak üreten Pika üretken yapay zekâ modülüdür. Asistan asla otonom gönderim yapmaz; tüm içerikleri insan denetimi ve onayına sunulur." : "AI Campaign Assistant (Pika Pilot) is Pika's generative AI co-pilot that transforms plain text marketing briefs into audience segmentation rules, channel recommendations, personalized multi-channel copy, and responsive HTML email templates, strictly adhering to human-in-the-loop governance.")
+            </p>
+        </div>
+
+        <div class="row align-items-center g-5 ph-split-row">
+            <div class="col-lg-6" data-aos="fade-right">
+                <span class="ph-eyebrow">@(tr ? "İnsan Odaklı Yapay Zekâ" : "Human-in-the-Loop AI")</span>
+                <h2 class="pika-h2 fw-bold mb-3">@(tr ? "AI Tasarlar, Son Kararı Siz Verirsiniz" : "AI Proposes, Your Team Decides")</h2>
+                <p class="ph-muted mb-3" style="font-size:1.05rem">
+                    @(tr ? "Yapay zekâ pazarlama ekiplerinin hızını 10 kat artırırken kurumsal marka güvenliğini korur:" : "Supercharge campaign agility while preserving brand safety and control:")
+                </p>
+                <div class="p-3 rounded-3 bg-white border mb-3">
+                    <div class="fw-bold text-dark small mb-1"><i class="ri-shield-check-line text-success me-1"></i> <strong>Sıfır Otonom Hata Riski</strong></div>
+                    <div class="small ph-muted">AI hiçbir koşulda kontrolsüz veya onaysız mesaj fırlatamaz. Her taslak kullanıcının onay kutusundan geçer.</div>
+                </div>
+                <div class="p-3 rounded-3 bg-white border">
+                    <div class="fw-bold text-dark small mb-1"><i class="ri-magic-line text-primary me-1"></i> <strong>Hazır HTML & Çok Kanallı Varyantlar</strong></div>
+                    <div class="small ph-muted">Metin yazma, görsel yerleşimi ve buton tasarımı saniyeler içinde tamamlanır.</div>
+                </div>
+            </div>
+            <div class="col-lg-6" data-aos="fade-left">
+                <div class="d-flex flex-column gap-3 p-4 rounded-4 bg-white border">
+                    <div class="fw-bold small text-uppercase" style="color:var(--pika-color-brand-primary-dark);letter-spacing:0.06em">
+                        @(tr ? "Pika Pilot 4 Aşamalı Üretim Akışı" : "Pika Pilot 4-Step Generation Flow")
+                    </div>
+                    <div class="d-flex align-items-start gap-3 p-2 rounded-2 bg-light">
+                        <div class="ph-unboxed-icon flex-shrink-0" style="width:30px;height:30px;font-size:0.8rem;font-weight:800;margin-bottom:0">1</div>
+                        <div>
+                            <div class="fw-bold text-dark small">@(tr ? "Fikri / Amacı Yazın" : "Prompt Natural Language Goal")</div>
+                            <div class="small ph-muted">Hedeflenen ürün, indirim oranı veya kampanya amacını bir cümleyle girin.</div>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-start gap-3 p-2 rounded-2 bg-light">
+                        <div class="ph-unboxed-icon flex-shrink-0" style="width:30px;height:30px;font-size:0.8rem;font-weight:800;margin-bottom:0">2</div>
+                        <div>
+                            <div class="fw-bold text-dark small">@(tr ? "Otomatik Segment & Kanal Tespiti" : "Auto Cohort & Channel Mapping")</div>
+                            <div class="small ph-muted">AI, veritabanından en uygun müşteri kitlesini ve kanalı eşleştirir.</div>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-start gap-3 p-2 rounded-2 bg-light">
+                        <div class="ph-unboxed-icon flex-shrink-0" style="width:30px;height:30px;font-size:0.8rem;font-weight:800;margin-bottom:0">3</div>
+                        <div>
+                            <div class="fw-bold text-dark small">@(tr ? "İçerik & HTML Şablon Üretimi" : "Copy & HTML Template Generation")</div>
+                            <div class="small ph-muted">Kişiselleştirilmiş başlıklar, CTA butonları ve e-posta tasarımı hazır taslağa dökülür.</div>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-start gap-3 p-2 rounded-2" style="background:#f0fdf4;border:1px solid #bbf7d0">
+                        <div class="ph-unboxed-icon flex-shrink-0" style="width:30px;height:30px;font-size:0.8rem;font-weight:800;margin-bottom:0"><i class="ri-check-line"></i></div>
+                        <div>
+                            <div class="fw-bold text-dark small">@(tr ? "4. İnceleme & Güvenli Yayın" : "4. Review & Governed Dispatch")</div>
+                            <div class="small ph-muted">Ekip taslağı düzenler, test gönderimi yapar ve onaylayarak yayına alır.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── CHAPTER 3: PRODUCT PROOF (Real Software UI) ─────────────── *@
+<section class="ph-section ph-section-plain">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="ph-eyebrow">@(tr ? "Ürün Kanıtı" : "Product Proof")</span>
+            <h2 class="pika-h2 fw-bold">@(tr ? "Gerçek Pika Pilot Arayüzü & Taslak Tuvali" : "Real Pika Pilot Interface & Draft Canvas")</h2>
+            <p class="ph-muted mx-auto" style="max-width:620px">
+                @(tr ? "Pika Pilot ekranında tek bir komuttan üretilen hedef kitle, içerik varyantları ve şablon önizlemesi." : "Live view of prompt parsing, cohort selection, and instant template rendering in Pika Pilot.")
+            </p>
+        </div>
+
+        <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-10">
+                <div class="ph-cockpit p-2 shadow-lg">
+                    <img src="/wiki/assets/images/img_pika-pilot-ai-kampanya-asistani_16.png"
+                         alt="@(tr ? "Pika Pilot AI Kampanya Asistanı Konsolu" : "Pika Pilot AI Campaign Assistant Console")"
+                         class="img-fluid rounded-3 w-100"
+                         loading="lazy" />
+                </div>
+                <div class="text-center mt-3 small text-muted">
+                    <i class="ri-checkbox-circle-line text-success me-1"></i>
+                    @(tr ? "Pika canlı yazılım arayüzü: Pika Pilot üretken kampanya taslağı ve içerik editörü." : "Live Pika interface: Pika Pilot generative campaign drafting and content editor.")
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── CHAPTER 4: 6 CORE VERIFIED CAPABILITIES ─────────────────── *@
+<section class="ph-section ph-section-alt">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="ph-eyebrow">@(tr ? "Yetenekler" : "Capabilities")</span>
+            <h2 class="pika-h2 fw-bold">@(tr ? "Pika Pilot Neler Üretir?" : "What Does Pika Pilot Generate?")</h2>
+        </div>
+
+        <div class="row g-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-4 col-md-6">
+                <div class="ph-trust-card h-100 p-4 d-flex flex-column">
+                    <div class="ph-unboxed-icon mb-3"><i class="ri-chat-voice-line"></i></div>
+                    <h5 class="fw-bold mb-2 text-dark">@(tr ? "Doğal Dil ile Brif Alma" : "Natural Language Briefs")</h5>
+                    <p class="small ph-muted mb-3">
+                        @(tr ? "Pazarlama hedefinizi günlük konuşma dilinde yazın; AI parametreleri otomatik ayrıştırsın." : "Describe goals in plain language; Pika Pilot translates them into actionable campaign configs.")
+                    </p>
+                    <a href="@(wikiBase)pika-pilot-ai-kampanya-asistani" class="small fw-bold text-decoration-none mt-auto" style="color:var(--pika-color-brand-primary-dark)">
+                        @(tr ? "Wiki'de İncele →" : "Read in Wiki →")
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="ph-trust-card h-100 p-4 d-flex flex-column">
+                    <div class="ph-unboxed-icon mb-3"><i class="ri-group-line"></i></div>
+                    <h5 class="fw-bold mb-2 text-dark">@(tr ? "Hedef Kitle & Segment Eşleme" : "Audience Cohort Mapping")</h5>
+                    <p class="small ph-muted mb-3">
+                        @(tr ? "Kampanya konusuna göre RFM segmentlerinden en uygun alıcı kohortunu otomatik önerir." : "Automatically matches campaign objectives with the optimal RFM and behavioral cohorts.")
+                    </p>
+                    <a href="@(wikiBase)segment-sablonlari" class="small fw-bold text-decoration-none mt-auto" style="color:var(--pika-color-brand-primary-dark)">
+                        @(tr ? "Wiki'de İncele →" : "Read in Wiki →")
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="ph-trust-card h-100 p-4 d-flex flex-column">
+                    <div class="ph-unboxed-icon mb-3"><i class="ri-mail-line"></i></div>
+                    <h5 class="fw-bold mb-2 text-dark">@(tr ? "HTML E-posta Şablon Üretimi" : "HTML Email Drafting")</h5>
+                    <p class="small ph-muted mb-3">
+                        @(tr ? "Kampanyaya uygun renklerde, mobil uyumlu ve görsel bloklu hazır responsive e-posta tasarımı." : "Generates clean, responsive HTML email templates complete with CTA buttons and headers.")
+                    </p>
+                    <a href="@(wikiBase)email-template-editor" class="small fw-bold text-decoration-none mt-auto" style="color:var(--pika-color-brand-primary-dark)">
+                        @(tr ? "Wiki'de İncele →" : "Read in Wiki →")
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="ph-trust-card h-100 p-4 d-flex flex-column">
+                    <div class="ph-unboxed-icon mb-3"><i class="ri-whatsapp-line"></i></div>
+                    <h5 class="fw-bold mb-2 text-dark">@(tr ? "Çok Kanallı Metin Varyantları" : "Multi-Channel Copywriting")</h5>
+                    <p class="small ph-muted mb-3">
+                        @(tr ? "WhatsApp, SMS ve Push bildirimleri için karakter sınırlamalarına uygun vurucu metinler." : "Crafts punchy copy tailored to length constraints for WhatsApp, SMS, and Push dispatches.")
+                    </p>
+                    <a href="@(wikiBase)pika-pilot-ai-kampanya-asistani" class="small fw-bold text-decoration-none mt-auto" style="color:var(--pika-color-brand-primary-dark)">
+                        @(tr ? "Wiki'de İncele →" : "Read in Wiki →")
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="ph-trust-card h-100 p-4 d-flex flex-column">
+                    <div class="ph-unboxed-icon mb-3"><i class="ri-shield-check-line"></i></div>
+                    <h5 class="fw-bold mb-2 text-dark">@(tr ? "İnsan Onaylı Güvenlik Katmanı" : "Human-in-the-Loop Control")</h5>
+                    <p class="small ph-muted mb-3">
+                        @(tr ? "AI tarafından üretilen her öge düzenlenebilir ve yetkili onayı verilmeden yayına alınamaz." : "Every generated element is fully editable and strictly locked until an authorized marketer approves.")
+                    </p>
+                    <a href="@(wikiBase)yayinlama-sablon-ve-yonetim" class="small fw-bold text-decoration-none mt-auto" style="color:var(--pika-color-brand-primary-dark)">
+                        @(tr ? "Wiki'de İncele →" : "Read in Wiki →")
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="ph-trust-card h-100 p-4 d-flex flex-column">
+                    <div class="ph-unboxed-icon mb-3"><i class="ri-flashlight-line"></i></div>
+                    <h5 class="fw-bold mb-2 text-dark">@(tr ? "Aksiyon Modüllerine Doğrudan Aktarım" : "Direct Action Pipeline")</h5>
+                    <p class="small ph-muted mb-3">
+                        @(tr ? "Onaylanan taslak tek tıkla Campaign Manager veya Journey Manager akışına aktarılır." : "Transfer approved drafts directly into Campaign Manager or Journey workflows with one click.")
+                    </p>
+                    <a href="@(wikiBase)pika-pilot-ai-kampanya-asistani" class="small fw-bold text-decoration-none mt-auto" style="color:var(--pika-color-brand-primary-dark)">
+                        @(tr ? "Wiki'de İncele →" : "Read in Wiki →")
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── CHAPTER 5: PLATFORM VALUE CHAIN ─────────────────────────── *@
+<section class="ph-section ph-section-plain">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="ph-eyebrow">@(tr ? "Platform Bağlantısı" : "Platform Context")</span>
+            <h2 class="pika-h2 fw-bold">@(tr ? "Pika Pilot, Üretken Hızlandırıcıdır" : "Pika Pilot is the Generative Accelerator")</h2>
+        </div>
+        <div class="row g-3 justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-3 col-md-6">
+                <div class="ph-trust-card p-3 text-center" style="border-color:var(--pika-color-brand-primary);background:#f0fdf4">
+                    <i class="ri-sparkling-2-line mb-1 text-success" style="font-size:1.5rem"></i>
+                    <div class="fw-bold text-dark small">Pika Pilot (AI)</div>
+                    <div style="font-size:.72rem;color:var(--pika-color-brand-primary-dark);font-weight:700">@(tr ? "● Taslak Üret" : "● Draft Generation")</div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <a href="@(tr ? "/cozumler/audience-manager" : "/en/solutions/audience-manager")" class="text-decoration-none">
+                    <div class="ph-trust-card p-3 text-center h-100">
+                        <i class="ri-filter-3-line mb-1 text-primary" style="font-size:1.5rem"></i>
+                        <div class="fw-bold text-dark small">Audience Manager</div>
+                        <div class="text-muted" style="font-size:.72rem">@(tr ? "Kitleyi onayla" : "Confirm cohort")</div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <a href="@(tr ? "/cozumler/content-studio" : "/en/solutions/content-studio")" class="text-decoration-none">
+                    <div class="ph-trust-card p-3 text-center h-100">
+                        <i class="ri-brush-line mb-1 text-warning" style="font-size:1.5rem"></i>
+                        <div class="fw-bold text-dark small">Content Studio</div>
+                        <div class="text-muted" style="font-size:.72rem">@(tr ? "Şablonu düzenle" : "Edit template")</div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <a href="@(tr ? "/cozumler/campaign-manager" : "/en/solutions/campaign-manager")" class="text-decoration-none">
+                    <div class="ph-trust-card p-3 text-center h-100">
+                        <i class="ri-megaphone-line mb-1 text-purple" style="font-size:1.5rem;color:#6d28d9"></i>
+                        <div class="fw-bold text-dark small">Campaign Manager</div>
+                        <div class="text-muted" style="font-size:.72rem">@(tr ? "Yayına al" : "Publish dispatch")</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── CHAPTER 6: CONCRETE USE CASES ───────────────────────────── *@
+<section class="ph-section ph-section-alt">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="ph-eyebrow">@(tr ? "Kullanım Senaryoları" : "Use Cases")</span>
+            <h2 class="pika-h2 fw-bold">@(tr ? "Örnek AI Üretim Senaryoları" : "Sample AI Co-Pilot Use Cases")</h2>
+        </div>
+
+        <div class="row g-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-md-4">
+                <div class="p-4 rounded-4 bg-white border h-100">
+                    <div class="fw-bold text-dark mb-2">⚡ @(tr ? "Anlık Fırsat Lansmanı" : "Flash Sale Rollout")</div>
+                    <p class="small text-secondary mb-3">
+                        @(tr ? "'Stok fazlası montlar için %30 indirim WhatsApp duyurusu' komutuyla 45 saniyede hazır mesaj ve hedef kitle." : "Generate targeted WhatsApp copy and cohort rules for surplus outerwear in 45 seconds.")
+                    </p>
+                    <span class="badge bg-success-subtle text-success small font-monospace">45 Saniye Hazırlık</span>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="p-4 rounded-4 bg-white border h-100">
+                    <div class="fw-bold text-dark mb-2">🎨 @(tr ? "Yeni Sezon E-posta Bülteni" : "New Collection Newsletter")</div>
+                    <p class="small text-secondary mb-3">
+                        @(tr ? "'Sonbahar koleksiyonu için şık ve responsive bir e-posta bülteni oluştur' talebine tam HTML şablon çıktısı." : "Draft a modern responsive HTML newsletter layout highlighting autumn arrivals instantly.")
+                    </p>
+                    <span class="badge bg-primary-subtle text-primary small font-monospace">Hazır HTML/CSS</span>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="p-4 rounded-4 bg-white border h-100">
+                    <div class="fw-bold text-dark mb-2">🛡️ @(tr ? "Reaktivasyon Kampanyası" : "Reactivation Campaign")</div>
+                    <p class="small text-secondary mb-3">
+                        @(tr ? "'Son 90 gündür pasif kalan VIP'leri geri kazanacak özel teklif ve SMS metni hazırla' kurgusu." : "Craft personalized win-back offers and SMS variants for dormant high-value customers.")
+                    </p>
+                    <span class="badge bg-warning-subtle text-warning small font-monospace">%100 İYS Denetimli</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── CHAPTER 7: FREQUENTLY ASKED QUESTIONS (FAQ) ─────────────── *@
+<section class="ph-section ph-section-plain">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="ph-eyebrow">FAQ</span>
+            <h2 class="pika-h2 fw-bold">@(tr ? "Sıkça Sorulan Sorular" : "Frequently Asked Questions")</h2>
+        </div>
+
+        <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-8">
+                <div class="accordion" id="aiFaqAccordion">
+                    <div class="accordion-item border rounded-3 mb-3">
+                        <h2 class="accordion-header" id="aiHeadOne">
+                            <button class="accordion-button fw-bold text-dark collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#aiCollapseOne" aria-expanded="false" aria-controls="aiCollapseOne">
+                                @(tr ? "Pika AI Asistanı insan onayı olmadan mesaj gönderir mi?" : "Does Pika AI Assistant send messages autonomously without human review?")
+                            </button>
+                        </h2>
+                        <div id="aiCollapseOne" class="accordion-collapse collapse" aria-labelledby="aiHeadOne" data-bs-parent="#aiFaqAccordion">
+                            <div class="accordion-body small text-secondary">
+                                @(tr ? "Kesinlikle hayır. Pika AI bir taslak üreticisidir (co-pilot). Oluşturulan hedef kitle, kanal, metin ve görsel şablonlar yetkili pazarlama kullanıcısının denetimine ve onayına sunulur; insan onayı olmadan hiçbir gönderim tetiklenmez." : "Never. Pika AI functions as an assistive co-pilot. All generated segments, channels, copy, and templates require explicit human review and approval before dispatch.")
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border rounded-3 mb-3">
+                        <h2 class="accordion-header" id="aiHeadTwo">
+                            <button class="accordion-button fw-bold text-dark collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#aiCollapseTwo" aria-expanded="false" aria-controls="aiCollapseTwo">
+                                @(tr ? "AI Asistanı hangi içerik formatlarını üretebilir?" : "Which content formats can the AI Assistant generate?")
+                            </button>
+                        </h2>
+                        <div id="aiCollapseTwo" class="accordion-collapse collapse" aria-labelledby="aiHeadTwo" data-bs-parent="#aiFaqAccordion">
+                            <div class="accordion-body small text-secondary">
+                                @(tr ? "WhatsApp mesaj metinleri ve butonları, SMS metinleri, duyarlı (responsive) HTML E-posta şablonları, mobil push bildirimleri ve hedef kitle filtreleme kuralları üretebilir." : "It generates WhatsApp copy & CTA buttons, SMS messages, responsive HTML email templates, mobile push alerts, and audience rule sets.")
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border rounded-3 mb-3">
+                        <h2 class="accordion-header" id="aiHeadThree">
+                            <button class="accordion-button fw-bold text-dark collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#aiCollapseThree" aria-expanded="false" aria-controls="aiCollapseThree">
+                                @(tr ? "AI asistanı işletmenin geçmiş verilerini kullanır mı?" : "Does the AI assistant leverage historical business data?")
+                            </button>
+                        </h2>
+                        <div id="aiCollapseThree" class="accordion-collapse collapse" aria-labelledby="aiHeadThree" data-bs-parent="#aiFaqAccordion">
+                            <div class="accordion-body small text-secondary">
+                                @(tr ? "Evet. Pika veri tabanındaki RFM segmentleri, ürün kategorileri ve geçmiş kampanya etkileşim kalıpları bağlam olarak kullanılarak işletmeye özel, gerçekçi öneriler sunulur." : "Yes. It leverages RFM cohorts, catalog categories, and previous campaign response patterns to provide context-aware, hyper-relevant proposals.")
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border rounded-3 mb-3">
+                        <h2 class="accordion-header" id="aiHeadFour">
+                            <button class="accordion-button fw-bold text-dark collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#aiCollapseFour" aria-expanded="false" aria-controls="aiCollapseFour">
+                                @(tr ? "Üretilen HTML e-postalar mobil uyumlu mudur?" : "Are generated HTML emails responsive and mobile-friendly?")
+                            </button>
+                        </h2>
+                        <div id="aiCollapseFour" class="accordion-collapse collapse" aria-labelledby="aiHeadFour" data-bs-parent="#aiFaqAccordion">
+                            <div class="accordion-body small text-secondary">
+                                @(tr ? "Evet. Üretilen tüm e-posta taslakları modern mobil e-posta istemcileriyle tam uyumlu, temiz ve test edilmiş HTML/CSS blok yapısına sahiptir." : "Yes. All drafted email layouts utilize clean, responsive, client-tested HTML/CSS blocks.")
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── CHAPTER 8: CTA ──────────────────────────────────────────── *@
+<section class="ph-section ph-section-dark ph-cta-section">
+    <div class="container text-center" data-aos="fade-up">
+        <h2 class="ph-cta-title text-white mx-auto mb-3" style="max-width:680px">@(tr ? "Kampanya üretim sürenizi dakikalara indirin" : "Cut campaign production time down to seconds")</h2>
+        <p class="ph-cta-desc mx-auto mb-4" style="max-width:540px">@(tr ? "Pika Pilot AI kampanya asistanını canlı demoda test edin." : "Test Pika Pilot generative co-pilot in an interactive demo.")</p>
+        <button type="button" class="ph-btn-light" data-bs-toggle="modal" data-bs-target="#demoModal">
+            @(tr ? "Demo Talep Et" : "Request a Demo") <i class="ri-arrow-right-up-line"></i>
+        </button>
+    </div>
+</section>

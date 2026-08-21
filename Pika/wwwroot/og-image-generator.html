@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1200px;
+    height: 630px;
+    overflow: hidden;
+    background-color: #f7f9e8; /* ekran görüntüsündeki açık krem arka plan */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', Arial, sans-serif;
+  }
+
+  .card {
+    width: 1200px;
+    height: 630px;
+    background-color: #f7f9e8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    padding: 60px;
+  }
+
+  .logo {
+    height: 160px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .tagline {
+    font-size: 52px;
+    font-weight: 800;
+    color: #1a1a1a;
+    text-align: center;
+    line-height: 1.25;
+    max-width: 900px;
+    letter-spacing: -0.5px;
+  }
+
+  .domain {
+    font-size: 34px;
+    font-weight: 700;
+    color: #333;
+    letter-spacing: 0.5px;
+    margin-top: 8px;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <img class="logo" src="/web/assets/images/logo.png" alt="Pika Logo" />
+    <div class="tagline">Omnichannel Pazarlama Otomasyonu ve<br>Müşteri Yolculuğu Platformu</div>
+    <div class="domain">pika.tr</div>
+  </div>
+</body>
+</html>

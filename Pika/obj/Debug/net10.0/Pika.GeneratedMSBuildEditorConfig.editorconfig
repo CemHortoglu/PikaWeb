@@ -8,132 +8,245 @@ build_property.ProjectTypeGuids =
 build_property.InvariantGlobalization = 
 build_property.PlatformNeutralAssembly = 
 build_property.EnforceExtendedAnalyzerRules = 
+build_property.EntryPointFilePath = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Pika
 build_property.RootNamespace = Pika
-build_property.ProjectDir = C:\Projects\PikaWeb\Pika\
+build_property.ProjectDir = C:\Projects\pika.web\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
-build_property.RazorLangVersion = 9.0
+build_property.RazorLangVersion = 10.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Projects\PikaWeb\Pika
+build_property.MSBuildProjectDirectory = C:\Projects\pika.web
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 10.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Projects/PikaWeb/Pika/Views/Account/AccessDenied.cshtml]
+[C:/Projects/pika.web/Views/Account/AccessDenied.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxBY2Nlc3NEZW5pZWQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/PikaWeb/Pika/Views/Account/AngularLoginPost.cshtml]
+[C:/Projects/pika.web/Views/Account/AngularLoginPost.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxBbmd1bGFyTG9naW5Qb3N0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/PikaWeb/Pika/Views/Account/Login.cshtml]
+[C:/Projects/pika.web/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/PikaWeb/Pika/Views/Auth/Login.cshtml]
+[C:/Projects/pika.web/Views/Auth/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/PikaWeb/Pika/Views/Home/Contact.cshtml]
+[C:/Projects/pika.web/Views/ContactConsent/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdENvbnNlbnRcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/pika.web/Views/ContactConsent/NotFound.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdENvbnNlbnRcTm90Rm91bmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/pika.web/Views/Home/Career.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDYXJlZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/pika.web/Views/Home/Contact.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDb250YWN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/PikaWeb/Pika/Views/Home/Corporate.cshtml]
+[C:/Projects/pika.web/Views/Home/Corporate.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDb3Jwb3JhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/PikaWeb/Pika/Views/Home/DemoRequest.cshtml]
+[C:/Projects/pika.web/Views/Home/DemoRequest.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxEZW1vUmVxdWVzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/PikaWeb/Pika/Views/Home/Faq.cshtml]
+[C:/Projects/pika.web/Views/Home/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFcnJvci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/pika.web/Views/Home/Faq.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxGYXEuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/PikaWeb/Pika/Views/Home/Index.cshtml]
+[C:/Projects/pika.web/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/PikaWeb/Pika/Views/Home/Pika.cshtml]
+[C:/Projects/pika.web/Views/Home/NotFound404.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxOb3RGb3VuZDQwNC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/pika.web/Views/Home/Pika.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQaWthLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/PikaWeb/Pika/Views/Home/Pricing.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcmljaW5nLmNzaHRtbA==
+[C:/Projects/pika.web/Views/Home/PrivacyPolicy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5UG9saWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/PikaWeb/Pika/Views/Home/Solutions.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTb2x1dGlvbnMuY3NodG1s
+[C:/Projects/pika.web/Views/Home/TermsOfUse.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxUZXJtc09mVXNlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/PikaWeb/Pika/Views/Shared/_DemoRequestModal.cshtml]
+[C:/Projects/pika.web/Views/InternalWiki/Article.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW50ZXJuYWxXaWtpXEFydGljbGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/pika.web/Views/InternalWiki/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW50ZXJuYWxXaWtpXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/pika.web/Views/InternalWiki/_InternalWikiLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW50ZXJuYWxXaWtpXF9JbnRlcm5hbFdpa2lMYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/pika.web/Views/Platform/CustomerIntelligence.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGxhdGZvcm1cQ3VzdG9tZXJJbnRlbGxpZ2VuY2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/pika.web/Views/Platform/Opportunities.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGxhdGZvcm1cT3Bwb3J0dW5pdGllcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/pika.web/Views/Platform/Pika360.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGxhdGZvcm1cUGlrYTM2MC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/pika.web/Views/Platform/ProductIntelligence.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGxhdGZvcm1cUHJvZHVjdEludGVsbGlnZW5jZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/pika.web/Views/Shared/_CookieConsent.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Db29raWVDb25zZW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/pika.web/Views/Shared/_DemoRequestModal.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9EZW1vUmVxdWVzdE1vZGFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/PikaWeb/Pika/Views/Shared/_Layout.cshtml]
+[C:/Projects/pika.web/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/PikaWeb/Pika/Views/Solutions/ABTesting.cshtml]
+[C:/Projects/pika.web/Views/Shared/_LayoutBlank.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRCbGFuay5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/pika.web/Views/Solutions/ABTesting.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXEFCVGVzdGluZy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/PikaWeb/Pika/Views/Solutions/DataManagementEtl.cshtml]
+[C:/Projects/pika.web/Views/Solutions/AiCampaignAssistant.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXEFpQ2FtcGFpZ25Bc3Npc3RhbnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/pika.web/Views/Solutions/AudienceManager.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXEF1ZGllbmNlTWFuYWdlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/pika.web/Views/Solutions/CampaignManager.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXENhbXBhaWduTWFuYWdlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/pika.web/Views/Solutions/ConsentManagement.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXENvbnNlbnRNYW5hZ2VtZW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/pika.web/Views/Solutions/ContentStudio.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXENvbnRlbnRTdHVkaW8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/pika.web/Views/Solutions/DataManagementEtl.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXERhdGFNYW5hZ2VtZW50RXRsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/PikaWeb/Pika/Views/Solutions/DeliverabilityCompliance.cshtml]
+[C:/Projects/pika.web/Views/Solutions/DeliverabilityCompliance.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXERlbGl2ZXJhYmlsaXR5Q29tcGxpYW5jZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/PikaWeb/Pika/Views/Solutions/EmailMarketing.cshtml]
+[C:/Projects/pika.web/Views/Solutions/EcommerceAiCampaign.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXEVjb21tZXJjZUFpQ2FtcGFpZ24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/pika.web/Views/Solutions/EmailMarketing.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXEVtYWlsTWFya2V0aW5nLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/PikaWeb/Pika/Views/Solutions/Integrations.cshtml]
+[C:/Projects/pika.web/Views/Solutions/EmailMarketingTemplateStudio.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXEVtYWlsTWFya2V0aW5nVGVtcGxhdGVTdHVkaW8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/pika.web/Views/Solutions/Integrations.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXEludGVncmF0aW9ucy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/PikaWeb/Pika/Views/Solutions/Personalization.cshtml]
+[C:/Projects/pika.web/Views/Solutions/IysKvkkCompliance.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXEl5c0t2a2tDb21wbGlhbmNlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/pika.web/Views/Solutions/JourneyManager.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXEpvdXJuZXlNYW5hZ2VyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/pika.web/Views/Solutions/Personalization.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXFBlcnNvbmFsaXphdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/PikaWeb/Pika/Views/Solutions/PushNotifications.cshtml]
+[C:/Projects/pika.web/Views/Solutions/PushNotifications.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXFB1c2hOb3RpZmljYXRpb25zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/PikaWeb/Pika/Views/Solutions/RealTimeEventProcessing.cshtml]
+[C:/Projects/pika.web/Views/Solutions/RealTimeEventProcessing.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXFJlYWxUaW1lRXZlbnRQcm9jZXNzaW5nLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/PikaWeb/Pika/Views/Solutions/Reporting.cshtml]
+[C:/Projects/pika.web/Views/Solutions/Reporting.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXFJlcG9ydGluZy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/PikaWeb/Pika/Views/Solutions/SecurityPrivacy.cshtml]
+[C:/Projects/pika.web/Views/Solutions/SecurityPrivacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXFNlY3VyaXR5UHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/PikaWeb/Pika/Views/Solutions/SmsCampaigns.cshtml]
+[C:/Projects/pika.web/Views/Solutions/SmsCampaigns.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXFNtc0NhbXBhaWducy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/PikaWeb/Pika/Views/Solutions/TemplateManagement.cshtml]
+[C:/Projects/pika.web/Views/Solutions/TemplateManagement.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXFRlbXBsYXRlTWFuYWdlbWVudC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/PikaWeb/Pika/Views/Solutions/WhatsAppMessaging.cshtml]
+[C:/Projects/pika.web/Views/Solutions/UseCases.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXFVzZUNhc2VzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/pika.web/Views/Solutions/WhatsAppCampaignManagement.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXFdoYXRzQXBwQ2FtcGFpZ25NYW5hZ2VtZW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/pika.web/Views/Solutions/WhatsAppMessaging.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29sdXRpb25zXFdoYXRzQXBwTWVzc2FnaW5nLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/PikaWeb/Pika/Views/_ViewImports.cshtml]
+[C:/Projects/pika.web/Views/Wiki/Article.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV2lraVxBcnRpY2xlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/pika.web/Views/Wiki/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV2lraVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/pika.web/Views/Wiki/_WikiLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV2lraVxfV2lraUxheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/pika.web/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Projects/PikaWeb/Pika/Views/_ViewStart.cshtml]
+[C:/Projects/pika.web/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

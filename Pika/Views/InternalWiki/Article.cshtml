@@ -1,0 +1,76 @@
+@model Pika.Models.WikiArticleViewModel
+@{
+    Layout = "_InternalWikiLayout";
+    ViewData["Title"] = $"{Model.CurrentPage.Title} | Pika Internal Wiki";
+    ViewData["CurrentSlug"] = Model.CurrentPage.Slug;
+    ViewData["Categories"] = Model.Categories;
+}
+
+@section Breadcrumb {
+    <a href="/internal/wiki/"><i class="ri-shield-keyhole-line" style="margin-right:3px;"></i>Pika Dahili Wiki</a>
+    <span class="sep"><i class="ri-arrow-right-s-line"></i></span>
+    <span>@Model.CurrentPage.Section</span>
+    <span class="sep"><i class="ri-arrow-right-s-line"></i></span>
+    <span class="current">@Model.CurrentPage.Title</span>
+}
+
+@if (Model.TableOfContents.Count >= 2)
+{
+    <nav class="toc" aria-label="İçindekiler">
+        <div class="toc-title"><i class="ri-list-check-2"></i> İçindekiler</div>
+        <ul>
+            @foreach (var toc in Model.TableOfContents)
+            {
+                <li style="@(toc.Level == 3 ? "padding-left:12px;font-size:12.5px;" : "")">
+                    <a href="#@toc.Anchor">
+                        <span class="toc-hash">#</span>
+                        <span>@toc.Title</span>
+                    </a>
+                </li>
+            }
+        </ul>
+    </nav>
+}
+
+@Html.Raw(Model.CurrentPage.Html)
+
+@if (Model.RelatedPages.Count > 0)
+{
+    <section class="related-section" style="margin-top:48px;padding-top:32px;border-top:1px solid #cbd5e1;">
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:#0284c7;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:6px;">
+            <i class="ri-links-line"></i> İlgili Mühendislik Dokümanları
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;">
+            @foreach (var rel in Model.RelatedPages)
+            {
+                <a href="/internal/wiki/@rel.Slug" class="feature-card" style="text-decoration:none;display:block;padding:18px 20px;background:#fff;border:1px solid #cbd5e1;border-radius:14px;box-shadow:0 1px 3px rgba(0,0,0,0.05);transition:all .15s;">
+                    <span style="font-size:10.5px;color:#0284c7;font-weight:700;text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:4px;">@rel.Section</span>
+                    <strong style="font-size:14.5px;color:#0f172a;display:block;margin-bottom:4px;">@rel.Title</strong>
+                    <p style="font-size:12.5px;color:#64748b;margin:0;line-height:1.45;">@rel.Summary</p>
+                </a>
+            }
+        </div>
+    </section>
+}
+
+<div class="article-pagination" style="display:flex;justify-content:space-between;gap:16px;margin-top:48px;padding-top:24px;border-top:1px solid #cbd5e1;">
+    @if (Model.PreviousPage != null)
+    {
+        <a href="/internal/wiki/@Model.PreviousPage.Slug" style="display:flex;flex-direction:column;text-decoration:none;padding:12px 18px;border:1px solid #cbd5e1;border-radius:12px;background:#fff;max-width:48%;box-shadow:0 1px 3px rgba(0,0,0,0.05);">
+            <small style="color:#64748b;font-size:11px;text-transform:uppercase;font-weight:600;"><i class="ri-arrow-left-s-line"></i> Önceki Doküman</small>
+            <strong style="color:#0f172a;font-size:14px;margin-top:2px;">@Model.PreviousPage.Title</strong>
+        </a>
+    }
+    else
+    {
+        <div></div>
+    }
+
+    @if (Model.NextPage != null)
+    {
+        <a href="/internal/wiki/@Model.NextPage.Slug" style="display:flex;flex-direction:column;align-items:flex-end;text-align:right;text-decoration:none;padding:12px 18px;border:1px solid #cbd5e1;border-radius:12px;background:#fff;max-width:48%;box-shadow:0 1px 3px rgba(0,0,0,0.05);">
+            <small style="color:#64748b;font-size:11px;text-transform:uppercase;font-weight:600;">Sonraki Doküman <i class="ri-arrow-right-s-line"></i></small>
+            <strong style="color:#0f172a;font-size:14px;margin-top:2px;">@Model.NextPage.Title</strong>
+        </a>
+    }
+</div>

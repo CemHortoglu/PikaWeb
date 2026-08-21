@@ -1,55 +1,493 @@
-@{ ViewData["Title"] = "Pika"; }
+@{
+    var culture = (ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").ToLowerInvariant();
+    var tr = culture == "tr";
+    ViewData["Title"] = tr ? "Pika Nedir? | Müşteri Zekâsı ve Omnichannel Pazarlama Platformu" : "What is Pika? | Customer Intelligence & Omnichannel Marketing Platform";
+    ViewData["MetaDescription"] = tr
+        ? "Pika; müşteri, ürün ve satış verilerini anlamlandırarak işletmelerin doğru fırsatları bulmasını ve kontrollü çok kanallı aksiyonlara dönüştürmesini sağlayan müşteri zekâsı platformudur."
+        : "Pika is a customer intelligence and omnichannel marketing platform that unifies customer, product, and sales data to reveal actionable opportunities and drive controlled campaigns.";
+    ViewData["CanonicalUrl"] = tr ? "https://pika.tr/pika" : "https://pika.tr/en/pika";
+}
 
-<section class="pika-corp-hero">
+@section Styles {
+    <link href="~/css/pika-product.css" rel="stylesheet" />
+}
+
+<!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+<section class="pk-hero-section">
     <div class="container">
-        <div class="pika-corp-hero__grid">
-            <div>
-                <span class="pika-corp-chip" data-i18n="pika.chip"></span>
-                <h1 class="pika-corp-title" data-i18n="pika.h1"></h1>
-                <p class="pika-corp-lead" data-i18n="pika.lead"></p>
-                <div class="pika-corp-kpi-grid">
-                    <div class="pika-corp-kpi"><strong data-i18n="pika.kpi1v"></strong><span data-i18n="pika.kpi1l"></span></div>
-                    <div class="pika-corp-kpi"><strong data-i18n="pika.kpi2v"></strong><span data-i18n="pika.kpi2l"></span></div>
-                    <div class="pika-corp-kpi"><strong data-i18n="pika.kpi3v"></strong><span data-i18n="pika.kpi3l"></span></div>
+        <nav class="pk-breadcrumb" aria-label="breadcrumb">
+            <a href="@(tr ? "/" : "/en/")">Pika</a>
+            <span class="sep">/</span>
+            <span>@(tr ? "Pika Nedir?" : "What is Pika?")</span>
+        </nav>
+
+        <div class="row align-items-center g-5 pt-3">
+            <div class="col-lg-7">
+                <div class="pk-eyebrow">
+                    <span class="pk-pulse-dot"></span>
+                    <span>@(tr ? "DOĞRU ANDA MÜŞTERİ ZEKÂSI" : "CUSTOMER INTELLIGENCE AT THE RIGHT MOMENT")</span>
                 </div>
-                <div class="d-flex gap-2 flex-wrap mt-4">
-                    <button class="btn pika-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal" data-i18n="pika.demo"></button>
-                    <a class="btn pika-btn-ghost" href="@Url.Action("Contact", "Home")" data-i18n="pika.contact"></a>
+                <h1 class="pk-hero-title">
+                    @(tr ? "Veriyi anlayan, fırsatı bulan ve kontrollü aksiyona dönüştüren platform." : "The platform that understands data, finds opportunities, and drives controlled action.")
+                </h1>
+                <p class="pk-hero-lead">
+                    @(tr 
+                        ? "Pika; müşteri, ürün, satış ve etkileşim hareketlerini bir araya getirerek işletmenin hangi müşteride hangi fırsatın oluştuğunu görmesini ve bu fırsatı SMS, WhatsApp, E-posta ve Push kanallarında hedeflenen kampanyalara dönüştürmesini sağlar." 
+                        : "Pika unifies customer, product, transaction, and engagement data so your business can identify the right opportunities and execute targeted campaigns across SMS, WhatsApp, Email, and Push.")
+                </p>
+                <div class="pk-hero-cta-group">
+                    <button type="button" class="btn pika-btn-primary px-4 py-3" data-bs-toggle="modal" data-bs-target="#demoModal">
+                        @(tr ? "Canlı Demoyu İnceleyin" : "Request a Live Demo") <i class="ri-arrow-right-line ms-2"></i>
+                    </button>
+                    <a href="/wiki/pika-nasil-calisir" class="btn pika-btn-ghost px-4 py-3">
+                        @(tr ? "Nasıl Çalışır? (Wiki)" : "How It Works (Wiki)") <i class="ri-book-read-line ms-2"></i>
+                    </a>
                 </div>
             </div>
-            <aside class="pika-corp-aside">
-                <h3 data-i18n="pika.boardT"></h3>
-                <div class="pika-corp-aside-list">
-                    <div class="pika-corp-aside-item"><strong data-i18n="pika.boardL1"></strong><span data-i18n="pika.boardV1"></span></div>
-                    <div class="pika-corp-aside-item"><strong data-i18n="pika.boardL2"></strong><span data-i18n="pika.boardV2"></span></div>
-                    <div class="pika-corp-aside-item"><strong data-i18n="pika.boardL3"></strong><span data-i18n="pika.boardV3"></span></div>
-                    <div class="pika-corp-aside-item"><strong data-i18n="pika.boardL4"></strong><span data-i18n="pika.boardV4"></span></div>
+
+            <div class="col-lg-5">
+                <div class="pk-hero-card-preview shadow-sm">
+                    <div class="pk-preview-header">
+                        <div class="pk-window-dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                        <span class="pk-preview-tag">@(tr ? "Pika Karar Mimarisi" : "Pika Decision Architecture")</span>
+                    </div>
+                    <div class="pk-chain-flow p-3">
+                        <div class="pk-chain-step">
+                            <div class="pk-chain-icon" style="background:#e8f5e9;color:#2e7d32"><i class="ri-database-2-line"></i></div>
+                            <div class="pk-chain-body">
+                                <div class="pk-chain-title">1. @(tr ? "Veri & Entegrasyon" : "Data & Sync")</div>
+                                <div class="pk-chain-desc">@(tr ? "Müşteri, ürün ve satış verileri" : "Customer, product & sales sync")</div>
+                            </div>
+                        </div>
+                        <div class="pk-chain-arrow"><i class="ri-arrow-down-s-line"></i></div>
+                        <div class="pk-chain-step">
+                            <div class="pk-chain-icon" style="background:#e0f2fe;color:#0284c7"><i class="ri-brain-line"></i></div>
+                            <div class="pk-chain-body">
+                                <div class="pk-chain-title">2. @(tr ? "Müşteri & Ürün Zekâsı" : "Customer & Product Intelligence")</div>
+                                <div class="pk-chain-desc">@(tr ? "Pika 360, RFM, ürün rolleri ve segmentler" : "Pika 360, RFM & product roles")</div>
+                            </div>
+                        </div>
+                        <div class="pk-chain-arrow"><i class="ri-arrow-down-s-line"></i></div>
+                        <div class="pk-chain-step pk-chain-step--highlight">
+                            <div class="pk-chain-icon" style="background:#fff3e0;color:#f57c00"><i class="ri-focus-3-line"></i></div>
+                            <div class="pk-chain-body">
+                                <div class="pk-chain-title">3. @(tr ? "Günün Fırsatları" : "Daily Opportunities")</div>
+                                <div class="pk-chain-desc">@(tr ? "Tekrar satın alma, pasifleşme ve cross-sell" : "Repurchase, churn risk & cross-sell")</div>
+                            </div>
+                        </div>
+                        <div class="pk-chain-arrow"><i class="ri-arrow-down-s-line"></i></div>
+                        <div class="pk-chain-step">
+                            <div class="pk-chain-icon" style="background:#f3e8ff;color:#7c3aed"><i class="ri-route-line"></i></div>
+                            <div class="pk-chain-body">
+                                <div class="pk-chain-title">4. @(tr ? "Kontrollü Kampanya & Journey" : "Controlled Campaign & Journey")</div>
+                                <div class="pk-chain-desc">@(tr ? "Yönetici onayı, izin kontrolü ve kanallar" : "Manager control, consent & delivery")</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </aside>
+            </div>
         </div>
     </div>
 </section>
 
-<section class="pika-section pika-corp-section">
+<!-- ═══════════════════════════ CHAPTER 1: PIKA IS NOT JUST A SENDING TOOL ═══════════════════════════ -->
+<section class="pk-section pk-section-light">
     <div class="container">
-        <div class="pika-corp-card-grid">
-            <article class="pika-corp-card"><h3 data-i18n="pika.f1t"></h3><p data-i18n="pika.f1d"></p></article>
-            <article class="pika-corp-card"><h3 data-i18n="pika.f2t"></h3><p data-i18n="pika.f2d"></p></article>
-            <article class="pika-corp-card"><h3 data-i18n="pika.f3t"></h3><p data-i18n="pika.f3d"></p></article>
+        <div class="pk-section-header text-center mx-auto" style="max-width:820px">
+            <span class="pk-badge-sub">@(tr ? "BÜTÜNLEŞİK YAKLAŞIM" : "UNIFIED APPROACH")</span>
+            <h2 class="pk-section-h2">@(tr ? "Pika yalnızca mesaj gönderen bir araç değildir." : "Pika is not just a message sending tool.")</h2>
+            <p class="pk-section-lead">
+                @(tr 
+                    ? "Geleneksel araçlar veri analitiği, kitle segmentasyonu, kampanya tasarımı ve kanal gönderimini birbirinden kopuk adımlarla yürütür. Pika, bu zinciri tek bir karar mimarisinde birleştirir."
+                    : "Traditional tools treat data analytics, segmentation, campaign creation, and delivery as disconnected silos. Pika connects every step into a unified decision workflow.")
+            </p>
         </div>
 
-        <div class="pika-cta-card pika-cta-card--pika mt-5">
-            <div class="pika-cta-card__badge">Pika Enterprise</div>
-            <h3 data-i18n="pika.ctaT"></h3>
-            <p class="pika-cta-card__desc" data-i18n="pika.ctaD"></p>
-            <ul class="pika-cta-card__list mb-4">
-                <li data-i18n="pika.ctaL1"></li>
-                <li data-i18n="pika.ctaL2"></li>
-                <li data-i18n="pika.ctaL3"></li>
-                <li data-i18n="pika.ctaL4"></li>
-            </ul>
-            <div class="pika-cta-card__actions">
-                <button class="btn pika-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal" data-i18n="pika.ctaB"></button>
+        <div class="row g-4 mt-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="pk-compare-card pk-card-dim">
+                    <div class="pk-card-status"><i class="ri-close-circle-fill text-danger"></i> @(tr ? "Yalnızca Mesajlaşma Değil" : "Not Just Messaging")</div>
+                    <h4>@(tr ? "Gönderim Araçları" : "Standalone Senders")</h4>
+                    <p>@(tr ? "Yalnızca listenizi yükleyip mesaj attığınız, müşterinin ne zaman neye ihtiyaç duyduğunu bilmeyen statik araçlar." : "Static delivery systems that blast lists without understanding customer timing or need.")</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="pk-compare-card pk-card-dim">
+                    <div class="pk-card-status"><i class="ri-close-circle-fill text-danger"></i> @(tr ? "Yalnızca Rapor Değil" : "Not Just BI")</div>
+                    <h4>@(tr ? "İzole BI Panoları" : "Isolated Dashboards")</h4>
+                    <p>@(tr ? "Geçmiş veriyi grafiklere döken ancak aksiyona geçmek için tekrar dışa aktarım ve manuel iş gücü gerektiren paneller." : "Dashboards that display charts but require manual CSV exports and manual segmentation to act.")</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="pk-compare-card pk-card-dim">
+                    <div class="pk-card-status"><i class="ri-close-circle-fill text-danger"></i> @(tr ? "Yalnızca Metin Üretimi Değil" : "Not Just AI Copy")</div>
+                    <h4>@(tr ? "Bağlamsız AI Araçları" : "Unanchored AI Copy")</h4>
+                    <p>@(tr ? "Müşteri verisi ve ürün bağlamı olmadan jenerik metin üreten, iş hedeflerine doğrudan bağlı olmayan yapılar." : "Generic text generators lacking customer history, product context, or verified business signals.")</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="pk-compare-card pk-card-active">
+                    <div class="pk-card-status"><i class="ri-checkbox-circle-fill text-success"></i> @(tr ? "Pika Yaklaşımı" : "The Pika Approach")</div>
+                    <h4>@(tr ? "Müşteri & Ürün Zekâsı" : "Intelligence to Action")</h4>
+                    <p>@(tr ? "Veriyi işler, fırsatı yakalar, hedef kitleyi belirler, doğru kanaldan yönetici kontrolüyle aksiyona dönüştürür ve sonucu ölçer." : "Ingests data, detects verified opportunities, selects audiences, executes under manager control, and measures impact.")</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ CHAPTER 2: WHAT PIKA UNDERSTANDS ═══════════════════════════ -->
+<section class="pk-section">
+    <div class="container">
+        <div class="pk-section-header">
+            <span class="pk-badge-sub">@(tr ? "1. KATMAN: ANLAMA" : "LAYER 1: UNDERSTANDING")</span>
+            <h2 class="pk-section-h2">@(tr ? "Pika veriyi nasıl anlamlandırır?" : "How Pika understands your data")</h2>
+            <p class="pk-section-lead">
+                @(tr 
+                    ? "İşletmenizin satış hareketleri, ürün kataloğu ve müşteri etkileşimleri üç temel zekâ modülünde analiz edilir."
+                    : "Your transactions, catalog, and interactions are contextualized across three core intelligence modules.")
+            </p>
+        </div>
+
+        <div class="row g-4 mt-2">
+            <div class="col-lg-4">
+                <div class="pk-feature-box h-100">
+                    <div class="pk-box-icon" style="background:#e0f2fe;color:#0284c7"><i class="ri-user-search-line"></i></div>
+                    <h3>Customer Intelligence</h3>
+                    <p class="text-muted">
+                        @(tr 
+                            ? "Müşteri satın alma sıklığı, harcama tutarları, son ziyaret aralıkları (RFM) ve müşteri yaşam boyu değeri (LTV) gibi davranışsal kalıpları hesaplar."
+                            : "Analyzes purchase frequency, monetary value, recency (RFM), and customer lifetime value patterns to identify customer segments.")
+                    </p>
+                    <ul class="pk-feature-list">
+                        <li><i class="ri-check-line"></i> @(tr ? "Aktif, riskli ve uyuyan müşteri segmentleri" : "Active, at-risk, and inactive segments")</li>
+                        <li><i class="ri-check-line"></i> @(tr ? "Müşteri bazında ortalama sepet ve harcama trendi" : "Average basket value & spend trends")</li>
+                    </ul>
+                    <a href="@(tr ? "/platform/customer-intelligence" : "/en/platform/customer-intelligence")" class="pk-learn-more">
+                        @(tr ? "Customer Intelligence İncele" : "Explore Customer Intelligence") <i class="ri-arrow-right-s-line"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="pk-feature-box h-100">
+                    <div class="pk-box-icon" style="background:#fef3c7;color:#d97706"><i class="ri-shopping-bag-3-line"></i></div>
+                    <h3>Product Intelligence</h3>
+                    <p class="text-muted">
+                        @(tr 
+                            ? "Ürünlerin portföydeki rollerini (Need Group, Giriş Ürünü, Çapraz Satış Tamamlayıcısı, Tekrar Tüketim) ve birlikte satın alma ilişkilerini haritalandırır."
+                            : "Maps product roles across your catalog (Need Groups, Entry Products, Cross-sell Complements, Repurchase Cycles) and co-purchase dynamics.")
+                    </p>
+                    <ul class="pk-feature-list">
+                        <li><i class="ri-check-line"></i> @(tr ? "Tekrar tüketim döngüleri (ör. 30/45 günlük ürünler)" : "Repurchase cycles (e.g. 30/45-day consumption)")</li>
+                        <li><i class="ri-check-line"></i> @(tr ? "Birlikte satın alınan ürün korelasyonları" : "Affinity and co-purchase correlation")</li>
+                    </ul>
+                    <a href="@(tr ? "/platform/product-intelligence" : "/en/platform/product-intelligence")" class="pk-learn-more">
+                        @(tr ? "Product Intelligence İncele" : "Explore Product Intelligence") <i class="ri-arrow-right-s-line"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="pk-feature-box h-100">
+                    <div class="pk-box-icon" style="background:#f3e8ff;color:#7c3aed"><i class="ri-user-heart-line"></i></div>
+                    <h3>Pika 360</h3>
+                    <p class="text-muted">
+                        @(tr 
+                            ? "Her bir müşteri için tekil bir karar kartı oluşturur. Müşterinin geçmiş siparişleri, ilgilendiği ürünler, izin durumu ve güncel fırsatları tek ekranda toplanır."
+                            : "Constructs a unified decision profile for every customer: purchase history, product interests, consent status, and active opportunities.")
+                    </p>
+                    <ul class="pk-feature-list">
+                        <li><i class="ri-check-line"></i> @(tr ? "Müşteri özet kartı ve Next Best Action önerisi" : "Unified summary card & Next Best Action signal")</li>
+                        <li><i class="ri-check-line"></i> @(tr ? "Kanal tercihleri ve IYS izin durumu" : "Channel preferences & IYS consent status")</li>
+                    </ul>
+                    <a href="@(tr ? "/platform/pika-360" : "/en/platform/pika-360")" class="pk-learn-more">
+                        @(tr ? "Pika 360 İncele" : "Explore Pika 360") <i class="ri-arrow-right-s-line"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ CHAPTER 3: WHAT PIKA FINDS (GÜNÜN FIRSATLARI) ═══════════════════════════ -->
+<section class="pk-section pk-section-alt">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <span class="pk-badge-sub">@(tr ? "2. KATMAN: FIRSAT TESPİTİ" : "LAYER 2: OPPORTUNITY DISCOVERY")</span>
+                <h2 class="pk-section-h2">@(tr ? "Günün Fırsatları: Karar motoru ne bulur?" : "Daily Opportunities: What the engine discovers")</h2>
+                <p class="pk-section-lead">
+                    @(tr 
+                        ? "Pika verinizi arka planda sürekli tarayarak işletmeniz için gelir potansiyeli taşıyan gerçek müşteri fırsatlarını gün yüzüne çıkarır."
+                        : "Pika continuously analyzes transactions to surface concrete, high-potential revenue opportunities daily.")
+                </p>
+
+                <div class="pk-opp-item">
+                    <div class="pk-opp-icon"><i class="ri-refresh-line"></i></div>
+                    <div>
+                        <h5>@(tr ? "Tekrar Satın Alma Fırsatları" : "Repurchase Timing Opportunities")</h5>
+                        <p class="small text-muted mb-0">@(tr ? "Tüketim süresi dolmak üzere olan ve geçmiş alışveriş ritmine göre yeniden almaya hazır müşteriler." : "Customers nearing the end of product usage cycles based on historical frequency.")</p>
+                    </div>
+                </div>
+
+                <div class="pk-opp-item">
+                    <div class="pk-opp-icon"><i class="ri-link"></i></div>
+                    <div>
+                        <h5>@(tr ? "Çapraz Satış (Cross-sell) Sinyalleri" : "Cross-Sell Affinity Signals")</h5>
+                        <p class="small text-muted mb-0">@(tr ? "Belirli bir ana ürünü almış ancak tamamlayıcı ürünü henüz satın almamış müşteri kitleleri." : "Customers who bought a primary product but have not yet purchased the complementary item.")</p>
+                    </div>
+                </div>
+
+                <div class="pk-opp-item">
+                    <div class="pk-opp-icon"><i class="ri-user-unfollow-line"></i></div>
+                    <div>
+                        <h5>@(tr ? "Pasifleşme Riski ve Geri Kazanım" : "Churn Risk & Win-back")</h5>
+                        <p class="small text-muted mb-0">@(tr ? "Alışveriş aralığı normal rutininin dışına çıkan değerli müşterilerin erken tespiti." : "High-value customers whose purchasing rhythm has started drifting outside their regular pattern.")</p>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <a href="@(tr ? "/platform/firsatlar" : "/en/platform/opportunities")" class="btn pika-btn-primary px-4 py-2">
+                        @(tr ? "Günün Fırsatları Motorunu İnceleyin" : "Explore Opportunity Engine") <i class="ri-arrow-right-line ms-1"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="pk-mockup-panel shadow-sm">
+                    <div class="pk-panel-header">
+                        <span class="fw-bold"><i class="ri-focus-3-line text-warning me-2"></i>@(tr ? "Günün Fırsatları Paneli" : "Daily Opportunities Feed")</span>
+                        <span class="badge bg-success-subtle text-success">@(tr ? "Canlı Örnek" : "Live Sample")</span>
+                    </div>
+                    <div class="p-3">
+                        <div class="pk-mock-card">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <span class="badge bg-primary-subtle text-primary">@(tr ? "Tekrar Satın Alma" : "Repurchase")</span>
+                                <span class="small text-muted">142 @(tr ? "Müşteri" : "Customers")</span>
+                            </div>
+                            <h6 class="mb-1">@(tr ? "Kahve Çekirdeği Yenileme Zamanı" : "Coffee Beans Replenishment Cycle")</h6>
+                            <p class="small text-muted mb-2">@(tr ? "Son siparişten bu yana 28 gün geçti. Ortalama tüketim ritmi 30 gün." : "28 days since last order. Average consumption rhythm is 30 days.")</p>
+                            <div class="d-flex gap-2">
+                                <span class="btn btn-sm btn-outline-primary py-0 px-2" style="font-size:0.75rem">@(tr ? "Kampanya Başlat" : "Start Campaign")</span>
+                                <span class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.75rem">@(tr ? "Kitleyi İncele" : "View Audience")</span>
+                            </div>
+                        </div>
+
+                        <div class="pk-mock-card mt-3">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <span class="badge bg-warning-subtle text-warning">@(tr ? "Çapraz Satış" : "Cross-sell")</span>
+                                <span class="small text-muted">89 @(tr ? "Müşteri" : "Customers")</span>
+                            </div>
+                            <h6 class="mb-1">@(tr ? "Filtre Kağıdı & Temizleme Kiti Önerisi" : "Filter Paper & Cleaning Kit Add-on")</h6>
+                            <p class="small text-muted mb-2">@(tr ? "Espresso makinesi alan ve aksesuar almamış müşteriler." : "Purchased espresso machine without complementary accessories.")</p>
+                            <div class="d-flex gap-2">
+                                <span class="btn btn-sm btn-outline-primary py-0 px-2" style="font-size:0.75rem">@(tr ? "Kampanya Başlat" : "Start Campaign")</span>
+                                <span class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.75rem">@(tr ? "Kitleyi İncele" : "View Audience")</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ CHAPTER 4: HOW PIKA TURNS INTELLIGENCE INTO ACTION ═══════════════════════════ -->
+<section class="pk-section">
+    <div class="container">
+        <div class="pk-section-header text-center mx-auto" style="max-width:820px">
+            <span class="pk-badge-sub">@(tr ? "3. KATMAN: KONTROLLÜ AKSİYON" : "LAYER 3: CONTROLLED ACTION")</span>
+            <h2 class="pk-section-h2">@(tr ? "Fırsattan kampanyaya: Yönetici kontrolünde aksiyon" : "From opportunity to action: Under manager control")</h2>
+            <p class="pk-section-lead">
+                @(tr 
+                    ? "Pika kontrolsüz veya özerk kararlar vermez. Tüm kurgular, kitle seçimleri ve içerikler işletme yöneticisinin inceleme ve onay mekanizmasıyla çalışır."
+                    : "Pika never executes uncontrolled or autonomous actions. All campaigns, segmentations, and content remain strictly under manager supervision and approval.")
+            </p>
+        </div>
+
+        <div class="row g-4 mt-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="pk-action-card">
+                    <div class="pk-action-icon"><i class="ri-group-line"></i></div>
+                    <h4>Audience Manager</h4>
+                    <p>@(tr ? "Dinamik filtreler, RFM skorları ve alışveriş kriterlerine göre kesin hedef kitleler oluşturun." : "Build precise audiences using dynamic behavioral criteria, RFM scores, and purchase parameters.")</p>
+                    <a href="@(tr ? "/cozumler/audience-manager" : "/en/solutions/audience-manager")" class="pk-link-sub">@(tr ? "Audience Manager →" : "Audience Manager →")</a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="pk-action-card">
+                    <div class="pk-action-icon"><i class="ri-megaphone-line"></i></div>
+                    <h4>Campaign Manager</h4>
+                    <p>@(tr ? "Tek seferlik veya periyodik kampanyaları hızlıca tasarlayın, zamanlayın ve onaylayıp başlatın." : "Design, schedule, review, and trigger one-off or scheduled multi-channel campaigns.")</p>
+                    <a href="@(tr ? "/cozumler/campaign-manager" : "/en/solutions/campaign-manager")" class="pk-link-sub">@(tr ? "Campaign Manager →" : "Campaign Manager →")</a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="pk-action-card">
+                    <div class="pk-action-icon"><i class="ri-route-line"></i></div>
+                    <h4>Journey Manager</h4>
+                    <p>@(tr ? "Olay ve tetikleyici bazlı, çok adımlı müşteri yolculukları ve otomasyon akışları kurgulayın." : "Design event-driven, multi-step customer journeys and adaptive automation flows.")</p>
+                    <a href="@(tr ? "/cozumler/journey-manager" : "/en/solutions/journey-manager")" class="pk-link-sub">@(tr ? "Journey Manager →" : "Journey Manager →")</a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="pk-action-card">
+                    <div class="pk-action-icon"><i class="ri-magic-line"></i></div>
+                    <h4>Content &amp; AI Asistanı</h4>
+                    <p>@(tr ? "Hazır şablonlar ve AI destekli metin önerileri ile kampanya içeriklerinizi hızla hazırlayın." : "Draft high-converting copy and responsive email templates with AI-assisted creative tools.")</p>
+                    <a href="@(tr ? "/urunler/ai-kampanya-asistani" : "/en/products/ai-campaign-assistant")" class="pk-link-sub">@(tr ? "AI Asistanı →" : "AI Assistant →")</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Channels Grid -->
+        <div class="pk-channels-strip mt-5 p-4 rounded-4 bg-light border">
+            <div class="row align-items-center g-3">
+                <div class="col-lg-4">
+                    <h5 class="mb-1">@(tr ? "Doğrulanmış İletişim Kanalları" : "Verified Delivery Channels")</h5>
+                    <p class="small text-muted mb-0">@(tr ? "İzinli ve KVKK/İYS uyumlu gönderim altyapısı." : "Permission-based delivery compliant with consent regulations.")</p>
+                </div>
+                <div class="col-lg-8">
+                    <div class="d-flex flex-wrap gap-2 justify-content-lg-end">
+                        <a href="@(tr ? "/kanallar/whatsapp" : "/en/channels/whatsapp")" class="btn btn-sm btn-white border px-3 py-2">
+                            <i class="ri-whatsapp-line text-success me-1"></i> WhatsApp
+                        </a>
+                        <a href="@(tr ? "/kanallar/sms" : "/en/channels/sms")" class="btn btn-sm btn-white border px-3 py-2">
+                            <i class="ri-message-2-line text-primary me-1"></i> SMS
+                        </a>
+                        <a href="@(tr ? "/kanallar/email" : "/en/channels/email")" class="btn btn-sm btn-white border px-3 py-2">
+                            <i class="ri-mail-line text-warning me-1"></i> Email
+                        </a>
+                        <a href="@(tr ? "/kanallar/push" : "/en/channels/push")" class="btn btn-sm btn-white border px-3 py-2">
+                            <i class="ri-notification-3-line text-danger me-1"></i> Push
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ CHAPTER 5: MEASUREMENT ═══════════════════════════ -->
+<section class="pk-section pk-section-light">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <span class="pk-badge-sub">@(tr ? "4. KATMAN: ÖLÇÜM & ANALİTİK" : "LAYER 4: MEASUREMENT & ANALYTICS")</span>
+                <h2 class="pk-section-h2">@(tr ? "Gönderimden ciroya gerçek etkiyi görün" : "Measure real business impact from send to revenue")</h2>
+                <p class="pk-section-lead">
+                    @(tr 
+                        ? "Pika yalnızca mesaj iletim sayılarını değil; kampanya bazında açılma, tıklama, sepet oluşturma ve sipariş dönüşüm metriklerini raporlar."
+                        : "Pika reports not just delivery receipts, but campaign-level opens, clicks, cart completions, and direct revenue conversions.")
+                </p>
+                <ul class="pk-feature-list mt-3">
+                    <li><i class="ri-check-double-line text-success"></i> @(tr ? "Kampanya ve kanal bazında dönüşüm oranları" : "Conversion rates by campaign and channel")</li>
+                    <li><i class="ri-check-double-line text-success"></i> @(tr ? "Fırsatların ciroya ve tekrar satın almaya katkısı" : "Opportunity revenue attribution & repurchase lift")</li>
+                    <li><i class="ri-check-double-line text-success"></i> @(tr ? "Opt-out ve izin hareketlerinin izlenmesi" : "Opt-out tracking & consent health auditing")</li>
+                </ul>
+                <div class="mt-4">
+                    <a href="@(tr ? "/cozumler/analytics-reporting" : "/en/solutions/analytics-reporting")" class="pk-learn-more">
+                        @(tr ? "Analytics & Reporting Modülünü İnceleyin" : "Explore Analytics & Reporting") <i class="ri-arrow-right-s-line"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="pk-metric-grid">
+                    <div class="pk-metric-box">
+                        <div class="pk-metric-num">6</div>
+                        <div class="pk-metric-label">@(tr ? "Karar Zinciri Adımı" : "Decision Chain Steps")</div>
+                    </div>
+                    <div class="pk-metric-box">
+                        <div class="pk-metric-num">4</div>
+                        <div class="pk-metric-label">@(tr ? "Entegre İletişim Kanalı" : "Integrated Channels")</div>
+                    </div>
+                    <div class="pk-metric-box">
+                        <div class="pk-metric-num">360°</div>
+                        <div class="pk-metric-label">@(tr ? "Müşteri Karar Profili" : "Customer Decision Profile")</div>
+                    </div>
+                    <div class="pk-metric-box">
+                        <div class="pk-metric-num">100%</div>
+                        <div class="pk-metric-label">@(tr ? "Yönetici Kontrolü" : "Manager Controlled")</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ CHAPTER 6: WHO IS PIKA FOR? ═══════════════════════════ -->
+<section class="pk-section">
+    <div class="container">
+        <div class="pk-section-header text-center mx-auto" style="max-width:820px">
+            <span class="pk-badge-sub">@(tr ? "HEDEF PROFİL" : "TARGET FIT")</span>
+            <h2 class="pk-section-h2">@(tr ? "Pika kimler için uygundur?" : "Who is Pika for?")</h2>
+            <p class="pk-section-lead">
+                @(tr 
+                    ? "Müşteri tabanı büyüyen, elindeki işlem verisinden değer üretmek ve çok kanallı iletişimi merkezi olarak yönetmek isteyen işletmeler için tasarlanmıştır."
+                    : "Designed for businesses seeking to unlock the value in their transaction data and centrally manage multi-channel marketing.")
+            </p>
+        </div>
+
+        <div class="row g-4 mt-4">
+            <div class="col-lg-4">
+                <div class="pk-fit-card">
+                    <div class="pk-fit-icon"><i class="ri-store-2-line"></i></div>
+                    <h4>@(tr ? "Perakende & E-Ticaret" : "Retail & E-Commerce")</h4>
+                    <p>@(tr ? "Binlerce SKU ve geniş müşteri portföyünde tekrar satın alma ritimlerini, sepet tamamlayıcılarını ve pasif müşteri risklerini yakalamak isteyen markalar." : "Brands managing thousands of SKUs aiming to capture repurchase cycles, cart complements, and churn prevention.")</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="pk-fit-card">
+                    <div class="pk-fit-icon"><i class="ri-building-line"></i></div>
+                    <h4>@(tr ? "B2B & Dağıtım Ağları" : "B2B & Distribution Networks")</h4>
+                    <p>@(tr ? "Bayi ve kurumsal müşterilerin düzenli sipariş döngülerini takip etmek, sipariş aralıkları açılan müşterilere zamanında teklif sunmak isteyen firmalar." : "Businesses tracking regular order frequencies across corporate clients and distributors to trigger timely outreach.")</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="pk-fit-card">
+                    <div class="pk-fit-icon"><i class="ri-repeat-2-line"></i></div>
+                    <h4>@(tr ? "Tekrarlayan Tüketim Sektörleri" : "Recurring Consumption Sectors")</h4>
+                    <p>@(tr ? "Kozmetik, gıda, evcil hayvan ürünleri ve sarf malzemeleri gibi periyodik tüketimi olan ürün gruplarında doğru anda hatırlatma yapmak isteyen ekipler." : "Teams in cosmetics, food, pet care, and consumables where timing repeat purchases directly drives revenue.")</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ CTA & DEEP WIKI LINKS ═══════════════════════════ -->
+<section class="pk-cta-section">
+    <div class="container">
+        <div class="pk-cta-card text-center p-5 rounded-4 text-white">
+            <h2 class="text-white mb-3">@(tr ? "Pika ile Müşteri Zekâsını Harekete Geçirin" : "Activate Customer Intelligence with Pika")</h2>
+            <p class="mx-auto mb-4" style="max-width:680px;color:#d1e7dd">
+                @(tr 
+                    ? "İşletmenizin verilerini Pika'da canlı görün. 15 dakikalık demo görüşmesinde ihtiyacınıza özel akışları birlikte inceleyelim."
+                    : "Experience your customer data live in Pika. Schedule a 15-minute tailored walkthrough with our solution team.")
+            </p>
+            <div class="d-flex flex-wrap justify-content-center gap-3">
+                <button type="button" class="btn btn-light btn-lg px-4 py-3 fw-bold text-success" data-bs-toggle="modal" data-bs-target="#demoModal">
+                    @(tr ? "Demo Talep Edin" : "Request a Demo") <i class="ri-arrow-right-line ms-1"></i>
+                </button>
+                <a href="/wiki/" class="btn btn-outline-light btn-lg px-4 py-3">
+                    @(tr ? "Pika Bilgi Bankası (Wiki)" : "Pika Knowledge Base (Wiki)") <i class="ri-book-2-line ms-1"></i>
+                </a>
+            </div>
+
+            <div class="pk-wiki-quick-links mt-4 pt-3 border-top border-white border-opacity-25 d-flex flex-wrap justify-content-center gap-3">
+                <span class="small text-white-50">@(tr ? "Önerilen Dokümantasyon:" : "Recommended Documentation:")</span>
+                <a href="/wiki/pika-nedir" class="small text-white text-decoration-underline">Pika Nedir?</a>
+                <span class="text-white-50">•</span>
+                <a href="/wiki/pika-nasil-calisir" class="small text-white text-decoration-underline">Pika Nasıl Çalışır?</a>
+                <span class="text-white-50">•</span>
+                <a href="/wiki/urun-haritasi" class="small text-white text-decoration-underline">Ürün Haritası</a>
+                <span class="text-white-50">•</span>
+                <a href="/wiki/gunun-firsatlari-ve-karar-motoru" class="small text-white text-decoration-underline">Günün Fırsatları Kılavuzu</a>
             </div>
         </div>
     </div>

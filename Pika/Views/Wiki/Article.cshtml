@@ -1,0 +1,130 @@
+@model Pika.Models.WikiArticleViewModel
+@{
+    Layout = "_WikiLayout";
+    ViewData["Title"] = $"{Model.CurrentPage.Title} | Pika Bilgi Bankası";
+    ViewData["Description"] = Model.CurrentPage.Summary;
+    ViewData["CanonicalUrl"] = Model.CanonicalUrl;
+    ViewData["CurrentSlug"] = Model.CurrentPage.Slug;
+    ViewData["Categories"] = Model.Categories;
+    ViewData["ArticleTitle"] = Model.CurrentPage.Title;
+}
+
+@section Breadcrumb {
+    <a href="/wiki/"><i class="ri-book-2-line" style="margin-right:3px;"></i>Pika Bilgi Bankası</a>
+    <span class="sep"><i class="ri-arrow-right-s-line"></i></span>
+    <span>@Model.CurrentPage.Section</span>
+    <span class="sep"><i class="ri-arrow-right-s-line"></i></span>
+    <span class="current">@Model.CurrentPage.Title</span>
+}
+
+@section StructuredData {
+    <script type="application/ld+json">
+    {
+        "@@context": "https://schema.org",
+        "@@type": "TechArticle",
+        "headline": @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.CurrentPage.Title)),
+        "description": @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.CurrentPage.Summary)),
+        "url": @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.CanonicalUrl)),
+        "inLanguage": "tr",
+        "articleSection": @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.CurrentPage.Section)),
+        "publisher": {
+            "@@type": "Organization",
+            "name": "Pika",
+            "url": "https://pika.tr"
+        }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@@context": "https://schema.org",
+        "@@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@@type": "ListItem",
+                "position": 1,
+                "name": "Ana Sayfa",
+                "item": "https://pika.tr/"
+            },
+            {
+                "@@type": "ListItem",
+                "position": 2,
+                "name": "Pika Bilgi Bankası",
+                "item": "https://pika.tr/wiki/"
+            },
+            {
+                "@@type": "ListItem",
+                "position": 3,
+                "name": @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.CurrentPage.Section)),
+                "item": "https://pika.tr/wiki/"
+            },
+            {
+                "@@type": "ListItem",
+                "position": 4,
+                "name": @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.CurrentPage.Title)),
+                "item": @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.CanonicalUrl))
+            }
+        ]
+    }
+    </script>
+}
+
+@if (Model.TableOfContents.Count >= 2)
+{
+    <nav class="toc" aria-label="İçindekiler">
+        <div class="toc-title"><i class="ri-list-check-2"></i> İçindekiler</div>
+        <ul>
+            @foreach (var toc in Model.TableOfContents)
+            {
+                <li style="@(toc.Level == 3 ? "padding-left:12px;font-size:12.5px;" : "")">
+                    <a href="#@toc.Anchor">
+                        <span class="toc-hash">#</span>
+                        <span>@toc.Title</span>
+                    </a>
+                </li>
+            }
+        </ul>
+    </nav>
+}
+
+@Html.Raw(Model.CurrentPage.Html)
+
+@if (Model.RelatedPages.Count > 0)
+{
+    <section class="related-section" style="margin-top:48px;padding-top:32px;border-top:1px solid var(--line);">
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--accent-dark);font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:6px;">
+            <i class="ri-links-line"></i> İlgili Konular
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;">
+            @foreach (var rel in Model.RelatedPages)
+            {
+                <a href="/wiki/@rel.Slug" class="feature-card" style="text-decoration:none;display:block;padding:18px 20px;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow-sm);transition:all .15s;">
+                    <span style="font-size:10.5px;color:var(--accent-dark);font-weight:700;text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:4px;">@rel.Section</span>
+                    <strong style="font-size:14.5px;color:var(--ink);display:block;margin-bottom:4px;">@rel.Title</strong>
+                    <p style="font-size:12.5px;color:var(--muted);margin:0;line-height:1.45;">@rel.Summary</p>
+                </a>
+            }
+        </div>
+    </section>
+}
+
+<div class="article-pagination" style="display:flex;justify-content:space-between;gap:16px;margin-top:48px;padding-top:24px;border-top:1px solid var(--line);">
+    @if (Model.PreviousPage != null)
+    {
+        <a href="/wiki/@Model.PreviousPage.Slug" style="display:flex;flex-direction:column;text-decoration:none;padding:12px 18px;border:1px solid var(--line);border-radius:12px;background:#fff;max-width:48%;box-shadow:var(--shadow-sm);transition:all .15s;">
+            <small style="color:var(--muted);font-size:11px;text-transform:uppercase;font-weight:600;"><i class="ri-arrow-left-s-line"></i> Önceki Konu</small>
+            <strong style="color:var(--ink);font-size:14px;margin-top:2px;">@Model.PreviousPage.Title</strong>
+        </a>
+    }
+    else
+    {
+        <div></div>
+    }
+
+    @if (Model.NextPage != null)
+    {
+        <a href="/wiki/@Model.NextPage.Slug" style="display:flex;flex-direction:column;align-items:flex-end;text-align:right;text-decoration:none;padding:12px 18px;border:1px solid var(--line);border-radius:12px;background:#fff;max-width:48%;box-shadow:var(--shadow-sm);transition:all .15s;">
+            <small style="color:var(--muted);font-size:11px;text-transform:uppercase;font-weight:600;">Sonraki Konu <i class="ri-arrow-right-s-line"></i></small>
+            <strong style="color:var(--ink);font-size:14px;margin-top:2px;">@Model.NextPage.Title</strong>
+        </a>
+    }
+</div>

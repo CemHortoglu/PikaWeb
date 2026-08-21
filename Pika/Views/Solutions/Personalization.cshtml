@@ -1,14 +1,14 @@
 @{
     var tr = (ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").Equals("tr", StringComparison.OrdinalIgnoreCase);
-    ViewData["Title"] = tr ? "Journey Orchestration (Müşteri Yolculuğu Otomasyonu)" : "Journey Orchestration";
+    ViewData["Title"] = tr ? "Müşteri Etkileşim Yönetimi" : "Journey Orchestration";
     ViewData["MetaDescription"] = tr
         ? "Olay, zaman ve kurallara göre çok adımlı müşteri akışlarını otomatik çalıştırın; her adımı ölçün ve iyileştirin."
         : "Automate multi-step customer journeys based on events, time, and rules; measure and optimize every step.";
-    ViewData["MetaKeywords"] = "journey orchestration,müşteri yolculuğu otomasyonu,multichannel automation,customer lifecycle";
+    ViewData["MetaKeywords"] = "journey orchestration,müşteri etkileşim yönetimi,multichannel automation,customer lifecycle";
 }
 <section class="pika-corp-hero pika-solution-hero">
     <div class="container">
-        <h1 class="pika-corp-title">@(tr ? "Journey Orchestration (Müşteri Yolculuğu Otomasyonu)" : "Journey Orchestration")</h1>
+        <h1 class="pika-corp-title">@(tr ? "Müşteri Etkileşim Yönetimi" : "Journey Orchestration")</h1>
         <p class="pika-corp-lead">@(tr ? "Olay, zaman ve kurallara göre çok adımlı müşteri akışlarını otomatik çalıştırın; her adım ölçülsün, iyileşsin." : "Automate multi-step customer flows using events, time, and rules; ensure every step is measured and improved.")</p>
     </div>
 </section>

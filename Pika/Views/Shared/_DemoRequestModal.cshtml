@@ -1,32 +1,42 @@
 @using Microsoft.Extensions.Options
 @using Pika.Configuration
 @inject IOptions<SiteSettings> SiteOptions
+@{
+    var culture = (ViewData["culture"] as string ?? ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").ToLowerInvariant();
+    var isTr = culture == "tr";
+}
 
 <div class="modal fade" id="demoModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <form id="demoRequestForm" data-recipient-email="@SiteOptions.Value.Mail.DemoRequestRecipientEmail">
                 <div class="modal-header">
-                    <h5 class="modal-title" data-i18n="demo.title">Demo Request</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" data-i18n="demo.title">@(isTr ? "Demo Talebi" : "Demo Request")</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="@(isTr ? "Kapat" : "Close")"></button>
                 </div>
                 <div class="modal-body demo-request-modal">
-                    <p class="mb-3" data-i18n="demo.subtitle">Please fill in your contact information and we will call you back.</p>
+                    <p class="mb-3" data-i18n="demo.subtitle">@(isTr ? "Lütfen iletişim bilgilerinizi giriniz, size en kısa sürede dönüş yapalım." : "Please fill in your contact information and we will get back to you promptly.")</p>
                     <div class="row g-2">
-                        <div class="col-md-6"><input class="form-control" name="firstName" required placeholder="Ad" data-i18n-placeholder="form.fullNamePh" /></div>
-                        <div class="col-md-6"><input class="form-control" name="lastName" required placeholder="Soyad" data-i18n-placeholder="form.lastNamePh" /></div>
+                        <div class="col-md-6"><input class="form-control" name="firstName" required placeholder="@(isTr ? "Ad" : "First Name")" data-i18n-placeholder="form.fullNamePh" /></div>
+                        <div class="col-md-6"><input class="form-control" name="lastName" required placeholder="@(isTr ? "Soyad" : "Last Name")" data-i18n-placeholder="form.lastNamePh" /></div>
                         <div class="col-md-6"><input class="form-control" type="email" name="email" required placeholder="mail@firma.com" data-i18n-placeholder="form.emailPh" /></div>
-                        <div class="col-md-6"><input class="form-control" name="phone" required placeholder="+90 ..." data-i18n-placeholder="form.phonePh" /></div>
-                        <div class="col-md-6"><input class="form-control" name="companyName" required placeholder="Şirket" data-i18n-placeholder="form.companyPh" /></div>
-                        <div class="col-md-6"><input class="form-control" name="website" required placeholder="Website" data-i18n-placeholder="form.websitePh" /></div>
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-text">+90</span>
+                                <input class="form-control" name="phone" type="tel" required maxlength="13" inputmode="numeric" oninput="var v=this.value.replace(/\D/g,'').substring(0,10),f='';if(v.length>0)f=v.substring(0,3);if(v.length>3)f+=' '+v.substring(3,6);if(v.length>6)f+=' '+v.substring(6,8);if(v.length>8)f+=' '+v.substring(8,10);this.value=f;" placeholder="5XX XXX XX XX" data-i18n-placeholder="form.phonePh" />
+                            </div>
+                        </div>
+                        <div class="col-md-6"><input class="form-control" name="companyName" required placeholder="@(isTr ? "Şirket" : "Company")" data-i18n-placeholder="form.companyPh" /></div>
+                        <div class="col-md-6"><input class="form-control" name="website" placeholder="Website" data-i18n-placeholder="form.websitePh" /></div>
+                        <div class="col-md-6"><input class="form-control" name="city" required placeholder="@(isTr ? "Şehir" : "City")" data-i18n-placeholder="form.cityPh" /></div>
                     </div>
                     <div class="mt-2">
-                        <textarea class="form-control" rows="6" name="message" placeholder="Mesaj" data-i18n-placeholder="form.messagePh"></textarea>
+                        <textarea class="form-control" rows="6" name="message" placeholder="@(isTr ? "Mesaj" : "Message")" data-i18n-placeholder="form.messagePh"></textarea>
                     </div>
                     <div id="demoResult" class="pika-alert d-none mt-3"></div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" data-i18n="form.send">Send</button>
+                    <button type="submit" class="btn btn-primary" data-i18n="form.send">@(isTr ? "Gönder" : "Send")</button>
                 </div>
             </form>
         </div>

@@ -1,0 +1,349 @@
+@{
+    var tr = (ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").Equals("tr", StringComparison.OrdinalIgnoreCase);
+    ViewData["Title"] = tr ? "Journey Manager | Pika ile Otomasyon ve Müşteri Yolculuğu Yönetimi" : "Journey Manager | Automation & Customer Journey Management with Pika";
+    ViewData["MetaDescription"] = tr ? "Pika Journey Manager ile davranış ve işlem bazlı otomatik akışlar kurun. Müşteri yolculuğunu SMS, WhatsApp, Email ve Push boyunca yönetin." : "Build automated flows based on behavior and transactions with Pika Journey Manager. Manage customer journeys across SMS, WhatsApp, Email and Push.";
+    ViewData["MetaKeywords"] = "journey manager,müşteri yolculuğu,otomasyon,otomatik akış,trigger,marketing automation,pika";
+}
+
+<!-- HERO: Motion & Automation -->
+<section class="pika-sol-hero" data-module="journey">
+    <div class="container">
+        <nav class="pika-sol-breadcrumb" data-aos="fade-down" data-aos-duration="500">
+            <a href="@(tr ? "/" : "/en/")">@(tr ? "Ana Sayfa" : "Home")</a>
+            <span class="sep">/</span>
+            <a href="@(tr ? "/" : "/en/")">@(tr ? "Çözümler" : "Solutions")</a>
+            <span class="sep">/</span>
+            <span>Journey Manager</span>
+        </nav>
+        <div class="pika-sol-hero-grid">
+            <div data-aos="fade-right" data-aos-duration="700">
+                <h1>@(tr ? "Müşteri davranışlarına göre otomatik akışlar oluşturun" : "Create automated flows based on customer behavior")</h1>
+                <p class="pika-sol-hero-desc">@(tr ? "Pika Journey Manager; işlem, davranış, segment değişimi ve özel olaylara göre otomatik akışlar oluşturarak müşteri etkileşimini manuel yükten kurtarır." : "Pika Journey Manager creates automated flows based on transactions, behavior, segment changes and custom events, freeing customer engagement from manual overhead.")</p>
+                <div class="pika-sol-hero-actions">
+                    <button type="button" class="btn pika-btn-primary px-4 py-2" data-bs-toggle="modal" data-bs-target="#demoModal">@(tr ? "Demo Talep Et" : "Request a Demo") <i class="ri-arrow-right-up-line"></i></button>
+                    <a href="#features" class="btn pika-btn-ghost px-4 py-2">@(tr ? "Journey Manager'ı İncele" : "Explore Journey Manager")</a>
+                </div>
+                <div class="pika-sol-hero-tags">
+                    <span class="pika-sol-tag"><i class="ri-flashlight-line"></i> @(tr ? "Trigger bazlı akışlar" : "Trigger-based flows")</span>
+                    <span class="pika-sol-tag"><i class="ri-share-forward-line"></i> @(tr ? "Çok kanallı otomasyon" : "Multi-channel automation")</span>
+                    <span class="pika-sol-tag"><i class="ri-pulse-line"></i> @(tr ? "Davranış odaklı" : "Behavior-driven")</span>
+                    <span class="pika-sol-tag"><i class="ri-robot-line"></i> @(tr ? "Manuel yükü azaltır" : "Reduces manual workload")</span>
+                </div>
+            </div>
+            <div class="pika-sol-hero-scene" data-aos="fade-left" data-aos-duration="700" data-aos-delay="200">
+                <div class="pika-sol-scene-main">
+                    <div class="pika-sol-scene-row">
+                        <div class="pika-sol-scene-block wide"><i class="ri-flashlight-line"></i> Trigger</div>
+                        <div class="pika-sol-scene-block"><i class="ri-timer-line"></i> Wait</div>
+                    </div>
+                    <div class="pika-sol-scene-row">
+                        <div class="pika-sol-scene-block"><i class="ri-git-branch-line"></i> @(tr ? "Dallan" : "Branch")</div>
+                        <div class="pika-sol-scene-block"><i class="ri-mail-send-line"></i> @(tr ? "Gönder" : "Send")</div>
+                    </div>
+                    <div class="pika-sol-scene-row">
+                        <div class="pika-sol-scene-block wide"><i class="ri-checkbox-circle-line"></i> @(tr ? "Tamamla" : "Complete")</div>
+                    </div>
+                </div>
+                <div class="pika-sol-scene-back">
+                    <div class="pika-sol-scene-row">
+                        <div class="pika-sol-scene-block"><i class="ri-line-chart-line"></i> @(tr ? "Akış" : "Flow")</div>
+                        <div class="pika-sol-scene-block"><i class="ri-node-tree"></i> Nodes</div>
+                    </div>
+                </div>
+                <div class="pika-sol-scene-float" style="bottom:15%;left:-8%"><i class="ri-flashlight-line"></i> @(tr ? "Satın alma tetiklendi" : "Purchase triggered")</div>
+                <div class="pika-sol-scene-float" style="top:10%;right:-5%"><i class="ri-route-line"></i> 3 @(tr ? "dallanma" : "branches")</div>
+                <div class="pika-sol-scene-float" style="bottom:3%;right:10%"><i class="ri-mail-send-line"></i> @(tr ? "SMS + Email" : "SMS + Email")</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- STICKY SUBNAV -->
+<div class="pika-sol-subnav-wrap">
+    <div class="container">
+        <nav class="pika-sol-subnav">
+            <a href="#triggers">@(tr ? "Tetikleyiciler" : "Triggers")</a>
+            <a href="#features">@(tr ? "Özellikler" : "Features")</a>
+            <a href="#canvas">@(tr ? "Journey Canvas" : "Journey Canvas")</a>
+            <a href="#usecases">@(tr ? "Kullanım Senaryoları" : "Use Cases")</a>
+            <a href="#platform">@(tr ? "Entegrasyon" : "Integration")</a>
+            <a href="#faq">SSS / FAQ</a>
+        </nav>
+    </div>
+</div>
+
+<!-- TRIGGER TYPES (light pills) -->
+<section class="pika-sol-section pika-sol-channel-strip" id="triggers">
+    <div class="container">
+        <h2 class="pika-sol-section-title text-center" data-aos="fade-up">@(tr ? "Akışları tetikleyen olay türleri" : "Event types that trigger flows")</h2>
+        <div class="pika-sol-channel-pills" data-aos="fade-up" data-aos-delay="100">
+            <div class="pika-sol-channel-pill"><i class="ri-shopping-cart-line"></i> @(tr ? "İşlem" : "Transaction")</div>
+            <div class="pika-sol-channel-pill"><i class="ri-pulse-line"></i> @(tr ? "Davranış" : "Behavior")</div>
+            <div class="pika-sol-channel-pill"><i class="ri-group-line"></i> @(tr ? "Segment değişimi" : "Segment change")</div>
+            <div class="pika-sol-channel-pill"><i class="ri-calendar-event-line"></i> @(tr ? "Özel olay" : "Custom event")</div>
+        </div>
+    </div>
+</section>
+
+<!-- TRUST STRIP -->
+<section class="pika-sol-section">
+    <div class="container">
+        <div class="pika-sol-trust-strip" data-aos="fade-up">
+            <div class="pika-sol-trust-item"><i class="ri-route-line"></i><span>@(tr ? "Sürükle bırak akış" : "Drag & drop flow")</span></div>
+            <div class="pika-sol-trust-item"><i class="ri-git-branch-line"></i><span>@(tr ? "Dallanma mantığı" : "Branch logic")</span></div>
+            <div class="pika-sol-trust-item"><i class="ri-timer-line"></i><span>@(tr ? "Zaman gecikmeleri" : "Time delays")</span></div>
+            <div class="pika-sol-trust-item"><i class="ri-share-forward-line"></i><span>@(tr ? "Çok kanallı" : "Multi-channel")</span></div>
+            <div class="pika-sol-trust-item"><i class="ri-line-chart-line"></i><span>@(tr ? "Akış performansı" : "Flow analytics")</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- CORE CAPABILITIES -->
+<section class="pika-sol-section pika-sol-section-alt" id="features">
+    <div class="container">
+        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "Otomasyon için temel yetenekler" : "Core capabilities for automation")</h2>
+        <div class="pika-sol-card-grid">
+            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="pika-sol-card-icon"><i class="ri-flashlight-line"></i></div>
+                <h4>@(tr ? "Trigger bazlı akışlar" : "Trigger-based flows")</h4>
+                <p>@(tr ? "İşlem, davranış veya olaya göre akışları otomatik başlatın." : "Automatically start flows based on transactions, behavior or events.")</p>
+            </div>
+            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="pika-sol-card-icon"><i class="ri-git-branch-line"></i></div>
+                <h4>@(tr ? "Dallanma ve koşullar" : "Branching & conditions")</h4>
+                <p>@(tr ? "Koşullara göre akışları farklı yönlere dallandırın." : "Branch flows in different directions based on conditions.")</p>
+            </div>
+            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="pika-sol-card-icon"><i class="ri-share-forward-line"></i></div>
+                <h4>@(tr ? "Çok kanallı gönderim" : "Multi-channel delivery")</h4>
+                <p>@(tr ? "Aynı akışta SMS, WhatsApp, Email ve Push birlikte." : "SMS, WhatsApp, Email and Push combined in one flow.")</p>
+            </div>
+            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="pika-sol-card-icon"><i class="ri-timer-line"></i></div>
+                <h4>@(tr ? "Zaman gecikmeleri" : "Time delays")</h4>
+                <p>@(tr ? "Adımlar arasına dakika, saat veya gün gecikmeleri ekleyin." : "Add minute, hour or day delays between steps.")</p>
+            </div>
+            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="pika-sol-card-icon"><i class="ri-group-line"></i></div>
+                <h4>@(tr ? "Segment entegrasyonu" : "Segment integration")</h4>
+                <p>@(tr ? "Audience Manager segmentlerini akışlara doğrudan bağlayın." : "Connect Audience Manager segments directly to flows.")</p>
+            </div>
+            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="pika-sol-card-icon"><i class="ri-line-chart-line"></i></div>
+                <h4>@(tr ? "Akış performans takibi" : "Flow performance tracking")</h4>
+                <p>@(tr ? "Her adımın performansını ölçün ve optimize edin." : "Measure and optimize performance of each step.")</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SHOWCASE: Journey Canvas -->
+<section class="pika-sol-section" id="canvas">
+    <div class="container">
+        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "Journey canvas: akışlarınızı görsel olarak tasarlayın" : "Journey canvas: visually design your flows")</h2>
+        <div class="pika-sol-showcase" data-aos="fade-up" data-aos-delay="100">
+            <div class="pika-sol-showcase-screen">
+                <div class="pika-sol-showcase-panel">
+                    <div class="pika-sol-showcase-panel-title"><i class="ri-route-line"></i> @(tr ? "Akış Tasarımı" : "Flow Design")</div>
+                    <div class="pika-sol-showcase-mock-bar w80"></div>
+                    <div class="pika-sol-showcase-mock-bar w45"></div>
+                    <div class="pika-sol-showcase-mock-bar w70"></div>
+                    <div class="pika-sol-showcase-mock-bar w60"></div>
+                </div>
+                <div class="pika-sol-showcase-panel">
+                    <div class="pika-sol-showcase-panel-title"><i class="ri-line-chart-line"></i> @(tr ? "Akış Performansı" : "Flow Performance")</div>
+                    <div class="pika-sol-showcase-mock-bar w70"></div>
+                    <div class="pika-sol-showcase-mock-bar w80"></div>
+                    <div class="pika-sol-showcase-mock-bar w60"></div>
+                </div>
+            </div>
+            <div class="pika-sol-showcase-annotations">
+                <div class="pika-sol-annotation"><i class="ri-flashlight-line"></i> @(tr ? "Trigger noktası" : "Trigger point")</div>
+                <div class="pika-sol-annotation"><i class="ri-git-branch-line"></i> @(tr ? "Dallanma koşulu" : "Branch condition")</div>
+                <div class="pika-sol-annotation"><i class="ri-timer-line"></i> @(tr ? "Bekleme süresi" : "Wait time")</div>
+                <div class="pika-sol-annotation"><i class="ri-mail-send-line"></i> @(tr ? "Kanal aksiyonu" : "Channel action")</div>
+                <div class="pika-sol-annotation"><i class="ri-checkbox-circle-line"></i> @(tr ? "Bitiş noktası" : "End point")</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- WORKFLOW -->
+<section class="pika-sol-section pika-sol-section-alt">
+    <div class="container">
+        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "Journey oluşturma süreci" : "Journey creation process")</h2>
+        <div class="pika-sol-workflow-steps" data-aos="fade-up" data-aos-delay="100">
+            <div class="pika-sol-workflow-step">
+                <div class="pika-sol-workflow-num">1</div>
+                <h5>@(tr ? "Tetikleyici Seçin" : "Select Trigger")</h5>
+                <p>@(tr ? "Hangi olay akışı başlatacak belirleyin." : "Define which event will start the flow.")</p>
+            </div>
+            <div class="pika-sol-workflow-step">
+                <div class="pika-sol-workflow-num">2</div>
+                <h5>@(tr ? "Akışı Tasarlayın" : "Design the Flow")</h5>
+                <p>@(tr ? "Dallanma, bekleme ve aksiyonları ekleyin." : "Add branching, delays and actions.")</p>
+            </div>
+            <div class="pika-sol-workflow-step">
+                <div class="pika-sol-workflow-num">3</div>
+                <h5>@(tr ? "Kanalları Belirleyin" : "Set Channels")</h5>
+                <p>@(tr ? "Her aksiyon adımına kanal ve içerik atayın." : "Assign channel and content to each action step.")</p>
+            </div>
+            <div class="pika-sol-workflow-step">
+                <div class="pika-sol-workflow-num">4</div>
+                <h5>@(tr ? "Aktifleştirin" : "Activate")</h5>
+                <p>@(tr ? "Akışı yayına alın ve performansı takip edin." : "Launch the flow and track performance.")</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- USE CASES -->
+<section class="pika-sol-section" id="usecases">
+    <div class="container">
+        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "Journey Manager ile neler yapabilirsiniz?" : "What can you do with Journey Manager?")</h2>
+        <div class="pika-sol-usecase-cards">
+            <div class="pika-sol-usecase-card" data-aos="fade-up" data-aos-delay="50">
+                <div class="pika-sol-usecase-card-icon"><i class="ri-user-add-line"></i></div>
+                <span class="usecase-industry">@(tr ? "Tüm Sektörler" : "All Industries")</span>
+                <h5>@(tr ? "Hoş Geldin Akışı" : "Welcome Flow")</h5>
+                <p>@(tr ? "Yeni üye kaydında otomatik karşılama serisi." : "Automatic welcome series on new member registration.")</p>
+            </div>
+            <div class="pika-sol-usecase-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="pika-sol-usecase-card-icon"><i class="ri-shopping-cart-line"></i></div>
+                <span class="usecase-industry">@(tr ? "E-ticaret" : "E-commerce")</span>
+                <h5>@(tr ? "Sepet Hatırlatma" : "Cart Reminder")</h5>
+                <p>@(tr ? "Terk edilen sepet için otomatik hatırlatma akışı." : "Automatic reminder flow for abandoned carts.")</p>
+            </div>
+            <div class="pika-sol-usecase-card" data-aos="fade-up" data-aos-delay="150">
+                <div class="pika-sol-usecase-card-icon"><i class="ri-gift-line"></i></div>
+                <span class="usecase-industry">@(tr ? "Perakende" : "Retail")</span>
+                <h5>@(tr ? "Doğum Günü Otomasyonu" : "Birthday Automation")</h5>
+                <p>@(tr ? "Doğum günü yaklaşan müşterilere otomatik kampanya." : "Automatic campaign for customers with approaching birthdays.")</p>
+            </div>
+            <div class="pika-sol-usecase-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="pika-sol-usecase-card-icon"><i class="ri-user-unfollow-line"></i></div>
+                <span class="usecase-industry">@(tr ? "SaaS" : "SaaS")</span>
+                <h5>@(tr ? "Re-Engagement Akışı" : "Re-Engagement Flow")</h5>
+                <p>@(tr ? "Uzun süredir etkileşim kurmayanlar için geri kazanım." : "Win-back flow for users who haven't engaged.")</p>
+            </div>
+            <div class="pika-sol-usecase-card" data-aos="fade-up" data-aos-delay="250">
+                <div class="pika-sol-usecase-card-icon"><i class="ri-star-line"></i></div>
+                <span class="usecase-industry">@(tr ? "E-ticaret" : "E-commerce")</span>
+                <h5>@(tr ? "Satın Alma Sonrası" : "Post-Purchase")</h5>
+                <p>@(tr ? "Satın alma sonrası geri bildirim ve çapraz satış akışı." : "Post-purchase feedback and cross-sell flow.")</p>
+            </div>
+            <div class="pika-sol-usecase-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="pika-sol-usecase-card-icon"><i class="ri-vip-crown-line"></i></div>
+                <span class="usecase-industry">@(tr ? "Finans" : "Finance")</span>
+                <h5>@(tr ? "Segment Geçiş Akışı" : "Segment Transition Flow")</h5>
+                <p>@(tr ? "VIP segmentine geçenlere özel kampanya tetikleme." : "Trigger special campaigns for users entering VIP segment.")</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- BUSINESS IMPACT -->
+<section class="pika-sol-section pika-sol-section-impact">
+    <div class="container">
+        <h2 class="pika-sol-section-title text-center" data-aos="fade-up">@(tr ? "İş etkisi" : "Business Impact")</h2>
+        <div class="pika-sol-impact-grid pika-sol-impact-grid--light" data-aos="fade-up" data-aos-delay="100">
+            <div class="pika-sol-impact-card pika-sol-impact-card--light">
+                <div class="pika-sol-impact-icon"><i class="ri-robot-line"></i></div>
+                <h5>@(tr ? "Manuel yükü ortadan kaldırır" : "Eliminates manual workload")</h5>
+                <p>@(tr ? "Tekrarlayan iletişimi otomatik akışlara taşıyın." : "Move repetitive communication to automated flows.")</p>
+            </div>
+            <div class="pika-sol-impact-card pika-sol-impact-card--light">
+                <div class="pika-sol-impact-icon"><i class="ri-timer-line"></i></div>
+                <h5>@(tr ? "Doğru zamanda ulaşır" : "Reaches at the right time")</h5>
+                <p>@(tr ? "Davranış anında tetiklenen iletişim." : "Communication triggered at the moment of behavior.")</p>
+            </div>
+            <div class="pika-sol-impact-card pika-sol-impact-card--light">
+                <div class="pika-sol-impact-icon"><i class="ri-bar-chart-grouped-line"></i></div>
+                <h5>@(tr ? "Etkileşimi artırır" : "Increases engagement")</h5>
+                <p>@(tr ? "Kişiselleştirilmiş akışlarla daha yüksek dönüşüm." : "Higher conversions with personalized flows.")</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PLATFORM MAP -->
+<section class="pika-sol-section" id="platform">
+    <div class="container">
+        <h2 class="pika-sol-section-title text-center" data-aos="fade-up">@(tr ? "Journey Manager, Pika platformunda nasıl konumlanır?" : "How does Journey Manager fit in the Pika platform?")</h2>
+        <div class="pika-sol-platform-map" data-aos="fade-up" data-aos-delay="100">
+            <div class="pika-sol-platform-satellites">
+                <a class="pika-sol-platform-node" href="@Url.Action("CampaignManager", "Solutions")"><i class="ri-megaphone-line"></i> Campaign Manager</a>
+                <a class="pika-sol-platform-node" href="@Url.Action("AudienceManager", "Solutions")"><i class="ri-focus-3-line"></i> Audience Manager</a>
+            </div>
+            <div class="pika-sol-platform-connector"></div>
+            <div class="pika-sol-platform-center"><i class="ri-route-line"></i> Journey Manager</div>
+            <div class="pika-sol-platform-connector"></div>
+            <div class="pika-sol-platform-satellites">
+                <a class="pika-sol-platform-node" href="@Url.Action("ContentStudio", "Solutions")"><i class="ri-edit-line"></i> Content Studio</a>
+                <a class="pika-sol-platform-node" href="@Url.Action("ConsentManagement", "Solutions")"><i class="ri-shield-check-line"></i> Consent Management</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="pika-sol-section pika-sol-section-alt" id="faq">
+    <div class="container">
+        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "Journey Manager hakkında sık sorulan sorular" : "Journey Manager FAQs")</h2>
+        <div class="accordion faq-pro-accordion" id="journeyFaq">
+            <div class="accordion-item">
+                <h2 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#journeyFaq1" aria-expanded="true" aria-controls="journeyFaq1">@(tr ? "Journey Manager hangi tetikleyicileri destekler?" : "Which triggers does Journey Manager support?")</button></h2>
+                <div id="journeyFaq1" class="accordion-collapse collapse show" data-bs-parent="#journeyFaq"><div class="accordion-body">@(tr ? "İşlem, davranış, segment değişimi ve özel olay tetikleyicilerini destekler." : "It supports transaction, behavior, segment change and custom event triggers.")</div></div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#journeyFaq2" aria-expanded="false" aria-controls="journeyFaq2">@(tr ? "Dallanma mantığı destekleniyor mu?" : "Is branching logic supported?")</button></h2>
+                <div id="journeyFaq2" class="accordion-collapse collapse" data-bs-parent="#journeyFaq"><div class="accordion-body">@(tr ? "Evet. Koşullara göre akışları farklı yönlere dallandırabilirsiniz." : "Yes. You can branch flows in different directions based on conditions.")</div></div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#journeyFaq3" aria-expanded="false" aria-controls="journeyFaq3">@(tr ? "Akışlarda hangi kanallar kullanılabilir?" : "Which channels can be used in flows?")</button></h2>
+                <div id="journeyFaq3" class="accordion-collapse collapse" data-bs-parent="#journeyFaq"><div class="accordion-body">@(tr ? "SMS, WhatsApp, Email ve Push kanallarını aynı akış içinde birlikte kullanabilirsiniz." : "You can use SMS, WhatsApp, Email and Push channels together within the same flow.")</div></div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#journeyFaq4" aria-expanded="false" aria-controls="journeyFaq4">@(tr ? "Akış performansı ölçülebilir mi?" : "Can flow performance be measured?")</button></h2>
+                <div id="journeyFaq4" class="accordion-collapse collapse" data-bs-parent="#journeyFaq"><div class="accordion-body">@(tr ? "Evet. Her adımın performansını detaylı olarak izleyebilir ve optimize edebilirsiniz." : "Yes. You can monitor and optimize each step's performance in detail.")</div></div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#journeyFaq5" aria-expanded="false" aria-controls="journeyFaq5">@(tr ? "Segment bazlı akışlar oluşturulabilir mi?" : "Can segment-based flows be created?")</button></h2>
+                <div id="journeyFaq5" class="accordion-collapse collapse" data-bs-parent="#journeyFaq"><div class="accordion-body">@(tr ? "Evet. Audience Manager segmentlerini tetikleyici veya filtre olarak akışlarda kullanabilirsiniz." : "Yes. You can use Audience Manager segments as triggers or filters in flows.")</div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- RELATED -->
+<section class="pika-sol-section">
+    <div class="container">
+        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "Birlikte en çok kullanılan modüller" : "Most commonly used together")</h2>
+        <div class="pika-sol-related" data-aos="fade-up" data-aos-delay="100">
+            <a class="pika-sol-related-card" href="@Url.Action("CampaignManager", "Solutions")">
+                <div class="pika-sol-related-icon"><i class="ri-megaphone-line"></i></div>
+                <div><h5>Campaign Manager</h5><p>@(tr ? "Akışlara kampanya aksiyonları ekleyin." : "Add campaign actions to flows.")</p></div>
+            </a>
+            <a class="pika-sol-related-card" href="@Url.Action("AudienceManager", "Solutions")">
+                <div class="pika-sol-related-icon"><i class="ri-focus-3-line"></i></div>
+                <div><h5>Audience Manager</h5><p>@(tr ? "Segmentleri akış tetikleyicisi olarak kullanın." : "Use segments as flow triggers.")</p></div>
+            </a>
+            <a class="pika-sol-related-card" href="@Url.Action("Reporting", "Solutions")">
+                <div class="pika-sol-related-icon"><i class="ri-bar-chart-box-line"></i></div>
+                <div><h5>Analytics &amp; Reporting</h5><p>@(tr ? "Akış performansını ölçün." : "Measure flow performance.")</p></div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="pika-sol-cta-section">
+    <div class="container" data-aos="fade-up">
+        <h2>@(tr ? "Müşteri etkileşimini otomatikleştirin, doğru zamanda doğru mesajı iletin" : "Automate customer engagement, deliver the right message at the right time")</h2>
+        <p>@(tr ? "Pika Journey Manager ile davranış bazlı akışları kurun ve çalıştırın." : "Set up and run behavior-based flows with Pika Journey Manager.")</p>
+        <div class="pika-sol-cta-actions">
+            <button type="button" class="btn pika-btn-primary px-4 py-2" data-bs-toggle="modal" data-bs-target="#demoModal">@(tr ? "Demo Talep Et" : "Request a Demo") <i class="ri-arrow-right-up-line"></i></button>
+            <a href="@Url.Action("Contact", "Home")" class="btn pika-btn-ghost px-4 py-2">@(tr ? "Bizimle İletişime Geçin" : "Contact Us")</a>
+        </div>
+    </div>
+</section>

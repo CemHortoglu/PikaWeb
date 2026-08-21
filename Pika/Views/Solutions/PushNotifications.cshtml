@@ -1,13 +1,205 @@
 @{
     var tr = (ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").Equals("tr", StringComparison.OrdinalIgnoreCase);
-    ViewData["Title"] = tr ? "Push Notifications (Yol Haritası)" : "Push Notifications (Roadmap)";
-    ViewData["MetaDescription"] = tr ? "Mobil bildirimleri segment ve otomasyonla birleştirin; cihaz bazlı hedeflemeyi ürünleştirin." : "Combine mobile notifications with segmentation and automation; productize device-level targeting.";
-    ViewData["MetaKeywords"] = "push notifications,roadmap,fcm,apns,token management,telemetry";
+    ViewData["Title"] = tr ? "Push Bildirim Yönetimi ve Gerçek Zamanlı Otomasyon - Pika" : "Push Notification Management & Real-Time Automation - Pika";
+    ViewData["MetaDescription"] = tr ? "Pika Push Notifications ile segment bazlı hedefleme, kişiselleştirme ve gerçek zamanlı tetikleyicilerle push bildirim performansını artırın." : "Increase push notification performance with segmented targeting, personalization, and real-time triggers using Pika Push Notifications.";
+    ViewData["MetaKeywords"] = "push bildirim, mobil bildirim, gerçek zamanlı, segmentasyon, otomasyon, push";
 }
-<section class="pika-corp-hero pika-solution-hero"><div class="container"><h1 class="pika-corp-title">Push Notifications</h1><p class="pika-corp-lead">@(tr?"Mobil bildirimleri segment ve otomasyonla birleştirin; cihaz bazlı hedeflemeyi ürünleştirin.":"Combine mobile notifications with segmentation and automation; productize device-level targeting.")</p></div></section>
-<section class="pika-section pika-corp-section pika-solution-detail"><div class="container">
-<p><strong>@(tr?"Yol Haritası":"Roadmap")</strong> — @(tr?"Repo’da çekirdek var / entegrasyon genişletilebilir":"Core exists in the repo / integration can be extended")</p>
-<p>@(tr?"Şu an repo seviyesinde “sender iskeleti” yaklaşımı varsa bile, gerçek değer için Firebase (FCM) / APNs entegrasyonu, token yönetimi ve delivery/open telemetry eklenmesi gerekir. Bunu “yakında” diye değil; açık bir yol haritası maddesi olarak koymak daha profesyonel durur.":"Even if there is a sender skeleton at repo level, real value requires Firebase (FCM)/APNs integration, token lifecycle management, and delivery/open telemetry. Positioning this as an explicit roadmap item is more professional than calling it “coming soon.”")</p>
-<h3>@(tr?"Eklenmesi gereken ürün parçaları (pratik):":"Required product components (practical):")</h3>
-<ul><li>@(tr?"Device token kayıt/yenileme API’si":"Device token registration/refresh API")</li><li>@(tr?"Segment→token eşlemesi":"Segment-to-token mapping")</li><li>@(tr?"FCM/APNs gönderim pipeline’ı (queue, rate limit)":"FCM/APNs send pipeline (queue, rate limit)")</li><li>@(tr?"Delivery/open event’lerinin analitik katmana akması":"Delivery/open event flow into analytics layer")</li></ul>
-</div></section>
+
+<!-- Hero -->
+<section class="pika-sol-hero">
+    <div class="container">
+        <nav class="pika-sol-breadcrumb" data-aos="fade-down" data-aos-duration="500">
+            <a href="@(tr ? "/" : "/en/")">@(tr ? "Ana Sayfa" : "Home")</a>
+            <span class="sep">/</span>
+            <a href="@(tr ? "/" : "/en/")">@(tr ? "Çözümler" : "Solutions")</a>
+            <span class="sep">/</span>
+            <span>Push Notifications</span>
+        </nav>
+        <div class="pika-sol-hero-grid">
+            <div data-aos="fade-right" data-aos-duration="700">
+                <h1>@(tr ? "Gerçek zamanlı push bildirimleri ile doğru anda harekete geçin" : "Act at the right moment with real-time push notifications")</h1>
+                <p class="pika-sol-hero-desc">@(tr ? "Pika Push Notifications; davranış ve işlem bazlı tetikleyiciler, segmentasyon, kişiselleştirme ve journey entegrasyonu ile push bildirimlerini daha akıllı ve daha etkili hale getirir." : "Pika Push Notifications makes push notifications smarter and more effective with behavior and transaction-based triggers, segmentation, personalization, and journey integration.")</p>
+                <div class="pika-sol-hero-actions">
+                    <button type="button" class="btn pika-btn-primary px-4 py-2" data-bs-toggle="modal" data-bs-target="#demoModal">@(tr ? "Demo Talep Et" : "Request a Demo") <i class="ri-arrow-right-up-line"></i></button>
+                    <a href="#features" class="btn pika-btn-ghost px-4 py-2">@(tr ? "Push Çözümünü İncele" : "Explore Push Solution")</a>
+                </div>
+                <div class="pika-sol-hero-tags">
+                    <span class="pika-sol-tag"><i class="ri-flashlight-line"></i> @(tr ? "Gerçek zamanlı tetikleyiciler" : "Real-time triggers")</span>
+                    <span class="pika-sol-tag"><i class="ri-smartphone-line"></i> @(tr ? "Mobil etkileşim" : "Mobile engagement")</span>
+                    <span class="pika-sol-tag"><i class="ri-focus-3-line"></i> @(tr ? "Segment bazlı bildirim" : "Segment-based notifications")</span>
+                    <span class="pika-sol-tag"><i class="ri-route-line"></i> @(tr ? "Journey entegrasyonu" : "Journey integration")</span>
+                </div>
+            </div>
+            <div class="pika-sol-hero-visual" data-aos="fade-left" data-aos-duration="700" data-aos-delay="200">
+                <div class="pika-sol-mock-row">
+                    <div class="pika-sol-mock-block wide"><i class="ri-flashlight-line"></i> @(tr ? "Push Event Tetikleyici" : "Push Event Trigger")</div>
+                </div>
+                <div class="pika-sol-mock-row">
+                    <div class="pika-sol-mock-block"><i class="ri-smartphone-line"></i> @(tr ? "Mobil Bildirim" : "Mobile Notification")</div>
+                    <div class="pika-sol-mock-block"><i class="ri-route-line"></i> @(tr ? "Otomasyon Akışı" : "Automation Flow")</div>
+                </div>
+                <div class="pika-sol-mock-row">
+                    <div class="pika-sol-mock-block wide"><i class="ri-bar-chart-box-line"></i> @(tr ? "Etkileşim Raporu" : "Engagement Report")</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Değer Kutuları -->
+<section class="pika-sol-section">
+    <div class="container">
+        <div class="pika-sol-value-grid">
+            <div class="pika-sol-value-card" data-aos="fade-up" data-aos-duration="500">
+                <div class="pika-sol-value-icon"><i class="ri-flashlight-line"></i></div>
+                <h4>@(tr ? "Anlık Aksiyon" : "Instant Action")</h4>
+                <p>@(tr ? "Davranışa anında tepki verin." : "React instantly to user behavior.")</p>
+            </div>
+            <div class="pika-sol-value-card" data-aos="fade-up" data-aos-duration="500" data-aos-delay="100">
+                <div class="pika-sol-value-icon"><i class="ri-user-heart-line"></i></div>
+                <h4>@(tr ? "Daha İlgili Bildirimler" : "More Relevant Notifications")</h4>
+                <p>@(tr ? "Herkese aynı mesajı göndermeyin." : "Stop sending the same message to everyone.")</p>
+            </div>
+            <div class="pika-sol-value-card" data-aos="fade-up" data-aos-duration="500" data-aos-delay="200">
+                <div class="pika-sol-value-icon"><i class="ri-loop-right-line"></i></div>
+                <h4>@(tr ? "Olay Bazlı Otomasyon" : "Event-Based Automation")</h4>
+                <p>@(tr ? "Push'i akıllı akışlara bağlayın." : "Connect push to smart flows.")</p>
+            </div>
+            <div class="pika-sol-value-card" data-aos="fade-up" data-aos-duration="500" data-aos-delay="300">
+                <div class="pika-sol-value-icon"><i class="ri-dashboard-line"></i></div>
+                <h4>@(tr ? "Tek Merkezden Yönetim" : "Centralized Management")</h4>
+                <p>@(tr ? "Push süreçlerini diğer kanallarla birlikte yönetin." : "Manage push processes alongside other channels.")</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Ne Yapabilirsiniz? -->
+<section class="pika-sol-section pika-sol-section-alt">
+    <div class="container">
+        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "Push bildirimlerini yalnızca duyuru değil, davranış tetikleyici kanal olarak kullanın" : "Use push notifications as a behavior-triggering channel, not just announcements")</h2>
+        <p class="pika-sol-section-desc" data-aos="fade-up" data-aos-delay="100">@(tr ? "Pika ile gerçek zamanlı sinyallerden yararlanarak daha hızlı ve daha ilgili bildirim deneyimleri oluşturun." : "Create faster and more relevant notification experiences by leveraging real-time signals with Pika.")</p>
+        <div class="pika-sol-card-grid">
+            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="pika-sol-card-icon"><i class="ri-cursor-line"></i></div>
+                <h4>@(tr ? "Davranış Bazlı Push'lar" : "Behavior-Based Push")</h4>
+                <p>@(tr ? "Belirli kullanıcı hareketlerine göre bildirim gönderimi." : "Notification delivery based on specific user actions.")</p>
+            </div>
+            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="pika-sol-card-icon"><i class="ri-megaphone-line"></i></div>
+                <h4>@(tr ? "Kampanya Destekli Push'lar" : "Campaign-Powered Push")</h4>
+                <p>@(tr ? "Dönemsel veya promosyonel bildirim akışları." : "Seasonal or promotional notification flows.")</p>
+            </div>
+            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="pika-sol-card-icon"><i class="ri-route-line"></i></div>
+                <h4>@(tr ? "Journey İçi Push Adımları" : "In-Journey Push Steps")</h4>
+                <p>@(tr ? "Daha geniş müşteri yolculuğunun parçası olan bildirimler." : "Notifications that are part of a broader customer journey.")</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Özellikler / Capability Grid -->
+<section class="pika-sol-section" id="features">
+    <div class="container">
+        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "Push iletişimini daha akıllı yönetin" : "Manage push communication smarter")</h2>
+        <div class="pika-sol-card-grid">
+            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="pika-sol-card-icon"><i class="ri-flashlight-line"></i></div>
+                <h4>@(tr ? "Gerçek Zamanlı Olay İşleme" : "Real-Time Event Processing")</h4>
+                <p>@(tr ? "Kullanıcı aksiyonlarına hızlı tepki verin." : "Respond quickly to user actions.")</p>
+            </div>
+            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="pika-sol-card-icon"><i class="ri-focus-3-line"></i></div>
+                <h4>@(tr ? "Segment Bazlı Hedefleme" : "Segment-Based Targeting")</h4>
+                <p>@(tr ? "Doğru bildirimi doğru kullanıcıya iletin." : "Deliver the right notification to the right user.")</p>
+            </div>
+            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="pika-sol-card-icon"><i class="ri-user-settings-line"></i></div>
+                <h4>@(tr ? "Kişiselleştirme" : "Personalization")</h4>
+                <p>@(tr ? "Bildirim içeriğini kullanıcı verilerine göre şekillendirin." : "Shape notification content based on user data.")</p>
+            </div>
+            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="pika-sol-card-icon"><i class="ri-route-line"></i></div>
+                <h4>@(tr ? "Journey Entegrasyonu" : "Journey Integration")</h4>
+                <p>@(tr ? "Push'i email, SMS ve WhatsApp ile birleştirin." : "Combine push with email, SMS, and WhatsApp.")</p>
+            </div>
+            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="pika-sol-card-icon"><i class="ri-time-line"></i></div>
+                <h4>@(tr ? "Zamanlı ve Anlık Senaryolar" : "Scheduled & Instant Scenarios")</h4>
+                <p>@(tr ? "Planlı veya tetiklenen bildirim akışları oluşturun." : "Create scheduled or triggered notification flows.")</p>
+            </div>
+            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="pika-sol-card-icon"><i class="ri-line-chart-line"></i></div>
+                <h4>@(tr ? "Performans Görünürlüğü" : "Performance Visibility")</h4>
+                <p>@(tr ? "Bildirim performansını ve etkileşimi izleyin." : "Monitor notification performance and engagement.")</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Kullanım Senaryoları -->
+<section class="pika-sol-section pika-sol-section-alt">
+    <div class="container">
+        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "Pika Push Notifications ile örnek kullanım senaryoları" : "Example use cases with Pika Push Notifications")</h2>
+        <div class="pika-sol-usecase-grid">
+            <div class="pika-sol-usecase" data-aos="fade-up" data-aos-delay="50"><i class="ri-check-line"></i> @(tr ? "Uygulama içi etkileşim artırma" : "In-app engagement boosting")</div>
+            <div class="pika-sol-usecase" data-aos="fade-up" data-aos-delay="100"><i class="ri-check-line"></i> @(tr ? "Kampanya hatırlatmaları" : "Campaign reminders")</div>
+            <div class="pika-sol-usecase" data-aos="fade-up" data-aos-delay="150"><i class="ri-check-line"></i> @(tr ? "Gerçek zamanlı davranış tetiklemeleri" : "Real-time behavior triggers")</div>
+            <div class="pika-sol-usecase" data-aos="fade-up" data-aos-delay="200"><i class="ri-check-line"></i> @(tr ? "Sepet veya işlem bazlı bildirimler" : "Cart or transaction-based notifications")</div>
+            <div class="pika-sol-usecase" data-aos="fade-up" data-aos-delay="250"><i class="ri-check-line"></i> @(tr ? "Sadakat veya özel gün bildirimleri" : "Loyalty or special occasion notifications")</div>
+            <div class="pika-sol-usecase" data-aos="fade-up" data-aos-delay="300"><i class="ri-check-line"></i> @(tr ? "Yeniden etkileşim akışları" : "Re-engagement flows")</div>
+        </div>
+    </div>
+</section>
+
+<!-- Nasıl Çalışır? -->
+<section class="pika-sol-section">
+    <div class="container">
+        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "Push bildirim sürecini kolayca yönetin" : "Easily manage the push notification process")</h2>
+        <div class="pika-sol-steps">
+            <div class="pika-sol-step" data-aos="fade-up" data-aos-delay="100"><div class="pika-sol-step-num"></div><p>@(tr ? "Olayı veya hedef segmenti belirleyin" : "Define the event or target segment")</p></div>
+            <div class="pika-sol-step" data-aos="fade-up" data-aos-delay="200"><div class="pika-sol-step-num"></div><p>@(tr ? "Bildirim içeriğini hazırlayın" : "Prepare the notification content")</p></div>
+            <div class="pika-sol-step" data-aos="fade-up" data-aos-delay="300"><div class="pika-sol-step-num"></div><p>@(tr ? "Akışa bağlayın veya anlık gönderin" : "Link to a flow or send instantly")</p></div>
+            <div class="pika-sol-step" data-aos="fade-up" data-aos-delay="400"><div class="pika-sol-step-num"></div><p>@(tr ? "Etkileşimi izleyin" : "Monitor engagement")</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- Neden Push? -->
+<section class="pika-sol-section pika-sol-section-alt">
+    <div class="container" data-aos="fade-up">
+        <div class="pika-sol-highlight">
+            <h3>@(tr ? "Hızlı tepki gereken anlar için güçlü kanal" : "A powerful channel for moments that need fast response")</h3>
+            <p>@(tr ? "Push notification, özellikle davranış ve zaman hassasiyeti yüksek anlarda kullanıcıyla temas kurmak için etkili bir kanaldır." : "Push notification is an effective channel for reaching users in moments with high behavior and time sensitivity.")</p>
+        </div>
+    </div>
+</section>
+
+<!-- Omnichannel -->
+<section class="pika-sol-section">
+    <div class="container" data-aos="fade-up">
+        <div class="pika-sol-omni">
+            <h2 class="pika-sol-section-title">@(tr ? "Push'i tek başına değil, müşteri yolculuğunun parçası olarak kullanın" : "Use push as part of the customer journey, not in isolation")</h2>
+            <p class="pika-sol-section-desc" style="margin-left:auto;margin-right:auto">@(tr ? "Push bildirimlerini SMS, Email ve WhatsApp ile birlikte tutarlı bir iletişim akışında yönetin." : "Manage push notifications in a consistent communication flow alongside SMS, Email, and WhatsApp.")</p>
+            <div class="pika-sol-omni-icons">
+                <div class="pika-sol-omni-icon" style="background:#fce4ec;color:#e91e63"><i class="ri-notification-3-line"></i></div>
+                <div class="pika-sol-omni-icon" style="background:#fff3e0;color:#f57c00"><i class="ri-mail-line"></i></div>
+                <div class="pika-sol-omni-icon" style="background:#e3f2fd;color:#1976d2"><i class="ri-message-2-line"></i></div>
+                <div class="pika-sol-omni-icon" style="background:#dcf8c6;color:#25d366"><i class="ri-whatsapp-line"></i></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Kapanış CTA -->
+<section class="pika-sol-cta-section">
+    <div class="container" data-aos="fade-up">
+        <h2>@(tr ? "Push bildirimlerini daha ilgili, daha hızlı ve daha etkili hale getirin" : "Make push notifications more relevant, faster, and more effective")</h2>
+        <p>@(tr ? "Pika Push Notifications ile gerçek zamanlı etkileşimi güçlü bir kampanya kanalına dönüştürün." : "Turn real-time engagement into a powerful campaign channel with Pika Push Notifications.")</p>
+        <div class="pika-sol-cta-actions">
+            <button type="button" class="btn pika-btn-primary px-4 py-2" data-bs-toggle="modal" data-bs-target="#demoModal">@(tr ? "Demo Talep Et" : "Request a Demo") <i class="ri-arrow-right-up-line"></i></button>
+            <a href="@Url.Action("Contact", "Home")" class="btn pika-btn-ghost px-4 py-2">@(tr ? "Bizimle İletişime Geçin" : "Contact Us")</a>
+        </div>
+    </div>
+</section>

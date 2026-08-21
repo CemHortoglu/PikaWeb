@@ -1,10 +1,10 @@
 @{
     var tr = (ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").Equals("tr", StringComparison.OrdinalIgnoreCase);
-    ViewData["Title"] = tr ? "Real-time Event Processing (Gerçek Zamanlı Olay İşleme)" : "Real-time Event Processing";
+    ViewData["Title"] = tr ? "Gerçek Zamanlı Olay İşleme" : "Real-Time Event Processing";
     ViewData["MetaDescription"] = tr ? "Olayı yakalayın, anında aksiyon alın: doğru mesaj, doğru zamanda." : "Capture events and act instantly with the right message at the right time.";
     ViewData["MetaKeywords"] = "real-time event processing,ingestion,latency,journey trigger,rate limit";
 }
-<section class="pika-corp-hero pika-solution-hero"><div class="container"><h1 class="pika-corp-title">Real-time Event Processing @(tr?"(Gerçek Zamanlı Olay İşleme)":"")</h1><p class="pika-corp-lead">@(tr?"Olayı yakalayın, anında aksiyon alın: doğru mesaj, doğru zamanda.":"Capture events and take action instantly: right message, right time.")</p></div></section>
+<section class="pika-corp-hero pika-solution-hero"><div class="container"><h1 class="pika-corp-title">@(tr ? "Gerçek Zamanlı Olay İşleme" : "Real-Time Event Processing")</h1><p class="pika-corp-lead">@(tr?"Olayı yakalayın, anında aksiyon alın: doğru mesaj, doğru zamanda.":"Capture events and take action instantly: right message, right time.")</p></div></section>
 <section class="pika-section pika-corp-section pika-solution-detail"><div class="container">
 <p>@(tr?"Gerçek zamanlı otomasyon, müşteri deneyimini “gecikmeli pazarlama”dan çıkarıp “anlık etkileşim”e taşır. Burada kritik olan iki şey var: (1) güvenli ingestion (kötü niyetli trafik ve hata) ve (2) doğru tetik mantığı (gereksiz spam’e düşmeden otomasyon).":"Real-time automation moves customer experience from “delayed marketing” to “instant engagement.” Two things are critical: (1) secure ingestion (malicious traffic and errors) and (2) correct trigger logic (automation without unnecessary spam).")</p>
 <h3>@(tr?"Ne sağlar?":"What does it provide?")</h3>

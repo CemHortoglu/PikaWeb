@@ -1,0 +1,245 @@
+@using Microsoft.Extensions.Options
+@using Pika.Configuration
+@inject IOptions<SiteSettings> SiteOptions
+@{
+    var site = SiteOptions.Value;
+    var culture = (ViewData["culture"] as string ?? ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").ToLowerInvariant();
+    var isTr = culture == "tr";
+    ViewData["Title"] = isTr ? "Kariyer | Pika'da Çalışmak" : "Careers | Working at Pika";
+    ViewData["MetaDescription"] = isTr
+        ? "Pika ailesine katılın. Yenilikçi omnichannel pazarlama teknolojileri geliştiren tutkulu ekibimizde açık pozisyonları inceleyin."
+        : "Join the Pika team. Explore open positions in our passionate team building next-generation omnichannel marketing technology.";
+}
+
+<!-- ───── HERO ───── -->
+<section class="pika-corp-hero pika-career-hero">
+    <div class="container">
+        <div class="text-center">
+            <span class="pika-corp-chip" style="background:rgba(255,193,7,.2);border-color:rgba(255,193,7,.6);color:#fff3cd;">
+                <i class="ri-star-line me-1"></i> Kariyer
+            </span>
+            <h1 class="pika-corp-title mt-3" data-i18n="career.heroTitle">Pika'da Çalışmak</h1>
+            <p class="pika-corp-lead mx-auto" style="max-width:680px;" data-i18n="career.heroDesc">
+                Teknolojinin geleceğini birlikte inşa edecek, tutkulu ve yenilikçi ekip arkadaşları arıyoruz.
+                Pika ailesi olarak müşterilerimize değer katarken, kendi gelişimimizi de ön planda tutuyoruz.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ───── PIKA'DA ÇALIŞMAK - Neden Biz? ───── -->
+<section class="pika-section" style="background:#f2f7de;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="pika-eyebrow" data-i18n="career.whyEyebrow">Neden Pika?</span>
+            <h2 class="pika-h2" data-i18n="career.whyTitle">Pika'da çalışmak neden farklı?</h2>
+            <p class="text-secondary mx-auto" style="max-width:620px;" data-i18n="career.whyDesc">
+                Sadece bir iş yeri değil, kariyer yolculuğunuzda sizi ileri taşıyacak bir ekosistem sunuyoruz.
+            </p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
+                <div class="pika-career-card">
+                    <div class="pika-career-card__icon"><i class="ri-rocket-2-line"></i></div>
+                    <h3 data-i18n="career.card1Title">Hızla Büyüyen Teknoloji</h3>
+                    <p data-i18n="career.card1Desc">Omnichannel pazarlama alanında öncü bir platformda, en güncel teknolojilerle çalışma fırsatı.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="pika-career-card">
+                    <div class="pika-career-card__icon" style="background:#e8f5e9;color:#2e7d32;"><i class="ri-team-line"></i></div>
+                    <h3 data-i18n="career.card2Title">Güçlü Ekip Kültürü</h3>
+                    <p data-i18n="career.card2Desc">Açık iletişim, şeffaf yönetim ve birbirine destek olan, öğrenmeyi seven bir ekip.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="pika-career-card">
+                    <div class="pika-career-card__icon" style="background:#fff3e0;color:#ef6c00;"><i class="ri-lightbulb-line"></i></div>
+                    <h3 data-i18n="career.card3Title">İnovasyon Odaklı</h3>
+                    <p data-i18n="career.card3Desc">Yeni fikirler teşvik edilir. AI, otomasyon ve veri odaklı projelerde söz sahibi olursunuz.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="pika-career-card">
+                    <div class="pika-career-card__icon" style="background:#e3f2fd;color:#1565c0;"><i class="ri-graduation-cap-line"></i></div>
+                    <h3 data-i18n="career.card4Title">Sürekli Gelişim</h3>
+                    <p data-i18n="career.card4Desc">Eğitim bütçesi, konferans katılımı, mentorluk programları ve kariyer planlama desteği.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="pika-career-card">
+                    <div class="pika-career-card__icon" style="background:#fce4ec;color:#c62828;"><i class="ri-heart-pulse-line"></i></div>
+                    <h3 data-i18n="career.card5Title">İş-Yaşam Dengesi</h3>
+                    <p data-i18n="career.card5Desc">Esnek çalışma saatleri, uzaktan çalışma imkânı ve çalışan refahına önem veren politikalar.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="pika-career-card">
+                    <div class="pika-career-card__icon" style="background:#f3e5f5;color:#7b1fa2;"><i class="ri-global-line"></i></div>
+                    <h3 data-i18n="career.card6Title">Global Vizyon</h3>
+                    <p data-i18n="career.card6Desc">Uluslararası müşteriler, çok dilli platform ve küresel ölçekte etki yaratma fırsatı.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ───── DEĞERLER ───── -->
+<section class="pika-section" style="background:#fff;">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <span class="pika-eyebrow" data-i18n="career.valuesEyebrow">Değerlerimiz</span>
+                <h2 class="pika-h2" data-i18n="career.valuesTitle">Birlikte başarmanın gücüne inanıyoruz</h2>
+                <p class="text-secondary" data-i18n="career.valuesDesc">
+                    Pika'da her birey değerlidir. Takım ruhu, şeffaflık ve müşteri odaklılık
+                    temel değerlerimizin başında gelir. Hedefimiz sadece ürün geliştirmek değil,
+                    sektörde fark yaratan bir kültür oluşturmaktır.
+                </p>
+                <div class="row g-3 mt-2">
+                    <div class="col-6">
+                        <div class="pika-career-value">
+                            <i class="ri-check-double-line text-success me-2"></i>
+                            <span data-i18n="career.val1">Şeffaflık</span>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="pika-career-value">
+                            <i class="ri-check-double-line text-success me-2"></i>
+                            <span data-i18n="career.val2">Sorumluluk</span>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="pika-career-value">
+                            <i class="ri-check-double-line text-success me-2"></i>
+                            <span data-i18n="career.val3">Yenilikçilik</span>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="pika-career-value">
+                            <i class="ri-check-double-line text-success me-2"></i>
+                            <span data-i18n="career.val4">Müşteri Odaklılık</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="pika-career-quote-box">
+                    <i class="ri-double-quotes-l pika-career-quote-icon"></i>
+                    <blockquote data-i18n="career.quote">
+                        "Pika'da sadece kod yazmıyoruz; müşterilerimizin başarısını birlikte tasarlıyoruz.
+                        Her sprint, her fikir ve her satır kod bu misyonun parçası."
+                    </blockquote>
+                    <cite data-i18n="career.quoteAuthor">— Pika Ekibi</cite>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ───── SÜREÇ ───── -->
+<section class="pika-section" style="background:#f8faf4;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="pika-eyebrow" data-i18n="career.processEyebrow">Başvuru Süreci</span>
+            <h2 class="pika-h2" data-i18n="career.processTitle">Nasıl başvurabilirsiniz?</h2>
+        </div>
+        <div class="row g-4 justify-content-center">
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="pika-career-step">
+                    <div class="pika-career-step__num">1</div>
+                    <h4 data-i18n="career.step1Title">Formu Doldurun</h4>
+                    <p data-i18n="career.step1Desc">Aşağıdaki başvuru formunu bilgilerinizle doldurun.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="pika-career-step">
+                    <div class="pika-career-step__num">2</div>
+                    <h4 data-i18n="career.step2Title">İnceleme</h4>
+                    <p data-i18n="career.step2Desc">Ekibimiz başvurunuzu dikkatle değerlendirir.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="pika-career-step">
+                    <div class="pika-career-step__num">3</div>
+                    <h4 data-i18n="career.step3Title">Görüşme</h4>
+                    <p data-i18n="career.step3Desc">Uygun adaylarla teknik ve kültürel uyum görüşmeleri yaparız.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="pika-career-step">
+                    <div class="pika-career-step__num">4</div>
+                    <h4 data-i18n="career.step4Title">Hoş Geldin!</h4>
+                    <p data-i18n="career.step4Desc">Teklif ve onboarding sürecimizle ekibimize katılırsınız.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ───── BAŞVURU FORMU ───── -->
+<section class="pika-section pika-corp-section" id="basvuru">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="pika-corp-shell">
+                    <div class="text-center mb-4">
+                        <h2 class="pika-h2" data-i18n="career.formTitle">Başvuru Formu</h2>
+                        <p class="text-secondary" data-i18n="career.formDesc">
+                            Aşağıdaki formu doldurarak bize ulaşabilirsiniz. Başvurunuz en kısa sürede değerlendirilecektir.
+                        </p>
+                    </div>
+                    <form id="careerForm" class="row g-3" enctype="multipart/form-data">
+                        <div class="col-md-6">
+                            <label class="form-label" data-i18n="form.fullName">Ad Soyad</label>
+                            <input class="form-control pika-input" name="fullName" placeholder="Ad Soyad" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" data-i18n="form.email">E-posta</label>
+                            <input type="email" class="form-control pika-input" name="email" placeholder="mail@adres.com" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" data-i18n="form.phone">Telefon</label>
+                            <input class="form-control pika-input" name="phone" placeholder="5XX XXX XX XX" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" data-i18n="career.position">Başvurulan Pozisyon</label>
+                            <select class="form-select pika-input" name="position" required>
+                                <option value="" data-i18n="career.positionPh">Pozisyon seçiniz</option>
+                                <option value="Backend Developer">Backend Developer</option>
+                                <option value="Frontend Developer">Frontend Developer</option>
+                                <option value="Full Stack Developer">Full Stack Developer</option>
+                                <option value="DevOps Engineer">DevOps Engineer</option>
+                                <option value="Data Engineer">Data Engineer</option>
+                                <option value="Product Manager">Product Manager</option>
+                                <option value="UI/UX Designer">UI/UX Designer</option>
+                                <option value="Digital Marketing Specialist">Digital Marketing Specialist</option>
+                                <option value="Diğer / Other">Diğer / Other</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" data-i18n="career.cvUrl">CV / LinkedIn Linki</label>
+                            <input class="form-control pika-input" name="cvUrl" placeholder="https://linkedin.com/in/...">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" data-i18n="career.cvFile">CV Yükle (PDF, maks. 5MB)</label>
+                            <input type="file" class="form-control pika-input" name="cvFile" accept=".pdf">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label" data-i18n="form.message">Mesaj</label>
+                            <textarea class="form-control pika-input" rows="4" name="message" placeholder="Kendinizden kısaca bahsedin..."></textarea>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn pika-btn-primary w-100" data-i18n="career.apply">
+                                <i class="ri-send-plane-line me-2"></i>Başvuruyu Gönder
+                            </button>
+                        </div>
+                        <div class="small text-secondary" data-i18n="form.privacy">Bilgileriniz gizli tutulur.</div>
+                        <div id="careerResult" class="pika-alert d-none mt-2"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

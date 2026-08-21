@@ -1,10 +1,10 @@
 @{
     var tr = (ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").Equals("tr", StringComparison.OrdinalIgnoreCase);
-    ViewData["Title"] = tr ? "Data Management & ETL (Veri Yönetimi)" : "Data Management & ETL";
+    ViewData["Title"] = tr ? "Veri Yönetimi ve ETL" : "Data Management & ETL";
     ViewData["MetaDescription"] = tr ? "Dağınık veriyi normalize edin; müşteri profiline dönüştürün, segment ve otomasyonu besleyin." : "Normalize fragmented data, build customer profiles, and power segmentation and automation.";
     ViewData["MetaKeywords"] = "data management,etl,normalization,customer profile,ingestion";
 }
-<section class="pika-corp-hero pika-solution-hero"><div class="container"><h1 class="pika-corp-title">Data Management & ETL @(tr?"(Veri Yönetimi)":"")</h1><p class="pika-corp-lead">@(tr?"Dağınık veriyi normalize edin; müşteri profiline dönüştürün, segment ve otomasyonu besleyin.":"Normalize fragmented data, convert it into customer profiles, and feed segmentation and automation.")</p></div></section>
+<section class="pika-corp-hero pika-solution-hero"><div class="container"><h1 class="pika-corp-title">@(tr ? "Veri Yönetimi ve ETL" : "Data Management & ETL")</h1><p class="pika-corp-lead">@(tr?"Dağınık veriyi normalize edin; müşteri profiline dönüştürün, segment ve otomasyonu besleyin.":"Normalize fragmented data, convert it into customer profiles, and feed segmentation and automation.")</p></div></section>
 <section class="pika-section pika-corp-section pika-solution-detail"><div class="container">
 <p>@(tr?"Birçok ekip “veri var ama kullanamıyoruz” noktasında takılır. ETL katmanı, Pika için sadece import ekranı değil; müşteri profilinin sürekli güncel kaldığı, transactional verinin anlamlı sinyale dönüştüğü katmandır. Böylece segment kuralları ve personalization daha “gerçek” hale gelir.":"Many teams struggle with “we have data but cannot use it.” In Pika, ETL is not just an import screen; it keeps customer profiles continuously updated and transforms transactional data into actionable signals. This makes segment rules and personalization more real.")</p>
 <h3>@(tr?"Ne sağlar?":"What does it provide?")</h3>

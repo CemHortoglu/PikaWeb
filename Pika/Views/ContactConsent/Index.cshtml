@@ -1,0 +1,81 @@
+@model Pika.Models.ContactConsent.ContactConsentViewModel
+@{
+    ViewData["Title"] = "İletişim İzinleri";
+    Layout = "_LayoutBlank";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/contact-consent.css" asp-append-version="true" />
+}
+
+<section class="pika-section contact-consent-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-11 col-md-9 col-lg-7 col-xl-6">
+                <div class="consent-wrapper">
+                    <h1 class="consent-title">İletişim İzinleriniz</h1>
+                    <p class="consent-subtitle">Size hangi kanallardan ulaşmamızı istediğinizi aşağıdan güncelleyebilirsiniz.</p>
+
+                    <form id="contactConsentForm" method="post" action="@Url.Action("Submit", "ContactConsent", new { culture = ViewContext.RouteData.Values["culture"] })">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="Token" value="@Model.Token" />
+
+                        <div class="consent-card">
+                            <div class="consent-card__label">
+                                <span class="consent-card__icon" aria-hidden="true">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="9" cy="7" r="4"></circle>
+                                        <polyline points="17 11 19 13 23 9"></polyline>
+                                    </svg>
+                                </span>
+                                <span class="consent-card__title">E-posta İzni</span>
+                            </div>
+                            <div class="consent-card__control">
+                                <label class="consent-switch" title="E-posta izni">
+                                    <input type="checkbox" name="EmailConsent" value="true" checked />
+                                    <span class="consent-switch__slider" aria-hidden="true"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="consent-card">
+                            <div class="consent-card__label">
+                                <span class="consent-card__icon" aria-hidden="true">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="9" cy="7" r="4"></circle>
+                                        <polyline points="17 11 19 13 23 9"></polyline>
+                                    </svg>
+                                </span>
+                                <span class="consent-card__title">SMS İzni</span>
+                            </div>
+                            <div class="consent-card__control">
+                                <label class="consent-switch" title="SMS izni">
+                                    <input type="checkbox" name="SmsConsent" value="true" checked />
+                                    <span class="consent-switch__slider" aria-hidden="true"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        @if (!string.IsNullOrEmpty(Model.CloudflareSiteKey))
+                        {
+                            <div class="consent-turnstile">
+                                <div class="cf-turnstile" data-sitekey="@Model.CloudflareSiteKey" data-theme="light"></div>
+                            </div>
+                        }
+
+                        <div id="consentResult" class="consent-alert d-none" role="status" aria-live="polite"></div>
+
+                        <button type="submit" class="consent-submit">Gönder</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <script src="~/js/contact-consent.js" asp-append-version="true"></script>
+}

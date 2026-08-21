@@ -1,0 +1,145 @@
+@{
+    var culture = (ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").ToLowerInvariant();
+    var isTr = culture != "en";
+    string L(string tr, string en) => isTr ? tr : en;
+    ViewData["Title"] = L("Kullanım Şartları", "Terms of Service");
+    ViewData["MetaDescription"] = L(
+        "ARCA hizmetlerinin kullanımına ilişkin yasal şartlar, hesap sorumluluğu, fikri mülkiyet, sorumluluk sınırlaması ve uygulanacak hukuk.",
+        "Legal terms for using ARCA services: account responsibility, intellectual property, limitation of liability, and governing law.");
+}
+
+<section class="faq-pro-hero">
+    <div class="container">
+        <div class="faq-pro-hero-grid">
+            <div>
+                <span class="faq-chip">@L("Kurumsal", "Corporate")</span>
+                <h1 class="faq-pro-title">@L("Kullanım Şartları", "Terms of Service")</h1>
+                <p class="faq-pro-lead text-white-50 small mb-0"><span>@L("Yürürlük Tarihi:", "Effective Date:")</span> <span>@L("20 Ağustos 2020", "August 20, 2020")</span></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="pika-section pt-5">
+    <div class="container">
+        <div class="pika-card p-4 p-md-5">
+            <article class="legal-content">
+                <p class="terms-lead">@L(
+                    "ARCA YAZILIM BİLİŞİM EĞİTİM DANIŞMANLIK'a hoş geldiniz. Bu Hizmet Şartları (\"Şartlar\"), web sitemize, platformlarımıza ve tarafımızca sağlanan tüm hizmetlere (toplu olarak \"Hizmetler\") erişiminizi ve kullanımınızı düzenler. Hizmetlere erişerek veya kullanarak bu Şartlara bağlı kalmayı kabul etmiş olursunuz. Kabul etmiyorsanız, Hizmetleri derhal kullanmayı bırakmalısınız.",
+                    "Welcome to ARCA YAZILIM BİLİŞİM EĞİTİM DANIŞMANLIK. These Terms of Service (\"Terms\") govern your access to and use of our website, platforms, and any services provided by us (collectively, the \"Services\"). By accessing or using the Services, you agree to be bound by these Terms. If you do not agree, you must immediately cease using the Services.")</p>
+                <p>@L(
+                    "Bu Şartlar, sizin (\"Kullanıcı\") ile ARCA YAZILIM BİLİŞİM EĞİTİM DANIŞMANLIK (\"Şirket\") arasında yasal olarak bağlayıcı bir sözleşme oluşturur.",
+                    "These Terms constitute a legally binding agreement between you (\"the User\") and ARCA YAZILIM BİLİŞİM EĞİTİM DANIŞMANLIK (\"the Company\").")</p>
+
+                <h3>@L("1. Şartların Kabulü", "1. Acceptance of Terms")</h3>
+                <p>@L(
+                    "Hizmetlere erişerek veya kullanarak aşağıdakileri temsil ve taahhüt edersiniz:",
+                    "By accessing or using the Services, you represent and warrant that:")</p>
+                <ul class="mb-3">
+                    <li>@L("Yetki alanınızda reşit yaşta olmanız ve bu sözleşmeye girmeye hukuken ehliyetli olmanız.", "You are at least the age of majority in your jurisdiction and legally capable of entering into this agreement.")</li>
+                    <li>@L("Hizmetlere bir tüzel kişi adına erişiyorsanız, o tüzel kişiyi bu Şartlara bağlamaya yetkiniz olması.", "If you are accessing the Services on behalf of a legal entity, you have the authority to bind that entity to these Terms.")</li>
+                </ul>
+
+                <h3>@L("2. Şartlarda Değişiklikler", "2. Changes to Terms")</h3>
+                <p>@L(
+                    "Bu Şartları herhangi bir zamanda değiştirme veya güncelleme hakkını saklı tutarız. Değişiklikler web sitemize yayınlandığında veya size başka şekilde bildirildiğinde yürürlüğe girer. Bu tür değişikliklerden sonra Hizmetleri kullanmaya devam etmeniz güncellenmiş Şartların kabulü anlamına gelir.",
+                    "We reserve the right to modify or update these Terms at any time. Changes will take effect upon being posted to our website or otherwise communicated to you. Your continued use of the Services after such modifications constitutes acceptance of the updated Terms.")</p>
+
+                <h3>@L("3. Hizmetlerin Kullanımı", "3. Use of Services")</h3>
+                <p>@L(
+                    "Hizmetleri geçerli tüm yasalar, düzenlemeler ve bu Şartlara uygun olarak kullanmayı kabul edersiniz. Aşağıdakiler yasaktır:",
+                    "You agree to use the Services in compliance with all applicable laws, regulations, and these Terms. You are prohibited from:")</p>
+                <ul class="mb-3">
+                    <li>@L("Hizmetlerin düzgün işleyişini bozan veya engelleyen herhangi bir faaliyette bulunmak.", "Engaging in any activity that disrupts or interferes with the proper functioning of the Services.")</li>
+                    <li>@L("Hizmetleri yasadışı, zararlı veya dolandırıcılık amacıyla kullanmak.", "Using the Services for any unlawful, harmful, or fraudulent purpose.")</li>
+                    <li>@L("Sistemlerimizin veya verilerimizin yetkisiz bölümlerine erişmeye veya müdahale etmeye çalışmak.", "Attempting to access or manipulate unauthorized parts of our systems or data.")</li>
+                    <li>@L("Zararlı yazılım, virüs veya benzeri tehditleri Hizmetler aracılığıyla dağıtmak.", "Distributing malicious software, viruses, or similar threats through the Services.")</li>
+                </ul>
+                <p>@L(
+                    "Tek takdirimize bağlı olarak bu hükmü ihlal eden herkese karşı soruşturma başlatma ve uygun yasal işlem yapma hakkımızı saklı tutarız.",
+                    "We reserve the right to investigate and take appropriate legal action against anyone who, in our sole discretion, violates this provision.")</p>
+
+                <h3>@L("4. Hesap Sorumluluğu", "4. Account Responsibility")</h3>
+                <p>@L(
+                    "Hizmetlerin belirli özelliklerini kullanmak için hesap oluşturmanız gerekiyorsa, aşağıdakileri kabul edersiniz:",
+                    "If you are required to create an account to use certain features of the Services, you agree to:")</p>
+                <ul class="mb-3">
+                    <li>@L("Kayıt sürecinde doğru, güncel ve eksiksiz bilgi sağlamak.", "Provide accurate, up-to-date, and complete information during the registration process.")</li>
+                    <li>@L("Hesap kimlik bilgilerinizin gizliliğini korumak ve hesabınız altında gerçekleşen tüm faaliyetlerden yalnızca sizin sorumlu olmanız.", "Maintain the confidentiality of your account credentials and be solely responsible for all activities that occur under your account.")</li>
+                    <li>@L("Hesabınıza yetkisiz erişim veya kullanım durumunda derhal bizi bilgilendirmek.", "Notify us immediately of any unauthorized access or use of your account.")</li>
+                </ul>
+                <p>@L(
+                    "Şirket, bu yükümlülüklere uymamanızdan kaynaklanan herhangi bir kayıp veya zarardan sorumlu olmayacaktır.",
+                    "The Company will not be liable for any loss or damage arising from your failure to comply with these obligations.")</p>
+
+                <h3>@L("5. Fikri Mülkiyet", "5. Intellectual Property")</h3>
+                <p>@L(
+                    "Hizmetler aracılığıyla sunulan tüm içerik, materyaller ve fikri mülkiyet, metin, grafikler, logolar, tasarımlar, yazılım ve ticari markalar dahil ancak bunlarla sınırlı olmamak üzere ARCA YAZILIM BİLİŞİM EĞİTİM DANIŞMANLIK veya lisans verenlerinin mülkiyetindedir.",
+                    "All content, materials, and intellectual property made available through the Services, including but not limited to text, graphics, logos, designs, software, and trademarks, are the property of ARCA YAZILIM BİLİŞİM EĞİTİM DANIŞMANLIK or its licensors.")</p>
+                <p>@L(
+                    "Size, Hizmetlere yalnızca kişisel veya yetkili iş amaçları için erişim ve kullanım için sınırlı, münhasır olmayan, devredilemez ve geri alınabilir bir lisans verilmiştir. İçeriğimizin yetkisiz kullanımı, çoğaltılması veya dağıtımı kesinlikle yasaktır ve yasal işlemlere yol açabilir.",
+                    "You are granted a limited, non-exclusive, non-transferable, and revocable license to access and use the Services solely for personal or authorized business purposes. Any unauthorized use, reproduction, or distribution of our content is strictly prohibited and may result in legal action.")</p>
+
+                <h3>@L("6. Gizlilik ve Veri Koruma", "6. Privacy and Data Protection")</h3>
+                <p>@L(
+                    "Hizmetleri kullanımınız Gizlilik Politikamıza tabidir; kişisel bilgilerinizi nasıl topladığımızı, kullandığımızı ve koruduğumuzu açıklar. Hizmetleri kullanarak, bilgilerinizin Gizlilik Politikasında açıklandığı şekilde toplanması ve kullanılmasını kabul etmiş olursunuz.",
+                    "Your use of the Services is subject to our Privacy Policy, which outlines how we collect, use, and protect your personal information. By using the Services, you agree to our collection and use of your information as described in the Privacy Policy.")</p>
+                <p><span>@L("Daha fazla bilgi için lütfen ", "For more information, please refer to our ")</span><a href="@Url.Action("PrivacyPolicy", "Home", new { culture })" class="text-decoration-underline">@L("Gizlilik Politikası", "Privacy Policy")</a><span>@L(" sayfamıza bakınız.", ".")</span></p>
+
+                <h3>@L("7. Sorumluluk Sınırlaması", "7. Limitation of Liability")</h3>
+                <p>@L(
+                    "Yürürlükteki yasaların izin verdiği en geniş ölçüde, ARCA YAZILIM BİLİŞİM EĞİTİM DANIŞMANLIK, Hizmetleri kullanımınızdan doğan veya bununla bağlantılı dolaylı, arızi, özel veya sonuç olarak ortaya çıkan zararlardan sorumlu tutulamaz.",
+                    "To the fullest extent permitted by law, ARCA YAZILIM BİLİŞİM EĞİTİM DANIŞMANLIK shall not be held liable for any indirect, incidental, special, or consequential damages arising out of or in connection with your use of the Services.")</p>
+                <p>@L(
+                    "Şirket Hizmetleri \"olduğu gibi\" ve \"mevcut olduğu şekilde\" sunar ve ticari uygunluk, belirli bir amaç için uygunluk ve ihlal etmeme garantileri dahil ancak bunlarla sınırlı olmamak üzere açık veya zımni tüm garantileri reddeder.",
+                    "The Company provides the Services on an \"as is\" and \"as available\" basis and disclaims all warranties, express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, and non-infringement.")</p>
+
+                <h3>@L("8. Tazminat", "8. Indemnification")</h3>
+                <p>@L(
+                    "ARCA YAZILIM BİLİŞİM EĞİTİM DANIŞMANLIK'ı, bağlı ortaklarını ve ilgili yöneticilerini, memurlarını, çalışanlarını ve temsilcilerini aşağıdakilerden doğan herhangi bir iddia, zarar, kayıp veya yükümlülükten korumak, savunmak ve tazmin etmeyi kabul edersiniz:",
+                    "You agree to indemnify, defend, and hold harmless ARCA YAZILIM BİLİŞİM EĞİTİM DANIŞMANLIK, its affiliates, and their respective directors, officers, employees, and agents from any claims, damages, losses, or liabilities arising out of:")</p>
+                <ul class="mb-3">
+                    <li>@L("Hizmetleri kullanımınız.", "Your use of the Services.")</li>
+                    <li>@L("Bu Şartların ihlali.", "Your violation of these Terms.")</li>
+                    <li>@L("Üçüncü bir tarafın fikri mülkiyet veya haklarının ihlali.", "Your infringement of any intellectual property or rights of a third party.")</li>
+                </ul>
+
+                <h3>@L("9. Erişimin Askıya Alınması veya Sonlandırılması", "9. Suspension or Termination of Access")</h3>
+                <p>@L(
+                    "Tek takdirimize bağlı olarak bu Şartları ihlal ettiğinizi veya Hizmetlerin bütünlüğü için risk teşkil ettiğinizi belirlememiz halinde, sebep göstermeksizin veya önceden bildirimde bulunmaksızın Hizmetlere erişiminizi herhangi bir zamanda askıya alma veya sonlandırma hakkını saklı tutarız.",
+                    "We reserve the right to suspend or terminate your access to the Services at any time, with or without cause, and without prior notice, if we determine, in our sole discretion, that you have violated these Terms or pose a risk to the integrity of the Services.")</p>
+
+                <h3>@L("10. Uygulanacak Hukuk ve Yetki", "10. Governing Law and Jurisdiction")</h3>
+                <p>@L(
+                    "Bu Şartlar Türkiye Cumhuriyeti yasalarına tabidir ve çatışma hukuku ilkeleri dikkate alınmaksızın bu yasalara göre yorumlanır. Bu Şartlar kapsamında veya bunlarla bağlantılı ortaya çıkan anlaşmazlıklar, Ankara, Türkiye'deki mahkemelerin münhasır yargı yetkisine tabidir.",
+                    "These Terms are governed by and construed in accordance with the laws of the Republic of Türkiye, without regard to its conflict of laws principles. Any disputes arising under or in connection with these Terms shall be subject to the exclusive jurisdiction of the courts located in Ankara, Türkiye.")</p>
+
+                <h3>@L("11. Ayrılabilirlik", "11. Severability")</h3>
+                <p>@L(
+                    "Bu Şartların herhangi bir hükmü yetkili bir mahkeme tarafından geçersiz veya uygulanamaz bulunursa, kalan hükümler tam olarak yürürlükte kalmaya devam eder.",
+                    "If any provision of these Terms is found to be invalid or unenforceable by a court of competent jurisdiction, the remaining provisions will remain in full force and effect.")</p>
+
+                <h3>@L("12. Bütün Sözleşme", "12. Entire Agreement")</h3>
+                <p>@L(
+                    "Bu Şartlar, Gizlilik Politikamızla birlikte, sizin ile ARCA YAZILIM BİLİŞİM EĞİTİM DANIŞMANLIK arasında Hizmetleri kullanımınıza ilişkin tüm sözleşmeyi oluşturur ve önceki sözleşmeleri veya anlayışları geçersiz kılar.",
+                    "These Terms, together with our Privacy Policy, constitute the entire agreement between you and ARCA YAZILIM BİLİŞİM EĞİTİM DANIŞMANLIK regarding your use of the Services and supersede any prior agreements or understandings.")</p>
+
+                <h3>@L("13. İletişim Bilgileri", "13. Contact Information")</h3>
+                <p>@L(
+                    "Bu Şartlarla ilgili herhangi bir sorunuz veya endişeniz varsa lütfen bizimle iletişime geçin:",
+                    "If you have any questions or concerns regarding these Terms, please contact us at:")</p>
+                <p>
+                    <strong>ARCA YAZILIM BİLİŞİM EĞİTİM DANIŞMANLIK</strong><br />
+                    <span>@L("E-posta:", "Email:")</span> <a href="mailto:info@arcateknoloji.com" class="text-decoration-underline">info@arcateknoloji.com</a><br />
+                    <span>@L("Adres:", "Address:")</span> <span>Ostim Osb Mah. 100. Yıl Bulvarı, 55/E Kat:4, Teknopark Turkuaz Bina, 06374 Yenimahalle/Ankara</span>
+                </p>
+
+                <p class="mt-4">@L(
+                    "ARCA YAZILIM BİLİŞİM EĞİTİM DANIŞMANLIK tarafından sağlanan Hizmetleri kullanarak, bu Şartları okuduğunuzu, anladığınızı ve kabul ettiğinizi beyan etmiş olursunuz.",
+                    "By using the Services provided by ARCA YAZILIM BİLİŞİM EĞİTİM DANIŞMANLIK, you acknowledge that you have read, understood, and agreed to these Terms.")</p>
+
+                <p class="mt-4 text-white-50 small"><span>@L("Yürürlük Tarihi:", "Effective Date:")</span> <span>@L("20 Ağustos 2020", "August 20, 2020")</span></p>
+            </article>
+        </div>
+    </div>
+</section>

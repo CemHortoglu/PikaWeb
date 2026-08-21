@@ -1,0 +1,124 @@
+@using System.Globalization
+@{
+    var culture = (ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").ToLowerInvariant();
+    var isTr = culture != "en";
+    string L(string tr, string en) => isTr ? tr : en;
+    ViewData["Title"] = L("Gizlilik Politikası", "Privacy Policy");
+    ViewData["MetaDescription"] = L(
+        "ARCA hizmetleri için kişisel verilerin toplanması, kullanımı, çerezler, güvenlik ve Google kullanıcı verileri hakkında gizlilik politikası.",
+        "Privacy policy for ARCA services: personal data collection and use, cookies, security, and Google user data.");
+}
+
+<section class="faq-pro-hero">
+    <div class="container">
+        <div class="faq-pro-hero-grid">
+            <div>
+                <span class="faq-chip">@L("Kurumsal", "Corporate")</span>
+                <h1 class="faq-pro-title">@L("Gizlilik Politikası", "Privacy Policy")</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="pika-section pt-5">
+    <div class="container">
+        <div class="pika-card p-4 p-md-5">
+            <article class="legal-content">
+                <p class="privacy-lead">@L(
+                    "ARCA uygulamalarını ücretsiz ve ücretli olarak geliştirmektedir. Bu HİZMET ARCA tarafından ücretsiz sunulmakta olup, olduğu gibi kullanılmak üzere tasarlanmıştır.",
+                    "ARCA built apps as free and paid. This SERVICE is provided by ARCA at no cost and is intended for use as is.")</p>
+                <p>@L(
+                    "Bu sayfa, hizmetimizi kullanmaya karar veren herkes için Kişisel Bilgilerin toplanması, kullanılması ve açıklanması ile ilgili politikalarımız hakkında ziyaretçileri bilgilendirmek için kullanılır.",
+                    "This page is used to inform visitors regarding our policies with the collection, use, and disclosure of Personal Information if anyone decided to use our Service.")</p>
+                <p>@L(
+                    "Hizmetimizi kullanmayı seçerseniz, bu politika kapsamındaki bilgilerin toplanması ve kullanılması konusunda kabul etmiş olursunuz. Topladığımız Kişisel Bilgiler, hizmet sunmak ve iyileştirmek için kullanılmaktadır. Bilgilerinizi bu Gizlilik Politikası'nda açıklandığı şekilde hariç, hiçkimseyle kullanmayacağız veya paylaşmayacağız.",
+                    "If you choose to use our Service, then you agree to the collection and use of information in relation to this policy. The Personal Information that we collect is used for providing and improving the Service. We will not use or share your information with anyone except as described in this Privacy Policy.")</p>
+                <p>@L(
+                    "Bu Gizlilik Politikası'nda kullanılan terimler, bu Gizlilik Politikası'nda aksi tanımlanmadıkça, Kullanım Şartları ile aynı anlama sahiptir.",
+                    "The terms used in this Privacy Policy have the same meanings as in our Terms and Conditions, which is accessible at ARCA apps unless otherwise defined in this Privacy Policy.")</p>
+
+                <h3>@L("1. Bilgi Toplama ve Kullanım", "1. Information Collection and Use")</h3>
+                <p>@L(
+                    "Daha iyi bir deneyim için, hizmetimizi kullanırken sizden belirli kişisel olarak tanımlanabilir bilgiler sağlamanız gerekebilir. Talep ettiğimiz bilgiler cihazınızda saklanacak ve bizim tarafımızdan herhangi bir şekilde toplanmayacaktır. Uygulama, sizi tanımlamak için kullanılan bilgileri toplayabilecek üçüncü taraf hizmetleri kullanmaktadır.",
+                    "For a better experience, while using our Service, we may require you to provide us with certain personally identifiable information. The information that we request will be retained on your device and is not collected by us in any way. The app does use third party services that may collect information used to identify you.")</p>
+
+                <h3>@L("2. Log Verisi", "2. Log Data")</h3>
+                <p>@L(
+                    "Hizmetimizi her kullandığınızda, uygulamada bir hata olması durumunda telefonunuzda Log Verisi adı verilen veri ve bilgi topladığımızı (üçüncü taraf ürünleri aracılığıyla) bilmenizi isteriz. Bu Log Verisi, cihazınızın İnternet Protokolü (IP) adresi, cihaz adı, işletim sistemi sürümü, hizmetimizi kullanırken uygulamanın yapılandırması, hizmeti kullandığınız zaman ve tarih ile diğer istatistikler gibi bilgileri içerebilir.",
+                    "We wish to inform you that whenever you use our Service, in a case of an error in the app we collect data and information (through third party products) on your phone called Log Data. This Log Data may include information such as your device Internet Protocol (\"IP\") address, device name, operating system version, the configuration of the app when utilizing our Service, the time and date of your use of the Service, and other statistics.")</p>
+
+                <h3>@L("3. Çerezler", "3. Cookies")</h3>
+                <p>@L(
+                    "Çerezler, genellikle anonim benzersiz tanımlayıcılar olarak kullanılan az miktarda veri içeren dosyalardır. Bunlar ziyaret ettiğiniz web sitelerinden tarayıcınıza gönderilir ve cihazınızın dahili belleğinde saklanır.",
+                    "Cookies are files with a small amount of data that are commonly used as anonymous unique identifiers. These are sent to your browser from the websites that you visit and are stored on your device's internal memory.")</p>
+                <p>@L(
+                    "Bu Hizmet bu çerezleri açıkça kullanmaz. Ancak uygulama, bilgi toplamak ve hizmetlerini iyileştirmek için çerez kullanan üçüncü taraf kod ve kütüphaneler kullanabilir. Bu çerezleri kabul etme veya reddetme ve bir çerezin cihazınıza ne zaman gönderildiğini bilme seçeneğiniz vardır. Çerezlerimizi reddetmeyi seçerseniz, bu Hizmetin bazı bölümlerini kullanamayabilirsiniz.",
+                    "This Service does not use these \"cookies\" explicitly. However, the app may use third party code and libraries that use \"cookies\" to collect information and improve their services. You have the option to either accept or refuse these cookies and know when a cookie is being sent to your device. If you choose to refuse our cookies, you may not be able to use some portions of this Service.")</p>
+
+                <h3>@L("4. Hizmet Sağlayıcılar", "4. Service Providers")</h3>
+                <p>@L(
+                    "Aşağıdaki nedenlerden dolayı üçüncü taraf şirketleri ve bireyleri istihdam edebiliriz:",
+                    "We may employ third-party companies and individuals due to the following reasons:")</p>
+                <ul class="mb-3">
+                    <li>@L("Hizmetimizi kolaylaştırmak için;", "To facilitate our Service;")</li>
+                    <li>@L("Bizim adımıza hizmet sunmak için;", "To provide the Service on our behalf;")</li>
+                    <li>@L("Hizmetle ilgili hizmetleri gerçekleştirmek için; veya", "To perform Service-related services; or")</li>
+                    <li>@L("Hizmetimizin nasıl kullanıldığını analiz etmemize yardımcı olmak için.", "To assist us in analyzing how our Service is used.")</li>
+                </ul>
+                <p>@L(
+                    "Bu Hizmetin kullanıcılarına, bu üçüncü tarafların Kişisel Bilgilerinize erişimi olduğunu bilmenizi isteriz. Nedeni, bizim adımıza kendilerine atanan görevleri yerine getirmektir. Ancak bilgileri başka herhangi bir amaç için ifşa etmemek veya kullanmamakla yükümlüdürler.",
+                    "We wish to inform users of this Service that these third parties have access to your Personal Information. The reason is to perform the tasks assigned to them on our behalf. However, they are obligated not to disclose or use the information for any other purpose.")</p>
+
+                <h3>@L("5. Güvenlik", "5. Security")</h3>
+                <p>@L(
+                    "Kişisel Bilgilerinizi bize sağlama konusundaki güveninize değer veriyoruz; bu nedenle bunu ticari olarak kabul edilebilir araçlarla korumaya çalışıyoruz. Ancak unutmayınız ki İnternet üzerinden iletilen veya elektronik depolama yönteminin hiçbiri %100 güvenli ve güvenilir değildir ve mutlak güvenliğini garanti edemeyiz.",
+                    "We value your trust in providing us your Personal Information, thus we are striving to use commercially acceptable means of protecting it. However, please note that no method of transmission over the internet, or method of electronic storage is 100% secure and reliable, and we cannot guarantee its absolute security.")</p>
+
+                <h3>@L("6. Diğer Sitelere Bağlantılar", "6. Links to Other Sites")</h3>
+                <p>@L(
+                    "Bu Hizmet diğer sitelere bağlantılar içerebilir. Üçüncü taraf bir bağlantıya tıklarsanız, o siteye yönlendirileceksiniz. Bu harici sitelerin bizim tarafımızdan işletilmediğini unutmayınız. Bu nedenle, bu web sitelerinin Gizlilik Politikasını incelemenizi şiddetle tavsiye ederiz. Üçüncü taraf sitelerin veya hizmetlerin içeriği, gizlilik politikaları veya uygulamaları üzerinde hiçbir kontrolümüz yoktur ve sorumluluk kabul etmeyiz.",
+                    "This Service may contain links to other sites. If you click on a third-party link, you will be directed to that site. Please note that these external sites are not operated by us. Therefore, we strongly advise you to review the Privacy Policy of these websites. We have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party sites or services.")</p>
+
+                <h3>@L("7. Çocukların Gizliliği", "7. Children's Privacy")</h3>
+                <p>@L(
+                    "Bu Hizmetler 13 yaşın altındaki herkese hitap etmemektedir. 13 yaşın altındaki çocuklardan bilerek kişisel olarak tanımlanabilir bilgi toplamıyoruz. 13 yaşın altındaki bir çocuğun bize kişisel bilgi sağladığını keşfettiğimiz durumda, bunu sunucularımızdan hemen sileriz.",
+                    "These Services do not address anyone under the age of 13. We do not knowingly collect personally identifiable information from children under 13. In the case we discover that a child under 13 has provided us with personal information, we immediately delete this from our servers.")</p>
+                <p>@L(
+                    "Bir ebeveyn veya vasiyseniz ve çocuğunuzun bize kişisel bilgi sağladığını biliyorsanız, gerekli işlemleri yapabilmemiz için lütfen bizimle iletişime geçiniz.",
+                    "If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact us so that we may take the necessary actions.")</p>
+
+                <h3>@L("8. Bu Gizlilik Politikasındaki Değişiklikler", "8. Changes to This Privacy Policy")</h3>
+                <p>@L(
+                    "Gizlilik Politikamızı zaman zaman güncelleyebiliriz. Bu nedenle, herhangi bir değişiklik için bu sayfayı periyodik olarak incelemeniz önerilir. Yeni Gizlilik Politikasını bu sayfada yayınlayarak değişikliklerden sizi haberdar edeceğiz. Bu değişiklikler bu sayfada yayınlandıktan hemen sonra yürürlüğe girer.",
+                    "We may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes. We will notify you of any changes by posting the new Privacy Policy on this page. These changes are effective immediately after they are posted on this page.")</p>
+
+                <h3>@L("9. Google Kullanıcı Verileri", "9. Google User Data")</h3>
+                <p><strong>@L("Eriştiğimiz Google kullanıcı verileri:", "What Google user data we access:")</strong></p>
+                <p>@L(
+                    "Uygulamamız, yalnızca OAuth yetkilendirme süreci aracılığıyla açık izin verdiğinizde Google Kişiler verilerinize erişir. Özellikle uygulama, Google Kişiler listenizdeki kişi bilgilerini okuyabilir. Başka hiçbir Google kullanıcı verisine (Gmail, Drive veya Takvim gibi) erişilmez.",
+                    "Our application accesses your Google Contacts data only after you grant explicit permission through the OAuth authorization process. Specifically, the app may read contact information from your Google Contacts list. No other Google user data (such as Gmail, Drive, or Calendar) is accessed.")</p>
+                <p><strong>@L("Google kullanıcı verilerinizi nasıl kullanıyoruz:", "How we use your Google user data:")</strong></p>
+                <p>@L(
+                    "Eriştiğimiz Google Kişiler verileri, yalnızca kullanıcı tarafından talep edildiği şekilde kişi listesi ve iletişim bilgileri ile ilgili işlevsellik sağlamak için kullanılmaktadır. Bu veriler reklamcılık, analitik, profil oluşturma veya herhangi bir ilgisiz amaç için kullanılmaz.",
+                    "The Google Contacts data we access is used solely to provide contacts-related functionality — such as reading contact lists and information as requested by the user. This data is not used for advertising, analytics, profiling, or any unrelated purpose.")</p>
+                <p><strong>@L("Google kullanıcı verilerinizi kimlerle paylaşıyoruz:", "Who we share your Google user data with:")</strong></p>
+                <p>@L(
+                    "Herhangi bir Google kullanıcı verisini üçüncü taraflarla paylaşmıyor, satmıyor veya ifşa etmiyoruz. Veriler yalnızca yasa veya geçerli bir yasal süreç gerektiriyorsa ifşa edilebilir.",
+                    "We do not share, sell, or disclose any Google user data to third parties. Data may only be disclosed if required by law or a valid legal process.")</p>
+                <p><strong>@L("Veri koruma mekanizmaları:", "Data protection mechanisms:")</strong></p>
+                <p>@L(
+                    "Google API'leri ile tüm iletişim endüstri standardı şifrelemeyle (HTTPS/SSL) güvence altına alınmaktadır. Erişim token'ları ve kullanıcı kimlik bilgileri güvenli bir şekilde saklanır ve yetkisiz taraflara asla açığa çıkmaz. Kullanıcılar, Google Hesap İzinleri sayfası aracılığıyla uygulamanın Google verilerine erişimini istedikleri zaman iptal edebilir.",
+                    "All communication with Google APIs is secured using industry-standard encryption (HTTPS/SSL). Access tokens and user credentials are stored securely and are never exposed to unauthorized parties. Users can revoke the app's access to their Google data at any time through their Google Account Permissions page.")</p>
+                <p><strong>@L("Veri saklama:", "Data retention:")</strong></p>
+                <p>@L(
+                    "Google kullanıcı verileri yalnızca talep edilen işlevselliği sağlamak için gerekli olduğu sürece saklanır. Bir kullanıcı erişimi iptal ettiğinde veya hesabını sildiğinde, ilişkili tüm veriler ve token'lar güvenli bir şekilde silinir.",
+                    "Google user data is stored only as long as necessary to provide the requested functionality. When a user revokes access or deletes their account, all associated data and tokens are securely deleted.")</p>
+
+                <h3>@L("10. Bize Ulaşın", "10. Contact Us")</h3>
+                <p>@L("Gizlilik Politikamız hakkında herhangi bir soru veya öneriniz varsa, bizimle iletişime geçmekten çekinmeyiniz: ", "If you have any questions or suggestions about our Privacy Policy, please do not hesitate to contact us at ")<a href="mailto:info@arcateknoloji.com" class="text-decoration-underline">info@arcateknoloji.com</a></p>
+
+                <p class="mt-4 text-white-50 small">@L("Son güncelleme:", "Last update:") @(isTr ? DateTime.Now.ToString("dd.MM.yyyy") : DateTime.Now.ToString("MMMM d, yyyy", CultureInfo.GetCultureInfo("en-US")))</p>
+            </article>
+        </div>
+    </div>
+</section>

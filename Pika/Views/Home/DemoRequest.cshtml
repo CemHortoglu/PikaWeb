@@ -1,24 +1,32 @@
+@using Microsoft.Extensions.Options
+@using Pika.Configuration
+@inject IOptions<SiteSettings> SiteOptions
 @{
-    ViewData["Title"] = "Demo Talebi";
+    var culture = (ViewData["culture"] as string ?? ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").ToLowerInvariant();
+    var isTr = culture == "tr";
+    ViewData["Title"] = isTr ? "Demo Talebi | Pika" : "Request a Demo | Pika";
+    ViewData["MetaDescription"] = isTr
+        ? "Pika omnichannel pazarlama platformunu canlı keşfedin. 15 dakikalık demo ile ihtiyacınıza özel akışları birlikte kuralım."
+        : "Discover the Pika omnichannel marketing platform live. Schedule a 15-minute tailored demo with our team.";
 }
 
 <section class="pika-page-hero">
     <div class="container">
         <div class="row g-4 align-items-center">
             <div class="col-lg-7">
-                <h1 class="pika-h1">Demo Talebi</h1>
-                <p class="pika-lead">
+                <h1 class="pika-h1" data-i18n="demoPage.heroTitle">Demo Talebi</h1>
+                <p class="pika-lead" data-i18n="demoPage.heroDesc">
                     Ekibinize özel bir oturum planlayalım. İhtiyaçlarınıza göre senaryoları birlikte çalışalım ve Pika'nın kurumunuza nasıl değer katacağını canlı olarak gösterelim.
                 </p>
             </div>
             <div class="col-lg-5">
                 <div class="pika-card">
-                    <h3 class="pika-h3 mb-3">Neler Dahil?</h3>
+                    <h3 class="pika-h3 mb-3" data-i18n="demoPage.whatsIncluded">Neler Dahil?</h3>
                     <ul class="text-white-50 mb-0">
-                        <li>45 dakikalık canlı ürün sunumu</li>
-                        <li>Sektörünüze özel kullanım senaryoları</li>
-                        <li>Teknik entegrasyon yaklaşımı</li>
-                        <li>Soru-cevap ve yol haritası önerisi</li>
+                        <li data-i18n="demoPage.item1">45 dakikalık canlı ürün sunumu</li>
+                        <li data-i18n="demoPage.item2">Sektörünüze özel kullanım senaryoları</li>
+                        <li data-i18n="demoPage.item3">Teknik entegrasyon yaklaşımı</li>
+                        <li data-i18n="demoPage.item4">Soru-cevap ve yol haritası önerisi</li>
                     </ul>
                 </div>
             </div>
@@ -31,31 +39,45 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="pika-card">
-                    <h2 class="pika-h3 mb-4">Talep Formu</h2>
-                    <form class="row g-3" method="post" action="#">
+                    <h2 class="pika-h3 mb-4" data-i18n="demoPage.formTitle">Talep Formu</h2>
+                    <form id="pageDemoRequestForm" class="row g-3">
                         <div class="col-md-6">
-                            <label class="form-label text-white">Ad Soyad</label>
-                            <input type="text" class="form-control" placeholder="Ad Soyad" required>
+                            <label class="form-label text-white" data-i18n="demoPage.fullName">Ad Soyad</label>
+                            <input type="text" class="form-control" name="firstName" data-i18n-placeholder="form.fullNamePh" placeholder="Ad Soyad" required>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label text-white">E-posta</label>
-                            <input type="email" class="form-control" placeholder="ornek@firma.com" required>
+                            <label class="form-label text-white" data-i18n="demoPage.email">E-posta</label>
+                            <input type="email" class="form-control" name="email" data-i18n-placeholder="form.emailPh" placeholder="ornek@firma.com" required>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label text-white">Şirket</label>
-                            <input type="text" class="form-control" placeholder="Şirket Adı" required>
+                            <label class="form-label text-white" data-i18n="demoPage.company">Şirket</label>
+                            <input type="text" class="form-control" name="companyName" data-i18n-placeholder="demoPage.companyPh" placeholder="Şirket Adı" required>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label text-white">Telefon</label>
-                            <input type="tel" class="form-control" placeholder="+90" required>
+                            <label class="form-label text-white" data-i18n="demoPage.phone">Telefon</label>
+                            <div class="input-group">
+                                <span class="input-group-text">+90</span>
+                                <input type="tel" class="form-control" name="phone" data-i18n-placeholder="form.phonePh" placeholder="5XX XXX XX XX" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label text-white" data-i18n="demoPage.city">Şehir</label>
+                            <input type="text" class="form-control" name="city" data-i18n-placeholder="demoPage.cityPh" placeholder="Şehir" required>
                         </div>
                         <div class="col-12">
-                            <label class="form-label text-white">Kısa İhtiyaç Notu</label>
-                            <textarea class="form-control" rows="4" placeholder="Hangi modüllerle ilgileniyorsunuz?"></textarea>
+                            <label class="form-label text-white" data-i18n="demoPage.note">Kısa İhtiyaç Notu</label>
+                            <textarea class="form-control" rows="4" name="message" data-i18n-placeholder="demoPage.notePh" placeholder="Hangi modüllerle ilgileniyorsunuz?"></textarea>
                         </div>
+                        @if (!string.IsNullOrEmpty(SiteOptions.Value.CloudflareTurnstile.SiteKey))
+                        {
+                            <div class="col-12">
+                                <div class="cf-turnstile" data-sitekey="@SiteOptions.Value.CloudflareTurnstile.SiteKey" data-theme="dark"></div>
+                            </div>
+                        }
+                        <div id="pageDemoResult" class="pika-alert d-none"></div>
                         <div class="col-12 d-flex gap-2 flex-wrap">
-                            <button type="submit" class="btn pika-btn-primary">Demo Talebini Gönder</button>
-                            <a class="btn pika-btn-outline" href="@Url.Action("Pika", "Home")">Önce Pika'yı İnceleyin</a>
+                            <button type="submit" class="btn pika-btn-primary" data-i18n="demoPage.submit">Demo Talebini Gönder</button>
+                            <a class="btn pika-btn-outline" href="@(isTr ? "/pika" : "/en/pika")" data-i18n="demoPage.explorePika">Önce Pika'yı İnceleyin</a>
                         </div>
                     </form>
                 </div>

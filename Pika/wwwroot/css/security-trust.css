@@ -1,0 +1,166 @@
+/* Security & Trust Page Styles */
+.sec-hero-section {
+    padding: 3.5rem 0 3.5rem;
+    background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+    border-bottom: 1px solid #f1f5f9;
+}
+.sec-breadcrumb {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin-bottom: 1rem;
+}
+.sec-breadcrumb a {
+    color: #64748b;
+    text-decoration: none;
+}
+.sec-breadcrumb a:hover {
+    color: #0f172a;
+}
+.sec-breadcrumb .sep {
+    margin: 0 0.5rem;
+    color: #cbd5e1;
+}
+.max-w-800 {
+    max-width: 800px;
+}
+.sec-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    background: #ecfdf5;
+    color: #047857;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    margin-bottom: 1.25rem;
+}
+.sec-hero-title {
+    font-size: 2.25rem;
+    font-weight: 800;
+    line-height: 1.25;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+}
+@media (min-width: 992px) {
+    .sec-hero-title {
+        font-size: 2.75rem;
+    }
+}
+.sec-hero-lead {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #475569;
+    margin-bottom: 0;
+}
+.sec-section {
+    padding: 4rem 0;
+}
+.sec-section-alt {
+    background: #f8fafc;
+    border-top: 1px solid #f1f5f9;
+    border-bottom: 1px solid #f1f5f9;
+}
+.sec-section-header {
+    margin-bottom: 2.5rem;
+}
+.sec-badge-sub {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #059669;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+}
+.sec-section-h2 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.5rem;
+}
+.sec-pillar-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
+.sec-card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: #ecfdf5;
+    color: #059669;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    margin-bottom: 1.25rem;
+}
+.sec-pillar-card h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 0.75rem;
+}
+.sec-card-desc {
+    font-size: 0.9rem;
+    color: #64748b;
+    line-height: 1.55;
+    margin-bottom: 1.25rem;
+}
+.sec-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.sec-list li {
+    font-size: 0.85rem;
+    color: #334155;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+.sec-list li i {
+    color: #10b981;
+    font-size: 1rem;
+    margin-top: 1px;
+}
+.sec-resp-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 1rem;
+    padding: 2rem;
+    height: 100%;
+}
+.sec-resp-pika {
+    border-left: 4px solid #10b981;
+}
+.sec-resp-client {
+    border-left: 4px solid #0284c7;
+}
+.sec-docs-panel {
+    border: 1px solid #e2e8f0;
+}
+.sec-wiki-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    text-decoration: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+.sec-wiki-card:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+.sec-wiki-card i {
+    font-size: 1.5rem;
+}

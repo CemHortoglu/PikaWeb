@@ -1,14 +1,221 @@
 @{
-    var tr = (ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").Equals("tr", StringComparison.OrdinalIgnoreCase);
-    ViewData["Title"] = tr ? "Security & Privacy (Güvenlik ve Mahremiyet)" : "Security & Privacy";
-    ViewData["MetaDescription"] = tr ? "Pazarlama otomasyonunu güvenlik kontrolleriyle büyütün; veri koruma prensiplerini ürünün parçası yapın." : "Scale marketing automation with security controls and make data protection part of the product.";
-    ViewData["MetaKeywords"] = "security,privacy,data minimization,audit trail,rate limit,allow-list";
+    var culture = (ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").ToLowerInvariant();
+    var tr = culture == "tr";
+    ViewData["Title"] = tr ? "Güvenlik ve Gizlilik | Pika Kurumsal Güven Yaklaşımı" : "Security & Privacy | Pika Enterprise Trust Approach";
+    ViewData["MetaDescription"] = tr
+        ? "Pika'nın veri güvenliği, rol bazlı erişim denetimi (RBAC), İYS/KVKK izin yönetimi, API güvenliği ve veri sorumluluğu sınırlarını inceleyin."
+        : "Explore Pika's data protection architecture, role-based access control (RBAC), IYS/KVKK consent enforcement, API security, and shared responsibility boundaries.";
+    ViewData["CanonicalUrl"] = tr ? "https://pika.tr/guvenlik-ve-gizlilik" : "https://pika.tr/en/security-and-privacy";
 }
-<section class="pika-corp-hero pika-solution-hero"><div class="container"><h1 class="pika-corp-title">Security & Privacy @(tr?"(Güvenlik ve Mahremiyet)":"")</h1><p class="pika-corp-lead">@(tr?"Pazarlama otomasyonunu güvenlik kontrolleriyle büyütün; veri koruma prensiplerini ürünün parçası yapın.":"Scale marketing automation with robust security controls and make privacy principles part of the product.")</p></div></section>
-<section class="pika-section pika-corp-section pika-solution-detail"><div class="container">
-<p>@(tr?"Kurumsal tarafta “güvenlik” bir checkbox değil; ölçek büyüdükçe zorunluluk. Pika’nın güvenli çalışması için hem API seviyesinde kontrol (rate limit, allow-list) hem de veri tarafında prensipler (minimizasyon, saklama, erişim kontrolü) işletilmelidir.":"In enterprise contexts, security is not a checkbox; it is mandatory as scale grows. Pika requires both API-level controls (rate limit, allow-list) and data principles (minimization, retention, access control).")</p>
-<h3>@(tr?"Ne sağlar?":"What does it provide?")</h3>
-<ul><li>@(tr?"API güvenliği: origin allow-list, tenant doğrulama, boyut limitleri, rate limit.":"API security: origin allow-list, tenant validation, payload size limits, rate limits.")</li><li>@(tr?"Veri disiplini: amaçla sınırlılık ve saklama süresi prensipleriyle uyum.":"Data discipline: compliance with purpose limitation and retention period principles.")</li><li>@(tr?"Operasyonel iz: kim ne yaptı, ne gönderildi, hangi event kabul edildi.":"Operational trace: who did what, what was sent, which events were accepted.")</li><li>@(tr?"Kanal bazlı izin yönetimi: özellikle WhatsApp gibi kanallarda “izin yoksa gönderme” kuralını sistematikleştirme.":"Channel-level consent management: systematically enforce “no consent, no send,” especially for WhatsApp.")</li></ul>
-<h3>@(tr?"Nasıl çalışır (özet akış):":"How it works (summary):")</h3>
-<ol><li>@(tr?"Erişim kontrolleri uygulanır (anahtar, domain, limit).":"Apply access controls (keys, domain, limits).")</li><li>@(tr?"Kritik event hatları ayrı izlenir (abuse ve anomali).":"Monitor critical event paths separately (abuse/anomaly).")</li><li>@(tr?"Kişisel veri sınıflaması yapılır; saklama/maskeleme kuralları belirlenir.":"Classify personal data and define retention/masking rules.")</li><li>@(tr?"Uyum süreçleri operasyonel hale getirilir (talep yönetimi, audit trail).":"Operationalize compliance flows (request handling, audit trail).")</li><li>@(tr?"Metrikler raporlanır: 401/403/429 trendleri, risk göstergeleri.":"Report metrics: 401/403/429 trends and risk indicators.")</li></ol>
-</div></section>
+
+@section Styles {
+    <link href="~/css/security-trust.css" rel="stylesheet" />
+}
+
+<!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+<section class="sec-hero-section">
+    <div class="container">
+        <nav class="sec-breadcrumb" aria-label="breadcrumb">
+            <a href="@(tr ? "/" : "/en/")">Pika</a>
+            <span class="sep">/</span>
+            <span>@(tr ? "Güvenlik ve Gizlilik" : "Security & Privacy")</span>
+        </nav>
+
+        <div class="max-w-800">
+            <div class="sec-eyebrow">
+                <i class="ri-shield-check-line me-1"></i>
+                <span>@(tr ? "KURUMSAL GÜVEN VE UYUMLULUK" : "ENTERPRISE TRUST & COMPLIANCE")</span>
+            </div>
+            <h1 class="sec-hero-title">
+                @(tr ? "Güvenlik, izin ve gizlilik ilkelerimiz" : "Our security, consent, and privacy principles")
+            </h1>
+            <p class="sec-hero-lead">
+                @(tr 
+                    ? "Pika; müşteri ve satış verilerinin işlenmesinde rol bazlı yetkilendirme, merkezi izin kontrolü, API koruması ve denetlenebilir altyapı standartlarını benimser. İşletmenizin yasal uyumluluğunu teknik güvenceyle destekler."
+                    : "Pika implements role-based access controls, centralized consent enforcement, protected APIs, and auditable delivery safeguards to protect customer data and uphold regulatory compliance.")
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ TRUST PILLARS ═══════════════════════════ -->
+<section class="sec-section">
+    <div class="container">
+        <div class="sec-section-header">
+            <h2 class="sec-section-h2">@(tr ? "Doğrulanmış Güvenlik ve Uyumluluk Katmanları" : "Verified Security and Compliance Layers")</h2>
+            <p class="text-muted">@(tr ? "Pika platformunda uygulanan temel teknik kontroller ve koruma prensipleri." : "Core technical controls and operational safeguards built directly into the Pika platform.")</p>
+        </div>
+
+        <div class="row g-4 mt-2">
+            <!-- PILLAR 1: ACCESS & AUTH -->
+            <div class="col-lg-6">
+                <div class="sec-pillar-card h-100">
+                    <div class="sec-card-icon"><i class="ri-user-settings-line"></i></div>
+                    <h3>@(tr ? "1. Kimlik Doğrulama & Rol Bazlı Erişim (RBAC)" : "1. Authentication & Role-Based Access Control (RBAC)")</h3>
+                    <p class="sec-card-desc">
+                        @(tr 
+                            ? "Kullanıcılar kurumsal rollerine göre tanımlanır. Hassas müşteri verilerine ve kampanya başlatma yetkilerine erişim, yalnızca yetkilendirilmiş ekip üyeleriyle sınırlandırılır."
+                            : "User access is strictly scoped to organizational roles. Access to customer records, exports, and campaign execution requires explicit administrative privileges.")
+                    </p>
+                    <ul class="sec-list">
+                        <li><i class="ri-checkbox-circle-line"></i> @(tr ? "Rol bazlı yetkilendirme (Admin, Pazarlama Yöneticisi, Operatör)" : "Granular RBAC (Admin, Marketing Manager, Operator)")</li>
+                        <li><i class="ri-checkbox-circle-line"></i> @(tr ? "Güvenli parola saklama ve oturum zaman aşımı kontrolleri" : "Secure credential hashing and session timeout safeguards")</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- PILLAR 2: CONSENT & IYS -->
+            <div class="col-lg-6">
+                <div class="sec-pillar-card h-100">
+                    <div class="sec-card-icon"><i class="ri-shield-keyhole-line"></i></div>
+                    <h3>@(tr ? "2. İzin, Opt-Out ve İYS Uyumluluğu" : "2. Consent, Opt-Out & IYS Enforcement")</h3>
+                    <p class="sec-card-desc">
+                        @(tr 
+                            ? "Ticari elektronik ileti izinleri kanal bazında (Email, SMS, WhatsApp) merkezi olarak kaydedilir. Ret (opt-out) bildirimleri anında tüm kanallarda aktif hale gelir ve izinsiz gönderim sistemsel olarak engellenir."
+                            : "Commercial communication consents are tracked per channel (Email, SMS, WhatsApp). Opt-out signals synchronize across the platform to block unconsented sends at the gateway level.")
+                    </p>
+                    <ul class="sec-list">
+                        <li><i class="ri-checkbox-circle-line"></i> @(tr ? "İYS (İleti Yönetim Sistemi) uyumlu izin sorgulama ve filtreleme" : "IYS-aligned consent verification and pre-send suppression")</li>
+                        <li><i class="ri-checkbox-circle-line"></i> @(tr ? "Tüm kanallarda anlık ret (opt-out) işleme ve kara liste yönetimi" : "Real-time opt-out synchronization and blacklist suppression")</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- PILLAR 3: DATA SEPARATION -->
+            <div class="col-lg-6">
+                <div class="sec-pillar-card h-100">
+                    <div class="sec-card-icon"><i class="ri-database-2-line"></i></div>
+                    <h3>@(tr ? "3. Mantıksal Veri İzolasyonu" : "3. Logical Tenant Data Isolation")</h3>
+                    <p class="sec-card-desc">
+                        @(tr 
+                            ? "Çok kiracılı (multi-tenant) mimaride her işletmenin müşteri, ürün, kampanya ve satış verileri mantıksal olarak birbirinden tamamen yalıtılmış olarak saklanır ve işlenir."
+                            : "Customer, product, campaign, and transaction records for each tenant are strictly segregated and logically isolated across the application layer.")
+                    </p>
+                    <ul class="sec-list">
+                        <li><i class="ri-checkbox-circle-line"></i> @(tr ? "Tenant bazlı veri sorgulama ve izolasyon garantisi" : "Tenant-scoped queries and context isolation")</li>
+                        <li><i class="ri-checkbox-circle-line"></i> @(tr ? "Yalnızca ilgili işletme kullanıcılarının veriye erişimi" : "Access restricted strictly to authenticated tenant personnel")</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- PILLAR 4: API & INTEGRATION -->
+            <div class="col-lg-6">
+                <div class="sec-pillar-card h-100">
+                    <div class="sec-card-icon"><i class="ri-plug-line"></i></div>
+                    <h3>@(tr ? "4. API ve İletim Güvenliği" : "4. API & Transport Security")</h3>
+                    <p class="sec-card-desc">
+                        @(tr 
+                            ? "Pika Ingestion API ve dış entegrasyonlar üzerinden akan tüm veriler modern TLS şifrelemesi ve API Key / Secret kimlik doğrulama protokolleri ile korunur."
+                            : "All data ingested via the Pika Ingestion API or outbound webhook integrations is encrypted in transit via TLS and protected with API Key/Secret credentials.")
+                    </p>
+                    <ul class="sec-list">
+                        <li><i class="ri-checkbox-circle-line"></i> @(tr ? "HTTPS / TLS 1.2+ şifreli veri iletimi" : "Encrypted transport over HTTPS / TLS 1.2+")</li>
+                        <li><i class="ri-checkbox-circle-line"></i> @(tr ? "API Key kimlik doğrulaması ve istek doğrulama kontrolleri" : "API Key token authentication and payload schema validation")</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ RESPONSIBILITY BOUNDARY ═══════════════════════════ -->
+<section class="sec-section sec-section-alt">
+    <div class="container">
+        <div class="sec-section-header">
+            <span class="sec-badge-sub">@(tr ? "HUKUKİ VE OPERASYONEL ÇERÇEVE" : "LEGAL & OPERATIONAL FRAMEWORK")</span>
+            <h2 class="sec-section-h2">@(tr ? "Ortak Sorumluluk Modeli" : "Shared Responsibility Boundary")</h2>
+            <p class="text-muted">
+                @(tr 
+                    ? "KVKK ve ilgili veri koruma mevzuatları kapsamında Pika'nın teknik platform rolü ile işletmenizin veri sorumlusu yükümlülükleri net biçimde ayrılmıştır."
+                    : "Under data protection regulations, Pika's role as a software platform and your organization's role as the Data Controller are clearly defined.")
+            </p>
+        </div>
+
+        <div class="row g-4 mt-2">
+            <div class="col-lg-6">
+                <div class="sec-resp-card sec-resp-pika">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <i class="ri-checkbox-circle-fill text-success fs-5"></i>
+                        <h4 class="mb-0">@(tr ? "Pika'nın Sağladığı Teknik Güvenceler" : "Pika's Technical Safeguards")</h4>
+                    </div>
+                    <p class="small text-muted mb-3">@(tr ? "Platform altyapısı ve teknik uyumluluk araçları:" : "Platform infrastructure and technical compliance features:")</p>
+                    <ul class="sec-list">
+                        <li><i class="ri-check-line text-success"></i> @(tr ? "İzinli olmayan kişilere gönderim yapılmasını engelleyen teknik filtreler" : "Technical filters suppressing unconsented recipients")</li>
+                        <li><i class="ri-check-line text-success"></i> @(tr ? "Gelen ret (opt-out) taleplerinin anında sisteme kaydedilmesi" : "Real-time processing of opt-out requests into suppression lists")</li>
+                        <li><i class="ri-check-line text-success"></i> @(tr ? "Rol bazlı kullanıcı erişimi ve güvenli kimlik doğrulama" : "Role-based authentication and restricted user access")</li>
+                        <li><i class="ri-check-line text-success"></i> @(tr ? "Kampanya ve gönderim loglarının denetlenebilir kaydı" : "Auditable logging of campaign dispatches and system actions")</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="sec-resp-card sec-resp-client">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <i class="ri-information-fill text-primary fs-5"></i>
+                        <h4 class="mb-0">@(tr ? "Müşterinin Veri Sorumlusu Yükümlülükleri" : "Customer's Data Controller Responsibilities")</h4>
+                    </div>
+                    <p class="small text-muted mb-3">@(tr ? "İşletmenizin yasal ve süreçsel sorumlulukları:" : "Your organization's legal and procedural requirements:")</p>
+                    <ul class="sec-list">
+                        <li><i class="ri-arrow-right-s-line text-primary"></i> @(tr ? "Müşterilerinizden geçerli açık rıza ve ticari onayların alınması" : "Collecting lawful consent and commercial permissions from end-users")</li>
+                        <li><i class="ri-arrow-right-s-line text-primary"></i> @(tr ? "KVKK aydınlatma metinlerinin müşterilerinize sunulması" : "Providing proper privacy notices and disclosures to your customers")</li>
+                        <li><i class="ri-arrow-right-s-line text-primary"></i> @(tr ? "Kullanıcı hesapları ve ekip erişim yetkilerinin güncel tutulması" : "Maintaining user accounts and updating team member privileges")</li>
+                        <li><i class="ri-arrow-right-s-line text-primary"></i> @(tr ? "Kampanya içeriğinin yasal mevzuatlara uygunluğunun denetlenmesi" : "Ensuring marketing content adheres to relevant advertising laws")</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ DEEP DOCUMENTATION LINKS ═══════════════════════════ -->
+<section class="sec-section">
+    <div class="container">
+        <div class="sec-docs-panel p-5 rounded-4 bg-light border">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-8">
+                    <h3 class="mb-2">@(tr ? "Detaylı Teknik Dokümantasyon" : "Technical Documentation & Guides")</h3>
+                    <p class="text-muted mb-0">
+                        @(tr 
+                            ? "İzin yönetimi, Ingestion API ve liste yönetimi konularında ayrıntılı teknik rehberlere Pika Bilgi Bankası'ndan ulaşabilirsiniz." 
+                            : "Review implementation guides for consent management, ingestion APIs, and opt-out workflows in the Public Wiki.")
+                    </p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <a href="/wiki/" class="btn pika-btn-primary px-4 py-2">
+                        @(tr ? "Pika Wiki'yi Ziyaret Edin" : "Visit Pika Wiki") <i class="ri-arrow-right-line ms-1"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="row g-3 mt-4 pt-3 border-top">
+                <div class="col-md-4">
+                    <a href="/wiki/izin-optout-iys" class="sec-wiki-card">
+                        <i class="ri-shield-check-line text-success"></i>
+                        <div>
+                            <div class="fw-bold text-dark">İzin ve İYS Yönetimi</div>
+                            <div class="small text-muted">İYS entegrasyonu ve opt-out kuralları</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="/wiki/iletisim-listeleri-ve-opt-out" class="sec-wiki-card">
+                        <i class="ri-list-check text-primary"></i>
+                        <div>
+                            <div class="fw-bold text-dark">İletişim Listeleri &amp; Ret</div>
+                            <div class="small text-muted">Kara liste ve kanal uygunluk filtreleri</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="/wiki/ingestion-api" class="sec-wiki-card">
+                        <i class="ri-code-s-slash-line text-warning"></i>
+                        <div>
+                            <div class="fw-bold text-dark">Ingestion API Rehberi</div>
+                            <div class="small text-muted">Güvenli veri aktarımı ve API Key protokolü</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

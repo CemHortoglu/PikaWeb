@@ -1,0 +1,67 @@
+@model Pika.Models.WikiHomeViewModel
+@{
+    Layout = "_InternalWikiLayout";
+    ViewData["Title"] = "Pika Dahili Mühendislik Wiki [GÜVENLİ / DAHİLİ]";
+    ViewData["CurrentSlug"] = "";
+    ViewData["Categories"] = Model.Categories;
+}
+
+@section Breadcrumb {
+    <span class="current"><i class="ri-shield-keyhole-line" style="margin-right:4px;"></i>Pika Dahili Mühendislik &amp; Operasyon Wiki</span>
+}
+
+<section class="hero hero-dark">
+    <div class="hero-copy">
+        <div class="hero-kicker" style="color:#ef4444;"><i class="ri-lock-fill"></i> Güvenli Dahili Alan · Yetkili Personel</div>
+        <h1>Pika Mühendislik &amp; Operasyon Bilgi Bankası</h1>
+        <p class="hero-lead">Pika platformunun servis sınırlarını, dağıtık arka plan işleyicilerini, delivery worker mimarisini, veri tabanı modellerini ve hata çözüm runbook'larını içeren teknik dokümantasyon.</p>
+        <div class="hero-tags">
+            <span style="background:rgba(239,68,68,0.2);color:#fca5a5;">Gizli / Dahili</span>
+            <span>Delivery Workers</span>
+            <span>CCE Karar Motoru</span>
+            <span>Product Intelligence Engine</span>
+            <span>Retry &amp; Dead-letter</span>
+            <span>Runbook'lar</span>
+        </div>
+    </div>
+    <div class="hero-side">
+        <div class="hero-side-card" style="border-color:#334155;background:#1e293b;color:#f8fafc;">
+            <div class="side-card-kicker" style="color:#38bdf8;">Mühendislik Kapsamı</div>
+            <p><strong>7 ana teknik kategori · @Model.TotalArticles detaylı mühendislik dokümanı</strong></p>
+            <p class="muted" style="color:#94a3b8;">Bu alandaki tüm içerikler sadece yetkili Pika mühendislik ve operasyon ekiplerinin erişimine açıktır.</p>
+        </div>
+    </div>
+</section>
+
+<div class="lead-note" style="border-left-color:#ef4444;background:#fef2f2;">
+    <span class="eyebrow" style="color:#b91c1c;">Güvenlik Uyarısı</span>
+    <p style="color:#7f1d1d;">Bu sayfadaki mimari ayrıntılar, algoritma katsayıları ve operasyonel prosedürler harici müşterilere veya üçüncü şahıslara açıklanamaz. Public dokümantasyon için lütfen <a href="/wiki/" style="color:#b91c1c;font-weight:700;">Public Wiki</a> alanını kullanın.</p>
+</div>
+
+<div class="wiki-categories-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;margin-top:32px;">
+    @for (int i = 0; i < Model.Categories.Count; i++)
+    {
+        var cat = Model.Categories[i];
+        <div class="category-card" style="background:#fff;border:1px solid #cbd5e1;border-radius:16px;padding:22px;box-shadow:0 1px 3px rgba(0,0,0,0.05);">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+                <span style="width:26px;height:26px;border-radius:7px;background:#e0f2fe;color:#0369a1;display:grid;place-items:center;font-size:11.5px;font-weight:800;">
+                    @(i + 1)
+                </span>
+                <h2 style="font-size:16.5px;font-weight:750;margin:0;letter-spacing:-.01em;color:#0f172a;">@cat.Title</h2>
+            </div>
+            <ul style="list-style:none;padding:0;margin:0;">
+                @foreach (var p in cat.Pages)
+                {
+                    <li style="margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid #f1f5f9;">
+                        <a href="/internal/wiki/@p.Slug" style="font-weight:600;font-size:13.5px;color:#0369a1;text-decoration:none;display:block;margin-bottom:2px;">
+                            @p.Title
+                        </a>
+                        <small style="color:#64748b;font-size:11.5px;line-height:1.4;display:block;">
+                            @p.Summary
+                        </small>
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+</div>

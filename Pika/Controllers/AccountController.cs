@@ -23,11 +23,13 @@ public class AccountController : Controller
 
     private readonly AuthSettings _authSettings;
     private readonly IHttpClientFactory _httpClientFactory;
+    private readonly Pika.Services.IRecaptchaService _recaptchaService;
 
-    public AccountController(IOptions<AuthSettings> authSettings, IHttpClientFactory httpClientFactory)
+    public AccountController(IOptions<AuthSettings> authSettings, IHttpClientFactory httpClientFactory, Pika.Services.IRecaptchaService recaptchaService)
     {
         _authSettings = authSettings.Value;
         _httpClientFactory = httpClientFactory;
+        _recaptchaService = recaptchaService;
     }
 
     [HttpGet("Login")]
@@ -42,6 +44,13 @@ public class AccountController : Controller
     {
         if (!ModelState.IsValid)
         {
+            return View(model);
+        }
+
+        var captchaValid = await _recaptchaService.ValidateTokenAsync(model.RecaptchaToken ?? string.Empty);
+        if (!captchaValid)
+        {
+            ModelState.AddModelError(string.Empty, "reCAPTCHA doğrulaması başarısız. Lütfen tekrar deneyin!");
             return View(model);
         }
 
@@ -118,12 +127,12 @@ public class AccountController : Controller
     private string BuildPublishLoginUrl(string encodedToken)
     {
         var publishBaseUrl = string.IsNullOrWhiteSpace(_authSettings.PublishAppUrl)
-            ? "https://app.publish.tr"
+            ? "https://app.pika.tr"
             : _authSettings.PublishAppUrl;
 
         if (!Uri.TryCreate(publishBaseUrl, UriKind.Absolute, out var publishBaseUri))
         {
-            publishBaseUri = new Uri("https://app.publish.tr");
+            publishBaseUri = new Uri("https://app.pika.tr");
         }
 
         var loginUri = new Uri(publishBaseUri, "/login");
