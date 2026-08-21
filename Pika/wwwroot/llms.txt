@@ -4,6 +4,7 @@
 
 Canonical website: https://pika.tr/
 Public knowledge base: https://pika.tr/wiki/
+Public product definition: https://pika.tr/wiki/pika-nedir
 Sitemap: https://pika.tr/sitemap.xml
 
 ## Core product
