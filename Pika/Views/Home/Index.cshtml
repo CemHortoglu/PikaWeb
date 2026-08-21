@@ -3,8 +3,8 @@
     var tr = culture == "tr";
     ViewData["Title"] = tr ? "Pika | Müşteri ve Ürün Zekâsından Doğru Aksiyona" : "Pika | From Customer & Product Intelligence to Action";
     ViewData["MetaDescription"] = tr
-        ? "Pika; müşteri, ürün ve işlem verisini anlamlandırır, Günün Fırsatları'nı görünür kılar ve yöneticinin seçtiği aksiyonu Campaign, Journey ve iletişim kanallarıyla uygulamasına yardımcı olur."
-        : "Pika turns customer, product and transaction data into intelligence, surfaces Daily Opportunities and helps teams execute controlled actions through Campaign, Journey and communication channels.";
+        ? "Pika; müşteri, ürün ve işlem verisini Customer Intelligence ve Product Intelligence ile anlamlandırır, Günün Fırsatları'nı görünür kılar ve kontrollü Campaign, Journey ve kanal aksiyonlarına dönüştürür."
+        : "Pika turns customer, product and transaction data into intelligence, surfaces Daily Opportunities and connects them to controlled Campaign, Journey and channel execution.";
     ViewData["BodyClass"] = "pk-page";
 }
 @section JsonLd {
@@ -16,108 +16,136 @@
 </script>
 }
 
-<section class="pk-hero">
+<section class="pk-hero-v2">
     <div class="pk-container pk-hero-grid">
-        <div>
+        <div class="pk-hero-copy">
             <span class="pk-eyebrow">Doğru Anda</span>
             <h1>@(tr ? "Müşterinizi anlayın. Fırsatı görün. Doğru anda aksiyon alın." : "Understand customers. See the opportunity. Act at the right moment.")</h1>
-            <p>@(tr ? "Pika, müşteri, ürün ve işlem verisini yalnız raporlamak için değil; bugün nerede anlamlı bir fırsat oluştuğunu görmek ve bu fırsatı kontrollü bir aksiyona dönüştürmek için bir araya getirir." : "Pika brings customer, product and transaction data together not just to report what happened, but to show where a meaningful opportunity exists today and turn it into controlled action.")</p>
+            <p>@(tr
+                ? "Pika; müşteri, ürün, satış ve etkileşim verisini aynı karar bağlamında birleştirir. Ne olduğunu yalnız raporlamakla kalmaz; bugün hangi müşteride anlamlı bir fırsat oluştuğunu görünür kılar ve bu fırsatı sizin kontrolünüzde aksiyona dönüştürür."
+                : "Pika brings customer, product, sales and engagement data into one decision context. It goes beyond reporting what happened by surfacing meaningful customer opportunities and connecting them to controlled action.")</p>
             <div class="pk-actions">
-                <button class="pk-btn pk-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal">@(tr ? "Demo Talep Et" : "Request a Demo")</button>
-                <a class="pk-btn pk-btn-ghost" href="@(tr ? "/pika" : "/en/pika")">@(tr ? "Pika'yı Tanıyın" : "What is Pika?")</a>
+                <button class="pk-btn pk-btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#demoModal"><i class="ri-play-circle-line"></i>@(tr ? "Pika'yı Canlı Görün" : "See Pika Live")</button>
+                <a class="pk-btn pk-btn-ghost" href="@(tr ? "/pika" : "/en/pika")">@(tr ? "Pika Tam Olarak Nedir?" : "What Exactly Is Pika?")</a>
             </div>
+            <div class="pk-hero-note"><i class="ri-shield-check-line"></i><span>@(tr ? "AI yardımcıdır; hesaplanmış veri, izin ve kullanıcı kararı birbirinden ayrılır." : "AI assists; calculated data, consent and user decisions remain distinct.")</span></div>
         </div>
-        <figure class="pk-proof" data-aos="fade-left">
-            <img src="/wiki/assets/images/img_gunun-firsatlari.png" alt="@(tr ? "Pika Günün Fırsatları ürün ekranı" : "Pika Daily Opportunities product screen")" width="1200" height="760" fetchpriority="high" />
-            <figcaption>@(tr ? "Günün Fırsatları: hesaplanan müşteri ve ürün bağlamından aksiyona dönüştürülebilir durumları tek çalışma alanında değerlendirin." : "Daily Opportunities: review actionable situations derived from customer and product context in one workspace.")</figcaption>
-        </figure>
-    </div>
-</section>
 
-<section class="pk-section pk-section-lg" id="firsatlar">
-    <div class="pk-container pk-opportunity">
-        <div>
-            <span class="pk-eyebrow">@(tr ? "Günün Fırsatları" : "Daily Opportunities")</span>
-            <h2>@(tr ? "Bugün neye bakmanız gerektiğini görün." : "See what deserves attention today.")</h2>
-            <p class="pk-lead">@(tr ? "Her müşteri için aynı mesajı üretmek yerine Pika; gerçekleşmiş davranış, alışveriş ritmi, ürün bağlamı ve uygunluk sinyallerini birlikte değerlendirerek aksiyona aday durumları görünür kılar." : "Instead of treating every customer the same, Pika combines observed behavior, purchase rhythm, product context and eligibility signals to surface situations that may justify action.")</p>
-            <div class="pk-actions"><a class="pk-btn pk-btn-ghost" href="@(tr ? "/platform/gunun-firsatlari" : "/en/platform/opportunities")">@(tr ? "Günün Fırsatları'nı İnceleyin" : "Explore Daily Opportunities")</a></div>
-        </div>
-        <div class="pk-opportunity-list" aria-label="@(tr ? "Örnek fırsat türleri" : "Example opportunity types")">
-            <div class="pk-opportunity-row"><div class="pk-opportunity-icon"><i class="ri-refresh-line"></i></div><div><strong>@(tr ? "Tekrar satın alma" : "Repeat purchase")</strong><span>@(tr ? "Müşterinin kendi alışveriş ritmine göre yaklaşan ihtiyaç penceresi" : "An approaching need window based on the customer's own purchase rhythm")</span></div><span class="pk-status">@(tr ? "İncele" : "Review")</span></div>
-            <div class="pk-opportunity-row"><div class="pk-opportunity-icon"><i class="ri-links-line"></i></div><div><strong>Cross-sell</strong><span>@(tr ? "Sepet birlikteliği ve ürün bağlamıyla desteklenen tamamlayıcı ilişki" : "A complementary relationship supported by basket evidence and product context")</span></div><span class="pk-status">@(tr ? "İncele" : "Review")</span></div>
-            <div class="pk-opportunity-row"><div class="pk-opportunity-icon"><i class="ri-user-unfollow-line"></i></div><div><strong>@(tr ? "Geri kazanım" : "Win-back")</strong><span>@(tr ? "Beklenen davranış ritminden uzaklaşan müşteri sinyali" : "A signal that customer behavior is drifting from its expected rhythm")</span></div><span class="pk-status">@(tr ? "İncele" : "Review")</span></div>
+        <div class="pk-product-stage" aria-label="@(tr ? "Pika ürün görünümü" : "Pika product preview")">
+            <div class="pk-stage-glow"></div>
+            <div class="pk-stage-browser">
+                <div class="pk-stage-bar" aria-hidden="true"><span></span><span></span><span></span></div>
+                <img src="/wiki/assets/images/img_gunun-firsatlari.png" alt="@(tr ? "Pika Günün Fırsatları çalışma alanı" : "Pika Daily Opportunities workspace")" width="1200" height="760" fetchpriority="high" />
+                <div class="pk-stage-caption"><strong>@(tr ? "Günün Fırsatları" : "Daily Opportunities")</strong><span>@(tr ? "Kanıtı inceleyin → aksiyonu seçin" : "Review evidence → choose action")</span></div>
+            </div>
+            <div class="pk-stage-float pk-float-one"><i class="ri-refresh-line"></i><div><strong>@(tr ? "Tekrar satın alma" : "Repeat purchase")</strong><small>@(tr ? "Kişisel satın alma ritmi" : "Individual purchase rhythm")</small></div></div>
+            <div class="pk-stage-float pk-float-two"><i class="ri-links-line"></i><div><strong>Cross-sell</strong><small>@(tr ? "Ürün ilişkisi ve sepet kanıtı" : "Product relation and basket evidence")</small></div></div>
+            <div class="pk-stage-float pk-float-three"><i class="ri-route-line"></i><div><strong>Campaign / Journey</strong><small>@(tr ? "Kontrollü yürütme" : "Controlled execution")</small></div></div>
         </div>
     </div>
 </section>
 
-<section class="pk-section pk-section-soft">
+<div class="pk-capability-strip" aria-label="Pika platform capabilities"><div class="pk-container">
+    <span class="pk-capability-item">Customer Intelligence</span><span class="pk-capability-item">Product Intelligence</span><span class="pk-capability-item">Pika 360</span><span class="pk-capability-item">@(tr ? "Günün Fırsatları" : "Daily Opportunities")</span><span class="pk-capability-item">Campaign Manager</span><span class="pk-capability-item">Journey Manager</span><span class="pk-capability-item">Analytics</span>
+</div></div>
+
+<section class="pk-section pk-section-xl pk-decision-band">
     <div class="pk-container">
-        <div class="pk-chapter">
-            <div><span class="pk-eyebrow">@(tr ? "Pika nasıl çalışır?" : "How Pika works")</span><h2>@(tr ? "Veriden sonuca tek karar zinciri." : "One decision chain from data to outcome.")</h2></div>
-            <p class="pk-lead">@(tr ? "Pika'nın farkı tek bir modülde değil, birbirini besleyen katmanların birlikte çalışmasındadır. İletişim kanalı başlangıç noktası değil, karar zincirinin aksiyon aşamasıdır." : "Pika's value is not a single module but the way its layers work together. Communication channels are the action layer, not the starting point.")</p>
+        <div class="pk-section-head">
+            <div><span class="pk-eyebrow">@(tr ? "Pika nasıl çalışır?" : "How Pika works")</span><h2>@(tr ? "Mesajdan değil, veriden başlayan bir karar zinciri." : "A decision chain that starts with data, not messages.")</h2></div>
+            <p class="pk-lead">@(tr ? "Pika'nın ürün mantığı modül listesi değildir. Müşteriyi ve ürünü anlamak, kanıtlanabilir fırsatı bulmak, kararı kullanıcıya açıklamak ve aksiyonu ölçülebilir biçimde yürütmek aynı zincirin parçalarıdır." : "Pika is not a list of modules. Understanding customers and products, finding evidence-backed opportunities, explaining decisions and executing measurable actions are parts of one chain.")</p>
         </div>
-        <div class="pk-flow" role="list">
-            <div class="pk-flow-item" role="listitem"><small>01</small><strong>@(tr ? "Veri" : "Data")</strong><span>@(tr ? "Müşteri, ürün, satış ve etkileşim bağlamı" : "Customer, product, sales and engagement context")</span></div>
-            <div class="pk-flow-item" role="listitem"><small>02</small><strong>@(tr ? "Zekâ" : "Intelligence")</strong><span>Customer Intelligence · Product Intelligence · Pika 360</span></div>
-            <div class="pk-flow-item" role="listitem"><small>03</small><strong>@(tr ? "Fırsat" : "Opportunity")</strong><span>@(tr ? "Günün Fırsatları ve karar sinyalleri" : "Daily Opportunities and decision signals")</span></div>
-            <div class="pk-flow-item" role="listitem"><small>04</small><strong>@(tr ? "Karar" : "Decision")</strong><span>@(tr ? "Kullanıcı kanıtı görür ve aksiyonu seçer" : "The user reviews evidence and chooses action")</span></div>
-            <div class="pk-flow-item" role="listitem"><small>05</small><strong>@(tr ? "Aksiyon" : "Action")</strong><span>Audience · Campaign · Journey · Channels</span></div>
-            <div class="pk-flow-item" role="listitem"><small>06</small><strong>@(tr ? "Ölçüm" : "Measure")</strong><span>@(tr ? "Desteklenen etkileşim ve satış sonuçları" : "Supported engagement and sales outcomes")</span></div>
+        <div class="pk-workflow" role="list">
+            <div class="pk-workflow-step" role="listitem"><small>01 · @(tr ? "Kaynak" : "Source")</small><i class="ri-database-2-line"></i><strong>@(tr ? "Veri" : "Data")</strong><span>@(tr ? "Müşteri, ürün, satış, sipariş ve etkileşim bağlamı" : "Customer, product, sales, order and engagement context")</span></div>
+            <div class="pk-workflow-step" role="listitem"><small>02 · Intelligence</small><i class="ri-radar-line"></i><strong>@(tr ? "Anlama" : "Understanding")</strong><span>Customer Intelligence · Product Intelligence · Pika 360</span></div>
+            <div class="pk-workflow-step" role="listitem"><small>03 · Opportunity</small><i class="ri-sparkling-2-line"></i><strong>@(tr ? "Fırsat" : "Opportunity")</strong><span>@(tr ? "Tekrar satın alma, geri kazanım, cross-sell ve desteklenen diğer sinyaller" : "Repeat purchase, win-back, cross-sell and other supported signals")</span></div>
+            <div class="pk-workflow-step" role="listitem"><small>04 · Decision</small><i class="ri-search-eye-line"></i><strong>@(tr ? "Karar" : "Decision")</strong><span>@(tr ? "Kullanıcı nedeni ve kanıtı görür; ne yapılacağına karar verir" : "The user sees evidence and decides what should happen")</span></div>
+            <div class="pk-workflow-step" role="listitem"><small>05 · Execution</small><i class="ri-route-line"></i><strong>@(tr ? "Aksiyon" : "Action")</strong><span>Audience · Campaign · Journey · Email · SMS · WhatsApp · Push</span></div>
+            <div class="pk-workflow-step" role="listitem"><small>06 · Measure</small><i class="ri-bar-chart-box-line"></i><strong>@(tr ? "Ölçüm" : "Measurement")</strong><span>@(tr ? "Gönderim, etkileşim ve desteklenen satış/attribution sonuçları" : "Delivery, engagement and supported sales/attribution outcomes")</span></div>
+        </div>
+        <div class="pk-decision-note"><p>@(tr ? "Bu yaklaşımın amacı daha fazla mesaj üretmek değildir. Pika'nın temel sorusu şudur: " : "The goal is not to produce more messages. Pika's core question is: ")<strong>@(tr ? "Bu müşteride şu anda gerçekten aksiyon almaya değer bir durum var mı?" : "Is there a situation worth acting on for this customer right now?")</strong></p><a class="pk-btn pk-btn-light" href="@(tr ? "/pika" : "/en/pika")">@(tr ? "Platform mantığını görün" : "Explore the platform")</a></div>
+    </div>
+</section>
+
+<section class="pk-section pk-section-xl" id="gunun-firsatlari">
+    <div class="pk-container pk-opportunity-showcase">
+        <div class="pk-opportunity-panel"><div class="pk-product-window"><div class="pk-product-window-header"><div><i></i><i></i><i></i></div><span>@(tr ? "Pika · Günün Fırsatları" : "Pika · Daily Opportunities")</span></div><img src="/wiki/assets/images/img_gunun-firsatlari.png" alt="@(tr ? "Günün Fırsatları ürün ekranı" : "Daily Opportunities product screen")" loading="lazy" width="1200" height="760" /></div></div>
+        <div class="pk-opportunity-copy">
+            <span class="pk-eyebrow">@(tr ? "Flagship çalışma alanı" : "Flagship workspace")</span><h2>@(tr ? "Bugün nerede fırsat var? Tek tek rapor aramayın." : "Where is the opportunity today? Stop hunting through separate reports.")</h2>
+            <p class="pk-lead">@(tr ? "Günün Fırsatları; hesaplanmış müşteri ve ürün sinyallerini günlük aksiyon diline çeviren çalışma alanıdır. Her fırsatın türünü, bağlamını ve neden incelenmeye değer olduğunu görüp sonraki adımı siz seçersiniz." : "Daily Opportunities turns calculated customer and product signals into an actionable daily workspace. Review the type, context and reason behind an opportunity, then choose the next step yourself.")</p>
+            <div class="pk-signal-list">
+                <div class="pk-signal"><div class="pk-signal-icon"><i class="ri-refresh-line"></i></div><div><strong>@(tr ? "Tekrar satın alma" : "Repeat purchase")</strong><span>@(tr ? "Müşterinin kendi geçmiş ritmine göre yaklaşan ihtiyaç penceresini görün." : "See an approaching need window based on the customer's own history.")</span></div><span class="pk-signal-tag">@(tr ? "Ritim" : "Rhythm")</span></div>
+                <div class="pk-signal"><div class="pk-signal-icon"><i class="ri-links-line"></i></div><div><strong>Cross-sell</strong><span>@(tr ? "Ürünlerin birlikte satın alınma kanıtını müşteri bağlamıyla birlikte değerlendirin." : "Review basket co-purchase evidence together with customer context.")</span></div><span class="pk-signal-tag">Product</span></div>
+                <div class="pk-signal"><div class="pk-signal-icon"><i class="ri-user-unfollow-line"></i></div><div><strong>@(tr ? "Geri kazanım" : "Win-back")</strong><span>@(tr ? "Kendi normal davranışından uzaklaşan müşteriyi değer ve ilişki bağlamında inceleyin." : "Review customers drifting from their normal behavior in value and relationship context.")</span></div><span class="pk-signal-tag">Risk</span></div>
+            </div>
+            <div class="pk-actions"><a class="pk-btn pk-btn-primary" href="@(tr ? "/platform/gunun-firsatlari" : "/en/platform/opportunities")">@(tr ? "Günün Fırsatları'nı inceleyin" : "Explore Daily Opportunities")</a></div>
         </div>
     </div>
 </section>
 
-<section class="pk-section pk-section-lg">
+<section class="pk-section pk-section-xl pk-section-soft-2">
     <div class="pk-container">
-        <span class="pk-eyebrow">@(tr ? "Müşteriyi ve ürünü anlayın" : "Understand customers and products")</span>
-        <div class="pk-chapter"><h2>@(tr ? "Rapor görmekten karar bağlamına geçin." : "Move from reporting to decision context.")</h2><p class="pk-lead">@(tr ? "Customer Intelligence müşteriyi, Product Intelligence ürünü ve satın alma ilişkilerini anlamlandırır. Pika 360 bu bağlamı tek müşteri üzerinde birlikte okumayı kolaylaştırır." : "Customer Intelligence explains the customer, Product Intelligence explains products and purchase relationships, while Pika 360 brings that context together around an individual customer.")</p></div>
-        <div class="pk-columns">
-            <a class="pk-feature text-decoration-none" href="@(tr ? "/platform/customer-intelligence" : "/en/platform/customer-intelligence")"><i class="ri-user-search-line"></i><h3>Customer Intelligence</h3><p>@(tr ? "Müşteri değeri, alışveriş davranışı, ritim ve risk/fırsat bağlamını birlikte değerlendirin." : "Review customer value, purchase behavior, rhythm and risk/opportunity context together.")</p></a>
-            <a class="pk-feature text-decoration-none" href="@(tr ? "/platform/product-intelligence" : "/en/platform/product-intelligence")"><i class="ri-shopping-bag-3-line"></i><h3>Product Intelligence</h3><p>@(tr ? "Ürünü yalnız kod olarak değil; kategori, ihtiyaç, Product Role ve satın alma ilişkileriyle okuyun." : "Understand products beyond codes through category, need, Product Role and purchase relationships.")</p></a>
-            <a class="pk-feature text-decoration-none" href="@(tr ? "/platform/pika-360" : "/en/platform/pika-360")"><i class="ri-focus-2-line"></i><h3>Pika 360</h3><p>@(tr ? "Profil, davranış, işlem, segment, fırsat ve aksiyon bağlamını tek müşteri görünümünde değerlendirin." : "Review profile, behavior, transactions, segments, opportunities and action context in one customer view.")</p></a>
+        <div class="pk-section-head"><div><span class="pk-eyebrow">@(tr ? "Önce anlayın" : "Understand first")</span><h2>@(tr ? "Müşteri, ürün ve tekil ilişki bağlamını ayrı ayrı okuyun." : "Read customer, product and individual relationship context separately.")</h2></div><p class="pk-lead">@(tr ? "Pika'da Customer Intelligence, Product Intelligence ve Pika 360 aynı şey değildir. Biri müşteriyi, biri ürünü ve satın alma ilişkisini, diğeri ise tek müşteride karar vermek için gereken bağlamı görünür kılar." : "Customer Intelligence, Product Intelligence and Pika 360 are not the same thing. One explains the customer, one explains products and purchase relationships, and one brings decision context together for an individual customer.")</p></div>
+        <div class="pk-intel-grid">
+            <article class="pk-intel-panel"><span class="pk-intel-number">01</span><div class="pk-intel-icon"><i class="ri-user-search-line"></i></div><h3>Customer Intelligence</h3><p>@(tr ? "Gerçekleşmiş ticari değer, satın alma ritmi, davranış değişimi ve risk/fırsat sinyallerini tek müşteri anlayışında birleştirin." : "Combine observed commercial value, purchase rhythm, behavioral change and risk/opportunity signals into customer understanding.")</p><div class="pk-mini-list"><span>@(tr ? "Müşteri değeri ve davranış" : "Customer value and behavior")</span><span>@(tr ? "Tekrar satın alma ritmi" : "Repeat-purchase rhythm")</span><span>@(tr ? "Risk ve fırsat bağlamı" : "Risk and opportunity context")</span></div><a class="pk-text-link" href="@(tr ? "/platform/customer-intelligence" : "/en/platform/customer-intelligence")">@(tr ? "Customer Intelligence'ı aç" : "Explore Customer Intelligence") <i class="ri-arrow-right-line"></i></a></article>
+            <article class="pk-intel-panel"><span class="pk-intel-number">02</span><div class="pk-intel-icon"><i class="ri-shopping-bag-3-line"></i></div><h3>Product Intelligence</h3><p>@(tr ? "Ürünleri yalnız stok kodu olarak değil; kategori, ihtiyaç, Product Role, tekrar tüketim ve cross-sell ilişkileriyle anlamlandırın." : "Understand products beyond stock codes through category, need, Product Role, repeat consumption and cross-sell relationships.")</p><div class="pk-mini-list"><span>Need Group</span><span>Product Role</span><span>@(tr ? "Ürün ilişkisi ve sınıflandırma" : "Product relationships and classification")</span></div><a class="pk-text-link" href="@(tr ? "/platform/product-intelligence" : "/en/platform/product-intelligence")">@(tr ? "Product Intelligence'ı aç" : "Explore Product Intelligence") <i class="ri-arrow-right-line"></i></a></article>
+            <article class="pk-intel-panel"><span class="pk-intel-number">03</span><div class="pk-intel-icon"><i class="ri-focus-2-line"></i></div><h3>Pika 360</h3><p>@(tr ? "Profil, işlem geçmişi, segment, fırsat, iletişim ve strateji bağlamını tek müşteri üzerinde birlikte değerlendirin." : "Review profile, transaction history, segments, opportunities, communication and strategy context around one customer.")</p><div class="pk-mini-list"><span>@(tr ? "Tek müşteri görünümü" : "Single-customer view")</span><span>@(tr ? "Fırsat ve aksiyon bağlamı" : "Opportunity and action context")</span><span>@(tr ? "Açıklanabilir karar desteği" : "Explainable decision support")</span></div><a class="pk-text-link" href="@(tr ? "/platform/pika-360" : "/en/platform/pika-360")">@(tr ? "Pika 360'ı aç" : "Explore Pika 360") <i class="ri-arrow-right-line"></i></a></article>
+        </div>
+        <div class="pk-gallery" style="margin-top:28px">
+            <div class="pk-gallery-main"><img src="/wiki/assets/images/img_pika-360_7.png" alt="@(tr ? "Pika 360 müşteri karar görünümü" : "Pika 360 customer decision view")" loading="lazy" width="1200" height="760" /><div class="pk-gallery-copy"><small>Pika 360</small><h3>@(tr ? "Tek müşteride bütün karar bağlamı" : "All decision context around one customer")</h3><p>@(tr ? "Müşteri profili tek başına değil; davranış, işlem, segment, fırsat ve iletişim geçmişiyle birlikte okunur." : "A customer profile is read together with behavior, transactions, segments, opportunities and communication history.")</p></div></div>
+            <div class="pk-gallery-side"><img src="/wiki/assets/images/img_urun-siniflandirma-workbench_13.png" alt="@(tr ? "Pika Product Intelligence ürün çalışma alanı" : "Pika Product Intelligence workspace")" loading="lazy" width="1200" height="760" /><div class="pk-gallery-copy"><small>Product Intelligence</small><h3>@(tr ? "Ürüne ticari anlam kazandırın" : "Give products commercial meaning")</h3><p>@(tr ? "Sınıflandırma ve ürün bağlamı, fırsatın nedenini açıklamak için kullanılır." : "Classification and product context help explain why an opportunity exists.")</p></div></div>
         </div>
     </div>
 </section>
 
-<section class="pk-section pk-section-soft">
-    <div class="pk-container pk-screen-band">
-        <div>
-            <span class="pk-eyebrow">@(tr ? "Aksiyona dönüştürün" : "Turn insight into action")</span>
-            <h2>@(tr ? "Kampanya mı, Journey mi? Kararı ihtiyaca göre verin." : "Campaign or Journey? Choose based on the job.")</h2>
-            <p class="pk-lead">@(tr ? "Campaign Manager tanımlı bir hedef kitle ve gönderim için kontrollü yürütme sağlar. Journey Manager ise tetikleyici, karar, bekleme ve aksiyon adımlarından oluşan sürekli akışları yönetir." : "Campaign Manager provides controlled execution for defined audiences and sends. Journey Manager manages ongoing flows composed of triggers, decisions, waits and actions.")</p>
-            <div class="pk-actions"><a class="pk-btn pk-btn-ghost" href="@(tr ? "/platform/campaign-manager" : "/en/platform/campaign-manager")">Campaign Manager</a><a class="pk-btn pk-btn-ghost" href="@(tr ? "/platform/journey-manager" : "/en/platform/journey-manager")">Journey Manager</a></div>
+<section class="pk-section pk-section-xl">
+    <div class="pk-container pk-control-grid">
+        <div><span class="pk-eyebrow">@(tr ? "Kontrol sizde" : "You stay in control")</span><h2>@(tr ? "Pika fırsatı bulur. Kararı kullanıcı verir." : "Pika finds the opportunity. The user makes the decision.")</h2><p class="pk-lead" style="margin-top:22px">@(tr ? "Pika'nın amacı yöneticinin yerine karar vermek değil, karar için gereken kanıtı ve bağlamı görünür kılmaktır. Uygun aksiyon seçildiğinde içerik hazırlanabilir, Campaign veya Journey kurulabilir; yayınlama yine kontrollü bir süreçtir." : "Pika does not aim to replace the manager. It surfaces the evidence and context needed for a decision. Once an action is chosen, content can be prepared and Campaign or Journey can be configured, while publishing remains controlled.")</p><div class="pk-actions"><a class="pk-btn pk-btn-ghost" href="@(tr ? "/kullanim-senaryolari" : "/en/use-cases")">@(tr ? "Gerçek kullanım senaryoları" : "Real use cases")</a></div></div>
+        <div class="pk-control-flow">
+            <div class="pk-control-step"><i class="ri-radar-line"></i><div><strong>1. @(tr ? "Pika sinyali bulur" : "Pika finds a signal")</strong><span>@(tr ? "Müşteri ve ürün verisinden açıklanabilir fırsat bağlamı oluşur." : "Explainable opportunity context emerges from customer and product data.")</span></div></div>
+            <div class="pk-control-step"><i class="ri-file-search-line"></i><div><strong>2. @(tr ? "Kanıt görünür olur" : "Evidence becomes visible")</strong><span>@(tr ? "Fırsatın türü, ilişkili veri ve uygunluk bağlamı kullanıcıya gösterilir." : "The opportunity type, supporting data and eligibility context are shown to the user.")</span></div></div>
+            <div class="pk-control-step pk-control-human"><i class="ri-user-follow-line"></i><div><strong>3. @(tr ? "Kullanıcı karar verir" : "The user decides")</strong><span>@(tr ? "Mesaj hazırlamak, Campaign oluşturmak, Journey başlatmak veya hiç aksiyon almamak kullanıcı tercihidir." : "Preparing a message, creating a Campaign, starting a Journey or taking no action remains a user choice.")</span></div></div>
+            <div class="pk-control-step"><i class="ri-send-plane-2-line"></i><div><strong>4. @(tr ? "Pika kontrollü yürütür" : "Pika executes with control")</strong><span>@(tr ? "İzin, kanal uygunluğu, hedef kitle ve yayınlama kuralları aksiyon katmanında uygulanır." : "Consent, channel eligibility, audience and publishing rules are applied at execution.")</span></div></div>
         </div>
-        <img src="/wiki/assets/images/img_journey-tasarim-tuvali_18.png" alt="@(tr ? "Pika Journey tasarım tuvali" : "Pika Journey design canvas")" loading="lazy" width="1200" height="760" />
     </div>
 </section>
 
-<section class="pk-section">
+<section class="pk-section pk-section-xl pk-section-soft">
     <div class="pk-container">
-        <div class="pk-chapter"><div><span class="pk-eyebrow">@(tr ? "Kanallar" : "Channels")</span><h2>@(tr ? "Kanalı ürünün kendisi değil, aksiyon aracı olarak düşünün." : "Treat channels as execution tools, not the product itself.")</h2></div><p class="pk-lead">@(tr ? "Email, SMS, WhatsApp ve Push; hedef kitle, izin, uygunluk, Campaign veya Journey kararı oluştuktan sonra kullanılan uygulama katmanıdır." : "Email, SMS, WhatsApp and Push are execution channels used after audience, consent, eligibility and Campaign/Journey context is established.")</p></div>
-        <div class="pk-columns">
-            <div class="pk-feature"><i class="ri-mail-line"></i><h3>Email</h3><p>@(tr ? "Zengin içerik ve uzun biçimli iletişim için." : "For rich content and longer communication.")</p></div>
-            <div class="pk-feature"><i class="ri-message-2-line"></i><h3>SMS</h3><p>@(tr ? "Kısa ve zaman duyarlı iletişim için." : "For concise, time-sensitive communication.")</p></div>
-            <div class="pk-feature"><i class="ri-whatsapp-line"></i><h3>WhatsApp</h3><p>@(tr ? "Uygun izin ve şablon bağlamında mesajlaşma için." : "For messaging within appropriate consent and template context.")</p></div>
+        <div class="pk-section-head"><div><span class="pk-eyebrow">Campaign + Journey</span><h2>@(tr ? "Tek seferlik aksiyondan sürekli müşteri akışına." : "From one-time action to ongoing customer flows.")</h2></div><p class="pk-lead">@(tr ? "Her fırsat aynı yürütme biçimini gerektirmez. Campaign Manager tanımlı bir hedef kitle ve zaman için; Journey Manager ise tetikleyici, koşul, bekleme ve aksiyonlardan oluşan sürekli senaryolar için kullanılır." : "Not every opportunity needs the same execution model. Campaign Manager handles defined audience-and-time execution, while Journey Manager handles ongoing trigger, condition, wait and action flows.")</p></div>
+        <div class="pk-gallery">
+            <div class="pk-gallery-main"><img src="/wiki/assets/images/img_journey-tasarim-tuvali_18.png" alt="@(tr ? "Pika Journey tasarım tuvali" : "Pika Journey design canvas")" loading="lazy" width="1200" height="760" /><div class="pk-gallery-copy"><small>Journey Manager</small><h3>Trigger → Condition → Wait → Action</h3><p>@(tr ? "Müşteri davranışına veya iş kuralına bağlı sürekli akışlar tasarlayın; uygun noktada Email, SMS, WhatsApp veya desteklenen diğer aksiyonları çalıştırın." : "Design ongoing flows based on customer behavior or business rules and execute supported channel actions at the right step.")</p></div></div>
+            <div class="pk-gallery-side"><img src="/wiki/assets/images/img_yayinlama-sablon-ve-yonetim_27.png" alt="@(tr ? "Pika kampanya yayınlama ve yönetim ekranı" : "Pika campaign publishing and management screen")" loading="lazy" width="1200" height="760" /><div class="pk-gallery-copy"><small>Campaign Manager</small><h3>@(tr ? "Tanımlı hedef kitle, içerik ve zamanlama" : "Defined audience, content and schedule")</h3><p>@(tr ? "Fırsattan veya segmentten gelen hedef kitleyi kontrollü bir kampanyaya dönüştürün." : "Turn an opportunity or segment into a controlled campaign.")</p></div></div>
         </div>
-        <div class="pk-actions"><a class="pk-btn pk-btn-ghost" href="@(tr ? "/kanallar/email" : "/en/channels/email")">@(tr ? "Kanalları inceleyin" : "Explore channels")</a></div>
+        <div class="pk-channel-grid">
+            <a class="pk-channel" href="@(tr ? "/kanallar/email" : "/en/channels/email")"><i class="ri-mail-line"></i><h3>Email</h3><p>@(tr ? "Zengin içerik, kişiselleştirilmiş mesaj ve ölçülebilir etkileşim için." : "For rich content, personalized messaging and measurable engagement.")</p><span>@(tr ? "Email'i inceleyin →" : "Explore Email →")</span></a>
+            <a class="pk-channel" href="@(tr ? "/kanallar/sms" : "/en/channels/sms")"><i class="ri-message-2-line"></i><h3>SMS</h3><p>@(tr ? "Kısa, doğrudan ve zaman duyarlı iletişim için." : "For concise, direct and time-sensitive communication.")</p><span>@(tr ? "SMS'i inceleyin →" : "Explore SMS →")</span></a>
+            <a class="pk-channel" href="@(tr ? "/kanallar/whatsapp" : "/en/channels/whatsapp")"><i class="ri-whatsapp-line"></i><h3>WhatsApp</h3><p>@(tr ? "Uygun izin ve şablon bağlamında yüksek görünürlüklü mesajlaşma için." : "For high-visibility messaging within appropriate consent and template context.")</p><span>@(tr ? "WhatsApp'ı inceleyin →" : "Explore WhatsApp →")</span></a>
+            <a class="pk-channel" href="@(tr ? "/kanallar/push" : "/en/channels/push")"><i class="ri-notification-3-line"></i><h3>Push</h3><p>@(tr ? "Uygulama içi veya desteklenen push senaryolarında anlık aksiyon için." : "For immediate action in supported app and push scenarios.")</p><span>@(tr ? "Push'ı inceleyin →" : "Explore Push →")</span></a>
+        </div>
     </div>
 </section>
 
-<section class="pk-section pk-section-deep">
-    <div class="pk-container pk-screen-band">
-        <div>
-            <span class="pk-eyebrow" style="color:#d1ea88">@(tr ? "AI destekler, kullanıcı yönetir" : "AI assists, people stay in control")</span>
-            <h2>@(tr ? "Hesaplanmış veri ile AI yorumunu birbirine karıştırmayın." : "Keep calculated evidence distinct from AI interpretation.")</h2>
-            <p class="pk-lead">@(tr ? "Pika AI; sistemin hesapladığı müşteri ve ürün bağlamını açıklama, kampanya yaklaşımı hazırlama ve içerik taslağı üretme gibi görevlerde yardımcı olur. Gönderim ve aksiyon kontrolü kullanıcıdadır." : "Pika AI helps explain system-calculated customer and product context, prepare campaign approaches and draft content. Execution remains under user control.")</p>
-            <div class="pk-actions"><a class="pk-btn pk-btn-light" href="@(tr ? "/platform/ai-kampanya-asistani" : "/en/platform/ai-campaign-assistant")">@(tr ? "Pika AI'yı İnceleyin" : "Explore Pika AI")</a></div>
+<section class="pk-section pk-section-xl">
+    <div class="pk-container">
+        <div class="pk-section-head"><div><span class="pk-eyebrow">@(tr ? "AI ve ölçüm" : "AI and measurement")</span><h2>@(tr ? "AI açıklamayı hızlandırır. Ölçüm gerçeği gösterir." : "AI speeds up explanation. Measurement shows reality.")</h2></div><p class="pk-lead">@(tr ? "Pika'da AI ile deterministik hesaplamalar birbirine karıştırılmaz. AI özet, açıklama ve içerik hazırlamada yardımcı olabilir; sonuç değerlendirmesi ise gerçek gönderim, etkileşim ve desteklenen satış/attribution verisine dayanır." : "Pika keeps AI and deterministic calculations distinct. AI can assist with summaries, explanations and content, while evaluation relies on observed delivery, engagement and supported sales/attribution data.")</p></div>
+        <div class="pk-insight-split">
+            <article class="pk-insight-card pk-ai"><div class="pk-insight-card-copy"><span class="pk-eyebrow" style="color:#cfc9ff">Pika AI</span><h3>@(tr ? "Bağlamı anlayın, taslağı hızlandırın." : "Understand context and accelerate drafting.")</h3><p>@(tr ? "AI Campaign Assistant; fırsat ve müşteri bağlamından yararlanarak açıklama ve taslak desteği sunar. Son içerik ve yayınlama kararı kullanıcı kontrolündedir." : "AI Campaign Assistant uses opportunity and customer context to assist with explanations and drafts. Final content and publishing decisions remain under user control.")</p><a class="pk-text-link" href="@(tr ? "/platform/ai-kampanya-asistani" : "/en/platform/ai-campaign-assistant")">@(tr ? "Pika AI'ı inceleyin" : "Explore Pika AI") <i class="ri-arrow-right-line"></i></a></div><div class="pk-insight-card-visual"><img src="/wiki/assets/images/img_pika-pilot-ai-kampanya-asistani_16.png" alt="@(tr ? "Pika AI Campaign Assistant ekranı" : "Pika AI Campaign Assistant screen")" loading="lazy" width="1200" height="760" /></div></article>
+            <article class="pk-insight-card"><div class="pk-insight-card-copy"><span class="pk-eyebrow">Analytics</span><h3>@(tr ? "Gönderdik mi değil, ne oldu?" : "Not just whether it was sent — what happened?")</h3><p>@(tr ? "Kampanya ve Journey performansını, desteklenen kanal etkileşimlerini ve attribution bağlamını birlikte okuyun. Attribution ilişki kurar; nedenselliği otomatik olarak kanıtlamaz." : "Read Campaign and Journey performance, supported channel engagement and attribution context together. Attribution establishes association; it does not automatically prove causality.")</p><a class="pk-text-link" href="@(tr ? "/platform/analytics" : "/en/platform/analytics")">@(tr ? "Analytics'i inceleyin" : "Explore Analytics") <i class="ri-arrow-right-line"></i></a></div><div class="pk-insight-card-visual"><img src="/wiki/assets/images/img_bi-kokpit_5.png" alt="@(tr ? "Pika BI ve analitik kokpit ekranı" : "Pika BI and analytics cockpit")" loading="lazy" width="1200" height="760" /></div></article>
         </div>
-        <img src="/wiki/assets/images/img_ai-musteri-ozeti_8.png" alt="@(tr ? "Pika AI müşteri özeti ekranı" : "Pika AI customer summary screen")" loading="lazy" width="1200" height="760" />
     </div>
 </section>
 
-<section class="pk-section">
-    <div class="pk-container pk-screen-band">
-        <img src="/wiki/assets/images/img_bi-kokpit_5.png" alt="@(tr ? "Pika BI kokpit ekranı" : "Pika BI cockpit screen")" loading="lazy" width="1200" height="760" />
-        <div><span class="pk-eyebrow">@(tr ? "Ölçün" : "Measure")</span><h2>@(tr ? "Aksiyonun sonunda yeniden veriye dönün." : "Return to evidence after action.")</h2><p class="pk-lead">@(tr ? "BI ve Analytics katmanı kampanya, kanal, müşteri ve satış bağlamını desteklenen metriklerle birlikte okumayı sağlar. İlişkilendirme, nedensellik iddiası değildir; sonuçları kanıtın izin verdiği ölçüde yorumlayın." : "BI and Analytics bring supported campaign, channel, customer and sales metrics together. Attribution is not the same as causation; interpret results only as far as the evidence supports.")</p><div class="pk-actions"><a class="pk-btn pk-btn-ghost" href="@(tr ? "/platform/analytics" : "/en/platform/analytics")">Analytics</a><a class="pk-btn pk-btn-ghost" href="/wiki/">@(tr ? "Bilgi Bankası" : "Knowledge Base")</a></div></div>
+<section class="pk-section pk-section-lg pk-section-soft-2">
+    <div class="pk-container pk-trust-band">
+        <div><span class="pk-eyebrow">@(tr ? "Başlamak için" : "Getting started")</span><h2>@(tr ? "Bütün sistemlerinizi değiştirmeden mevcut verinizden başlayın." : "Start from the data you already have without replacing every system.")</h2><p class="pk-lead" style="margin-top:22px">@(tr ? "Pika'nın değer üretmesi için her entegrasyonun ilk gün tamamlanması gerekmez. Uygun kullanım senaryolarında Excel/CSV ile kontrollü başlangıç yapılabilir; düzenli ve ölçekli akış için API ve entegrasyon katmanı devreye alınır." : "Pika does not require every integration to be completed on day one. Supported use cases can start with controlled Excel/CSV imports, while API and integrations support regular, scalable data flow.")</p><div class="pk-actions"><a class="pk-btn pk-btn-ghost" href="/wiki/excel-csv-aktarimi">@(tr ? "Excel/CSV ile başlangıç" : "Start with Excel/CSV")</a><a class="pk-btn pk-btn-ghost" href="@(tr ? "/platform/integrations" : "/en/platform/integrations")">@(tr ? "Entegrasyonları görün" : "Explore integrations")</a></div></div>
+        <div class="pk-trust-points">
+            <div class="pk-trust-point"><strong>@(tr ? "İzin ve kanal uygunluğu" : "Consent and channel eligibility")</strong><span>@(tr ? "İletişim aksiyonu yalnız hedef kitleyle değil, uygunluk ve opt-out bağlamıyla birlikte değerlendirilir." : "Communication actions are evaluated together with eligibility and opt-out context, not audience alone.")</span></div>
+            <div class="pk-trust-point"><strong>@(tr ? "Kullanıcı ve rol kontrolü" : "User and role control")</strong><span>@(tr ? "Ürün içindeki kullanıcı/rol yapısı, müşteri operasyonunun kontrollü yürütülmesine yardımcı olur." : "User and role structures support controlled customer operations.")</span></div>
+            <div class="pk-trust-point"><strong>@(tr ? "Açıklanabilir sinyaller" : "Explainable signals")</strong><span>@(tr ? "Hesaplanan veri ile AI yorumunun kaynağı mümkün olduğunca açık tutulur." : "Calculated data and AI interpretation are kept distinguishable where possible.")</span></div>
+            <div class="pk-trust-point"><strong>@(tr ? "Derin ürün dokümantasyonu" : "Deep product documentation")</strong><span>@(tr ? "Müşteri güvenli ürün bilgisi, kullanım rehberleri ve kavramsal açıklamalar public Wiki'de bulunur." : "Customer-safe product knowledge, guides and concept explanations live in the public Wiki.")</span></div>
+        </div>
     </div>
 </section>
+
+<section class="pk-section pk-section-lg"><div class="pk-container"><div class="pk-cta-panel"><span class="pk-eyebrow" style="color:#d7ed87">Doğru Anda</span><h2>@(tr ? "Verinizi raporda bırakmayın. Bir sonraki doğru aksiyona bağlayın." : "Do not leave your data in reports. Connect it to the next right action.")</h2><p>@(tr ? "Pika'nın müşteri ve ürün zekâsından Günün Fırsatları'na, Campaign ve Journey'den ölçüme uzanan akışını kendi senaryonuz üzerinden birlikte değerlendirelim." : "See how Pika connects customer and product intelligence to Daily Opportunities, Campaign, Journey and measurement using your own scenario.")</p><div class="pk-actions"><button class="pk-btn pk-btn-light" type="button" data-bs-toggle="modal" data-bs-target="#demoModal">@(tr ? "Demo Talep Et" : "Request a Demo")</button><a class="pk-btn pk-btn-ghost" style="background:transparent;color:#fff;border-color:rgba(255,255,255,.25)" href="/wiki/">@(tr ? "Bilgi Bankasını Aç" : "Open Knowledge Base")</a></div></div></div></section>
