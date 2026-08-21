@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Pika.Web.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8378161e909eeb5e5fd09e7492c81d087bffa03f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cceee06613f824c911955ec8fceea5401b8530b8")]
 [assembly: System.Reflection.AssemblyProductAttribute("Pika.Web.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Pika.Web.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
