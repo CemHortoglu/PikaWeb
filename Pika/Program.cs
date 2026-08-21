@@ -65,7 +65,29 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         };
     });
 
-builder.Services.AddAuthorization();
+// Internal employee documentation is fail-closed. Deployment must configure the
+// real staff/admin role names through InternalWiki:AllowedRoles (environment or
+// protected configuration). If no roles are configured, nobody can open it.
+var internalWikiRoles = builder.Configuration
+    .GetSection("InternalWiki:AllowedRoles")
+    .GetChildren()
+    .Select(x => x.Value)
+    .Where(x => !string.IsNullOrWhiteSpace(x))
+    .Cast<string>()
+    .Distinct(StringComparer.OrdinalIgnoreCase)
+    .ToArray();
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("InternalWikiStaff", policy =>
+    {
+        policy.RequireAuthenticatedUser();
+        if (internalWikiRoles.Length == 0)
+            policy.RequireAssertion(_ => false);
+        else
+            policy.RequireRole(internalWikiRoles);
+    });
+});
 
 builder.Services.AddCors(options =>
 {
@@ -85,7 +107,6 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
     options.DefaultRequestCulture = new RequestCulture("tr");
     options.SupportedCultures = supportedCultures;
     options.SupportedUICultures = supportedCultures;
-
     options.RequestCultureProviders.Clear();
     options.RequestCultureProviders.Add(new RouteDataRequestCultureProvider
     {
@@ -113,7 +134,6 @@ app.Use(async (context, next) =>
     var path = context.Request.Path.Value ?? "/";
     var query = context.Request.QueryString.Value ?? string.Empty;
 
-    // Domain normalization: www.pika.tr -> pika.tr (301 Permanent Redirect)
     if (host.Equals("www.pika.tr", StringComparison.OrdinalIgnoreCase))
     {
         var normalizedDomainUrl = $"https://pika.tr{context.Request.PathBase}{path}{query}";
@@ -122,7 +142,6 @@ app.Use(async (context, next) =>
         return;
     }
 
-    // Legacy Route Redirections (301 Permanent Redirect)
     if (LegacyRouteMapper.TryGetRedirect(path, out var targetUrl) && targetUrl != null)
     {
         var targetWithQuery = string.IsNullOrEmpty(query) ? targetUrl : $"{targetUrl}{query}";
@@ -136,7 +155,6 @@ app.Use(async (context, next) =>
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
 app.UseRequestLocalization();
 
@@ -158,21 +176,12 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.MapControllerRoute(
-    name: "account",
-    pattern: "{controller=Account}/{action=Login}/{id?}");
-
-app.MapControllerRoute(
-    name: "auth",
-    pattern: "{controller=Auth}/{action=Login}/{id?}");
-
-app.MapControllerRoute(
-    name: "contactconsent",
-    pattern: "contactconsent/{action=Index}/{id?}",
-    defaults: new { controller = "ContactConsent" });
+// Conventional routes remain only for authenticated/application infrastructure.
+// Public marketing pages use explicit semantic routes on their actions.
+app.MapControllerRoute(name: "account", pattern: "{controller=Account}/{action=Login}/{id?}");
+app.MapControllerRoute(name: "auth", pattern: "{controller=Auth}/{action=Login}/{id?}");
+app.MapControllerRoute(name: "contactconsent", pattern: "contactconsent/{action=Index}/{id?}", defaults: new { controller = "ContactConsent" });
 
 app.Run();
 
 public partial class Program { }
-
-

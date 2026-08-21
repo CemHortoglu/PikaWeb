@@ -9,3 +9,7 @@ Pika/obj/Debug/net10.0/Pika.GeneratedMSBuildEditorConfig.editorconfig
 /Pika/obj/Debug/net10.0
 *.editorconfig
 /Pika/Pika.Web.Tests/bin
+Pika/appsettings.Local.json
+Pika/.env
+.env
+*.secrets.json
