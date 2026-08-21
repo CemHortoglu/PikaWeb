@@ -23,7 +23,6 @@ namespace Pika.Controllers
         }
 
         [HttpGet("")]
-        [HttpGet("/")]
         public IActionResult Index()
         {
             SetInternalSecurityHeaders();
