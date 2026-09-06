@@ -1,94 +1,131 @@
-# Pika - Omnichannel Marketing Automation Platform
+# Pika - Customer Intelligence & Omnichannel Marketing Platform
 
-> Pika is a comprehensive omnichannel marketing automation platform headquartered in Turkey. It empowers businesses to orchestrate personalized customer communications across email, SMS, WhatsApp, and push notification channels from a single unified platform.
+> Pika is a B2B SaaS Customer Intelligence & Omnichannel Marketing Platform ("Müşteri Zekâsı ve Omnichannel Pazarlama Platformu") headquartered in Turkey. Pika's foundational starting point is not merely sending messages, but understanding customer, product, and transactional context.
+
+The platform operates across a 6-step decision and execution loop:
+Data & Ingestion
+→ Customer & Product Intelligence
+→ Opportunity & Decision (Customer Context Engine / Günün Fırsatları)
+→ Audience, Campaign & Journey Orchestration
+→ Channel Execution (Email, SMS, WhatsApp)
+→ Analytics, BI & Learning Loop
 
 ## Overview
 
-Pika is designed for marketing teams and enterprises that need to manage complex, multi-channel customer engagement at scale. The platform combines campaign management, customer journey automation, audience segmentation, content creation, analytics, and compliance tools into one integrated solution.
+Pika is engineered for marketing teams, e-commerce brands, and omnichannel retailers that need to extract commercial meaning from customer and catalog data, identify high-intent revenue opportunities, and orchestrate targeted, compliant marketing communications.
+
+Pika does not position itself as a generic bulk message broadcaster or standalone dispatcher. Instead, it unifies customer transaction histories, detects timely purchase rhythms, and executes controlled campaigns across native and integrated channels.
 
 ### Key Capabilities
 
-- **Multi-Channel Campaigns**: Manage email, SMS, WhatsApp, and push notification campaigns from one dashboard
-- **Marketing Automation**: Build automated customer journeys triggered by events, behaviors, and schedules
-- **Audience Segmentation**: Create dynamic segments based on demographics, behavior, purchase history, and custom attributes
-- **Personalization Engine**: Deliver individualized content, product recommendations, and offers
-- **A/B & Multivariate Testing**: Optimize subject lines, content, send times, and channels
-- **Real-Time Analytics**: Monitor campaign performance, engagement metrics, and conversion rates
-- **Data Management**: Import, transform, and unify customer data from multiple sources via ETL pipelines
-- **Compliance**: Built-in GDPR and KVKK (Turkish data protection law) consent management
-- **Enterprise Security**: SOC-compliant infrastructure, data encryption, and role-based access control
+- **Customer & Product Intelligence**: Unifies customer purchase histories into Pika 360 profiles, computes RFM-based Customer Value Scores, and categorizes products by commercial intent (Need Groups, Product Roles).
+- **Opportunity Detection (Günün Fırsatları)**: The Customer Context Engine (CCE) detects actionable commercial opportunities including replenishment rhythms, churn win-back, and cross-sell affinities.
+- **Audience Segmentation**: Audience Manager enables dynamic rule-based segmentation using purchase recency, order frequency, monetary value, and category engagement.
+- **Campaign Orchestration**: Campaign Manager coordinates multi-channel messaging schedules across Email, SMS, and WhatsApp.
+- **Customer Journey Automation**: Journey Manager provides visual workflow automation for event-driven lifecycle triggers, delays, and conditional branching.
+- **Content Studio**: Drag-and-drop template designer for responsive email templates and multi-channel message formatting.
+- **AI Campaign Assistant (Pika Pilot)**: Assistive AI co-pilot that suggests campaign ideas, audience criteria, and draft copy from natural language prompts, with mandatory human approval and strict privacy safeguards (no personal data/PII sent to AI models).
+- **Compliant Channel Execution**: Outbound delivery across native Email, native SMS, and official Meta WhatsApp Business API integration with automated IYS and KVKK consent checks.
+- **Analytics & Attribution**: Unified reporting dashboard for tracking delivery metrics, engagement rates, and store-level attribution.
+- **Data Security & Privacy**: Role-based access control (RBAC), data encryption in transit and at rest, and security audit logging.
 
 ### Technical Details
 
 - **Website**: https://pika.tr
 - **Application**: https://app.pika.tr
 - **Supported Languages**: Turkish (tr), English (en)
-- **Platform Type**: SaaS (Software as a Service)
-- **Target Market**: Turkey and global markets
+- **Platform Type**: B2B SaaS
+- **Target Market**: Turkey (architecture supports multi-lingual English and Turkish interfaces)
+- **Execution Channels**: Native Email, Native SMS, Official Meta WhatsApp Business API. (Note: Mobile/web push notification status requires explicit product-owner confirmation and is not marketed as a live capability.)
 
 ---
 
-## Solutions - Detailed
+## Solutions & Platform Modules
+
+### Customer Intelligence
+**URL**: https://pika.tr/en/platform/customer-intelligence
+
+Analytical intelligence layer that unifies transaction data to calculate Customer Value Scores (RFM), identify individual consumption rhythms, and detect churn and dormancy risks.
+
+### Product Intelligence
+**URL**: https://pika.tr/en/platform/product-intelligence
+
+Catalog enrichment engine that classifies products by Need Groups and commercial Product Roles to uncover cross-sell basket affinities and sales velocity.
+
+### Pika 360
+**URL**: https://pika.tr/en/platform/pika-360
+
+Unified customer profile cockpit displaying past order summaries, current value score, churn risk tier, communication channel permissions, and pending commercial opportunities.
+
+### Daily Opportunities (Günün Fırsatları)
+**URL**: https://pika.tr/en/platform/opportunities
+
+Algorithmic decision engine that converts customer consumption intervals and basket associations into actionable daily marketing opportunities.
 
 ### Campaign Manager
 **URL**: https://pika.tr/en/solutions/campaign-manager
 
-The Campaign Manager is the central hub for creating, scheduling, and managing marketing campaigns across all channels. It supports multi-step campaign workflows, audience targeting, scheduling with timezone optimization, and real-time performance monitoring.
+Central hub for creating, scheduling, and managing multi-channel marketing campaigns across Email, SMS, and WhatsApp. Supports cohort binding, message scheduling, and performance monitoring.
 
 ### Audience Manager
 **URL**: https://pika.tr/en/solutions/audience-manager
 
-Advanced audience segmentation and management tool. Create dynamic and static segments using behavioral data, demographics, engagement history, and custom attributes. Supports real-time segment updates and audience size estimation.
+Audience segmentation tool for building dynamic and static customer cohorts. Evaluates multi-condition rule trees using transactional history, lifecycle stages, and custom attributes.
 
 ### Journey Manager
 **URL**: https://pika.tr/en/solutions/journey-manager
 
-Visual customer journey builder for designing automated marketing workflows. Supports triggers (events, time-based, behavioral), conditional branching, wait steps, multi-channel touchpoints, and goal tracking. Enables lifecycle marketing from onboarding to re-engagement.
+Visual customer journey canvas for automated lifecycle flows. Supports event triggers, wait intervals, conditional checks, and multi-channel touchpoints from onboarding to retention.
 
 ### Content Studio
 **URL**: https://pika.tr/en/solutions/content-studio
 
-Drag-and-drop content editor for designing responsive email templates, landing pages, and marketing content. Includes a template library, brand asset management, dynamic content blocks, and mobile preview.
+Visual drag-and-drop template designer for crafting responsive email layouts, SMS copy, and WhatsApp message templates. Features dynamic personalization blocks and mobile preview.
 
 ### Email Marketing
 **URL**: https://pika.tr/en/channels/email
 
-Enterprise email marketing solution with high deliverability infrastructure. Features include bulk sending, transactional emails, dynamic personalization, send-time optimization, inbox preview, spam score checking, and dedicated IP management.
+Transactional and marketing email delivery infrastructure. Features list management, template composition, dynamic personalization tokens, and standard domain authentication (SPF, DKIM, DMARC) support.
 
 ### SMS Campaigns
 **URL**: https://pika.tr/en/channels/sms
 
-SMS campaign management with support for promotional and transactional messages. Includes sender ID management, message scheduling, character count optimization, link shortening and tracking, and opt-out handling.
+High-throughput native SMS campaign delivery. Includes alphanumeric sender title management, message scheduling, character count optimization, link shortening and tracking, and opt-out handling.
 
 ### WhatsApp Messaging
 **URL**: https://pika.tr/en/channels/whatsapp
 
-WhatsApp Business API integration for customer engagement. Supports template messages, interactive messages, media sharing, chatbot flows, and two-way conversations with customers.
+Official Meta WhatsApp Business API integration for approved outbound template messages, transactional alerts, and promotional announcements with opt-in verification.
 
 ### Analytics & Reporting
 **URL**: https://pika.tr/en/solutions/analytics-reporting
 
-Real-time campaign analytics and reporting dashboard. Track opens, clicks, conversions, revenue attribution, engagement trends, and channel performance. Includes custom report builder and scheduled report delivery.
+Unified campaign analytics and reporting dashboard. Tracks delivery rates, opens, clicks, opt-outs, and channel performance metrics.
 
 ### Consent Management
 **URL**: https://pika.tr/en/solutions/consent-management
 
-GDPR and KVKK compliant consent and preference management. Manage opt-in/opt-out preferences across channels, maintain audit trails, handle data subject requests, and ensure regulatory compliance.
+KVKK and IYS (İleti Yönetim Sistemi) compliance management. Automatically checks recipient opt-in status prior to dispatch, maintains suppression lists, and syncs unsubscribe events.
 
 ### Integrations
 **URL**: https://pika.tr/en/integrations
 
-Connect Pika with third-party platforms including CRM systems, e-commerce platforms, analytics tools, and custom applications via REST APIs, webhooks, and pre-built connectors.
+Connect customer profiles, product catalogs, and transactional order data via CSV/Excel imports, REST Ingestion APIs (`/api/v1/ingest/`), and webhooks.
 
 ### Security & Privacy
 **URL**: https://pika.tr/en/security-and-privacy
 
-Enterprise-grade security infrastructure including data encryption at rest and in transit, role-based access control, IP whitelisting, SSO/SAML integration, and comprehensive audit logging.
+Enterprise data security architecture featuring data encryption in transit and at rest, role-based access control (RBAC), and security event logging.
 
 ### AI Campaign Assistant
 **URL**: https://pika.tr/en/products/ai-campaign-assistant
 
-AI-assisted campaign creation engine for drafting marketing campaigns, target audience recommendations, and email templates from natural language prompts.
+AI-assisted co-pilot (Pika Pilot) for drafting campaign concepts, audience rule suggestions, and message copy from natural language prompts. Operates with strict privacy boundaries: customer PII is never transmitted to LLM providers, and all dispatches require explicit human review.
+
+### Use Cases
+**URL**: https://pika.tr/en/use-cases
+
+Practical implementation scenarios illustrating customer retention, replenishment reminders, win-back flows, and VIP rewards.
 
 ---
 
@@ -98,9 +135,9 @@ AI-assisted campaign creation engine for drafting marketing campaigns, target au
 **URL**: https://pika.tr/en/corporate
 About Pika, company history, mission, vision, and team information.
 
-### Career
+### Careers
 **URL**: https://pika.tr/en/careers
-Current job openings and career opportunities at Pika.
+Career opportunities and engineering culture at Pika.
 
 ### Contact
 **URL**: https://pika.tr/en/contact
@@ -108,11 +145,11 @@ Contact information and inquiry form for sales, support, and partnerships.
 
 ### Demo Request
 **URL**: https://pika.tr/en/demo-request
-Request a personalized live demo of the Pika platform.
+Request a personalized consultation and custom commercial quotation for the Pika platform.
 
 ### FAQ
 **URL**: https://pika.tr/en/resources/faq
-Frequently asked questions about the platform, pricing, and features.
+Frequently asked questions about the platform, capabilities, and quotation-based commercial model.
 
 ---
 

@@ -34,15 +34,24 @@ namespace Pika.Web.Tests
             // 1. BUILD INTERNAL WIKI
             var internalWiki = BuildInternalWiki(originalWiki);
             var internalJson = JsonSerializer.Serialize(internalWiki, jsonOptions);
-            File.WriteAllText(internalJsonPath, internalJson);
+            if (!File.Exists(internalJsonPath) || Environment.GetEnvironmentVariable("REGENERATE_WIKI") == "1")
+            {
+                File.WriteAllText(internalJsonPath, internalJson);
+            }
 
             // 2. BUILD PUBLIC WIKI
             var publicWiki = BuildPublicWiki(originalWiki);
             var publicJson = JsonSerializer.Serialize(publicWiki, jsonOptions);
-            File.WriteAllText(publicJsonPath, publicJson);
+            if (!File.Exists(publicJsonPath) || Environment.GetEnvironmentVariable("REGENERATE_WIKI") == "1")
+            {
+                File.WriteAllText(publicJsonPath, publicJson);
+            }
 
             // 3. CLEAN PUBLIC STATIC ASSET (app.js)
-            CleanStaticAppJs(baseDir, publicWiki);
+            if (Environment.GetEnvironmentVariable("REGENERATE_WIKI") == "1")
+            {
+                CleanStaticAppJs(baseDir, publicWiki);
+            }
 
             Assert.True(File.Exists(internalJsonPath), "Internal wiki JSON must exist");
             Assert.True(File.Exists(publicJsonPath), "Public wiki JSON must exist");

@@ -174,7 +174,7 @@ Four route pairs have been marked with `<meta name="robots" content="noindex, fo
 
 | Route (TR) | Route (EN) | Reason for Noindex Quarantine | Current Underlying View |
 |---|---|---|---|
-| `/kanallar/push` | `/en/channels/push` | **Roadmap Channel:** Push delivery worker is absent in backend services; advertising it as active violates product truth. | `Views/Solutions/PushNotifications.cshtml` |
+| `/kanallar/push` | `/en/channels/push` | **Unconfirmed Channel:** Push is currently not approved as a publicly marketable live capability. Repository sources are contradictory and product implementation requires explicit product-owner confirmation. | `Views/Solutions/PushNotifications.cshtml` |
 | `/cozumler/deliverability-compliance` | `/en/solutions/deliverability-compliance` | **Thin Route:** High thematic overlap with `ConsentManagement` and `EmailMarketing`; lacks distinct product substance. | `Views/Solutions/DeliverabilityCompliance.cshtml` |
 | `/cozumler/data-management-etl` | `/en/solutions/data-management-etl` | **Thin Route:** Architectural capability subsumed under `CustomerIntelligence` and `Integrations`. | `Views/Solutions/DataManagementEtl.cshtml` |
 | `/cozumler/real-time-event-processing` | `/en/solutions/real-time-event-processing` | **Thin Route:** Platform feature already articulated inside `CustomerIntelligence` and `JourneyManager`. | `Views/Solutions/RealTimeEventProcessing.cshtml` |
@@ -301,7 +301,7 @@ The canonical `sitemap.xml` reflects the clean marketing and wiki surface:
 ## Deferred Pages
 
 The following pages require substantive copywriting, visual asset preparation, or engineering confirmation before they can be promoted to canonical indexable status:
-1. **Push Notifications (`/kanallar/push` / `/en/channels/push`):** Requires completion of the APNs/FCM delivery engine, worker queues, and SDK documentation before public marketing promotion.
+1. **Push Notifications (`/kanallar/push` / `/en/channels/push`):** Current public product status requires explicit product-owner confirmation; not approved as a publicly marketable live capability.
 2. **Deliverability & Compliance (`/cozumler/deliverability-compliance`):** Needs redesign as a specialized technical whitepaper or consolidation into `ConsentManagement` and `EmailMarketing`.
 3. **Data Management ETL (`/cozumler/data-management-etl`):** Needs positioning either as developer documentation in the Wiki or integration architecture guides.
 4. **Real-Time Event Processing (`/cozumler/real-time-event-processing`):** Needs customer-facing workflow diagrams and real-time triggers proof before standalone indexing.
@@ -310,6 +310,6 @@ The following pages require substantive copywriting, visual asset preparation, o
 
 ## Human Decisions Still Required
 
-1. **Push Notifications Strategy:** Decide whether to complete the native Push Notification delivery worker in the core application or partner with an external provider (e.g. Firebase, OneSignal). Until backend workers are live, Push remains quarantined.
+1. **Push Notifications Strategy:** Provide explicit product-owner confirmation on live mobile/web push capability and roadmap timeline. Until confirmed and approved, Push remains quarantined with `noindex, follow` and excluded from primary navigation and sitemaps.
 2. **Consolidation of Thin Solution Views:** Decide in P02/P03 whether `DeliverabilityCompliance`, `DataManagementEtl`, and `RealTimeEventProcessing` should be permanently 301-redirected into parent platform pages or expanded with distinct content and screenshots.
 3. **Enterprise Case Study Attribution:** Approve customer names or anonymized case study disclaimers for metrics currently staged in demo cards.

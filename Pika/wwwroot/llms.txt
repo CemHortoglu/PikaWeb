@@ -11,7 +11,7 @@ Doğru Anda (Right Moment) ilkesiyle veriden ölçüme uzanan 6 adımlı karar z
 2. **Müşteri ve Ürün Zekâsı**: Pika 360 müşteri profili ve Product Intelligence ile ürün rollerinin (Need Group, Product Role) anlamlandırılması.
 3. **Fırsat ve Karar**: Günün Fırsatları, tekrar satın alma ritmi, cross-sell/sepet birlikteliği ve Next Best Action sinyalleri.
 4. **Aksiyon ve Otomasyon**: Audience Manager, Campaign Manager, Journey Manager ve Content Studio ile hedeflenen iletişimler.
-5. **Kanallar**: E-posta, SMS, WhatsApp ve Push bildirimleri üzerinden izin/IYS uyumlu gönderimler.
+5. **Kanallar**: E-posta, SMS ve WhatsApp üzerinden izin/IYS uyumlu gönderimler.
 6. **Ölçümleme ve BI**: Kampanya sonuçları, mağaza/kanal performansı ve öğrenme döngüsü.
 
 ## Temel Bilgi Kaynakları ve Dokümantasyon
