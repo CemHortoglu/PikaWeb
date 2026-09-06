@@ -425,3 +425,6 @@ C:\Projects\pika.web\Pika.Web.Tests\obj\Debug\net10.0\Pika.Web.Tests.genruntimec
 C:\Projects\pika.web\Pika.Web.Tests\obj\Debug\net10.0\ref\Pika.Web.Tests.dll
 C:\Projects\pika.web\Pika.Web.Tests\bin\Debug\net10.0\App_Data\wiki.json
 C:\Projects\pika.web\Pika.Web.Tests\bin\Debug\net10.0\App_Data\internal_wiki.json
+C:\Projects\PikaWeb\Pika\Pika.Web.Tests\obj\Debug\net10.0\Pika.Web.Tests.dll
+C:\Projects\PikaWeb\Pika\Pika.Web.Tests\obj\Debug\net10.0\refint\Pika.Web.Tests.dll
+C:\Projects\PikaWeb\Pika\Pika.Web.Tests\obj\Debug\net10.0\Pika.Web.Tests.pdb
