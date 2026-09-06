@@ -51,59 +51,24 @@ Visual customer journey builder for designing automated marketing workflows. Sup
 Drag-and-drop content editor for designing responsive email templates, landing pages, and marketing content. Includes a template library, brand asset management, dynamic content blocks, and mobile preview.
 
 ### Email Marketing
-**URL**: https://pika.tr/en/solutions/email-marketing
+**URL**: https://pika.tr/en/channels/email
 
 Enterprise email marketing solution with high deliverability infrastructure. Features include bulk sending, transactional emails, dynamic personalization, send-time optimization, inbox preview, spam score checking, and dedicated IP management.
 
 ### SMS Campaigns
-**URL**: https://pika.tr/en/solutions/sms-campaigns
+**URL**: https://pika.tr/en/channels/sms
 
 SMS campaign management with support for promotional and transactional messages. Includes sender ID management, message scheduling, character count optimization, link shortening and tracking, and opt-out handling.
 
 ### WhatsApp Messaging
-**URL**: https://pika.tr/en/solutions/whatsapp-messaging
+**URL**: https://pika.tr/en/channels/whatsapp
 
 WhatsApp Business API integration for customer engagement. Supports template messages, interactive messages, media sharing, chatbot flows, and two-way conversations with customers.
-
-### Push Notifications
-**URL**: https://pika.tr/en/solutions/push-notifications
-
-Web and mobile push notification service. Features include rich media notifications, action buttons, segmented targeting, scheduling, A/B testing, and engagement analytics.
-
-### Personalization
-**URL**: https://pika.tr/en/solutions/personalization
-
-AI-driven personalization engine for delivering individualized content, product recommendations, and offers across all channels based on customer behavior, preferences, and predictive models.
-
-### Template Management
-**URL**: https://pika.tr/en/solutions/template-management
-
-Centralized template management system for creating, organizing, and sharing reusable templates across email, SMS, WhatsApp, and push notification channels. Supports version control and approval workflows.
-
-### A/B Testing
-**URL**: https://pika.tr/en/solutions/ab-testing
-
-Comprehensive testing framework for optimizing campaign performance. Test subject lines, content variations, send times, sender names, and channel preferences. Supports automatic winner selection and statistical significance calculation.
 
 ### Analytics & Reporting
 **URL**: https://pika.tr/en/solutions/analytics-reporting
 
 Real-time campaign analytics and reporting dashboard. Track opens, clicks, conversions, revenue attribution, engagement trends, and channel performance. Includes custom report builder and scheduled report delivery.
-
-### Deliverability & Compliance
-**URL**: https://pika.tr/en/solutions/deliverability-compliance
-
-Email deliverability monitoring and optimization tools. Includes reputation management, authentication setup (SPF, DKIM, DMARC), bounce handling, blacklist monitoring, and ISP-specific optimization.
-
-### Data Management (ETL)
-**URL**: https://pika.tr/en/solutions/data-management-etl
-
-Data integration and transformation pipeline for importing, cleaning, and unifying customer data from CRM, e-commerce, ERP, and other business systems. Supports scheduled imports, field mapping, deduplication, and data enrichment.
-
-### Real-Time Event Processing
-**URL**: https://pika.tr/en/solutions/real-time-event-processing
-
-Event-driven automation engine that processes customer actions in real-time. Trigger personalized messages, update segments, and initiate journeys based on website visits, purchases, app events, and custom webhooks.
 
 ### Consent Management
 **URL**: https://pika.tr/en/solutions/consent-management
@@ -111,42 +76,47 @@ Event-driven automation engine that processes customer actions in real-time. Tri
 GDPR and KVKK compliant consent and preference management. Manage opt-in/opt-out preferences across channels, maintain audit trails, handle data subject requests, and ensure regulatory compliance.
 
 ### Integrations
-**URL**: https://pika.tr/en/solutions/Integrations
+**URL**: https://pika.tr/en/integrations
 
 Connect Pika with third-party platforms including CRM systems, e-commerce platforms, analytics tools, and custom applications via REST APIs, webhooks, and pre-built connectors.
 
 ### Security & Privacy
-**URL**: https://pika.tr/en/solutions/SecurityPrivacy
+**URL**: https://pika.tr/en/security-and-privacy
 
 Enterprise-grade security infrastructure including data encryption at rest and in transit, role-based access control, IP whitelisting, SSO/SAML integration, and comprehensive audit logging.
+
+### AI Campaign Assistant
+**URL**: https://pika.tr/en/products/ai-campaign-assistant
+
+AI-assisted campaign creation engine for drafting marketing campaigns, target audience recommendations, and email templates from natural language prompts.
 
 ---
 
 ## Company Pages
 
 ### Corporate
-**URL**: https://pika.tr/en/home/corporate
+**URL**: https://pika.tr/en/corporate
 About Pika, company history, mission, vision, and team information.
 
 ### Career
-**URL**: https://pika.tr/en/home/career
+**URL**: https://pika.tr/en/careers
 Current job openings and career opportunities at Pika.
 
 ### Contact
-**URL**: https://pika.tr/en/home/contact
+**URL**: https://pika.tr/en/contact
 Contact information and inquiry form for sales, support, and partnerships.
 
 ### Demo Request
-**URL**: https://pika.tr/en/home/demo-request
+**URL**: https://pika.tr/en/demo-request
 Request a personalized live demo of the Pika platform.
 
 ### FAQ
-**URL**: https://pika.tr/en/home/faq
+**URL**: https://pika.tr/en/resources/faq
 Frequently asked questions about the platform, pricing, and features.
 
 ---
 
 ## Legal
 
-- [Terms of Use](https://pika.tr/en/home/terms-of-use): Platform usage terms and conditions
-- [Privacy Policy](https://pika.tr/en/home/privacy-policy): Data collection, processing, and privacy practices
+- [Terms of Use](https://pika.tr/en/terms-of-use): Platform usage terms and conditions
+- [Privacy Policy](https://pika.tr/en/privacy-policy): Data collection, processing, and privacy practices

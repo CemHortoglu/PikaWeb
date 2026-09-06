@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -132,7 +133,7 @@ public class RouteTests : IClassFixture<WebApplicationFactory<Program>>
     }
 
     // ==========================================
-    // 2. DECOUPLED SEMANTIC MARKETING PAGES (TR & EN)
+    // 2. CANONICAL MARKETING PAGES (TR & EN)
     // ==========================================
 
     [Theory]
@@ -147,7 +148,7 @@ public class RouteTests : IClassFixture<WebApplicationFactory<Program>>
     [InlineData("/platform/customer-intelligence", "Customer Intelligence", "https://pika.tr/platform/customer-intelligence", "https://pika.tr/en/platform/customer-intelligence")]
     [InlineData("/platform/product-intelligence", "Product Intelligence", "https://pika.tr/platform/product-intelligence", "https://pika.tr/en/platform/product-intelligence")]
     [InlineData("/platform/pika-360", "Pika 360", "https://pika.tr/platform/pika-360", "https://pika.tr/en/platform/pika-360")]
-    [InlineData("/platform/firsatlar", "Günün Fırsatları", "https://pika.tr/platform/firsatlar", "https://pika.tr/en/platform/opportunities")]
+    [InlineData("/platform/gunun-firsatlari", "Günün Fırsatları", "https://pika.tr/platform/gunun-firsatlari", "https://pika.tr/en/platform/opportunities")]
     [InlineData("/cozumler/campaign-manager", "Campaign Manager", "https://pika.tr/cozumler/campaign-manager", "https://pika.tr/en/solutions/campaign-manager")]
     [InlineData("/cozumler/audience-manager", "Audience Manager", "https://pika.tr/cozumler/audience-manager", "https://pika.tr/en/solutions/audience-manager")]
     [InlineData("/cozumler/journey-manager", "Journey Manager", "https://pika.tr/cozumler/journey-manager", "https://pika.tr/en/solutions/journey-manager")]
@@ -156,13 +157,12 @@ public class RouteTests : IClassFixture<WebApplicationFactory<Program>>
     [InlineData("/kanallar/email", "Email Marketing", "https://pika.tr/kanallar/email", "https://pika.tr/en/channels/email")]
     [InlineData("/kanallar/sms", "SMS Campaigns", "https://pika.tr/kanallar/sms", "https://pika.tr/en/channels/sms")]
     [InlineData("/kanallar/whatsapp", "WhatsApp Messaging", "https://pika.tr/kanallar/whatsapp", "https://pika.tr/en/channels/whatsapp")]
-    [InlineData("/kanallar/push-notification", "Push Notifications", "https://pika.tr/kanallar/push-notification", "https://pika.tr/en/channels/push-notifications")]
-    [InlineData("/cozumler/analytics-reporting", "Analytics & Reporting", "https://pika.tr/cozumler/analytics-reporting", "https://pika.tr/en/solutions/analytics-reporting")]
+    [InlineData("/cozumler/analytics-reporting", "Analytics", "https://pika.tr/cozumler/analytics-reporting", "https://pika.tr/en/solutions/analytics-reporting")]
     [InlineData("/entegrasyonlar", "Entegrasyonlar", "https://pika.tr/entegrasyonlar", "https://pika.tr/en/integrations")]
     [InlineData("/guvenlik-ve-gizlilik", "Güvenlik ve Gizlilik", "https://pika.tr/guvenlik-ve-gizlilik", "https://pika.tr/en/security-and-privacy")]
     [InlineData("/urunler/ai-kampanya-asistani", "AI Kampanya Asistanı", "https://pika.tr/urunler/ai-kampanya-asistani", "https://pika.tr/en/products/ai-campaign-assistant")]
     [InlineData("/kullanim-senaryolari", "Kullanım Senaryoları", "https://pika.tr/kullanim-senaryolari", "https://pika.tr/en/use-cases")]
-    public async Task TurkishSemanticPages_Return200_WithExactCanonicalAndHreflang(
+    public async Task TurkishCanonicalPages_Return200_WithExactCanonicalAndHreflang(
         string path, string titleKeyword, string expectedTrCanonical, string expectedEnAlternate)
     {
         var client = CreateNoRedirectClient();
@@ -190,12 +190,21 @@ public class RouteTests : IClassFixture<WebApplicationFactory<Program>>
     [InlineData("/en/platform/customer-intelligence", "Customer Intelligence", "https://pika.tr/en/platform/customer-intelligence", "https://pika.tr/platform/customer-intelligence")]
     [InlineData("/en/platform/product-intelligence", "Product Intelligence", "https://pika.tr/en/platform/product-intelligence", "https://pika.tr/platform/product-intelligence")]
     [InlineData("/en/platform/pika-360", "Pika 360", "https://pika.tr/en/platform/pika-360", "https://pika.tr/platform/pika-360")]
-    [InlineData("/en/platform/opportunities", "Daily Opportunities", "https://pika.tr/en/platform/opportunities", "https://pika.tr/platform/firsatlar")]
+    [InlineData("/en/platform/opportunities", "Daily Opportunities", "https://pika.tr/en/platform/opportunities", "https://pika.tr/platform/gunun-firsatlari")]
     [InlineData("/en/solutions/campaign-manager", "Campaign Manager", "https://pika.tr/en/solutions/campaign-manager", "https://pika.tr/cozumler/campaign-manager")]
-    [InlineData("/en/channels/whatsapp", "WhatsApp Messaging", "https://pika.tr/en/channels/whatsapp", "https://pika.tr/kanallar/whatsapp")]
+    [InlineData("/en/solutions/audience-manager", "Audience Manager", "https://pika.tr/en/solutions/audience-manager", "https://pika.tr/cozumler/audience-manager")]
+    [InlineData("/en/solutions/journey-manager", "Journey Manager", "https://pika.tr/en/solutions/journey-manager", "https://pika.tr/cozumler/journey-manager")]
+    [InlineData("/en/solutions/content-studio", "Content Studio", "https://pika.tr/en/solutions/content-studio", "https://pika.tr/cozumler/content-studio")]
+    [InlineData("/en/solutions/consent-management", "Consent Management", "https://pika.tr/en/solutions/consent-management", "https://pika.tr/cozumler/consent-management")]
     [InlineData("/en/channels/email", "Email Marketing", "https://pika.tr/en/channels/email", "https://pika.tr/kanallar/email")]
     [InlineData("/en/channels/sms", "SMS Campaigns", "https://pika.tr/en/channels/sms", "https://pika.tr/kanallar/sms")]
-    public async Task EnglishSemanticPages_Return200_WithExactCanonicalAndHreflang(
+    [InlineData("/en/channels/whatsapp", "WhatsApp Messaging", "https://pika.tr/en/channels/whatsapp", "https://pika.tr/kanallar/whatsapp")]
+    [InlineData("/en/solutions/analytics-reporting", "Analytics", "https://pika.tr/en/solutions/analytics-reporting", "https://pika.tr/cozumler/analytics-reporting")]
+    [InlineData("/en/integrations", "Integrations", "https://pika.tr/en/integrations", "https://pika.tr/entegrasyonlar")]
+    [InlineData("/en/security-and-privacy", "Security", "https://pika.tr/en/security-and-privacy", "https://pika.tr/guvenlik-ve-gizlilik")]
+    [InlineData("/en/products/ai-campaign-assistant", "AI Campaign Assistant", "https://pika.tr/en/products/ai-campaign-assistant", "https://pika.tr/urunler/ai-kampanya-asistani")]
+    [InlineData("/en/use-cases", "Use Cases", "https://pika.tr/en/use-cases", "https://pika.tr/kullanim-senaryolari")]
+    public async Task EnglishCanonicalPages_Return200_WithExactCanonicalAndHreflang(
         string path, string titleKeyword, string expectedEnCanonical, string expectedTrAlternate)
     {
         var client = CreateNoRedirectClient();
@@ -211,7 +220,130 @@ public class RouteTests : IClassFixture<WebApplicationFactory<Program>>
     }
 
     // ==========================================
-    // 3. 301 REDIRECTION OF ALL LEGACY MVC-SHAPED ROUTES
+    // 3. TEMPORARILY NOINDEXED PAGES (TR & EN)
+    // ==========================================
+
+    [Theory]
+    [InlineData("/kanallar/push", "https://pika.tr/kanallar/push")]
+    [InlineData("/en/channels/push", "https://pika.tr/en/channels/push")]
+    [InlineData("/cozumler/deliverability-compliance", "https://pika.tr/cozumler/deliverability-compliance")]
+    [InlineData("/en/solutions/deliverability-compliance", "https://pika.tr/en/solutions/deliverability-compliance")]
+    [InlineData("/cozumler/data-management-etl", "https://pika.tr/cozumler/data-management-etl")]
+    [InlineData("/en/solutions/data-management-etl", "https://pika.tr/en/solutions/data-management-etl")]
+    [InlineData("/cozumler/real-time-event-processing", "https://pika.tr/cozumler/real-time-event-processing")]
+    [InlineData("/en/solutions/real-time-event-processing", "https://pika.tr/en/solutions/real-time-event-processing")]
+    public async Task TemporarilyNoindexedPages_Return200_WithNoindexMeta_PreserveSelfCanonical_AndOmitHreflang(
+        string path, string expectedSelfCanonical)
+    {
+        var client = CreateNoRedirectClient();
+        var response = await client.GetAsync(path);
+
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+
+        var html = await response.Content.ReadAsStringAsync();
+        Assert.Contains("name=\"robots\" content=\"noindex, follow\"", html);
+        Assert.Contains($"<link rel=\"canonical\" href=\"{expectedSelfCanonical}\" />", html);
+        Assert.DoesNotContain("<link rel=\"alternate\" hreflang=", html);
+    }
+
+    // ==========================================
+    // 4. RETIRED DUPLICATE ROUTES (301 TO CANONICAL)
+    // ==========================================
+
+    [Theory]
+    [InlineData("/cozumler/kisisellestirme", "/cozumler/journey-manager")]
+    [InlineData("/en/solutions/personalization", "/en/solutions/journey-manager")]
+    [InlineData("/cozumler/sablon-yonetimi", "/cozumler/content-studio")]
+    [InlineData("/en/solutions/template-management", "/en/solutions/content-studio")]
+    [InlineData("/cozumler/ab-testleri", "/cozumler/campaign-manager")]
+    [InlineData("/en/solutions/ab-testing", "/en/solutions/campaign-manager")]
+    [InlineData("/cozumler/e-ticaret-ai-kampanya", "/urunler/ai-kampanya-asistani")]
+    [InlineData("/en/solutions/ecommerce-ai-campaign", "/en/products/ai-campaign-assistant")]
+    [InlineData("/cozumler/whatsapp-kampanya-yonetimi", "/kanallar/whatsapp")]
+    [InlineData("/en/solutions/whatsapp-campaign-management", "/en/channels/whatsapp")]
+    [InlineData("/cozumler/iys-kvkk-uyumluluk", "/cozumler/consent-management")]
+    [InlineData("/en/solutions/iys-kvkk-compliance", "/en/solutions/consent-management")]
+    [InlineData("/cozumler/email-marketing-sablon-studyosu", "/cozumler/content-studio")]
+    [InlineData("/en/solutions/email-marketing-template-studio", "/en/solutions/content-studio")]
+    public async Task RetiredDuplicateRoutes_Return301_ToFinalCanonical(string duplicatePath, string expectedCanonical)
+    {
+        var client = CreateNoRedirectClient();
+        var response = await client.GetAsync(duplicatePath);
+
+        Assert.Equal(HttpStatusCode.MovedPermanently, response.StatusCode);
+        Assert.Equal(expectedCanonical, response.Headers.Location?.OriginalString);
+    }
+
+    // ==========================================
+    // 5. HISTORICAL ALIASES PRESERVATION (DIRECT 301)
+    // ==========================================
+
+    [Theory]
+    [InlineData("/platform/firsatlar", "/platform/gunun-firsatlari")]
+    [InlineData("/kanallar/push-notification", "/kanallar/push")]
+    [InlineData("/en/channels/push-notifications", "/en/channels/push")]
+    [InlineData("/Platform/Opportunities", "/platform/gunun-firsatlari")]
+    [InlineData("/tr/platform/firsatlar", "/platform/gunun-firsatlari")]
+    [InlineData("/tr/platform/opportunities", "/platform/gunun-firsatlari")]
+    [InlineData("/kanallar/push-bildirimleri", "/kanallar/push")]
+    [InlineData("/en/channels/push-notification", "/en/channels/push")]
+    [InlineData("/Solutions/PushNotifications", "/kanallar/push")]
+    [InlineData("/solutions/push-notifications", "/kanallar/push")]
+    [InlineData("/tr/solutions/push-notifications", "/kanallar/push")]
+    [InlineData("/en/Solutions/PushNotifications", "/en/channels/push")]
+    [InlineData("/en/solutions/push-notifications", "/en/channels/push")]
+    public async Task HistoricalAliases_Return301_DirectlyToFinalDestination(string aliasPath, string expectedDestination)
+    {
+        var client = CreateNoRedirectClient();
+        var response = await client.GetAsync(aliasPath);
+
+        Assert.Equal(HttpStatusCode.MovedPermanently, response.StatusCode);
+        Assert.Equal(expectedDestination, response.Headers.Location?.OriginalString);
+    }
+
+    // ==========================================
+    // 6. PRICING GOVERNANCE & REDIRECTS (301 TO DEMO)
+    // ==========================================
+
+    [Theory]
+    [InlineData("/pricing", "/demo-talebi")]
+    [InlineData("/fiyatlandirma", "/demo-talebi")]
+    [InlineData("/fiyatlar", "/demo-talebi")]
+    [InlineData("/ucretler", "/demo-talebi")]
+    [InlineData("/home/pricing", "/demo-talebi")]
+    [InlineData("/Home/Pricing", "/demo-talebi")]
+    [InlineData("/tr/home/pricing", "/demo-talebi")]
+    [InlineData("/en/pricing", "/en/demo-request")]
+    [InlineData("/en/home/pricing", "/en/demo-request")]
+    [InlineData("/en/Home/Pricing", "/en/demo-request")]
+    public async Task PricingRoutes_Return301_DirectlyToDemoRequest(string pricingPath, string expectedRedirect)
+    {
+        var client = CreateNoRedirectClient();
+        var response = await client.GetAsync(pricingPath);
+
+        Assert.Equal(HttpStatusCode.MovedPermanently, response.StatusCode);
+        Assert.Equal(expectedRedirect, response.Headers.Location?.OriginalString);
+    }
+
+    [Fact]
+    public void PricingCshtmlFile_DoesNotExistOnDisk()
+    {
+        var rootDir = Directory.GetCurrentDirectory();
+        while (rootDir != null && !Directory.Exists(Path.Combine(rootDir, "Views")))
+        {
+            var parent = Directory.GetParent(rootDir);
+            rootDir = parent?.FullName;
+        }
+
+        if (rootDir != null)
+        {
+            var pricingViewPath = Path.Combine(rootDir, "Views", "Home", "Pricing.cshtml");
+            Assert.False(File.Exists(pricingViewPath), $"Orphan view must not exist: {pricingViewPath}");
+        }
+    }
+
+    // ==========================================
+    // 7. LEGACY MVC ROUTES REDIRECTION (301)
     // ==========================================
 
     [Theory]
@@ -253,9 +385,6 @@ public class RouteTests : IClassFixture<WebApplicationFactory<Program>>
     [InlineData("/tr/platform/product-intelligence", "/platform/product-intelligence")]
     [InlineData("/Platform/Pika360", "/platform/pika-360")]
     [InlineData("/tr/platform/pika-360", "/platform/pika-360")]
-    [InlineData("/Platform/Opportunities", "/platform/firsatlar")]
-    [InlineData("/tr/platform/firsatlar", "/platform/firsatlar")]
-    [InlineData("/tr/platform/opportunities", "/platform/firsatlar")]
 
     // Solutions Controller legacy routes
     [InlineData("/Solutions/CampaignManager", "/cozumler/campaign-manager")]
@@ -278,9 +407,6 @@ public class RouteTests : IClassFixture<WebApplicationFactory<Program>>
     [InlineData("/Solutions/SmsCampaigns", "/kanallar/sms")]
     [InlineData("/solutions/sms-campaigns", "/kanallar/sms")]
     [InlineData("/tr/solutions/sms-campaigns", "/kanallar/sms")]
-    [InlineData("/Solutions/PushNotifications", "/kanallar/push-notification")]
-    [InlineData("/solutions/push-notifications", "/kanallar/push-notification")]
-    [InlineData("/tr/solutions/push-notifications", "/kanallar/push-notification")]
     [InlineData("/Solutions/Reporting", "/cozumler/analytics-reporting")]
     [InlineData("/solutions/reporting", "/cozumler/analytics-reporting")]
     [InlineData("/tr/solutions/reporting", "/cozumler/analytics-reporting")]
@@ -317,8 +443,6 @@ public class RouteTests : IClassFixture<WebApplicationFactory<Program>>
     [InlineData("/en/solutions/email-marketing", "/en/channels/email")]
     [InlineData("/en/Solutions/SmsCampaigns", "/en/channels/sms")]
     [InlineData("/en/solutions/sms-campaigns", "/en/channels/sms")]
-    [InlineData("/en/Solutions/PushNotifications", "/en/channels/push-notifications")]
-    [InlineData("/en/solutions/push-notifications", "/en/channels/push-notifications")]
     [InlineData("/en/Solutions/CampaignManager", "/en/solutions/campaign-manager")]
     [InlineData("/en/Platform/CustomerIntelligence", "/en/platform/customer-intelligence")]
     public async Task LegacyMvcRoutes_Return301_DirectlyToSemanticCanonical(string legacyUrl, string expectedCanonical)
@@ -331,11 +455,57 @@ public class RouteTests : IClassFixture<WebApplicationFactory<Program>>
     }
 
     // ==========================================
-    // 4. SITEMAP & ROBOTS VERIFICATION
+    // 8. NAVIGATION HYGIENE TESTS
     // ==========================================
 
     [Fact]
-    public async Task SitemapXml_Returns200_AndContainsOnlyValidCanonicalUrls()
+    public async Task Navigation_ContainsSecurityPrivacy_AndOmitsPushAndPricing()
+    {
+        var client = CreateNoRedirectClient();
+        var response = await client.GetAsync("/");
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+
+        var html = await response.Content.ReadAsStringAsync();
+
+        // Must contain Security & Privacy link in layout
+        Assert.Contains("/guvenlik-ve-gizlilik", html);
+
+        // Navigation elements must NOT contain push notifications link
+        Assert.DoesNotContain("href=\"/kanallar/push\"", html);
+        Assert.DoesNotContain("href=\"/kanallar/push-notification\"", html);
+        Assert.DoesNotContain("href=\"/kanallar/push-bildirim", html);
+
+        // Navigation must not expose pricing links
+        Assert.DoesNotContain("href=\"/pricing\"", html);
+        Assert.DoesNotContain("href=\"/fiyatlandirma\"", html);
+    }
+
+    [Fact]
+    public async Task EnglishNavigation_ContainsSecurityPrivacy_AndOmitsPushAndPricing()
+    {
+        var client = CreateNoRedirectClient();
+        var response = await client.GetAsync("/en/");
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+
+        var html = await response.Content.ReadAsStringAsync();
+
+        // Must contain Security & Privacy link in layout
+        Assert.Contains("/en/security-and-privacy", html);
+
+        // Navigation elements must NOT contain push notifications link
+        Assert.DoesNotContain("href=\"/en/channels/push\"", html);
+        Assert.DoesNotContain("href=\"/en/channels/push-notifications\"", html);
+
+        // Navigation must not expose pricing links
+        Assert.DoesNotContain("href=\"/en/pricing\"", html);
+    }
+
+    // ==========================================
+    // 9. SITEMAP PURITY & EXCLUSIVITY
+    // ==========================================
+
+    [Fact]
+    public async Task SitemapXml_MatchesApprovedCanonicalInventory_AndExcludesNoindexAndRedirects()
     {
         var client = CreateNoRedirectClient();
         var response = await client.GetAsync("/sitemap.xml");
@@ -345,19 +515,63 @@ public class RouteTests : IClassFixture<WebApplicationFactory<Program>>
         var xmlString = await response.Content.ReadAsStringAsync();
         var doc = XDocument.Parse(xmlString);
         XNamespace ns = "http://www.sitemaps.org/schemas/sitemap/0.9";
-        var locs = doc.Descendants(ns + "loc").Select(x => x.Value).ToList();
+        var locs = doc.Descendants(ns + "loc").Select(x => x.Value).ToHashSet();
 
         Assert.NotEmpty(locs);
+
+        // Canonical core pages present
         Assert.Contains("https://pika.tr/", locs);
         Assert.Contains("https://pika.tr/en/", locs);
         Assert.Contains("https://pika.tr/pika", locs);
         Assert.Contains("https://pika.tr/en/pika", locs);
         Assert.Contains("https://pika.tr/platform/customer-intelligence", locs);
         Assert.Contains("https://pika.tr/en/platform/customer-intelligence", locs);
+        Assert.Contains("https://pika.tr/platform/gunun-firsatlari", locs);
+        Assert.Contains("https://pika.tr/en/platform/opportunities", locs);
         Assert.Contains("https://pika.tr/kanallar/whatsapp", locs);
         Assert.Contains("https://pika.tr/en/channels/whatsapp", locs);
+        Assert.Contains("https://pika.tr/guvenlik-ve-gizlilik", locs);
+        Assert.Contains("https://pika.tr/en/security-and-privacy", locs);
+        Assert.Contains("https://pika.tr/urunler/ai-kampanya-asistani", locs);
+        Assert.Contains("https://pika.tr/en/products/ai-campaign-assistant", locs);
 
-        // Disallowed / legacy paths in sitemap
+        // Excluded: Aliases & historical redirected URLs
+        Assert.DoesNotContain("https://pika.tr/platform/firsatlar", locs);
+        Assert.DoesNotContain("https://pika.tr/kanallar/push-notification", locs);
+        Assert.DoesNotContain("https://pika.tr/en/channels/push-notifications", locs);
+
+        // Excluded: Temporarily noindexed routes (Push & Thin routes)
+        Assert.DoesNotContain("https://pika.tr/kanallar/push", locs);
+        Assert.DoesNotContain("https://pika.tr/en/channels/push", locs);
+        Assert.DoesNotContain("https://pika.tr/cozumler/deliverability-compliance", locs);
+        Assert.DoesNotContain("https://pika.tr/en/solutions/deliverability-compliance", locs);
+        Assert.DoesNotContain("https://pika.tr/cozumler/data-management-etl", locs);
+        Assert.DoesNotContain("https://pika.tr/en/solutions/data-management-etl", locs);
+        Assert.DoesNotContain("https://pika.tr/cozumler/real-time-event-processing", locs);
+        Assert.DoesNotContain("https://pika.tr/en/solutions/real-time-event-processing", locs);
+
+        // Excluded: Retired duplicates
+        Assert.DoesNotContain("https://pika.tr/cozumler/kisisellestirme", locs);
+        Assert.DoesNotContain("https://pika.tr/en/solutions/personalization", locs);
+        Assert.DoesNotContain("https://pika.tr/cozumler/sablon-yonetimi", locs);
+        Assert.DoesNotContain("https://pika.tr/en/solutions/template-management", locs);
+        Assert.DoesNotContain("https://pika.tr/cozumler/ab-testleri", locs);
+        Assert.DoesNotContain("https://pika.tr/en/solutions/ab-testing", locs);
+        Assert.DoesNotContain("https://pika.tr/cozumler/e-ticaret-ai-kampanya", locs);
+        Assert.DoesNotContain("https://pika.tr/en/solutions/ecommerce-ai-campaign", locs);
+        Assert.DoesNotContain("https://pika.tr/cozumler/whatsapp-kampanya-yonetimi", locs);
+        Assert.DoesNotContain("https://pika.tr/en/solutions/whatsapp-campaign-management", locs);
+        Assert.DoesNotContain("https://pika.tr/cozumler/iys-kvkk-uyumluluk", locs);
+        Assert.DoesNotContain("https://pika.tr/en/solutions/iys-kvkk-compliance", locs);
+        Assert.DoesNotContain("https://pika.tr/cozumler/email-marketing-sablon-studyosu", locs);
+        Assert.DoesNotContain("https://pika.tr/en/solutions/email-marketing-template-studio", locs);
+
+        // Excluded: Pricing URLs
+        Assert.DoesNotContain("https://pika.tr/pricing", locs);
+        Assert.DoesNotContain("https://pika.tr/fiyatlandirma", locs);
+        Assert.DoesNotContain("https://pika.tr/en/pricing", locs);
+
+        // Excluded: Disallowed / legacy patterns in sitemap
         Assert.DoesNotContain("https://pika.tr/tr/", locs);
         Assert.DoesNotContain("https://pika.tr/tr/home", locs);
         Assert.DoesNotContain("https://pika.tr/Home/Pika", locs);

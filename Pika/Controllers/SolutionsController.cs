@@ -41,16 +41,22 @@ namespace Pika.Controllers
         public IActionResult PushNotifications() => View();
 
         [HttpGet("/cozumler/personalization")]
+        public IActionResult PersonalizationPage() => RedirectPermanent("/cozumler/journey-manager");
+
         [HttpGet("/en/solutions/personalization")]
-        public IActionResult PersonalizationPage() => View("Personalization");
+        public IActionResult PersonalizationPageEn() => RedirectPermanent("/en/solutions/journey-manager");
 
         [HttpGet("/cozumler/template-management")]
+        public IActionResult TemplateManagement() => RedirectPermanent("/cozumler/content-studio");
+
         [HttpGet("/en/solutions/template-management")]
-        public IActionResult TemplateManagement() => View();
+        public IActionResult TemplateManagementEn() => RedirectPermanent("/en/solutions/content-studio");
 
         [HttpGet("/cozumler/ab-testing")]
+        public IActionResult ABTesting() => RedirectPermanent("/cozumler/campaign-manager");
+
         [HttpGet("/en/solutions/ab-testing")]
-        public IActionResult ABTesting() => View();
+        public IActionResult ABTestingEn() => RedirectPermanent("/en/solutions/campaign-manager");
 
         [HttpGet("/cozumler/analytics-reporting")]
         [HttpGet("/en/solutions/analytics-reporting")]
@@ -81,20 +87,28 @@ namespace Pika.Controllers
         public IActionResult AiCampaignAssistant() => View();
 
         [HttpGet("/cozumler/e-ticaret-ai-kampanya-yonetimi", Name = "EcommerceAiCampaign")]
+        public IActionResult EcommerceAiCampaign() => RedirectPermanent("/urunler/ai-kampanya-asistani");
+
         [HttpGet("/en/solutions/ecommerce-ai-campaign", Name = "EcommerceAiCampaignEn")]
-        public IActionResult EcommerceAiCampaign() => View();
+        public IActionResult EcommerceAiCampaignEn() => RedirectPermanent("/en/products/ai-campaign-assistant");
 
         [HttpGet("/kanallar/whatsapp-kampanya-yonetimi", Name = "WhatsAppCampaignManagement")]
+        public IActionResult WhatsAppCampaignManagement() => RedirectPermanent("/kanallar/whatsapp");
+
         [HttpGet("/en/channels/whatsapp-campaign-management", Name = "WhatsAppCampaignManagementEn")]
-        public IActionResult WhatsAppCampaignManagement() => View();
+        public IActionResult WhatsAppCampaignManagementEn() => RedirectPermanent("/en/channels/whatsapp");
 
         [HttpGet("/cozumler/iys-kvkk-uyumlu-kampanya-yonetimi", Name = "IysKvkkCompliance")]
+        public IActionResult IysKvkkCompliance() => RedirectPermanent("/cozumler/consent-management");
+
         [HttpGet("/en/solutions/iys-kvkk-compliance", Name = "IysKvkkComplianceEn")]
-        public IActionResult IysKvkkCompliance() => View();
+        public IActionResult IysKvkkComplianceEn() => RedirectPermanent("/en/solutions/consent-management");
 
         [HttpGet("/kanallar/email-marketing-template-studio", Name = "EmailMarketingTemplateStudio")]
+        public IActionResult EmailMarketingTemplateStudio() => RedirectPermanent("/cozumler/content-studio");
+
         [HttpGet("/en/channels/email-marketing-template-studio", Name = "EmailMarketingTemplateStudioEn")]
-        public IActionResult EmailMarketingTemplateStudio() => View();
+        public IActionResult EmailMarketingTemplateStudioEn() => RedirectPermanent("/en/solutions/content-studio");
 
         [HttpGet("/kullanim-senaryolari", Name = "UseCases")]
         [HttpGet("/en/use-cases", Name = "UseCasesEn")]

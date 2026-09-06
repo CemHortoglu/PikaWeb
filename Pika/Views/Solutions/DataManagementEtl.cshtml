@@ -1,5 +1,6 @@
 @{
     var tr = (ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").Equals("tr", StringComparison.OrdinalIgnoreCase);
+    ViewData["RobotsMeta"] = "noindex, follow";
     ViewData["Title"] = tr ? "Veri Yönetimi ve ETL" : "Data Management & ETL";
     ViewData["MetaDescription"] = tr ? "Dağınık veriyi normalize edin; müşteri profiline dönüştürün, segment ve otomasyonu besleyin." : "Normalize fragmented data, build customer profiles, and power segmentation and automation.";
     ViewData["MetaKeywords"] = "data management,etl,normalization,customer profile,ingestion";

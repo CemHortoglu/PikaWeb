@@ -1,5 +1,6 @@
 @{
     var tr = (ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").Equals("tr", StringComparison.OrdinalIgnoreCase);
+    ViewData["RobotsMeta"] = "noindex, follow";
     ViewData["Title"] = tr ? "Push Bildirim Yönetimi ve Gerçek Zamanlı Otomasyon - Pika" : "Push Notification Management & Real-Time Automation - Pika";
     ViewData["MetaDescription"] = tr ? "Pika Push Notifications ile segment bazlı hedefleme, kişiselleştirme ve gerçek zamanlı tetikleyicilerle push bildirim performansını artırın." : "Increase push notification performance with segmented targeting, personalization, and real-time triggers using Pika Push Notifications.";
     ViewData["MetaKeywords"] = "push bildirim, mobil bildirim, gerçek zamanlı, segmentasyon, otomasyon, push";

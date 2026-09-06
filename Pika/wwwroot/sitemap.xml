@@ -108,14 +108,6 @@
 		<priority>0.8</priority>
 	</url>
 	<url>
-		<loc>https://pika.tr/kanallar/push</loc>
-		<changefreq>weekly</changefreq>
-		<priority>0.8</priority>
-	</url>
-	<!-- Thin stub pages removed: personalization, template-management, ab-testing,
-	     deliverability-compliance, data-management-etl, real-time-event-processing.
-	     Add back when content is substantially improved. -->
-	<url>
 		<loc>https://pika.tr/cozumler/analytics-reporting</loc>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
@@ -132,26 +124,6 @@
 	</url>
 	<url>
 		<loc>https://pika.tr/urunler/ai-kampanya-asistani</loc>
-		<changefreq>weekly</changefreq>
-		<priority>0.8</priority>
-	</url>
-	<url>
-		<loc>https://pika.tr/cozumler/e-ticaret-ai-kampanya-yonetimi</loc>
-		<changefreq>weekly</changefreq>
-		<priority>0.8</priority>
-	</url>
-	<url>
-		<loc>https://pika.tr/kanallar/whatsapp-kampanya-yonetimi</loc>
-		<changefreq>weekly</changefreq>
-		<priority>0.8</priority>
-	</url>
-	<url>
-		<loc>https://pika.tr/cozumler/iys-kvkk-uyumlu-kampanya-yonetimi</loc>
-		<changefreq>weekly</changefreq>
-		<priority>0.8</priority>
-	</url>
-	<url>
-		<loc>https://pika.tr/kanallar/email-marketing-template-studio</loc>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
@@ -268,42 +240,7 @@
 		<priority>0.7</priority>
 	</url>
 	<url>
-		<loc>https://pika.tr/en/channels/push</loc>
-		<changefreq>weekly</changefreq>
-		<priority>0.7</priority>
-	</url>
-	<url>
-		<loc>https://pika.tr/en/solutions/personalization</loc>
-		<changefreq>weekly</changefreq>
-		<priority>0.7</priority>
-	</url>
-	<url>
-		<loc>https://pika.tr/en/solutions/template-management</loc>
-		<changefreq>weekly</changefreq>
-		<priority>0.7</priority>
-	</url>
-	<url>
-		<loc>https://pika.tr/en/solutions/ab-testing</loc>
-		<changefreq>weekly</changefreq>
-		<priority>0.7</priority>
-	</url>
-	<url>
 		<loc>https://pika.tr/en/solutions/analytics-reporting</loc>
-		<changefreq>weekly</changefreq>
-		<priority>0.7</priority>
-	</url>
-	<url>
-		<loc>https://pika.tr/en/solutions/deliverability-compliance</loc>
-		<changefreq>weekly</changefreq>
-		<priority>0.7</priority>
-	</url>
-	<url>
-		<loc>https://pika.tr/en/solutions/data-management-etl</loc>
-		<changefreq>weekly</changefreq>
-		<priority>0.7</priority>
-	</url>
-	<url>
-		<loc>https://pika.tr/en/solutions/real-time-event-processing</loc>
 		<changefreq>weekly</changefreq>
 		<priority>0.7</priority>
 	</url>
@@ -319,26 +256,6 @@
 	</url>
 	<url>
 		<loc>https://pika.tr/en/products/ai-campaign-assistant</loc>
-		<changefreq>weekly</changefreq>
-		<priority>0.7</priority>
-	</url>
-	<url>
-		<loc>https://pika.tr/en/solutions/ecommerce-ai-campaign</loc>
-		<changefreq>weekly</changefreq>
-		<priority>0.7</priority>
-	</url>
-	<url>
-		<loc>https://pika.tr/en/channels/whatsapp-campaign-management</loc>
-		<changefreq>weekly</changefreq>
-		<priority>0.7</priority>
-	</url>
-	<url>
-		<loc>https://pika.tr/en/solutions/iys-kvkk-compliance</loc>
-		<changefreq>weekly</changefreq>
-		<priority>0.7</priority>
-	</url>
-	<url>
-		<loc>https://pika.tr/en/channels/email-marketing-template-studio</loc>
 		<changefreq>weekly</changefreq>
 		<priority>0.7</priority>
 	</url>

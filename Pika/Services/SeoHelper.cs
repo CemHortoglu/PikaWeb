@@ -199,36 +199,6 @@ public static class SeoHelper
             "Push Notifications",
             "Push Notifications"),
 
-        ["Solutions.Personalization"] = new(
-            "/cozumler/personalization",
-            "/en/solutions/personalization",
-            "Personalization | Kişiselleştirme Çözümleri",
-            "Personalization | Personalization Solutions",
-            "Müşteri öznitelikleri ve geçmiş alışveriş verilerine göre içerik, teklif ve ürün önerilerini dinamik olarak özelleştirin.",
-            "Dynamically tailor content, offers, and recommendations based on customer attributes and transaction history.",
-            "Personalization",
-            "Personalization"),
-
-        ["Solutions.TemplateManagement"] = new(
-            "/cozumler/template-management",
-            "/en/solutions/template-management",
-            "Template Management | Şablon Yönetimi",
-            "Template Management | Template Management",
-            "Tüm iletişim kanalları için şablonları merkezi olarak sürümleyin, onaylayın ve marka standartlarını koruyun.",
-            "Centrally version, approve, and maintain templates across all channels while preserving brand consistency.",
-            "Template Management",
-            "Template Management"),
-
-        ["Solutions.ABTesting"] = new(
-            "/cozumler/ab-testing",
-            "/en/solutions/ab-testing",
-            "A/B Testing | Kampanya A/B Testleri",
-            "A/B Testing | Campaign A/B Testing",
-            "Başlık, metin, kanal ve gönderim zamanı varyasyonlarını test ederek en yüksek dönüşüm getiren kurguyu belirleyin.",
-            "Test headlines, copy, channels, and send times to scientifically identify the highest-converting variations.",
-            "A/B Testing",
-            "A/B Testing"),
-
         ["Solutions.Reporting"] = new(
             "/cozumler/analytics-reporting",
             "/en/solutions/analytics-reporting",
@@ -300,46 +270,6 @@ public static class SeoHelper
             "AI Kampanya Asistanı",
             "AI Campaign Assistant"),
 
-        ["Solutions.EcommerceAiCampaign"] = new(
-            "/cozumler/e-ticaret-ai-kampanya-yonetimi",
-            "/en/solutions/ecommerce-ai-campaign",
-            "E-Ticaret AI Kampanya Yönetimi",
-            "E-Commerce AI Campaign Management",
-            "E-ticaret markaları için sepet terk, dinamik indirim ve kişiselleştirilmiş çapraz satış kampanyaları.",
-            "AI campaign automation for e-commerce: abandoned cart recovery, dynamic discounts, and personalized cross-selling.",
-            "E-Ticaret AI",
-            "E-Commerce AI"),
-
-        ["Solutions.WhatsAppCampaignManagement"] = new(
-            "/kanallar/whatsapp-kampanya-yonetimi",
-            "/en/channels/whatsapp-campaign-management",
-            "WhatsApp Kampanya Yönetimi",
-            "WhatsApp Campaign Management",
-            "WhatsApp Business API ile kurumsal şablon onayları, otomatik akışlar ve zengin medya kampanyaları.",
-            "Enterprise WhatsApp campaign management with verified templates, automated workflows, and rich media delivery.",
-            "WhatsApp Kampanya",
-            "WhatsApp Campaigns"),
-
-        ["Solutions.IysKvkkCompliance"] = new(
-            "/cozumler/iys-kvkk-uyumlu-kampanya-yonetimi",
-            "/en/solutions/iys-kvkk-compliance",
-            "İYS ve KVKK Uyumlu Kampanya Yönetimi",
-            "IYS & KVKK Compliant Campaign Management",
-            "Ticari elektronik ileti mevzuatı ve KVKK gereksinimlerine tam uyumlu izin kontrolü ve denetim kayıtları.",
-            "Full compliance with commercial electronic messaging regulations, consent validation, and audit logs.",
-            "İYS & KVKK Uyumu",
-            "IYS & KVKK Compliance"),
-
-        ["Solutions.EmailMarketingTemplateStudio"] = new(
-            "/kanallar/email-marketing-template-studio",
-            "/en/channels/email-marketing-template-studio",
-            "Email Marketing ve Template Studio",
-            "Email Marketing & Template Studio",
-            "Görsel sürükle-bırak şablon stüdyosu ile responsive, markanıza uygun e-posta tasarımları oluşturun.",
-            "Create responsive, on-brand email marketing templates with an intuitive visual drag-and-drop studio.",
-            "Email Template Studio",
-            "Email Template Studio"),
-
         ["Solutions.UseCases"] = new(
             "/kullanim-senaryolari",
             "/en/use-cases",
@@ -401,13 +331,6 @@ public static class SeoHelper
         if (RouteMetadata.TryGetValue(key, out var meta))
         {
             return meta;
-        }
-
-        // Action normalization mappings
-        if (controller.Equals("Solutions", StringComparison.OrdinalIgnoreCase))
-        {
-            if (action.Equals("PersonalizationPage", StringComparison.OrdinalIgnoreCase))
-                return RouteMetadata["Solutions.Personalization"];
         }
 
         return null;

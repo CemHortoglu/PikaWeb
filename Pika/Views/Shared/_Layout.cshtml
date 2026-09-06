@@ -29,9 +29,14 @@
     {
         canonicalUrl = string.IsNullOrWhiteSpace(explicitCanonical) ? null : explicitCanonical;
     }
-    else if (!isNoIndex)
+    else if (seoMeta != null)
     {
-        canonicalUrl = SeoHelper.GetCanonicalUrl(ctrl, act, culture);
+        var path = isTr ? seoMeta.AlternatePathTr : seoMeta.AlternatePathEn;
+        canonicalUrl = $"{SeoHelper.BaseDomain}{path}";
+    }
+    else if (!isNoIndex && (ctrl.Equals("Home", StringComparison.OrdinalIgnoreCase) && (act.Equals("Index", StringComparison.OrdinalIgnoreCase) || act.Equals("EnglishIndex", StringComparison.OrdinalIgnoreCase))))
+    {
+        canonicalUrl = isTr ? $"{SeoHelper.BaseDomain}/" : $"{SeoHelper.BaseDomain}/en/";
     }
 
     var hreflangs = (!isNoIndex && !string.IsNullOrEmpty(canonicalUrl))
@@ -316,6 +321,13 @@
                                                     <div class="pika-mega-desc" data-i18n="nav.mega.consentManagementDesc">@(isTr ? "İzin ve uyumluluk yönetimi" : "Consent and compliance management")</div>
                                                 </div>
                                             </a>
+                                            <a class="pika-mega-item" href="@(isTr ? "/guvenlik-ve-gizlilik" : "/en/security-and-privacy")">
+                                                <div class="pika-mega-icon pika-mega-icon--measure"><i class="ri-lock-2-line"></i></div>
+                                                <div class="pika-mega-content">
+                                                    <div class="pika-mega-title" data-i18n="nav.security">@(isTr ? "Güvenlik ve Gizlilik" : "Security & Privacy")</div>
+                                                    <div class="pika-mega-desc" data-i18n="nav.mega.securityDesc">@(isTr ? "Kurumsal veri güvenliği" : "Enterprise data security")</div>
+                                                </div>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -337,14 +349,13 @@
                                 </div>
                             </div>
                         </li>
-                        @* Kanallar: Email, SMS, WhatsApp, Push — aksiyon kanalları, ayrı katman *@
+                        @* Kanallar: Email, SMS, WhatsApp — aksiyon kanalları, ayrı katman *@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="nav.channels">@(isTr ? "Kanallar" : "Channels")</a>
                             <div class="dropdown-menu pika-mega-dropdown pika-mega-dropdown--sm">
                                 <a class="pika-mega-item" href="@(isTr ? "/kanallar/whatsapp" : "/en/channels/whatsapp")"><div class="pika-mega-icon" style="background:#dcf8c6;color:#25d366"><i class="ri-whatsapp-line"></i></div><div><div class="pika-mega-title">WhatsApp</div><div class="pika-mega-desc" data-i18n="nav.mega.whatsappDesc">@(isTr ? "Template ve kampanya gönderimi" : "Template and campaign delivery")</div></div></a>
                                 <a class="pika-mega-item" href="@(isTr ? "/kanallar/sms" : "/en/channels/sms")"><div class="pika-mega-icon" style="background:#e3f2fd;color:#1976d2"><i class="ri-message-2-line"></i></div><div><div class="pika-mega-title">SMS</div><div class="pika-mega-desc" data-i18n="nav.mega.smsDesc">@(isTr ? "Hızlı erişim ve bildirimler" : "Quick access and notifications")</div></div></a>
                                 <a class="pika-mega-item" href="@(isTr ? "/kanallar/email" : "/en/channels/email")"><div class="pika-mega-icon" style="background:#fff3e0;color:#f57c00"><i class="ri-mail-line"></i></div><div><div class="pika-mega-title">Email</div><div class="pika-mega-desc" data-i18n="nav.mega.emailDesc">@(isTr ? "Zengin içerikli kampanyalar" : "Rich content campaigns")</div></div></a>
-                                <a class="pika-mega-item" href="@(isTr ? "/kanallar/push" : "/en/channels/push")"><div class="pika-mega-icon" style="background:#fce4ec;color:#e91e63"><i class="ri-notification-3-line"></i></div><div><div class="pika-mega-title">Push Notification</div><div class="pika-mega-desc" data-i18n="nav.mega.pushDesc">@(isTr ? "Gerçek zamanlı bildirimler" : "Real-time notifications")</div></div></a>
                             </div>
                         </li>
                         @* Kaynaklar: Wiki, SSS, Kullanım Senaryoları *@
@@ -417,6 +428,7 @@
                         <li><a class="dropdown-item" href="@(isTr ? "/cozumler/analytics-reporting" : "/en/solutions/analytics-reporting")">Analytics &amp; Reporting</a></li>
                         <li><a class="dropdown-item" href="@(isTr ? "/entegrasyonlar" : "/en/integrations")" data-i18n="nav.integrations">@(isTr ? "Entegrasyonlar" : "Integrations")</a></li>
                         <li><a class="dropdown-item" href="@(isTr ? "/cozumler/consent-management" : "/en/solutions/consent-management")">Consent Management</a></li>
+                        <li><a class="dropdown-item" href="@(isTr ? "/guvenlik-ve-gizlilik" : "/en/security-and-privacy")" data-i18n="nav.security">@(isTr ? "Güvenlik ve Gizlilik" : "Security & Privacy")</a></li>
                         <li><a class="dropdown-item" href="@(isTr ? "/urunler/ai-kampanya-asistani" : "/en/products/ai-campaign-assistant")" style="color:#6fa91a"><i class="ri-magic-line me-1"></i><span data-i18n="nav.aiAssistant">@(isTr ? "AI Kampanya Asistanı" : "AI Campaign Assistant")</span></a></li>
                     </ul>
                 </li>
@@ -425,7 +437,6 @@
                         <li><a class="dropdown-item" href="@(isTr ? "/kanallar/whatsapp" : "/en/channels/whatsapp")">WhatsApp</a></li>
                         <li><a class="dropdown-item" href="@(isTr ? "/kanallar/sms" : "/en/channels/sms")">SMS</a></li>
                         <li><a class="dropdown-item" href="@(isTr ? "/kanallar/email" : "/en/channels/email")">Email</a></li>
-                        <li><a class="dropdown-item" href="@(isTr ? "/kanallar/push" : "/en/channels/push")">Push Notification</a></li>
                     </ul>
                 </li>
                 <li class="mobile-menu-list"><a href="javascript:void(0);" data-i18n="nav.resources">@(isTr ? "Kaynaklar" : "Resources")</a>
@@ -494,6 +505,7 @@
                                 <li><a href="@(isTr ? "/cozumler/analytics-reporting" : "/en/solutions/analytics-reporting")">Analytics &amp; Reporting</a></li>
                                 <li><a href="@(isTr ? "/entegrasyonlar" : "/en/integrations")" data-i18n="nav.integrations">@(isTr ? "Entegrasyonlar" : "Integrations")</a></li>
                                 <li><a href="@(isTr ? "/cozumler/consent-management" : "/en/solutions/consent-management")">Consent Management</a></li>
+                                <li><a href="@(isTr ? "/guvenlik-ve-gizlilik" : "/en/security-and-privacy")" data-i18n="nav.security">@(isTr ? "Güvenlik ve Gizlilik" : "Security & Privacy")</a></li>
                             </ul>
                         </div>
                     </div>
@@ -518,7 +530,6 @@
                                 <li><a href="@(isTr ? "/kanallar/whatsapp" : "/en/channels/whatsapp")">WhatsApp</a></li>
                                 <li><a href="@(isTr ? "/kanallar/sms" : "/en/channels/sms")">SMS</a></li>
                                 <li><a href="@(isTr ? "/kanallar/email" : "/en/channels/email")">Email</a></li>
-                                <li><a href="@(isTr ? "/kanallar/push" : "/en/channels/push")">Push Notification</a></li>
                             </ul>
                         </div>
                     </div>

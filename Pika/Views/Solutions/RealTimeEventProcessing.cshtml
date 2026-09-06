@@ -1,5 +1,6 @@
 @{
     var tr = (ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").Equals("tr", StringComparison.OrdinalIgnoreCase);
+    ViewData["RobotsMeta"] = "noindex, follow";
     ViewData["Title"] = tr ? "Gerçek Zamanlı Olay İşleme" : "Real-Time Event Processing";
     ViewData["MetaDescription"] = tr ? "Olayı yakalayın, anında aksiyon alın: doğru mesaj, doğru zamanda." : "Capture events and act instantly with the right message at the right time.";
     ViewData["MetaKeywords"] = "real-time event processing,ingestion,latency,journey trigger,rate limit";

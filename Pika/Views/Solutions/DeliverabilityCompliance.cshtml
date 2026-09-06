@@ -1,5 +1,6 @@
 @{
     var tr = (ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").Equals("tr", StringComparison.OrdinalIgnoreCase);
+    ViewData["RobotsMeta"] = "noindex, follow";
     ViewData["Title"] = tr ? "Teslim Edilebilirlik ve Uyumluluk" : "Deliverability & Compliance";
     ViewData["MetaDescription"] = tr ? "İzin, liste hijyeni ve teknik doğrulama ile teslimat kalitesini sürdürülebilir hale getirin." : "Sustain delivery quality with consent, list hygiene, and technical validation.";
     ViewData["MetaKeywords"] = "deliverability,compliance,spf,dkim,dmarc,unsubscribe,suppression,kvkk";
