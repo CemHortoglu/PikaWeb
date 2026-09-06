@@ -1,4 +1,14 @@
-*/.vs
-*/bin
-*/obj
+# Build and IDE directories (recursive across entire repository)
+**/.vs/
+**/bin/
+**/obj/
 
+# Common Visual Studio and user-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+**/*.suo
+**/*.user
+**/*.userosscache
+**/*.sln.docstates
