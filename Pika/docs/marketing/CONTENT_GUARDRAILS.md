@@ -84,15 +84,25 @@ Pika must never be reduced to or described merely as:
 
 ---
 
-## Claims That Require Evidence
+## Claims That Require Evidence & The 5-Level Governance Model
+
+PikaWeb is the public website and documentation repository; backend implementation code of `app.pika.tr` is hosted externally. Claims are classified and governed by the 5-level evidence model:
+- `A. CODE_VERIFIED`: Directly verifiable in PikaWeb code.
+- `B. DOCUMENTED`: Authoritatively documented in `internal_wiki.json` / `wiki.json`.
+- `C. MARKETING_ONLY`: Public claim only; must NOT be marketed without verification.
+- `D. CONTRADICTORY`: Sources disagree; requires qualification or product confirmation.
+- `E. UNVERIFIED`: Insufficient evidence in repo; strictly prohibited until substantiated.
 
 The following claims are **strictly restricted**. They cannot be added to any public marketing page, SEO title, meta description, or LLM file without written proof attached to the repository:
 
-1. **Customer Counts & Brand Volume:** Any mention of "X+ müşteri", "Y marka", or "Z ülkede aktif".
-2. **Message Throughput & Latency:** Claims such as "Milyonlarca mesaj saniyede iletilir" or "Milisaniye içinde tetikleme".
-3. **Specific Performance Uplift:** Uplift statistics such as "Dönüşümde %30 artış", "Sepet terkinde %40 azalma", "14.2x ROAS".
-4. **Platform Uptime & SLAs:** Numerical uptime promises such as "99.99% Uptime", "Kurumsal SLA garantisi".
-5. **Certifications & Partnerships:** Claims of "SOC-2 Certified", "ISO 27001 Certified", "Meta Certified Partner".
+1. **Customer Counts & Brand Volume (`UNVERIFIED`):** Any mention of "X+ müşteri", "Y marka", or "Z ülkede aktif".
+2. **Message Throughput & Latency (`CONTRADICTORY` / `DOCUMENTED`):** Claims such as "Milyonlarca mesaj saniyede iletilir" or "Milisaniye içinde tetikleme". Must qualify to "saniyeler içinde olay bazlı tetikleme" and document 50 req/sec SMS limits.
+3. **Specific Performance Uplift (`UNVERIFIED`):** Uplift statistics such as "Dönüşümde %30 artış", "Sepet terkinde %40 azalma", "14.2x ROAS". Must be labeled `ÖRNEK SENARYO` / `TEMSİLİ GÖSTERGE`.
+4. **Platform Uptime & SLAs (`UNVERIFIED`):** Numerical uptime promises such as "99.99% Uptime", "Kurumsal SLA garantisi".
+5. **Certifications & Partnerships (`MARKETING_ONLY`):** Claims of "SOC-2 Certified", "ISO 27001 Certified", "Meta Certified Partner".
+6. **Enterprise SSO / SAML 2.0 (`MARKETING_ONLY`):** Not configured in PikaWeb; prohibited from marketing until confirmed in backend identity server.
+7. **Conversational WhatsApp Chatbots (`CONTRADICTORY`):** Prohibited from marketing; position WhatsApp strictly as outbound approved template messaging.
+8. **Push Notifications (`CONTRADICTORY`):** Prohibited from live claims; must always include `(Roadmap)` qualifier.
 
 ---
 
@@ -152,6 +162,48 @@ Whenever numerical examples or mock dashboard screenshots are displayed:
    - *Turkish:* `Örnek Gösterim` or `Temsili Senaryo Verisi`
    - *English:* `Illustrative Sample` or `Simulation Data`
 3. Never disguise synthetic metrics as real client success stories.
+
+---
+
+## Pricing Governance (NON-NEGOTIABLE)
+
+**Pika does NOT publish fixed public pricing.**
+
+Commercial pricing is strictly quotation-based and varies according to:
+- Customer / contact volume
+- Transaction volume
+- Messaging / channel usage (Email, SMS, WhatsApp)
+- Onboarding and setup scope
+- Integration requirements (custom ERP, POS, CRM, e-commerce)
+- Enabled product modules
+- Support / service scope (dedicated technical onboarding, account management, support channels)
+- Contract terms
+
+### Absolute Pricing Guardrails
+1. **Do not publish monthly package prices** (e.g. `₺X/ay`, `$Y/mo`).
+2. **Do not publish "starting from" prices** (e.g. `₺9.900'den başlayan fiyatlarla`).
+3. **Do not invent Start / Growth / Enterprise price amounts.**
+4. **Do not expose legacy `Views/Home/Pricing.cshtml` values** (view deleted in P01; route permanently 301-redirects to `/demo-talebi`).
+5. **Do not claim SLA tiers exist.**
+6. **Do not create pricing calculators** on the public marketing website unless explicitly approved in a future task.
+6. **Do not imply that all customers receive identical commercial terms.**
+
+### Approved Public Pricing Language
+- **Turkish:** *"İhtiyacınıza ve kullanım kapsamınıza göre özel teklif"* / *"İşletmenizin ölçeğine ve entegrasyon ihtiyaçlarına göre uyarlanan kurumsal teklif"*
+- **English:** *"Custom enterprise quotation tailored to your volume, modules, and operational scope"*
+
+### Primary CTAs for Pricing Intent
+- **Turkish:**
+  - `Teklif Al`
+  - `Demo Talep Et`
+  - `Satış Ekibiyle Görüşün`
+- **English:**
+  - `Request a Quote`
+  - `Request a Demo`
+  - `Talk to Sales`
+
+### Legacy View Governance
+The view file `Views/Home/Pricing.cshtml` is strictly classified as **`LEGACY / DO_NOT_MARKET`**. It must remain unrouted and is recommended for archival/removal from public routing in the Phase P01 route-cleanup phase.
 
 ---
 

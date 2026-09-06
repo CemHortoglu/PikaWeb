@@ -33,28 +33,41 @@ namespace Pika.Web.Tests
 
             // 1. BUILD INTERNAL WIKI
             var internalWiki = BuildInternalWiki(originalWiki);
-            var internalJson = JsonSerializer.Serialize(internalWiki, jsonOptions);
-            if (!File.Exists(internalJsonPath) || Environment.GetEnvironmentVariable("REGENERATE_WIKI") == "1")
-            {
-                File.WriteAllText(internalJsonPath, internalJson);
-            }
 
             // 2. BUILD PUBLIC WIKI
             var publicWiki = BuildPublicWiki(originalWiki);
-            var publicJson = JsonSerializer.Serialize(publicWiki, jsonOptions);
-            if (!File.Exists(publicJsonPath) || Environment.GetEnvironmentVariable("REGENERATE_WIKI") == "1")
-            {
-                File.WriteAllText(publicJsonPath, publicJson);
-            }
 
-            // 3. CLEAN PUBLIC STATIC ASSET (app.js)
-            if (Environment.GetEnvironmentVariable("REGENERATE_WIKI") == "1")
+            // 3. EXPLICIT REGENERATION (Only when REGENERATE_WIKI=1 is provided)
+            if (string.Equals(Environment.GetEnvironmentVariable("REGENERATE_WIKI"), "1", StringComparison.OrdinalIgnoreCase))
             {
+                var internalJson = JsonSerializer.Serialize(internalWiki, jsonOptions);
+                File.WriteAllText(internalJsonPath, internalJson);
+
+                var publicJson = JsonSerializer.Serialize(publicWiki, jsonOptions);
+                File.WriteAllText(publicJsonPath, publicJson);
+
                 CleanStaticAppJs(baseDir, publicWiki);
             }
 
-            Assert.True(File.Exists(internalJsonPath), "Internal wiki JSON must exist");
-            Assert.True(File.Exists(publicJsonPath), "Public wiki JSON must exist");
+            // 4. TEST VALIDATION: Validate semantic structure without mutating tracked files
+            Assert.True(File.Exists(internalJsonPath), "Internal wiki JSON must exist on disk");
+            Assert.True(File.Exists(publicJsonPath), "Public wiki JSON must exist on disk");
+            Assert.NotNull(internalWiki.Pages);
+            Assert.NotEmpty(internalWiki.Pages);
+            Assert.NotNull(publicWiki.Pages);
+            Assert.NotEmpty(publicWiki.Pages);
+
+            // Assert internal pages are not leaked into public wiki
+            Assert.DoesNotContain("internal-mimari-genel-bakis", publicWiki.Pages.Keys);
+            Assert.DoesNotContain("internal-api-mimarisi-ve-veri-kontratlari", publicWiki.Pages.Keys);
+
+            // Assert core public wiki pages exist in generated public structure
+            Assert.Contains("pika-nedir", publicWiki.Pages.Keys);
+            Assert.Contains("pika-360", publicWiki.Pages.Keys);
+
+            // Assert navigation structures are populated
+            Assert.NotEmpty(internalWiki.Nav);
+            Assert.NotEmpty(publicWiki.Nav);
         }
 
         private static WikiData BuildInternalWiki(WikiData original)

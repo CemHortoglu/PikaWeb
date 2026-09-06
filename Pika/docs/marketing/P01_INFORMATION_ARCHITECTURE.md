@@ -247,7 +247,7 @@ Pika operates under an enterprise quotation-based commercial model.
 
 ### Non-Negotiable Rules
 1. **No Fixed Public Pricing:** Pika does not publish monthly package rates, "starting from" figures, or tier amounts.
-2. **Dynamic Quoting Factors:** Pricing is customized based on customer/contact volume, monthly transaction throughput, messaging/channel volume, onboarding scope, ERP/CRM integration requirements, and SLA tiers.
+2. **Dynamic Quoting Factors:** Pricing is customized based on customer/contact volume, monthly transaction throughput, messaging/channel volume, onboarding scope, ERP/CRM integration requirements, support scope, and contract terms. (Do not claim SLA tiers exist.)
 3. **No Pricing Calculators:** Pricing calculators or tier selectors are prohibited on public marketing pages unless explicitly authorized in future commercial phases.
 4. **Approved Public Formulation:**
    - *Turkish:* "İhtiyacınıza ve kullanım kapsamınıza göre özel teklif"
@@ -259,13 +259,15 @@ Pika operates under an enterprise quotation-based commercial model.
 ## Sitemap Rules
 
 The canonical `sitemap.xml` reflects the clean marketing and wiki surface:
-1. **Total URLs:** Exactly 141 URLs (26 Turkish canonical marketing URLs + 26 English canonical marketing URLs + 89 public Wiki URLs).
-2. **Purity Exclusions:**
+1. **Canonical Inventory Alignment:** The sitemap strictly matches the approved canonical route inventory. No valid canonical route is excluded or added merely to satisfy an arbitrary numeric target.
+2. **Bilingual Symmetry:** Turkish and English route equivalents remain symmetrical wherever an equivalent page exists.
+3. **Purity Exclusions:**
    - Zero redirected routes (no duplicate pairs, no legacy aliases, no MVC controller paths).
    - Zero noindexed routes (`/kanallar/push`, `deliverability-compliance`, `data-management-etl`, `real-time-event-processing`).
    - Zero pricing URLs (`/pricing`, `/fiyatlandirma`).
    - Zero internal wiki, auth, login, or error URLs.
-3. **HTTP Status Guarantee:** 100% of URLs listed in `sitemap.xml` return HTTP 200 OK.
+4. **Current Route Snapshot:** Under the current baseline inventory, the sitemap contains 141 URLs (26 Turkish canonical marketing URLs + 26 English canonical marketing URLs + 89 public Wiki URLs).
+5. **HTTP Status Guarantee:** 100% of URLs listed in `sitemap.xml` return HTTP 200 OK.
 
 ---
 

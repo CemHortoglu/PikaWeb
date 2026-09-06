@@ -14,7 +14,7 @@ Data & Ingestion
 
 Pika is engineered for marketing teams, e-commerce brands, and omnichannel retailers that need to extract commercial meaning from customer and catalog data, identify high-intent revenue opportunities, and orchestrate targeted, compliant marketing communications.
 
-Pika does not position itself as a generic bulk message broadcaster or standalone dispatcher. Instead, it unifies customer transaction histories, detects timely purchase rhythms, and executes controlled campaigns across native and integrated channels.
+Pika does not position itself as a generic bulk message broadcaster or standalone dispatcher. Instead, it unifies customer transaction histories, detects timely purchase rhythms, and executes controlled campaigns across supported channels.
 
 ### Key Capabilities
 
@@ -24,10 +24,10 @@ Pika does not position itself as a generic bulk message broadcaster or standalon
 - **Campaign Orchestration**: Campaign Manager coordinates multi-channel messaging schedules across Email, SMS, and WhatsApp.
 - **Customer Journey Automation**: Journey Manager provides visual workflow automation for event-driven lifecycle triggers, delays, and conditional branching.
 - **Content Studio**: Drag-and-drop template designer for responsive email templates and multi-channel message formatting.
-- **AI Campaign Assistant (Pika Pilot)**: Assistive AI co-pilot that suggests campaign ideas, audience criteria, and draft copy from natural language prompts, with mandatory human approval and strict privacy safeguards (no personal data/PII sent to AI models).
-- **Compliant Channel Execution**: Outbound delivery across native Email, native SMS, and official Meta WhatsApp Business API integration with automated IYS and KVKK consent checks.
+- **AI Campaign Assistant (Pika Pilot)**: Assistive AI co-pilot that suggests campaign ideas, audience criteria, and draft copy from natural language prompts, with mandatory human approval and strict privacy safeguards (anonymized behavioral parameters utilized; sensitive customer personal identifiers are excluded from AI prompts).
+- **Compliant Channel Execution**: Outbound delivery across Email, SMS, and official Meta WhatsApp Business API integration with automated IYS and KVKK consent checks.
 - **Analytics & Attribution**: Unified reporting dashboard for tracking delivery metrics, engagement rates, and store-level attribution.
-- **Data Security & Privacy**: Role-based access control (RBAC), data encryption in transit and at rest, and security audit logging.
+- **Data Security & Privacy**: Role-based access control (RBAC) and privacy-focused operational safeguards.
 
 ### Technical Details
 
@@ -36,7 +36,7 @@ Pika does not position itself as a generic bulk message broadcaster or standalon
 - **Supported Languages**: Turkish (tr), English (en)
 - **Platform Type**: B2B SaaS
 - **Target Market**: Turkey (architecture supports multi-lingual English and Turkish interfaces)
-- **Execution Channels**: Native Email, Native SMS, Official Meta WhatsApp Business API. (Note: Mobile/web push notification status requires explicit product-owner confirmation and is not marketed as a live capability.)
+- **Execution Channels**: Email, SMS, Official Meta WhatsApp Business API. (Note: Mobile/web push notification status requires explicit product-owner confirmation and is not marketed as a live capability.)
 
 ---
 
@@ -85,12 +85,12 @@ Visual drag-and-drop template designer for crafting responsive email layouts, SM
 ### Email Marketing
 **URL**: https://pika.tr/en/channels/email
 
-Transactional and marketing email delivery infrastructure. Features list management, template composition, dynamic personalization tokens, and standard domain authentication (SPF, DKIM, DMARC) support.
+Transactional and marketing email delivery infrastructure. Features list management, template composition, dynamic personalization tokens, and delivery management.
 
 ### SMS Campaigns
 **URL**: https://pika.tr/en/channels/sms
 
-High-throughput native SMS campaign delivery. Includes alphanumeric sender title management, message scheduling, character count optimization, link shortening and tracking, and opt-out handling.
+Commercial SMS campaign dispatch. Includes message scheduling, character count calculation, delivery tracking, and automated opt-out handling.
 
 ### WhatsApp Messaging
 **URL**: https://pika.tr/en/channels/whatsapp
@@ -115,12 +115,12 @@ Connect customer profiles, product catalogs, and transactional order data via CS
 ### Security & Privacy
 **URL**: https://pika.tr/en/security-and-privacy
 
-Enterprise data security architecture featuring data encryption in transit and at rest, role-based access control (RBAC), and security event logging.
+Data security architecture featuring role-based access control (RBAC), tokenized integrations, and secure operational controls.
 
 ### AI Campaign Assistant
 **URL**: https://pika.tr/en/products/ai-campaign-assistant
 
-AI-assisted co-pilot (Pika Pilot) for drafting campaign concepts, audience rule suggestions, and message copy from natural language prompts. Operates with strict privacy boundaries: customer PII is never transmitted to LLM providers, and all dispatches require explicit human review.
+AI-assisted co-pilot (Pika Pilot) for drafting campaign concepts, audience rule suggestions, and message copy from natural language prompts. Operates with strict privacy boundaries: sensitive customer personal identifiers are excluded from LLM prompts, and all dispatches require explicit human review.
 
 ### Use Cases
 **URL**: https://pika.tr/en/use-cases
@@ -150,6 +150,23 @@ Request a personalized consultation and custom commercial quotation for the Pika
 ### FAQ
 **URL**: https://pika.tr/en/resources/faq
 Frequently asked questions about the platform, capabilities, and quotation-based commercial model.
+
+---
+
+## Commercial Model & Pricing
+
+Pika operates strictly on a quotation-based commercial model. No fixed package prices or public pricing calculators are published.
+Commercial quotations are customized based on:
+- Customer / contact database volume
+- Monthly transaction volume
+- Messaging and channel dispatch volume (Email, SMS, WhatsApp)
+- Onboarding and setup scope
+- Integration requirements (ERP, CRM, e-commerce, custom APIs)
+- Enabled product modules
+- Support and service scope
+- Contract terms
+
+Primary commercial CTA: Request a Quote / Request a Demo via https://pika.tr/en/demo-request (Turkish: https://pika.tr/demo-talebi).
 
 ---
 
