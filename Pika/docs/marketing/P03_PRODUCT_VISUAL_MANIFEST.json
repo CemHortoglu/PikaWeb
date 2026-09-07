@@ -1,0 +1,1167 @@
+[
+  {
+    "filename": "img_ai-musteri-ozeti_8.png",
+    "sourcePath": "wwwroot/wiki/assets/images/img_ai-musteri-ozeti_8.png",
+    "width": 1672,
+    "height": 941,
+    "declaredExtension": "png",
+    "detectedFormat": "PNG",
+    "formatMismatch": false,
+    "classification": "PUBLIC_SUPPORTING",
+    "humanApprovalRequired": false,
+    "piiStatus": "ANONYMIZED",
+    "metricStatus": "DEMO_SYNTHETIC",
+    "entities": [
+      "Customer Intelligence",
+      "Pika 360"
+    ],
+    "presentationModes": [
+      "FULL_STAGE",
+      "FOCAL_CROP",
+      "EDITORIAL_SPLIT"
+    ],
+    "cropRecipes": [
+      {
+        "name": "Customer Card + AI Summary",
+        "cropMode": "FOCAL_CROP",
+        "x": 230,
+        "y": 150,
+        "width": 1400,
+        "height": 420
+      },
+      {
+        "name": "AI Natural Language Summary Block",
+        "cropMode": "DETAIL_ZOOM",
+        "x": 230,
+        "y": 310,
+        "width": 1400,
+        "height": 260
+      }
+    ]
+  },
+  {
+    "filename": "img_aksiyon-calisma-alani_9.png",
+    "sourcePath": "wwwroot/wiki/assets/images/img_aksiyon-calisma-alani_9.png",
+    "width": 1672,
+    "height": 941,
+    "declaredExtension": "png",
+    "detectedFormat": "PNG",
+    "formatMismatch": false,
+    "classification": "PUBLIC_SUPPORTING",
+    "humanApprovalRequired": false,
+    "piiStatus": "ANONYMIZED",
+    "metricStatus": "DEMO_SYNTHETIC",
+    "entities": [
+      "Customer Intelligence",
+      "Günün Fırsatları"
+    ],
+    "presentationModes": [
+      "FULL_STAGE",
+      "FOCAL_CROP",
+      "EDITORIAL_SPLIT"
+    ],
+    "cropRecipes": [
+      {
+        "name": "Timing Donut & Repeat Cycles Table",
+        "cropMode": "FOCAL_CROP",
+        "x": 230,
+        "y": 80,
+        "width": 1400,
+        "height": 820
+      }
+    ]
+  },
+  {
+    "filename": "img_bi-kokpit_5.png",
+    "sourcePath": "wwwroot/wiki/assets/images/img_bi-kokpit_5.png",
+    "width": 1672,
+    "height": 941,
+    "declaredExtension": "png",
+    "detectedFormat": "PNG",
+    "formatMismatch": false,
+    "classification": "PUBLIC_HERO",
+    "humanApprovalRequired": false,
+    "piiStatus": "NONE",
+    "metricStatus": "DEMO_SYNTHETIC",
+    "entities": [
+      "Analytics & Reporting"
+    ],
+    "presentationModes": [
+      "FULL_STAGE",
+      "FOCAL_CROP",
+      "EDITORIAL_SPLIT",
+      "ANNOTATED_STAGE"
+    ],
+    "cropRecipes": [
+      {
+        "name": "Full BI Cockpit Screen",
+        "cropMode": "FULL_STAGE",
+        "x": 0,
+        "y": 0,
+        "width": 1672,
+        "height": 941
+      },
+      {
+        "name": "BI Dashboard Canvas",
+        "cropMode": "FOCAL_CROP",
+        "x": 230,
+        "y": 70,
+        "width": 1410,
+        "height": 840
+      },
+      {
+        "name": "Executive KPI Metric Cards",
+        "cropMode": "DETAIL_ZOOM",
+        "x": 230,
+        "y": 140,
+        "width": 1400,
+        "height": 160
+      }
+    ]
+  },
+  {
+    "filename": "img_dinamik-siniflandirma-alanlari_12.png",
+    "sourcePath": "wwwroot/wiki/assets/images/img_dinamik-siniflandirma-alanlari_12.png",
+    "width": 1881,
+    "height": 915,
+    "declaredExtension": "png",
+    "detectedFormat": "PNG",
+    "formatMismatch": false,
+    "classification": "PUBLIC_SUPPORTING",
+    "humanApprovalRequired": false,
+    "piiStatus": "NONE",
+    "metricStatus": "NONE",
+    "entities": [
+      "Product Intelligence"
+    ],
+    "presentationModes": [
+      "FULL_STAGE",
+      "EDITORIAL_SPLIT"
+    ],
+    "cropRecipes": [
+      {
+        "name": "Playbook Dynamic Attribute Table",
+        "cropMode": "FOCAL_CROP",
+        "x": 240,
+        "y": 80,
+        "width": 1600,
+        "height": 800
+      }
+    ]
+  },
+  {
+    "filename": "img_email-store_20.png",
+    "sourcePath": "wwwroot/wiki/assets/images/img_email-store_20.png",
+    "width": 1672,
+    "height": 941,
+    "declaredExtension": "png",
+    "detectedFormat": "PNG",
+    "formatMismatch": false,
+    "classification": "PUBLIC_SUPPORTING",
+    "humanApprovalRequired": false,
+    "piiStatus": "NONE",
+    "metricStatus": "DEMO_SYNTHETIC",
+    "entities": [
+      "Content Studio",
+      "Email"
+    ],
+    "presentationModes": [
+      "FULL_STAGE",
+      "FOCAL_CROP"
+    ],
+    "cropRecipes": [
+      {
+        "name": "Email Template Store Grid",
+        "cropMode": "FOCAL_CROP",
+        "x": 230,
+        "y": 80,
+        "width": 1410,
+        "height": 820
+      }
+    ]
+  },
+  {
+    "filename": "img_email-template-editor_17.png",
+    "sourcePath": "wwwroot/wiki/assets/images/img_email-template-editor_17.png",
+    "width": 1672,
+    "height": 941,
+    "declaredExtension": "png",
+    "detectedFormat": "PNG",
+    "formatMismatch": false,
+    "classification": "PUBLIC_HERO",
+    "humanApprovalRequired": false,
+    "piiStatus": "NONE",
+    "metricStatus": "NONE",
+    "entities": [
+      "Content Studio",
+      "Email"
+    ],
+    "presentationModes": [
+      "FULL_STAGE",
+      "FOCAL_CROP",
+      "EDITORIAL_SPLIT",
+      "ANNOTATED_STAGE"
+    ],
+    "cropRecipes": [
+      {
+        "name": "Full Email Studio Stage",
+        "cropMode": "FULL_STAGE",
+        "x": 0,
+        "y": 0,
+        "width": 1672,
+        "height": 941
+      },
+      {
+        "name": "Email Canvas and Component Palette",
+        "cropMode": "FOCAL_CROP",
+        "x": 230,
+        "y": 70,
+        "width": 1410,
+        "height": 840
+      },
+      {
+        "name": "Component Library Drawer",
+        "cropMode": "DETAIL_ZOOM",
+        "x": 1300,
+        "y": 80,
+        "width": 340,
+        "height": 820
+      }
+    ]
+  },
+  {
+    "filename": "img_excel-csv-aktarimi_1.png",
+    "sourcePath": "wwwroot/wiki/assets/images/img_excel-csv-aktarimi_1.png",
+    "width": 1885,
+    "height": 974,
+    "declaredExtension": "png",
+    "detectedFormat": "PNG",
+    "formatMismatch": false,
+    "classification": "PUBLIC_WITH_CROP",
+    "humanApprovalRequired": false,
+    "piiStatus": "NONE",
+    "metricStatus": "NONE",
+    "entities": [
+      "Integrations"
+    ],
+    "presentationModes": [
+      "FULL_STAGE",
+      "FOCAL_CROP",
+      "EDITORIAL_SPLIT"
+    ],
+    "cropRecipes": [
+      {
+        "name": "Clean Application Viewport (Removes Browser Bar)",
+        "cropMode": "FULL_STAGE",
+        "x": 0,
+        "y": 36,
+        "width": 1885,
+        "height": 938
+      },
+      {
+        "name": "Excel Column Mapping Modal",
+        "cropMode": "FOCAL_CROP",
+        "x": 778,
+        "y": 36,
+        "width": 1107,
+        "height": 938
+      }
+    ]
+  },
+  {
+    "filename": "img_gmail-kisi-aktarimi_23.png",
+    "sourcePath": "wwwroot/wiki/assets/images/img_gmail-kisi-aktarimi_23.png",
+    "width": 1024,
+    "height": 503,
+    "declaredExtension": "png",
+    "detectedFormat": "PNG",
+    "formatMismatch": false,
+    "classification": "PUBLIC_SUPPORTING",
+    "humanApprovalRequired": false,
+    "piiStatus": "ANONYMIZED",
+    "metricStatus": "DEMO_SYNTHETIC",
+    "entities": [
+      "Consent Management",
+      "Integrations",
+      "Security & Privacy"
+    ],
+    "presentationModes": [
+      "FULL_STAGE",
+      "EDITORIAL_SPLIT"
+    ],
+    "cropRecipes": [
+      {
+        "name": "Full Gmail Import Stage",
+        "cropMode": "FULL_STAGE",
+        "x": 0,
+        "y": 0,
+        "width": 1024,
+        "height": 503
+      },
+      {
+        "name": "KVKK Notice & Masked Contact Table",
+        "cropMode": "FOCAL_CROP",
+        "x": 150,
+        "y": 60,
+        "width": 850,
+        "height": 420
+      }
+    ]
+  },
+  {
+    "filename": "img_gonderim-operasyonu-izleme_28.png",
+    "sourcePath": "wwwroot/wiki/assets/images/img_gonderim-operasyonu-izleme_28.png",
+    "width": 1672,
+    "height": 941,
+    "declaredExtension": "png",
+    "detectedFormat": "PNG",
+    "formatMismatch": false,
+    "classification": "PUBLIC_SUPPORTING",
+    "humanApprovalRequired": false,
+    "piiStatus": "NONE",
+    "metricStatus": "DEMO_SYNTHETIC",
+    "entities": [
+      "Analytics & Reporting",
+      "Security & Privacy"
+    ],
+    "presentationModes": [
+      "FULL_STAGE",
+      "FOCAL_CROP",
+      "ANNOTATED_STAGE"
+    ],
+    "cropRecipes": [
+      {
+        "name": "Full Delivery Console",
+        "cropMode": "FULL_STAGE",
+        "x": 0,
+        "y": 0,
+        "width": 1672,
+        "height": 941
+      },
+      {
+        "name": "Dispatch Telemetry & API Health Drawer",
+        "cropMode": "FOCAL_CROP",
+        "x": 230,
+        "y": 70,
+        "width": 1410,
+        "height": 840
+      }
+    ]
+  },
+  {
+    "filename": "img_gunun-firsatlari.png",
+    "sourcePath": "wwwroot/wiki/assets/images/img_gunun-firsatlari.png",
+    "width": 1024,
+    "height": 832,
+    "declaredExtension": "png",
+    "detectedFormat": "JPEG",
+    "formatMismatch": true,
+    "classification": "PUBLIC_HERO",
+    "humanApprovalRequired": false,
+    "piiStatus": "ANONYMIZED",
+    "metricStatus": "DEMO_SYNTHETIC",
+    "entities": [
+      "Günün Fırsatları"
+    ],
+    "presentationModes": [
+      "FULL_STAGE",
+      "FOCAL_CROP",
+      "EDITORIAL_SPLIT",
+      "ANNOTATED_STAGE"
+    ],
+    "cropRecipes": [
+      {
+        "name": "Full Opportunities Cockpit",
+        "cropMode": "FULL_STAGE",
+        "x": 0,
+        "y": 0,
+        "width": 1024,
+        "height": 832
+      },
+      {
+        "name": "Opportunity Cards & Table",
+        "cropMode": "FOCAL_CROP",
+        "x": 135,
+        "y": 65,
+        "width": 880,
+        "height": 720
+      },
+      {
+        "name": "Top Actionable Rows",
+        "cropMode": "DETAIL_ZOOM",
+        "x": 140,
+        "y": 390,
+        "width": 870,
+        "height": 260
+      }
+    ]
+  },
+  {
+    "filename": "img_izin-kanal-zamanlama_25.png",
+    "sourcePath": "wwwroot/wiki/assets/images/img_izin-kanal-zamanlama_25.png",
+    "width": 1672,
+    "height": 941,
+    "declaredExtension": "png",
+    "detectedFormat": "PNG",
+    "formatMismatch": false,
+    "classification": "PUBLIC_HERO",
+    "humanApprovalRequired": false,
+    "piiStatus": "ANONYMIZED",
+    "metricStatus": "DEMO_SYNTHETIC",
+    "entities": [
+      "Consent Management",
+      "SMS",
+      "WhatsApp"
+    ],
+    "presentationModes": [
+      "FULL_STAGE",
+      "FOCAL_CROP",
+      "EDITORIAL_SPLIT",
+      "DETAIL_ZOOM"
+    ],
+    "cropRecipes": [
+      {
+        "name": "Full Consent & Timing Stage",
+        "cropMode": "FULL_STAGE",
+        "x": 0,
+        "y": 0,
+        "width": 1672,
+        "height": 941
+      },
+      {
+        "name": "Permission Table & Controls Drawer",
+        "cropMode": "FOCAL_CROP",
+        "x": 230,
+        "y": 70,
+        "width": 1410,
+        "height": 840
+      },
+      {
+        "name": "Channel Eligibility & Quiet Hours Drawer",
+        "cropMode": "DETAIL_ZOOM",
+        "x": 1050,
+        "y": 330,
+        "width": 580,
+        "height": 570
+      }
+    ]
+  },
+  {
+    "filename": "img_journey-karar-kurallari_19.png",
+    "sourcePath": "wwwroot/wiki/assets/images/img_journey-karar-kurallari_19.png",
+    "width": 1672,
+    "height": 941,
+    "declaredExtension": "png",
+    "detectedFormat": "PNG",
+    "formatMismatch": false,
+    "classification": "PUBLIC_SUPPORTING",
+    "humanApprovalRequired": false,
+    "piiStatus": "NONE",
+    "metricStatus": "DEMO_SYNTHETIC",
+    "entities": [
+      "Journey Manager"
+    ],
+    "presentationModes": [
+      "FULL_STAGE",
+      "FOCAL_CROP",
+      "DETAIL_ZOOM"
+    ],
+    "cropRecipes": [
+      {
+        "name": "Workflow Canvas & Decision Rule Modal",
+        "cropMode": "FOCAL_CROP",
+        "x": 230,
+        "y": 120,
+        "width": 1410,
+        "height": 800
+      },
+      {
+        "name": "Decision Rule Configuration Drawer",
+        "cropMode": "DETAIL_ZOOM",
+        "x": 1050,
+        "y": 230,
+        "width": 580,
+        "height": 680
+      }
+    ]
+  },
+  {
+    "filename": "img_journey-store_21.png",
+    "sourcePath": "wwwroot/wiki/assets/images/img_journey-store_21.png",
+    "width": 1672,
+    "height": 941,
+    "declaredExtension": "png",
+    "detectedFormat": "PNG",
+    "formatMismatch": false,
+    "classification": "PUBLIC_SUPPORTING",
+    "humanApprovalRequired": false,
+    "piiStatus": "NONE",
+    "metricStatus": "NONE",
+    "entities": [
+      "Journey Manager"
+    ],
+    "presentationModes": [
+      "FULL_STAGE",
+      "FOCAL_CROP"
+    ],
+    "cropRecipes": [
+      {
+        "name": "Journey Templates Grid",
+        "cropMode": "FOCAL_CROP",
+        "x": 230,
+        "y": 80,
+        "width": 1410,
+        "height": 820
+      }
+    ]
+  },
+  {
+    "filename": "img_journey-tasarim-tuvali_18.png",
+    "sourcePath": "wwwroot/wiki/assets/images/img_journey-tasarim-tuvali_18.png",
+    "width": 1672,
+    "height": 941,
+    "declaredExtension": "png",
+    "detectedFormat": "PNG",
+    "formatMismatch": false,
+    "classification": "PUBLIC_HERO",
+    "humanApprovalRequired": false,
+    "piiStatus": "NONE",
+    "metricStatus": "NONE",
+    "entities": [
+      "Journey Manager"
+    ],
+    "presentationModes": [
+      "FULL_STAGE",
+      "FOCAL_CROP",
+      "EDITORIAL_SPLIT",
+      "ANNOTATED_STAGE"
+    ],
+    "cropRecipes": [
+      {
+        "name": "Full Visual Journey Builder Stage",
+        "cropMode": "FULL_STAGE",
+        "x": 0,
+        "y": 0,
+        "width": 1672,
+        "height": 941
+      },
+      {
+        "name": "Workflow Canvas (Nodes, Palette, Minimap)",
+        "cropMode": "FOCAL_CROP",
+        "x": 200,
+        "y": 120,
+        "width": 1430,
+        "height": 780
+      },
+      {
+        "name": "Decision Branching Node Detail",
+        "cropMode": "DETAIL_ZOOM",
+        "x": 440,
+        "y": 350,
+        "width": 750,
+        "height": 420
+      }
+    ]
+  },
+  {
+    "filename": "img_kategori-yonetimi_4.png",
+    "sourcePath": "wwwroot/wiki/assets/images/img_kategori-yonetimi_4.png",
+    "width": 1672,
+    "height": 941,
+    "declaredExtension": "png",
+    "detectedFormat": "PNG",
+    "formatMismatch": false,
+    "classification": "PUBLIC_SUPPORTING",
+    "humanApprovalRequired": false,
+    "piiStatus": "NONE",
+    "metricStatus": "NONE",
+    "entities": [
+      "Product Intelligence"
+    ],
+    "presentationModes": [
+      "FULL_STAGE",
+      "FOCAL_CROP"
+    ],
+    "cropRecipes": [
+      {
+        "name": "Category Hierarchy Tree",
+        "cropMode": "FOCAL_CROP",
+        "x": 230,
+        "y": 80,
+        "width": 1410,
+        "height": 820
+      }
+    ]
+  },
+  {
+    "filename": "img_kisi-listesi-ve-segmentler_3.png",
+    "sourcePath": "wwwroot/wiki/assets/images/img_kisi-listesi-ve-segmentler_3.png",
+    "width": 1672,
+    "height": 941,
+    "declaredExtension": "png",
+    "detectedFormat": "PNG",
+    "formatMismatch": false,
+    "classification": "PUBLIC_HERO",
+    "humanApprovalRequired": false,
+    "piiStatus": "ANONYMIZED",
+    "metricStatus": "DEMO_SYNTHETIC",
+    "entities": [
+      "Audience Manager"
+    ],
+    "presentationModes": [
+      "FULL_STAGE",
+      "FOCAL_CROP",
+      "EDITORIAL_SPLIT",
+      "ANNOTATED_STAGE"
+    ],
+    "cropRecipes": [
+      {
+        "name": "Full Audience Manager Stage",
+        "cropMode": "FULL_STAGE",
+        "x": 0,
+        "y": 0,
+        "width": 1672,
+        "height": 941
+      },
+      {
+        "name": "Contact Table & Segment Overview",
+        "cropMode": "FOCAL_CROP",
+        "x": 230,
+        "y": 70,
+        "width": 1410,
+        "height": 840
+      },
+      {
+        "name": "RFM Segment Cards Detail",
+        "cropMode": "DETAIL_ZOOM",
+        "x": 1080,
+        "y": 310,
+        "width": 550,
+        "height": 550
+      }
+    ]
+  },
+  {
+    "filename": "img_kullanici-roller-yetkiler_24.png",
+    "sourcePath": "wwwroot/wiki/assets/images/img_kullanici-roller-yetkiler_24.png",
+    "width": 1672,
+    "height": 941,
+    "declaredExtension": "png",
+    "detectedFormat": "PNG",
+    "formatMismatch": false,
+    "classification": "PUBLIC_WITH_CROP",
+    "humanApprovalRequired": false,
+    "piiStatus": "NONE",
+    "metricStatus": "NONE",
+    "entities": [
+      "Security & Privacy"
+    ],
+    "presentationModes": [
+      "FOCAL_CROP",
+      "EDITORIAL_SPLIT",
+      "DETAIL_ZOOM"
+    ],
+    "cropRecipes": [
+      {
+        "name": "Granular RBAC Permission Matrix (Excludes User List)",
+        "cropMode": "FOCAL_CROP",
+        "x": 980,
+        "y": 215,
+        "width": 640,
+        "height": 680
+      },
+      {
+        "name": "Module Access Toggles Detail",
+        "cropMode": "DETAIL_ZOOM",
+        "x": 990,
+        "y": 480,
+        "width": 620,
+        "height": 380
+      }
+    ]
+  },
+  {
+    "filename": "img_master-urun-anlamlandirmalari_15.png",
+    "sourcePath": "wwwroot/wiki/assets/images/img_master-urun-anlamlandirmalari_15.png",
+    "width": 1884,
+    "height": 928,
+    "declaredExtension": "png",
+    "detectedFormat": "PNG",
+    "formatMismatch": false,
+    "classification": "PUBLIC_SUPPORTING",
+    "humanApprovalRequired": false,
+    "piiStatus": "NONE",
+    "metricStatus": "NONE",
+    "entities": [
+      "Product Intelligence"
+    ],
+    "presentationModes": [
+      "FULL_STAGE",
+      "FOCAL_CROP"
+    ],
+    "cropRecipes": [
+      {
+        "name": "Master Product Semantic Association Table",
+        "cropMode": "FOCAL_CROP",
+        "x": 240,
+        "y": 80,
+        "width": 1600,
+        "height": 800
+      }
+    ]
+  },
+  {
+    "filename": "img_need-group-product-role_11.png",
+    "sourcePath": "wwwroot/wiki/assets/images/img_need-group-product-role_11.png",
+    "width": 1879,
+    "height": 930,
+    "declaredExtension": "png",
+    "detectedFormat": "PNG",
+    "formatMismatch": false,
+    "classification": "PUBLIC_HERO",
+    "humanApprovalRequired": false,
+    "piiStatus": "NONE",
+    "metricStatus": "NONE",
+    "entities": [
+      "Product Intelligence"
+    ],
+    "presentationModes": [
+      "FULL_STAGE",
+      "FOCAL_CROP",
+      "EDITORIAL_SPLIT",
+      "ANNOTATED_STAGE"
+    ],
+    "cropRecipes": [
+      {
+        "name": "Full Product Role Definition Stage",
+        "cropMode": "FULL_STAGE",
+        "x": 0,
+        "y": 0,
+        "width": 1879,
+        "height": 930
+      },
+      {
+        "name": "Product Intelligence Schema Workspace",
+        "cropMode": "FOCAL_CROP",
+        "x": 240,
+        "y": 80,
+        "width": 1600,
+        "height": 800
+      },
+      {
+        "name": "Product Roles Logic Table",
+        "cropMode": "DETAIL_ZOOM",
+        "x": 240,
+        "y": 500,
+        "width": 1580,
+        "height": 350
+      }
+    ]
+  },
+  {
+    "filename": "img_pika-360_7.png",
+    "sourcePath": "wwwroot/wiki/assets/images/img_pika-360_7.png",
+    "width": 1672,
+    "height": 941,
+    "declaredExtension": "png",
+    "detectedFormat": "PNG",
+    "formatMismatch": false,
+    "classification": "PUBLIC_HERO",
+    "humanApprovalRequired": false,
+    "piiStatus": "ANONYMIZED",
+    "metricStatus": "DEMO_SYNTHETIC",
+    "entities": [
+      "Pika 360",
+      "Customer Intelligence"
+    ],
+    "presentationModes": [
+      "FULL_STAGE",
+      "FOCAL_CROP",
+      "EDITORIAL_SPLIT",
+      "ANNOTATED_STAGE"
+    ],
+    "cropRecipes": [
+      {
+        "name": "Full Pika 360 Unified Profile Stage",
+        "cropMode": "FULL_STAGE",
+        "x": 0,
+        "y": 0,
+        "width": 1672,
+        "height": 941
+      },
+      {
+        "name": "Decision Summary & Opportunity Workspace",
+        "cropMode": "FOCAL_CROP",
+        "x": 230,
+        "y": 80,
+        "width": 1400,
+        "height": 820
+      },
+      {
+        "name": "Customer KPI & Risk Metrics",
+        "cropMode": "DETAIL_ZOOM",
+        "x": 230,
+        "y": 415,
+        "width": 1380,
+        "height": 260
+      }
+    ]
+  },
+  {
+    "filename": "img_pika-pilot-ai-kampanya-asistani_16.png",
+    "sourcePath": "wwwroot/wiki/assets/images/img_pika-pilot-ai-kampanya-asistani_16.png",
+    "width": 1672,
+    "height": 941,
+    "declaredExtension": "png",
+    "detectedFormat": "PNG",
+    "formatMismatch": false,
+    "classification": "PUBLIC_HERO",
+    "humanApprovalRequired": false,
+    "piiStatus": "NONE",
+    "metricStatus": "DEMO_SYNTHETIC",
+    "entities": [
+      "AI Campaign Assistant",
+      "Campaign Manager"
+    ],
+    "presentationModes": [
+      "FULL_STAGE",
+      "FOCAL_CROP",
+      "EDITORIAL_SPLIT",
+      "ANNOTATED_STAGE"
+    ],
+    "cropRecipes": [
+      {
+        "name": "Full AI Assistant Workspace",
+        "cropMode": "FULL_STAGE",
+        "x": 0,
+        "y": 0,
+        "width": 1672,
+        "height": 941
+      },
+      {
+        "name": "Prompt Canvas & Configuration Drawer",
+        "cropMode": "FOCAL_CROP",
+        "x": 230,
+        "y": 70,
+        "width": 1410,
+        "height": 840
+      },
+      {
+        "name": "Natural Language Prompt Bar Detail",
+        "cropMode": "DETAIL_ZOOM",
+        "x": 230,
+        "y": 780,
+        "width": 900,
+        "height": 130
+      }
+    ]
+  },
+  {
+    "filename": "img_playbook-sektorel-anlam_10.png",
+    "sourcePath": "wwwroot/wiki/assets/images/img_playbook-sektorel-anlam_10.png",
+    "width": 1877,
+    "height": 933,
+    "declaredExtension": "png",
+    "detectedFormat": "PNG",
+    "formatMismatch": false,
+    "classification": "PUBLIC_SUPPORTING",
+    "humanApprovalRequired": true,
+    "piiStatus": "NONE",
+    "metricStatus": "NONE",
+    "entities": [
+      "Product Intelligence"
+    ],
+    "presentationModes": [
+      "FULL_STAGE",
+      "FOCAL_CROP"
+    ],
+    "cropRecipes": [
+      {
+        "name": "Playbook Catalog (Excludes Super Admin Banner)",
+        "cropMode": "FOCAL_CROP",
+        "x": 240,
+        "y": 450,
+        "width": 1600,
+        "height": 420
+      }
+    ]
+  },
+  {
+    "filename": "img_review-resolution-readiness_14.png",
+    "sourcePath": "wwwroot/wiki/assets/images/img_review-resolution-readiness_14.png",
+    "width": 1672,
+    "height": 941,
+    "declaredExtension": "png",
+    "detectedFormat": "PNG",
+    "formatMismatch": false,
+    "classification": "PUBLIC_SUPPORTING",
+    "humanApprovalRequired": false,
+    "piiStatus": "ANONYMIZED",
+    "metricStatus": "DEMO_SYNTHETIC",
+    "entities": [
+      "Integrations",
+      "Customer Intelligence"
+    ],
+    "presentationModes": [
+      "FULL_STAGE",
+      "FOCAL_CROP",
+      "DETAIL_ZOOM"
+    ],
+    "cropRecipes": [
+      {
+        "name": "Full Identity Resolution Queue",
+        "cropMode": "FULL_STAGE",
+        "x": 0,
+        "y": 0,
+        "width": 1672,
+        "height": 941
+      },
+      {
+        "name": "Queue Table and Match Suggestion Drawer",
+        "cropMode": "FOCAL_CROP",
+        "x": 230,
+        "y": 70,
+        "width": 1410,
+        "height": 840
+      },
+      {
+        "name": "Duplicate Merge Recommendation Detail",
+        "cropMode": "DETAIL_ZOOM",
+        "x": 1040,
+        "y": 280,
+        "width": 590,
+        "height": 580
+      }
+    ]
+  },
+  {
+    "filename": "img_satis-veri-operasyonlari_2.png",
+    "sourcePath": "wwwroot/wiki/assets/images/img_satis-veri-operasyonlari_2.png",
+    "width": 1672,
+    "height": 941,
+    "declaredExtension": "png",
+    "detectedFormat": "PNG",
+    "formatMismatch": false,
+    "classification": "PUBLIC_SUPPORTING",
+    "humanApprovalRequired": false,
+    "piiStatus": "NONE",
+    "metricStatus": "DEMO_SYNTHETIC",
+    "entities": [
+      "Integrations"
+    ],
+    "presentationModes": [
+      "FULL_STAGE",
+      "FOCAL_CROP",
+      "EDITORIAL_SPLIT"
+    ],
+    "cropRecipes": [
+      {
+        "name": "Transaction Pipeline Operations Console",
+        "cropMode": "FOCAL_CROP",
+        "x": 230,
+        "y": 70,
+        "width": 1410,
+        "height": 840
+      }
+    ]
+  },
+  {
+    "filename": "img_segment-sablonlari_22.png",
+    "sourcePath": "wwwroot/wiki/assets/images/img_segment-sablonlari_22.png",
+    "width": 1888,
+    "height": 932,
+    "declaredExtension": "png",
+    "detectedFormat": "PNG",
+    "formatMismatch": false,
+    "classification": "INTERNAL_ONLY",
+    "humanApprovalRequired": false,
+    "piiStatus": "NONE",
+    "metricStatus": "NONE",
+    "entities": [],
+    "presentationModes": [],
+    "cropRecipes": []
+  },
+  {
+    "filename": "img_segmentasyon-ve-firsatlar_26.png",
+    "sourcePath": "wwwroot/wiki/assets/images/img_segmentasyon-ve-firsatlar_26.png",
+    "width": 1024,
+    "height": 832,
+    "declaredExtension": "png",
+    "detectedFormat": "JPEG",
+    "formatMismatch": true,
+    "classification": "DUPLICATE",
+    "humanApprovalRequired": false,
+    "piiStatus": "ANONYMIZED",
+    "metricStatus": "DEMO_SYNTHETIC",
+    "entities": [],
+    "presentationModes": [],
+    "cropRecipes": []
+  },
+  {
+    "filename": "img_tekrar-satin-alma-analizi_6.png",
+    "sourcePath": "wwwroot/wiki/assets/images/img_tekrar-satin-alma-analizi_6.png",
+    "width": 1774,
+    "height": 887,
+    "declaredExtension": "png",
+    "detectedFormat": "PNG",
+    "formatMismatch": false,
+    "classification": "PUBLIC_SUPPORTING",
+    "humanApprovalRequired": false,
+    "piiStatus": "ANONYMIZED",
+    "metricStatus": "DEMO_SYNTHETIC",
+    "entities": [
+      "Customer Intelligence",
+      "Günün Fırsatları"
+    ],
+    "presentationModes": [
+      "FULL_STAGE",
+      "FOCAL_CROP",
+      "EDITORIAL_SPLIT",
+      "DETAIL_ZOOM"
+    ],
+    "cropRecipes": [
+      {
+        "name": "Full Repeat Purchase Analysis Stage",
+        "cropMode": "FULL_STAGE",
+        "x": 0,
+        "y": 0,
+        "width": 1774,
+        "height": 887
+      },
+      {
+        "name": "Timing Distribution & High Potential Customers",
+        "cropMode": "FOCAL_CROP",
+        "x": 200,
+        "y": 90,
+        "width": 1540,
+        "height": 760
+      },
+      {
+        "name": "Timing Distribution Donut Chart",
+        "cropMode": "DETAIL_ZOOM",
+        "x": 220,
+        "y": 190,
+        "width": 700,
+        "height": 380
+      }
+    ]
+  },
+  {
+    "filename": "img_urun-siniflandirma-workbench_13.png",
+    "sourcePath": "wwwroot/wiki/assets/images/img_urun-siniflandirma-workbench_13.png",
+    "width": 1672,
+    "height": 941,
+    "declaredExtension": "png",
+    "detectedFormat": "PNG",
+    "formatMismatch": false,
+    "classification": "PUBLIC_HERO",
+    "humanApprovalRequired": false,
+    "piiStatus": "NONE",
+    "metricStatus": "NONE",
+    "entities": [
+      "Product Intelligence"
+    ],
+    "presentationModes": [
+      "FULL_STAGE",
+      "FOCAL_CROP",
+      "EDITORIAL_SPLIT",
+      "ANNOTATED_STAGE"
+    ],
+    "cropRecipes": [
+      {
+        "name": "Full Product Classification Workbench Stage",
+        "cropMode": "FULL_STAGE",
+        "x": 0,
+        "y": 0,
+        "width": 1672,
+        "height": 941
+      },
+      {
+        "name": "Enrichment Table & AI Confidence Drawer",
+        "cropMode": "FOCAL_CROP",
+        "x": 230,
+        "y": 80,
+        "width": 1410,
+        "height": 820
+      },
+      {
+        "name": "AI Suggestion Detail on Cappuccino",
+        "cropMode": "DETAIL_ZOOM",
+        "x": 1040,
+        "y": 280,
+        "width": 590,
+        "height": 580
+      }
+    ]
+  },
+  {
+    "filename": "img_yayinlama-sablon-ve-yonetim_27.png",
+    "sourcePath": "wwwroot/wiki/assets/images/img_yayinlama-sablon-ve-yonetim_27.png",
+    "width": 1672,
+    "height": 941,
+    "declaredExtension": "png",
+    "detectedFormat": "PNG",
+    "formatMismatch": false,
+    "classification": "PUBLIC_HERO",
+    "humanApprovalRequired": false,
+    "piiStatus": "NONE",
+    "metricStatus": "DEMO_SYNTHETIC",
+    "entities": [
+      "Campaign Manager"
+    ],
+    "presentationModes": [
+      "FULL_STAGE",
+      "FOCAL_CROP",
+      "EDITORIAL_SPLIT",
+      "ANNOTATED_STAGE"
+    ],
+    "cropRecipes": [
+      {
+        "name": "Full Campaign Operations Center Stage",
+        "cropMode": "FULL_STAGE",
+        "x": 0,
+        "y": 0,
+        "width": 1672,
+        "height": 941
+      },
+      {
+        "name": "Operational Campaign Grid & Status Telemetry",
+        "cropMode": "FOCAL_CROP",
+        "x": 230,
+        "y": 80,
+        "width": 1410,
+        "height": 820
+      }
+    ]
+  },
+  {
+    "filename": "kisi-aktarimi-gmail-outlook-anonim.png",
+    "sourcePath": "wwwroot/wiki/assets/kisi-aktarimi-gmail-outlook-anonim.png",
+    "width": 1600,
+    "height": 920,
+    "declaredExtension": "png",
+    "detectedFormat": "PNG",
+    "formatMismatch": false,
+    "classification": "PUBLIC_SUPPORTING",
+    "humanApprovalRequired": false,
+    "piiStatus": "NONE",
+    "metricStatus": "NONE",
+    "entities": [
+      "Integrations"
+    ],
+    "presentationModes": [
+      "FULL_STAGE",
+      "EDITORIAL_SPLIT"
+    ],
+    "cropRecipes": [
+      {
+        "name": "Full Contact Ingestion Architecture",
+        "cropMode": "FULL_STAGE",
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 920
+      }
+    ]
+  }
+]

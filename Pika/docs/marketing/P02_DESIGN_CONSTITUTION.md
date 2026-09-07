@@ -537,25 +537,25 @@ All color pairs have been verified via the standard WCAG 2.1 relative luminance 
 
 | Foreground | Background | Actual Ratio | Standard | Status |
 | :--- | :--- | :--- | :--- | :--- |
-| Primary Text (`#0d2821`) | Pure White (`#ffffff`) | **15.64:1** | WCAG AA ($ge$ 4.5:1) | PASS |
-| Primary Text (`#0d2821`) | Subtle Sage (`#f8faf9`) | **14.92:1** | WCAG AA ($ge$ 4.5:1) | PASS |
-| Secondary Text (`#365147`) | Pure White (`#ffffff`) | **8.66:1** | WCAG AA ($ge$ 4.5:1) | PASS |
-| Secondary Text (`#365147`) | Subtle Sage (`#f8faf9`) | **8.26:1** | WCAG AA ($ge$ 4.5:1) | PASS |
-| Muted Text (`#4a685e`) | Pure White (`#ffffff`) | **6.12:1** | WCAG AA ($ge$ 4.5:1) | PASS |
-| Muted Text (`#4a685e`) | Subtle Sage (`#f8faf9`) | **5.84:1** | WCAG AA ($ge$ 4.5:1) | PASS |
-| Accent Ink (`#3f5802`) | Pure White (`#ffffff`) | **8.05:1** | WCAG AA ($ge$ 4.5:1) | PASS |
-| Accent Ink (`#3f5802`) | Green Tint (`#f4f9f1`) | **7.54:1** | WCAG AA ($ge$ 4.5:1) | PASS |
-| Primary Button Text (`#0d2821`) | Primary Lime (`#84c225`) | **7.24:1** | WCAG AA ($ge$ 4.5:1) | PASS |
-| Primary Button Text (`#0d2821`) | Hover Lime (`#73aa20`) | **5.59:1** | WCAG AA ($ge$ 4.5:1) | PASS |
-| Focus on Light (`#3f5802`) | Pure White (`#ffffff`) | **8.05:1** | Non-Text UI ($ge$ 3.0:1) | PASS |
-| Focus on Dark (`#9edd05`) | Dark Petrol (`#0c3a30`) | **7.69:1** | Non-Text UI ($ge$ 3.0:1) | PASS |
-| Text on Dark (`#ffffff`) | Dark Petrol (`#0c3a30`) | **12.62:1** | WCAG AA ($ge$ 4.5:1) | PASS |
-| Text on Dark Muted (74%) | Dark Petrol (`#0c3a30`) | **7.65:1** | WCAG AA ($ge$ 4.5:1) | PASS |
+| Primary Text (`#0d2821`) | Pure White (`#ffffff`) | **15.64:1** | WCAG AA (≥ 4.5:1) | PASS |
+| Primary Text (`#0d2821`) | Subtle Sage (`#f8faf9`) | **14.92:1** | WCAG AA (≥ 4.5:1) | PASS |
+| Secondary Text (`#365147`) | Pure White (`#ffffff`) | **8.66:1** | WCAG AA (≥ 4.5:1) | PASS |
+| Secondary Text (`#365147`) | Subtle Sage (`#f8faf9`) | **8.26:1** | WCAG AA (≥ 4.5:1) | PASS |
+| Muted Text (`#4a685e`) | Pure White (`#ffffff`) | **6.12:1** | WCAG AA (≥ 4.5:1) | PASS |
+| Muted Text (`#4a685e`) | Subtle Sage (`#f8faf9`) | **5.84:1** | WCAG AA (≥ 4.5:1) | PASS |
+| Accent Ink (`#3f5802`) | Pure White (`#ffffff`) | **8.05:1** | WCAG AA (≥ 4.5:1) | PASS |
+| Accent Ink (`#3f5802`) | Green Tint (`#f4f9f1`) | **7.54:1** | WCAG AA (≥ 4.5:1) | PASS |
+| Primary Button Text (`#0d2821`) | Primary Lime (`#84c225`) | **7.24:1** | WCAG AA (≥ 4.5:1) | PASS |
+| Primary Button Text (`#0d2821`) | Hover Lime (`#73aa20`) | **5.59:1** | WCAG AA (≥ 4.5:1) | PASS |
+| Focus on Light (`#3f5802`) | Pure White (`#ffffff`) | **8.05:1** | Non-Text UI (≥ 3.0:1) | PASS |
+| Focus on Dark (`#9edd05`) | Dark Petrol (`#0c3a30`) | **7.69:1** | Non-Text UI (≥ 3.0:1) | PASS |
+| Text on Dark (`#ffffff`) | Dark Petrol (`#0c3a30`) | **12.62:1** | WCAG AA (≥ 4.5:1) | PASS |
+| Text on Dark Muted (74%) | Dark Petrol (`#0c3a30`) | **7.65:1** | WCAG AA (≥ 4.5:1) | PASS |
 
 ### Mandatory Contrast Rules for Future Tasks
-1. **Normal text (< 18pt / < 24px regular):** Must achieve $ge$ **4.5:1** against adjacent background.
-2. **Large text ($ge$ 18pt / $ge$ 14pt bold):** Must achieve $ge$ **3.0:1** against adjacent background.
-3. **Focus indicators and interactive UI boundaries:** Must achieve $ge$ **3.0:1** against adjacent background.
+1. **Normal text (< 18pt / < 24px regular):** Must achieve ≥ **4.5:1** against adjacent background.
+2. **Large text (≥ 18pt / ≥ 14pt bold):** Must achieve ≥ **3.0:1** against adjacent background.
+3. **Focus indicators and interactive UI boundaries:** Must achieve ≥ **3.0:1** against adjacent background.
 4. **Baseline is WCAG AA:** Individual high-contrast pairs that reach AAA do not warrant a blanket AAA claim for the platform.
 
 ### Target Size & Focus Discipline
@@ -633,8 +633,8 @@ Every subsequent page phase (P03–P25) must satisfy this quantitative checklist
 - [ ] **Namespace Compliance:** Are 100% of new CSS classes scoped under `.pw2-*`?
 - [ ] **Typography Hierarchy:** Is the heading hierarchy strictly sequential (H1 $\rightarrow$ H2 $\rightarrow$ H3)?
 - [ ] **Accent Restraint:** Is the lime accent restricted to CTAs, badges, and small focal highlights?
-- [ ] **Accessibility Compliance:** Do all text/background pairs meet $ge$ 4.5:1 and UI boundaries/focus rings meet $ge$ 3:1?
-- [ ] **Touch Target Verification:** Do all interactive elements (buttons, links, toggles) maintain $ge$ 44px hit targets?
+- [ ] **Accessibility Compliance:** Do all text/background pairs meet ≥ 4.5:1 and UI boundaries/focus rings meet ≥ 3:1?
+- [ ] **Touch Target Verification:** Do all interactive elements (buttons, links, toggles) maintain ≥ 44px hit targets?
 - [ ] **Screenshot Legibility:** Are screenshots cropped or zoomed so interface text is sharp and legible?
 - [ ] **Mobile Responsiveness:** Does the page flow naturally on mobile with left-aligned reading text and accessible touch targets?
 - [ ] **Metric Governance:** Are all demo/sample metrics explicitly badged with `ÖRNEK SENARYO`?

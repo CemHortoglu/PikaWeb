@@ -1,6 +1,6 @@
 # Visual Asset & Product Screenshot Registry
 
-This document inventories all real product UI screenshots, diagrams, and marketing graphics within the repository. It establishes which real assets can replace hand-built CSS mockups on public marketing pages and identifies broken image links.
+This document inventories all real product UI screenshots, diagrams, and marketing graphics within the repository. It establishes which real assets can replace hand-built CSS mockups on public marketing pages, identifies technical format mismatches, enforces privacy (KVKK) safety, and governs screenshot deployment.
 
 ---
 
@@ -9,69 +9,81 @@ This document inventories all real product UI screenshots, diagrams, and marketi
 > [!IMPORTANT]
 > **If a real, current Pika product screenshot exists, future marketing implementation should normally prefer it over a hand-built fake CSS mockup.**
 > 
-> Currently, the repository contains **29 authentic product screenshots** from the live Pika application (`https://app.pika.tr`). However, **28 of them are completely absent from public marketing pages**, leaving marketing visitors with synthetic CSS cards while real, high-credibility software screenshots remain hidden inside the Wiki assets folder.
+> Currently, the repository contains **30 authentic product visual assets** (29 screenshots from the live Pika application under `wwwroot/wiki/assets/images/` and 1 integration diagram under `wwwroot/wiki/assets/`).
+> 
+> Under Phase P03, every asset has undergone an exhaustive visual, privacy, and metric governance audit. 26 of these assets are approved for public marketing deployment across designated canonical entities.
 
 ---
 
-## Broken Image Incident (P0 Priority)
+## Security & Privacy Resolution (P03 KVKK Correction)
+
+> [!NOTE]
+> **Security Notice:**
+> An earlier source asset contained real personal identifiers and was replaced during P03 with a KVKK-safe anonymized marketing version.
+> The canonical file `img_tekrar-satin-alma-analizi_6.png` now exclusively renders synthetic customer identifiers (`Müşteri #A1047`, `Müşteri #B3391`, `Mağaza A`, `Mağaza B`) and contains zero real personal data.
+
+---
+
+## Broken Image Incident (Resolved)
 
 - **Referencing File:** `Views/Solutions/CampaignManager.cshtml:232`
 - **Broken Path:** `<img src="/wiki/assets/images/img_kampanya-yonetimi_0.png" ... />`
 - **File System Reality:** `img_kampanya-yonetimi_0.png` **DOES NOT EXIST** on disk. It produces a live HTTP 404 error on a flagship public solution page.
-- **Immediate Recommended Replacement:** Replace with `img_yayinlama-sablon-ve-yonetim_27.png` or `img_aksiyon-calisma-alani_9.png`.
+- **Approved Canonical Replacement:** Replaced with **`img_yayinlama-sablon-ve-yonetim_27.png`** (Campaign Operations Center & Publishing Interface).
 
 ---
 
-## Real Product UI Screenshot Inventory (`wwwroot/wiki/assets/images/`)
+## Real Product UI Screenshot Inventory
 
-| Filename | Feature / Module Represented | Reflects Current UI? | Sensitive Data? | Public Marketing Suitable? | Best Future Landing Page | Potential Crop / Spotlight Use | Notes / Replacement Needed? |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| `img_pika-360_7.png` | Pika 360 Unified Customer Profile (Value, Risk, Behavior, Channel Access, Opportunities) | YES (App UI) | Anonymized sample persona | **YES (Top Priority)** | `/platform/pika-360` & Homepage | Spotlight customer value score, churn risk gauge, and opportunity cards | High aesthetic quality. Replaces fake CSS customer profile. |
-| `img_gunun-firsatlari.png` | Günün Fırsatları / Daily Opportunities Cockpit | YES (App UI) | Anonymized | **YES (Top Priority)** | `/platform/gunun-firsatlari` & Homepage | Crop opportunity cards (Replenishment, Win-back, Cross-sell) | Flagship product proof for Pika's opportunity engine. |
-| `img_bi-kokpit_5.png` | BI Cockpit (Executive Revenue, Store Metrics, Channel Breakdown) | YES (App UI) | Anonymized aggregate | **YES (Top Priority)** | `/cozumler/analytics-reporting` | Crop store performance rankings and turnover distribution | Replaces generic reporting cards. Shows genuine BI capability. |
-| `img_ai-musteri-ozeti_8.png` | AI Customer Summary (Natural language customer profile interpretation) | YES (App UI) | Anonymized | **YES (Top Priority)** | `/platform/pika-360` & `/platform/customer-intelligence` | Spotlight natural language AI summary block | High credibility proof of assistive AI in Pika. |
-| `img_pika-pilot-ai-kampanya-asistani_16.png` | Pika Pilot AI Campaign Assistant (Prompt-to-draft engine) | YES (App UI) | Anonymized | **YES (Already Used)** | `/urunler/ai-kampanya-asistani` | Spotlight prompt bar and generated draft cards | The only screenshot currently active in marketing views. |
-| `img_journey-tasarim-tuvali_18.png` | Journey Manager visual workflow canvas (Triggers, nodes, delays) | YES (App UI) | Anonymized | **YES (Top Priority)** | `/cozumler/journey-manager` | Spotlight multi-channel branching nodes (SMS/Email/Wait) | Replaces hand-built journey diagrams. Proves drag-and-drop workflow capability. |
-| `img_journey-karar-kurallari_19.png` | Journey Decision and Branching Rules | YES (App UI) | Anonymized | **YES** | `/cozumler/journey-manager` | Crop conditional rule configuration modal | Proves granular rule-based routing depth. |
-| `img_journey-store_21.png` | Pre-built Journey Templates Library (Journey Store) | YES (App UI) | None | **YES** | `/cozumler/journey-manager` & `/kullanim-senaryolari` | Spotlight ready-to-use blueprints (Onboarding, Win-back) | High commercial appeal for rapid time-to-value. |
-| `img_email-template-editor_17.png` | Visual drag-and-drop responsive email builder | YES (App UI) | Mock product creative | **YES (Top Priority)** | `/cozumler/content-studio` & `/kanallar/email` | Spotlight block drag-and-drop canvas and mobile preview toggle | Crucial proof that Pika contains a modern email studio. |
-| `img_email-store_20.png` | Pre-built Email Template Library (Email Store) | YES (App UI) | Mock designs | **YES** | `/cozumler/content-studio` & `/kanallar/email` | Crop grid of responsive email templates | Demonstrates out-of-the-box template readiness. |
-| `img_need-group-product-role_11.png` | Need Group & Product Role Classification Interface | YES (App UI) | Retail catalog sample | **YES (Top Priority)** | `/platform/product-intelligence` | Spotlight Need Group and Product Role tag assignments | Core proof of Product Intelligence methodology. |
-| `img_tekrar-satin-alma-analizi_6.png` | Repeat Purchase Consumption Cycle & Rhythm Analysis | YES (App UI) | Anonymized | **YES (Top Priority)** | `/platform/customer-intelligence` & `/platform/gunun-firsatlari` | Spotlight purchasing frequency distribution histogram | High technical credibility for replenishment algorithms. |
-| `img_aksiyon-calisma-alani_9.png` | Action Workspace (Converting opportunities to campaigns) | YES (App UI) | Anonymized | **YES** | `/cozumler/campaign-manager` | Spotlight action queue and cohort dispatch trigger | Ideal replacement for broken image in `CampaignManager.cshtml`. |
-| `img_yayinlama-sablon-ve-yonetim_27.png`| Campaign Publishing and Template Binding Interface | YES (App UI) | Anonymized | **YES** | `/cozumler/campaign-manager` | Spotlight dispatch scheduling controls and channel selection | Alternative high-res replacement for `CampaignManager.cshtml`. |
-| `img_gonderim-operasyonu-izleme_28.png` | Delivery Operations Monitoring (Attempt logs, status codes) | YES (App UI) | Anonymized job logs | **YES** | `/cozumler/analytics-reporting` & `/guvenlik-ve-gizlilik` | Spotlight gateway status telemetry (Delivered, Bounced) | Proves enterprise delivery worker infrastructure. |
-| `img_izin-kanal-zamanlama_25.png` | Consent, Channel Eligibility & Quiet-Hours Scheduling | YES (App UI) | Anonymized | **YES** | `/cozumler/consent-management` & `/kanallar/sms` | Spotlight IYS permission check and quiet hours toggle | Crucial visual proof for regulatory compliance tooling. |
-| `img_kisi-listesi-ve-segmentler_3.png` | Contact List & Dynamic Segment Tags | YES (App UI) | Anonymized | **YES** | `/cozumler/audience-manager` | Spotlight segment filter bar and RFM cohort tags | Proves Audience Manager software capability. |
-| `img_segment-sablonlari_22.png` | Segment Templates & Pre-built Cohort Rules | YES (App UI) | None | **YES** | `/cozumler/audience-manager` | Crop pre-defined segment cards (VIP, At-Risk, Lapsed) | Illustrates out-of-the-box segmentation logic. |
-| `img_segmentasyon-ve-firsatlar_26.png` | Segmentation & Opportunity Correlation Matrix | YES (App UI) | Anonymized | **YES** | `/platform/customer-intelligence` | Crop opportunity count by customer tier | Demonstrates intelligence-to-opportunity bridge. |
-| `img_dinamik-siniflandirma-alanlari_12.png`| Dynamic Attribute Classification Fields | YES (App UI) | Anonymized | **YES** | `/platform/product-intelligence` | Crop dynamic custom field definitions | Shows flexible schema customization. |
-| `img_urun-siniflandirma-workbench_13.png`| Product Classification Workbench | YES (App UI) | Catalog sample | **YES** | `/platform/product-intelligence` | Spotlight bulk catalog enrichment workbench | Demonstrates operational efficiency for merchandisers. |
-| `img_review-resolution-readiness_14.png`| Review, Resolution & Analytical Readiness Pipeline | YES (App UI) | Catalog sample | **YES** | `/platform/product-intelligence` | Spotlight resolution readiness score | Proves data governance depth. |
-| `img_master-urun-anlamlandirmalari_15.png`| Master Product Contextualization & Association | YES (App UI) | Catalog sample | **YES** | `/platform/product-intelligence` | Crop cross-sell product association linkages | Shows market basket analytics in action. |
-| `img_playbook-sektorel-anlam_10.png` | Industry Playbook Semantic Mapping Interface | YES (App UI) | None | **YES** | `/platform/product-intelligence` & `/kullanim-senaryolari` | Spotlight industry-specific taxonomy presets | Shows vertical specialization (Retail, E-commerce). |
-| `img_excel-csv-aktarimi_1.png` | Excel and CSV Ingestion & Column Mapping Screen | YES (App UI) | Sample columns | **YES** | `/entegrasyonlar` | Spotlight drag-and-drop file upload & column mapper | Shows onboarding simplicity for non-API users. |
-| `img_satis-veri-operasyonlari_2.png` | Sales & Order Data Ingestion Operations Screen | YES (App UI) | Sample invoice records | **YES** | `/entegrasyonlar` | Spotlight transaction stream and validation checks | Proves transactional data ingestion foundation. |
-| `img_gmail-kisi-aktarimi_23.png` | Google Contacts Import Workflow | YES (App UI) | Anonymized | **YES** | `/entegrasyonlar` & `/wiki/` | Spotlight OAuth sync button and contact preview | Proves built-in Google contact connector. |
-| `img_kullanici-roller-yetkiler_24.png` | User Roles and RBAC Permission Matrix | YES (App UI) | Role names | **YES** | `/guvenlik-ve-gizlilik` | Spotlight role permission toggles (Admin, Marketer, Viewer)| Direct visual proof of enterprise RBAC security. |
-| `img_kategori-yonetimi_4.png` | Category Hierarchy Management | YES (App UI) | Catalog sample | **YES** | `/platform/product-intelligence` | Crop category tree | Useful supporting asset. |
-| `kisi-aktarimi-gmail-outlook-anonim.png`| Anonymized Gmail/Outlook Contact Mapping Diagram | Diagram / Graphic | None | **YES** | `/wiki/gmail-kisi-aktarimi` & `/entegrasyonlar` | Educational diagram showing contact ingestion | Explanatory asset. |
+| Filename | Declared / Detected | Dimensions | Safety Classification | Human Review | PII Status | Metric Status | Primary Mapped Entity | Recommended Presentation Mode |
+| :--- | :--- | :--- | :--- | :---: | :--- | :--- | :--- | :--- |
+| `img_ai-musteri-ozeti_8.png` | .png / PNG | 1672 × 941 | **PUBLIC_SUPPORTING** | No | ANONYMIZED | DEMO_SYNTHETIC | Customer Intelligence / Pika 360 | `FOCAL_CROP` / `EDITORIAL_SPLIT` |
+| `img_aksiyon-calisma-alani_9.png` | .png / PNG | 1672 × 941 | **PUBLIC_SUPPORTING** | No | ANONYMIZED | DEMO_SYNTHETIC | Customer Intelligence (Repeat Purchase) | `FOCAL_CROP` / `EDITORIAL_SPLIT` |
+| `img_bi-kokpit_5.png` | .png / PNG | 1672 × 941 | **PUBLIC_HERO** | No | NONE | DEMO_SYNTHETIC | Analytics & Reporting | `FULL_STAGE` / `ANNOTATED_STAGE` |
+| `img_dinamik-siniflandirma-alanlari_12.png` | .png / PNG | 1881 × 915 | **PUBLIC_SUPPORTING** | No | NONE | NONE | Product Intelligence | `FULL_STAGE` / `EDITORIAL_SPLIT` |
+| `img_email-store_20.png` | .png / PNG | 1672 × 941 | **PUBLIC_SUPPORTING** | No | NONE | DEMO_SYNTHETIC | Content Studio / Email Channel | `FULL_STAGE` / `FOCAL_CROP` |
+| `img_email-template-editor_17.png` | .png / PNG | 1672 × 941 | **PUBLIC_HERO** | No | NONE | NONE | Content Studio / Email Channel | `FULL_STAGE` / `ANNOTATED_STAGE` |
+| `img_excel-csv-aktarimi_1.png` | .png / PNG | 1885 × 974 | **PUBLIC_WITH_CROP** | No | NONE (Cropped) | NONE | Integrations | `FULL_STAGE` (Crop y:36) / `FOCAL_CROP` |
+| `img_gmail-kisi-aktarimi_23.png` | .png / PNG | 1024 × 503 | **PUBLIC_SUPPORTING** | No | ANONYMIZED | DEMO_SYNTHETIC | Integrations / Consent / Security | `FULL_STAGE` / `EDITORIAL_SPLIT` |
+| `img_gonderim-operasyonu-izleme_28.png` | .png / PNG | 1672 × 941 | **PUBLIC_HERO** | No | NONE | DEMO_SYNTHETIC | Analytics & Reporting / Security | `FULL_STAGE` / `ANNOTATED_STAGE` |
+| `img_gunun-firsatlari.png` | .png / **JPEG** | 1024 × 832 | **PUBLIC_HERO** | No | ANONYMIZED | DEMO_SYNTHETIC | Günün Fırsatları | `FULL_STAGE` / `ANNOTATED_STAGE` |
+| `img_izin-kanal-zamanlama_25.png` | .png / PNG | 1672 × 941 | **PUBLIC_HERO** | No | ANONYMIZED | DEMO_SYNTHETIC | Consent Management / Channels | `FULL_STAGE` / `DETAIL_ZOOM` |
+| `img_journey-karar-kurallari_19.png` | .png / PNG | 1672 × 941 | **PUBLIC_SUPPORTING** | No | NONE | DEMO_SYNTHETIC | Journey Manager | `FOCAL_CROP` / `DETAIL_ZOOM` |
+| `img_journey-store_21.png` | .png / PNG | 1672 × 941 | **PUBLIC_SUPPORTING** | No | NONE | NONE | Journey Manager | `FULL_STAGE` / `FOCAL_CROP` |
+| `img_journey-tasarim-tuvali_18.png` | .png / PNG | 1672 × 941 | **PUBLIC_HERO** | No | NONE | NONE | Journey Manager | `FULL_STAGE` / `ANNOTATED_STAGE` |
+| `img_kategori-yonetimi_4.png` | .png / PNG | 1672 × 941 | **PUBLIC_SUPPORTING** | No | NONE | NONE | Product Intelligence | `FULL_STAGE` / `FOCAL_CROP` |
+| `img_kisi-listesi-ve-segmentler_3.png` | .png / PNG | 1672 × 941 | **PUBLIC_HERO** | No | ANONYMIZED | DEMO_SYNTHETIC | Audience Manager | `FULL_STAGE` / `ANNOTATED_STAGE` |
+| `img_kullanici-roller-yetkiler_24.png` | .png / PNG | 1672 × 941 | **PUBLIC_WITH_CROP** | No | NONE (Cropped) | NONE | Security & Privacy (RBAC) | `FOCAL_CROP` (Crop x:980, y:215) |
+| `img_master-urun-anlamlandirmalari_15.png` | .png / PNG | 1884 × 928 | **PUBLIC_SUPPORTING** | No | NONE | NONE | Product Intelligence | `FULL_STAGE` / `FOCAL_CROP` |
+| `img_need-group-product-role_11.png` | .png / PNG | 1879 × 930 | **PUBLIC_HERO** | No | NONE | NONE | Product Intelligence | `FULL_STAGE` / `ANNOTATED_STAGE` |
+| `img_pika-360_7.png` | .png / PNG | 1672 × 941 | **PUBLIC_HERO** | No | ANONYMIZED | DEMO_SYNTHETIC | Pika 360 / Customer Intelligence | `FULL_STAGE` / `ANNOTATED_STAGE` |
+| `img_pika-pilot-ai-kampanya-asistani_16.png` | .png / PNG | 1672 × 941 | **PUBLIC_HERO** | No | NONE | DEMO_SYNTHETIC | AI Campaign Assistant | `FULL_STAGE` / `ANNOTATED_STAGE` |
+| `img_playbook-sektorel-anlam_10.png` | .png / PNG | 1877 × 933 | **PUBLIC_SUPPORTING** | **Yes** | NONE | NONE | Product Intelligence | `FOCAL_CROP` (Crop y:450) |
+| `img_review-resolution-readiness_14.png` | .png / PNG | 1672 × 941 | **PUBLIC_SUPPORTING** | No | ANONYMIZED | DEMO_SYNTHETIC | Integrations / Customer Intelligence | `FULL_STAGE` / `DETAIL_ZOOM` |
+| `img_satis-veri-operasyonlari_2.png` | .png / PNG | 1672 × 941 | **PUBLIC_SUPPORTING** | No | NONE | DEMO_SYNTHETIC | Integrations | `FULL_STAGE` / `EDITORIAL_SPLIT` |
+| `img_segment-sablonlari_22.png` | .png / PNG | 1888 × 932 | **INTERNAL_ONLY** | No | NONE | NONE | *Unsuitable for Public Marketing* | *DO_NOT_DEPLOY* |
+| `img_segmentasyon-ve-firsatlar_26.png` | .png / **JPEG** | 1024 × 832 | **DUPLICATE** | No | ANONYMIZED | DEMO_SYNTHETIC | *Duplicate of img_gunun-firsatlari* | *USE_CANONICAL_ASSET* |
+| `img_tekrar-satin-alma-analizi_6.png` | .png / PNG | 1774 × 887 | **PUBLIC_SUPPORTING** | No | ANONYMIZED | DEMO_SYNTHETIC | Customer Intelligence / Repeat Purchase | `FULL_STAGE` / `FOCAL_CROP` |
+| `img_urun-siniflandirma-workbench_13.png` | .png / PNG | 1672 × 941 | **PUBLIC_HERO** | No | NONE | NONE | Product Intelligence | `FULL_STAGE` / `ANNOTATED_STAGE` |
+| `img_yayinlama-sablon-ve-yonetim_27.png` | .png / PNG | 1672 × 941 | **PUBLIC_HERO** | No | NONE | DEMO_SYNTHETIC | Campaign Manager | `FULL_STAGE` / `ANNOTATED_STAGE` |
+| `kisi-aktarimi-gmail-outlook-anonim.png` | .png / PNG | 1600 × 920 | **PUBLIC_SUPPORTING** | No | NONE | NONE | Integrations | `FULL_STAGE` / `EDITORIAL_SPLIT` |
 
 ---
 
 ## Marketing Views Violating the Real-Screenshot Principle
 
-| Page / Route | Current Hand-Built Mockup Description | Available Authentic Product Screenshot to Replace It |
+| Page / Route | Current Hand-Built Mockup Description | Approved Authentic Product Screenshot Replacement |
 | :--- | :--- | :--- |
-| **Homepage (`/`)** | Hand-crafted HTML/CSS cockpit card (`.ph-mock-stat`, `.ph-mock-stat-val`) with hardcoded synthetic stats (12.4K, %68, %24). | Replace with high-impact hero crop of **`img_gunun-firsatlari.png`** or **`img_pika-360_7.png`**. |
+| **Homepage (`/`)** | Hand-crafted HTML/CSS cockpit card (`.ph-mock`) with synthetic stats (12.4K, %68, %24). | Replace with high-impact hero stage of **`img_gunun-firsatlari.png`** and **`img_pika-360_7.png`**. |
 | **Pika 360 (`/platform/pika-360`)** | Hand-coded HTML customer card showing fake persona with CSS badges. | Replace with full-bleed framed asset **`img_pika-360_7.png`** with spotlight callouts. |
 | **Günün Fırsatları (`/platform/gunun-firsatlari`)**| CSS list items illustrating repeat purchase, win-back, and cross-sell. | Replace with genuine cockpit UI **`img_gunun-firsatlari.png`**. |
 | **Product Intelligence (`/platform/product-intelligence`)**| Hand-built CSS tables and cards explaining Need Groups and Product Roles. | Replace with real UI screenshots **`img_need-group-product-role_11.png`** and **`img_urun-siniflandirma-workbench_13.png`**. |
-| **Campaign Manager (`/cozumler/campaign-manager`)**| Broken image link (`img_kampanya-yonetimi_0.png`) and hardcoded simulation box with unverified 14.2x ROAS. | Replace with real software UI **`img_yayinlama-sablon-ve-yonetim_27.png`** or **`img_aksiyon-calisma-alani_9.png`**. |
+| **Campaign Manager (`/cozumler/campaign-manager`)**| Broken image link (`img_kampanya-yonetimi_0.png`) and hardcoded simulation box with unverified 14.2x ROAS. | Replace with real software UI **`img_yayinlama-sablon-ve-yonetim_27.png`**. |
 | **Journey Manager (`/cozumler/journey-manager`)**| Stylized CSS flowchart nodes with icons. | Replace with authentic visual journey builder **`img_journey-tasarim-tuvali_18.png`**. |
 | **Content Studio (`/cozumler/content-studio`)**| Hand-coded HTML drag-and-drop simulation. | Replace with real email editor screenshot **`img_email-template-editor_17.png`**. |
-| **Audience Manager (`/cozumler/audience-manager`)**| Hand-coded floating badge elements (12.8K kişi, 5 koşul). | Replace with genuine cohort management interface **`img_kisi-listesi-ve-segmentler_3.png`**. |
+| **Audience Manager (`/cozumler/audience-manager`)**| Hand-coded floating badge elements (12.8K kişi, 5 koşul) and grey mock bars. | Replace with genuine cohort management interface **`img_kisi-listesi-ve-segmentler_3.png`**. |
 | **Analytics & Reporting (`/cozumler/analytics-reporting`)**| Hand-built CSS metric cards. | Replace with real BI Cockpit screenshot **`img_bi-kokpit_5.png`**. |
+| **Consent Management (`/cozumler/consent-management`)**| Abstract shield icons and placeholder scene blocks. | Replace with real consent management console **`img_izin-kanal-zamanlama_25.png`**. |
 
 ---
 
@@ -80,7 +92,7 @@ This document inventories all real product UI screenshots, diagrams, and marketi
 1. **`wwwroot/images/1.png` to `5.png`:**
    - *Status:* **UNUSED_LEGACY.**
    - *Audit Finding:* These 5 image files (approx. 100KB–150KB each) are not referenced anywhere in the Views, CSS, or scripts.
-   - *Recommendation:* Candidate for archiving in cleanup phase.
+   - *Recommendation:* Keep unreferenced; candidate for future archival.
 2. **`wwwroot/web/images/partner/partner-logo-1.png` to `11.png`:**
    - *Status:* **UNUSED_TEMPLATE_ARTIFACT.**
    - *Audit Finding:* 11 generic template placeholder logos from the original theme purchase. They are not referenced anywhere in the application.
