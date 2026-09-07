@@ -4,68 +4,537 @@
   if (!canvas) return;
   const context = canvas.getContext('2d');
   if (!context) return;
+  const scene = canvas.closest('.orbit-scene');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+
+  const RINGS = 37;
+  const POINTS_PER_RING = 135;
+  const TOTAL_POINTS = RINGS * POINTS_PER_RING;
+
+  // Pre-generate deterministic chaotic metadata for the intro animation
+  const chaosMeta = [];
+  for (let i = 0; i < TOTAL_POINTS; i++) {
+    const s1 = (i * 9301 + 49297) % 233280;
+    const r1 = s1 / 233280;
+    const s2 = (s1 * 9301 + 49297) % 233280;
+    const r2 = s2 / 233280;
+    const s3 = (s2 * 9301 + 49297) % 233280;
+    const r3 = s3 / 233280;
+
+    const spread = 40 + r1 * 360;
+    const theta = r2 * Math.PI * 2;
+    const phi = (r3 - 0.5) * Math.PI;
+
+    chaosMeta.push({
+      cx: spread * Math.cos(theta) * Math.cos(phi),
+      cy: spread * Math.sin(theta) * Math.cos(phi),
+      cz: spread * Math.sin(phi) * 0.6,
+      spawnT: (i / TOTAL_POINTS) * 0.32,
+      driftSpeed: 0.8 + r1 * 1.6,
+      driftAngle: r2 * Math.PI * 2
+    });
+  }
+
+  // Opportunity Anchors mapped to cards
+  // Index 0: WhatsApp (bottom-left)
+  // Index 1: Opportunity (right)
+  // Index 2: Customer 360 (top-left)
+  // Opportunity tracking configurations mapped to cards
+  // Flow follows continuous rotation along the torus (counter-clockwise):
+  // Step 0: WhatsApp (bottom-left) -> sweeps along lower-left rim (~140px of movement)
+  // Step 1: Customer 360 (top-left) -> sweeps along upper-left rim (~170px of movement)
+  // Step 2: Opportunity (right) -> sweeps along upper-right rim (~190px of movement)
+  const oppConfigs = [
+    {
+      targetId: "0",
+      uStart: Math.PI * 0.76,
+      uEnd: Math.PI * 1.02,
+      v: -0.25
+    },
+    {
+      targetId: "2",
+      uStart: Math.PI * 0.98,
+      uEnd: Math.PI * 1.28,
+      v: 0.10
+    },
+    {
+      targetId: "1",
+      uStart: -Math.PI * 0.38,
+      uEnd: -Math.PI * 0.06,
+      v: -0.20
+    }
+  ];
+
+  const cardMap = {};
+  if (scene) {
+    scene.querySelectorAll('.orbit-card[data-opp-target]').forEach(card => {
+      cardMap[card.dataset.oppTarget] = card;
+    });
+  }
+  const cards = Object.values(cardMap);
+
   let width = 0, height = 0, frame = 0, visible = true, phase = 0, last = 0;
   let mouseX = 0, mouseY = 0;
+
+  // Intro states: 4.6s total (Chaos 0-1.5s -> Vortex 1.5-3.2s -> Torus 3.2-4.6s)
+  const INTRO_DURATION = 4600;
+  let isIntro = !reduced.matches;
+  let introStart = 0;
+
+  // Opportunity rotation: 30s per opportunity tracking a moving point on the torus
+  const OPP_DURATION = 30000;
+  let currentOppStep = 0;
+  let oppElapsed = 0;
+  let isCardHovered = false;
+  let isTransitioningCard = false;
+
+  function hideAllCards() {
+    Object.values(cardMap).forEach(c => {
+      if (c) {
+        c.classList.remove('is-active', 'is-popping-in', 'is-popping-out');
+        const bar = c.querySelector('.orbit-card-progress-bar');
+        if (bar) bar.style.width = '0%';
+      }
+    });
+  }
+
+  function showStep(index) {
+    if (!oppConfigs.length) return;
+    currentOppStep = (index + oppConfigs.length) % oppConfigs.length;
+    oppElapsed = 0;
+    isTransitioningCard = false;
+
+    const currentTargetId = oppConfigs[currentOppStep].targetId;
+
+    Object.keys(cardMap).forEach(targetId => {
+      const c = cardMap[targetId];
+      if (!c) return;
+      const bar = c.querySelector('.orbit-card-progress-bar');
+      if (targetId === currentTargetId) {
+        c.classList.remove('is-popping-out');
+        c.classList.add('is-active', 'is-popping-in');
+        if (bar) bar.style.width = '0%';
+      } else {
+        c.classList.remove('is-active', 'is-popping-in', 'is-popping-out');
+        if (bar) bar.style.width = '0%';
+      }
+    });
+  }
+
+  function nextOpportunity() {
+    if (isTransitioningCard || !oppConfigs.length) return;
+    isTransitioningCard = true;
+    const currentTargetId = oppConfigs[currentOppStep]?.targetId;
+    const currentCard = cardMap[currentTargetId];
+    if (currentCard) {
+      currentCard.classList.remove('is-popping-in');
+      currentCard.classList.add('is-popping-out');
+    }
+    setTimeout(() => {
+      showStep(currentOppStep + 1);
+    }, 550);
+  }
+
+  function startIntro() {
+    if (reduced.matches) {
+      isIntro = false;
+      if (scene) scene.classList.remove('is-intro');
+      showStep(0);
+      return;
+    }
+    isIntro = true;
+    introStart = performance.now();
+    if (scene) scene.classList.add('is-intro');
+    hideAllCards();
+  }
+
+  // Hover handlers for cards to pause auto-advance and tracking sweep
+  Object.values(cardMap).forEach(card => {
+    if (!card) return;
+    card.addEventListener('mouseenter', () => { isCardHovered = true; });
+    card.addEventListener('mouseleave', () => { isCardHovered = false; });
+  });
+
   function resize() {
     const box = canvas.getBoundingClientRect();
     width = box.width; height = box.height;
     const dpr = Math.min(devicePixelRatio || 1, 2);
     canvas.width = Math.round(width * dpr); canvas.height = Math.round(height * dpr);
     context.setTransform(dpr, 0, 0, dpr, 0, 0);
-    draw();
+    draw(performance.now());
   }
-  function draw() {
+
+  function draw(time) {
     context.clearRect(0, 0, width, height);
-    const cx = width * .5, cy = height * .46;
-    const radius = Math.min(width * .34, height * .36);
-    const glow = context.createRadialGradient(cx,cy,20,cx,cy,radius*1.6);
-    glow.addColorStop(0,'rgba(166,221,45,.035)');glow.addColorStop(.65,'rgba(136,185,42,.055)');glow.addColorStop(1,'rgba(100,145,30,0)');
-    context.fillStyle=glow;context.fillRect(0,0,width,height);
-    // A projected toroidal data field: every point follows the same continuous flow.
-    const rotation = phase*.12 + mouseX*.08;
-    for(let ring=0;ring<37;ring++){
-      const v=ring/37*Math.PI*2;
-      for(let point=0;point<135;point++){
-        const u=point/135*Math.PI*2+phase*.065;
-        const r=radius+Math.cos(v)*radius*.29;
-        const x=r*Math.cos(u), y=r*Math.sin(u), z=Math.sin(v)*radius*.29;
-        const xx=x*Math.cos(rotation)-y*Math.sin(rotation);
-        const yy=x*Math.sin(rotation)+y*Math.cos(rotation);
-        const tilt=.72+mouseY*.08;
-        const sy=yy*Math.cos(tilt)-z*Math.sin(tilt);
-        const depth=yy*Math.sin(tilt)+z*Math.cos(tilt);
-        const perspective=650/(650-depth);
-        const px=cx+xx*perspective, py=cy+sy*perspective;
-        const brightness=(depth/radius+1)*.5;
-        const wave=(Math.sin(u*3+v*2+phase)+1)*.5;
-        context.fillStyle=`rgba(${151+Math.round(wave*45)},${192+Math.round(wave*49)},${58+Math.round(wave*40)},${.15+brightness*.5})`;
-        context.beginPath();context.arc(px,py,(.55+brightness*.65)*perspective,0,Math.PI*2);context.fill();
+    const cx = width * 0.5, cy = height * 0.46;
+    const radius = Math.min(width * 0.34, height * 0.36);
+
+    // Subtle background ambient glow
+    const glow = context.createRadialGradient(cx, cy, 20, cx, cy, radius * 1.6);
+    glow.addColorStop(0, 'rgba(166,221,45,.035)');
+    glow.addColorStop(0.65, 'rgba(136,185,42,.055)');
+    glow.addColorStop(1, 'rgba(100,145,30,0)');
+    context.fillStyle = glow;
+    context.fillRect(0, 0, width, height);
+
+    // Intro progress calculation
+    let introT = 1.0;
+    if (isIntro) {
+      const elapsedIntro = time - introStart;
+      introT = Math.min(elapsedIntro / INTRO_DURATION, 1.0);
+      if (introT >= 1.0) {
+        isIntro = false;
+        if (scene) scene.classList.remove('is-intro');
+        showStep(0);
       }
     }
-    context.strokeStyle='rgba(192,223,136,.1)';context.lineWidth=.7;
-    context.beginPath();context.ellipse(cx,cy,radius*1.49,radius*.94,-.35,0,Math.PI*2);context.stroke();
-    for(let n=0;n<5;n++){
-      const a=phase*.15+n*Math.PI*.4;
-      const x=Math.cos(a)*radius*1.49,y=Math.sin(a)*radius*.94;
-      const px=cx+x*Math.cos(-.35)-y*Math.sin(-.35),py=cy+x*Math.sin(-.35)+y*Math.cos(-.35);
-      context.fillStyle='#c6ef6a';context.beginPath();context.arc(px,py,2.4,0,Math.PI*2);context.fill();
+
+    const rotation = phase * 0.12 + mouseX * 0.08;
+    const tilt = 0.72 + mouseY * 0.08;
+
+    let particleIdx = 0;
+    let anchorPx = null, anchorPy = null;
+    if (!isIntro && oppConfigs.length > 0) {
+      const cfg = oppConfigs[currentOppStep] || oppConfigs[0];
+      const progress = Math.min(oppElapsed / OPP_DURATION, 1.0);
+      // Smoothly advance angle along the rotating torus surface
+      const currentAngle = cfg.uStart + (cfg.uEnd - cfg.uStart) * progress;
+      const currentV = cfg.v;
+
+      const rAnchor = radius + Math.cos(currentV) * radius * 0.29;
+      // 3D coordinates aligned with the torus surface
+      const targetX = rAnchor * Math.cos(currentAngle - rotation);
+      const targetY = rAnchor * Math.sin(currentAngle - rotation);
+      const targetZ = Math.sin(currentV) * radius * 0.29;
+
+      const xxA = targetX * Math.cos(rotation) - targetY * Math.sin(rotation);
+      const yyA = targetX * Math.sin(rotation) + targetY * Math.cos(rotation);
+      const syA = yyA * Math.cos(tilt) - targetZ * Math.sin(tilt);
+      const depthA = yyA * Math.sin(tilt) + targetZ * Math.cos(tilt);
+
+      const safeDepthA = Math.min(depthA, 580);
+      const persA = Math.max(0.1, 650 / (650 - safeDepthA));
+      anchorPx = cx + xxA * persA;
+      anchorPy = cy + syA * persA;
+    }
+
+    for (let ring = 0; ring < RINGS; ring++) {
+      const v = ring / RINGS * Math.PI * 2;
+      for (let point = 0; point < POINTS_PER_RING; point++) {
+        const u = point / POINTS_PER_RING * Math.PI * 2 + phase * 0.065;
+        const meta = chaosMeta[particleIdx++];
+
+        // Target Torus Coordinate
+        const tr = radius + Math.cos(v) * radius * 0.29;
+        const targetX = tr * Math.cos(u);
+        const targetY = tr * Math.sin(u);
+        const targetZ = Math.sin(v) * radius * 0.29;
+
+        let curX = targetX, curY = targetY, curZ = targetZ;
+        let ptAlpha = 1.0;
+
+        if (isIntro) {
+          if (introT < meta.spawnT) {
+            // Particle not yet emerged
+            continue;
+          }
+
+          if (introT < 0.35) {
+            // Phase 1: Chaos & Scatter
+            const p1Elapsed = (time - introStart) * 0.001;
+            const drift = p1Elapsed * meta.driftSpeed;
+            curX = meta.cx + Math.cos(meta.driftAngle + drift) * 16;
+            curY = meta.cy + Math.sin(meta.driftAngle + drift) * 16;
+            curZ = meta.cz + Math.sin(meta.driftAngle + drift * 0.5) * 12;
+            ptAlpha = Math.min((introT - meta.spawnT) / 0.08, 1.0);
+          } else if (introT < 0.70) {
+            // Phase 2: Convergence / Vortex around Pika core
+            const t2 = (introT - 0.35) / 0.35;
+            const e2 = t2 * t2 * (3 - 2 * t2);
+            const swirl = e2 * (Math.PI * 3.5);
+
+            // Blend distance from chaos spread towards torus radius
+            const rawDist = Math.hypot(meta.cx, meta.cy);
+            const dist = rawDist * (1 - e2) + tr * e2;
+            const curTheta = Math.atan2(meta.cy, meta.cx) + swirl;
+
+            curX = dist * Math.cos(curTheta);
+            curY = dist * Math.sin(curTheta);
+            curZ = meta.cz * (1 - e2) + targetZ * e2;
+          } else {
+            // Phase 3: Torus Formation
+            const t3 = (introT - 0.70) / 0.30;
+            const e3 = t3 * t3 * (3 - 2 * t3);
+
+            const rawDist = Math.hypot(meta.cx, meta.cy);
+            const distVortex = rawDist * 0.2 + tr * 0.8;
+            const curTheta = Math.atan2(meta.cy, meta.cx) + Math.PI * 3.5;
+            const vortexX = distVortex * Math.cos(curTheta);
+            const vortexY = distVortex * Math.sin(curTheta);
+            const vortexZ = targetZ;
+
+            curX = vortexX * (1 - e3) + targetX * e3;
+            curY = vortexY * (1 - e3) + targetY * e3;
+            curZ = vortexZ * (1 - e3) + targetZ * e3;
+          }
+        }
+
+        // 3D rotation & tilt
+        const xx = curX * Math.cos(rotation) - curY * Math.sin(rotation);
+        const yy = curX * Math.sin(rotation) + curY * Math.cos(rotation);
+        const sy = yy * Math.cos(tilt) - curZ * Math.sin(tilt);
+        const depth = yy * Math.sin(tilt) + curZ * Math.cos(tilt);
+
+        // Near-plane clipping to prevent negative perspective / camera inversion
+        if (depth > 590) {
+          continue;
+        }
+
+        const safeDepth = Math.min(depth, 580);
+        const perspective = Math.max(0.1, 650 / (650 - safeDepth));
+        const px = cx + xx * perspective;
+        const py = cy + sy * perspective;
+
+        const brightness = Math.max(0, Math.min((depth / radius + 1) * 0.5, 2.0));
+        const wave = (Math.sin(u * 3 + v * 2 + phase) + 1) * 0.5;
+        const particleRadius = Math.max(0.1, (0.55 + brightness * 0.65) * perspective);
+
+        context.fillStyle = `rgba(${151 + Math.round(wave * 45)},${192 + Math.round(wave * 49)},${58 + Math.round(wave * 40)},${Math.max(0.05, (0.15 + brightness * 0.5) * ptAlpha)})`;
+        context.beginPath();
+        context.arc(px, py, particleRadius, 0, Math.PI * 2);
+        context.fill();
+      }
+    }
+
+    // Outer subtle orbital ring (only when torus has formed)
+    if (!isIntro || introT > 0.75) {
+      const ringAlpha = isIntro ? (introT - 0.75) / 0.25 : 1.0;
+      context.strokeStyle = `rgba(192, 223, 136, ${0.1 * ringAlpha})`;
+      context.lineWidth = 0.7;
+      context.beginPath();
+      context.ellipse(cx, cy, radius * 1.49, radius * 0.94, -0.35, 0, Math.PI * 2);
+      context.stroke();
+
+      for (let n = 0; n < 5; n++) {
+        const a = phase * 0.15 + n * Math.PI * 0.4;
+        const x = Math.cos(a) * radius * 1.49, y = Math.sin(a) * radius * 0.94;
+        const px = cx + x * Math.cos(-0.35) - y * Math.sin(-0.35);
+        const py = cy + x * Math.sin(-0.35) + y * Math.cos(-0.35);
+        context.fillStyle = `rgba(198, 239, 106, ${ringAlpha})`;
+        context.beginPath();
+        context.arc(px, py, 2.4, 0, Math.PI * 2);
+        context.fill();
+      }
+    }
+
+    // Opportunity Tether & Glowing Node
+    if (!isIntro && anchorPx !== null && anchorPy !== null && oppConfigs.length > 0) {
+      const currentTargetId = oppConfigs[currentOppStep]?.targetId;
+      const activeCardEl = cardMap[currentTargetId];
+      if (activeCardEl && activeCardEl.classList.contains('is-active')) {
+        const socketEl = activeCardEl.querySelector('.orbit-tether-socket') || activeCardEl;
+        const sockBox = socketEl.getBoundingClientRect();
+        const canvasBox = canvas.getBoundingClientRect();
+
+        const sockX = (sockBox.left + sockBox.width * 0.5) - canvasBox.left;
+        const sockY = (sockBox.top + sockBox.height * 0.5) - canvasBox.top;
+
+        if (!isNaN(sockX) && !isNaN(sockY)) {
+          context.save();
+
+          // Organic curved control point
+          const midX = (anchorPx + sockX) * 0.5;
+          const midY = (anchorPy + sockY) * 0.5;
+          const dx = sockX - anchorPx;
+          const dy = sockY - anchorPy;
+          const dist = Math.hypot(dx, dy);
+          const nx = -dy / (dist || 1);
+          const ny = dx / (dist || 1);
+          const curveOffset = Math.sin(time * 0.0012) * 5 + (dist * 0.1);
+          const cpX = midX + nx * curveOffset;
+          const cpY = midY + ny * curveOffset;
+
+          // 1. Soft atmospheric beam glow
+          context.beginPath();
+          context.moveTo(anchorPx, anchorPy);
+          context.quadraticCurveTo(cpX, cpY, sockX, sockY);
+          context.strokeStyle = 'rgba(181, 238, 25, 0.22)';
+          context.lineWidth = 6;
+          context.lineCap = 'round';
+          context.stroke();
+
+          // 2. High-intensity Core Laser Tether
+          const tetherGrad = context.createLinearGradient(anchorPx, anchorPy, sockX, sockY);
+          tetherGrad.addColorStop(0, '#ffffff');
+          tetherGrad.addColorStop(0.25, 'rgba(214, 255, 77, 0.95)');
+          tetherGrad.addColorStop(0.75, 'rgba(181, 238, 25, 0.85)');
+          tetherGrad.addColorStop(1, 'rgba(181, 238, 25, 0.95)');
+
+          context.beginPath();
+          context.moveTo(anchorPx, anchorPy);
+          context.quadraticCurveTo(cpX, cpY, sockX, sockY);
+          context.strokeStyle = tetherGrad;
+          context.lineWidth = 2.4;
+          context.shadowColor = '#b5ee19';
+          context.shadowBlur = 12;
+          context.stroke();
+
+          // 3. Traveling Photon Energy Packets (Data streaming from torus point into card)
+          for (let k = 0; k < 3; k++) {
+            const travelT = ((time * 0.0009) + k * 0.333) % 1.0;
+            const omt = 1 - travelT;
+            const pxPhoton = omt * omt * anchorPx + 2 * omt * travelT * cpX + travelT * travelT * sockX;
+            const pyPhoton = omt * omt * anchorPy + 2 * omt * travelT * cpY + travelT * travelT * sockY;
+
+            // Halo
+            context.fillStyle = 'rgba(181, 238, 25, 0.6)';
+            context.shadowBlur = 14;
+            context.shadowColor = '#b5ee19';
+            context.beginPath();
+            context.arc(pxPhoton, pyPhoton, 5.0, 0, Math.PI * 2);
+            context.fill();
+
+            // Core
+            context.fillStyle = '#ffffff';
+            context.shadowBlur = 6;
+            context.shadowColor = '#ffffff';
+            context.beginPath();
+            context.arc(pxPhoton, pyPhoton, 2.2, 0, Math.PI * 2);
+            context.fill();
+          }
+
+          // 4. Expanding Radar Pulse Rings around Anchor Particle on the Torus
+          for (let r = 0; r < 2; r++) {
+            const pulseT = ((time * 0.0013) + r * 0.5) % 1.0;
+            const radiusPulse = 4 + pulseT * 26;
+            const alphaPulse = (1 - pulseT) * 0.85;
+            context.strokeStyle = `rgba(181, 238, 25, ${alphaPulse})`;
+            context.lineWidth = 1.8;
+            context.shadowBlur = 8;
+            context.shadowColor = '#b5ee19';
+            context.beginPath();
+            context.arc(anchorPx, anchorPy, radiusPulse, 0, Math.PI * 2);
+            context.stroke();
+          }
+
+          // 5. High-intensity Glowing Torus Node (The Detected Point)
+          context.shadowBlur = 18;
+          context.shadowColor = '#b5ee19';
+
+          // Outer halo
+          context.fillStyle = 'rgba(181, 238, 25, 0.45)';
+          context.beginPath();
+          context.arc(anchorPx, anchorPy, 9, 0, Math.PI * 2);
+          context.fill();
+
+          // Lime ring
+          context.fillStyle = '#b5ee19';
+          context.beginPath();
+          context.arc(anchorPx, anchorPy, 5.2, 0, Math.PI * 2);
+          context.fill();
+
+          // White center
+          context.fillStyle = '#ffffff';
+          context.shadowBlur = 4;
+          context.shadowColor = '#ffffff';
+          context.beginPath();
+          context.arc(anchorPx, anchorPy, 2.8, 0, Math.PI * 2);
+          context.fill();
+
+          // Pulse at the card socket
+          context.fillStyle = '#b5ee19';
+          context.shadowBlur = 10;
+          context.shadowColor = '#b5ee19';
+          context.beginPath();
+          context.arc(sockX, sockY, 4, 0, Math.PI * 2);
+          context.fill();
+
+          context.restore();
+        }
+      }
     }
   }
-  function tick(time){
-    frame=0;
-    if(!visible || document.hidden || reduced.matches) return;
-    if(time-last>32){phase+=Math.min((time-last)/1000,.05);last=time;draw();}
-    frame=requestAnimationFrame(tick);
+
+  function tick(time) {
+    frame = 0;
+    if (!visible || document.hidden || reduced.matches) return;
+
+    const delta = time - last;
+    if (delta > 16) {
+      phase += Math.min(delta / 1000, 0.05);
+      last = time;
+
+      // Update opportunity timer and bottom loading border if not intro and not transitioning
+      if (!isIntro && !isTransitioningCard) {
+        if (!isCardHovered) {
+          oppElapsed += delta;
+        }
+        const pct = Math.min((oppElapsed / OPP_DURATION) * 100, 100);
+        const currentTargetId = oppConfigs[currentOppStep]?.targetId;
+        const activeCardEl = cardMap[currentTargetId];
+        if (activeCardEl) {
+          const bar = activeCardEl.querySelector('.orbit-card-progress-bar');
+          if (bar) {
+            bar.style.width = pct.toFixed(2) + '%';
+          }
+        }
+        if (oppElapsed >= OPP_DURATION && !isCardHovered) {
+          nextOpportunity();
+        }
+      }
+
+      draw(time);
+    }
+    frame = requestAnimationFrame(tick);
   }
-  function sync(){cancelAnimationFrame(frame);frame=0;last=performance.now();if(visible&&!document.hidden&&!reduced.matches)frame=requestAnimationFrame(tick);else draw();}
+
+  function sync() {
+    cancelAnimationFrame(frame);
+    frame = 0;
+    last = performance.now();
+    if (visible && !document.hidden && !reduced.matches) {
+      frame = requestAnimationFrame(tick);
+    } else {
+      draw(performance.now());
+    }
+  }
+
   new ResizeObserver(resize).observe(canvas);
-  new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;sync();},{rootMargin:'80px'}).observe(canvas);
-  document.addEventListener('visibilitychange',sync);reduced.addEventListener('change',sync);
-  canvas.parentElement.addEventListener('pointermove',event=>{if(reduced.matches||event.pointerType==='touch')return;const r=canvas.getBoundingClientRect();mouseX=(event.clientX-r.left)/r.width-.5;mouseY=(event.clientY-r.top)/r.height-.5;},{passive:true});
-  const reveal = new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('orbit-reveal');reveal.unobserve(entry.target);}}),{threshold:.12});
-  document.querySelectorAll('.pika-orbit main section:not(#hero) > .pw2-container').forEach(section=>reveal.observe(section));
-  resize();sync();
+  new IntersectionObserver(entries => {
+    visible = entries[0].isIntersecting;
+    sync();
+  }, { rootMargin: '80px' }).observe(canvas);
+
+  document.addEventListener('visibilitychange', sync);
+  reduced.addEventListener('change', () => {
+    if (reduced.matches) {
+      isIntro = false;
+      if (scene) scene.classList.remove('is-intro');
+      showStep(0);
+    }
+    sync();
+  });
+
+  if (canvas.parentElement) {
+    canvas.parentElement.addEventListener('pointermove', event => {
+      if (reduced.matches || event.pointerType === 'touch') return;
+      const r = canvas.getBoundingClientRect();
+      mouseX = (event.clientX - r.left) / r.width - 0.5;
+      mouseY = (event.clientY - r.top) / r.height - 0.5;
+    }, { passive: true });
+  }
+
+  const reveal = new IntersectionObserver(entries => entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('orbit-reveal');
+      reveal.unobserve(entry.target);
+    }
+  }), { threshold: 0.12 });
+  document.querySelectorAll('.pika-orbit main section:not(#hero) > .pw2-container').forEach(section => reveal.observe(section));
+
+  resize();
+  startIntro();
+  sync();
 })();
 
 
