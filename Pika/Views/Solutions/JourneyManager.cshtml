@@ -6,57 +6,7 @@
 }
 
 <!-- HERO: Motion & Automation -->
-<section class="pika-sol-hero" data-module="journey">
-    <div class="container">
-        <nav class="pika-sol-breadcrumb" data-aos="fade-down" data-aos-duration="500">
-            <a href="@(tr ? "/" : "/en/")">@(tr ? "Ana Sayfa" : "Home")</a>
-            <span class="sep">/</span>
-            <a href="@(tr ? "/" : "/en/")">@(tr ? "Çözümler" : "Solutions")</a>
-            <span class="sep">/</span>
-            <span>Journey Manager</span>
-        </nav>
-        <div class="pika-sol-hero-grid">
-            <div data-aos="fade-right" data-aos-duration="700">
-                <h1>@(tr ? "Müşteri davranışlarına göre otomatik akışlar oluşturun" : "Create automated flows based on customer behavior")</h1>
-                <p class="pika-sol-hero-desc">@(tr ? "Pika Journey Manager; işlem, davranış, segment değişimi ve özel olaylara göre otomatik akışlar oluşturarak müşteri etkileşimini manuel yükten kurtarır." : "Pika Journey Manager creates automated flows based on transactions, behavior, segment changes and custom events, freeing customer engagement from manual overhead.")</p>
-                <div class="pika-sol-hero-actions">
-                    <button type="button" class="btn pika-btn-primary px-4 py-2" data-bs-toggle="modal" data-bs-target="#demoModal">@(tr ? "Demo Talep Et" : "Request a Demo") <i class="ri-arrow-right-up-line"></i></button>
-                    <a href="#features" class="btn pika-btn-ghost px-4 py-2">@(tr ? "Journey Manager'ı İncele" : "Explore Journey Manager")</a>
-                </div>
-                <div class="pika-sol-hero-tags">
-                    <span class="pika-sol-tag"><i class="ri-flashlight-line"></i> @(tr ? "Trigger bazlı akışlar" : "Trigger-based flows")</span>
-                    <span class="pika-sol-tag"><i class="ri-share-forward-line"></i> @(tr ? "Çok kanallı otomasyon" : "Multi-channel automation")</span>
-                    <span class="pika-sol-tag"><i class="ri-pulse-line"></i> @(tr ? "Davranış odaklı" : "Behavior-driven")</span>
-                    <span class="pika-sol-tag"><i class="ri-robot-line"></i> @(tr ? "Manuel yükü azaltır" : "Reduces manual workload")</span>
-                </div>
-            </div>
-            <div class="pika-sol-hero-scene" data-aos="fade-left" data-aos-duration="700" data-aos-delay="200">
-                <div class="pika-sol-scene-main">
-                    <div class="pika-sol-scene-row">
-                        <div class="pika-sol-scene-block wide"><i class="ri-flashlight-line"></i> Trigger</div>
-                        <div class="pika-sol-scene-block"><i class="ri-timer-line"></i> Wait</div>
-                    </div>
-                    <div class="pika-sol-scene-row">
-                        <div class="pika-sol-scene-block"><i class="ri-git-branch-line"></i> @(tr ? "Dallan" : "Branch")</div>
-                        <div class="pika-sol-scene-block"><i class="ri-mail-send-line"></i> @(tr ? "Gönder" : "Send")</div>
-                    </div>
-                    <div class="pika-sol-scene-row">
-                        <div class="pika-sol-scene-block wide"><i class="ri-checkbox-circle-line"></i> @(tr ? "Tamamla" : "Complete")</div>
-                    </div>
-                </div>
-                <div class="pika-sol-scene-back">
-                    <div class="pika-sol-scene-row">
-                        <div class="pika-sol-scene-block"><i class="ri-line-chart-line"></i> @(tr ? "Akış" : "Flow")</div>
-                        <div class="pika-sol-scene-block"><i class="ri-node-tree"></i> Nodes</div>
-                    </div>
-                </div>
-                <div class="pika-sol-scene-float" style="bottom:15%;left:-8%"><i class="ri-flashlight-line"></i> @(tr ? "Satın alma tetiklendi" : "Purchase triggered")</div>
-                <div class="pika-sol-scene-float" style="top:10%;right:-5%"><i class="ri-route-line"></i> 3 @(tr ? "dallanma" : "branches")</div>
-                <div class="pika-sol-scene-float" style="bottom:3%;right:10%"><i class="ri-mail-send-line"></i> @(tr ? "SMS + Email" : "SMS + Email")</div>
-            </div>
-        </div>
-    </div>
-</section>
+@await Html.PartialAsync("_MarketingHero")
 
 <!-- STICKY SUBNAV -->
 <div class="pika-sol-subnav-wrap">

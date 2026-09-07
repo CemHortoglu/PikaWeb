@@ -8,73 +8,7 @@
 }
 
 @* ── CHAPTER 1: HERO ────────────────────────────────────────── *@
-<section class="ph-hero">
-    <div class="container position-relative">
-        <div class="row align-items-center g-5 ph-split-row">
-            <div class="col-lg-6" data-aos="fade-right" data-aos-duration="700">
-                <div class="ph-hero-eyebrow-pill">
-                    <i class="ri-sparkling-2-line" style="color:var(--pika-color-brand-primary-dark)"></i>
-                    <span>@(tr ? "Üretken Yapay Zekâ · Pika Pilot" : "Generative AI · Pika Pilot")</span>
-                </div>
-                <h1 class="ph-hero-title">
-                    AI Kampanya Asistanı
-                    <span class="ph-gradient-text d-block">@(tr ? "Fikirden Yayına 60 Saniye" : "From Concept to Dispatch in 60s")</span>
-                </h1>
-                <p class="ph-hero-desc">
-                    @(tr ? "Pika Pilot; pazarlama hedefinizi dinler, hedef kitle segmentini belirler, doğru kanalı önerir, kişiselleştirilmiş metinleri ve HTML e-posta şablonunu hazırlar." : "Pika Pilot transforms your marketing goal into target audience cohorts, channel mix, multi-variant copy, and responsive email templates.")
-                </p>
-                <div class="ph-hero-actions">
-                    <button type="button" class="ph-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal">
-                        @(tr ? "Demo Talep Et" : "Request a Demo") <i class="ri-arrow-right-line"></i>
-                    </button>
-                    <a href="@(wikiBase)pika-pilot-ai-kampanya-asistani" class="ph-btn-outline">
-                        @(tr ? "Teknik Detay — Wiki" : "Technical Specs — Wiki") <i class="ri-external-link-line"></i>
-                    </a>
-                </div>
-            </div>
-
-            @* Right: Pika Pilot Copilot Card *@
-            <div class="col-lg-6" data-aos="fade-left" data-aos-duration="700">
-                <div class="ph-trust-card p-4 p-md-5">
-                    <div class="d-flex align-items-center justify-content-between mb-4 pb-3 border-bottom">
-                        <div class="d-flex align-items-center gap-2">
-                            <span class="ph-live-dot"></span>
-                            <span class="fw-bold small text-dark">@(tr ? "Pika Pilot Canlı Taslak" : "Pika Pilot Draft Engine")</span>
-                        </div>
-                        <span class="badge bg-success-subtle text-success border small font-monospace">AI Destekli Taslak</span>
-                    </div>
-
-                    <div class="p-3 rounded-3 bg-light border mb-3">
-                        <span class="small text-muted d-block mb-1"><i class="ri-chat-voice-line text-primary me-1"></i> Komut (Prompt):</span>
-                        <div class="small fw-semibold text-dark">"Son 45 gündür alışveriş yapmamış ayakkabı alıcılarına özel hafta sonu %20 indirim WhatsApp kampanyası hazırla."</div>
-                    </div>
-
-                    <div class="d-flex flex-column gap-2 mb-3">
-                        <div class="p-2 rounded-2 bg-white border d-flex align-items-center justify-content-between">
-                            <span class="small text-muted"><i class="ri-group-line text-primary me-2"></i> Hedef Kitle:</span>
-                            <span class="small font-monospace fw-bold text-dark">Riskli Ayakkabı Alıcıları (2.840 Kişi)</span>
-                        </div>
-                        <div class="p-2 rounded-2 bg-white border d-flex align-items-center justify-content-between">
-                            <span class="small text-muted"><i class="ri-whatsapp-line text-success me-2"></i> Önerilen Kanal:</span>
-                            <span class="small font-monospace fw-bold text-success">WhatsApp + Dinamik İndirim Kodu</span>
-                        </div>
-                        <div class="p-2 rounded-2 bg-white border d-flex align-items-center justify-content-between">
-                            <span class="small text-muted"><i class="ri-shield-check-line text-info me-2"></i> İYS Doğrulaması:</span>
-                            <span class="small font-monospace fw-bold text-success">İzinli GSM: %100 Uyumlu</span>
-                        </div>
-                    </div>
-
-                    <div class="d-flex align-items-center justify-content-between pt-3 border-top">
-                        <span class="small text-muted"><i class="ri-user-follow-line text-warning me-1"></i> İnsan Onayı Bekliyor</span>
-                        <a href="@(tr ? "/cozumler/campaign-manager" : "/en/solutions/campaign-manager")" class="btn btn-sm btn-dark px-3 fw-semibold">
-                            @(tr ? "İncele & Onayla" : "Review & Approve")
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+@await Html.PartialAsync("_MarketingHero")
 
 @* ── CHAPTER 2: LLM DEFINITION & BUSINESS PROBLEM ───────────── *@
 <section class="ph-section ph-section-alt">

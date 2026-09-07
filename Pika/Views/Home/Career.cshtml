@@ -12,20 +12,7 @@
 }
 
 <!-- ───── HERO ───── -->
-<section class="pika-corp-hero pika-career-hero">
-    <div class="container">
-        <div class="text-center">
-            <span class="pika-corp-chip" style="background:rgba(255,193,7,.2);border-color:rgba(255,193,7,.6);color:#fff3cd;">
-                <i class="ri-star-line me-1"></i> Kariyer
-            </span>
-            <h1 class="pika-corp-title mt-3" data-i18n="career.heroTitle">Pika'da Çalışmak</h1>
-            <p class="pika-corp-lead mx-auto" style="max-width:680px;" data-i18n="career.heroDesc">
-                Teknolojinin geleceğini birlikte inşa edecek, tutkulu ve yenilikçi ekip arkadaşları arıyoruz.
-                Pika ailesi olarak müşterilerimize değer katarken, kendi gelişimimizi de ön planda tutuyoruz.
-            </p>
-        </div>
-    </div>
-</section>
+@await Html.PartialAsync("_MarketingHero")
 
 <!-- ───── PIKA'DA ÇALIŞMAK - Neden Biz? ───── -->
 <section class="pika-section" style="background:#f2f7de;">

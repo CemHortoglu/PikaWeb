@@ -13,30 +13,7 @@
 }
 
 <!-- ═══════════════════════════ HERO ═══════════════════════════ -->
-<section class="sec-hero-section">
-    <div class="container">
-        <nav class="sec-breadcrumb" aria-label="breadcrumb">
-            <a href="@(tr ? "/" : "/en/")">Pika</a>
-            <span class="sep">/</span>
-            <span>@(tr ? "Güvenlik ve Gizlilik" : "Security & Privacy")</span>
-        </nav>
-
-        <div class="max-w-800">
-            <div class="sec-eyebrow">
-                <i class="ri-shield-check-line me-1"></i>
-                <span>@(tr ? "KURUMSAL GÜVEN VE UYUMLULUK" : "ENTERPRISE TRUST & COMPLIANCE")</span>
-            </div>
-            <h1 class="sec-hero-title">
-                @(tr ? "Güvenlik, izin ve gizlilik ilkelerimiz" : "Our security, consent, and privacy principles")
-            </h1>
-            <p class="sec-hero-lead">
-                @(tr 
-                    ? "Pika; müşteri ve satış verilerinin işlenmesinde rol bazlı yetkilendirme, merkezi izin kontrolü, API koruması ve denetlenebilir altyapı standartlarını benimser. İşletmenizin yasal uyumluluğunu teknik güvenceyle destekler."
-                    : "Pika implements role-based access controls, centralized consent enforcement, protected APIs, and auditable delivery safeguards to protect customer data and uphold regulatory compliance.")
-            </p>
-        </div>
-    </div>
-</section>
+@await Html.PartialAsync("_MarketingHero")
 
 <!-- ═══════════════════════════ TRUST PILLARS ═══════════════════════════ -->
 <section class="sec-section">

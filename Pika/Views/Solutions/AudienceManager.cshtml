@@ -6,57 +6,7 @@
 }
 
 <!-- HERO: Targeting Intelligence -->
-<section class="pika-sol-hero" data-module="audience">
-    <div class="container">
-        <nav class="pika-sol-breadcrumb" data-aos="fade-down" data-aos-duration="500">
-            <a href="@(tr ? "/" : "/en/")">@(tr ? "Ana Sayfa" : "Home")</a>
-            <span class="sep">/</span>
-            <a href="@(tr ? "/" : "/en/")">@(tr ? "Çözümler" : "Solutions")</a>
-            <span class="sep">/</span>
-            <span>Audience Manager</span>
-        </nav>
-        <div class="pika-sol-hero-grid">
-            <div data-aos="fade-right" data-aos-duration="700">
-                <h1>@(tr ? "Doğru kampanyayı doğru hedef kitleyle buluşturun" : "Match the right campaign with the right audience")</h1>
-                <p class="pika-sol-hero-desc">@(tr ? "Pika Audience Manager; transaction verileri, müşteri davranışları ve özel kurallarla daha doğru segmentler oluşturarak kampanyaların etkisini artırır." : "Pika Audience Manager increases campaign effectiveness by creating more accurate segments based on transaction data, customer behavior and custom rules.")</p>
-                <div class="pika-sol-hero-actions">
-                    <button type="button" class="btn pika-btn-primary px-4 py-2" data-bs-toggle="modal" data-bs-target="#demoModal">@(tr ? "Demo Talep Et" : "Request a Demo") <i class="ri-arrow-right-up-line"></i></button>
-                    <a href="#features" class="btn pika-btn-ghost px-4 py-2">@(tr ? "Audience Manager'ı İncele" : "Explore Audience Manager")</a>
-                </div>
-                <div class="pika-sol-hero-tags">
-                    <span class="pika-sol-tag"><i class="ri-shopping-cart-line"></i> @(tr ? "Transaction bazlı" : "Transaction-based")</span>
-                    <span class="pika-sol-tag"><i class="ri-focus-3-line"></i> @(tr ? "Davranış odaklı" : "Behavior-driven")</span>
-                    <span class="pika-sol-tag"><i class="ri-loop-left-line"></i> @(tr ? "Yeniden kullanılabilir" : "Reusable")</span>
-                    <span class="pika-sol-tag"><i class="ri-flow-chart"></i> @(tr ? "Kampanya entegrasyonu" : "Campaign integration")</span>
-                </div>
-            </div>
-            <div class="pika-sol-hero-scene" data-aos="fade-left" data-aos-duration="700" data-aos-delay="200">
-                <div class="pika-sol-scene-main">
-                    <div class="pika-sol-scene-row">
-                        <div class="pika-sol-scene-block wide"><i class="ri-filter-3-line"></i> @(tr ? "Segment Builder" : "Segment Builder")</div>
-                        <div class="pika-sol-scene-block"><i class="ri-filter-2-line"></i> @(tr ? "Filtre" : "Filter")</div>
-                    </div>
-                    <div class="pika-sol-scene-row">
-                        <div class="pika-sol-scene-block"><i class="ri-git-branch-line"></i> @(tr ? "Koşullar" : "Rules")</div>
-                        <div class="pika-sol-scene-block"><i class="ri-group-line"></i> @(tr ? "Önizleme" : "Preview")</div>
-                    </div>
-                    <div class="pika-sol-scene-row">
-                        <div class="pika-sol-scene-block wide"><i class="ri-bar-chart-box-line"></i> @(tr ? "Segment Analizi" : "Segment Analysis")</div>
-                    </div>
-                </div>
-                <div class="pika-sol-scene-back">
-                    <div class="pika-sol-scene-row">
-                        <div class="pika-sol-scene-block"><i class="ri-database-2-line"></i> Data</div>
-                        <div class="pika-sol-scene-block"><i class="ri-user-search-line"></i> Clusters</div>
-                    </div>
-                </div>
-                <div class="pika-sol-scene-float" style="bottom:15%;left:-10%"><i class="ri-group-line"></i> 12.8K @(tr ? "kişi" : "contacts")</div>
-                <div class="pika-sol-scene-float" style="top:8%;right:-6%"><i class="ri-filter-3-line"></i> 5 @(tr ? "koşul" : "rules")</div>
-                <div class="pika-sol-scene-float" style="bottom:3%;right:10%"><i class="ri-shopping-cart-line"></i> RFM Active</div>
-            </div>
-        </div>
-    </div>
-</section>
+@await Html.PartialAsync("_MarketingHero")
 
 <!-- STICKY SUBNAV -->
 <div class="pika-sol-subnav-wrap">

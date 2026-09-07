@@ -7,61 +7,7 @@
     ViewData["BodyClass"] = "pika-platform-page";
 }
 
-<section class="ph-hero">
-    <div class="container">
-        <div class="row align-items-center g-5">
-            <div class="col-lg-7" data-aos="fade-right" data-aos-duration="700">
-                <span class="ph-eyebrow">@(tr ? "Platform — Zekâ" : "Platform — Intelligence")</span>
-                <h1 class="ph-hero-title">Customer Intelligence</h1>
-                <p class="ph-hero-desc">
-                    @(tr ? "Müşteri zekâsı, yalnızca kimin satın aldığını değil — ne zaman, hangi bağlamda ve hangi değerle satın aldığını anlamak üzerine kuruludur. Pika, müşteri ve transaction verisini segmentasyon, değer analizi ve fırsat tespitine hazır bir zekâ katmanına dönüştürür." : "Customer intelligence is about understanding not just who purchased, but when, in what context, and at what value. Pika transforms customer and transaction data into an actionable intelligence layer primed for segmentation, value scoring, and opportunity discovery.")
-                </p>
-                <div class="ph-hero-actions">
-                    <button type="button" class="ph-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal">
-                        @(tr ? "Demo Talep Et" : "Request a Demo") <i class="ri-arrow-right-up-line"></i>
-                    </button>
-                    <a href="@(wikiBase)kisi-listesi-ve-segmentler" class="ph-btn-outline">
-                        @(tr ? "Teknik Detay — Wiki" : "Technical Specs — Wiki") <i class="ri-external-link-line"></i>
-                    </a>
-                </div>
-                <div class="ph-hero-tags mt-3">
-                    <span class="ph-tag"><i class="ri-user-search-line"></i> @(tr ? "Müşteri Segmentasyon" : "Customer Segmentation")</span>
-                    <span class="ph-tag"><i class="ri-bar-chart-box-line"></i> @(tr ? "Değer Analizi" : "Value Analytics")</span>
-                    <span class="ph-tag"><i class="ri-brain-line"></i> @(tr ? "AI Müşteri Özeti" : "AI Customer Summary")</span>
-                    <span class="ph-tag"><i class="ri-focus-3-line"></i> @(tr ? "Hedef Kitle Zemini" : "Audience Foundation")</span>
-                </div>
-            </div>
-            <div class="col-lg-5" data-aos="fade-left" data-aos-duration="700">
-                <div class="ph-module-card p-4" style="border:1px solid #d4e8b0">
-                    <div class="mb-3" style="font-size:.78rem;color:var(--pika-muted);font-weight:600;text-transform:uppercase;letter-spacing:.05em">@(tr ? "Müşteri Zekâsı Katmanları" : "Customer Intelligence Layers")</div>
-                    <div class="d-flex flex-column gap-2">
-                        <div class="d-flex align-items-center gap-3 p-2 rounded" style="background:#f8fdf0">
-                            <div class="ph-trust-icon flex-shrink-0" style="width:36px;height:36px"><i class="ri-user-line"></i></div>
-                            <div>
-                                <div class="fw-bold" style="font-size:.85rem">@(tr ? "Kişi Listesi & Segmentler" : "Contact List & Segments")</div>
-                                <div style="font-size:.75rem;color:var(--pika-muted)">@(tr ? "İletişim, segment, grup ve kanal uygunluğu" : "Contact info, segment tags, group and channel readiness")</div>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center gap-3 p-2 rounded" style="background:#f8fdf0">
-                            <div class="ph-trust-icon flex-shrink-0" style="width:36px;height:36px"><i class="ri-heart-pulse-line"></i></div>
-                            <div>
-                                <div class="fw-bold" style="font-size:.85rem">@(tr ? "Müşteri Değeri & Risk" : "Customer Value & Risk")</div>
-                                <div style="font-size:.75rem;color:var(--pika-muted)">@(tr ? "Değer skoru, sadakat ve pasifleşme riski" : "Value score, loyalty position, and dormancy risk")</div>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center gap-3 p-2 rounded" style="background:#f8fdf0">
-                            <div class="ph-trust-icon flex-shrink-0" style="width:36px;height:36px"><i class="ri-robot-line"></i></div>
-                            <div>
-                                <div class="fw-bold" style="font-size:.85rem">@(tr ? "AI Müşteri Özeti" : "AI Customer Summary")</div>
-                                <div style="font-size:.75rem;color:var(--pika-muted)">@(tr ? "Hızlı bağlam — değer, risk, açık fırsatlar" : "Instant context — value tier, churn risk, open opportunities")</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+@await Html.PartialAsync("_MarketingHero")
 
 @* ── PROBLEM & YAKLAŞIM ─────────────────────────────────────── *@
 <section class="ph-section ph-section-alt">

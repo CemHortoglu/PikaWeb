@@ -6,57 +6,7 @@
 }
 
 <!-- HERO: Executive Dashboard -->
-<section class="pika-sol-hero" data-module="analytics">
-    <div class="container">
-        <nav class="pika-sol-breadcrumb" data-aos="fade-down" data-aos-duration="500">
-            <a href="@(tr ? "/" : "/en/")">@(tr ? "Ana Sayfa" : "Home")</a>
-            <span class="sep">/</span>
-            <a href="@(tr ? "/" : "/en/")">@(tr ? "Çözümler" : "Solutions")</a>
-            <span class="sep">/</span>
-            <span>Analytics &amp; Reporting</span>
-        </nav>
-        <div class="pika-sol-hero-grid">
-            <div data-aos="fade-right" data-aos-duration="700">
-                <h1>Analytics &amp; Reporting — @(tr ? "Kampanya performansını görünür hale getirin" : "Make campaign performance visible")</h1>
-                <p class="pika-sol-hero-desc">@(tr ? "Pika Analytics & Reporting; çok kanallı kampanya sonuçlarını, segment performansını ve journey etkisini tek merkezde ölçerek ekiplerin daha doğru kararlar almasını sağlar." : "Pika Analytics & Reporting enables teams to make better decisions by measuring multi-channel campaign results, segment performance and journey impact in one place.")</p>
-                <div class="pika-sol-hero-actions">
-                    <button type="button" class="btn pika-btn-primary px-4 py-2" data-bs-toggle="modal" data-bs-target="#demoModal">@(tr ? "Demo Talep Et" : "Request a Demo") <i class="ri-arrow-right-up-line"></i></button>
-                    <a href="#features" class="btn pika-btn-ghost px-4 py-2">@(tr ? "Analytics'i İncele" : "Explore Analytics")</a>
-                </div>
-                <div class="pika-sol-hero-tags">
-                    <span class="pika-sol-tag"><i class="ri-bar-chart-grouped-line"></i> @(tr ? "Kanal raporlama" : "Channel reporting")</span>
-                    <span class="pika-sol-tag"><i class="ri-focus-3-line"></i> @(tr ? "Segment performansı" : "Segment performance")</span>
-                    <span class="pika-sol-tag"><i class="ri-route-line"></i> @(tr ? "Journey görünürlüğü" : "Journey visibility")</span>
-                    <span class="pika-sol-tag"><i class="ri-dashboard-line"></i> @(tr ? "Merkezi ölçüm" : "Centralized measurement")</span>
-                </div>
-            </div>
-            <div class="pika-sol-hero-scene" data-aos="fade-left" data-aos-duration="700" data-aos-delay="200">
-                <div class="pika-sol-scene-main">
-                    <div class="pika-sol-scene-row">
-                        <div class="pika-sol-scene-block wide"><i class="ri-line-chart-line"></i> @(tr ? "Dashboard" : "Dashboard")</div>
-                        <div class="pika-sol-scene-block"><i class="ri-bar-chart-2-line"></i> KPI</div>
-                    </div>
-                    <div class="pika-sol-scene-row">
-                        <div class="pika-sol-scene-block"><i class="ri-pie-chart-line"></i> @(tr ? "Kanal" : "Channel")</div>
-                        <div class="pika-sol-scene-block"><i class="ri-group-line"></i> @(tr ? "Segment" : "Segment")</div>
-                    </div>
-                    <div class="pika-sol-scene-row">
-                        <div class="pika-sol-scene-block wide"><i class="ri-route-line"></i> @(tr ? "Journey Etkisi" : "Journey Impact")</div>
-                    </div>
-                </div>
-                <div class="pika-sol-scene-back">
-                    <div class="pika-sol-scene-row">
-                        <div class="pika-sol-scene-block"><i class="ri-funds-line"></i> Trend</div>
-                        <div class="pika-sol-scene-block"><i class="ri-percent-line"></i> Rate</div>
-                    </div>
-                </div>
-                <div class="pika-sol-scene-float" style="bottom:15%;left:-10%"><i class="ri-bar-chart-2-line"></i> %96.4 @(tr ? "iletim" : "delivery")</div>
-                <div class="pika-sol-scene-float" style="top:8%;right:-6%"><i class="ri-line-chart-line"></i> +12% @(tr ? "artış" : "increase")</div>
-                <div class="pika-sol-scene-float" style="bottom:3%;right:10%"><i class="ri-pie-chart-line"></i> 4 @(tr ? "kanal" : "channels")</div>
-            </div>
-        </div>
-    </div>
-</section>
+@await Html.PartialAsync("_MarketingHero")
 
 <!-- STICKY SUBNAV -->
 <div class="pika-sol-subnav-wrap">

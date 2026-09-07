@@ -6,46 +6,7 @@
 }
 
 <!-- Hero -->
-<section class="pika-sol-hero">
-    <div class="container">
-        <nav class="pika-sol-breadcrumb" data-aos="fade-down" data-aos-duration="500">
-            <a href="@(tr ? "/" : "/en/")">@(tr ? "Ana Sayfa" : "Home")</a>
-            <span class="sep">/</span>
-            <a href="@(tr ? "/" : "/en/")">@(tr ? "Çözümler" : "Solutions")</a>
-            <span class="sep">/</span>
-            <span>Email Marketing</span>
-        </nav>
-        <div class="pika-sol-hero-grid">
-            <div data-aos="fade-right" data-aos-duration="700">
-                <h1>@(tr ? "Email Marketing kampanyalarınızı daha akıllı ve kişiselleştirilmiş hale getirin" : "Make your email marketing campaigns smarter and more personalized")</h1>
-                <p class="pika-sol-hero-desc">@(tr ? "Pika Email Marketing sistemi; sürükle bırak tasarım, gelişmiş kişiselleştirme, davranışsal segmentasyon ve email otomasyon akışlarıyla e-posta kampanyalarınızı tek panelden ölçeklemenizi sağlar." : "The Pika Email Marketing system helps you scale email campaigns from a single panel through drag-and-drop design, advanced personalization, behavioral segmentation, and email automation flows.")</p>
-                <div class="pika-sol-hero-actions">
-                    <button type="button" class="btn pika-btn-primary px-4 py-2" data-bs-toggle="modal" data-bs-target="#demoModal">@(tr ? "Demo Talep Et" : "Request a Demo") <i class="ri-arrow-right-up-line"></i></button>
-                    <a href="#features" class="btn pika-btn-ghost px-4 py-2">@(tr ? "Email Çözümünü İncele" : "Explore Email Solution")</a>
-                </div>
-                <div class="pika-sol-hero-tags">
-                    <span class="pika-sol-tag"><i class="ri-drag-move-line"></i> @(tr ? "Sürükle bırak e-posta tasarımı" : "Drag & drop email design")</span>
-                    <span class="pika-sol-tag"><i class="ri-user-heart-line"></i> @(tr ? "Kişiselleştirilmiş gönderim" : "Personalized delivery")</span>
-                    <span class="pika-sol-tag"><i class="ri-focus-3-line"></i> @(tr ? "Segment bazlı hedefleme" : "Segment-based targeting")</span>
-                    <span class="pika-sol-tag"><i class="ri-loop-right-line"></i> @(tr ? "Otomatik email akışları" : "Automated email flows")</span>
-                </div>
-            </div>
-            <div class="pika-sol-hero-visual" data-aos="fade-left" data-aos-duration="700" data-aos-delay="200">
-                <div class="pika-sol-mock-row">
-                    <div class="pika-sol-mock-block wide"><i class="ri-mail-line"></i> Email Editor</div>
-                    <div class="pika-sol-mock-block"><i class="ri-text"></i> @(tr ? "Konu Satırı" : "Subject Line")</div>
-                </div>
-                <div class="pika-sol-mock-row">
-                    <div class="pika-sol-mock-block"><i class="ri-group-line"></i> @(tr ? "Segment Seçimi" : "Segment Selection")</div>
-                    <div class="pika-sol-mock-block"><i class="ri-calendar-schedule-line"></i> @(tr ? "Gönderim Ayarı" : "Send Settings")</div>
-                </div>
-                <div class="pika-sol-mock-row">
-                    <div class="pika-sol-mock-block wide"><i class="ri-bar-chart-box-line"></i> @(tr ? "Performans Özeti" : "Performance Summary")</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+@await Html.PartialAsync("_MarketingHero")
 
 <!-- Değer Kutuları -->
 <section class="pika-sol-section">

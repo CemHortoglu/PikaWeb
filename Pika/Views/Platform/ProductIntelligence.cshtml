@@ -7,62 +7,7 @@
     ViewData["BodyClass"] = "pika-platform-page";
 }
 
-<section class="ph-hero">
-    <div class="container">
-        <div class="row align-items-center g-5">
-            <div class="col-lg-7" data-aos="fade-right" data-aos-duration="700">
-                <span class="ph-eyebrow">@(tr ? "Platform — Zekâ" : "Platform — Intelligence")</span>
-                <h1 class="ph-hero-title">Product Intelligence</h1>
-                <p class="ph-hero-desc">
-                    @(tr ? "Pika için bir ürün yalnızca ürün kodu, adı ve fiyatından ibaret değildir. Product Intelligence; ürünün ne olduğunu, hangi ihtiyacı temsil ettiğini, ticari rolünü ve müşteri analizlerinde güvenle kullanılabilmesi için gereken bağlamı tanımlayan ürün zekâsı katmanıdır." : "For Pika, a product is far more than a SKU, title, and price tag. Product Intelligence is the intelligence layer defining what a product represents, the customer need it fulfills, its commercial role, and the context required for reliable customer analytics.")
-                </p>
-                <div class="ph-hero-actions">
-                    <button type="button" class="ph-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal">
-                        @(tr ? "Demo Talep Et" : "Request a Demo") <i class="ri-arrow-right-up-line"></i>
-                    </button>
-                    <a href="@(wikiBase)product-intelligence-nedir" class="ph-btn-outline">
-                        @(tr ? "Teknik Detay — Wiki" : "Technical Specs — Wiki") <i class="ri-external-link-line"></i>
-                    </a>
-                </div>
-                <div class="ph-hero-tags mt-3">
-                    <span class="ph-tag"><i class="ri-book-open-line"></i> Playbook</span>
-                    <span class="ph-tag"><i class="ri-list-check-3"></i> Need Group</span>
-                    <span class="ph-tag"><i class="ri-price-tag-3-line"></i> Product Role</span>
-                    <span class="ph-tag"><i class="ri-settings-4-line"></i> @(tr ? "Dinamik Sınıflandırma" : "Dynamic Classification")</span>
-                </div>
-            </div>
-            <div class="col-lg-5" data-aos="fade-left" data-aos-duration="700">
-                <div class="ph-module-card p-4" style="border:1px solid #d4e8b0">
-                    <div class="mb-3" style="font-size:.78rem;color:var(--pika-muted);font-weight:600;text-transform:uppercase;letter-spacing:.05em">@(tr ? "Ham Katalog → Anlamlandırılmış Ürün" : "Raw Catalog → Contextualized Product")</div>
-                    <div class="d-flex align-items-start gap-3 mb-3">
-                        <div class="flex-shrink-0 ph-trust-icon" style="width:36px;height:36px;background:#f5f5f5;color:#999">
-                            <i class="ri-close-circle-line"></i>
-                        </div>
-                        <div>
-                            <div class="fw-bold" style="font-size:.82rem;color:#888">@(tr ? "Ham katalog" : "Raw catalog")</div>
-                            <div style="font-size:.78rem;color:#aaa">SKU-10492 · 10 KG · 2.450 TL</div>
-                            <div style="font-size:.75rem;color:#bbb">@(tr ? "Satış kaydı var, müşteri ihtiyacı hakkında bağlam yok" : "Sales record present, zero context regarding customer need")</div>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-center mb-3">
-                        <i class="ri-arrow-down-line" style="color:var(--pika-primary);font-size:1.2rem"></i>
-                        <span class="ms-2 small fw-bold" style="color:var(--pika-primary)">Product Intelligence</span>
-                    </div>
-                    <div class="d-flex align-items-start gap-3">
-                        <div class="flex-shrink-0 ph-trust-icon" style="width:36px;height:36px">
-                            <i class="ri-check-line"></i>
-                        </div>
-                        <div>
-                            <div class="fw-bold" style="font-size:.82rem">@(tr ? "Anlamlandırılmış ürün" : "Contextualized product")</div>
-                            <div style="font-size:.78rem;color:var(--pika-muted)">@(tr ? "Kedi maması · Özel formül · Tekrar alınabilir · Ana ihtiyaç ürünü" : "Cat food · Special formula · Repurchasable · Core need role")</div>
-                            <div style="font-size:.75rem;color:var(--pika-primary)">@(tr ? "Tekrar satın alma, cross-sell ve müşteri analizi için hazır" : "Primed for repeat purchase, cross-sell, and cohort intelligence")</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+@await Html.PartialAsync("_MarketingHero")
 
 @* ── NEDEN ÖNEMLİ ───────────────────────────────────────────── *@
 <section class="ph-section ph-section-alt">

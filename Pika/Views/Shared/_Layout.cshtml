@@ -17,6 +17,8 @@
     var fullTitle = SeoHelper.FormatPageTitle(rawTitle, site.BrandName);
     var titleKey = ViewData["TitleKey"] as string;
     var bodyClass = ViewData["BodyClass"] as string ?? string.Empty;
+    var isMarketingInner = ctrl is "Platform" or "Solutions" || (ctrl == "Home" && act is not ("Index" or "EnglishIndex" or "Error" or "NotFound404"));
+    if (isMarketingInner) bodyClass += " pika-orbit pika-inner";
     var appVersion = System.Reflection.Assembly.GetEntryAssembly()?.GetName().Version?.ToString(3) ?? "1.0.0";
     var toast = TempData["Toast"] as string;
     var baseName = site.BrandName;
@@ -100,6 +102,11 @@
     <link href="~/css/pika-design-system.css" rel="stylesheet" asp-append-version="true" />
 
     @RenderSection("Styles", required: false)
+    @if (isMarketingInner)
+    {
+        <link href="~/css/pika-orbit.css" rel="stylesheet" asp-append-version="true" />
+        <link href="~/css/pika-inner.css" rel="stylesheet" asp-append-version="true" />
+    }
 
     <link rel="icon" href="~/web/assets/images/favicon.ico" />
 
@@ -702,5 +709,9 @@
         </script>
     }
     @RenderSection("Scripts", required: false)
+    @if (isMarketingInner)
+    {
+        <script src="~/js/pika-inner.js" asp-append-version="true" defer></script>
+    }
 </body>
 </html>

@@ -13,30 +13,7 @@
 }
 
 <!-- ═══════════════════════════ HERO ═══════════════════════════ -->
-<section class="uc-hero-section">
-    <div class="container">
-        <nav class="uc-breadcrumb" aria-label="breadcrumb">
-            <a href="@(tr ? "/" : "/en/")">Pika</a>
-            <span class="sep">/</span>
-            <span>@(tr ? "Kullanım Senaryoları" : "Use Cases")</span>
-        </nav>
-
-        <div class="max-w-750">
-            <div class="uc-eyebrow">
-                <i class="ri-lightbulb-line me-1"></i>
-                <span>@(tr ? "İŞ SORULARINDAN ÇÖZÜME" : "FROM BUSINESS QUESTIONS TO IMPACT")</span>
-            </div>
-            <h1 class="uc-hero-title">
-                @(tr ? "Pika ile gerçek iş sorularını eyleme dönüştürün." : "Turn real business questions into verified action with Pika.")
-            </h1>
-            <p class="uc-hero-lead">
-                @(tr 
-                    ? "Pika karmaşık modül isimleriyle değil, işletmenizin her gün karşılaştığı somut müşteri ve satış sorularıyla başlar. Veriyi anlar, fırsatı tespit eder ve yönetici kontrolünde aksiyona çevirir."
-                    : "Pika begins not with abstract software terminology, but with the concrete customer and revenue questions your business faces daily. It understands data, surfaces opportunities, and executes under manager control.")
-            </p>
-        </div>
-    </div>
-</section>
+@await Html.PartialAsync("_MarketingHero")
 
 <!-- ═══════════════════════════ SCENARIOS LIST ═══════════════════════════ -->
 <section class="uc-section">

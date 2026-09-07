@@ -6,37 +6,7 @@
 }
 
 <!-- Hero -->
-<section class="pika-sol-hero">
-    <div class="container">
-        <nav class="pika-sol-breadcrumb" data-aos="fade-down" data-aos-duration="500">
-            <a href="@(tr ? "/" : "/en/")">Pika</a>
-            <span class="sep">/</span>
-            <span>@(tr ? "Entegrasyonlar" : "Integrations")</span>
-        </nav>
-        <div class="pika-sol-hero-grid">
-            <div data-aos="fade-right" data-aos-duration="700">
-                <h1>@(tr ? "Entegrasyon ve veri akışı yaklaşımımız" : "Our integration and data flow approach")</h1>
-                <p class="pika-sol-hero-desc">@(tr ? "Pika; veri kaynakları, olay bazlı akışlar, kampanya süreçleri ve kurumsal yapılarla uyumlu çalışabilecek modüler entegrasyon yaklaşımı sunar." : "Pika offers a modular integration approach compatible with data sources, event-based flows, campaign processes, and enterprise structures.")</p>
-                <div class="pika-sol-hero-actions">
-                    <button type="button" class="btn pika-btn-primary px-4 py-2" data-bs-toggle="modal" data-bs-target="#demoModal">@(tr ? "Demo Talep Et" : "Request Demo") <i class="ri-arrow-right-up-line"></i></button>
-                    <a href="@Url.Action("Contact", "Home")" class="btn pika-btn-ghost px-4 py-2">@(tr ? "Bizimle Görüşün" : "Talk to Us")</a>
-                </div>
-            </div>
-            <div class="pika-sol-hero-visual" data-aos="fade-left" data-aos-duration="700" data-aos-delay="200">
-                <div class="pika-sol-mock-row">
-                    <div class="pika-sol-mock-block wide"><i class="ri-flow-chart"></i> @(tr ? "Olay Bazlı Akışlar" : "Event-based Flows")</div>
-                </div>
-                <div class="pika-sol-mock-row">
-                    <div class="pika-sol-mock-block"><i class="ri-database-2-line"></i> @(tr ? "Veri Kaynakları" : "Data Sources")</div>
-                    <div class="pika-sol-mock-block"><i class="ri-code-s-slash-line"></i> @(tr ? "API Yaklaşımı" : "API Approach")</div>
-                </div>
-                <div class="pika-sol-mock-row">
-                    <div class="pika-sol-mock-block wide"><i class="ri-building-line"></i> @(tr ? "Kurumsal Sistemler" : "Enterprise Systems")</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+@await Html.PartialAsync("_MarketingHero")
 
 <!-- Yaklaşım -->
 <section class="pika-sol-section text-center text-muted fs-5">

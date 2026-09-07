@@ -6,45 +6,7 @@
 }
 
 <!-- Hero -->
-<section class="pika-sol-hero">
-    <div class="container">
-        <nav class="pika-sol-breadcrumb" data-aos="fade-down" data-aos-duration="500">
-            <a href="@(tr ? "/" : "/en/")">@(tr ? "Ana Sayfa" : "Home")</a>
-            <span class="sep">/</span>
-            <a href="@(tr ? "/" : "/en/")">@(tr ? "Çözümler" : "Solutions")</a>
-            <span class="sep">/</span>
-            <span>WhatsApp Messaging</span>
-        </nav>
-        <div class="pika-sol-hero-grid">
-            <div data-aos="fade-right" data-aos-duration="700">
-                <h1>@(tr ? "WhatsApp iletişimini kampanya, otomasyon ve kontrolle yönetin" : "Manage WhatsApp communications with campaigns, automation, and control")</h1>
-                <p class="pika-sol-hero-desc">@(tr ? "Pika WhatsApp Messaging; şablon yönetimi, segment bazlı kampanyalar, kişiselleştirme, zamanlama, journey entegrasyonu ve operasyonel görünürlük ile WhatsApp iletişimlerini tek platformda toplar." : "Pika WhatsApp Messaging brings WhatsApp communications into one platform with template management, segment-based campaigns, personalization, scheduling, journey integration, and operational visibility.")</p>
-                <div class="pika-sol-hero-actions">
-                    <button type="button" class="btn pika-btn-primary px-4 py-2" data-bs-toggle="modal" data-bs-target="#demoModal">@(tr ? "Demo Talep Et" : "Request a Demo") <i class="ri-arrow-right-up-line"></i></button>
-                    <a href="#features" class="btn pika-btn-ghost px-4 py-2">@(tr ? "WhatsApp Çözümünü İncele" : "Explore WhatsApp Solution")</a>
-                </div>
-                <div class="pika-sol-hero-tags">
-                    <span class="pika-sol-tag"><i class="ri-file-list-3-line"></i> @(tr ? "Şablon yönetimi" : "Template management")</span>
-                    <span class="pika-sol-tag"><i class="ri-user-heart-line"></i> @(tr ? "Kişiselleştirilmiş kampanyalar" : "Personalized campaigns")</span>
-                    <span class="pika-sol-tag"><i class="ri-route-line"></i> @(tr ? "Journey entegrasyonu" : "Journey integration")</span>
-                    <span class="pika-sol-tag"><i class="ri-settings-3-line"></i> @(tr ? "Operasyonel kontrol" : "Operational control")</span>
-                </div>
-            </div>
-            <div class="pika-sol-hero-visual" data-aos="fade-left" data-aos-duration="700" data-aos-delay="200">
-                <div class="pika-sol-mock-row">
-                    <div class="pika-sol-mock-block wide"><i class="ri-file-list-3-line"></i> @(tr ? "Şablon Listesi" : "Template List")</div>
-                </div>
-                <div class="pika-sol-mock-row">
-                    <div class="pika-sol-mock-block"><i class="ri-whatsapp-line"></i> @(tr ? "Mesaj Önizlemesi" : "Message Preview")</div>
-                    <div class="pika-sol-mock-block"><i class="ri-group-line"></i> @(tr ? "Segment Seçimi" : "Segment Selection")</div>
-                </div>
-                <div class="pika-sol-mock-row">
-                    <div class="pika-sol-mock-block wide"><i class="ri-dashboard-line"></i> @(tr ? "Gönderim Durumları" : "Delivery Status")</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+@await Html.PartialAsync("_MarketingHero")
 
 <!-- Değer Kutuları -->
 <section class="pika-sol-section">

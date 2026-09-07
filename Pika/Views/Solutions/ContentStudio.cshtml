@@ -6,57 +6,7 @@
 }
 
 <!-- HERO: Creative Studio -->
-<section class="pika-sol-hero" data-module="content">
-    <div class="container">
-        <nav class="pika-sol-breadcrumb" data-aos="fade-down" data-aos-duration="500">
-            <a href="@(tr ? "/" : "/en/")">@(tr ? "Ana Sayfa" : "Home")</a>
-            <span class="sep">/</span>
-            <a href="@(tr ? "/" : "/en/")">@(tr ? "Çözümler" : "Solutions")</a>
-            <span class="sep">/</span>
-            <span>Content Studio</span>
-        </nav>
-        <div class="pika-sol-hero-grid">
-            <div data-aos="fade-right" data-aos-duration="700">
-                <h1>@(tr ? "Kampanya içeriğini daha hızlı ve daha etkili üretin" : "Create campaign content faster and more effectively")</h1>
-                <p class="pika-sol-hero-desc">@(tr ? "Pika Content Studio; sürükle bırak tasarım, kampanya metni üretimi, kişiselleştirilmiş içerik alanları ve AI desteği ile içerik hazırlık süreçlerini hızlandırır." : "Pika Content Studio accelerates content preparation with drag-and-drop design, campaign copy generation, personalized content fields and AI support.")</p>
-                <div class="pika-sol-hero-actions">
-                    <button type="button" class="btn pika-btn-primary px-4 py-2" data-bs-toggle="modal" data-bs-target="#demoModal">@(tr ? "Demo Talep Et" : "Request a Demo") <i class="ri-arrow-right-up-line"></i></button>
-                    <a href="#features" class="btn pika-btn-ghost px-4 py-2">@(tr ? "Content Studio'yu İncele" : "Explore Content Studio")</a>
-                </div>
-                <div class="pika-sol-hero-tags">
-                    <span class="pika-sol-tag"><i class="ri-drag-move-line"></i> @(tr ? "Sürükle bırak" : "Drag & drop")</span>
-                    <span class="pika-sol-tag"><i class="ri-sparkling-line"></i> @(tr ? "AI destekli" : "AI-powered")</span>
-                    <span class="pika-sol-tag"><i class="ri-user-heart-line"></i> @(tr ? "Kişiselleştirme" : "Personalization")</span>
-                    <span class="pika-sol-tag"><i class="ri-rocket-line"></i> @(tr ? "Hızlı hazırlık" : "Fast preparation")</span>
-                </div>
-            </div>
-            <div class="pika-sol-hero-scene" data-aos="fade-left" data-aos-duration="700" data-aos-delay="200">
-                <div class="pika-sol-scene-main">
-                    <div class="pika-sol-scene-row">
-                        <div class="pika-sol-scene-block wide"><i class="ri-mail-line"></i> @(tr ? "Email Builder" : "Email Builder")</div>
-                        <div class="pika-sol-scene-block"><i class="ri-edit-line"></i> @(tr ? "Metin" : "Text")</div>
-                    </div>
-                    <div class="pika-sol-scene-row">
-                        <div class="pika-sol-scene-block"><i class="ri-sparkling-line"></i> AI Prompt</div>
-                        <div class="pika-sol-scene-block"><i class="ri-eye-line"></i> @(tr ? "Önizleme" : "Preview")</div>
-                    </div>
-                    <div class="pika-sol-scene-row">
-                        <div class="pika-sol-scene-block wide"><i class="ri-file-copy-2-line"></i> @(tr ? "Şablonlar" : "Templates")</div>
-                    </div>
-                </div>
-                <div class="pika-sol-scene-back">
-                    <div class="pika-sol-scene-row">
-                        <div class="pika-sol-scene-block"><i class="ri-image-line"></i> @(tr ? "Medya" : "Media")</div>
-                        <div class="pika-sol-scene-block"><i class="ri-layout-grid-line"></i> @(tr ? "Bloklar" : "Blocks")</div>
-                    </div>
-                </div>
-                <div class="pika-sol-scene-float" style="bottom:18%;left:-10%"><i class="ri-sparkling-line"></i> @(tr ? "AI üretim aktif" : "AI generation active")</div>
-                <div class="pika-sol-scene-float" style="top:8%;right:-6%"><i class="ri-drag-move-line"></i> @(tr ? "Sürükle bırak" : "Drag & drop")</div>
-                <div class="pika-sol-scene-float" style="bottom:3%;right:8%"><i class="ri-user-heart-line"></i> {{isim}}</div>
-            </div>
-        </div>
-    </div>
-</section>
+@await Html.PartialAsync("_MarketingHero")
 
 <!-- STICKY SUBNAV -->
 <div class="pika-sol-subnav-wrap">

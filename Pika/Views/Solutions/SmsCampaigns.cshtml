@@ -6,45 +6,7 @@
 }
 
 <!-- Hero -->
-<section class="pika-sol-hero">
-    <div class="container">
-        <nav class="pika-sol-breadcrumb" data-aos="fade-down" data-aos-duration="500">
-            <a href="@(tr ? "/" : "/en/")">@(tr ? "Ana Sayfa" : "Home")</a>
-            <span class="sep">/</span>
-            <a href="@(tr ? "/" : "/en/")">@(tr ? "Çözümler" : "Solutions")</a>
-            <span class="sep">/</span>
-            <span>SMS Campaigns</span>
-        </nav>
-        <div class="pika-sol-hero-grid">
-            <div data-aos="fade-right" data-aos-duration="700">
-                <h1>@(tr ? "Doğru zamanda, doğru hedef kitleye SMS kampanyaları gönderin" : "Send SMS campaigns to the right audience at the right time")</h1>
-                <p class="pika-sol-hero-desc">@(tr ? "Pika SMS Campaigns; segment bazlı hedefleme, kişiselleştirme, zamanlı veya anlık gönderim, otomasyon entegrasyonu ve raporlama ile SMS iletişim süreçlerini tek panelden yönetmenizi sağlar." : "Pika SMS Campaigns lets you manage SMS communication processes from one panel with segment-based targeting, personalization, scheduled or instant delivery, automation integration, and reporting.")</p>
-                <div class="pika-sol-hero-actions">
-                    <button type="button" class="btn pika-btn-primary px-4 py-2" data-bs-toggle="modal" data-bs-target="#demoModal">@(tr ? "Demo Talep Et" : "Request a Demo") <i class="ri-arrow-right-up-line"></i></button>
-                    <a href="#features" class="btn pika-btn-ghost px-4 py-2">@(tr ? "SMS Çözümünü İncele" : "Explore SMS Solution")</a>
-                </div>
-                <div class="pika-sol-hero-tags">
-                    <span class="pika-sol-tag"><i class="ri-eye-line"></i> @(tr ? "Yüksek görünürlük" : "High visibility")</span>
-                    <span class="pika-sol-tag"><i class="ri-flashlight-line"></i> @(tr ? "Hızlı iletişim" : "Fast communication")</span>
-                    <span class="pika-sol-tag"><i class="ri-focus-3-line"></i> @(tr ? "Segment bazlı SMS" : "Segment-based SMS")</span>
-                    <span class="pika-sol-tag"><i class="ri-route-line"></i> @(tr ? "Journey entegrasyonu" : "Journey integration")</span>
-                </div>
-            </div>
-            <div class="pika-sol-hero-visual" data-aos="fade-left" data-aos-duration="700" data-aos-delay="200">
-                <div class="pika-sol-mock-row">
-                    <div class="pika-sol-mock-block wide"><i class="ri-message-2-line"></i> @(tr ? "SMS Kampanya Oluşturma" : "SMS Campaign Builder")</div>
-                </div>
-                <div class="pika-sol-mock-row">
-                    <div class="pika-sol-mock-block"><i class="ri-group-line"></i> @(tr ? "Segment Alanı" : "Segment Area")</div>
-                    <div class="pika-sol-mock-block"><i class="ri-calendar-schedule-line"></i> @(tr ? "Zamanlama" : "Scheduling")</div>
-                </div>
-                <div class="pika-sol-mock-row">
-                    <div class="pika-sol-mock-block wide"><i class="ri-pie-chart-line"></i> @(tr ? "Kısa Rapor Kartı" : "Quick Report Card")</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+@await Html.PartialAsync("_MarketingHero")
 
 <!-- Değer Kutuları -->
 <section class="pika-sol-section">

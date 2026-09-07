@@ -7,69 +7,7 @@
     ViewData["BodyClass"] = "pika-platform-page";
 }
 
-<section class="ph-hero">
-    <div class="container">
-        <div class="row align-items-center g-5">
-            <div class="col-lg-7" data-aos="fade-right" data-aos-duration="700">
-                <span class="ph-eyebrow">@(tr ? "Platform — Zekâ" : "Platform — Intelligence")</span>
-                <h1 class="ph-hero-title">Pika 360</h1>
-                <p class="ph-hero-desc">
-                    @(tr ? "Pika 360, tek bir müşteriyi yalnızca profil olarak değil; değer, davranış, risk, iletişim erişimi ve açık fırsat bağlamıyla birlikte değerlendirmek için tasarlanmış karar ekranıdır." : "Pika 360 evaluates an individual customer beyond basic profile fields — assembling value score, behavior, churn risk, channel access, and active opportunities into one unified decision screen.")
-                </p>
-                <p class="ph-hero-desc" style="font-size:.95rem">@(tr ? "\"Bu müşteri şu anda nasıl bir durumda?\" sorusunun en hızlı cevabı bu ekranda toplanır." : "The fastest answer to \"what is this customer's exact situation right now?\" lives on this screen.")</p>
-                <div class="ph-hero-actions">
-                    <button type="button" class="ph-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal">
-                        @(tr ? "Demo Talep Et" : "Request a Demo") <i class="ri-arrow-right-up-line"></i>
-                    </button>
-                    <a href="@(wikiBase)pika-360" class="ph-btn-outline">
-                        @(tr ? "Teknik Detay — Wiki" : "Technical Specs — Wiki") <i class="ri-external-link-line"></i>
-                    </a>
-                </div>
-                <div class="ph-hero-tags mt-3">
-                    <span class="ph-tag"><i class="ri-shield-star-line"></i> Customer 360</span>
-                    <span class="ph-tag"><i class="ri-heart-pulse-line"></i> @(tr ? "Müşteri Değeri" : "Customer Value")</span>
-                    <span class="ph-tag"><i class="ri-alarm-warning-line"></i> @(tr ? "Kayıp Riski" : "Churn Risk")</span>
-                    <span class="ph-tag"><i class="ri-focus-3-line"></i> @(tr ? "Açık Fırsatlar" : "Open Opportunities")</span>
-                </div>
-            </div>
-            <div class="col-lg-5" data-aos="fade-left" data-aos-duration="700">
-                <div class="ph-module-card p-4" style="border:1px solid #d4e8b0">
-                    <div class="mb-3" style="font-size:.78rem;color:var(--pika-muted);font-weight:600;text-transform:uppercase;letter-spacing:.05em">@(tr ? "Tek Müşteri — Bütünleşik Görünüm" : "Single Customer — Unified View")</div>
-                    <div class="d-flex flex-column gap-2">
-                        <div class="d-flex align-items-center gap-3 p-2 rounded" style="background:#f8fdf0">
-                            <div class="ph-trust-icon flex-shrink-0" style="width:32px;height:32px;font-size:.8rem">V</div>
-                            <div>
-                                <div class="fw-bold" style="font-size:.82rem">@(tr ? "Müşteri Değeri" : "Customer Value")</div>
-                                <div style="font-size:.73rem;color:var(--pika-muted)">@(tr ? "Göreli önem, ticari katkı" : "Relative importance & commercial yield")</div>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center gap-3 p-2 rounded" style="background:#f8fdf0">
-                            <div class="ph-trust-icon flex-shrink-0" style="width:32px;height:32px;font-size:.8rem">R</div>
-                            <div>
-                                <div class="fw-bold" style="font-size:.82rem">@(tr ? "Risk Görünürlüğü" : "Risk Visibility")</div>
-                                <div style="font-size:.73rem;color:var(--pika-muted)">@(tr ? "Pasifleşme ve kayıp sinyalleri" : "Dormancy and attrition indicators")</div>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center gap-3 p-2 rounded" style="background:#f8fdf0">
-                            <div class="ph-trust-icon flex-shrink-0" style="width:32px;height:32px;font-size:.8rem">C</div>
-                            <div>
-                                <div class="fw-bold" style="font-size:.82rem">@(tr ? "Kanal Erişimi" : "Channel Reach")</div>
-                                <div style="font-size:.73rem;color:var(--pika-muted)">@(tr ? "Hangi kanallara ulaşılabiliyor?" : "Which delivery channels are verified & permitted?")</div>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center gap-3 p-2 rounded" style="background:#f8fdf0">
-                            <div class="ph-trust-icon flex-shrink-0" style="width:32px;height:32px;font-size:.8rem">F</div>
-                            <div>
-                                <div class="fw-bold" style="font-size:.82rem">@(tr ? "Açık Fırsatlar" : "Open Opportunities")</div>
-                                <div style="font-size:.73rem;color:var(--pika-muted)">@(tr ? "Mevcut aksiyon fırsatı bağlamı" : "Live repurchase or cross-sell recommendations")</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+@await Html.PartialAsync("_MarketingHero")
 
 @* ── NEDEN GÜÇLÜ ────────────────────────────────────────────── *@
 <section class="ph-section ph-section-alt">

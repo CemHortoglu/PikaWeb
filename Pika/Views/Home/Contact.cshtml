@@ -6,70 +6,46 @@
     var culture = (ViewData["culture"] as string ?? ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").ToLowerInvariant();
     var isTr = culture == "tr";
     ViewData["Title"] = isTr ? "İletişim | Pika" : "Contact Us | Pika";
-    ViewData["MetaDescription"] = isTr
-        ? "Pika ekibiyle iletişime geçin. Satış, destek ve iş birliği talepleriniz için bize ulaşın."
-        : "Get in touch with the Pika team for sales, support, and partnership inquiries.";
+    ViewData["MetaDescription"] = isTr ? "Pika ekibiyle iletişime geçin. Satış, destek ve iş birliği talepleriniz için bize ulaşın." : "Get in touch with the Pika team for sales, support, and partnership inquiries.";
 }
-<section class="pika-corp-hero">
-    <div class="container">
-        <div class="pika-corp-hero__grid">
-            <div>
-                <span class="pika-corp-chip" data-i18n="contact.chip">@(isTr ? "Kurumsal İletişim" : "Corporate Contact")</span>
-                <h1 class="pika-corp-title" data-i18n="contact.h1">@(isTr ? "İletişim & Destek" : "Contact & Support")</h1>
-                <p class="pika-corp-lead" data-i18n="contact.lead">@(isTr ? "Pika ekibiyle iletişime geçin. Satış, destek ve iş birliği talepleriniz için buradayız." : "Get in touch with the Pika team. We are here for sales, support, and partnership inquiries.")</p>
-                <div class="pika-corp-kpi-grid">
-                    <div class="pika-corp-kpi"><strong>@(isTr ? "30 dk" : "30 min")</strong><span data-i18n="contact.kpi1Label">@(isTr ? "Kritik taleplere dönüş" : "Response to critical requests")</span></div>
-                    <div class="pika-corp-kpi"><strong data-i18n="contact.kpi2Val">@(isTr ? "Aynı Gün" : "Same Day")</strong><span data-i18n="contact.kpi2Label">@(isTr ? "Standart geri bildirim" : "Standard turnaround")</span></div>
-                    <div class="pika-corp-kpi"><strong data-i18n="contact.kpi3Val">@(isTr ? "Çok Kanal" : "Omnichannel")</strong><span data-i18n="contact.kpi3Label">@(isTr ? "Mail, telefon, portal" : "Email, phone, portal")</span></div>
-                </div>
-            </div>
-            <aside class="pika-corp-aside">
-                <h3 data-i18n="contact.infoTitle">@(isTr ? "İletişim Bilgileri" : "Contact Information")</h3>
-                <div class="pika-corp-aside-list">
-                    <div class="pika-corp-aside-item"><strong data-i18n="contact.mail">@(isTr ? "E-posta" : "Email")</strong><span>@site.Contact.SupportEmail</span></div>
-                    <div class="pika-corp-aside-item"><strong data-i18n="contact.phone">@(isTr ? "Telefon" : "Phone")</strong><span>@site.Contact.SupportPhoneDisplay</span></div>
-                    <div class="pika-corp-aside-item"><strong data-i18n="contact.address">@(isTr ? "Adres" : "Address")</strong><span>@site.Contact.Address</span></div>
-                </div>
-            </aside>
-        </div>
+@section Styles {
+    <link href="~/css/pika-contact.css" rel="stylesheet" asp-append-version="true" />
+}
+<div class="contact-page">
+ <section class="contact-opening">
+  <div class="contact-aura" aria-hidden="true"></div>
+  <div class="container contact-grid">
+   <div class="contact-intro">
+    <nav class="contact-breadcrumb" aria-label="@(isTr ? "Sayfa yolu" : "Breadcrumb")"><a href="@(isTr ? "/" : "/en/")">Pika</a><span>/</span><span>@(isTr ? "İletişim" : "Contact")</span></nav>
+    <div class="contact-eyebrow"><span></span> @(isTr ? "TANIŞMAKLA BAŞLAYALIM" : "LET’S START WITH HELLO")</div>
+    <h1>@(isTr ? "İyi bir ilişki," : "A good relationship")<br/><em>@(isTr ? "bir merhabayla başlar." : "starts with hello.")</em></h1>
+    <p>@(isTr ? "Aklınızda bir soru, yeni bir fikir ya da birlikte büyütebileceğimiz bir iş var mı? Sizi dinlemek isteriz." : "Have a question, a new idea, or an opportunity to grow together? We’d love to hear from you.")</p>
+    <div class="contact-direct">
+     <a href="mailto:@site.Contact.SupportEmail"><span class="contact-icon"><i class="ri-mail-line" aria-hidden="true"></i></span><span><small>@(isTr ? "BİZE YAZIN" : "WRITE TO US")</small><strong>@site.Contact.SupportEmail</strong></span><b aria-hidden="true">↗</b></a>
+     <a href="tel:@site.Contact.SupportPhone"><span class="contact-icon"><i class="ri-phone-line" aria-hidden="true"></i></span><span><small>@(isTr ? "BİZİ ARAYIN" : "GIVE US A CALL")</small><strong>@site.Contact.SupportPhoneDisplay</strong></span><b aria-hidden="true">↗</b></a>
     </div>
-</section>
-
-<section class="pika-section pika-corp-section">
-    <div class="container">
-        <div class="row g-4">
-            <div class="col-lg-6">
-                <div class="pika-corp-shell h-100">
-                    <h3 class="pika-h3 mb-3" data-i18n="contact.formTitle">@(isTr ? "Bize Ulaşın" : "Send Us a Message")</h3>
-                    <form id="contactForm" class="row g-3" data-recipient-email="@site.Mail.ContactFormRecipientEmail">
-                        <div class="col-md-6"><label class="form-label" data-i18n="form.fullName">@(isTr ? "Ad Soyad" : "Full Name")</label><input class="form-control pika-input" name="fullName" data-i18n-placeholder="contact.formNamePh" placeholder="@(isTr ? "Ad Soyad" : "Full Name")" required></div>
-                        <div class="col-md-6"><label class="form-label" data-i18n="form.email">@(isTr ? "E-posta" : "Email")</label><input type="email" class="form-control pika-input" name="email" data-i18n-placeholder="contact.formEmailPh" placeholder="@(isTr ? "mail@firma.com" : "name@company.com")" required></div>
-                        <div class="col-12"><label class="form-label" data-i18n="form.message">@(isTr ? "Mesajınız" : "Your Message")</label><textarea class="form-control pika-input" rows="5" name="message" data-i18n-placeholder="contact.formMsgPh" placeholder="@(isTr ? "Kısaca ihtiyacınızı yazın..." : "Tell us about your requirements...")" required></textarea></div>
-                        <div class="col-12 d-flex gap-2 flex-wrap"><button type="button" class="btn pika-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal" data-i18n="contact.demo">@(isTr ? "Demo Talep Et" : "Request a Demo")</button><button type="submit" class="btn pika-btn-outline" data-i18n="contact.send">@(isTr ? "Mesaj Gönder" : "Send Message")</button></div>
-                        <div class="small text-secondary" data-i18n="form.privacy">@(isTr ? "Bilgileriniz gizli tutulur." : "Your data is kept confidential.")</div>
-                        <div id="contactResult" class="pika-alert d-none mt-2"></div>
-                    </form>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="pika-corp-shell h-100">
-                    <h3 class="pika-h3 mb-3" data-i18n="contact.infoTitle">@(isTr ? "İletişim Bilgileri" : "Contact Information")</h3>
-                    <div class="pika-info-line"><i class="fa-regular fa-envelope"></i><div><div class="fw-semibold" data-i18n="contact.mail">@(isTr ? "E-posta" : "Email")</div><a class="pika-link" href="mailto:@site.Contact.SupportEmail">@site.Contact.SupportEmail</a></div></div>
-                    <div class="pika-info-line"><i class="fa-solid fa-phone"></i><div><div class="fw-semibold" data-i18n="contact.phone">@(isTr ? "Telefon" : "Phone")</div><div class="text-secondary">@site.Contact.SupportPhoneDisplay</div></div></div>
-                    <div class="pika-info-line"><i class="fa-solid fa-location-dot"></i><div><div class="fw-semibold" data-i18n="contact.address">@(isTr ? "Adres" : "Address")</div><div class="text-secondary">@site.Contact.Address</div></div></div>
-                    @if (!string.IsNullOrWhiteSpace(site.Contact.MapEmbedUrl))
-                    {
-                        <div class="pika-map mt-3 ratio ratio-16x9">
-                            <iframe src="@site.Contact.MapEmbedUrl" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="pika-map mt-3"><div class="pika-map-placeholder"><i class="fa-regular fa-map"></i><div class="text-secondary small mt-2" data-i18n="contact.map">@(isTr ? "Harita yüklenemedi" : "Map unavailable")</div></div></div>
-                    }
-                    <div class="mt-4"><div class="pika-cta-mini"><div><div class="fw-semibold" data-i18n="contact.ctaT">@(isTr ? "Hızlı Bir Başlangıç Yapın" : "Get Started Quickly")</div><div class="text-secondary small" data-i18n="contact.ctaD">@(isTr ? "15 dakikalık demo ile platformun gücünü keşfedin." : "Discover the power of Pika with a 15-minute live walkthrough.")</div></div><button type="button" class="btn btn-sm pika-btn-outline" data-bs-toggle="modal" data-bs-target="#demoModal" data-i18n="contact.ctaB">@(isTr ? "Demo Al" : "Book Demo")</button></div></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+    <div class="contact-signature"><span aria-hidden="true">✳</span><span>@(isTr ? "Veriden içgörüye. Tanışmadan iş birliğine." : "From data to insight. From hello to collaboration.")</span></div>
+   </div>
+   <div class="contact-form-panel">
+    <div class="contact-form-heading"><span>@(isTr ? "SÖZ SİZDE" : "OVER TO YOU")</span><h2>@(isTr ? "Nasıl yardımcı olabiliriz?" : "How can we help?")</h2><p>@(isTr ? "İhtiyacınızı kısaca paylaşın. Ekibimiz sizinle iletişime geçsin." : "Tell us a little about what you need. Our team will get in touch.")</p></div>
+    <form id="contactForm" data-recipient-email="@site.Mail.ContactFormRecipientEmail" class="contact-form">
+     <div class="contact-fields"><div><label for="contact-full-name">@(isTr ? "Ad soyad" : "Full name") <span>*</span></label><input id="contact-full-name" class="form-control" name="fullName" autocomplete="name" placeholder="@(isTr ? "Adınız ve soyadınız" : "Your full name")" required></div><div><label for="contact-email">@(isTr ? "E-posta adresi" : "Email address") <span>*</span></label><input id="contact-email" class="form-control" name="email" type="email" autocomplete="email" placeholder="@(isTr ? "siz@firmaniz.com" : "you@company.com")" required></div></div>
+     <div><label for="contact-message">@(isTr ? "Mesajınız" : "Your message") <span>*</span></label><textarea id="contact-message" class="form-control" name="message" rows="8" style="min-height: 200px;" placeholder="@(isTr ? "Sorunuzdan, hedefinizden veya birlikte neler yapabileceğimizden bahsedin…" : "Tell us about your question, your goals, or what we could do together…")" required></textarea></div>
+     <p class="contact-privacy"><i class="ri-lock-line" aria-hidden="true"></i><span>@(isTr ? "Bilgilerinizin işlenmesi hakkında " : "Learn how we handle your information in our ")<a href="@(isTr ? "/gizlilik-politikasi" : "/en/privacy-policy")">@(isTr ? "Gizlilik Politikası’nı" : "Privacy Policy")</a>@(isTr ? " inceleyebilirsiniz." : ".")</span></p>
+     <button type="submit" class="contact-submit">@(isTr ? "Mesajı gönder" : "Send message") <span aria-hidden="true">↗</span></button>
+     <div id="contactResult" class="pika-alert d-none" role="status" aria-live="polite" aria-atomic="true"></div>
+    </form>
+   </div>
+  </div>
+ </section>
+ <section class="contact-next">
+  <div class="container contact-next-grid">
+   <div class="contact-location"><div class="contact-section-label">01 / @(isTr ? "İLETİŞİM NOKTAMIZ" : "WHERE TO FIND US")</div><h2>@(isTr ? "Dijital bağlar," : "Digital connections,")<br/>@(isTr ? "gerçek bir ekip." : "a real team.")</h2><address><i class="ri-map-pin-line" aria-hidden="true"></i><span>@site.Contact.Address</span></address>
+    @if (!string.IsNullOrWhiteSpace(site.Contact.MapEmbedUrl)) {
+     <div class="contact-map"><iframe title="@(isTr ? "Pika ofis konumu" : "Pika office location")" src="@site.Contact.MapEmbedUrl" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>
+    }
+   </div>
+   <aside class="contact-demo"><span class="contact-demo-symbol" aria-hidden="true">✳</span><div class="contact-section-label">02 / @(isTr ? "PIKA’YI YAKINDAN TANIYIN" : "GET TO KNOW PIKA")</div><h2>@(isTr ? "Sizin veriniz." : "Your data.")<br/><em>@(isTr ? "Sizin büyüme hikâyeniz." : "Your growth story.")</em></h2><p>@(isTr ? "Müşteri zekâsından kişiye özel iletişime, Pika’nın işletmeniz için neler yapabileceğini birlikte keşfedelim." : "From customer intelligence to personal communication, let’s explore what Pika can do for your business.")</p><button type="button" data-bs-toggle="modal" data-bs-target="#demoModal">@(isTr ? "Bir demo planlayalım" : "Let’s plan a demo") <span aria-hidden="true">↗</span></button></aside>
+  </div>
+ </section>
+</div>

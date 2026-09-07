@@ -6,57 +6,7 @@
 }
 
 <!-- HERO: Trust & Governance -->
-<section class="pika-sol-hero" data-module="consent">
-    <div class="container">
-        <nav class="pika-sol-breadcrumb" data-aos="fade-down" data-aos-duration="500">
-            <a href="@(tr ? "/" : "/en/")">@(tr ? "Ana Sayfa" : "Home")</a>
-            <span class="sep">/</span>
-            <a href="@(tr ? "/" : "/en/")">@(tr ? "Çözümler" : "Solutions")</a>
-            <span class="sep">/</span>
-            <span>Consent Management</span>
-        </nav>
-        <div class="pika-sol-hero-grid">
-            <div data-aos="fade-right" data-aos-duration="700">
-                <h1>@(tr ? "İzin ve uyumluluk süreçlerini kontrol altında tutun" : "Keep permission and compliance processes under control")</h1>
-                <p class="pika-sol-hero-desc">@(tr ? "Pika Consent Management; iletişim izinlerini güvenli ve merkezi şekilde yönetir, tercih değişikliklerini takip eder ve kampanya operasyonlarını uyumluluk çerçevesinde yürütmenizi sağlar." : "Pika Consent Management manages communication permissions securely and centrally, tracks preference changes and enables you to run campaign operations within a compliance framework.")</p>
-                <div class="pika-sol-hero-actions">
-                    <button type="button" class="btn pika-btn-primary px-4 py-2" data-bs-toggle="modal" data-bs-target="#demoModal">@(tr ? "Demo Talep Et" : "Request a Demo") <i class="ri-arrow-right-up-line"></i></button>
-                    <a href="#features" class="btn pika-btn-ghost px-4 py-2">@(tr ? "Consent Management'ı İncele" : "Explore Consent Management")</a>
-                </div>
-                <div class="pika-sol-hero-tags">
-                    <span class="pika-sol-tag"><i class="ri-shield-check-line"></i> @(tr ? "İzin yönetimi" : "Permission management")</span>
-                    <span class="pika-sol-tag"><i class="ri-file-shield-2-line"></i> @(tr ? "Uyum süreçleri" : "Compliance processes")</span>
-                    <span class="pika-sol-tag"><i class="ri-settings-3-line"></i> @(tr ? "Tercih merkezi" : "Preference center")</span>
-                    <span class="pika-sol-tag"><i class="ri-link"></i> @(tr ? "Kampanya entegrasyonu" : "Campaign integration")</span>
-                </div>
-            </div>
-            <div class="pika-sol-hero-scene" data-aos="fade-left" data-aos-duration="700" data-aos-delay="200">
-                <div class="pika-sol-scene-main">
-                    <div class="pika-sol-scene-row">
-                        <div class="pika-sol-scene-block wide"><i class="ri-shield-check-line"></i> @(tr ? "İzin Kaydı" : "Permission Record")</div>
-                        <div class="pika-sol-scene-block"><i class="ri-toggle-line"></i> @(tr ? "Tercih" : "Preference")</div>
-                    </div>
-                    <div class="pika-sol-scene-row">
-                        <div class="pika-sol-scene-block"><i class="ri-file-shield-2-line"></i> @(tr ? "Uyum" : "Compliance")</div>
-                        <div class="pika-sol-scene-block"><i class="ri-smartphone-line"></i> @(tr ? "Kanal" : "Channel")</div>
-                    </div>
-                    <div class="pika-sol-scene-row">
-                        <div class="pika-sol-scene-block wide"><i class="ri-history-line"></i> @(tr ? "Denetim Kaydı" : "Audit Trail")</div>
-                    </div>
-                </div>
-                <div class="pika-sol-scene-back">
-                    <div class="pika-sol-scene-row">
-                        <div class="pika-sol-scene-block"><i class="ri-lock-line"></i> KVKK</div>
-                        <div class="pika-sol-scene-block"><i class="ri-global-line"></i> GDPR</div>
-                    </div>
-                </div>
-                <div class="pika-sol-scene-float" style="bottom:15%;left:-10%"><i class="ri-shield-check-line"></i> @(tr ? "İzinli" : "Permitted")</div>
-                <div class="pika-sol-scene-float" style="top:8%;right:-6%"><i class="ri-lock-line"></i> KVKK ✓</div>
-                <div class="pika-sol-scene-float" style="bottom:3%;right:10%"><i class="ri-toggle-line"></i> SMS: ON</div>
-            </div>
-        </div>
-    </div>
-</section>
+@await Html.PartialAsync("_MarketingHero")
 
 <!-- STICKY SUBNAV -->
 <div class="pika-sol-subnav-wrap">

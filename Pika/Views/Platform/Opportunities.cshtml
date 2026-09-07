@@ -7,78 +7,7 @@
     ViewData["BodyClass"] = "pika-platform-page";
 }
 
-<section class="ph-hero">
-    <div class="container">
-        <div class="row align-items-center g-5">
-            <div class="col-lg-7" data-aos="fade-right" data-aos-duration="700">
-                <span class="ph-eyebrow">@(tr ? "Platform — Fırsat & Karar" : "Platform — Opportunity & Decision")</span>
-                <h1 class="ph-hero-title">@(tr ? "Günün Fırsatları" : "Daily Opportunities")</h1>
-                <p class="ph-hero-desc">
-                    @(tr ? "Her müşteri aynı değildir. Bazı müşteride tekrar satın alma zamanı yaklaşır, bazısında yeni ürün ilişkisi doğar, bazısında pasifleşme riski artar." : "Not all customers are the same. For some, a repurchase window approaches; for others, new product affinities emerge or dormancy risks increase.")
-                </p>
-                <p class="ph-hero-desc" style="font-size:.95rem">
-                    @(tr ? "Pika'nın fırsat motoru, bu sinyalleri müşteri ve ürün verisinden okuyarak öncelikli aksiyon listesi oluşturur. Geniş kitlelere aynı mesajı göndermek yerine, doğru müşteriyle doğru bağlamda ilgilenmek." : "Pika's opportunity engine analyzes these signals from customer and product data to produce a prioritized action list. Rather than broadcasting generic messages, engage the right customer in the right context.")
-                </p>
-                <div class="ph-hero-actions">
-                    <button type="button" class="ph-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal">
-                        @(tr ? "Demo Talep Et" : "Request a Demo") <i class="ri-arrow-right-up-line"></i>
-                    </button>
-                    <a href="@(wikiBase)firsat-turleri" class="ph-btn-outline">
-                        @(tr ? "Teknik Detay — Wiki" : "Technical Specs — Wiki") <i class="ri-external-link-line"></i>
-                    </a>
-                </div>
-                <div class="ph-hero-tags mt-3">
-                    <span class="ph-tag"><i class="ri-refresh-line"></i> @(tr ? "Tekrar Satın Alma" : "Repeat Purchase")</span>
-                    <span class="ph-tag"><i class="ri-store-2-line"></i> Cross-sell</span>
-                    <span class="ph-tag"><i class="ri-arrow-up-circle-line"></i> Upsell</span>
-                    <span class="ph-tag"><i class="ri-user-received-line"></i> @(tr ? "Geri Kazanım" : "Win-back")</span>
-                    <span class="ph-tag"><i class="ri-heart-2-line"></i> @(tr ? "Sadakat" : "Loyalty")</span>
-                </div>
-            </div>
-            <div class="col-lg-5" data-aos="fade-left" data-aos-duration="700">
-                <div class="ph-module-card p-4" style="border:1px solid #d4e8b0">
-                    <div class="mb-3 d-flex align-items-center gap-2">
-                        <i class="ri-sun-line" style="color:#f59e0b;font-size:1.1rem"></i>
-                        <span style="font-size:.78rem;color:var(--pika-muted);font-weight:600;text-transform:uppercase;letter-spacing:.05em">@(tr ? "Günün Fırsatları — Örnek" : "Daily Opportunities — Example")</span>
-                    </div>
-                    <div class="d-flex flex-column gap-2">
-                        <div class="d-flex align-items-start gap-3 p-2 rounded" style="background:#fff8e1">
-                            <div style="width:8px;height:8px;border-radius:50%;background:#f59e0b;flex-shrink:0;margin-top:4px"></div>
-                            <div>
-                                <div class="fw-bold" style="font-size:.82rem">@(tr ? "Tekrar satın alma" : "Repeat purchase")</div>
-                                <div style="font-size:.73rem;color:var(--pika-muted)">@(tr ? "Geçmiş ritme göre ihtiyaç penceresi yaklaşıyor" : "Need window approaching based on past rhythm")</div>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-start gap-3 p-2 rounded" style="background:#f0fdf4">
-                            <div style="width:8px;height:8px;border-radius:50%;background:#22c55e;flex-shrink:0;margin-top:4px"></div>
-                            <div>
-                                <div class="fw-bold" style="font-size:.82rem">Cross-sell</div>
-                                <div style="font-size:.73rem;color:var(--pika-muted)">@(tr ? "Sepet birlikteliği tamamlayıcı ürün adayı destekliyor" : "Basket co-occurrence supports complementary candidate")</div>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-start gap-3 p-2 rounded" style="background:#fef2f2">
-                            <div style="width:8px;height:8px;border-radius:50%;background:#ef4444;flex-shrink:0;margin-top:4px"></div>
-                            <div>
-                                <div class="fw-bold" style="font-size:.82rem">@(tr ? "Geri kazanım" : "Win-back")</div>
-                                <div style="font-size:.73rem;color:var(--pika-muted)">@(tr ? "Beklenen davranıştan uzun süre pasif kalma sinyali" : "Dormancy signal exceeding expected interval")</div>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-start gap-3 p-2 rounded" style="background:#f0f9e4">
-                            <div style="width:8px;height:8px;border-radius:50%;background:#84c225;flex-shrink:0;margin-top:4px"></div>
-                            <div>
-                                <div class="fw-bold" style="font-size:.82rem">@(tr ? "Sadakat / değer koruma" : "Loyalty / value protection")</div>
-                                <div style="font-size:.73rem;color:var(--pika-muted)">@(tr ? "Yüksek değerli müşteri ilişki kalitesi takibi" : "Relationship quality tracking for high-value customers")</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-3 pt-2" style="border-top:1px solid #eee;font-size:.7rem;color:var(--pika-muted)">
-                        @(tr ? "Demo görünüm — gerçek veriler üretimde hesaplanır" : "Demo preview — live data computed in production")
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+@await Html.PartialAsync("_MarketingHero")
 
 @* ── PROBLEM ────────────────────────────────────────────────── *@
 <section class="ph-section ph-section-alt">

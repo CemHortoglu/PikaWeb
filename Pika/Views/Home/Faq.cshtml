@@ -13,32 +13,7 @@
 }
 
 <!-- ═══════════════════════════ HERO ═══════════════════════════ -->
-<section class="faq-hero-section">
-    <div class="container">
-        <nav class="faq-breadcrumb" aria-label="breadcrumb">
-            <a href="@(tr ? "/" : "/en/")">Pika</a>
-            <span class="sep">/</span>
-            <span>@(tr ? "Kaynaklar" : "Resources")</span>
-            <span class="sep">/</span>
-            <span>@(tr ? "Sıkça Sorulan Sorular" : "FAQ")</span>
-        </nav>
-
-        <div class="max-w-750">
-            <div class="faq-eyebrow">
-                <i class="ri-question-answer-line me-1"></i>
-                <span>@(tr ? "BİLGİ VE SORU MERKEZİ" : "KNOWLEDGE & FAQ")</span>
-            </div>
-            <h1 class="faq-hero-title">
-                @(tr ? "Pika hakkında merak edilen sorular" : "Frequently asked questions about Pika")
-            </h1>
-            <p class="faq-hero-lead">
-                @(tr 
-                    ? "Ürün mimarisinden veri entegrasyonuna, karar motorundan izin yönetimine kadar en sık karşılaşılan soruların net ve doğrulanmış yanıtları."
-                    : "Clear and factual answers covering architecture, integrations, opportunity engines, campaigns, consent, and AI safeguards.")
-            </p>
-        </div>
-    </div>
-</section>
+@await Html.PartialAsync("_MarketingHero")
 
 <!-- ═══════════════════════════ FAQ BODY ═══════════════════════════ -->
 <section class="faq-section" itemscope itemtype="https://schema.org/FAQPage">
