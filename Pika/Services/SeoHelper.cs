@@ -153,10 +153,10 @@ public static class SeoHelper
         ["Solutions.ConsentManagement"] = new(
             "/cozumler/consent-management",
             "/en/solutions/consent-management",
-            "Consent Management | İzin ve Tercih Yönetimi",
-            "Consent Management | Consent & Preference Management",
-            "İYS izin durumu doğrulaması, opt-out ve tercih yönetimi ile ticari elektronik ileti izin süreçlerini merkezi olarak denetleyin.",
-            "Centrally manage opt-in consents, IYS status verification, and opt-out workflows supporting KVKK/IYS consent governance.",
+            "Consent Management | İYS, Opt-Out ve Tercih Yönetimi | Pika",
+            "Consent Management | Consent, Opt-Out & Preference Management | Pika",
+            "Pika Consent Management; gönderim öncesi IYS durum kontrolü, merkezi opt-out yönetimi ve Email/SMS tercih güncelleme akışıyla iletişim uygunluğunu kontrol etmeye yardımcı olur.",
+            "Pika Consent Management helps govern communication eligibility through pre-dispatch IYS status checks, centralized opt-out handling and an Email/SMS preference update flow.",
             "Consent Management",
             "Consent Management"),
 

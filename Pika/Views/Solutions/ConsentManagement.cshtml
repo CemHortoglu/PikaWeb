@@ -1,311 +1,1150 @@
 @{
-    var tr = (ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").Equals("tr", StringComparison.OrdinalIgnoreCase);
-    ViewData["Title"] = tr ? "Consent Management | Pika ile İzin ve Uyumluluk Yönetimi" : "Consent Management | Permission & Compliance Management with Pika";
-    ViewData["MetaDescription"] = tr ? "Pika Consent Management ile iletişim izinlerini merkezi olarak yönetin, uyumluluk süreçlerini otomatikleştirin ve güvenli kampanya operasyonu yürütün." : "Manage communication permissions centrally, automate compliance processes and run secure campaign operations with Pika Consent Management.";
-    ViewData["MetaKeywords"] = "consent management,izin yönetimi,uyumluluk,tercih merkezi,kvkk,gdpr,iletişim izni,pika";
+    var culture = ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr";
+    var tr = culture.Equals("tr", StringComparison.OrdinalIgnoreCase);
+    ViewData["BodyClass"] = "pika-platform-page";
 }
 
-<!-- HERO: Trust & Governance -->
-@await Html.PartialAsync("_MarketingHero")
+@section Styles {
+    <link rel="stylesheet" href="~/css/pika-consent-management-page.css" asp-append-version="true" />
+}
 
-<!-- STICKY SUBNAV -->
+@* ── 01 HERO ─────────────────────────────────────────────────── *@
+<section class="inner-hero inner-hero--consent">
+    <div class="inner-atmosphere" aria-hidden="true"><span></span><span></span></div>
+    <div class="container inner-hero-grid">
+        <div class="inner-intro">
+            <nav class="inner-breadcrumb" aria-label="@(tr ? "Sayfa yolu" : "Breadcrumb")">
+                <a href="@(tr ? "/" : "/en/")">Pika</a>
+                <span>/</span>
+                <a href="@(tr ? "/pika" : "/en/pika")">@(tr ? "Pika Nedir?" : "What Is Pika?")</a>
+                <span>/</span>
+                <span>Consent Management</span>
+            </nav>
+            <div class="inner-eyebrow"><span></span>CONSENT MANAGEMENT</div>
+            @if (tr)
+            {
+                <h1>
+                    İzin durumunu,<br />
+                    gönderim kararının<br />
+                    doğal parçası haline getirin.
+                </h1>
+                <p>
+                    Pika Consent Management; gönderim öncesi IYS durum kontrolünü, merkezi opt-out kaydını ve Email/SMS tercih güncelleme akışını iletişim uygunluğu bağlamında bir araya getirir.
+                </p>
+                <p class="text-muted small">
+                    Amaç yasal sonucu otomatik olarak garanti etmek değil; mevcut izin, opt-out ve kanal uygunluğu bağlamını iletişimden önce kontrol edilebilir hale getirmektir.
+                </p>
+            }
+            else
+            {
+                <h1>
+                    Make consent state<br />
+                    a natural part<br />
+                    of the delivery decision.
+                </h1>
+                <p>
+                    Pika Consent Management brings pre-dispatch IYS status checks, centralized opt-out state and the Email/SMS preference-update flow into communication-eligibility context.
+                </p>
+                <p class="text-muted small">
+                    The objective is not to automatically guarantee a legal outcome, but to make available consent, opt-out and channel-eligibility context controllable before communication.
+                </p>
+            }
+            <div class="inner-actions">
+                <button class="inner-primary" type="button" data-bs-toggle="modal" data-bs-target="#demoModal">@(tr ? "Demo Talep Et" : "Request a Demo") ↗</button>
+                <a class="inner-secondary" href="@(tr ? "/cozumler/campaign-manager" : "/en/solutions/campaign-manager")">@(tr ? "Campaign Manager'ı Keşfedin" : "Explore Campaign Manager") →</a>
+                <a class="inner-hero-anchor" href="#inner-content" aria-label="@(tr ? "İçeriğe atla" : "Skip to content")"><i class="ri-arrow-down-line" aria-hidden="true"></i></a>
+            </div>
+        </div>
+
+        <div class="inner-scene" aria-hidden="true">
+            <div class="inner-scene-orbit"></div>
+            <div class="inner-scene-window">
+                <div class="inner-window-bar">
+                    <strong>pika<span>✳</span></strong>
+                    <span>@(tr ? "İzin ve Tercih Yönetimi" : "Consent & Preference Management")</span>
+                    <small>@(tr ? "Örnek görünüm" : "Illustration")</small>
+                </div>
+                <div class="inner-shield">
+                    <i class="ri-shield-check-line" aria-hidden="true"></i>
+                    <h3 class="mt-2 mb-0">@(tr ? "İzin ve Tercih Yönetimi" : "Consent & Preference Management")</h3>
+                </div>
+                <div class="inner-checks">
+                    <span>@(tr ? "İZİN BAĞLAMI" : "CONSENT CONTEXT")</span>
+                    <span>@(tr ? "IYS KONTROLÜ" : "IYS CHECK")</span>
+                    <span>OPT-OUT</span>
+                    <span>@(tr ? "KANAL UYGUNLUĞU" : "CHANNEL ELIGIBILITY")</span>
+                    <span>@(tr ? "GÖNDERİM KARARI" : "DELIVERY DECISION")</span>
+                </div>
+            </div>
+            <div class="inner-scene-caption">CUSTOMER INTELLIGENCE. MEANINGFUL CONNECTIONS.</div>
+        </div>
+    </div>
+</section>
+<div id="inner-content" class="inner-anchor"></div>
+
+@* ── STICKY SUBNAV ────────────────────────────────────────────── *@
 <div class="pika-sol-subnav-wrap">
     <div class="container">
-        <nav class="pika-sol-subnav">
+        <nav class="pika-sol-subnav" aria-label="@(tr ? "Sayfa içi gezinti" : "In-page navigation")">
             <a href="#overview">@(tr ? "Genel Bakış" : "Overview")</a>
-            <a href="#features">@(tr ? "Özellikler" : "Features")</a>
-            <a href="#showcase">@(tr ? "Tercih Merkezi" : "Preference Center")</a>
-            <a href="#usecases">@(tr ? "Kullanım Senaryoları" : "Use Cases")</a>
-            <a href="#platform">@(tr ? "Entegrasyon" : "Integration")</a>
-            <a href="#faq">SSS / FAQ</a>
+            <a href="#iys">İYS</a>
+            <a href="#optout">Opt-Out</a>
+            <a href="#preferences">@(tr ? "Tercihler" : "Preferences")</a>
+            <a href="#channels">@(tr ? "Kanallar" : "Channels")</a>
+            <a href="#platform">@(tr ? "Platform İlişkisi" : "Platform Relationships")</a>
+            <a href="#faq">@(tr ? "SSS" : "FAQ")</a>
         </nav>
     </div>
 </div>
 
-<!-- COMPLIANCE STRIP (light pills) -->
-<section class="pika-sol-section pika-sol-channel-strip" id="overview">
-    <div class="container">
-        <h2 class="pika-sol-section-title text-center" data-aos="fade-up">@(tr ? "Uyumluluk ve güven altyapısı" : "Compliance & trust infrastructure")</h2>
-        <div class="pika-sol-channel-pills" data-aos="fade-up" data-aos-delay="100">
-            <div class="pika-sol-channel-pill"><i class="ri-lock-line"></i> KVKK</div>
-            <div class="pika-sol-channel-pill"><i class="ri-global-line"></i> GDPR</div>
-            <div class="pika-sol-channel-pill"><i class="ri-history-line"></i> @(tr ? "Denetim Kaydı" : "Audit Trail")</div>
-            <div class="pika-sol-channel-pill"><i class="ri-shield-check-line"></i> @(tr ? "İzin Doğrulama" : "Permission Check")</div>
-        </div>
-    </div>
-</section>
-
-<!-- TRUST STRIP -->
-<section class="pika-sol-section">
+@* ── TRUST STRIP ──────────────────────────────────────────────── *@
+<section class="pika-sol-section py-4">
     <div class="container">
         <div class="pika-sol-trust-strip" data-aos="fade-up">
-            <div class="pika-sol-trust-item"><i class="ri-database-2-line"></i><span>@(tr ? "Merkezi kayıt" : "Central registry")</span></div>
-            <div class="pika-sol-trust-item"><i class="ri-toggle-line"></i><span>@(tr ? "Tercih yönetimi" : "Preference mgmt")</span></div>
-            <div class="pika-sol-trust-item"><i class="ri-smartphone-line"></i><span>@(tr ? "Kanal bazlı izin" : "Channel-based")</span></div>
-            <div class="pika-sol-trust-item"><i class="ri-link"></i><span>@(tr ? "Kampanya entegrasyonu" : "Campaign integration")</span></div>
-            <div class="pika-sol-trust-item"><i class="ri-shield-check-line"></i><span>@(tr ? "Otomatik doğrulama" : "Auto verification")</span></div>
+            <div class="pika-sol-trust-item"><i class="ri-shield-check-line"></i><span>@(tr ? "Gönderim Öncesi Kontrol" : "Pre-Send Check")</span></div>
+            <div class="pika-sol-trust-item"><i class="ri-search-eye-line"></i><span>@(tr ? "IYS Durum Kontrolü" : "IYS Status Check")</span></div>
+            <div class="pika-sol-trust-item"><i class="ri-forbid-2-line"></i><span>@(tr ? "Merkezi Opt-Out" : "Central Opt-Out")</span></div>
+            <div class="pika-sol-trust-item"><i class="ri-toggle-line"></i><span>@(tr ? "Email / SMS Tercihleri" : "Email / SMS Preferences")</span></div>
+            <div class="pika-sol-trust-item"><i class="ri-check-double-line"></i><span>@(tr ? "Kanal Uygunluğu" : "Channel Eligibility")</span></div>
         </div>
     </div>
 </section>
 
-<!-- SHOWCASE: Preference Center -->
-<section class="pika-sol-section pika-sol-section-alt" id="showcase">
+@* ── 02 DIRECT ANSWER ─────────────────────────────────────────── *@
+<section class="pika-sol-section" id="overview">
     <div class="container">
-        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "Tercih merkezi: izinleri şeffaf yönetin" : "Preference center: manage permissions transparently")</h2>
-        <div class="pika-sol-showcase" data-aos="fade-up" data-aos-delay="100">
-            <div class="pika-sol-showcase-screen">
-                <div class="pika-sol-showcase-panel">
-                    <div class="pika-sol-showcase-panel-title"><i class="ri-shield-check-line"></i> @(tr ? "İzin Durumu" : "Permission Status")</div>
-                    <div class="pika-sol-showcase-mock-bar w80"></div>
-                    <div class="pika-sol-showcase-mock-bar w60"></div>
-                    <div class="pika-sol-showcase-mock-bar w70"></div>
-                    <div class="pika-sol-showcase-mock-bar w45"></div>
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="pika-sol-eyebrow text-uppercase mb-2">@(tr ? "KISA CEVAP" : "THE SHORT ANSWER")</div>
+                <h2 class="pika-h2 fw-bold mb-4">@(tr ? "Consent Management nedir?" : "What is Consent Management?")</h2>
+
+                <p class="lead mb-4">
+                    @(tr
+                        ? "Consent Management, Pika'da müşteri iletişimi uygulanmadan önce mevcut izin, IYS durumu ve opt-out bağlamının değerlendirilmesine yardımcı olan izin ve tercih yönetimi katmanıdır."
+                        : "Consent Management is Pika's permission and preference-governance layer for helping evaluate available consent, IYS status and opt-out context before customer communication is executed.")
+                </p>
+
+                <p class="mb-4">
+                    @(tr
+                        ? "Hedef kitleye dahil olmak iletişim izni anlamına gelmez. Kampanya veya journey içinde bir kanal aksiyonuna ulaşmak da gönderimin hiçbir izin kontrolü olmadan yapılacağı anlamına gelmez."
+                        : "Belonging to an audience does not mean permission to communicate. Reaching a channel action inside a campaign or journey also does not mean delivery occurs without consent checks.")
+                </p>
+
+                <p class="mb-2">
+                    @(tr
+                        ? "Consent Management'in temel sorusu şudur:"
+                        : "Consent Management answers one central question:")
+                </p>
+
+                <div class="consent-question-box">
+                    <h3 class="mb-0">
+                        @(tr
+                            ? "“Bu iletişim, mevcut izin bağlamında uygun mu?”"
+                            : "“Is this communication eligible under the available consent context?”")
+                    </h3>
                 </div>
-                <div class="pika-sol-showcase-panel">
-                    <div class="pika-sol-showcase-panel-title"><i class="ri-history-line"></i> @(tr ? "Değişiklik Geçmişi" : "Change History")</div>
-                    <div class="pika-sol-showcase-mock-bar w70"></div>
-                    <div class="pika-sol-showcase-mock-bar w80"></div>
-                    <div class="pika-sol-showcase-mock-bar w60"></div>
-                </div>
-            </div>
-            <div class="pika-sol-showcase-annotations">
-                <div class="pika-sol-annotation"><i class="ri-mail-line"></i> Email: ON</div>
-                <div class="pika-sol-annotation"><i class="ri-chat-1-line"></i> SMS: ON</div>
-                <div class="pika-sol-annotation"><i class="ri-whatsapp-line"></i> WhatsApp: OFF</div>
-                <div class="pika-sol-annotation"><i class="ri-notification-3-line"></i> Push: ON</div>
-                <div class="pika-sol-annotation"><i class="ri-history-line"></i> @(tr ? "Son güncelleme" : "Last update")</div>
+
+                <p class="mb-4">
+                    @(tr
+                        ? "Pika'nın ilgili gönderim akışları mevcut izin ve suppression bağlamını iletişim icrasından önce değerlendirebilir."
+                        : "Relevant Pika delivery flows can evaluate available permission and suppression context before communication execution.")
+                </p>
+
+                <p class="fw-semibold mb-0">
+                    @(tr
+                        ? "Consent Management ticari fırsatı üretmez. İletişimin izin açısından uygulanabilir olup olmadığını kontrol sürecine taşır."
+                        : "Consent Management does not create the commercial opportunity. It brings permission eligibility into the communication-control process.")
+                </p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- PROBLEM/SOLUTION -->
+@* ── 03 WHY CONSENT BELONGS IN THE DELIVERY DECISION ──────────── *@
+<section class="pika-sol-section pika-sol-section-alt">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="pika-sol-eyebrow text-uppercase mb-2">@(tr ? "HEDEF KİTLE ≠ İLETİŞİM İZNİ" : "AUDIENCE ≠ CONSENT")</div>
+                <h2 class="pika-h2 fw-bold mb-4">
+                    @(tr
+                        ? "Doğru müşteri, izinli iletişim anlamına gelmez."
+                        : "The right customer does not automatically mean permitted communication.")
+                </h2>
+
+                <p class="mb-4">
+                    @(tr
+                        ? "Customer Intelligence veya Audience Manager belirli bir müşteri bağlamını ticari açıdan anlamlı hale getirebilir. Bu müşterinin kampanya için uygun olması, seçilen iletişim kanalında güncel izin durumunun da uygun olduğu anlamına gelmez."
+                        : "Customer Intelligence or Audience Manager can make a particular customer context commercially relevant. That customer being appropriate for a campaign does not mean current permission for the selected communication channel is also appropriate.")
+                </p>
+
+                <p class="mb-4">
+                    @(tr
+                        ? "İzin bağlamı aksiyondan ayrı tutulduğunda hedef kitle ile gerçekten iletişim kurulabilir müşteri kümesi birbirine karışabilir."
+                        : "When consent context is separated from action, the target audience and customers who can actually be contacted can become confused.")
+                </p>
+
+                <p class="mb-4">
+                    @(tr
+                        ? "Consent Management bu ayrımı gönderim kararının içine taşır."
+                        : "Consent Management brings that distinction into the delivery decision.")
+                </p>
+
+                <div class="row g-3 my-4">
+                    <div class="col-md-4">
+                        <div class="p-3 bg-white border rounded-3 h-100">
+                            <span class="badge bg-light text-dark mb-2">Audience</span>
+                            <p class="fw-bold mb-0">@(tr ? "“Kiminle iletişim kurmak istiyoruz?”" : "“Who do we want to communicate with?”")</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-3 bg-white border rounded-3 h-100">
+                            <span class="badge bg-light text-dark mb-2">Consent</span>
+                            <p class="fw-bold mb-0">@(tr ? "“Bu müşteriyle bu iletişim bağlamında iletişim kurulabilir mi?”" : "“Can we communicate with this customer under this consent context?”")</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-3 bg-white border rounded-3 h-100">
+                            <span class="badge bg-light text-dark mb-2">Delivery</span>
+                            <p class="fw-bold mb-0">@(tr ? "“Uygun iletişimi hangi teknik sonuçla gönderdik?”" : "“What technical outcome did the eligible communication produce?”")</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="fw-bold mb-0">
+                    @(tr
+                        ? "Doğru audience, izin kontrolünün yerine geçmez."
+                        : "The right audience does not replace consent checks.")
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 04 COMMUNICATION ELIGIBILITY CONTEXT ─────────────────────── *@
 <section class="pika-sol-section">
     <div class="container">
-        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "İzin yönetimini operasyonun doğal parçası haline getirin" : "Make consent management a natural part of operations")</h2>
-        <div class="pika-sol-problem-grid" data-aos="fade-up" data-aos-delay="100">
-            <div class="pika-sol-problem-card pika-sol-problem-card--problem"><i class="ri-error-warning-line"></i> @(tr ? "İzinsiz iletişim riski" : "Risk of communication without consent")</div>
-            <div class="pika-sol-problem-card pika-sol-problem-card--solution"><i class="ri-check-double-line"></i> @(tr ? "Otomatik izin doğrulama" : "Automatic permission verification")</div>
-            <div class="pika-sol-problem-card pika-sol-problem-card--problem"><i class="ri-error-warning-line"></i> @(tr ? "Dağınık izin kayıtları" : "Scattered permission records")</div>
-            <div class="pika-sol-problem-card pika-sol-problem-card--solution"><i class="ri-check-double-line"></i> @(tr ? "Merkezi izin ve denetim kaydı" : "Central permission and audit registry")</div>
+        <div class="row justify-content-center mb-4">
+            <div class="col-lg-10 text-center">
+                <div class="pika-sol-eyebrow text-uppercase mb-2">@(tr ? "UYGUNLUK BAĞLAMI" : "ELIGIBILITY CONTEXT")</div>
+                <h2 class="pika-h2 fw-bold mb-3">
+                    @(tr
+                        ? "İletişim kararını, tek bir izin alanına indirgemeyin."
+                        : "Do not reduce the communication decision to one consent field.")
+                </h2>
+                <p class="pika-sol-section-desc">
+                    @(tr
+                        ? "Gönderim uygunluğu farklı kontrol sinyallerinin birlikte değerlendirilmesini gerektirebilir."
+                        : "Delivery eligibility can require evaluation of multiple control signals.")
+                </p>
+            </div>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-4">
+                <div class="pika-sol-card h-100">
+                    <div class="pika-sol-card-icon"><i class="ri-search-eye-line"></i></div>
+                    <h4>@(tr ? "IYS Durumu" : "IYS Status")</h4>
+                    <p>
+                        @(tr
+                            ? "Uygulanabilir ticari iletişim bağlamında gönderim öncesi IYS durum kontrolü, izin değerlendirmesinin girdilerinden biri olabilir."
+                            : "Where applicable to commercial communication, a pre-dispatch IYS status check can provide one input into consent evaluation.")
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="pika-sol-card h-100">
+                    <div class="pika-sol-card-icon"><i class="ri-forbid-2-line"></i></div>
+                    <h4>@(tr ? "Pika Opt-Out Kaydı" : "Pika Opt-Out State")</h4>
+                    <p>
+                        @(tr
+                            ? "Pika'da bulunan merkezi opt-out durumu, iletişimin suppression kapsamında değerlendirilmesine yardımcı olur."
+                            : "Central opt-out state held in Pika helps determine whether communication should be suppressed.")
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="pika-sol-card h-100">
+                    <div class="pika-sol-card-icon"><i class="ri-toggle-line"></i></div>
+                    <h4>@(tr ? "Email / SMS Tercihi" : "Email / SMS Preference")</h4>
+                    <p>
+                        @(tr
+                            ? "Public preference-update akışında müşterinin Email ve SMS tercihleri güncellenebilir."
+                            : "Customers can update Email and SMS preferences through the public preference-update flow.")
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="pika-sol-card h-100">
+                    <div class="pika-sol-card-icon"><i class="ri-whatsapp-line"></i></div>
+                    <h4>@(tr ? "WhatsApp Opt-In Bağlamı" : "WhatsApp Opt-In Context")</h4>
+                    <p>
+                        @(tr
+                            ? "WhatsApp opt-in bilgisi aynı Email/SMS public formundan yönetilmez; ayrı webhook veya import akışlarından gelen bağlam kullanılır."
+                            : "WhatsApp opt-in is not managed through the same Email/SMS public form; context comes through separate webhook or import flows.")
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="pika-sol-card h-100">
+                    <div class="pika-sol-card-icon"><i class="ri-route-line"></i></div>
+                    <h4>@(tr ? "Kanal ve Gönderim Bağlamı" : "Channel & Delivery Context")</h4>
+                    <p>
+                        @(tr
+                            ? "İzin uygunluğu, gerçek gönderim ve provider sonucu ile aynı şey değildir; kanal icrası ayrıca değerlendirilir."
+                            : "Consent eligibility is not the same thing as actual delivery or provider outcome; channel execution is evaluated separately.")
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mt-4">
+            <div class="col-lg-10 text-center">
+                <p class="fw-semibold text-muted mb-0">
+                    @(tr
+                        ? "Consent Management'in görevi tek bir “izin var/yok” etiketi üretmek değil, kullanılabilir izin bağlamını gönderim kararına taşımaktır."
+                        : "The role of Consent Management is not to produce one universal “consent yes/no” label, but to bring available permission context into the delivery decision.")
+                </p>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- CORE CAPABILITIES -->
-<section class="pika-sol-section pika-sol-section-alt" id="features">
+@* ── 05 PRE-DISPATCH IYS CHECK ────────────────────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt" id="iys">
     <div class="container">
-        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "İzin ve uyumluluk için temel yetenekler" : "Core capabilities for consent and compliance")</h2>
-        <div class="pika-sol-card-grid">
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="pika-sol-card-icon"><i class="ri-shield-check-line"></i></div>
-                <h4>@(tr ? "İzin kaydı ve takibi" : "Permission recording & tracking")</h4>
-                <p>@(tr ? "İzin alım ve değişiklik geçmişini kayıt altına alın." : "Record permission acquisition and change history.")</p>
-            </div>
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="pika-sol-card-icon"><i class="ri-settings-3-line"></i></div>
-                <h4>@(tr ? "Tercih yönetimi" : "Preference management")</h4>
-                <p>@(tr ? "Müşterilerin kanal ve içerik tercihlerini yönetin." : "Manage customer channel and content preferences.")</p>
-            </div>
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="pika-sol-card-icon"><i class="ri-file-shield-2-line"></i></div>
-                <h4>@(tr ? "Uyumluluk kontrolü" : "Compliance control")</h4>
-                <p>@(tr ? "KVKK, GDPR ve düzenleyici gerekliliklere uyum sağlayın." : "Comply with KVKK, GDPR and regulatory requirements.")</p>
-            </div>
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="pika-sol-card-icon"><i class="ri-smartphone-line"></i></div>
-                <h4>@(tr ? "Kanal bazlı tercih" : "Channel-based preference")</h4>
-                <p>@(tr ? "Her kanal için ayrı izin ve tercih tanımlayın." : "Define separate permissions and preferences for each channel.")</p>
-            </div>
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="pika-sol-card-icon"><i class="ri-link"></i></div>
-                <h4>@(tr ? "Kampanya entegrasyonu" : "Campaign integration")</h4>
-                <p>@(tr ? "İzin durumunu kampanya ve akışlara otomatik yansıtın." : "Automatically reflect permission status in campaigns and flows.")</p>
-            </div>
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="pika-sol-card-icon"><i class="ri-heart-line"></i></div>
-                <h4>@(tr ? "Güven ve görünürlük" : "Trust & visibility")</h4>
-                <p>@(tr ? "Şeffaf izin süreçleriyle müşteri güvenini artırın." : "Increase customer trust with transparent permission processes.")</p>
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="pika-sol-eyebrow text-uppercase mb-2">@(tr ? "IYS KONTROLÜ" : "IYS CHECK")</div>
+                <h2 class="pika-h2 fw-bold mb-4">
+                    @(tr
+                        ? "Uygulanabilir izin durumunu, gönderimden önce değerlendirin."
+                        : "Evaluate applicable consent state before delivery.")
+                </h2>
+
+                <p class="mb-3">
+                    @(tr
+                        ? "Pika'nın gönderim sürecinde, ilgili ticari iletişim bağlamı için IYS durumu iletişim icrasından önce sorgulanabilir."
+                        : "Within Pika's delivery process, IYS status for relevant commercial-communication context can be queried before communication execution.")
+                </p>
+
+                <p class="mb-3">
+                    @(tr
+                        ? "Bu kontrolün sonucu gönderimin uygunluk değerlendirmesinde kullanılabilir ve uygun olmayan iletişim suppression kapsamına alınabilir."
+                        : "The result can participate in delivery-eligibility evaluation, and ineligible communication can be suppressed.")
+                </p>
+
+                <p class="mb-4">
+                    @(tr
+                        ? "IYS kontrolü Pika'nın müşterinin ticari veya hukuki gerçeğini kendi başına belirlediği anlamına gelmez."
+                        : "An IYS check does not mean Pika independently defines the customer's commercial or legal truth.")
+                </p>
+
+                <div class="row g-3 my-4">
+                    <div class="col-md-6">
+                        <div class="p-3 bg-white border rounded-3 h-100">
+                            <span class="badge bg-light text-dark mb-2">@(tr ? "IYS sorgusu" : "The IYS query")</span>
+                            <p class="mb-0">
+                                @(tr
+                                    ? "mevcut izin durumuna ilişkin kontrol girdisi sağlar."
+                                    : "provides a control input about available consent state.")
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 bg-white border rounded-3 h-100">
+                            <span class="badge bg-light text-dark mb-2">Pika</span>
+                            <p class="mb-0">
+                                @(tr
+                                    ? "bu bağlamı gönderim öncesi uygunluk değerlendirmesinde kullanır."
+                                    : "uses that context during pre-dispatch eligibility evaluation.")
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="fw-bold mb-0">
+                    @(tr
+                        ? "Pika IYS'nin yerine geçmez. IYS bağlamını iletişim kontrol sürecine taşır."
+                        : "Pika does not replace IYS. It brings IYS context into the communication-control process.")
+                </p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- WORKFLOW -->
-<section class="pika-sol-section">
+@* ── 06 CENTRAL OPT-OUT & SUPPRESSION ─────────────────────────── *@
+<section class="pika-sol-section" id="optout">
     <div class="container">
-        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "İzin süreçlerini yönetmek için 4 adım" : "4 steps to manage consent processes")</h2>
-        <div class="pika-sol-workflow-steps" data-aos="fade-up" data-aos-delay="100">
-            <div class="pika-sol-workflow-step">
-                <div class="pika-sol-workflow-num">1</div>
-                <h5>@(tr ? "İzinleri Kaydedin" : "Record Permissions")</h5>
-                <p>@(tr ? "İzinleri merkezi olarak kayıt altına alın." : "Record permissions centrally.")</p>
-            </div>
-            <div class="pika-sol-workflow-step">
-                <div class="pika-sol-workflow-num">2</div>
-                <h5>@(tr ? "Tercihleri Tanımlayın" : "Define Preferences")</h5>
-                <p>@(tr ? "Kanal ve içerik tercihlerini belirleyin." : "Set channel and content preferences.")</p>
-            </div>
-            <div class="pika-sol-workflow-step">
-                <div class="pika-sol-workflow-num">3</div>
-                <h5>@(tr ? "Entegre Edin" : "Integrate")</h5>
-                <p>@(tr ? "Kampanya ve akışlara otomatik bağlayın." : "Connect automatically to campaigns and flows.")</p>
-            </div>
-            <div class="pika-sol-workflow-step">
-                <div class="pika-sol-workflow-num">4</div>
-                <h5>@(tr ? "İzleyin" : "Monitor")</h5>
-                <p>@(tr ? "Uyumluluk durumunu izleyin ve raporlayın." : "Monitor and report compliance status.")</p>
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="pika-sol-eyebrow text-uppercase mb-2">OPT-OUT</div>
+                <h2 class="pika-h2 fw-bold mb-4">
+                    @(tr
+                        ? "İletişim istemeyen müşteriyi, kampanya kuralıyla yeniden açmayın."
+                        : "Do not reopen communication through a campaign rule after the customer has opted out.")
+                </h2>
+
+                <p class="mb-3">
+                    @(tr
+                        ? "Opt-out, müşterinin iletişim istemediğine ilişkin önemli bir suppression sinyalidir."
+                        : "Opt-out is an important suppression signal indicating that the customer does not want communication.")
+                </p>
+
+                <p class="mb-3">
+                    @(tr
+                        ? "Pika'nın merkezi opt-out kaydı gönderim uygunluğu değerlendirmesinde kontrol edilebilir."
+                        : "Pika's centralized opt-out state can be checked during delivery-eligibility evaluation.")
+                </p>
+
+                <p class="mb-4">
+                    @(tr
+                        ? "Müşterinin bir audience'a girmesi, bir fırsata sahip olması veya bir journey adımına ulaşması opt-out durumunu ortadan kaldırmaz."
+                        : "A customer entering an audience, having an opportunity or reaching a journey step does not remove their opt-out state.")
+                </p>
+
+                <div class="row g-3 my-4">
+                    <div class="col-md-4">
+                        <div class="p-3 bg-white border rounded-3 h-100">
+                            <span class="badge bg-light text-dark mb-2">Audience membership</span>
+                            <p class="mb-0">@(tr ? "iletişim nedeni oluşturabilir." : "can establish a reason for communication.")</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-3 bg-white border rounded-3 h-100">
+                            <span class="badge bg-light text-dark mb-2">Opportunity</span>
+                            <p class="mb-0">@(tr ? "ticari bağlam oluşturabilir." : "can establish commercial context.")</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-3 bg-white border rounded-3 h-100">
+                            <span class="badge bg-light text-dark mb-2">Opt-out</span>
+                            <p class="mb-0">@(tr ? "iletişimin baskılanmasını gerektiren izin sinyali olabilir." : "can be a permission signal requiring suppression.")</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="fw-bold mb-0">
+                    @(tr
+                        ? "Aksiyon mantığı, opt-out kontrolünün yerine geçmez."
+                        : "Action logic does not replace opt-out control.")
+                </p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- USE CASES -->
-<section class="pika-sol-section pika-sol-section-alt" id="usecases">
+@* ── 07 EMAIL / SMS PREFERENCE UPDATE FLOW ────────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt" id="preferences">
     <div class="container">
-        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "Consent Management ile neleri yönetebilirsiniz?" : "What can you manage with Consent Management?")</h2>
-        <div class="pika-sol-usecase-cards">
-            <div class="pika-sol-usecase-card" data-aos="fade-up" data-aos-delay="50">
-                <div class="pika-sol-usecase-card-icon"><i class="ri-mail-check-line"></i></div>
-                <span class="usecase-industry">@(tr ? "Tüm Sektörler" : "All Industries")</span>
-                <h5>@(tr ? "Ticari İleti İzin Yönetimi" : "Commercial Message Consent")</h5>
-                <p>@(tr ? "Ticari elektronik ileti izinlerini merkezi olarak yönetin." : "Manage commercial electronic message consent centrally.")</p>
-            </div>
-            <div class="pika-sol-usecase-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="pika-sol-usecase-card-icon"><i class="ri-smartphone-line"></i></div>
-                <span class="usecase-industry">@(tr ? "Telekomünikasyon" : "Telecom")</span>
-                <h5>@(tr ? "Kanal Bazlı İzin" : "Channel-Based Consent")</h5>
-                <p>@(tr ? "SMS, Email, WhatsApp ve Push için ayrı izin yönetimi." : "Separate consent management for SMS, Email, WhatsApp and Push.")</p>
-            </div>
-            <div class="pika-sol-usecase-card" data-aos="fade-up" data-aos-delay="150">
-                <div class="pika-sol-usecase-card-icon"><i class="ri-history-line"></i></div>
-                <span class="usecase-industry">@(tr ? "Finans" : "Finance")</span>
-                <h5>@(tr ? "Tercih Değişiklik Takibi" : "Preference Change Tracking")</h5>
-                <p>@(tr ? "Müşteri tercih değişikliği geçmişini kayıt altında tutun." : "Keep customer preference change history on record.")</p>
-            </div>
-            <div class="pika-sol-usecase-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="pika-sol-usecase-card-icon"><i class="ri-file-shield-2-line"></i></div>
-                <span class="usecase-industry">@(tr ? "Kurumsal" : "Enterprise")</span>
-                <h5>@(tr ? "KVKK ve GDPR Uyumu" : "KVKK & GDPR Compliance")</h5>
-                <p>@(tr ? "Düzenleyici gerekliliklere uygun izin süreçleri." : "Consent processes compliant with regulatory requirements.")</p>
-            </div>
-            <div class="pika-sol-usecase-card" data-aos="fade-up" data-aos-delay="250">
-                <div class="pika-sol-usecase-card-icon"><i class="ri-checkbox-circle-line"></i></div>
-                <span class="usecase-industry">@(tr ? "Pazarlama" : "Marketing")</span>
-                <h5>@(tr ? "Kampanya Öncesi Doğrulama" : "Pre-Campaign Verification")</h5>
-                <p>@(tr ? "Kampanya gönderiminden önce izin durumunu otomatik kontrol edin." : "Automatically verify consent status before campaign delivery.")</p>
-            </div>
-            <div class="pika-sol-usecase-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="pika-sol-usecase-card-icon"><i class="ri-search-eye-line"></i></div>
-                <span class="usecase-industry">@(tr ? "Denetim" : "Audit")</span>
-                <h5>@(tr ? "İzin Denetim Kaydı" : "Consent Audit Trail")</h5>
-                <p>@(tr ? "Tüm izin işlemlerinin denetlenebilir kaydını tutun." : "Maintain an auditable record of all consent operations.")</p>
+        <div class="row justify-content-center mb-4">
+            <div class="col-lg-10">
+                <div class="pika-sol-eyebrow text-uppercase mb-2">@(tr ? "MÜŞTERİ TERCİHİ" : "CUSTOMER PREFERENCE")</div>
+                <h2 class="pika-h2 fw-bold mb-4">
+                    @(tr
+                        ? "Email ve SMS tercihlerini, müşterinin güncelleyebileceği bir akışta yönetin."
+                        : "Manage Email and SMS preferences through a flow customers can update.")
+                </h2>
+
+                @* Conceptual Permission-Decision Map replacing fake dashboard metric bars *@
+                <div class="consent-map-grid mb-4" aria-label="@(tr ? "İzin karar haritası" : "Permission decision map")">
+                    <div class="consent-map-card">
+                        <i class="ri-search-eye-line"></i>
+                        <strong>@(tr ? "IYS DURUMU" : "IYS STATUS")</strong>
+                    </div>
+                    <div class="consent-map-card">
+                        <i class="ri-forbid-2-line"></i>
+                        <strong>PIKA OPT-OUT</strong>
+                    </div>
+                    <div class="consent-map-card">
+                        <i class="ri-mail-check-line"></i>
+                        <strong>@(tr ? "EMAIL / SMS TERCİHLERİ" : "EMAIL / SMS PREFERENCES")</strong>
+                    </div>
+                    <div class="consent-map-card">
+                        <i class="ri-whatsapp-line"></i>
+                        <strong>@(tr ? "WHATSAPP OPT-IN BAĞLAMI" : "WHATSAPP OPT-IN CONTEXT")</strong>
+                    </div>
+                    <div class="consent-map-card">
+                        <i class="ri-checkbox-circle-line"></i>
+                        <strong>@(tr ? "İLETİŞİM UYGUNLUĞU" : "COMMUNICATION ELIGIBILITY")</strong>
+                    </div>
+                </div>
+
+                <p class="mb-3">
+                    @(tr
+                        ? "Pika'da tokenized public preference-update akışı müşterinin mevcut Email ve SMS iletişim tercihlerini güncelleyebilmesini destekler."
+                        : "Pika's tokenized public preference-update flow supports customers updating their available Email and SMS communication preferences.")
+                </p>
+
+                <p class="mb-3">
+                    @(tr
+                        ? "Bu public akış yalnızca Email ve SMS tercih alanlarını kapsar."
+                        : "That public flow contains Email and SMS preference fields only.")
+                </p>
+
+                <p class="mb-4">
+                    @(tr
+                        ? "Bu nedenle C12 sayfası bu ekranı bütün kanalları yöneten evrensel bir preference center olarak konumlandırmaz."
+                        : "C12 therefore does not position this page as a universal preference center for every channel.")
+                </p>
+
+                <div class="row g-3 my-4">
+                    <div class="col-md-6">
+                        <div class="p-3 bg-white border rounded-3 h-100">
+                            <span class="badge bg-light text-dark mb-2">Public preference update</span>
+                            <p class="fw-bold mb-0">EMAIL + SMS</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 bg-white border rounded-3 h-100">
+                            <span class="badge bg-light text-danger mb-2">@(tr ? "Şunu içermez:" : "It does not include:")</span>
+                            <p class="fw-bold mb-0">WHATSAPP / PUSH</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="mb-4">
+                    @(tr
+                        ? "WhatsApp izin bağlamı ayrı kaynaklardan gelir. Push consent mevcut değildir."
+                        : "WhatsApp permission context comes from separate sources. Push consent does not exist.")
+                </p>
+
+                <p class="fw-bold mb-0">
+                    @(tr
+                        ? "Public tercih akışının kapsamını, ürünün gerçek kanal sınırıyla anlatın."
+                        : "Describe the public preference flow according to its actual channel scope.")
+                </p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- BUSINESS IMPACT -->
-<section class="pika-sol-section pika-sol-section-impact">
+@* ── 08 WHATSAPP OPT-IN BOUNDARY ──────────────────────────────── *@
+<section class="pika-sol-section" id="channels">
     <div class="container">
-        <h2 class="pika-sol-section-title text-center" data-aos="fade-up">@(tr ? "İş etkisi" : "Business Impact")</h2>
-        <div class="pika-sol-impact-grid pika-sol-impact-grid--light" data-aos="fade-up" data-aos-delay="100">
-            <div class="pika-sol-impact-card pika-sol-impact-card--light">
-                <div class="pika-sol-impact-icon"><i class="ri-shield-check-line"></i></div>
-                <h5>@(tr ? "Uyumluluk riskini azaltır" : "Reduces compliance risk")</h5>
-                <p>@(tr ? "İzinsiz iletişim riskini ortadan kaldırın." : "Eliminate risk of unauthorized communication.")</p>
-            </div>
-            <div class="pika-sol-impact-card pika-sol-impact-card--light">
-                <div class="pika-sol-impact-icon"><i class="ri-heart-line"></i></div>
-                <h5>@(tr ? "Müşteri güvenini artırır" : "Increases customer trust")</h5>
-                <p>@(tr ? "Şeffaf izin süreçleriyle güven oluşturun." : "Build trust with transparent consent processes.")</p>
-            </div>
-            <div class="pika-sol-impact-card pika-sol-impact-card--light">
-                <div class="pika-sol-impact-icon"><i class="ri-speed-line"></i></div>
-                <h5>@(tr ? "Operasyonu hızlandırır" : "Accelerates operations")</h5>
-                <p>@(tr ? "İzin doğrulamayı otomatik hale getirin." : "Automate consent verification.")</p>
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="pika-sol-eyebrow text-uppercase mb-2">WHATSAPP</div>
+                <h2 class="pika-h2 fw-bold mb-4">
+                    @(tr
+                        ? "WhatsApp opt-in bağlamını, Email/SMS preference formuyla karıştırmayın."
+                        : "Do not confuse WhatsApp opt-in context with the Email/SMS preference form.")
+                </h2>
+
+                <p class="mb-3">
+                    @(tr
+                        ? "WhatsApp Pika'nın doğrulanmış aktif iletişim kanallarından biridir."
+                        : "WhatsApp is one of Pika's confirmed active communication channels.")
+                </p>
+
+                <p class="mb-3">
+                    @(tr
+                        ? "Ancak mevcut public preference-update formu WhatsApp için bir consent checkbox'ı içermez."
+                        : "However, the current public preference-update form does not contain a WhatsApp consent checkbox.")
+                </p>
+
+                <p class="mb-4">
+                    @(tr
+                        ? "WhatsApp opt-in bağlamı incoming webhook veya import akışlarından gelebilir ve ilgili iletişim sürecinde ayrıca değerlendirilir."
+                        : "WhatsApp opt-in context can arrive through incoming webhook or import flows and is evaluated separately within the relevant communication process.")
+                </p>
+
+                <div class="row g-3 my-4">
+                    <div class="col-md-6">
+                        <div class="p-3 bg-white border rounded-3 h-100">
+                            <span class="badge bg-light text-dark mb-2">WhatsApp</span>
+                            <p class="mb-0">@(tr ? "aktif iletişim kanalıdır." : "is an active communication channel.")</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 bg-white border rounded-3 h-100">
+                            <span class="badge bg-light text-dark mb-2">@(tr ? "Public Email/SMS preference formu" : "The public Email/SMS preference form")</span>
+                            <p class="mb-0">@(tr ? "WhatsApp izin yönetim ekranı değildir." : "is not the WhatsApp consent-management screen.")</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="mb-4">
+                    @(tr
+                        ? "Aynı platformda yer almak, aynı consent acquisition akışını kullanmak anlamına gelmez."
+                        : "Being part of the same platform does not mean using the same consent-acquisition flow.")
+                </p>
+
+                <p class="mb-0">
+                    <a href="@(tr ? "/kanallar/whatsapp" : "/en/channels/whatsapp")" class="btn pika-btn-outline px-4 py-2">
+                        @(tr ? "WhatsApp'ı Keşfedin →" : "Explore WhatsApp →")
+                    </a>
+                </p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- PLATFORM MAP -->
+@* ── 09 CONSENT VS REACHABILITY & DELIVERY ────────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="pika-sol-eyebrow text-uppercase mb-2">@(tr ? "İZİN ≠ TESLİMAT GARANTİSİ" : "CONSENT ≠ DELIVERY GUARANTEE")</div>
+                <h2 class="pika-h2 fw-bold mb-4">
+                    @(tr
+                        ? "İletişim izni, mesajın mutlaka teslim edileceği anlamına gelmez."
+                        : "Permission to communicate does not mean the message will necessarily be delivered.")
+                </h2>
+
+                <p class="mb-3">
+                    @(tr
+                        ? "Consent Management izin açısından iletişim uygunluğunu değerlendirir."
+                        : "Consent Management evaluates communication eligibility from the permission perspective.")
+                </p>
+
+                <p class="mb-3">
+                    @(tr
+                        ? "Bir müşterinin iletişime izinli olması; Email adresinin veya telefon numarasının geçerli olduğunu, provider'ın gönderimi kabul edeceğini veya mesajın kesin olarak teslim edileceğini garanti etmez."
+                        : "A customer having permission does not guarantee that their Email address or phone number is valid, that the provider will accept the message or that delivery will succeed.")
+                </p>
+
+                <p class="mb-4">
+                    @(tr
+                        ? "Reachability, provider sonucu ve delivery telemetrisi ayrı operasyonel bağlamlardır."
+                        : "Reachability, provider outcome and delivery telemetry are separate operational contexts.")
+                </p>
+
+                <div class="row g-3 my-4">
+                    <div class="col-md-4">
+                        <div class="p-3 bg-white border rounded-3 h-100">
+                            <span class="badge bg-light text-dark mb-2">Consent</span>
+                            <p class="fw-bold mb-0">@(tr ? "“İzin bağlamında iletişim uygun mu?”" : "“Is communication eligible from the permission perspective?”")</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-3 bg-white border rounded-3 h-100">
+                            <span class="badge bg-light text-dark mb-2">Reachability</span>
+                            <p class="fw-bold mb-0">@(tr ? "“Bu kanalda müşteriye teknik olarak ulaşılabilir mi?”" : "“Can this customer technically be reached on the channel?”")</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-3 bg-white border rounded-3 h-100">
+                            <span class="badge bg-light text-dark mb-2">Delivery</span>
+                            <p class="fw-bold mb-0">@(tr ? "“Gönderim denemesinin sonucu ne oldu?”" : "“What happened to the delivery attempt?”")</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="fw-bold mb-0">
+                    @(tr
+                        ? "İzin kontrolünü, teslimat garantisi olarak yorumlamayın."
+                        : "Do not interpret consent as a delivery guarantee.")
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 10 AUDIENCE / CAMPAIGN / JOURNEY RELATIONSHIP ────────────── *@
 <section class="pika-sol-section" id="platform">
     <div class="container">
-        <h2 class="pika-sol-section-title text-center" data-aos="fade-up">@(tr ? "Consent Management, Pika platformunda nasıl konumlanır?" : "How does Consent Management fit in the Pika platform?")</h2>
-        <div class="pika-sol-platform-map" data-aos="fade-up" data-aos-delay="100">
-            <div class="pika-sol-platform-satellites">
-                <a class="pika-sol-platform-node" href="@Url.Action("CampaignManager", "Solutions")"><i class="ri-megaphone-line"></i> Campaign Manager</a>
-                <a class="pika-sol-platform-node" href="@Url.Action("AudienceManager", "Solutions")"><i class="ri-focus-3-line"></i> Audience Manager</a>
+        <div class="row justify-content-center mb-4">
+            <div class="col-lg-10">
+                <div class="pika-sol-eyebrow text-uppercase mb-2">@(tr ? "İZİNDEN AKSİYONA" : "FROM CONSENT TO ACTION")</div>
+                <h2 class="pika-h2 fw-bold mb-4">
+                    @(tr
+                        ? "Consent Management, aksiyon ürünlerinin yerine geçmez."
+                        : "Consent Management does not replace action products.")
+                </h2>
+
+                <p class="mb-3">
+                    @(tr
+                        ? "Audience Manager hedef kitleyi tanımlar. Consent Management audience'ın kendisini oluşturmaz."
+                        : "Audience Manager defines the target audience. Consent Management does not create the audience itself.")
+                </p>
+
+                <p class="mb-3">
+                    @(tr
+                        ? "Campaign Manager kampanyanın hedef kitle, içerik, kanal, zamanlama ve kontrollü gönderim bağlamını yönetir."
+                        : "Campaign Manager manages audience, content, channel, timing and controlled-delivery context for a campaign.")
+                </p>
+
+                <p class="mb-3">
+                    @(tr
+                        ? "Journey Manager çok adımlı koşul, bekleme ve iletişim akışını yönetir."
+                        : "Journey Manager manages multi-step conditions, waits and communication flow.")
+                </p>
+
+                <p class="mb-4">
+                    @(tr
+                        ? "Consent Management ise ilgili iletişim icrasında mevcut izin ve suppression bağlamının değerlendirilmesine yardımcı olur."
+                        : "Consent Management helps evaluate available permission and suppression context during relevant communication execution.")
+                </p>
+
+                @* Action Flow Chain *@
+                <div class="consent-flow-chain my-4">
+                    <span class="consent-flow-node">AUDIENCE</span>
+                    <span class="consent-flow-arrow">→</span>
+                    <span class="consent-flow-node">CAMPAIGN / JOURNEY</span>
+                    <span class="consent-flow-arrow">→</span>
+                    <span class="consent-flow-node">CONSENT ELIGIBILITY</span>
+                    <span class="consent-flow-arrow">→</span>
+                    <span class="consent-flow-node">DELIVERY EXECUTION</span>
+                    <span class="consent-flow-arrow">→</span>
+                    <span class="consent-flow-node">RESULT</span>
+                </div>
+
+                <div class="row g-3 my-4">
+                    <div class="col-md-3">
+                        <div class="p-3 bg-white border rounded-3 h-100">
+                            <span class="badge bg-light text-dark mb-2">Audience</span>
+                            <p class="fw-bold mb-0">WHO?</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="p-3 bg-white border rounded-3 h-100">
+                            <span class="badge bg-light text-dark mb-2">Campaign / Journey</span>
+                            <p class="fw-bold mb-0">WHAT ACTION?</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="p-3 bg-white border rounded-3 h-100">
+                            <span class="badge bg-light text-dark mb-2">Consent</span>
+                            <p class="fw-bold mb-0">IS COMMUNICATION ELIGIBLE?</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="p-3 bg-white border rounded-3 h-100">
+                            <span class="badge bg-light text-dark mb-2">Delivery</span>
+                            <p class="fw-bold mb-0">WHAT HAPPENED TO THE SEND?</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="fw-bold mb-4">
+                    @(tr
+                        ? "Consent kontrolü aksiyon zincirinin parçasıdır. Aksiyon zincirinin tamamı değildir."
+                        : "Consent control is part of the action chain. It is not the entire action chain.")
+                </p>
             </div>
-            <div class="pika-sol-platform-connector"></div>
-            <div class="pika-sol-platform-center"><i class="ri-shield-check-line"></i> Consent Mgmt</div>
-            <div class="pika-sol-platform-connector"></div>
-            <div class="pika-sol-platform-satellites">
-                <a class="pika-sol-platform-node" href="@Url.Action("JourneyManager", "Solutions")"><i class="ri-route-line"></i> Journey Manager</a>
+        </div>
+
+        @* Use Cases Area *@
+        <div class="row g-4 mt-2">
+            <div class="col-md-4">
+                <div class="pika-sol-usecase-card h-100">
+                    <div class="pika-sol-usecase-card-icon"><i class="ri-search-eye-line"></i></div>
+                    <h5>@(tr ? "Gönderim Öncesi IYS Kontrolü" : "Pre-Dispatch IYS Check")</h5>
+                    <p>
+                        @(tr
+                            ? "İlgili ticari iletişim bağlamında mevcut IYS durumunu iletişim icrasından önce değerlendirin."
+                            : "Evaluate available IYS status before communication execution within relevant commercial-communication context.")
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="pika-sol-usecase-card h-100">
+                    <div class="pika-sol-usecase-card-icon"><i class="ri-forbid-2-line"></i></div>
+                    <h5>@(tr ? "Merkezi Opt-Out Kontrolü" : "Central Opt-Out Check")</h5>
+                    <p>
+                        @(tr
+                            ? "Pika'daki mevcut opt-out durumunu gönderim uygunluğu değerlendirmesinde suppression sinyali olarak kullanın."
+                            : "Use existing opt-out state in Pika as a suppression signal during delivery-eligibility evaluation.")
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="pika-sol-usecase-card h-100">
+                    <div class="pika-sol-usecase-card-icon"><i class="ri-toggle-line"></i></div>
+                    <h5>@(tr ? "Email / SMS Tercih Güncelleme" : "Email / SMS Preference Update")</h5>
+                    <p>
+                        @(tr
+                            ? "Müşterilerin public preference-update akışı üzerinden Email ve SMS iletişim tercihlerini güncelleyebilmesini destekleyin."
+                            : "Support customers updating Email and SMS communication preferences through the public preference-update flow.")
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="pika-sol-usecase-card h-100">
+                    <div class="pika-sol-usecase-card-icon"><i class="ri-whatsapp-line"></i></div>
+                    <h5>@(tr ? "WhatsApp Opt-In Bağlamı" : "WhatsApp Opt-In Context")</h5>
+                    <p>
+                        @(tr
+                            ? "WhatsApp izin bilgisini public Email/SMS formundan ayrı webhook veya import bağlamında değerlendirin."
+                            : "Evaluate WhatsApp permission context through webhook or import sources separate from the public Email/SMS form.")
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="pika-sol-usecase-card h-100">
+                    <div class="pika-sol-usecase-card-icon"><i class="ri-focus-3-line"></i></div>
+                    <h5>@(tr ? "Audience ve Consent Ayrımı" : "Audience vs Consent")</h5>
+                    <p>
+                        @(tr
+                            ? "Bir müşterinin hedef kitleye dahil olmasını iletişim izniyle karıştırmayın."
+                            : "Do not confuse a customer belonging to the target audience with permission to communicate.")
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="pika-sol-usecase-card h-100">
+                    <div class="pika-sol-usecase-card-icon"><i class="ri-route-line"></i></div>
+                    <h5>@(tr ? "Consent ve Delivery Ayrımı" : "Consent vs Delivery")</h5>
+                    <p>
+                        @(tr
+                            ? "İzin uygunluğunu gerçek kanal reachability ve gönderim sonucundan ayrı değerlendirin."
+                            : "Evaluate permission eligibility separately from actual channel reachability and delivery outcome.")
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        @* Ecosystem Module Links *@
+        <div class="row justify-content-center mt-5">
+            <div class="col-lg-10">
+                <h4 class="text-center mb-3">@(tr ? "İlgili Platform Çözümleri" : "Related Platform Solutions")</h4>
+                <div class="d-flex flex-wrap justify-content-center gap-3">
+                    <a href="@(tr ? "/cozumler/audience-manager" : "/en/solutions/audience-manager")" class="btn pika-btn-outline px-3 py-2">
+                        <i class="ri-focus-3-line"></i> Audience Manager →
+                    </a>
+                    <a href="@(tr ? "/cozumler/campaign-manager" : "/en/solutions/campaign-manager")" class="btn pika-btn-outline px-3 py-2">
+                        <i class="ri-megaphone-line"></i> Campaign Manager →
+                    </a>
+                    <a href="@(tr ? "/cozumler/journey-manager" : "/en/solutions/journey-manager")" class="btn pika-btn-outline px-3 py-2">
+                        <i class="ri-route-line"></i> Journey Manager →
+                    </a>
+                    <a href="@(tr ? "/cozumler/analytics-reporting" : "/en/solutions/analytics-reporting")" class="btn pika-btn-outline px-3 py-2">
+                        <i class="ri-bar-chart-box-line"></i> Analytics &amp; Reporting →
+                    </a>
+                    <a href="@(tr ? "/kanallar/email" : "/en/channels/email")" class="btn pika-btn-outline px-3 py-2">
+                        <i class="ri-mail-line"></i> Email →
+                    </a>
+                    <a href="@(tr ? "/kanallar/sms" : "/en/channels/sms")" class="btn pika-btn-outline px-3 py-2">
+                        <i class="ri-chat-1-line"></i> SMS →
+                    </a>
+                    <a href="@(tr ? "/pika" : "/en/pika")" class="btn pika-btn-outline px-3 py-2">
+                        <i class="ri-compass-3-line"></i> Pika →
+                    </a>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- FAQ -->
-<section class="pika-sol-section pika-sol-section-alt" id="faq">
+@* ── 11 GOVERNANCE WITHOUT LEGAL OVERCLAIM ─────────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt">
     <div class="container">
-        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "Consent Management hakkında sık sorulan sorular" : "Consent Management FAQs")</h2>
-        <div class="accordion faq-pro-accordion" id="consentFaq">
-            <div class="accordion-item">
-                <h2 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#consentFaq1" aria-expanded="true" aria-controls="consentFaq1">@(tr ? "İzinler kanal bazında yönetilebilir mi?" : "Can permissions be managed per channel?")</button></h2>
-                <div id="consentFaq1" class="accordion-collapse collapse show" data-bs-parent="#consentFaq"><div class="accordion-body">@(tr ? "Evet. SMS, WhatsApp, Email ve Push için ayrı izin ve tercih tanımlayabilirsiniz." : "Yes. You can define separate permissions and preferences for SMS, WhatsApp, Email and Push.")</div></div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#consentFaq2" aria-expanded="false" aria-controls="consentFaq2">@(tr ? "KVKK ve GDPR uyumu sağlanıyor mu?" : "Is KVKK and GDPR compliance supported?")</button></h2>
-                <div id="consentFaq2" class="accordion-collapse collapse" data-bs-parent="#consentFaq"><div class="accordion-body">@(tr ? "Evet. İzin kayıtları ve tercih değişiklikleri düzenleyici gerekliliklere uygun şekilde saklanır." : "Yes. Permission records and preference changes are stored in compliance with regulatory requirements.")</div></div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#consentFaq3" aria-expanded="false" aria-controls="consentFaq3">@(tr ? "Kampanyalara otomatik entegre oluyor mu?" : "Does it integrate automatically with campaigns?")</button></h2>
-                <div id="consentFaq3" class="accordion-collapse collapse" data-bs-parent="#consentFaq"><div class="accordion-body">@(tr ? "Evet. İzin durumu kampanya gönderimlerinde ve journey akışlarında otomatik olarak kontrol edilir." : "Yes. Permission status is automatically checked in campaign sends and journey flows.")</div></div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#consentFaq4" aria-expanded="false" aria-controls="consentFaq4">@(tr ? "İzin geçmişi görüntülenebilir mi?" : "Can consent history be viewed?")</button></h2>
-                <div id="consentFaq4" class="accordion-collapse collapse" data-bs-parent="#consentFaq"><div class="accordion-body">@(tr ? "Evet. Her müşterinin izin alma, değiştirme ve iptal geçmişi detaylı olarak takip edilir." : "Yes. Each customer's consent acquisition, change and revocation history is tracked in detail.")</div></div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#consentFaq5" aria-expanded="false" aria-controls="consentFaq5">@(tr ? "Müşteriler tercihlerini kendileri güncelleyebilir mi?" : "Can customers update their preferences themselves?")</button></h2>
-                <div id="consentFaq5" class="accordion-collapse collapse" data-bs-parent="#consentFaq"><div class="accordion-body">@(tr ? "Evet. Tercih merkezi aracılığıyla müşteriler iletişim tercihlerini kolayca yönetebilir." : "Yes. Customers can easily manage their communication preferences through the preference center.")</div></div>
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="pika-sol-eyebrow text-uppercase mb-2">@(tr ? "KONTROL ≠ HUKUKİ GARANTİ" : "CONTROL ≠ LEGAL GUARANTEE")</div>
+                <h2 class="pika-h2 fw-bold mb-4">
+                    @(tr
+                        ? "İzin kontrollerini uygulayın. Yasal sonucu otomatik garanti olarak sunmayın."
+                        : "Apply consent controls. Do not present them as an automatic legal guarantee.")
+                </h2>
+
+                <p class="mb-3">
+                    @(tr
+                        ? "Pika; IYS durum kontrolü, opt-out suppression ve mevcut tercih bağlamının gönderim kararında kullanılmasına yardımcı olan teknik kontroller sağlar."
+                        : "Pika provides technical controls that help use IYS status checks, opt-out suppression and available preference context during the delivery decision.")
+                </p>
+
+                <p class="mb-3">
+                    @(tr
+                        ? "Bu kontroller ticari iletişim operasyonunda izin yönetimini destekler."
+                        : "These controls support permission governance within commercial communication operations.")
+                </p>
+
+                <p class="mb-4">
+                    @(tr
+                        ? "Ancak bir yazılım özelliğinin bulunması işletmenin bütün hukuki yükümlülüklerini otomatik olarak yerine getirdiği anlamına gelmez."
+                        : "The presence of a software control does not mean an organization automatically satisfies every legal obligation.")
+                </p>
+
+                <div class="row g-3 my-4">
+                    <div class="col-md-6">
+                        <div class="p-3 bg-white border rounded-3 h-100">
+                            <span class="badge bg-light text-dark mb-2">Pika</span>
+                            <p class="mb-0">
+                                @(tr
+                                    ? "izin ve gönderim kontrollerini uygulamaya yardımcı olur."
+                                    : "helps implement permission and delivery controls.")
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 bg-white border rounded-3 h-100">
+                            <span class="badge bg-light text-dark mb-2">@(tr ? "İşletme" : "The organization")</span>
+                            <p class="mb-0">
+                                @(tr
+                                    ? "kendi hukuki yükümlülüklerini, veri kaynaklarını ve iletişim politikalarını ayrıca yönetir."
+                                    : "separately manages its legal obligations, data sources and communication policies.")
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="fw-bold mb-0">
+                    @(tr
+                        ? "Consent Management'i “otomatik hukuki uyumluluk motoru” olarak konumlandırmayın."
+                        : "Do not position Consent Management as an “automatic legal compliance engine.”")
+                </p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- RELATED -->
+@* ── 12 WHAT CONSENT MANAGEMENT IS / IS NOT ───────────────────── *@
 <section class="pika-sol-section">
     <div class="container">
-        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "Birlikte en çok kullanılan modüller" : "Most commonly used together")</h2>
-        <div class="pika-sol-related" data-aos="fade-up" data-aos-delay="100">
-            <a class="pika-sol-related-card" href="@Url.Action("CampaignManager", "Solutions")">
-                <div class="pika-sol-related-icon"><i class="ri-megaphone-line"></i></div>
-                <div><h5>Campaign Manager</h5><p>@(tr ? "İzinli kişilere kampanya gönderin." : "Send campaigns to permitted contacts.")</p></div>
-            </a>
-            <a class="pika-sol-related-card" href="@Url.Action("AudienceManager", "Solutions")">
-                <div class="pika-sol-related-icon"><i class="ri-focus-3-line"></i></div>
-                <div><h5>Audience Manager</h5><p>@(tr ? "Segmentleri izin durumuna göre filtreleyin." : "Filter segments by consent status.")</p></div>
-            </a>
-            <a class="pika-sol-related-card" href="@Url.Action("JourneyManager", "Solutions")">
-                <div class="pika-sol-related-icon"><i class="ri-route-line"></i></div>
-                <div><h5>Journey Manager</h5><p>@(tr ? "Akışlarda izin doğrulaması yapın." : "Verify consent in flows.")</p></div>
-            </a>
+        <div class="row justify-content-center mb-4">
+            <div class="col-lg-10 text-center">
+                <div class="pika-sol-eyebrow text-uppercase mb-2">@(tr ? "DOĞRU SINIRLAR" : "CLEAR BOUNDARIES")</div>
+                <h2 class="pika-h2 fw-bold mb-3">
+                    @(tr
+                        ? "Consent Management'i doğru yere koyun."
+                        : "Put Consent Management in the right place.")
+                </h2>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="pika-sol-card h-100">
+                    <div class="pika-sol-card-icon"><i class="ri-close-circle-line text-muted"></i></div>
+                    <h4>@(tr ? "Consent Management, Audience Manager değildir." : "Consent Management is not Audience Manager.")</h4>
+                    <p>
+                        @(tr
+                            ? "Audience Manager hedef kitleyi tanımlar. Consent Management hedef kitlenin iletişim izni açısından uygunluğunun değerlendirilmesine yardımcı olur."
+                            : "Audience Manager defines the audience. Consent Management helps evaluate whether communication with that audience is eligible from the consent perspective.")
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="pika-sol-card h-100">
+                    <div class="pika-sol-card-icon"><i class="ri-close-circle-line text-muted"></i></div>
+                    <h4>@(tr ? "Consent Management, Campaign Manager değildir." : "Consent Management is not Campaign Manager.")</h4>
+                    <p>
+                        @(tr
+                            ? "Campaign Manager kampanya operasyonunu yönetir. Consent Management gönderim öncesi izin ve suppression kontrollerini aksiyon bağlamına taşır."
+                            : "Campaign Manager manages campaign operations. Consent Management brings pre-dispatch permission and suppression controls into action context.")
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="pika-sol-card h-100">
+                    <div class="pika-sol-card-icon"><i class="ri-close-circle-line text-muted"></i></div>
+                    <h4>@(tr ? "Consent Management, Journey Manager değildir." : "Consent Management is not Journey Manager.")</h4>
+                    <p>
+                        @(tr
+                            ? "Journey Manager çok adımlı akışı yönetir. Bir journey adımına ulaşmak izin kontrollerini ortadan kaldırmaz."
+                            : "Journey Manager manages multi-step flow. Reaching a journey step does not remove consent controls.")
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="pika-sol-card h-100">
+                    <div class="pika-sol-card-icon"><i class="ri-close-circle-line text-muted"></i></div>
+                    <h4>@(tr ? "Consent Management, IYS'nin yerine geçmez." : "Consent Management does not replace IYS.")</h4>
+                    <p>
+                        @(tr
+                            ? "Pika gönderim öncesi IYS durumunu kontrol sürecine dahil edebilir. IYS'nin kendisi veya hukuki izin otoritesinin yerine geçen sistem değildir."
+                            : "Pika can include pre-dispatch IYS status in the control process. It is not IYS itself or a replacement for the underlying permission authority.")
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="pika-sol-card h-100">
+                    <div class="pika-sol-card-icon"><i class="ri-close-circle-line text-muted"></i></div>
+                    <h4>@(tr ? "Public preference akışı bütün kanalları yönetmez." : "The public preference flow does not manage every channel.")</h4>
+                    <p>
+                        @(tr
+                            ? "Mevcut public preference-update formu Email ve SMS tercihlerini kapsar. WhatsApp opt-in ayrı kaynaklardan gelir."
+                            : "The current public preference-update form covers Email and SMS preferences. WhatsApp opt-in comes from separate sources.")
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="pika-sol-card h-100">
+                    <div class="pika-sol-card-icon"><i class="ri-close-circle-line text-muted"></i></div>
+                    <h4>@(tr ? "Consent Management, reachability değildir." : "Consent Management is not reachability.")</h4>
+                    <p>
+                        @(tr
+                            ? "İletişim izni müşterinin kanalda teknik olarak ulaşılabilir veya gönderimin kesin başarılı olduğu anlamına gelmez."
+                            : "Permission to communicate does not mean a customer is technically reachable on the channel or that delivery will definitely succeed.")
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="pika-sol-card h-100">
+                    <div class="pika-sol-card-icon"><i class="ri-close-circle-line text-muted"></i></div>
+                    <h4>@(tr ? "Consent Management, otomatik hukuki uyumluluk garantisi değildir." : "Consent Management is not an automatic legal-compliance guarantee.")</h4>
+                    <p>
+                        @(tr
+                            ? "Teknik izin kontrolleri işletmenin hukuki ve operasyonel sorumluluklarının tamamını otomatik olarak yerine getirmez."
+                            : "Technical permission controls do not automatically satisfy every legal and operational responsibility of the organization.")
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="pika-sol-card h-100">
+                    <div class="pika-sol-card-icon"><i class="ri-close-circle-line text-muted"></i></div>
+                    <h4>@(tr ? "Consent Management, Push izin yönetimi değildir." : "Consent Management is not Push consent management.")</h4>
+                    <p>
+                        @(tr
+                            ? "Push consent mevcut değildir ve C12 kamuya açık sayfasında Push aktif izin kanalı olarak pazarlanmaz."
+                            : "Push consent does not exist and C12 does not market Push as an active consent channel.")
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mt-5">
+            <div class="col-lg-10">
+                <div class="p-4 bg-white border border-success rounded-3 text-center">
+                    <h5 class="fw-bold mb-2">@(tr ? "Consent Management'in görevi:" : "The role of Consent Management is not:")</h5>
+                    <p class="mb-2">
+                        @(tr
+                            ? "İletişimi otomatik olarak “uyumlu” ilan etmek değil,"
+                            : "To automatically declare communication “compliant.”")
+                    </p>
+                    <h5 class="fw-bold mb-2">@(tr ? "görevi:" : "It is:")</h5>
+                    <p class="fw-bold text-success mb-0">
+                        @(tr
+                            ? "mevcut izin ve opt-out bağlamını gönderim kararının kontrollü bir parçası haline getirmektir."
+                            : "To make available consent and opt-out context a controlled part of the delivery decision.")
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- CTA -->
+@* ── 13 FAQ ───────────────────────────────────────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt" id="faq">
+    <div class="container">
+        <div class="row justify-content-center mb-4">
+            <div class="col-lg-10 text-center">
+                <h2 class="pika-h2 fw-bold mb-3">@(tr ? "Sıkça Sorulan Sorular" : "Frequently Asked Questions")</h2>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <details class="consent-faq-item">
+                    <summary class="consent-faq-summary">
+                        @(tr ? "Consent Management nedir?" : "What is Consent Management?")
+                    </summary>
+                    <div class="consent-faq-body">
+                        @(tr
+                            ? "Consent Management, Pika'da müşteri iletişimi uygulanmadan önce mevcut izin, IYS durumu ve opt-out bağlamının değerlendirilmesine yardımcı olan izin ve tercih yönetimi katmanıdır."
+                            : "Consent Management is Pika's permission and preference-governance layer for helping evaluate available consent, IYS status and opt-out context before customer communication is executed.")
+                    </div>
+                </details>
+
+                <details class="consent-faq-item">
+                    <summary class="consent-faq-summary">
+                        @(tr ? "Pika gönderimden önce IYS durumunu kontrol eder mi?" : "Does Pika check IYS status before delivery?")
+                    </summary>
+                    <div class="consent-faq-body">
+                        @(tr
+                            ? "Pika'nın doğrulanmış consent yetenekleri içinde gönderim öncesi IYS durum sorgusu bulunur. İlgili sonuç iletişim uygunluğu değerlendirmesinde kullanılabilir ve uygun olmayan iletişim suppression kapsamına alınabilir."
+                            : "Pika's confirmed consent capabilities include a pre-dispatch IYS status query. The relevant result can participate in communication-eligibility evaluation and ineligible communication can be suppressed.")
+                    </div>
+                </details>
+
+                <details class="consent-faq-item">
+                    <summary class="consent-faq-summary">
+                        @(tr ? "Opt-out durumunda ne olur?" : "What happens when a customer has opted out?")
+                    </summary>
+                    <div class="consent-faq-body">
+                        @(tr
+                            ? "Pika'nın merkezi opt-out durumu gönderim uygunluğu değerlendirmesinde kontrol edilebilir. Bir müşterinin audience'a girmesi, fırsata sahip olması veya journey adımına ulaşması mevcut opt-out durumunu ortadan kaldırmaz."
+                            : "Pika's centralized opt-out state can be checked during delivery-eligibility evaluation. Entering an audience, having an opportunity or reaching a journey step does not remove an existing opt-out state.")
+                    </div>
+                </details>
+
+                <details class="consent-faq-item">
+                    <summary class="consent-faq-summary">
+                        @(tr ? "Müşteri Email ve SMS tercihlerini kendisi güncelleyebilir mi?" : "Can customers update their own Email and SMS preferences?")
+                    </summary>
+                    <div class="consent-faq-body">
+                        @(tr
+                            ? "Pika'da tokenized public preference-update akışı müşterinin Email ve SMS iletişim tercihlerini güncelleyebilmesini destekler."
+                            : "Pika provides a tokenized public preference-update flow that supports customers updating their Email and SMS communication preferences.")
+                    </div>
+                </details>
+
+                <details class="consent-faq-item">
+                    <summary class="consent-faq-summary">
+                        @(tr ? "Aynı preference sayfasından WhatsApp izni de yönetilir mi?" : "Is WhatsApp consent managed through the same preference page?")
+                    </summary>
+                    <div class="consent-faq-body">
+                        @(tr
+                            ? "Hayır. Mevcut public preference-update formu yalnız Email ve SMS consent alanlarını içerir. WhatsApp opt-in bağlamı ayrı incoming webhook veya import akışlarından gelir."
+                            : "No. The current public preference-update form contains Email and SMS consent fields only. WhatsApp opt-in context comes from separate incoming webhook or import flows.")
+                    </div>
+                </details>
+
+                <details class="consent-faq-item">
+                    <summary class="consent-faq-summary">
+                        @(tr ? "İletişim izni mesajın kesin teslim edileceği anlamına gelir mi?" : "Does communication consent guarantee message delivery?")
+                    </summary>
+                    <div class="consent-faq-body">
+                        @(tr
+                            ? "Hayır. Consent iletişim izni bağlamını ifade eder. Geçerli iletişim bilgisi, kanal reachability durumu, provider kabulü ve gerçek delivery sonucu ayrı operasyonel kontrollerdir."
+                            : "No. Consent represents permission context. Valid contact information, channel reachability, provider acceptance and actual delivery outcome are separate operational controls.")
+                    </div>
+                </details>
+
+                <details class="consent-faq-item">
+                    <summary class="consent-faq-summary">
+                        @(tr ? "Consent Management hukuki uyumluluğu otomatik olarak garanti eder mi?" : "Does Consent Management automatically guarantee legal compliance?")
+                    </summary>
+                    <div class="consent-faq-body">
+                        @(tr
+                            ? "Hayır. Pika izin, IYS ve opt-out kontrollerinin iletişim operasyonunda uygulanmasına yardımcı olur. Bu teknik kontroller işletmenin bütün hukuki yükümlülüklerini otomatik olarak yerine getirdiği anlamına gelmez."
+                            : "No. Pika helps apply consent, IYS and opt-out controls within communication operations. These technical controls do not mean an organization automatically satisfies every legal obligation.")
+                    </div>
+                </details>
+
+                <details class="consent-faq-item">
+                    <summary class="consent-faq-summary">
+                        @(tr ? "Consent Management Campaign Manager ve Journey Manager ile nasıl ilişkilidir?" : "How does Consent Management relate to Campaign Manager and Journey Manager?")
+                    </summary>
+                    <div class="consent-faq-body">
+                        @(tr
+                            ? "Campaign Manager kampanyayı, Journey Manager çok adımlı akışı yönetir. Consent Management ise ilgili iletişim aksiyonu uygulanmadan önce mevcut izin ve suppression bağlamının değerlendirilmesine yardımcı olur."
+                            : "Campaign Manager manages campaigns and Journey Manager manages multi-step flows. Consent Management helps evaluate available permission and suppression context before the relevant communication action is executed.")
+                    </div>
+                </details>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 14 FINAL CTA ─────────────────────────────────────────────── *@
 <section class="pika-sol-cta-section">
     <div class="container" data-aos="fade-up">
-        <h2>@(tr ? "İletişim izinlerini kampanya operasyonunuzun doğal parçası haline getirin" : "Make communication permissions a natural part of your campaign operations")</h2>
-        <p>@(tr ? "Pika Consent Management ile izin süreçlerini güvenli, uyumlu ve otomatik şekilde yönetin." : "Manage consent processes securely, compliantly and automatically with Pika Consent Management.")</p>
+        <div class="pika-sol-eyebrow text-uppercase text-white-50 mb-2">@(tr ? "İZİN BAĞLAMI" : "CONSENT CONTEXT")</div>
+        <h2>
+            @(tr
+                ? "Doğru müşteriyi seçin. İzin durumunu kontrol edin. İletişimi kontrollü biçimde yürütün."
+                : "Choose the right customer. Check permission context. Execute communication under control.")
+        </h2>
+        <p class="lead">
+            @(tr
+                ? "Pika Consent Management'in gönderim öncesi IYS durum kontrolünü, merkezi opt-out yönetimini ve Email/SMS preference-update akışını iletişim kararının parçası haline nasıl getirdiğini birlikte inceleyelim."
+                : "Let's explore how Pika Consent Management brings pre-dispatch IYS status checks, centralized opt-out handling and the Email/SMS preference-update flow into the communication decision.")
+        </p>
+        <p class="small text-white-50 mb-4">
+            @(tr
+                ? "İhtiyacınıza ve kullanım kapsamınıza göre özel teklif."
+                : "Pricing is tailored to your requirements and scope of use.")
+        </p>
         <div class="pika-sol-cta-actions">
-            <button type="button" class="btn pika-btn-primary px-4 py-2" data-bs-toggle="modal" data-bs-target="#demoModal">@(tr ? "Demo Talep Et" : "Request a Demo") <i class="ri-arrow-right-up-line"></i></button>
-            <a href="@Url.Action("Contact", "Home")" class="btn pika-btn-ghost px-4 py-2">@(tr ? "Bizimle İletişime Geçin" : "Contact Us")</a>
+            <button type="button" class="btn pika-btn-primary px-4 py-2" data-bs-toggle="modal" data-bs-target="#demoModal">
+                @(tr ? "Demo Talep Et" : "Request a Demo") <i class="ri-arrow-right-up-line"></i>
+            </button>
+            <a href="@(tr ? "/iletisim" : "/en/contact")" class="btn pika-btn-ghost px-4 py-2">
+                @(tr ? "Teklif Al" : "Request a Quote")
+            </a>
         </div>
     </div>
 </section>

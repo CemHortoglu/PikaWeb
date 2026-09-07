@@ -1,0 +1,131 @@
+/* Pika Consent Management Page Styles - Scoped strictly to .consent-* */
+
+.consent-map-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-top: 1.5rem;
+}
+
+.consent-map-card {
+    background: #ffffff;
+    border: 1px solid #dce5d2;
+    border-radius: 12px;
+    padding: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.consent-map-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(18, 51, 33, 0.06);
+}
+
+.consent-map-card i {
+    font-size: 1.35rem;
+    color: var(--pika-primary, #7c984c);
+    flex-shrink: 0;
+}
+
+.consent-map-card strong {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: #1b3d25;
+}
+
+.consent-flow-chain {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.consent-flow-node {
+    background: #ffffff;
+    border: 1px solid #c8deb0;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: #1b3d25;
+}
+
+.consent-flow-arrow {
+    color: #7c984c;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.consent-question-box {
+    background: #ffffff;
+    border: 1px solid #dce5d2;
+    border-left: 4px solid var(--pika-primary, #7c984c);
+    border-radius: 0 12px 12px 0;
+    padding: 1.5rem 2rem;
+    margin: 1.5rem 0;
+}
+
+.consent-question-box h3 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #1b3d25;
+    margin-bottom: 0;
+    line-height: 1.4;
+}
+
+.consent-faq-item {
+    border: 1px solid #e2ebd8;
+    border-radius: 12px;
+    background: #ffffff;
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+}
+
+.consent-faq-item[open] {
+    border-color: #c5d8b5;
+    background: #fafdf7;
+}
+
+.consent-faq-summary {
+    padding: 1.1rem 1.25rem;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #1a3826;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    user-select: none;
+}
+
+.consent-faq-summary::-webkit-details-marker {
+    display: none;
+}
+
+.consent-faq-summary::after {
+    content: "\ea4e";
+    font-family: "remixicon";
+    font-size: 1.15rem;
+    color: #7c984c;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+}
+
+.consent-faq-item[open] .consent-faq-summary::after {
+    transform: rotate(180deg);
+}
+
+.consent-faq-body {
+    padding: 0 1.25rem 1.25rem;
+    color: #495e50;
+    line-height: 1.7;
+    font-size: 0.95rem;
+}
