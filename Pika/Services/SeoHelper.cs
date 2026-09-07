@@ -113,10 +113,10 @@ public static class SeoHelper
         ["Solutions.CampaignManager"] = new(
             "/cozumler/campaign-manager",
             "/en/solutions/campaign-manager",
-            "Campaign Manager | Çok Kanallı Kampanya Yönetimi",
-            "Campaign Manager | Multi-Channel Campaign Management",
-            "SMS, WhatsApp ve E-posta kampanyalarını tek merkezden oluşturun, zamanlayın, kişiselleştirin ve yönetin.",
-            "Create, schedule, personalize and manage SMS, WhatsApp, and Email campaigns from a single hub.",
+            "Campaign Manager | Çok Kanallı Kampanya ve Kontrollü Gönderim | Pika",
+            "Campaign Manager | Multi-Channel Campaigns & Controlled Delivery | Pika",
+            "Pika Campaign Manager; hedef kitle, içerik, kanal, zamanlama ve gönderim öncesi kontrolleri tek kampanya akışında birleştirerek Email, SMS ve WhatsApp kampanyalarını yönetmenizi sağlar.",
+            "Pika Campaign Manager brings audience, content, channel, timing and pre-send controls into one campaign workflow for Email, SMS and WhatsApp campaigns.",
             "Campaign Manager",
             "Campaign Manager"),
 

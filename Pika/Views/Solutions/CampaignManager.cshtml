@@ -1,365 +1,1038 @@
 @{
     var culture = ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr";
     var tr = culture.Equals("tr", StringComparison.OrdinalIgnoreCase);
-    var wikiBase = "/wiki/";
-    ViewData["Title"] = tr ? "Campaign Manager | Çok Kanallı Kampanya Yönetimi" : "Campaign Manager | Multi-Channel Campaign Execution";
-    ViewData["MetaDescription"] = tr ? "Pika Campaign Manager; hedef kitle seçimi, içerik şablonları, kanal izin kontrolü, zamanlama ve gelir atıfını tek kontrollü akışta birleştiren kampanya yönetim modülüdür." : "Pika Campaign Manager unifies audience selection, content templates, consent verification, scheduling, and revenue attribution in one controlled workflow.";
     ViewData["BodyClass"] = "pika-platform-page";
 }
 
-@* ── CHAPTER 1: HERO ────────────────────────────────────────── *@
-@await Html.PartialAsync("_MarketingHero")
+@section Styles {
+    <link rel="stylesheet" href="~/css/pika-campaign-manager-page.css" asp-append-version="true" />
+}
 
-@* ── CHAPTER 2: LLM DEFINITION & BUSINESS PROBLEM ───────────── *@
-<section class="ph-section ph-section-alt">
-    <div class="container">
-        @* Plain LLM Definition Box *@
-        <div class="p-4 rounded-4 mb-5" style="background:#ffffff;border:1px solid #dcebc7" data-aos="fade-up">
-            <div class="d-flex align-items-center gap-2 mb-2">
-                <i class="ri-information-line text-success fw-bold"></i>
-                <span class="fw-bold text-dark text-uppercase small" style="letter-spacing:0.06em">@(tr ? "Campaign Manager Nedir?" : "What is Campaign Manager?")</span>
-            </div>
-            <p class="mb-0 text-secondary" style="font-size:1.02rem;line-height:1.6">
-                @(tr ? "Campaign Manager; Pika platformunda oluşturulan hedef kitle segmentlerini, onaylı içerik şablonlarını ve ticari iletişim izinlerini (İYS/KVKK) tek merkezde birleştirerek WhatsApp, SMS, E-posta ve Mobil Push kanallarından kontrollü, zamanlanmış veya anlık gönderim gerçekleştiren ve oluşan ciroyu kampanyaya atfeden merkezi kampanya orkestrasyon modülüdür." : "Campaign Manager is Pika's central campaign orchestration engine that combines audience cohorts, verified message templates, and opt-in consent records (IYS/GDPR) to execute scheduled or real-time dispatches across WhatsApp, SMS, Email, and Push notifications while attributing direct revenue.")
-            </p>
-        </div>
-
-        <div class="row align-items-center g-5 ph-split-row">
-            <div class="col-lg-6" data-aos="fade-right">
-                <span class="ph-eyebrow">@(tr ? "Operasyonel Verimlilik" : "Operational Efficiency")</span>
-                <h2 class="pika-h2 fw-bold mb-3">@(tr ? "Kampanya Süreçlerindeki Dağınıklığı Bitirin" : "Eliminate Campaign Operational Chaos")</h2>
-                <p class="ph-muted mb-3" style="font-size:1.05rem">
-                    @(tr ? "Farklı araçlar arasında kitle listesi taşımak, izinleri manuel denetlemek ve geri dönüşleri tahmin etmek yerine uçtan uca tek platform:" : "Replace disparate tools, manual list exports, and guesswork with a single audited pipeline:")
+@* ── 01 HERO ─────────────────────────────────────────────────── *@
+<section class="inner-hero inner-hero--campaign">
+    <div class="inner-atmosphere" aria-hidden="true"><span></span><span></span></div>
+    <div class="container inner-hero-grid">
+        <div class="inner-intro">
+            <nav class="inner-breadcrumb" aria-label="@(tr ? "Sayfa yolu" : "Breadcrumb")">
+                <a href="@(tr ? "/" : "/en/")">Pika</a>
+                <span>/</span>
+                <a href="@(tr ? "/pika" : "/en/pika")">@(tr ? "Pika Nedir?" : "What Is Pika?")</a>
+                <span>/</span>
+                <span>Campaign Manager</span>
+            </nav>
+            <div class="inner-eyebrow"><span></span>CAMPAIGN MANAGER</div>
+            @if (tr)
+            {
+                <h1>
+                    Kampanyayı tek yerde hazırlayın.<br />
+                    Gönderimi kontrol altında tutun.
+                </h1>
+                <p>
+                    Pika Campaign Manager; hedef kitleyi, iletişim içeriğini, Email, SMS veya WhatsApp kanalını, zamanlamayı ve gönderim öncesi kontrolleri tek kampanya bağlamında bir araya getirir.
                 </p>
-                <div class="p-3 rounded-3 bg-white border mb-3">
-                    <div class="fw-bold text-dark small mb-1"><i class="ri-shield-keyhole-line text-success me-1"></i> <strong>Sıfır Hata ve Otomatik İYS Koruması</strong></div>
-                    <div class="small ph-muted">Her gönderim anında izinler canlı sorgulanır; ceza veya şikayet riski ortadan kalkar.</div>
+                <p class="ph-muted" style="color:rgba(255,255,255,0.72);font-size:15px;margin-bottom:30px">
+                    Amaç yalnızca mesajı göndermek değil; kime, hangi içerikle, hangi kanaldan ve hangi kontrol adımlarından sonra ulaşılacağını aynı kampanya sürecinde yönetmektir.
+                </p>
+                <div class="inner-actions">
+                    <button class="inner-primary" type="button" data-bs-toggle="modal" data-bs-target="#demoModal">
+                        Demo Talep Et ↗
+                    </button>
+                    <a class="inner-secondary" href="/cozumler/audience-manager">
+                        Audience Manager'ı Keşfedin →
+                    </a>
+                    <a class="inner-hero-anchor" href="#inner-content" aria-label="İçeriğe atla">
+                        <i class="ri-arrow-down-line" aria-hidden="true"></i>
+                    </a>
                 </div>
-                <div class="p-3 rounded-3 bg-white border">
-                    <div class="fw-bold text-dark small mb-1"><i class="ri-money-dollar-circle-line text-primary me-1"></i> <strong>Net Gelir ve Ciro Ölçümü</strong></div>
-                    <div class="small ph-muted">Sadece açılma ve tıklama değil, kampanyanın kasaya kazandırdığı gerçek TL tutarını izleyin.</div>
+            }
+            else
+            {
+                <h1>
+                    Prepare the campaign in one place.<br />
+                    Keep delivery under control.
+                </h1>
+                <p>
+                    Pika Campaign Manager brings the audience, communication content, Email, SMS or WhatsApp channel, timing and pre-send controls together within one campaign context.
+                </p>
+                <p class="ph-muted" style="color:rgba(255,255,255,0.72);font-size:15px;margin-bottom:30px">
+                    The objective is not simply to send a message. It is to manage who should receive it, which content should be used, which channel should carry it and which control steps should happen before delivery.
+                </p>
+                <div class="inner-actions">
+                    <button class="inner-primary" type="button" data-bs-toggle="modal" data-bs-target="#demoModal">
+                        Request a Demo ↗
+                    </button>
+                    <a class="inner-secondary" href="/en/solutions/audience-manager">
+                        Explore Audience Manager →
+                    </a>
+                    <a class="inner-hero-anchor" href="#inner-content" aria-label="Skip to content">
+                        <i class="ri-arrow-down-line" aria-hidden="true"></i>
+                    </a>
                 </div>
-            </div>
-            <div class="col-lg-6" data-aos="fade-left">
-                <div class="d-flex flex-column gap-3 p-4 rounded-4 bg-white border">
-                    <div class="fw-bold small text-uppercase" style="color:var(--pika-color-brand-primary-dark);letter-spacing:0.06em">
-                        @(tr ? "Campaign Manager 4 Adımlı Gönderim Hattı" : "Campaign Manager 4-Stage Pipeline")
+            }
+        </div>
+        <div class="inner-scene" aria-label="@(tr ? "Platformun çalışma biçimini anlatan örnek görünüm" : "Illustrative view of how the platform works")">
+            <div class="inner-scene-orbit" aria-hidden="true"></div>
+            <div class="inner-scene-window">
+                <div class="inner-window-bar">
+                    <strong>pika<span>✳</span></strong>
+                    <span>Campaign Manager</span>
+                    <small>@(tr ? "Örnek görünüm" : "Illustration")</small>
+                </div>
+                <div class="inner-flow" style="padding:22px 18px">
+                    <div>
+                        <i class="ri-group-line" aria-hidden="true"></i>
+                        <span>
+                            <strong style="margin:0">@(tr ? "HEDEF KİTLE" : "AUDIENCE")</strong>
+                        </span>
+                        <b>01</b>
                     </div>
-                    <div class="d-flex align-items-start gap-3 p-2 rounded-2 bg-light">
-                        <div class="ph-unboxed-icon flex-shrink-0" style="width:30px;height:30px;font-size:0.8rem;font-weight:800;margin-bottom:0">1</div>
-                        <div>
-                            <div class="fw-bold text-dark small">@(tr ? "Kitleyi Seçin (Audience Manager)" : "Select Cohort (Audience Manager)")</div>
-                            <div class="small ph-muted">RFM, davranışsal veya demografik kurallara göre dinamik listeyi belirleyin.</div>
-                        </div>
+                    <span class="inner-flow-link" style="height:14px"></span>
+                    <div>
+                        <i class="ri-megaphone-line" aria-hidden="true"></i>
+                        <span>
+                            <strong style="margin:0">@(tr ? "KAMPANYA" : "CAMPAIGN")</strong>
+                        </span>
+                        <b>02</b>
                     </div>
-                    <div class="d-flex align-items-start gap-3 p-2 rounded-2 bg-light">
-                        <div class="ph-unboxed-icon flex-shrink-0" style="width:30px;height:30px;font-size:0.8rem;font-weight:800;margin-bottom:0">2</div>
-                        <div>
-                            <div class="fw-bold text-dark small">@(tr ? "Şablonu & Kanalı Belirleyin" : "Select Verified Template & Channel")</div>
-                            <div class="small ph-muted">WhatsApp, SMS, E-posta veya Push formatında onaylı şablonu eşleştirin.</div>
-                        </div>
+                    <span class="inner-flow-link" style="height:14px"></span>
+                    <div>
+                        <i class="ri-shield-check-line" aria-hidden="true"></i>
+                        <span>
+                            <strong style="margin:0">@(tr ? "KONTROL" : "CONTROL")</strong>
+                        </span>
+                        <b>03</b>
                     </div>
-                    <div class="d-flex align-items-start gap-3 p-2 rounded-2 bg-light">
-                        <div class="ph-unboxed-icon flex-shrink-0" style="width:30px;height:30px;font-size:0.8rem;font-weight:800;margin-bottom:0">3</div>
-                        <div>
-                            <div class="fw-bold text-dark small">@(tr ? "Canlı İzin & İYS Filtreleme" : "Real-Time Consent & Opt-In Filter")</div>
-                            <div class="small ph-muted">Yalnızca aktif izni olan alıcılar gönderim sırasına alınır.</div>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-start gap-3 p-2 rounded-2" style="background:#f0fdf4;border:1px solid #bbf7d0">
-                        <div class="ph-unboxed-icon flex-shrink-0" style="width:30px;height:30px;font-size:0.8rem;font-weight:800;margin-bottom:0"><i class="ri-check-line"></i></div>
-                        <div>
-                            <div class="fw-bold text-dark small">@(tr ? "4. Güvenli Yayına Alma & Ciro Takibi" : "4. Dispatch & Revenue Attribution")</div>
-                            <div class="small ph-muted">Tetiklenen mesajların teslimat, tıklama ve sipariş dönüşümleri canlı akar.</div>
-                        </div>
+                    <span class="inner-flow-link" style="height:14px"></span>
+                    <div class="inner-flow-final">
+                        <i class="ri-send-plane-line" aria-hidden="true"></i>
+                        <span>
+                            <strong style="margin:0">@(tr ? "GÖNDERİM" : "DELIVERY")</strong>
+                        </span>
+                        <b>04</b>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+<div id="inner-content" class="inner-anchor"></div>
 
-@* ── CHAPTER 3: PRODUCT PROOF (Real Software UI) ─────────────── *@
+@* ── 02 DIRECT ANSWER ────────────────────────────────────────── *@
+<section class="ph-section ph-section-alt">
+    <div class="container">
+        <div class="p-4 rounded-4 mb-4 bg-white border" data-aos="fade-up">
+            <span class="ph-eyebrow">@(tr ? "KISA CEVAP" : "THE SHORT ANSWER")</span>
+            <h2 class="pika-h2 fw-bold mb-3">@(tr ? "Campaign Manager nedir?" : "What is Campaign Manager?")</h2>
+            <p class="mb-3" style="font-size:1.05rem;line-height:1.65;color:#23413b">
+                @(tr ? "Campaign Manager, Pika'da belirlenmiş bir hedef kitle için kampanya içeriğini, iletişim kanalını, zamanlamayı ve kontrollü gönderim sürecini bir araya getiren kampanya orkestrasyon katmanıdır." : "Campaign Manager is Pika's campaign-orchestration layer that brings campaign content, communication channel, timing and controlled delivery together for a defined audience.")
+            </p>
+            <p class="ph-muted mb-3" style="font-size:0.95rem;line-height:1.6">
+                @if (tr)
+                {
+                    <text>Audience Manager “KİM?” sorusunu cevaplar.<br />Content Studio iletişim içeriğinin hazırlanmasını destekler.<br />Campaign Manager ise bu parçaları kampanya düzeyinde bir araya getirerek şu soruya odaklanır:</text>
+                }
+                else
+                {
+                    <text>Audience Manager answers “WHO?”<br />Content Studio supports preparation of communication content.<br />Campaign Manager brings those pieces together at campaign level and focuses on:</text>
+                }
+            </p>
+            <div class="p-4 rounded-3 text-center my-4" style="background:#f8faf4;border:1px dashed #c9dca9">
+                <span class="d-block small text-uppercase fw-bold mb-1" style="letter-spacing:1px;color:#7c984c">
+                    @(tr ? "TEMEL ODAK SORUSU" : "CENTRAL FOCUS QUESTION")
+                </span>
+                <div class="fw-bold" style="font-size:1.35rem;color:#23413b">
+                    @(tr ? "“Bu hedef kitle için hangi kampanya nasıl kontrollü biçimde gönderilmeli?”" : "“For this audience, which campaign should be executed, and how should delivery be controlled?”")
+                </div>
+            </div>
+            <p class="ph-muted mb-2" style="font-size:0.95rem;line-height:1.6">
+                @(tr ? "Campaign Manager müşteri zekâsını hesaplayan katman değildir, hedef kitleyi tanımlayan Audience Manager değildir ve çok adımlı müşteri yolculuğunu yöneten Journey Manager değildir." : "Campaign Manager is not the layer that calculates customer intelligence, it is not Audience Manager, and it is not Journey Manager for multi-step customer flows.")
+            </p>
+            <p class="ph-muted mb-0" style="font-size:0.95rem;line-height:1.6">
+                @(tr ? "Campaign Manager'ın ürün rolü, karar verilmiş bir kampanyayı kontrollü gönderim sürecine dönüştürmektir." : "The product role of Campaign Manager is to turn an approved campaign decision into a controlled delivery process.")
+            </p>
+        </div>
+    </div>
+</section>
+
+@* ── 03 WHY CAMPAIGN OPERATIONS BECOME FRAGMENTED ─────────────── *@
 <section class="ph-section ph-section-plain">
     <div class="container">
-        <div class="text-center mb-5" data-aos="fade-up">
-            <span class="ph-eyebrow">@(tr ? "Ürün Kanıtı" : "Product Proof")</span>
-            <h2 class="pika-h2 fw-bold">@(tr ? "Gerçek Kampanya Konsolu ve Yayına Alma Akışı" : "Live Campaign Operations & Dispatch Cockpit")</h2>
-            <p class="ph-muted mx-auto" style="max-width:620px">
-                @(tr ? "Pika Campaign Manager ekranında hedef kitle seçimi, kanal önizlemesi ve gönderim onay tuvali." : "Real-world view of cohort selection, multi-channel template binding, and dispatch control in Pika.")
-            </p>
-        </div>
-
-        <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="100">
-            <div class="col-lg-10">
-                <div class="ph-cockpit p-2 shadow-lg">
-                    <img src="/wiki/assets/images/img_kampanya-yonetimi_0.png"
-                         alt="@(tr ? "Pika Campaign Manager Operasyon Konsolu" : "Pika Campaign Manager Live Interface")"
-                         class="img-fluid rounded-3 w-100"
-                         loading="lazy" />
-                </div>
-                <div class="text-center mt-3 small text-muted">
-                    <i class="ri-checkbox-circle-line text-success me-1"></i>
-                    @(tr ? "Pika canlı yazılım arayüzü: Çok kanallı kampanya oluşturma, izin kontrolü ve yayına alma akışı." : "Live Pika interface: Multi-channel campaign builder, opt-in verification, and execution workflow.")
+        <div class="row align-items-center g-5 ph-split-row">
+            <div class="col-lg-6" data-aos="fade-right">
+                <span class="ph-eyebrow">@(tr ? "DAĞINIKLIKTAN KONTROLE" : "FROM FRAGMENTATION TO CONTROL")</span>
+                <h2 class="pika-h2 fw-bold mb-3">
+                    @(tr ? "Kampanya yalnızca “mesajı gönder” adımı değildir." : "A campaign is more than the “send message” step.")
+                </h2>
+                <p class="ph-muted mb-3" style="font-size:1.02rem;line-height:1.65">
+                    @(tr ? "Bir kampanyanın arkasında hedef kitle, içerik, kanal, zamanlama, izin bağlamı ve gönderim kontrolü gibi birden fazla karar bulunur." : "Behind a campaign are multiple decisions: audience, content, channel, timing, permission context and delivery control.")
+                </p>
+                <p class="ph-muted mb-3" style="font-size:1.02rem;line-height:1.65">
+                    @(tr ? "Bu kararlar birbirinden kopuk araçlarda yönetildiğinde kampanya operasyonu liste taşıma, içerik eşleştirme ve kanal bazında ayrı süreçleri takip etme işine dönüşebilir." : "When those decisions are managed across disconnected tools, campaign operations can turn into moving lists, matching content manually and following separate channel processes.")
+                </p>
+                <p class="ph-muted mb-0" style="font-size:1.02rem;line-height:1.65">
+                    @(tr ? "Üstelik aynı müşteriye farklı kampanyaların aynı anda veya uygunsuz koşullarda ulaşması, kampanya kararlarının birbirinden bağımsız yürütülmesi halinde yönetilmesi gereken ayrı bir operasyonel risk oluşturur." : "Different campaigns reaching the same customer at the same time or under inappropriate conditions also becomes an operational risk that must be managed when campaign decisions are handled independently.")
+                </p>
+            </div>
+            <div class="col-lg-6" data-aos="fade-left">
+                <div class="p-4 rounded-4 bg-white border">
+                    <div class="p-3 rounded-3 mb-3 text-center" style="background:#f8faf4;border:1px dashed #c9dca9">
+                        <small class="text-uppercase fw-bold d-block mb-1" style="font-size:11px;letter-spacing:1px;color:#7c984c">
+                            @(tr ? "Campaign Manager'ın amacı:" : "The purpose of Campaign Manager is not:")
+                        </small>
+                        <div class="fw-bold mb-2" style="font-size:1.05rem;color:#23413b">
+                            @(tr ? "Daha fazla mesaj göndermek değil," : "To send more messages.")
+                        </div>
+                        <small class="text-uppercase fw-bold d-block mb-1" style="font-size:11px;letter-spacing:1px;color:#7c984c">
+                            @(tr ? "Amacı:" : "It is:")
+                        </small>
+                        <div class="fw-bold" style="font-size:1.05rem;color:var(--pika-primary)">
+                            @(tr ? "kampanyanın parçalarını aynı kontrollü süreç içinde bir araya getirmektir." : "To bring campaign components into the same controlled process.")
+                        </div>
+                    </div>
+                    <p class="small ph-muted mb-0 text-center">
+                        @(tr ? "Böylece hedef kitle seçiminden gönderim planına kadar kampanya tek bir operasyonel bağlam içinde yönetilebilir." : "This allows campaign operations from audience selection through delivery planning to be managed within one campaign context.")
+                    </p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-@* ── CHAPTER 4: 6 CORE VERIFIED CAPABILITIES ─────────────────── *@
+@* ── 04 WHAT DEFINES A CAMPAIGN & CONCEPTUAL FLOW ─────────────── *@
 <section class="ph-section ph-section-alt">
     <div class="container">
         <div class="text-center mb-5" data-aos="fade-up">
-            <span class="ph-eyebrow">@(tr ? "Yetenekler" : "Capabilities")</span>
-            <h2 class="pika-h2 fw-bold">@(tr ? "Campaign Manager Ne Sunar?" : "What Does Campaign Manager Deliver?")</h2>
+            <span class="ph-eyebrow">@(tr ? "KAMPANYA BAĞLAMI" : "CAMPAIGN CONTEXT")</span>
+            <h2 class="pika-h2 fw-bold mb-3">
+                @(tr ? "Bir kampanyayı, gönderim düğmesinden önce tanımlayın." : "Define the campaign before the send button.")
+            </h2>
+            <p class="ph-muted mx-auto" style="max-width:680px">
+                @(tr ? "Campaign Manager bir kampanyanın yürütülebilmesi için gerekli temel karar parçalarını aynı bağlamda toplar." : "Campaign Manager brings the core decision components required to execute a campaign into the same context.")
+            </p>
+        </div>
+
+        @* Conceptual Campaign Flow (replaces legacy visual cockpit) *@
+        <div class="ph-cockpit p-4 shadow-sm bg-white rounded-4 border mb-5" aria-hidden="true" data-aos="fade-up">
+            <div class="camp-cockpit-flow">
+                <div class="camp-cockpit-step">
+                    <i class="ri-group-line"></i>
+                    <span>@(tr ? "HEDEF KİTLE" : "AUDIENCE")</span>
+                </div>
+                <div class="camp-cockpit-step">
+                    <i class="ri-file-text-line"></i>
+                    <span>@(tr ? "İÇERİK" : "CONTENT")</span>
+                </div>
+                <div class="camp-cockpit-step">
+                    <i class="ri-chat-3-line"></i>
+                    <span>@(tr ? "KANAL" : "CHANNEL")</span>
+                </div>
+                <div class="camp-cockpit-step">
+                    <i class="ri-time-line"></i>
+                    <span>@(tr ? "ZAMANLAMA" : "TIMING")</span>
+                </div>
+                <div class="camp-cockpit-step">
+                    <i class="ri-shield-check-line"></i>
+                    <span>@(tr ? "KONTROL" : "CONTROL")</span>
+                </div>
+                <div class="camp-cockpit-step">
+                    <i class="ri-send-plane-line"></i>
+                    <span>@(tr ? "GÖNDERİM" : "DELIVERY")</span>
+                </div>
+            </div>
         </div>
 
         <div class="row g-4" data-aos="fade-up" data-aos-delay="100">
             <div class="col-lg-4 col-md-6">
                 <div class="ph-trust-card h-100 p-4 d-flex flex-column">
-                    <div class="ph-unboxed-icon mb-3"><i class="ri-whatsapp-line"></i></div>
-                    <h5 class="fw-bold mb-2 text-dark">@(tr ? "Çok Kanallı Tek Akış" : "Unified Multi-Channel")</h5>
-                    <p class="small ph-muted mb-3">
-                        @(tr ? "SMS, WhatsApp Business API, E-posta ve Push mesajlarını aynı arayüzden tek tıkla yönetin." : "Deploy SMS, WhatsApp, Email, and Push dispatches from a single unified operational dashboard.")
+                    <div class="ph-unboxed-icon mb-3"><i class="ri-group-line"></i></div>
+                    <h5 class="fw-bold mb-2 text-dark">@(tr ? "Hedef Kitle" : "Audience")</h5>
+                    <p class="small ph-muted mb-0">
+                        @(tr ? "Audience Manager'da tanımlanan veya kampanya için belirlenen müşteri grubu, kampanyanın “KİM?” bağlamını oluşturur." : "The customer group defined in Audience Manager or selected for the campaign provides the “WHO?” context.")
                     </p>
-                    <a href="@(wikiBase)kampanya-yonetimi" class="small fw-bold text-decoration-none mt-auto" style="color:var(--pika-color-brand-primary-dark)">
-                        @(tr ? "Wiki'de İncele →" : "Read in Wiki →")
-                    </a>
                 </div>
             </div>
 
             <div class="col-lg-4 col-md-6">
                 <div class="ph-trust-card h-100 p-4 d-flex flex-column">
-                    <div class="ph-unboxed-icon mb-3"><i class="ri-group-line"></i></div>
-                    <h5 class="fw-bold mb-2 text-dark">@(tr ? "Dinamik Segment Bağlantısı" : "Dynamic Cohort Binding")</h5>
-                    <p class="small ph-muted mb-3">
-                        @(tr ? "Audience Manager'da hazırlanan segmentleri anlık bağlayın; liste yükleme zahmetini unutun." : "Bind cohorts directly from Audience Manager without manual CSV exports or static lists.")
+                    <div class="ph-unboxed-icon mb-3"><i class="ri-file-text-line"></i></div>
+                    <h5 class="fw-bold mb-2 text-dark">@(tr ? "İçerik" : "Content")</h5>
+                    <p class="small ph-muted mb-0">
+                        @(tr ? "Kampanyada kullanılacak iletişim içeriği ve uygun şablon, müşteriye ne söyleneceğini belirler." : "Communication content and the relevant template define what will be communicated to the customer.")
                     </p>
-                    <a href="@(wikiBase)segment-sablonlari" class="small fw-bold text-decoration-none mt-auto" style="color:var(--pika-color-brand-primary-dark)">
-                        @(tr ? "Wiki'de İncele →" : "Read in Wiki →")
-                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="ph-trust-card h-100 p-4 d-flex flex-column">
+                    <div class="ph-unboxed-icon mb-3"><i class="ri-chat-3-line"></i></div>
+                    <h5 class="fw-bold mb-2 text-dark">@(tr ? "Kanal" : "Channel")</h5>
+                    <p class="small ph-muted mb-0">
+                        @(tr ? "Email, SMS veya WhatsApp arasından kampanya için kullanılacak doğrulanmış iletişim kanalı seçilir." : "A confirmed communication channel is selected from Email, SMS or WhatsApp for the campaign.")
+                    </p>
                 </div>
             </div>
 
             <div class="col-lg-4 col-md-6">
                 <div class="ph-trust-card h-100 p-4 d-flex flex-column">
                     <div class="ph-unboxed-icon mb-3"><i class="ri-time-line"></i></div>
-                    <h5 class="fw-bold mb-2 text-dark">@(tr ? "Gelişmiş Zamanlama ve Hız Limiti" : "Scheduling & Throttle Control")</h5>
-                    <p class="small ph-muted mb-3">
-                        @(tr ? "Kampanyaları ileri tarihe planlayın, alıcı başına gönderim hızını (throttling) belirleyin." : "Schedule future batches and regulate delivery rates per second to protect server capacity.")
+                    <h5 class="fw-bold mb-2 text-dark">@(tr ? "Zamanlama" : "Timing")</h5>
+                    <p class="small ph-muted mb-0">
+                        @(tr ? "Kampanyanın ne zaman gönderim sürecine alınacağı kampanya planının bir parçasıdır." : "When the campaign should enter the delivery process is part of the campaign plan.")
                     </p>
-                    <a href="@(wikiBase)izin-kanal-zamanlama" class="small fw-bold text-decoration-none mt-auto" style="color:var(--pika-color-brand-primary-dark)">
-                        @(tr ? "Wiki'de İncele →" : "Read in Wiki →")
-                    </a>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div class="ph-trust-card h-100 p-4 d-flex flex-column">
-                    <div class="ph-unboxed-icon mb-3"><i class="ri-user-heart-line"></i></div>
-                    <h5 class="fw-bold mb-2 text-dark">@(tr ? "Dinamik Kişiselleştirme" : "Dynamic Personalization")</h5>
-                    <p class="small ph-muted mb-3">
-                        @(tr ? "İsim, son alınan ürün, özel sepet linki ve mağaza koordinatlarını dinamik token'larla mesaja gömün." : "Embed recipient names, last purchased items, and dynamic cart links seamlessly.")
-                    </p>
-                    <a href="@(wikiBase)content-studio" class="small fw-bold text-decoration-none mt-auto" style="color:var(--pika-color-brand-primary-dark)">
-                        @(tr ? "Wiki'de İncele →" : "Read in Wiki →")
-                    </a>
                 </div>
             </div>
 
             <div class="col-lg-4 col-md-6">
                 <div class="ph-trust-card h-100 p-4 d-flex flex-column">
                     <div class="ph-unboxed-icon mb-3"><i class="ri-shield-check-line"></i></div>
-                    <h5 class="fw-bold mb-2 text-dark">@(tr ? "Yasal İzin ve İYS Uyumu" : "Consent & IYS Compliance")</h5>
-                    <p class="small ph-muted mb-3">
-                        @(tr ? "Gönderim listesini anlık olarak ticari izin veritabanıyla filtreleyerek ceza riskini sıfırlayın." : "Audit recipient lists against opt-in records prior to send to maintain legal compliance.")
+                    <h5 class="fw-bold mb-2 text-dark">@(tr ? "Gönderim Öncesi Kontroller" : "Pre-Send Controls")</h5>
+                    <p class="small ph-muted mb-0">
+                        @(tr ? "İzin, erişilebilirlik ve ilgili gönderim güvenliği kontrolleri kampanyanın icrasından önce değerlendirilir." : "Permission, reachability and relevant delivery-safety controls are evaluated before campaign execution.")
                     </p>
-                    <a href="@(wikiBase)izin-kanal-zamanlama" class="small fw-bold text-decoration-none mt-auto" style="color:var(--pika-color-brand-primary-dark)">
-                        @(tr ? "Wiki'de İncele →" : "Read in Wiki →")
-                    </a>
                 </div>
             </div>
 
             <div class="col-lg-4 col-md-6">
                 <div class="ph-trust-card h-100 p-4 d-flex flex-column">
                     <div class="ph-unboxed-icon mb-3"><i class="ri-line-chart-line"></i></div>
-                    <h5 class="fw-bold mb-2 text-dark">@(tr ? "Doğrudan Ciro Atfı" : "Revenue Attribution")</h5>
-                    <p class="small ph-muted mb-3">
-                        @(tr ? "Hangi kampanyanın kaç TL satış ve sipariş getirdiğini doğrudan fatura kayıtlarıyla eşleştirin." : "Attribute resulting orders and monetary revenue directly back to each campaign message.")
+                    <h5 class="fw-bold mb-2 text-dark">@(tr ? "Ölçüm" : "Measurement")</h5>
+                    <p class="small ph-muted mb-0">
+                        @(tr ? "Gönderim ve etkileşim sonuçları ile kampanyayla ilişkilendirilebilen ticari sonuçlar daha sonra ölçüm katmanında değerlendirilebilir." : "Delivery and engagement results, together with commercial outcomes that can be associated with the campaign, can later be evaluated in the measurement layer.")
                     </p>
-                    <a href="@(wikiBase)bi-kokpit" class="small fw-bold text-decoration-none mt-auto" style="color:var(--pika-color-brand-primary-dark)">
-                        @(tr ? "Wiki'de İncele →" : "Read in Wiki →")
+                </div>
+            </div>
+        </div>
+
+        <div class="p-3 rounded text-center mx-auto mt-4" style="background:#ffffff;border:1px dashed #dce5d3;max-width:760px">
+            <strong style="color:#23413b">
+                @(tr ? "Campaign Manager'ın görevi bu parçaları bağımsız görevler olarak bırakmak değil, tek kampanya bağlamında yönetmektir." : "Campaign Manager does not leave these as disconnected operational tasks. It manages them within one campaign context.")
+            </strong>
+        </div>
+    </div>
+</section>
+
+@* ── 05 AUDIENCE MANAGER → CAMPAIGN MANAGER ──────────────────── *@
+<section class="ph-section ph-section-plain">
+    <div class="container" style="max-width:860px">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="ph-eyebrow">@(tr ? "“KİM?”DEN KAMPANYAYA" : "FROM “WHO?” TO CAMPAIGN")</span>
+            <h2 class="pika-h2 fw-bold mb-3">
+                @(tr ? "Audience Manager kitleyi tanımlar. Campaign Manager kampanyayı yürütür." : "Audience Manager defines the audience. Campaign Manager executes the campaign.")
+            </h2>
+        </div>
+
+        <div class="p-4 rounded-4 bg-white border mb-4" data-aos="fade-up">
+            <p class="mb-3" style="line-height:1.65;color:#23413b">
+                @(tr ? "Audience Manager ile Campaign Manager aynı ürün rolünü taşımaz. Audience Manager, müşteri özellikleri ve davranış bağlamından hangi müşterilerin belirli bir karar için hedef kitleye dahil olduğunu kurallarla tanımlar." : "Audience Manager and Campaign Manager do not perform the same product role. Audience Manager defines through customer attributes and behavioral context which customers belong in the audience for a particular decision.")
+            </p>
+            <p class="mb-4 ph-muted" style="line-height:1.65">
+                @(tr ? "Campaign Manager ise seçilmiş hedef kitleyi kampanya içeriği, kanal, zamanlama ve gönderim kontrolleriyle bir araya getirir." : "Campaign Manager brings the selected audience together with campaign content, channel, timing and delivery controls.")
+            </p>
+
+            <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                    <div class="p-3 rounded-3 h-100" style="background:#f8faf4;border:1px solid #dce5d2">
+                        <small class="text-uppercase fw-bold d-block mb-1" style="font-size:11px;letter-spacing:1px;color:#7c984c">
+                            @(tr ? "AUDIENCE MANAGER SORUSU" : "AUDIENCE QUESTION")
+                        </small>
+                        <div class="fw-bold mb-1" style="color:#23413b">Audience Manager:</div>
+                        <div class="small ph-muted">
+                            @(tr ? "“Bu karar için hangi müşteriler hedef kitleye dahil olmalı?”" : "“Which customers should belong in this audience?”")
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-3 rounded-3 h-100" style="background:#f8faf4;border:1px solid #dce5d2">
+                        <small class="text-uppercase fw-bold d-block mb-1" style="font-size:11px;letter-spacing:1px;color:#7c984c">
+                            @(tr ? "CAMPAIGN MANAGER SORUSU" : "CAMPAIGN QUESTION")
+                        </small>
+                        <div class="fw-bold mb-1" style="color:#23413b">Campaign Manager:</div>
+                        <div class="small ph-muted">
+                            @(tr ? "“Bu hedef kitle için hangi kampanya ve kontrollü gönderim uygulanmalı?”" : "“Which campaign and controlled delivery should be executed for this audience?”")
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="small ph-muted mb-3">
+                @(tr ? "Hedef kitle tanımı kampanyanın kendisi değildir. Campaign Manager, “KİM?” kararını kampanya operasyonuna bağlayan sonraki katmandır." : "An audience definition is not the campaign itself. Campaign Manager is the next layer that connects the “WHO?” decision to campaign operations.")
+            </p>
+
+            <div class="text-end">
+                <a href="@(tr ? "/cozumler/audience-manager" : "/en/solutions/audience-manager")" class="small fw-bold" style="color:var(--pika-primary)">
+                    @(tr ? "Audience Manager'ı Keşfedin →" : "Explore Audience Manager →")
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 06 CONTENT STUDIO → CAMPAIGN MANAGER ────────────────────── *@
+<section class="ph-section ph-section-alt">
+    <div class="container" style="max-width:860px">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="ph-eyebrow">@(tr ? "İÇERİKTEN GÖNDERİME" : "FROM CONTENT TO DELIVERY")</span>
+            <h2 class="pika-h2 fw-bold mb-3">
+                @(tr ? "İçeriği hazırlamak ve kampanyayı yürütmek aynı görev değildir." : "Preparing content and executing the campaign are different jobs.")
+            </h2>
+        </div>
+
+        <div class="p-4 rounded-4 bg-white border mb-4" data-aos="fade-up">
+            <p class="mb-3" style="line-height:1.65;color:#23413b">
+                @(tr ? "Content Studio, kampanyada kullanılacak iletişim içeriğinin ve şablonların hazırlanmasını destekler." : "Content Studio supports preparation of communication content and templates used in campaigns.")
+            </p>
+            <p class="mb-4 ph-muted" style="line-height:1.65">
+                @(tr ? "Campaign Manager ise seçilmiş içeriği hedef kitle, kanal ve kampanya zamanlamasıyla aynı operasyonel bağlamda kullanır." : "Campaign Manager uses selected content together with audience, channel and campaign timing within the same operational context.")
+            </p>
+
+            <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                    <div class="p-3 rounded-3 h-100" style="background:#f8faf4;border:1px solid #dce5d2">
+                        <small class="text-uppercase fw-bold d-block mb-1" style="font-size:11px;letter-spacing:1px;color:#7c984c">
+                            @(tr ? "CONTENT STUDIO SORUSU" : "CONTENT QUESTION")
+                        </small>
+                        <div class="fw-bold mb-1" style="color:#23413b">Content Studio:</div>
+                        <div class="small ph-muted">
+                            @(tr ? "“Müşteriye hangi içerik gösterilmeli?”" : "“What content should the customer receive?”")
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-3 rounded-3 h-100" style="background:#f8faf4;border:1px solid #dce5d2">
+                        <small class="text-uppercase fw-bold d-block mb-1" style="font-size:11px;letter-spacing:1px;color:#7c984c">
+                            @(tr ? "CAMPAIGN MANAGER SORUSU" : "CAMPAIGN QUESTION")
+                        </small>
+                        <div class="fw-bold mb-1" style="color:#23413b">Campaign Manager:</div>
+                        <div class="small ph-muted">
+                            @(tr ? "“Bu içerik, hangi hedef kitleye, hangi kampanya planı içinde gönderilmeli?”" : "“For which audience, and within which campaign plan, should this content be delivered?”")
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="small ph-muted mb-3">
+                @(tr ? "Bu ayrım içerik tasarımı ile gönderim orkestrasyonunun birbirine karıştırılmasını önler." : "This distinction keeps content creation and delivery orchestration from being treated as the same product responsibility.")
+            </p>
+
+            <div class="text-end">
+                <a href="@(tr ? "/cozumler/content-studio" : "/en/solutions/content-studio")" class="small fw-bold" style="color:var(--pika-primary)">
+                    @(tr ? "Content Studio'yu Keşfedin →" : "Explore Content Studio →")
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 07 EMAIL / SMS / WHATSAPP ───────────────────────────────── *@
+<section class="ph-section ph-section-plain">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="ph-eyebrow">@(tr ? "ÜÇ KANAL. TEK KAMPANYA BAĞLAMI." : "THREE CHANNELS. ONE CAMPAIGN CONTEXT.")</span>
+            <h2 class="pika-h2 fw-bold mb-3">
+                @(tr ? "Email, SMS ve WhatsApp kampanyalarını aynı karar çerçevesinde yönetin." : "Manage Email, SMS and WhatsApp campaigns within the same decision framework.")
+            </h2>
+            <p class="ph-muted mx-auto" style="max-width:680px">
+                @(tr ? "Campaign Manager'ın kamuya açık ve doğrulanmış kampanya kanalları Email, SMS ve WhatsApp'tır." : "Campaign Manager's confirmed and publicly marketed campaign channels are Email, SMS and WhatsApp.")
+            </p>
+        </div>
+
+        <div class="row g-4 mb-4 justify-content-center" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-4 col-md-6">
+                <div class="ph-trust-card h-100 p-4 d-flex flex-column bg-white">
+                    <div class="ph-unboxed-icon mb-3"><i class="ri-mail-line"></i></div>
+                    <h5 class="fw-bold mb-2 text-dark">Email</h5>
+                    <p class="small ph-muted mb-4">
+                        @(tr ? "Daha zengin içerik, görsel şablonlar ve detaylı kampanya iletişimi için kullanılan kanaldır." : "A channel for richer content, visual templates and detailed campaign communication.")
+                    </p>
+                    <a href="@(tr ? "/kanallar/email" : "/en/channels/email")" class="small fw-bold mt-auto" style="color:var(--pika-primary)">
+                        @(tr ? "Email'i Keşfedin →" : "Explore Email →")
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="ph-trust-card h-100 p-4 d-flex flex-column bg-white">
+                    <div class="ph-unboxed-icon mb-3"><i class="ri-message-2-line"></i></div>
+                    <h5 class="fw-bold mb-2 text-dark">SMS</h5>
+                    <p class="small ph-muted mb-4">
+                        @(tr ? "Kısa ve zaman açısından hassas iletişimlerde kullanılabilen doğrudan mesaj kanalıdır." : "A direct message channel for concise and time-sensitive communication.")
+                    </p>
+                    <a href="@(tr ? "/kanallar/sms" : "/en/channels/sms")" class="small fw-bold mt-auto" style="color:var(--pika-primary)">
+                        @(tr ? "SMS'i Keşfedin →" : "Explore SMS →")
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="ph-trust-card h-100 p-4 d-flex flex-column bg-white">
+                    <div class="ph-unboxed-icon mb-3"><i class="ri-whatsapp-line"></i></div>
+                    <h5 class="fw-bold mb-2 text-dark">WhatsApp</h5>
+                    <p class="small ph-muted mb-4">
+                        @(tr ? "Onaylı WhatsApp şablonları üzerinden müşteri iletişiminin yürütülebildiği mesajlaşma kanalıdır." : "A messaging channel for customer communication through approved WhatsApp templates.")
+                    </p>
+                    <a href="@(tr ? "/kanallar/whatsapp" : "/en/channels/whatsapp")" class="small fw-bold mt-auto" style="color:var(--pika-primary)">
+                        @(tr ? "WhatsApp'ı Keşfedin →" : "Explore WhatsApp →")
                     </a>
                 </div>
             </div>
         </div>
-    </div>
-</section>
 
-@* ── CHAPTER 5: PLATFORM VALUE CHAIN ─────────────────────────── *@
-<section class="ph-section ph-section-plain">
-    <div class="container">
-        <div class="text-center mb-5" data-aos="fade-up">
-            <span class="ph-eyebrow">@(tr ? "Platform Bağlantısı" : "Platform Context")</span>
-            <h2 class="pika-h2 fw-bold">@(tr ? "Campaign Manager, Aksiyon Katmanıdır" : "Campaign Manager is the Action Execution Layer")</h2>
-        </div>
-        <div class="row g-3 justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="100">
-            <div class="col-lg-3 col-md-6">
-                <a href="@(tr ? "/platform/firsatlar" : "/en/platform/opportunities")" class="text-decoration-none">
-                    <div class="ph-trust-card p-3 text-center h-100">
-                        <i class="ri-focus-3-line mb-1 text-warning" style="font-size:1.5rem"></i>
-                        <div class="fw-bold text-dark small">@(tr ? "Günün Fırsatları" : "Opportunities")</div>
-                        <div class="text-muted" style="font-size:.72rem">@(tr ? "Fırsatı tespit et" : "Detect opportunity")</div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="ph-trust-card p-3 text-center" style="border-color:var(--pika-color-brand-primary);background:#f0fdf4">
-                    <i class="ri-megaphone-line mb-1 text-success" style="font-size:1.5rem"></i>
-                    <div class="fw-bold text-dark small">Campaign Manager</div>
-                    <div style="font-size:.72rem;color:var(--pika-color-brand-primary-dark);font-weight:700">@(tr ? "● Şu An Burada" : "● Current Location")</div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <a href="@(tr ? "/cozumler/journey-manager" : "/en/solutions/journey-manager")" class="text-decoration-none">
-                    <div class="ph-trust-card p-3 text-center h-100">
-                        <i class="ri-route-line mb-1 text-primary" style="font-size:1.5rem"></i>
-                        <div class="fw-bold text-dark small">Journey Manager</div>
-                        <div class="text-muted" style="font-size:.72rem">@(tr ? "Otomasyona bağla" : "Automate journey")</div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <a href="@(tr ? "/cozumler/analytics-reporting" : "/en/solutions/analytics-reporting")" class="text-decoration-none">
-                    <div class="ph-trust-card p-3 text-center h-100">
-                        <i class="ri-bar-chart-box-line mb-1 text-purple" style="font-size:1.5rem;color:#6d28d9"></i>
-                        <div class="fw-bold text-dark small">Analytics</div>
-                        <div class="text-muted" style="font-size:.72rem">@(tr ? "Geliri ölç" : "Measure revenue")</div>
-                    </div>
-                </a>
+        <div class="p-4 rounded-4 bg-white border text-center mx-auto" style="max-width:760px">
+            <p class="ph-muted mb-2">
+                @(tr ? "Kanal seçimi kampanyanın neden var olduğu sorusunun yerine geçmez. Önce hedef kitle ve kampanya bağlamı belirlenir; kanal bu kararın icra yollarından biridir." : "Channel selection does not replace the question of why the campaign exists. Audience and campaign context come first; the channel is one of the execution paths for that decision.")
+            </p>
+            <div class="fw-bold" style="font-size:1.1rem;color:#23413b">
+                @(tr ? "Önce kampanya kararı. Sonra uygun kanal." : "Campaign decision first. Appropriate channel next.")
             </div>
         </div>
     </div>
 </section>
 
-@* ── CHAPTER 6: CONCRETE USE CASES ───────────────────────────── *@
+@* ── 08 CONSENT & PRE-SEND CONTROLS ──────────────────────────── *@
 <section class="ph-section ph-section-alt">
-    <div class="container">
+    <div class="container" style="max-width:860px">
         <div class="text-center mb-5" data-aos="fade-up">
-            <span class="ph-eyebrow">@(tr ? "Kullanım Senaryoları" : "Use Cases")</span>
-            <h2 class="pika-h2 fw-bold">@(tr ? "Sık Kullanılan Kampanya Türleri" : "Popular Campaign Types")</h2>
+            <span class="ph-eyebrow">@(tr ? "GÖNDERİM ÖNCESİ KONTROL" : "CONTROL BEFORE DELIVERY")</span>
+            <h2 class="pika-h2 fw-bold mb-3">
+                @(tr ? "Hedef kitleye dahil olmak, gönderime uygun olmakla aynı şey değildir." : "Being in the audience is not the same as being eligible for delivery.")
+            </h2>
         </div>
 
-        <div class="row g-4" data-aos="fade-up" data-aos-delay="100">
-            <div class="col-md-4">
-                <div class="p-4 rounded-4 bg-white border h-100">
-                    <div class="fw-bold text-dark mb-2">⚡ @(tr ? "Flaş İndirim & Sezon Lansmanı" : "Flash Sales & Launches")</div>
-                    <p class="small text-secondary mb-3">
-                        @(tr ? "Yeni sezon koleksiyonunu VIP ve aktif müşterilere özel erken erişim WhatsApp mesajıyla duyurun." : "Announce new seasonal lines to VIP cohorts with early-access WhatsApp messages.")
-                    </p>
-                    <span class="badge bg-success-subtle text-success small font-monospace">%52 Açılma Oranı</span>
+        <div class="p-4 rounded-4 bg-white border" data-aos="fade-up">
+            <p class="mb-3" style="line-height:1.65;color:#23413b">
+                @(tr ? "Bir müşterinin kampanya hedef kitlesine dahil olması, o müşteriye seçilen kanaldan ticari iletişim gönderilebileceği anlamına tek başına gelmez." : "A customer belonging in a campaign audience does not by itself mean that commercial communication can be sent through the selected channel.")
+            </p>
+            <p class="mb-3 ph-muted" style="line-height:1.65">
+                @(tr ? "Pika'nın kontrollü gönderim sürecinde mevcut izin, opt-out, kanal erişilebilirliği ve ilgili gönderim uygunluğu kontrolleri gönderim öncesi değerlendirilir." : "Within Pika's controlled delivery process, available consent, opt-out, channel reachability and relevant delivery-eligibility controls are evaluated before execution.")
+            </p>
+            <p class="mb-4 ph-muted" style="line-height:1.65">
+                @(tr ? "İYS ve diğer izin bağlamı, gerekli durumlarda bu gönderim güvenliği zincirinin bir parçasıdır." : "IYS and other permission context form part of this delivery-safety chain where applicable.")
+            </p>
+
+            <div class="p-3 rounded-3 mb-4 text-center" style="background:#f8faf4;border:1px dashed #c9dca9">
+                <div class="row g-2 text-start">
+                    <div class="col-sm-6 p-2 border-bottom border-sm-0">
+                        <strong style="color:var(--pika-primary)">Campaign Manager:</strong>
+                        <p class="small mb-0 mt-1" style="color:#23413b">
+                            @(tr ? "kampanyayı ve kontrollü gönderim planını yönetir." : "manages the campaign and controlled delivery plan.")
+                        </p>
+                    </div>
+                    <div class="col-sm-6 p-2">
+                        <strong style="color:var(--pika-primary)">@(tr ? "Consent Management ve gönderim kontrolleri:" : "Consent Management and delivery controls:")</strong>
+                        <p class="small mb-0 mt-1" style="color:#23413b">
+                            @(tr ? "iletişimin uygulanabilirliğini ayrı kontrol bağlamında değerlendirir." : "evaluate whether communication can be executed within the relevant control context.")
+                        </p>
+                    </div>
                 </div>
             </div>
 
-            <div class="col-md-4">
-                <div class="p-4 rounded-4 bg-white border h-100">
-                    <div class="fw-bold text-dark mb-2">🏬 @(tr ? "Mağazaya Özel Hafta Sonu Daveti" : "Store Event Invitations")</div>
-                    <p class="small text-secondary mb-3">
-                        @(tr ? "Belirli bir şehir veya mağazaya yakın kayıtlı müşterilere özel SMS ile hafta sonu hediye çeki tanımlayın." : "Send geo-targeted SMS vouchers to customers residing near specific physical stores.")
-                    </p>
-                    <span class="badge bg-primary-subtle text-primary small font-monospace">%31 Ziyaret Artışı</span>
-                </div>
-            </div>
+            <p class="small ph-muted mb-3">
+                @(tr ? "Bu yaklaşımın amacı hukuki sonuç garantisi vermek değil, kampanya icrasına izin ve gönderim kontrollerini dahil etmektir." : "The objective is not to guarantee a legal outcome. It is to include permission and delivery controls in campaign execution.")
+            </p>
 
-            <div class="col-md-4">
-                <div class="p-4 rounded-4 bg-white border h-100">
-                    <div class="fw-bold text-dark mb-2">☕ @(tr ? "Toplu Tüketim Hatırlatması" : "Batch Replenishment Broadcast")</div>
-                    <p class="small text-secondary mb-3">
-                        @(tr ? "Bu hafta tekrar sipariş zamanı gelen 400 müşteriye tek tıkla sepete ekli WhatsApp mesajı gönderin." : "Broadcast pre-filled cart links to 400 customers reaching their replenishment window this week.")
-                    </p>
-                    <span class="badge bg-warning-subtle text-warning small font-monospace">%41 Satış Dönüşümü</span>
-                </div>
+            <div class="text-end">
+                <a href="@(tr ? "/cozumler/consent-management" : "/en/solutions/consent-management")" class="small fw-bold" style="color:var(--pika-primary)">
+                    @(tr ? "Consent Management'i Keşfedin →" : "Explore Consent Management →")
+                </a>
             </div>
         </div>
     </div>
 </section>
 
-@* ── CHAPTER 7: FREQUENTLY ASKED QUESTIONS (FAQ) ─────────────── *@
+@* ── 09 SCHEDULING & PACING ──────────────────────────────────── *@
 <section class="ph-section ph-section-plain">
-    <div class="container">
+    <div class="container" style="max-width:860px">
         <div class="text-center mb-5" data-aos="fade-up">
-            <span class="ph-eyebrow">FAQ</span>
+            <span class="ph-eyebrow">@(tr ? "ZAMANLAMA VE GÖNDERİM HIZI" : "SCHEDULING & PACING")</span>
+            <h2 class="pika-h2 fw-bold mb-3">
+                @(tr ? "Kampanyayı yalnızca “şimdi gönder” mantığıyla yönetmeyin." : "Do not manage campaigns only through “send now.”")
+            </h2>
+        </div>
+
+        <div class="p-4 rounded-4 bg-white border" data-aos="fade-up">
+            <p class="mb-3" style="line-height:1.65;color:#23413b">
+                @(tr ? "Campaign Manager kampanyanın ileri bir tarihte gönderim sürecine alınmasını planlamaya yardımcı olur." : "Campaign Manager helps schedule a campaign to enter the delivery process at a future time.")
+            </p>
+            <p class="mb-3 ph-muted" style="line-height:1.65">
+                @(tr ? "Gönderim yükünün kontrollü biçimde yürütülmesi için kampanya icrası belirlenen pacing / hız yönetimi bağlamında ilerleyebilir." : "To keep delivery load controlled, campaign execution can progress within defined pacing or delivery-rate management.")
+            </p>
+            <p class="mb-4 ph-muted" style="line-height:1.65">
+                @(tr ? "Bu kontrol özellikle büyük hedef kitlelerde gönderimin tek bir anda sınırsız biçimde sisteme bırakılması yerine operasyonel olarak yönetilebilir bir süreç oluşturur." : "For larger audiences, this provides a manageable operational process rather than releasing an unlimited delivery load at once.")
+            </p>
+
+            <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                    <div class="p-3 rounded-3 h-100" style="background:#f8faf4;border:1px solid #dce5d2">
+                        <small class="text-uppercase fw-bold d-block mb-1" style="font-size:11px;letter-spacing:1px;color:#7c984c">
+                            @(tr ? "ZAMANLAMA" : "SCHEDULING")
+                        </small>
+                        <div class="fw-bold mb-1" style="color:#23413b">@(tr ? "Zamanlama:" : "Scheduling asks:")</div>
+                        <div class="small ph-muted">
+                            @(tr ? "“Kampanya ne zaman gönderim sürecine alınmalı?”" : "“When should the campaign enter delivery?”")
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-3 rounded-3 h-100" style="background:#f8faf4;border:1px solid #dce5d2">
+                        <small class="text-uppercase fw-bold d-block mb-1" style="font-size:11px;letter-spacing:1px;color:#7c984c">
+                            PACING
+                        </small>
+                        <div class="fw-bold mb-1" style="color:#23413b">@(tr ? "Pacing:" : "Pacing asks:")</div>
+                        <div class="small ph-muted">
+                            @(tr ? "“Gönderim yükü nasıl kontrollü ilerlemeli?”" : "“How should delivery load progress under control?”")
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="small ph-muted mb-0">
+                @(tr ? "Bu katmanların amacı pazarlama kararını değiştirmek değil, karar verilmiş kampanyanın kontrollü icrasını yönetmektir." : "These controls do not change the marketing decision. They manage controlled execution of the campaign after that decision has been made.")
+            </p>
+        </div>
+    </div>
+</section>
+
+@* ── 10 FROM OPPORTUNITY TO CAMPAIGN ─────────────────────────── *@
+<section class="ph-section ph-section-alt">
+    <div class="container" style="max-width:860px">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="ph-eyebrow">@(tr ? "FIRSATTAN KAMPANYAYA" : "FROM OPPORTUNITY TO CAMPAIGN")</span>
+            <h2 class="pika-h2 fw-bold mb-3">
+                @(tr ? "Campaign Manager fırsatı bulmaz. Fırsatı kampanyaya dönüştüren kontrollü icra katmanıdır." : "Campaign Manager does not find the opportunity. It is the controlled execution layer that turns a decision into a campaign.")
+            </h2>
+        </div>
+
+        <div class="p-4 rounded-4 bg-white border" data-aos="fade-up">
+            <p class="mb-3" style="line-height:1.65;color:#23413b">
+                @(tr ? "Günün Fırsatları tekrar satın alma, cross-sell veya geri kazanım gibi değerlendirilebilir ticari fırsatları görünür hale getirir." : "Daily Opportunities makes evaluable commercial opportunities such as repeat purchase, cross-sell and win-back visible.")
+            </p>
+            <p class="mb-3 ph-muted" style="line-height:1.65">
+                @(tr ? "Bu fırsatın değerlendirilmesine karar verildiğinde Audience Manager uygun hedef kitlenin tanımlanmasına yardımcı olur." : "Once a decision is made to evaluate that opportunity, Audience Manager helps define the appropriate audience.")
+            </p>
+            <p class="mb-4 ph-muted" style="line-height:1.65">
+                @(tr ? "Campaign Manager ise seçilen kitleyi içerik, kanal, zamanlama ve gönderim kontrolleriyle bir kampanya operasyonuna bağlar." : "Campaign Manager connects the selected audience to content, channel, timing and delivery controls within a campaign operation.")
+            </p>
+
+            <div class="p-3 rounded-3 mb-4 text-center" style="background:#f8faf4;border:1px dashed #c9dca9">
+                <small class="text-uppercase fw-bold d-block mb-2" style="font-size:11px;letter-spacing:1px;color:#7c984c">
+                    @(tr ? "KARAR VE İCRA AKIŞI" : "DECISION & EXECUTION FLOW")
+                </small>
+                <div class="small fw-bold" style="color:#23413b;line-height:1.8">
+                    @if (tr)
+                    {
+                        <text>CUSTOMER &amp; PRODUCT INTELLIGENCE → GÜNÜN FIRSATLARI → HUMAN DECISION → AUDIENCE MANAGER → CAMPAIGN MANAGER → EMAIL / SMS / WHATSAPP</text>
+                    }
+                    else
+                    {
+                        <text>CUSTOMER &amp; PRODUCT INTELLIGENCE → DAILY OPPORTUNITIES → HUMAN DECISION → AUDIENCE MANAGER → CAMPAIGN MANAGER → EMAIL / SMS / WHATSAPP</text>
+                    }
+                </div>
+            </div>
+
+            <div class="p-3 rounded-3 mb-3 bg-light text-center">
+                <div class="row g-2">
+                    <div class="col-md-4">
+                        <div class="fw-bold small" style="color:var(--pika-primary)">@(tr ? "Fırsat:" : "Opportunity:")</div>
+                        <div class="small text-muted">@(tr ? "“Neden iletişim kurulabilir?”" : "“Why might communication make sense?”")</div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="fw-bold small" style="color:var(--pika-primary)">Audience:</div>
+                        <div class="small text-muted">@(tr ? "“Kiminle?”" : "“Who?”")</div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="fw-bold small" style="color:var(--pika-primary)">Campaign:</div>
+                        <div class="small text-muted">@(tr ? "“Nasıl bir kampanya ve kontrollü gönderim?”" : "“What campaign and controlled delivery?”")</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-end">
+                <a href="@(tr ? "/platform/gunun-firsatlari" : "/en/platform/opportunities")" class="small fw-bold" style="color:var(--pika-primary)">
+                    @(tr ? "Günün Fırsatlarını Keşfedin →" : "Explore Daily Opportunities →")
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 11 MEASUREMENT & ATTRIBUTION ────────────────────────────── *@
+<section class="ph-section ph-section-plain">
+    <div class="container" style="max-width:860px">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="ph-eyebrow">@(tr ? "GÖNDERİMDEN SONRA" : "AFTER DELIVERY")</span>
+            <h2 class="pika-h2 fw-bold mb-3">
+                @(tr ? "Kampanya, gönder düğmesine basıldığında bitmez." : "A campaign does not end when the send button is pressed.")
+            </h2>
+        </div>
+
+        <div class="p-4 rounded-4 bg-white border" data-aos="fade-up">
+            <p class="mb-3" style="line-height:1.65;color:#23413b">
+                @(tr ? "Campaign Manager bağlamında kampanyanın gönderim ve etkileşim sonuçları daha sonra performans değerlendirmesinde kullanılabilir." : "Within Campaign Manager context, delivery and engagement results can later be used when evaluating campaign performance.")
+            </p>
+            <p class="mb-3 ph-muted" style="line-height:1.65">
+                @(tr ? "Teslimat, etkileşim ve kampanyayla ilişkilendirilebilen satış veya ciro sonuçları ölçüm katmanında birlikte değerlendirilebilir." : "Delivery, engagement and sales or revenue outcomes that can be associated with the campaign can be considered together in the measurement layer.")
+            </p>
+            <p class="mb-4 ph-muted" style="line-height:1.65">
+                @(tr ? "Buradaki “ciro atfı”, bir ticari sonucun tanımlanan attribution kuralları içinde kampanyayla ilişkilendirilmesini ifade eder." : "Here, “revenue attribution” means associating a commercial outcome with a campaign within defined attribution rules.")
+            </p>
+
+            <div class="p-3 rounded-3 mb-4 text-center" style="background:#f8faf4;border:1px dashed #c9dca9">
+                <div class="fw-bold mb-1" style="color:var(--pika-primary)">Attribution:</div>
+                <p class="small mb-2" style="color:#23413b">@(tr ? "ilişki kurmaya yardımcı olur." : "helps establish an association.")</p>
+                <div class="small fw-bold text-uppercase mb-1" style="color:#62746d">@(tr ? "Şunu garanti etmez:" : "It does not guarantee:")</div>
+                <div class="fw-bold" style="color:#c0392b">
+                    @(tr ? "“Kampanya tek başına bu satışın kesin nedenidir.”" : "“The campaign alone was the definitive cause of the sale.”")
+                </div>
+            </div>
+
+            <p class="small ph-muted mb-3">
+                @(tr ? "Amaç yalnızca kaç mesaj gönderildiğini görmek değil, kampanyanın ilişkilendirilebilen sonuçlarını aynı ölçüm bağlamında değerlendirmektir." : "The objective is not only to count messages sent, but to evaluate outcomes that can be associated with the campaign within the same measurement context.")
+            </p>
+
+            <div class="text-end">
+                <a href="@(tr ? "/cozumler/analytics-reporting" : "/en/solutions/analytics-reporting")" class="small fw-bold" style="color:var(--pika-primary)">
+                    @(tr ? "Analytics & Reporting'i Keşfedin →" : "Explore Analytics & Reporting →")
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 12 WHAT CAMPAIGN MANAGER IS / IS NOT ────────────────────── *@
+<section class="ph-section ph-section-alt">
+    <div class="container" style="max-width:860px">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="ph-eyebrow">@(tr ? "DOĞRU SINIRLAR" : "CLEAR BOUNDARIES")</span>
+            <h2 class="pika-h2 fw-bold mb-3">
+                @(tr ? "Campaign Manager'ı doğru yere koyun." : "Put Campaign Manager in the right place.")
+            </h2>
+        </div>
+
+        <div class="d-flex flex-column gap-3" data-aos="fade-up">
+            <div class="p-4 rounded-4 bg-white border">
+                <h5 class="fw-bold mb-2 text-dark">
+                    @(tr ? "Campaign Manager, Audience Manager değildir." : "Campaign Manager is not Audience Manager.")
+                </h5>
+                <p class="small ph-muted mb-0">
+                    @(tr ? "Audience Manager hedef kitleyi tanımlar. Campaign Manager tanımlanmış hedef kitleyi kampanya ve kontrollü gönderim sürecine bağlar." : "Audience Manager defines the audience. Campaign Manager connects that defined audience to campaign and controlled-delivery operations.")
+                </p>
+            </div>
+
+            <div class="p-4 rounded-4 bg-white border">
+                <h5 class="fw-bold mb-2 text-dark">
+                    @(tr ? "Campaign Manager, Content Studio değildir." : "Campaign Manager is not Content Studio.")
+                </h5>
+                <p class="small ph-muted mb-0">
+                    @(tr ? "Content Studio iletişim içeriği ve şablonların hazırlanmasını destekler. Campaign Manager seçilmiş içeriği kampanya operasyonunda kullanır." : "Content Studio supports preparation of communication content and templates. Campaign Manager uses selected content in campaign operations.")
+                </p>
+            </div>
+
+            <div class="p-4 rounded-4 bg-white border">
+                <h5 class="fw-bold mb-2 text-dark">
+                    @(tr ? "Campaign Manager, Journey Manager değildir." : "Campaign Manager is not Journey Manager.")
+                </h5>
+                <p class="small ph-muted mb-0">
+                    @if (tr)
+                    {
+                        <text>Campaign Manager tanımlı bir kampanya ve kontrollü gönderimi yönetir. <a href="/cozumler/journey-manager" style="color:inherit;text-decoration:underline">Journey Manager</a> ise çok adımlı sıra, koşul, bekleme ve müşteri yolculuğu mantığını yönetir.</text>
+                    }
+                    else
+                    {
+                        <text>Campaign Manager manages a defined campaign and controlled send. <a href="/en/solutions/journey-manager" style="color:inherit;text-decoration:underline">Journey Manager</a> manages multi-step sequence, conditions, waits and customer-journey logic.</text>
+                    }
+                </p>
+            </div>
+
+            <div class="p-4 rounded-4 bg-white border">
+                <h5 class="fw-bold mb-2 text-dark">
+                    @(tr ? "Campaign Manager, Consent Management değildir." : "Campaign Manager is not Consent Management.")
+                </h5>
+                <p class="small ph-muted mb-0">
+                    @(tr ? "Campaign Manager gönderim sürecine ilgili kontrol adımlarını bağlar. İzin, tercih ve consent governance ayrı ürün ve kontrol bağlamlarıyla yönetilir." : "Campaign Manager connects relevant controls to the delivery process. Permission, preference and consent governance are managed through separate product and control contexts.")
+                </p>
+            </div>
+
+            <div class="p-4 rounded-4 bg-white border">
+                <h5 class="fw-bold mb-2 text-dark">
+                    @(tr ? "Campaign Manager bir toplu mesaj gönderici değildir." : "Campaign Manager is not a bulk-message sender.")
+                </h5>
+                <p class="small ph-muted mb-0">
+                    @(tr ? "Pika'nın kampanya yaklaşımı yalnızca bir kişi listesini alıp olabildiğince fazla mesaj göndermeye dayanmaz. Hedef kitle, içerik, kanal, zamanlama ve kontrol bağlamı kampanyanın parçasıdır." : "Pika's campaign approach is not based on taking a contact list and sending as many messages as possible. Audience, content, channel, timing and control context are part of the campaign.")
+                </p>
+            </div>
+
+            <div class="p-4 rounded-4 bg-white border">
+                <h5 class="fw-bold mb-2 text-dark">
+                    @(tr ? "Campaign Manager bir otonom AI gönderim motoru değildir." : "Campaign Manager is not an autonomous AI delivery engine.")
+                </h5>
+                <p class="small ph-muted mb-0">
+                    @if (tr)
+                    {
+                        <text><a href="/urunler/ai-kampanya-asistani" style="color:inherit;text-decoration:underline">Pika Pilot</a> kampanya hazırlığını hızlandırmaya yardımcı olabilir; ancak Campaign Manager kullanıcı kontrolünü ortadan kaldıran kendi kendine kampanya başlatan bir AI sistemi olarak konumlandırılmaz.</text>
+                    }
+                    else
+                    {
+                        <text><a href="/en/products/ai-campaign-assistant" style="color:inherit;text-decoration:underline">Pika Pilot</a> can help accelerate campaign preparation, but Campaign Manager is not positioned as a self-starting AI system that removes user control.</text>
+                    }
+                </p>
+            </div>
+
+            <div class="p-4 rounded-4 bg-white border">
+                <h5 class="fw-bold mb-2 text-dark">
+                    @(tr ? "Campaign Manager satış veya ciro garantisi vermez." : "Campaign Manager does not guarantee sales or revenue.")
+                </h5>
+                <p class="small ph-muted mb-0">
+                    @(tr ? "Kampanya sonuçları ölçülebilir ve ticari sonuçlarla ilişkilendirilebilir; ancak kampanyanın belirli bir satış, dönüşüm veya gelir sonucu yaratacağı garanti edilmez." : "Campaign outcomes can be measured and associated with commercial outcomes, but a particular sales, conversion or revenue result is not guaranteed.")
+                </p>
+            </div>
+
+            <div class="p-4 rounded-4 bg-white border">
+                <h5 class="fw-bold mb-2 text-dark">
+                    @(tr ? "Campaign Manager'ın kamuya açık kanalları Email, SMS ve WhatsApp'tır." : "Campaign Manager's publicly confirmed channels are Email, SMS and WhatsApp.")
+                </h5>
+                <p class="small ph-muted mb-0">
+                    @(tr ? "C07 kapsamındaki doğrulanmış aktif iletişim kanalları Email, SMS ve WhatsApp'tır." : "The confirmed active communication channels in C07 are Email, SMS and WhatsApp.")
+                </p>
+            </div>
+        </div>
+
+        <div class="p-4 rounded-4 mt-4 text-center" style="background:#f8faf4;border:1px dashed #dce5d2" data-aos="fade-up">
+            <small class="text-uppercase fw-bold d-block mb-1" style="font-size:11px;letter-spacing:1px;color:#7c984c">
+                @(tr ? "Campaign Manager'ın görevi:" : "The role of Campaign Manager is not:")
+            </small>
+            <div class="fw-bold mb-1" style="font-size:1.1rem;color:#23413b">
+                @(tr ? "Daha fazla mesaj göndermek değil," : "To send more messages. It is:")
+            </div>
+            <div class="fw-bold" style="font-size:1.15rem;color:var(--pika-primary)">
+                @(tr ? "kararı verilmiş kampanyayı kontrollü bir gönderim sürecine dönüştürmektir." : "To turn an approved campaign decision into a controlled delivery process.")
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 13 FAQ ─────────────────────────────────────────────────── *@
+<section class="ph-section ph-section-plain" id="faq">
+    <div class="container" style="max-width:860px">
+        <div class="text-center mb-5" data-aos="fade-up">
             <h2 class="pika-h2 fw-bold">@(tr ? "Sıkça Sorulan Sorular" : "Frequently Asked Questions")</h2>
         </div>
 
-        <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="100">
-            <div class="col-lg-8">
-                <div class="accordion" id="cmFaqAccordion">
-                    <div class="accordion-item border rounded-3 mb-3">
-                        <h2 class="accordion-header" id="cmHeadOne">
-                            <button class="accordion-button fw-bold text-dark collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cmCollapseOne" aria-expanded="false" aria-controls="cmCollapseOne">
-                                @(tr ? "Campaign Manager ile Journey Manager arasındaki fark nedir?" : "What is the difference between Campaign Manager and Journey Manager?")
-                            </button>
-                        </h2>
-                        <div id="cmCollapseOne" class="accordion-collapse collapse" aria-labelledby="cmHeadOne" data-bs-parent="#cmFaqAccordion">
-                            <div class="accordion-body small text-secondary">
-                                @(tr ? "Campaign Manager belirli bir hedef kitleye, belirli bir zamanda veya tetikleyiciyle yapılan tek seferlik ya da planlı kampanya gönderimleridir. Journey Manager ise müşterinin davranışına göre 7/24 kesintisiz çalışan, gecikmeler ve dallanmalar içeren otomatik yaşam döngüsü akışlarıdır." : "Campaign Manager executes defined, scheduled, or trigger-based multi-channel batch/blast campaigns. Journey Manager runs continuous 24/7 event-driven lifecycle workflows with wait delays and conditional branching.")
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item border rounded-3 mb-3">
-                        <h2 class="accordion-header" id="cmHeadTwo">
-                            <button class="accordion-button fw-bold text-dark collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cmCollapseTwo" aria-expanded="false" aria-controls="cmCollapseTwo">
-                                @(tr ? "Hangi iletişim kanalları Campaign Manager üzerinden yönetilebilir?" : "Which communication channels can be managed in Campaign Manager?")
-                            </button>
-                        </h2>
-                        <div id="cmCollapseTwo" class="accordion-collapse collapse" aria-labelledby="cmHeadTwo" data-bs-parent="#cmFaqAccordion">
-                            <div class="accordion-body small text-secondary">
-                                @(tr ? "WhatsApp Business API, SMS, E-posta ve Mobil Push bildirimleri tek bir kampanya akışından ayrı ayrı veya birlikte yönetilebilir." : "WhatsApp Business API, SMS, Email, and Mobile Push notifications can be managed individually or coordinated within one unified flow.")
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item border rounded-3 mb-3">
-                        <h2 class="accordion-header" id="cmHeadThree">
-                            <button class="accordion-button fw-bold text-dark collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cmCollapseThree" aria-expanded="false" aria-controls="cmCollapseThree">
-                                @(tr ? "İYS ve KVKK izin kontrolü nasıl sağlanır?" : "How is consent verified before dispatching?")
-                            </button>
-                        </h2>
-                        <div id="cmCollapseThree" class="accordion-collapse collapse" aria-labelledby="cmHeadThree" data-bs-parent="#cmFaqAccordion">
-                            <div class="accordion-body small text-secondary">
-                                @(tr ? "Pika, kampanya gönderim anında her alıcının İYS ve ticari izin durumunu otomatik doğrular; izni olmayan alıcıları listeden sessizce çıkararak işletmeyi ceza riskinden korur." : "Pika checks recipient opt-in and IYS compliance in real time before dispatch, automatically filtering out non-consenting contacts.")
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item border rounded-3 mb-3">
-                        <h2 class="accordion-header" id="cmHeadFour">
-                            <button class="accordion-button fw-bold text-dark collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cmCollapseFour" aria-expanded="false" aria-controls="cmCollapseFour">
-                                @(tr ? "Kampanya cirosu ve gelir atfı (attribution) nasıl ölçülür?" : "How is campaign revenue and attribution measured?")
-                            </button>
-                        </h2>
-                        <div id="cmCollapseFour" class="accordion-collapse collapse" aria-labelledby="cmHeadFour" data-bs-parent="#cmFaqAccordion">
-                            <div class="accordion-body small text-secondary">
-                                @(tr ? "Kişiselleştirilmiş kısa linkler ve sipariş eşleştirmeleri sayesinde gönderilen mesajdan sonraki 1-7 gün içinde gerçekleşen satışlar doğrudan kampanyaya bağlanır." : "Through personalized shortlinks and transaction reconciliation, sales generated within 1-7 days following a dispatch are directly attributed to the campaign.")
-                            </div>
-                        </div>
-                    </div>
+        @if (tr)
+        {
+            <details class="camp-faq-details" open>
+                <summary class="camp-faq-summary">
+                    <span>Campaign Manager nedir?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="camp-faq-body">
+                    Campaign Manager, Pika'da tanımlanmış bir hedef kitle için kampanya içeriğini, Email, SMS veya WhatsApp kanalını, zamanlamayı ve gönderim öncesi kontrolleri aynı kampanya bağlamında bir araya getiren kontrollü kampanya orkestrasyon katmanıdır.
                 </div>
-            </div>
-        </div>
+            </details>
+
+            <details class="camp-faq-details">
+                <summary class="camp-faq-summary">
+                    <span>Campaign Manager hangi iletişim kanallarını destekler?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="camp-faq-body">
+                    Campaign Manager'ın doğrulanmış ve kamuya açık aktif kampanya kanalları Email, SMS ve WhatsApp'tır.
+                </div>
+            </details>
+
+            <details class="camp-faq-details">
+                <summary class="camp-faq-summary">
+                    <span>Campaign Manager ile Audience Manager arasındaki fark nedir?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="camp-faq-body">
+                    Audience Manager hangi müşterilerin hedef kitleye dahil olması gerektiğini açık kurallarla tanımlar. Campaign Manager ise tanımlanmış hedef kitleyi içerik, kanal, zamanlama ve kontrollü gönderim sürecine bağlar.
+                </div>
+            </details>
+
+            <details class="camp-faq-details">
+                <summary class="camp-faq-summary">
+                    <span>Campaign Manager ile Journey Manager arasındaki fark nedir?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="camp-faq-body">
+                    Campaign Manager tanımlı bir kampanyanın hedef kitle, içerik, kanal, zamanlama ve kontrollü gönderim sürecini yönetir. Journey Manager ise çok adımlı müşteri yolculuklarını, koşulları, bekleme adımlarını ve sıra mantığını yönetir.
+                </div>
+            </details>
+
+            <details class="camp-faq-details">
+                <summary class="camp-faq-summary">
+                    <span>Campaign Manager gönderim öncesi izin kontrolü yapar mı?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="camp-faq-body">
+                    Pika'nın kontrollü gönderim sürecinde mevcut izin, opt-out, kanal erişilebilirliği ve ilgili gönderim uygunluğu kontrolleri gönderim öncesi değerlendirilir. Bir müşterinin hedef kitleye dahil olması tek başına gönderim izni anlamına gelmez.
+                </div>
+            </details>
+
+            <details class="camp-faq-details">
+                <summary class="camp-faq-summary">
+                    <span>Campaign Manager kampanyaları zamanlayabilir mi?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="camp-faq-body">
+                    Evet. Kampanyalar ileri bir gönderim zamanı için planlanabilir ve gönderim yükü kontrollü pacing yaklaşımıyla yönetilebilir.
+                </div>
+            </details>
+
+            <details class="camp-faq-details">
+                <summary class="camp-faq-summary">
+                    <span>Campaign Manager kampanya gelirini ölçebilir mi?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="camp-faq-body">
+                    Kampanya sonuçları gönderim ve etkileşim verileriyle birlikte, tanımlanan attribution yaklaşımı kapsamında kampanyayla ilişkilendirilebilen satış veya ciro sonuçları üzerinden değerlendirilebilir. Bu ilişki kampanyanın satışın tek ve kesin nedeni olduğunu göstermez.
+                </div>
+            </details>
+
+            <details class="camp-faq-details">
+                <summary class="camp-faq-summary">
+                    <span>Campaign Manager kampanyaları yapay zekâ ile otomatik gönderir mi?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="camp-faq-body">
+                    Hayır. Pika Pilot kampanya hazırlığını ve içerik taslağı üretimini hızlandırmaya yardımcı olabilir; ancak Campaign Manager kullanıcı kontrolünü ortadan kaldıran otonom kampanya başlatma veya gönderim sistemi olarak konumlandırılmaz.
+                </div>
+            </details>
+        }
+        else
+        {
+            <details class="camp-faq-details" open>
+                <summary class="camp-faq-summary">
+                    <span>What is Campaign Manager?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="camp-faq-body">
+                    Campaign Manager is Pika's controlled campaign-orchestration layer that brings campaign content, Email, SMS or WhatsApp channel, timing and pre-send controls together for a defined audience.
+                </div>
+            </details>
+
+            <details class="camp-faq-details">
+                <summary class="camp-faq-summary">
+                    <span>Which communication channels does Campaign Manager support?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="camp-faq-body">
+                    Campaign Manager's confirmed and publicly marketed active campaign channels are Email, SMS and WhatsApp.
+                </div>
+            </details>
+
+            <details class="camp-faq-details">
+                <summary class="camp-faq-summary">
+                    <span>What is the difference between Campaign Manager and Audience Manager?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="camp-faq-body">
+                    Audience Manager defines through explicit rules which customers should belong in the audience. Campaign Manager connects that defined audience to content, channel, timing and controlled-delivery operations.
+                </div>
+            </details>
+
+            <details class="camp-faq-details">
+                <summary class="camp-faq-summary">
+                    <span>What is the difference between Campaign Manager and Journey Manager?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="camp-faq-body">
+                    Campaign Manager manages audience, content, channel, timing and controlled delivery for a defined campaign. Journey Manager manages multi-step customer journeys, conditions, wait steps and sequence logic.
+                </div>
+            </details>
+
+            <details class="camp-faq-details">
+                <summary class="camp-faq-summary">
+                    <span>Does Campaign Manager include pre-send consent controls?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="camp-faq-body">
+                    Within Pika's controlled delivery process, available consent, opt-out, channel reachability and relevant delivery-eligibility controls are evaluated before execution. Audience membership alone does not mean permission to send.
+                </div>
+            </details>
+
+            <details class="camp-faq-details">
+                <summary class="camp-faq-summary">
+                    <span>Can Campaign Manager schedule campaigns?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="camp-faq-body">
+                    Yes. Campaigns can be planned for a future delivery time, and delivery load can be managed through controlled pacing.
+                </div>
+            </details>
+
+            <details class="camp-faq-details">
+                <summary class="camp-faq-summary">
+                    <span>Can Campaign Manager measure campaign revenue?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="camp-faq-body">
+                    Campaign results can be evaluated through delivery and engagement data together with sales or revenue outcomes that can be associated with the campaign under defined attribution logic. That association does not prove that the campaign was the sole cause of the sale.
+                </div>
+            </details>
+
+            <details class="camp-faq-details">
+                <summary class="camp-faq-summary">
+                    <span>Does Campaign Manager automatically send campaigns with AI?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="camp-faq-body">
+                    No. Pika Pilot can help accelerate campaign preparation and content drafting, but Campaign Manager is not positioned as an autonomous campaign-launch or delivery system that removes user control.
+                </div>
+            </details>
+        }
     </div>
 </section>
 
-@* ── CHAPTER 8: CTA ──────────────────────────────────────────── *@
+@* ── 14 FINAL CTA ───────────────────────────────────────────── *@
 <section class="ph-section ph-section-dark ph-cta-section">
     <div class="container text-center" data-aos="fade-up">
-        <h2 class="ph-cta-title text-white mx-auto mb-3" style="max-width:680px">@(tr ? "Kampanyalarınızı tek merkezden yönetmeye başlayın" : "Start managing multi-channel campaigns from a single hub")</h2>
-        <p class="ph-cta-desc mx-auto mb-4" style="max-width:540px">@(tr ? "Pika Campaign Manager'ı canlı demoda keşfedin." : "Experience Pika Campaign Manager in a live demo.")</p>
-        <button type="button" class="ph-btn-light" data-bs-toggle="modal" data-bs-target="#demoModal">
-            @(tr ? "Demo Talep Et" : "Request a Demo") <i class="ri-arrow-right-up-line"></i>
-        </button>
+        <span class="ph-eyebrow" style="color:#b5ee19">
+            @(tr ? "KONTROLLÜ KAMPANYA" : "CONTROLLED CAMPAIGNS")
+        </span>
+        @if (tr)
+        {
+            <h2 class="ph-cta-title text-white mx-auto mb-3" style="max-width:680px">
+                Hedef kitleyi belirleyin.<br />
+                İçeriği seçin.<br />
+                Gönderimi kontrol altında yönetin.
+            </h2>
+            <p class="ph-cta-desc mx-auto mb-3" style="max-width:680px">
+                Pika Campaign Manager'ın hedef kitle, içerik, Email, SMS ve WhatsApp kanal seçimi, zamanlama ve gönderim öncesi kontrolleri tek kampanya bağlamında nasıl bir araya getirdiğini birlikte inceleyelim.
+            </p>
+            <p class="small fw-bold mb-4" style="color:#b5ee19">
+                İhtiyacınıza ve kullanım kapsamınıza göre özel teklif.
+            </p>
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <button type="button" class="ph-btn-light" data-bs-toggle="modal" data-bs-target="#demoModal">
+                    Demo Talep Et <i class="ri-arrow-right-up-line"></i>
+                </button>
+                <a href="/demo-talebi" class="btn btn-outline-light px-4 py-2">
+                    Teklif Al <i class="ri-file-list-3-line"></i>
+                </a>
+            </div>
+        }
+        else
+        {
+            <h2 class="ph-cta-title text-white mx-auto mb-3" style="max-width:680px">
+                Define the audience.<br />
+                Choose the content.<br />
+                Keep delivery under control.
+            </h2>
+            <p class="ph-cta-desc mx-auto mb-3" style="max-width:680px">
+                Let's explore how Pika Campaign Manager brings audience, content, Email, SMS and WhatsApp channel selection, timing and pre-send controls together within one campaign context.
+            </p>
+            <p class="small fw-bold mb-4" style="color:#b5ee19">
+                Pricing is tailored to your requirements and scope of use.
+            </p>
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <button type="button" class="ph-btn-light" data-bs-toggle="modal" data-bs-target="#demoModal">
+                    Request a Demo <i class="ri-arrow-right-up-line"></i>
+                </button>
+                <a href="/en/demo-request" class="btn btn-outline-light px-4 py-2">
+                    Request a Quote <i class="ri-file-list-3-line"></i>
+                </a>
+            </div>
+        }
     </div>
 </section>
