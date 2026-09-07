@@ -204,10 +204,10 @@ public static class SeoHelper
         ["Solutions.Reporting"] = new(
             "/cozumler/analytics-reporting",
             "/en/solutions/analytics-reporting",
-            "Analytics & Reporting | Performans ve Raporlama",
-            "Analytics & Reporting | Analytics & Reporting",
-            "Kampanya, kanal ve segment bazında açılma, tıklama ve ciro atfı metriklerini konsolide olarak takip edin.",
-            "Monitor delivery telemetry, opens, clicks, and attributed sales turnover across campaigns, channels, and segments.",
+            "Analytics & Reporting | Kampanya, Kanal ve Ciro Atfı | Pika",
+            "Analytics & Reporting | Campaign, Channel & Revenue Attribution | Pika",
+            "Pika Analytics & Reporting; kampanya, kanal, kitle ve teslimat sonuçlarını görünür hale getirir, etkileşim verilerini ve ilişkilendirilebilen satış veya ciro sonuçlarını attribution bağlamında değerlendirmenize yardımcı olur.",
+            "Pika Analytics & Reporting makes campaign, channel, audience and delivery results visible and helps evaluate engagement plus attributable sales or revenue outcomes.",
             "Analytics & Reporting",
             "Analytics & Reporting"),
 
