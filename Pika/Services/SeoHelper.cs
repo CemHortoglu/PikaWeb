@@ -25,8 +25,8 @@ public static class SeoHelper
             "/en/",
             "Müşteri Zekâsı ve Omnichannel Pazarlama Platformu",
             "Customer Intelligence & Omnichannel Marketing Platform",
-            "Pika, müşteri ve ürün verisinden fırsatları tespit eden, yöneticiye doğru kararı sunan ve doğru anda aksiyona dönüştüren B2B SaaS platformudur. Günün Fırsatları, Journey, Campaign ve tüm kanallar tek platformda.",
-            "Pika detects revenue opportunities from customer and product data, surfaces the right decisions, and drives timely omnichannel action. Daily Opportunities, Journey automation, Campaign and all channels — one platform."),
+            "Pika, müşteri ve ürün verisinden fırsatları tespit eden, yöneticiye doğru kararı sunan ve doğru anda aksiyona dönüştüren B2B SaaS platformudur. Günün Fırsatları, Journey, Campaign; E-posta, SMS ve WhatsApp tek platformda.",
+            "Pika detects revenue opportunities from customer and product data, surfaces the right decisions, and drives timely omnichannel action. Daily Opportunities, Journey automation, Campaign; Email, SMS, and WhatsApp — one platform."),
 
         // Home Subpages
         ["Home.Pika"] = new(
@@ -44,8 +44,8 @@ public static class SeoHelper
             "/en/corporate",
             "Kurumsal",
             "Corporate",
-            "Pika kurumsal çözümleri, yüksek güvenlik standartları, ölçeklenebilir mimari ve KVKK/IYS uyumlu süreçlerle işletmenizin büyümesini destekler.",
-            "Pika enterprise solutions support your business growth with high security standards, scalable architecture, and compliance.",
+            "Pika kurumsal çözümleri, rol bazlı erişim denetimi, entegrasyon altyapısı ve KVKK/İYS izin yönetimi süreçleriyle işletmenizin iletişim operasyonlarını destekler.",
+            "Pika enterprise solutions support your commercial communication operations with role-based access control, integration infrastructure, and consent management workflows.",
             "Kurumsal",
             "Corporate"),
 
@@ -54,8 +54,8 @@ public static class SeoHelper
             "/en/demo-request",
             "Demo Talebi",
             "Request a Demo",
-            "Pika müşteri zekâsı ve omnichannel pazarlama platformunu canlı keşfedin. İhtiyacınıza ve kullanım kapsamınıza göre özel teklif alın.",
-            "Discover the Pika customer intelligence and omnichannel marketing platform live. Get a tailored quote based on your requirements and scope of use.",
+            "Pika müşteri zekâsı ve omnichannel pazarlama platformunu detaylı keşfedin. İhtiyacınıza ve kullanım kapsamınıza göre özel teklif alın.",
+            "Discover the Pika customer intelligence and omnichannel marketing platform in detail. Get a tailored quote based on your requirements and scope of use.",
             "Demo Talebi",
             "Demo Request"),
 
@@ -236,8 +236,8 @@ public static class SeoHelper
             "/en/solutions/real-time-event-processing",
             "Real-Time Event Processing | Olay Bazlı Tetikleme",
             "Real-Time Event Processing | Event-Driven Processing",
-            "Kullanıcı eylemlerini olay gerçekleştiğinde saniyeler içinde işleyerek otomatik tetikleyicilerle etkileşim sağlayın.",
-            "Process customer events in seconds to trigger automated, contextual omnichannel interactions.",
+            "Kullanıcı eylemlerini olay gerçekleştiğinde asenkron olarak işleyerek kurgulanan tetikleyicilerle etkileşim sağlayın.",
+            "Process customer events asynchronously upon trigger events to drive contextual omnichannel interactions.",
             "Real-Time Event Processing",
             "Real-Time Event Processing"),
 
@@ -267,8 +267,8 @@ public static class SeoHelper
             "/en/products/ai-campaign-assistant",
             "Pika AI Kampanya Asistanı | Yapay Zekâ Destekli Kampanya Üretimi",
             "Pika AI Campaign Assistant | AI-Powered Campaign Creation",
-            "Kampanya fikrinizi yazın; Pika AI taslak, hedef kitle önerisi ve email şablonunu saniyeler içinde oluştursun.",
-            "Enter your campaign idea; Pika AI generates the campaign draft, audience recommendations, and email template in seconds.",
+            "Kampanya fikrinizi yazın; Pika AI taslak, hedef kitle önerisi ve e-posta şablonunu hazırlayarak kampanya üretim sürecini hızlandırsın.",
+            "Enter your campaign idea; Pika AI accelerates campaign preparation by drafting campaign briefs, audience suggestions, and email templates.",
             "AI Kampanya Asistanı",
             "AI Campaign Assistant"),
 
@@ -277,8 +277,8 @@ public static class SeoHelper
             "/en/use-cases",
             "Kullanım Senaryoları | Pika Omnichannel Çözümleri",
             "Use Cases | Pika Omnichannel Solutions",
-            "Perakende, e-ticaret ve hizmet sektörlerinde omnichannel pazarlama otomasyonu kullanım senaryoları ve başarı hikayeleri.",
-            "Omnichannel marketing automation use cases and customer journey blueprints for retail, e-commerce, and services.",
+            "Perakende ve e-ticaret sektörlerinde müşteri zekâsı ve omnichannel pazarlama kullanım senaryoları ve örnek kurgular.",
+            "Customer intelligence and omnichannel marketing use cases and workflow blueprints for retail and e-commerce.",
             "Kullanım Senaryoları",
             "Use Cases"),
 

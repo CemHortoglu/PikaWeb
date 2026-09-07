@@ -21,7 +21,7 @@
     var baseName = site.BrandName;
     var metaDescription = ViewData["MetaDescription"] as string ?? (isTr ? seoMeta?.DescriptionTr : seoMeta?.DescriptionEn) ?? site.MetaDescription;
     var metaKeywords = ViewData["MetaKeywords"] as string ?? site.MetaKeywords;
-    var robotsMeta = ViewData["RobotsMeta"] as string ?? "index, follow";
+    var robotsMeta = ViewData["RobotsMeta"] as string ?? (seoMeta?.NoIndex == true ? "noindex, follow" : "index, follow");
     var isNoIndex = robotsMeta.Contains("noindex", StringComparison.OrdinalIgnoreCase);
 
     string? canonicalUrl = null;

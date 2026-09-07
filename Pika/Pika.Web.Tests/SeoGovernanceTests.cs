@@ -72,6 +72,31 @@ public class SeoGovernanceTests
     }
 
     [Fact]
+    public void Layout_RobotsMeta_RespectsSeoHelperNoIndexAsRuntimeFallback()
+    {
+        var webRoot = GetWebRoot();
+        var layoutPath = Path.Combine(webRoot, "Views", "Shared", "_Layout.cshtml");
+        var layoutContent = File.ReadAllText(layoutPath);
+
+        // Asserts runtime precedence: explicit ViewData["RobotsMeta"] ?? (seoMeta?.NoIndex == true ? "noindex, follow" : "index, follow")
+        Assert.Contains("seoMeta?.NoIndex == true ? \"noindex, follow\" : \"index, follow\"", layoutContent);
+    }
+
+    [Fact]
+    public void HomepageMetadata_DoesNotContainAllChannelsOrTumKanallar()
+    {
+        var homeMeta = SeoHelper.GetMetadata("Home", "Index");
+        Assert.NotNull(homeMeta);
+
+        Assert.DoesNotContain("tüm kanallar", homeMeta.DescriptionTr, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("all channels", homeMeta.DescriptionEn, StringComparison.OrdinalIgnoreCase);
+
+        // Asserts explicitly confirmed channels are listed instead
+        Assert.Contains("E-posta, SMS ve WhatsApp", homeMeta.DescriptionTr);
+        Assert.Contains("Email, SMS, and WhatsApp", homeMeta.DescriptionEn);
+    }
+
+    [Fact]
     public void Layout_OrganizationJsonLd_OmitsFoundingLocation()
     {
         var webRoot = GetWebRoot();
@@ -224,5 +249,35 @@ public class SeoGovernanceTests
 
         var formattedTitle = SeoHelper.FormatPageTitle("Müşteri Zekâsı");
         Assert.Equal("Müşteri Zekâsı | Pika", formattedTitle);
+    }
+
+    [Fact]
+    public void P05Documentation_DoesNotReferenceNonExistentClaimIds()
+    {
+        var webRoot = GetWebRoot();
+        var p05DocPath = Path.Combine(webRoot, "docs", "marketing", "P05_SEO_LLM_ENTITY_ARCHITECTURE.md");
+        Assert.True(File.Exists(p05DocPath), $"P05 doc not found at {p05DocPath}");
+
+        var content = File.ReadAllText(p05DocPath);
+
+        // Must not reference CLM-021 or higher
+        var invalidClaimMatch = Regex.Match(content, @"\bCLM-02[1-9]\b|\bCLM-0[3-9][0-9]\b|\bCLM-[1-9][0-9]{2,}\b");
+        Assert.False(invalidClaimMatch.Success,
+            $"P05 documentation references invalid nonexistent claim ID: '{invalidClaimMatch.Value}'");
+    }
+
+    [Fact]
+    public void EntityRegistry_DoesNotContainUngovernedEvidenceLabels()
+    {
+        var webRoot = GetWebRoot();
+        var entityRegistryPath = Path.Combine(webRoot, "docs", "marketing", "ENTITY_REGISTRY.md");
+        Assert.True(File.Exists(entityRegistryPath), $"Entity registry not found at {entityRegistryPath}");
+
+        var content = File.ReadAllText(entityRegistryPath);
+
+        // Established evidence vocabulary: A. CODE_VERIFIED, B. DOCUMENTED, C. MARKETING_ONLY, D. CONTRADICTORY, E. UNVERIFIED
+        Assert.DoesNotContain("CODEBASE_VERIFIED", content);
+        Assert.DoesNotContain("UI_VERIFIED", content);
+        Assert.DoesNotContain("UNCONFIRMED_CAPABILITY", content);
     }
 }
