@@ -296,11 +296,11 @@ public static class SeoHelper
         ["Platform.ProductIntelligence"] = new(
             "/platform/product-intelligence",
             "/en/platform/product-intelligence",
-            "Product Intelligence | Ürün Zekâsı",
-            "Product Intelligence | Product Analytics",
-            "Pika Product Intelligence, ürünleri yalnızca katalog kaydı değil müşteri ihtiyacı, ticari rol ve analitik bağlamla anlamlandıran ürün zekâsı katmanıdır.",
-            "Pika Product Intelligence enriches products beyond catalog records — with customer need, commercial role, and analytic context to power smarter decisions.",
-            "Product Intelligence",
+            "Product Intelligence | Ürün Zekâsı, Need Group ve Product Role | Pika",
+            "Product Intelligence | Product Meaning, Need Groups & Roles | Pika",
+            "Pika Product Intelligence; ürünleri stok kodunun ötesinde müşteri ihtiyacı, ürün rolü, tekrar satın alma davranışı ve ürün ilişkileri bağlamında anlamlandırır.",
+            "Pika Product Intelligence gives products meaning beyond SKUs through customer need, product role, repeat-purchase behavior and product relationships.",
+            "Ürün Zekâsı",
             "Product Intelligence"),
 
         ["Platform.Pika360"] = new(

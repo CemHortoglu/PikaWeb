@@ -1,0 +1,887 @@
+/* ============================================================
+   PIKA PRODUCT INTELLIGENCE — PAGE-SCOPED STYLES
+   Scope: .pika-pi-page
+   Brand Palette: Deep Forest Petrol (#0c3a30, #082922),
+                  Pale Sand / Soft Neutral (#f7f9f1, #eff4e7),
+                  Crisp White (#ffffff),
+                  Lime Accent (#84c225, #9edd05),
+                  Ink (#173337, #23413b),
+                  Muted (#5a7167, #62746d)
+   ============================================================ */
+
+.pika-pi-page {
+    --pi-petrol-dark: #082922;
+    --pi-petrol: #0c3a30;
+    --pi-petrol-light: #144e42;
+    --pi-sand: #f7f9f1;
+    --pi-sand-alt: #eff4e7;
+    --pi-sand-subtle: #e4eed5;
+    --pi-white: #ffffff;
+    --pi-lime: #84c225;
+    --pi-lime-bright: #9edd05;
+    --pi-lime-glow: rgba(132, 194, 37, 0.22);
+    --pi-ink: #173337;
+    --pi-ink-heading: #23413b;
+    --pi-muted: #5a7167;
+    --pi-border: #dce5d3;
+    --pi-border-light: #e6edd9;
+    --pi-border-dark: rgba(255, 255, 255, 0.14);
+
+    background-color: #ffffff;
+    color: var(--pi-ink);
+    font-family: inherit;
+    line-height: 1.7;
+    overflow-x: clip;
+}
+
+/* ── Container ──────────────────────────────────────────────── */
+.pika-pi-page .pika-pi-container {
+    width: 90%;
+    max-width: 1240px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.pika-pi-page .pika-pi-container--narrow {
+    max-width: 860px;
+}
+
+/* ── Sections ───────────────────────────────────────────────── */
+.pika-pi-page .pika-pi-section {
+    padding: clamp(64px, 7vw, 104px) 0;
+    background-color: #ffffff;
+    border-bottom: 1px solid var(--pi-border-light);
+}
+
+.pika-pi-page .pika-pi-section--light {
+    background-color: var(--pi-sand);
+}
+
+.pika-pi-page .pika-pi-section--alt {
+    background-color: var(--pi-sand-alt);
+}
+
+/* ── Skip Link ──────────────────────────────────────────────── */
+.pika-pi-page .pika-pi-skip-anchor {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+    padding: 10px 18px;
+    background-color: var(--pi-lime);
+    color: var(--pi-petrol-dark);
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: transform 0.2s;
+}
+
+/* ── Hero ───────────────────────────────────────────────────── */
+.pika-pi-page .pika-pi-hero {
+    background: linear-gradient(170deg, var(--pi-petrol-dark) 0%, var(--pi-petrol) 65%, var(--pi-petrol-light) 100%);
+    color: #ffffff;
+    padding: clamp(80px, 9vw, 130px) 0 clamp(64px, 8vw, 110px);
+    position: relative;
+    overflow: hidden;
+}
+
+.pika-pi-page .pika-pi-hero::before {
+    content: "";
+    position: absolute;
+    top: -30%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, var(--pi-lime-glow) 0%, transparent 68%);
+    pointer-events: none;
+}
+
+.pika-pi-page .pika-pi-hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: clamp(32px, 5vw, 64px);
+    align-items: center;
+}
+
+.pika-pi-page .pika-pi-breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 36px;
+}
+
+.pika-pi-page .pika-pi-breadcrumb a {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.pika-pi-page .pika-pi-breadcrumb a:hover {
+    color: var(--pi-lime-bright);
+    text-decoration: underline;
+}
+
+.pika-pi-page .pika-pi-breadcrumb-sep {
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.pika-pi-page .pika-pi-breadcrumb-current {
+    color: var(--pi-lime-bright);
+    font-weight: 500;
+}
+
+/* Eyebrows & Labels */
+.pika-pi-page .pika-pi-eyebrow-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 22px;
+}
+
+.pika-pi-page .pika-pi-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--pi-lime-bright);
+}
+
+.pika-pi-page .pika-pi-eyebrow--light {
+    color: var(--pi-lime-bright);
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.pika-pi-page .pika-pi-entity-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #cfdec5;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    padding: 3px 10px;
+    border-radius: 999px;
+    letter-spacing: 0.5px;
+}
+
+.pika-pi-page .pika-pi-section-eyebrow {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: #5c7936;
+    margin-bottom: 16px;
+}
+
+/* Hero Typography */
+.pika-pi-page .pika-pi-hero-title {
+    font-size: clamp(32px, 4.4vw, 54px);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -1.5px;
+    color: #ffffff;
+    margin-top: 0;
+    margin-bottom: 24px;
+}
+
+.pika-pi-page .pika-pi-hero-lead {
+    font-size: clamp(17px, 1.7vw, 20px);
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 16px;
+    max-width: 680px;
+}
+
+.pika-pi-page .pika-pi-hero-supporting {
+    font-size: 15px;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.72);
+    margin-bottom: 36px;
+    max-width: 640px;
+}
+
+.pika-pi-page .pika-pi-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+}
+
+/* Buttons */
+.pika-pi-page .pika-pi-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--pi-lime);
+    color: var(--pi-petrol-dark);
+    font-size: 15px;
+    font-weight: 700;
+    padding: 14px 28px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 14px rgba(132, 194, 37, 0.35);
+}
+
+.pika-pi-page .pika-pi-btn-primary:hover {
+    background-color: var(--pi-lime-bright);
+    color: var(--pi-petrol-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(132, 194, 37, 0.45);
+}
+
+.pika-pi-page .pika-pi-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 13px 26px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    text-decoration: none;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.pika-pi-page .pika-pi-btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.16);
+    border-color: rgba(255, 255, 255, 0.45);
+    color: #ffffff;
+}
+
+.pika-pi-page .pika-pi-btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: transparent;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 13px 26px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    text-decoration: none;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.pika-pi-page .pika-pi-btn-outline:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+.pika-pi-page .pika-pi-text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--pi-petrol);
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    transition: color 0.2s ease, transform 0.15s ease;
+}
+
+.pika-pi-page .pika-pi-text-link:hover {
+    color: #5c7936;
+    text-decoration: underline;
+}
+
+/* ── Hero Spine Diagram ─────────────────────────────────────── */
+.pika-pi-page .pika-pi-hero-diagram-wrap {
+    display: flex;
+    justify-content: center;
+}
+
+.pika-pi-page .pika-pi-concept-spine {
+    background: rgba(8, 41, 34, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 18px;
+    padding: 24px 20px;
+    width: 100%;
+    max-width: 320px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.28);
+}
+
+.pika-pi-page .pika-pi-spine-node {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 13px;
+    letter-spacing: 0.8px;
+    color: #ffffff;
+    transition: transform 0.2s;
+}
+
+.pika-pi-page .pika-pi-spine-node--start {
+    border-color: rgba(255, 255, 255, 0.22);
+}
+
+.pika-pi-page .pika-pi-spine-node--accent {
+    background: rgba(132, 194, 37, 0.14);
+    border-color: var(--pi-lime);
+    color: var(--pi-lime-bright);
+}
+
+.pika-pi-page .pika-pi-spine-tag {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--pi-lime-bright);
+    background: rgba(132, 194, 37, 0.18);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.pika-pi-page .pika-pi-spine-connector {
+    display: flex;
+    justify-content: center;
+    padding: 6px 0;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 16px;
+}
+
+.pika-pi-page .pika-pi-diagram-caption {
+    margin-top: 16px;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.55);
+    text-align: center;
+    line-height: 1.4;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 12px;
+}
+
+/* ── Headings & General Text ────────────────────────────────── */
+.pika-pi-page .pika-pi-section-title {
+    font-size: clamp(28px, 3.4vw, 44px);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -1.2px;
+    color: var(--pi-ink-heading);
+    margin-top: 0;
+    margin-bottom: 26px;
+}
+
+.pika-pi-page .pika-pi-lead-paragraph {
+    font-size: clamp(17px, 1.6vw, 19px);
+    line-height: 1.65;
+    color: var(--pi-ink-heading);
+    font-weight: 500;
+    margin-bottom: 32px;
+}
+
+.pika-pi-page .pika-pi-body-text {
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--pi-ink);
+    margin-bottom: 18px;
+}
+
+.pika-pi-page .pika-pi-prose {
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--pi-ink);
+}
+
+/* ── 02 Direct Answer Card ──────────────────────────────────── */
+.pika-pi-page .pika-pi-direct-answer-card {
+    background: #ffffff;
+    border: 1px solid var(--pi-border);
+    border-radius: 18px;
+    padding: clamp(32px, 5vw, 56px);
+    box-shadow: 0 10px 30px rgba(12, 58, 48, 0.04);
+}
+
+.pika-pi-page .pika-pi-large-question {
+    background: var(--pi-sand);
+    border-left: 4px solid var(--pi-lime);
+    border-radius: 0 12px 12px 0;
+    padding: 22px 28px;
+    font-size: clamp(19px, 2.1vw, 24px);
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: -0.5px;
+    color: var(--pi-petrol);
+    margin: 26px 0;
+}
+
+/* ── 03 Editorial Statements ────────────────────────────────── */
+.pika-pi-page .pika-pi-emphasis-statement {
+    background: rgba(12, 58, 48, 0.04);
+    border-left: 3px solid var(--pi-petrol);
+    border-radius: 0 10px 10px 0;
+    padding: 20px 24px;
+    margin: 28px 0;
+    font-size: 16px;
+    color: var(--pi-ink-heading);
+}
+
+/* ── 04 Connected Flow (Editorial List) ───────────────────────── */
+.pika-pi-page .pika-pi-editorial-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin: 32px 0;
+}
+
+.pika-pi-page .pika-pi-editorial-item {
+    background: #ffffff;
+    border: 1px solid var(--pi-border);
+    border-radius: 12px;
+    padding: 22px 26px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.pika-pi-page .pika-pi-editorial-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(12, 58, 48, 0.06);
+}
+
+.pika-pi-page .pika-pi-editorial-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.pika-pi-page .pika-pi-editorial-num {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--pi-lime);
+    background: rgba(132, 194, 37, 0.14);
+    padding: 3px 8px;
+    border-radius: 6px;
+    letter-spacing: 0.5px;
+}
+
+.pika-pi-page .pika-pi-editorial-heading {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--pi-petrol);
+    margin: 0;
+}
+
+.pika-pi-page .pika-pi-editorial-desc {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--pi-ink);
+    margin: 0;
+}
+
+.pika-pi-page .pika-pi-closing-box {
+    background: #ffffff;
+    border: 1px dashed var(--pi-border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-top: 24px;
+    font-size: 15px;
+    color: var(--pi-muted);
+}
+
+/* ── 05 Comparison Box (Category vs Need Group) ─────────────── */
+.pika-pi-page .pika-pi-comparison-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 28px 0;
+}
+
+.pika-pi-page .pika-pi-comparison-item {
+    background: #ffffff;
+    border: 1px solid var(--pi-border);
+    border-radius: 12px;
+    padding: 22px 24px;
+}
+
+.pika-pi-page .pika-pi-comparison-item--accent {
+    border-color: #bad39f;
+    background: #fafdf5;
+}
+
+.pika-pi-page .pika-pi-comparison-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: rgba(12, 58, 48, 0.08);
+    color: var(--pi-petrol);
+    margin-bottom: 12px;
+}
+
+.pika-pi-page .pika-pi-comparison-badge--accent {
+    background: rgba(132, 194, 37, 0.2);
+    color: #436616;
+}
+
+/* ── 06 Product Role Manifesto ──────────────────────────────── */
+.pika-pi-page .pika-pi-closing-manifesto {
+    background: #ffffff;
+    border-left: 4px solid var(--pi-lime);
+    border-radius: 0 12px 12px 0;
+    padding: 20px 24px;
+    margin: 28px 0;
+    font-size: 16px;
+    color: var(--pi-petrol);
+}
+
+/* ── 08 Repeat Purchase Boundary Card ───────────────────────── */
+.pika-pi-page .pika-pi-boundary-card {
+    background: #ffffff;
+    border: 1px solid var(--pi-border);
+    border-radius: 14px;
+    padding: 24px 28px;
+    margin: 28px 0;
+    box-shadow: 0 4px 14px rgba(12, 58, 48, 0.03);
+}
+
+.pika-pi-page .pika-pi-boundary-card p {
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+.pika-pi-page .pika-pi-boundary-card p:last-child {
+    margin-bottom: 0;
+}
+
+/* ── 09 Product Relationships Formula ───────────────────────── */
+.pika-pi-page .pika-pi-formula-statement {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    background: var(--pi-sand);
+    border: 1px solid var(--pi-border);
+    border-radius: 14px;
+    padding: 24px 28px;
+    margin: 32px 0;
+    text-align: center;
+}
+
+.pika-pi-page .pika-pi-formula-part {
+    background: #ffffff;
+    border: 1px solid var(--pi-border);
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+    color: var(--pi-petrol);
+    font-size: 15px;
+}
+
+.pika-pi-page .pika-pi-formula-op {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--pi-lime);
+}
+
+.pika-pi-page .pika-pi-formula-result {
+    background: var(--pi-petrol);
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 15px;
+    box-shadow: 0 4px 12px rgba(12, 58, 48, 0.2);
+}
+
+/* ── 10 CI + PI Bridge (Split Questions) ─────────────────────── */
+.pika-pi-page .pika-pi-split-questions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin: 28px 0;
+}
+
+.pika-pi-page .pika-pi-question-box {
+    background: #ffffff;
+    border: 1px solid var(--pi-border);
+    border-radius: 12px;
+    padding: 22px 24px;
+}
+
+.pika-pi-page .pika-pi-question-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: #5c7936;
+    margin-bottom: 8px;
+}
+
+.pika-pi-page .pika-pi-quote-question {
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--pi-petrol);
+}
+
+/* ── 11 Destinations Flow ───────────────────────────────────── */
+.pika-pi-page .pika-pi-dest-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 32px 0;
+}
+
+.pika-pi-page .pika-pi-dest-item {
+    background: var(--pi-sand);
+    border: 1px solid var(--pi-border);
+    border-radius: 14px;
+    padding: 24px 28px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.pika-pi-page .pika-pi-dest-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(12, 58, 48, 0.05);
+}
+
+.pika-pi-page .pika-pi-dest-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.pika-pi-page .pika-pi-dest-badge {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--pi-lime);
+    background: rgba(132, 194, 37, 0.16);
+    padding: 3px 8px;
+    border-radius: 6px;
+}
+
+.pika-pi-page .pika-pi-dest-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--pi-ink-heading);
+    margin: 0;
+}
+
+.pika-pi-page .pika-pi-dest-desc {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--pi-ink);
+    margin-bottom: 14px;
+}
+
+/* ── 12 Clear Boundaries List ────────────────────────────────── */
+.pika-pi-page .pika-pi-boundary-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin: 32px 0;
+}
+
+.pika-pi-page .pika-pi-boundary-item {
+    background: #ffffff;
+    border: 1px solid var(--pi-border);
+    border-radius: 12px;
+    padding: 22px 26px;
+}
+
+.pika-pi-page .pika-pi-boundary-heading {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--pi-petrol);
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.pika-pi-page .pika-pi-boundary-desc {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--pi-ink);
+    margin: 0;
+}
+
+.pika-pi-page .pika-pi-large-closing {
+    background: var(--pi-petrol);
+    color: #ffffff;
+    border-radius: 14px;
+    padding: 32px 36px;
+    margin-top: 36px;
+    text-align: center;
+    box-shadow: 0 10px 24px rgba(12, 58, 48, 0.18);
+}
+
+.pika-pi-page .pika-pi-large-closing-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--pi-lime-bright);
+    margin-bottom: 12px;
+}
+
+.pika-pi-page .pika-pi-large-closing-lead {
+    font-size: clamp(20px, 2.4vw, 26px);
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: -0.5px;
+    margin: 0;
+}
+
+/* ── 13 FAQ ──────────────────────────────────────────────────── */
+.pika-pi-page .pika-pi-faq-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 32px;
+}
+
+.pika-pi-page .pika-pi-faq-item {
+    background: #ffffff;
+    border: 1px solid var(--pi-border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+}
+
+.pika-pi-page .pika-pi-faq-item[open] {
+    border-color: #bad39f;
+}
+
+.pika-pi-page .pika-pi-faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--pi-ink-heading);
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+}
+
+.pika-pi-page .pika-pi-faq-question::-webkit-details-marker {
+    display: none;
+}
+
+.pika-pi-page .pika-pi-faq-question i {
+    font-size: 20px;
+    color: var(--pi-muted);
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+}
+
+.pika-pi-page .pika-pi-faq-item[open] .pika-pi-faq-question i {
+    transform: rotate(180deg);
+    color: var(--pi-lime);
+}
+
+.pika-pi-page .pika-pi-faq-answer {
+    padding: 0 24px 22px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--pi-ink);
+    border-top: 1px solid var(--pi-border-light);
+    padding-top: 16px;
+}
+
+/* ── 14 Final CTA ────────────────────────────────────────────── */
+.pika-pi-page .pika-pi-cta {
+    background: linear-gradient(175deg, var(--pi-petrol-dark) 0%, var(--pi-petrol) 100%);
+    color: #ffffff;
+    padding: clamp(70px, 8vw, 110px) 0;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.pika-pi-page .pika-pi-cta-title {
+    font-size: clamp(26px, 3.2vw, 42px);
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -1px;
+    color: #ffffff;
+    margin-top: 0;
+    margin-bottom: 24px;
+}
+
+.pika-pi-page .pika-pi-cta-body {
+    font-size: clamp(16px, 1.6vw, 18px);
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 680px;
+    margin: 0 auto 16px;
+}
+
+.pika-pi-page .pika-pi-cta-commercial {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--pi-lime-bright);
+    margin-bottom: 36px;
+    letter-spacing: 0.3px;
+}
+
+.pika-pi-page .pika-pi-cta-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 992px) {
+    .pika-pi-page .pika-pi-hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .pika-pi-page .pika-pi-concept-spine {
+        max-width: 100%;
+    }
+
+    .pika-pi-page .pika-pi-split-questions {
+        grid-template-columns: 1fr;
+    }
+
+    .pika-pi-page .pika-pi-comparison-box {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 576px) {
+    .pika-pi-page .pika-pi-hero-actions,
+    .pika-pi-page .pika-pi-cta-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .pika-pi-page .pika-pi-btn-primary,
+    .pika-pi-page .pika-pi-btn-secondary,
+    .pika-pi-page .pika-pi-btn-outline {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .pika-pi-page .pika-pi-formula-statement {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .pika-pi-page .pika-pi-formula-op {
+        transform: rotate(90deg);
+    }
+}
