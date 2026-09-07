@@ -1,0 +1,101 @@
+/* Pika Pilot / AI Campaign Assistant Page Styles - Scoped strictly to .pilot-* */
+
+.pilot-diagram-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin-top: 1rem;
+}
+
+@media (max-width: 992px) {
+    .pilot-diagram-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .pilot-diagram-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.pilot-diagram-card {
+    background: #ffffff;
+    border: 1px solid #dce5d2;
+    border-radius: 12px;
+    padding: 0.9rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pilot-diagram-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(18, 51, 33, 0.06);
+}
+
+.pilot-diagram-card i {
+    font-size: 1.2rem;
+    color: var(--pika-primary, #7c984c);
+    flex-shrink: 0;
+}
+
+.pilot-diagram-card strong {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: #1b3d25;
+}
+
+.pilot-faq-item {
+    border: 1px solid #e2ebd8;
+    border-radius: 12px;
+    background: #ffffff;
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+}
+
+.pilot-faq-item[open] {
+    border-color: #c5d8b5;
+    background: #fafdf7;
+}
+
+.pilot-faq-summary {
+    padding: 1.1rem 1.25rem;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #1a3826;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    user-select: none;
+}
+
+.pilot-faq-summary::-webkit-details-marker {
+    display: none;
+}
+
+.pilot-faq-summary::after {
+    content: "\ea4e";
+    font-family: "remixicon";
+    font-size: 1.15rem;
+    color: #7c984c;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+}
+
+.pilot-faq-item[open] .pilot-faq-summary::after {
+    transform: rotate(180deg);
+}
+
+.pilot-faq-body {
+    padding: 0 1.25rem 1.2rem;
+    color: #496352;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}

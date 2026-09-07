@@ -265,12 +265,12 @@ public static class SeoHelper
         ["Solutions.AiCampaignAssistant"] = new(
             "/urunler/ai-kampanya-asistani",
             "/en/products/ai-campaign-assistant",
-            "Pika AI Kampanya Asistanı | Yapay Zekâ Destekli Kampanya Üretimi",
-            "Pika AI Campaign Assistant | AI-Powered Campaign Creation",
-            "Kampanya fikrinizi yazın; Pika AI taslak, hedef kitle önerisi ve e-posta şablonunu hazırlayarak kampanya üretim sürecini hızlandırsın.",
-            "Enter your campaign idea; Pika AI accelerates campaign preparation by drafting campaign briefs, audience suggestions, and email templates.",
-            "AI Kampanya Asistanı",
-            "AI Campaign Assistant"),
+            "Pika Pilot | AI Kampanya Asistanı ve İçerik Taslağı | Pika",
+            "Pika Pilot | AI Campaign Assistant & Content Drafting | Pika",
+            "Pika Pilot; Pika'nın hesapladığı müşteri, ürün ve fırsat bağlamını kullanarak hedef kitle kriterleri, kanal kurgusu ve kampanya içeriği taslaklarını hazırlamaya yardımcı olur.",
+            "Pika Pilot uses customer, product and opportunity context calculated by Pika to help draft audience criteria, channel plans and campaign content.",
+            "Pika Pilot",
+            "Pika Pilot"),
 
         ["Solutions.UseCases"] = new(
             "/kullanim-senaryolari",
