@@ -1,163 +1,1223 @@
 @{
-    var tr = (ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").Equals("tr", StringComparison.OrdinalIgnoreCase);
-    ViewData["Title"] = tr ? "Entegrasyonlar | Pika Entegrasyon ve Veri Akışı Yaklaşımı" : "Integrations | Pika Integration and Data Flow Approach";
-    ViewData["MetaDescription"] = tr ? "Pika'nın veri kaynakları, olay bazlı akışlar ve kurumsal sistemlerle entegrasyon yaklaşımını keşfedin." : "Discover Pika's integration approach with data sources, event-based flows, and enterprise systems.";
-    ViewData["MetaKeywords"] = "integrations,api,event,data flow,modular,crm,automation";
+    var culture = ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr";
+    var tr = culture.Equals("tr", StringComparison.OrdinalIgnoreCase);
+    ViewData["BodyClass"] = "pika-platform-page";
 }
 
-<!-- Hero -->
-@await Html.PartialAsync("_MarketingHero")
+@section Styles {
+    <link rel="stylesheet" href="~/css/pika-integrations-page.css" asp-append-version="true" />
+}
 
-<!-- Yaklaşım -->
-<section class="pika-sol-section text-center text-muted fs-5">
-    <div class="container pb-4">
-        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "Entegrasyonu sonradan eklenen özellik değil, platform katmanı olarak ele alıyoruz" : "We treat integration as a platform layer, not an afterthought")</h2>
-        <p data-aos="fade-up" data-aos-delay="100" style="max-width: 800px; margin: 0 auto;">
-            @(tr ? "Pika, yalnızca arayüzde çalışan bir kampanya aracı değil; veriyle beslenen, olaylarla tetiklenen ve kurumsal süreçlerle birlikte çalışabilen bir platform yaklaşımıyla geliştirilmiştir." : "Pika is not just a campaign tool that runs on the UI; it is built with a platform approach that is fed by data, triggered by events, and works alongside enterprise processes.")
-        </p>
-    </div>
-    <div class="container pt-4 border-top">
-        <h2 class="pika-sol-section-title mt-4" data-aos="fade-up">@(tr ? "Entegrasyon, platform değerini büyütür" : "Integration amplifies platform value")</h2>
-        <p data-aos="fade-up" data-aos-delay="100" style="max-width: 800px; margin: 0 auto;">
-            @(tr ? "Veri içeri girmiyorsa segmentasyon zayıflar. Olaylar sisteme ulaşmıyorsa otomasyon sınırlanır. Entegrasyon, Pika'nın kampanya ve müşteri yolculuğu gücünü gerçek iş akışlarına bağlayan katmandır." : "If data doesn't come in, segmentation weakens. If events don't reach the system, automation is limited. Integration is the layer that connects Pika's campaign and customer journey power to real business workflows.")
-        </p>
-    </div>
-</section>
-
-<!-- İhtiyaçlar -->
-<section class="pika-sol-section pika-sol-section-alt">
-    <div class="container">
-        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "Pika hangi entegrasyon ihtiyaçlarına uyum sağlar?" : "What integration needs does Pika accommodate?")</h2>
-        <div class="pika-sol-card-grid mt-4">
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="pika-sol-card-icon"><i class="ri-database-2-line"></i></div>
-                <h4>@(tr ? "Veri kaynakları" : "Data sources")</h4>
-                <p>@(tr ? "Müşteri, işlem ve davranış verilerinin taşınması." : "Transporting customer, transaction, and behavioral data.")</p>
-            </div>
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="pika-sol-card-icon"><i class="ri-flashlight-line"></i></div>
-                <h4>@(tr ? "Olay bazlı akışlar" : "Event-based flows")</h4>
-                <p>@(tr ? "Gerçek zamanlı tetikleyiciler ve iş süreçleri." : "Real-time triggers and business processes.")</p>
-            </div>
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="pika-sol-card-icon"><i class="ri-building-line"></i></div>
-                <h4>@(tr ? "Kurumsal sistemler" : "Enterprise systems")</h4>
-                <p>@(tr ? "CRM, pazarlama ve operasyonel sistemlerle bütünlük." : "Continuity with CRM, marketing, and operational systems.")</p>
-            </div>
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="pika-sol-card-icon"><i class="ri-code-s-slash-line"></i></div>
-                <h4>@(tr ? "API odaklı yaklaşım" : "API-centric approach")</h4>
-                <p>@(tr ? "Esnek veri alışverişi için uygun mimari." : "Suitable architecture for flexible data exchange.")</p>
-            </div>
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="pika-sol-card-icon"><i class="ri-group-line"></i></div>
-                <h4>@(tr ? "Segmentasyon besleme" : "Segmentation enrichment")</h4>
-                <p>@(tr ? "Kitlelerin dış veriyle zenginleşmesi." : "Enriching audiences with external data.")</p>
-            </div>
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="pika-sol-card-icon"><i class="ri-send-plane-line"></i></div>
-                <h4>@(tr ? "Çok kanallı aksiyon" : "Multi-channel actions")</h4>
-                <p>@(tr ? "Kampanya ve journey süreçlerine bağlantı." : "Connection to campaign and journey processes.")</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Şema/Mimari -->
-<section class="pika-sol-section">
-    <div class="container text-center">
-        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "Entegrasyonlar Pika platformunu nasıl besler?" : "How do integrations feed the Pika platform?")</h2>
-        <p class="text-muted fs-5 mb-5" data-aos="fade-up" data-aos-delay="100" style="max-width: 800px; margin: 0 auto;">
-            @(tr ? "Pika, tüm müşterilerin aynı veri yapısına sahip olmadığı gerçeğiyle tasarlanır. Entegrasyon yaklaşımı modüler ve büyümeye açıktır." : "Pika is designed with the understanding that not all customers have the same data structure. The integration approach is modular and scalable.")
-        </p>
-
-        <div class="row align-items-center justify-content-center" data-aos="fade-up" data-aos-delay="200">
-            <div class="col-md-3">
-                <div class="pika-sol-card text-center p-4 border-0" style="background:#f8f9fa;">
-                    <i class="ri-database-2-line fs-1 text-primary d-block mb-2"></i>
-                    <h5 class="mb-0">@(tr ? "Veri Kaynakları" : "Data Sources")</h5>
-                    <small class="text-muted">CRM, POS, Web, App</small>
+@* ── 01 HERO ─────────────────────────────────────────────────── *@
+<section class="inner-hero inner-hero--data">
+    <div class="inner-atmosphere" aria-hidden="true"><span></span><span></span></div>
+    <div class="container inner-hero-grid">
+        <div class="inner-intro">
+            <nav class="inner-breadcrumb" aria-label="@(tr ? "Sayfa yolu" : "Breadcrumb")">
+                <a href="@(tr ? "/" : "/en/")">Pika</a>
+                <span>/</span>
+                <a href="@(tr ? "/pika" : "/en/pika")">@(tr ? "Pika Nedir?" : "What Is Pika?")</a>
+                <span>/</span>
+                <span>@(tr ? "Entegrasyonlar" : "Integrations")</span>
+            </nav>
+            <div class="inner-eyebrow"><span></span>@(tr ? "ENTEGRASYONLAR" : "INTEGRATIONS") · Data &amp; Ingestion</div>
+            @if (tr)
+            {
+                <h1>
+                    Müşteri, ürün ve işlem verisini<br />
+                    Pika'nın karar zincirine bağlayın.
+                </h1>
+                <p>
+                    Pika Entegrasyonlar; müşteri, ürün ve işlem verilerini asenkron REST Ingestion API ve Excel/CSV içe aktarma akışlarıyla platforma taşıyarak Customer Intelligence, Product Intelligence ve sonraki karar katmanlarının kullanabileceği veri temelini oluşturur.
+                </p>
+                <p class="text-muted small">
+                    Amaç her kaynak sistem için hazır bir native connector varmış gibi davranmak değil; Pika'nın doğrulanmış veri kontratları ve aktarım yolları üzerinden kontrollü bir veri girişi sağlamaktır.
+                </p>
+                <div class="inner-actions">
+                    <button class="inner-primary" type="button" data-bs-toggle="modal" data-bs-target="#demoModal">Demo Talep Et ↗</button>
+                    <a class="inner-secondary" href="/platform/customer-intelligence">Customer Intelligence'ı Keşfedin →</a>
+                    <a class="inner-hero-anchor" href="#inner-content" aria-label="İçeriğe atla"><i class="ri-arrow-down-line" aria-hidden="true"></i></a>
                 </div>
-            </div>
-            <div class="col-md-1 d-none d-md-block"><i class="ri-arrow-right-fill fs-2 text-muted"></i></div>
-            <div class="col-md-4">
-                <div class="pika-sol-card text-center p-4" style="border: 2px solid var(--bs-primary); background: #f0f7ff;">
-                    <h5 class="mb-1">Pika Platform</h5>
-                    <p class="mb-0 small text-muted">Campaign · Audience<br/>Journey · Analytics · Consent</p>
+            }
+            else
+            {
+                <h1>
+                    Connect customer, product<br />
+                    and transaction data<br />
+                    to Pika's decision chain.
+                </h1>
+                <p>
+                    Pika Integrations brings customer, product and transaction data into the platform through an asynchronous REST Ingestion API and Excel/CSV import flows, creating the data foundation used by Customer Intelligence, Product Intelligence and downstream decision layers.
+                </p>
+                <p class="text-muted small">
+                    The objective is not to imply that every source system has a ready-made native connector. It is to provide controlled data intake through Pika's documented data contracts and ingestion paths.
+                </p>
+                <div class="inner-actions">
+                    <button class="inner-primary" type="button" data-bs-toggle="modal" data-bs-target="#demoModal">Request a Demo ↗</button>
+                    <a class="inner-secondary" href="/en/platform/customer-intelligence">Explore Customer Intelligence →</a>
+                    <a class="inner-hero-anchor" href="#inner-content" aria-label="Skip to content"><i class="ri-arrow-down-line" aria-hidden="true"></i></a>
                 </div>
-            </div>
-            <div class="col-md-1 d-none d-md-block"><i class="ri-arrow-right-fill fs-2 text-muted"></i></div>
-            <div class="col-md-3">
-                <div class="pika-sol-card text-center p-4 border-0" style="background:#f8f9fa;">
-                    <i class="ri-send-plane-line fs-1 text-primary d-block mb-2"></i>
-                    <h5 class="mb-0">@(tr ? "Kanallar" : "Channels")</h5>
-                    <small class="text-muted">SMS, Email, WhatsApp, Push</small>
+            }
+        </div>
+
+        <div class="inner-scene" aria-label="@(tr ? "Platformun çalışma biçimini anlatan örnek görünüm" : "Illustrative view of how the platform works")">
+            <div class="inner-scene-orbit" aria-hidden="true"></div>
+            <div class="inner-scene-window">
+                <div class="inner-window-bar">
+                    <strong>pika<span>✳</span></strong>
+                    <span>@(tr ? "Entegrasyonlar" : "Integrations")</span>
+                    <small>@(tr ? "Örnek görünüm" : "Illustration")</small>
                 </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Kullanım Senaryoları -->
-<section class="pika-sol-section pika-sol-section-alt">
-    <div class="container">
-        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "Örnek entegrasyon senaryoları" : "Example integration scenarios")</h2>
-        <div class="pika-sol-usecase-grid mt-4">
-            <div class="pika-sol-usecase" data-aos="fade-up" data-aos-delay="50"><i class="ri-check-line text-primary"></i> @(tr ? "İşlem verisinden segment üretimi" : "Segment generation from transaction data")</div>
-            <div class="pika-sol-usecase" data-aos="fade-up" data-aos-delay="100"><i class="ri-check-line text-primary"></i> @(tr ? "Müşteri davranışına göre journey başlatma" : "Start journey based on customer behavior")</div>
-            <div class="pika-sol-usecase" data-aos="fade-up" data-aos-delay="150"><i class="ri-check-line text-primary"></i> @(tr ? "Harici sistemden gelen olayla kampanya tetikleme" : "Trigger campaign from external system event")</div>
-            <div class="pika-sol-usecase" data-aos="fade-up" data-aos-delay="200"><i class="ri-check-line text-primary"></i> @(tr ? "Kanal izinlerini merkezde yönetme" : "Centrally manage channel consents")</div>
-            <div class="pika-sol-usecase" data-aos="fade-up" data-aos-delay="250"><i class="ri-check-line text-primary"></i> @(tr ? "Kampanya sonuçlarını raporlama süreçlerine bağlama" : "Connect campaign results to reporting processes")</div>
-            <div class="pika-sol-usecase" data-aos="fade-up" data-aos-delay="300"><i class="ri-check-line text-primary"></i> @(tr ? "Veri akışını modüller arasında kullanma" : "Use data flow across modules")</div>
-        </div>
-    </div>
-</section>
-
-<!-- SSS -->
-<section class="pika-sol-section">
-    <div class="container">
-        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "Sıkça Sorulan Sorular" : "Frequently Asked Questions")</h2>
-        <div class="row justify-content-center">
-            <div class="col-lg-8" data-aos="fade-up" data-aos-delay="100">
-                <div class="accordion" id="intFaq">
-                    @{
-                        var intFaqs = tr
-                            ? new[] {
-                                ("Pika farklı veri kaynaklarıyla çalışabilir mi?", "Evet. Pika, farklı veri kaynaklarından gelen müşteri, işlem ve davranış verilerini platforma entegre edebilecek şekilde tasarlanmıştır."),
-                                ("Olay bazlı entegrasyon mantığı var mı?", "Evet. Gerçek zamanlı tetikleyiciler ve olay bazlı akışlar, platform mimarisinin temel parçalarındandır."),
-                                ("Platform farklı modülleri aynı veriyle besleyebilir mi?", "Evet. Entegrasyon katmanı üzerinden gelen veriler; kampanya, segmentasyon, journey ve raporlama modüllerinde kullanılabilir."),
-                                ("Kampanya süreçleri entegrasyonlarla desteklenebilir mi?", "Evet. Dış sistemlerden gelen olaylar ve veriler, kampanya tetikleme ve kişiselleştirme süreçlerini doğrudan besleyebilir."),
-                                ("Entegrasyon yaklaşımı modüler midir?", "Evet. Her müşterinin farklı veri yapısına sahip olabileceği göz önünde bulundurularak modüler ve esnek bir entegrasyon mimarisi benimsenmiştir.")
-                            }
-                            : new[] {
-                                ("Can Pika work with different data sources?", "Yes. Pika is designed to integrate customer, transaction, and behavioral data from various data sources into the platform."),
-                                ("Is there an event-based integration model?", "Yes. Real-time triggers and event-based flows are fundamental parts of the platform architecture."),
-                                ("Can the platform feed different modules with the same data?", "Yes. Data coming through the integration layer can be used in campaign, segmentation, journey, and reporting modules."),
-                                ("Can campaign processes be supported by integrations?", "Yes. Events and data from external systems can directly feed campaign triggering and personalization processes."),
-                                ("Is the integration approach modular?", "Yes. A modular and flexible integration architecture is adopted, considering that each customer may have a different data structure.")
-                            };
-                    }
-                    @for (var i = 0; i < intFaqs.Length; i++)
+                <div class="intg-hero-pills" aria-hidden="true">
+                    @if (tr)
                     {
-                        <div class="accordion-item">
-                            <h3 class="accordion-header"><button class="accordion-button @(i > 0 ? "collapsed" : "")" type="button" data-bs-toggle="collapse" data-bs-target="#intFaq@(i)">@intFaqs[i].Item1</button></h3>
-                            <div id="intFaq@(i)" class="accordion-collapse collapse @(i == 0 ? "show" : "")" data-bs-parent="#intFaq"><div class="accordion-body text-muted">@intFaqs[i].Item2</div></div>
-                        </div>
+                        <span class="intg-hero-pill">KAYNAK VERİ</span>
+                        <span class="intg-hero-pill">API / DOSYA</span>
+                        <span class="intg-hero-pill">MÜŞTERİ</span>
+                        <span class="intg-hero-pill">ÜRÜN</span>
+                        <span class="intg-hero-pill">İŞLEM</span>
+                        <span class="intg-hero-pill">PIKA</span>
+                    }
+                    else
+                    {
+                        <span class="intg-hero-pill">SOURCE DATA</span>
+                        <span class="intg-hero-pill">API / FILE</span>
+                        <span class="intg-hero-pill">CUSTOMER</span>
+                        <span class="intg-hero-pill">PRODUCT</span>
+                        <span class="intg-hero-pill">TRANSACTION</span>
+                        <span class="intg-hero-pill">PIKA</span>
                     }
                 </div>
             </div>
         </div>
     </div>
 </section>
+<div id="inner-content" class="inner-anchor"></div>
 
-<!-- CTA -->
+@* ── STICKY SUBNAV ────────────────────────────────────────────── *@
+<div class="pika-sol-subnav-wrap">
+    <div class="container">
+        <nav class="pika-sol-subnav" aria-label="@(tr ? "Sayfa içi gezinti" : "In-page navigation")">
+            <a href="#overview">@(tr ? "Genel Bakış" : "Overview")</a>
+            <a href="#data">@(tr ? "Veri" : "Data")</a>
+            <a href="#file-import">@(tr ? "Dosya Aktarımı" : "File Import")</a>
+            <a href="#rest-api">REST API</a>
+            <a href="#processing">@(tr ? "İşleme" : "Processing")</a>
+            <a href="#platform-relationship">@(tr ? "Platform İlişkisi" : "Platform Relationships")</a>
+            <a href="#faq">@(tr ? "SSS" : "FAQ")</a>
+        </nav>
+    </div>
+</div>
+
+@* ── TRUST STRIP ──────────────────────────────────────────────── *@
+<section class="pika-sol-section py-4">
+    <div class="container">
+        <div class="pika-sol-trust-strip" data-aos="fade-up">
+            <div class="pika-sol-trust-item"><i class="ri-user-line"></i><span>@(tr ? "Müşteri Verisi" : "Customer Data")</span></div>
+            <div class="pika-sol-trust-item"><i class="ri-shopping-bag-3-line"></i><span>@(tr ? "Ürün Verisi" : "Product Data")</span></div>
+            <div class="pika-sol-trust-item"><i class="ri-exchange-dollar-line"></i><span>@(tr ? "İşlem Verisi" : "Transaction Data")</span></div>
+            <div class="pika-sol-trust-item"><i class="ri-code-s-slash-line"></i><span>REST API</span></div>
+            <div class="pika-sol-trust-item"><i class="ri-file-excel-2-line"></i><span>Excel / CSV</span></div>
+        </div>
+    </div>
+</section>
+
+@* ── 02 DIRECT ANSWER ─────────────────────────────────────────── *@
+<section class="pika-sol-section" id="overview">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="pika-sol-eyebrow text-uppercase mb-2">@(tr ? "KISA CEVAP" : "THE SHORT ANSWER")</div>
+                <h2 class="pika-h2 fw-bold mb-4">@(tr ? "Pika Entegrasyonlar nedir?" : "What are Pika Integrations?")</h2>
+
+                <p class="lead mb-4">
+                    @(tr
+                        ? "Entegrasyonlar, müşteri, ürün ve işlem verilerinin Pika'ya taşınmasını sağlayan veri ve ingestion katmanıdır."
+                        : "Integrations is Pika's data and ingestion layer for bringing customer, product and transaction data into the platform.")
+                </p>
+
+                <p class="mb-4">
+                    @(tr
+                        ? "Doğrulanmış aktarım yolları arasında Excel/CSV batch import akışları ve /api/v1/ingest/ altında çalışan asenkron REST Ingestion API bulunur."
+                        : "Confirmed ingestion paths include Excel/CSV batch-import flows and the asynchronous REST Ingestion API under /api/v1/ingest/.")
+                </p>
+
+                <p class="mb-2">
+                    @(tr
+                        ? "Entegrasyonların temel sorusu şudur:"
+                        : "Integrations answers one central question:")
+                </p>
+
+                <div class="intg-question-box">
+                    <h3 class="mb-0">
+                        @(tr
+                            ? "“Veri Pika'ya nasıl girer ve hangi karar bağlamını besler?”"
+                            : "“How does data enter Pika, and which decision context does it feed?”")
+                    </h3>
+                </div>
+
+                <p class="mb-4">
+                    @(tr
+                        ? "Entegrasyon katmanı müşteriyi analiz etmez, ticari fırsatı üretmez ve kampanya göndermez."
+                        : "The integration layer does not analyze the customer, create the commercial opportunity or send the campaign.")
+                </p>
+
+                <p class="fw-semibold mb-0">
+                    @(tr
+                        ? "Bu katman, sonraki intelligence ve aksiyon ürünlerinin kullanacağı veriyi platforma taşır."
+                        : "It brings data into the platform for downstream intelligence and action products.")
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 03 WHY DATA COMES FIRST ──────────────────────────────────── *@
 <section class="pika-sol-section pika-sol-section-alt">
-    <div class="container text-center">
-        <h2 style="margin-bottom: 0.5rem;" data-aos="fade-up">@(tr ? "Pika'yı mevcut yapınıza nasıl konumlayacağımızı birlikte değerlendirelim" : "Let's evaluate together how to position Pika in your existing infrastructure")</h2>
-        <p class="fs-5 text-muted mb-4" data-aos="fade-up" data-aos-delay="100">@(tr ? "Entegrasyon ihtiyaçlarınızı konuşmak ve uygun yapıyı planlamak için bizimle iletişime geçin." : "Contact us to discuss your integration needs and plan the right architecture.")</p>
-        <div class="d-flex gap-3 justify-content-center" data-aos="fade-up" data-aos-delay="200">
-            <a href="@Url.Action("Contact", "Home")" class="btn pika-btn-primary px-4 py-2">@(tr ? "İletişime Geçin" : "Contact Us") <i class="ri-arrow-right-up-line"></i></a>
-            <a href="@Url.Action("SecurityPrivacy", "Solutions")" class="btn pika-btn-outline px-4 py-2">@(tr ? "Güvenlik Yaklaşımını İncele" : "Explore Security Approach")</a>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="pika-sol-eyebrow text-uppercase mb-2">@(tr ? "ÖNCE VERİ" : "DATA FIRST")</div>
+                <h2 class="pika-h2 fw-bold mb-4">
+                    @(tr
+                        ? "Pika'nın başlangıç noktası mesaj göndermek değil, anlamaktır."
+                        : "Pika's starting point is not sending messages. It is understanding.")
+                </h2>
+
+                <p class="mb-4">
+                    @(tr
+                        ? "Customer Intelligence, Product Intelligence ve Günün Fırsatları gibi karar katmanları kullanılabilir müşteri, ürün ve işlem bağlamına ihtiyaç duyar."
+                        : "Decision layers such as Customer Intelligence, Product Intelligence and Daily Opportunities require usable customer, product and transaction context.")
+                </p>
+
+                <p class="mb-4">
+                    @(tr
+                        ? "Bu nedenle entegrasyon yalnızca teknik bir bağlantı konusu değildir. Pika'nın müşteriyi ve ürünü anlayabilmesi için gerekli verinin platforma nasıl girdiğini tanımlar."
+                        : "Integration is therefore more than a technical connection problem. It defines how the data required for Pika to understand customers and products enters the platform.")
+                </p>
+
+                <p class="mb-4">
+                    @(tr
+                        ? "Veri platforma girdikten sonra ilgili doğrulama, çözümleme ve analitik süreçlerden geçerek sonraki karar katmanlarını besleyebilir."
+                        : "After data enters the platform, relevant validation, resolution and analytical processes can feed downstream decision layers.")
+                </p>
+
+                <div class="row g-3 my-4">
+                    <div class="col-md-3">
+                        <div class="p-3 bg-white border rounded-3 h-100">
+                            <span class="badge bg-light text-dark mb-2">@(tr ? "Önce" : "First")</span>
+                            <p class="fw-bold mb-0">@(tr ? "VERİ" : "DATA")</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="p-3 bg-white border rounded-3 h-100">
+                            <span class="badge bg-light text-dark mb-2">@(tr ? "Sonra" : "Then")</span>
+                            <p class="fw-bold mb-0">@(tr ? "ANLAMA" : "UNDERSTANDING")</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="p-3 bg-white border rounded-3 h-100">
+                            <span class="badge bg-light text-dark mb-2">@(tr ? "Sonra" : "Then")</span>
+                            <p class="fw-bold mb-0">@(tr ? "FIRSAT / KARAR" : "OPPORTUNITY / DECISION")</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="p-3 bg-white border rounded-3 h-100">
+                            <span class="badge bg-light text-dark mb-2">@(tr ? "En son" : "Finally")</span>
+                            <p class="fw-bold mb-0">@(tr ? "KONTROLLÜ AKSİYON" : "CONTROLLED ACTION")</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="fw-bold mb-0">
+                    @(tr
+                        ? "Entegrasyon, Pika'nın karar zincirinin giriş kapısıdır."
+                        : "Integration is the entry point to Pika's decision chain.")
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 04 CANONICAL DATA ENTITIES ───────────────────────────────── *@
+<section class="pika-sol-section" id="data">
+    <div class="container">
+        <div class="row justify-content-center mb-4">
+            <div class="col-lg-10 text-center">
+                <div class="pika-sol-eyebrow text-uppercase mb-2">@(tr ? "ÜÇ TEMEL VERİ ALANI" : "THREE CORE DATA DOMAINS")</div>
+                <h2 class="pika-h2 fw-bold mb-3">
+                    @(tr
+                        ? "Pika'nın veri temelini müşteri, ürün ve işlem bağlamıyla kurun."
+                        : "Build Pika's data foundation with customer, product and transaction context.")
+                </h2>
+            </div>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-4">
+                <div class="pika-sol-card h-100">
+                    <div class="pika-sol-card-icon"><i class="ri-user-line"></i></div>
+                    <h4>@(tr ? "Müşteri" : "Customer")</h4>
+                    <p>
+                        @(tr
+                            ? "Müşteri kayıtları, ilgili kimlik ve iletişim alanlarıyla platformdaki müşteri bağlamının temel girdisini oluşturur."
+                            : "Customer records, with relevant identity and communication fields, provide foundational input for customer context in the platform.")
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="pika-sol-card h-100">
+                    <div class="pika-sol-card-icon"><i class="ri-shopping-bag-3-line"></i></div>
+                    <h4>@(tr ? "Ürün" : "Product")</h4>
+                    <p>
+                        @(tr
+                            ? "Ürün veya katalog kayıtları, Product Intelligence ve işlem bağlamının ürün tarafını besleyen temel veri alanıdır."
+                            : "Product or catalog records provide the product-side foundation used by Product Intelligence and transaction context.")
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="pika-sol-card h-100">
+                    <div class="pika-sol-card-icon"><i class="ri-exchange-dollar-line"></i></div>
+                    <h4>@(tr ? "İşlem" : "Transaction")</h4>
+                    <p>
+                        @(tr
+                            ? "Sipariş, satış veya işlem kayıtları müşterinin ne zaman ve ne satın aldığına ilişkin tarihsel bağlamı oluşturur."
+                            : "Order, sales or transaction records provide historical context for what the customer purchased and when.")
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mt-4">
+            <div class="col-lg-10">
+                <p class="mb-3">
+                    @(tr
+                        ? "Davranış, değer, satın alma ritmi veya ticari fırsat bu kayıtların ham hali değildir. Bunlar Pika'nın sonraki intelligence ve decision katmanlarında hesaplanan bağlamlardır."
+                        : "Behavior, value, purchase rhythm and commercial opportunity are not simply raw fields from those records. They are context calculated in Pika's downstream intelligence and decision layers.")
+                </p>
+                <div class="p-3 bg-white border rounded-3">
+                    <p class="fw-bold mb-0">
+                        @(tr
+                            ? "Entegrasyon veriyi taşır. Intelligence, veriden anlam üretir."
+                            : "Integration moves the data. Intelligence creates meaning from it.")
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 05 EXCEL / CSV IMPORT ────────────────────────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt" id="file-import">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="pika-sol-eyebrow text-uppercase mb-2">@(tr ? "DOSYA İLE AKTARIM" : "FILE IMPORT")</div>
+                <h2 class="pika-h2 fw-bold mb-4">
+                    @(tr
+                        ? "API entegrasyonu gerekmeyen durumda, veriyi Excel veya CSV ile içe alın."
+                        : "When API integration is not required, bring data in through Excel or CSV.")
+                </h2>
+
+                <p class="mb-3">
+                    @(tr
+                        ? "Pika müşteri, ürün ve sipariş / işlem kayıtlarının batch olarak aktarılabilmesi için Excel (.xlsx) ve CSV import akışlarını destekler."
+                        : "Pika supports Excel (.xlsx) and CSV import flows for batch ingestion of customer, product and order / transaction records.")
+                </p>
+
+                <p class="mb-3">
+                    @(tr
+                        ? "Dosya aktarımı özellikle başlangıç veri yükü veya dosya tabanlı veri alışverişi kullanan süreçlerde Pika'ya veri giriş yollarından biridir."
+                        : "File import is one way to bring data into Pika, particularly for initial data loads or processes that exchange data through files.")
+                </p>
+
+                <p class="mb-4">
+                    @(tr
+                        ? "Dosyanın bulunması tek başına verinin analize hazır olduğu anlamına gelmez. Alanların beklenen veri kontratına uygun olması ve ilgili doğrulama / eşleştirme süreçlerinden geçmesi gerekebilir."
+                        : "Having a file does not by itself mean the data is analytically ready. Fields may need to follow the expected data contract and pass relevant validation or mapping processes.")
+                </p>
+
+                <div class="p-4 bg-white border rounded-3 mb-4">
+                    <h5 class="fw-bold mb-2">Excel / CSV import:</h5>
+                    <p class="mb-2">@(tr ? "veriyi Pika'ya taşır." : "moves data into Pika.")</p>
+                    <h6 class="fw-bold text-danger mb-1">@(tr ? "Şunu garanti etmez:" : "It does not guarantee:")</h6>
+                    <p class="mb-0 text-muted">
+                        @(tr
+                            ? "“Her dosya yapısı hiç eşleştirme yapılmadan otomatik olarak anlaşılır.”"
+                            : "“Every file structure is understood automatically without mapping.”")
+                    </p>
+                </div>
+
+                <p class="fw-bold mb-0">
+                    @(tr
+                        ? "Dosya aktarımı, entegrasyonun basit ama kontrollü yollarından biridir."
+                        : "File import is a simple but controlled integration path.")
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 06 REST INGESTION API ────────────────────────────────────── *@
+<section class="pika-sol-section" id="rest-api">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="pika-sol-eyebrow text-uppercase mb-2">REST INGESTION API</div>
+                <h2 class="pika-h2 fw-bold mb-4">
+                    @(tr
+                        ? "Uygulamalarınızdan Pika'ya, dokümante edilmiş veri kontratı üzerinden veri gönderin."
+                        : "Send data from your applications to Pika through documented data contracts.")
+                </h2>
+
+                <p class="lead mb-4">
+                    @(tr
+                        ? "Pika'nın dokümante edilmiş ingestion API kökü:"
+                        : "Pika's documented ingestion API root is:")
+                    <code>/api/v1/ingest/</code>
+                </p>
+
+                <p class="mb-4">
+                    @(tr
+                        ? "Bu API müşteri, işlem ve ürün veri alanları için asenkron REST ingestion yaklaşımı sunar."
+                        : "The API provides an asynchronous REST-ingestion approach for customer, transaction and product data domains.")
+                </p>
+
+                <div class="row g-3 mb-4">
+                    <div class="col-md-4">
+                        <div class="p-3 bg-white border rounded-3 h-100">
+                            <span class="badge bg-light text-primary mb-2">POST /api/v1/ingest/customers</span>
+                            <h5 class="fw-bold">Customers</h5>
+                            <p class="mb-0 small text-muted">
+                                @(tr
+                                    ? "Müşteri kayıtlarının ingestion akışına gönderilmesi."
+                                    : "Send customer records into the ingestion flow.")
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-3 bg-white border rounded-3 h-100">
+                            <span class="badge bg-light text-primary mb-2">POST /api/v1/ingest/transactions</span>
+                            <h5 class="fw-bold">Transactions</h5>
+                            <p class="mb-0 small text-muted">
+                                @(tr
+                                    ? "Sipariş veya işlem kayıtlarının ingestion akışına gönderilmesi."
+                                    : "Send order or transaction records into the ingestion flow.")
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-3 bg-white border rounded-3 h-100">
+                            <span class="badge bg-light text-primary mb-2">POST /api/v1/ingest/products</span>
+                            <h5 class="fw-bold">Products</h5>
+                            <p class="mb-0 small text-muted">
+                                @(tr
+                                    ? "Ürün veya katalog kayıtlarının ingestion akışına gönderilmesi."
+                                    : "Send product or catalog records into the ingestion flow.")
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-3 bg-white border rounded-3 mb-4">
+                    <p class="mb-1">
+                        @(tr
+                            ? "API erişimi dokümante edilmiş API-key tabanlı kimlik doğrulama yaklaşımını kullanır."
+                            : "API access uses the documented API-key based authentication approach.")
+                    </p>
+                    <code>X-API-Key</code>
+                </div>
+
+                <p class="mb-4">
+                    @(tr
+                        ? "API endpoint'inin bulunması, her kaynak sistem için hazır native connector bulunduğu anlamına gelmez. Kaynak sistemin Pika veri kontratına uygun entegrasyon üretmesi gerekir."
+                        : "The existence of an API endpoint does not mean a ready-made native connector exists for every source system. The source system must integrate with Pika's relevant data contract.")
+                </p>
+
+                <p class="fw-bold mb-0">
+                    @(tr
+                        ? "REST API, kaynak sistem ile Pika arasında programatik veri giriş yoludur."
+                        : "The REST API is the programmatic data-ingestion path between source systems and Pika.")
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 07 ASYNCHRONOUS PROCESSING & IDEMPOTENCY ─────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt" id="processing">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="pika-sol-eyebrow text-uppercase mb-2">@(tr ? "ASENKRON İŞLEME" : "ASYNCHRONOUS PROCESSING")</div>
+                <h2 class="pika-h2 fw-bold mb-4">
+                    @(tr
+                        ? "API isteğini, “her şey aynı anda güncellendi” garantisi olarak yorumlamayın."
+                        : "Do not interpret an API request as a guarantee that everything updates at the same moment.")
+                </h2>
+
+                <p class="mb-3">
+                    @(tr
+                        ? "Pika REST Ingestion API asenkron işleme yaklaşımıyla tasarlanmıştır. Bu nedenle API isteğinin kabul edilmesi ile sonraki veri işleme ve analitik bağlamın kullanılabilir hale gelmesi aynı kavram değildir."
+                        : "Pika's REST Ingestion API is designed around asynchronous processing. An accepted API request and the later availability of processed analytical context are therefore not the same concept.")
+                </p>
+
+                <p class="mb-4 text-muted">
+                    @(tr
+                        ? "C13 kamuya açık sayfası belirli bir işleme gecikmesi, gerçek zaman veya millisecond güncelleme taahhüdünde bulunmaz."
+                        : "The C13 public page makes no promise about a specific processing delay, real-time latency or millisecond updates.")
+                </p>
+
+                <div class="p-3 bg-white border rounded-3 mb-4">
+                    <p class="mb-1">
+                        @(tr
+                            ? "Desteklenen ingestion akışında tekrar eden request'lerin işlenmesini kontrol etmeye yardımcı olmak için idempotency anahtarı kullanılabilir."
+                            : "Within the supported ingestion flow, an idempotency key can help control repeated processing when the same request is retried.")
+                    </p>
+                    <code>X-Idempotency-Key</code>
+                </div>
+
+                <div class="row g-3 mb-4">
+                    <div class="col-md-6">
+                        <div class="p-3 bg-white border rounded-3 h-100">
+                            <span class="badge bg-light text-dark mb-2">Request idempotency</span>
+                            <p class="mb-0 small">
+                                @(tr
+                                    ? "aynı ingestion isteğinin tekrar işlenmesini azaltmaya yardımcı olur."
+                                    : "helps reduce repeated processing of the same ingestion request.")
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 bg-white border rounded-3 h-100">
+                            <span class="badge bg-light text-dark mb-2">Data resolution</span>
+                            <p class="mb-0 small">
+                                @(tr
+                                    ? "müşteri veya ürün kayıtlarının aynı gerçek varlığı temsil edip etmediğini çözümleyen ayrı süreçtir."
+                                    : "is a separate process for determining whether customer or product records represent the same underlying entity.")
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="fw-bold mb-0">
+                    @(tr
+                        ? "Idempotency, master-data çözümlemesinin yerine geçmez."
+                        : "Idempotency does not replace master-data resolution.")
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 08 VALIDATION / NORMALIZATION BOUNDARY ───────────────────── *@
+<section class="pika-sol-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="pika-sol-eyebrow text-uppercase mb-2">@(tr ? "VERİ GİRİŞİ ≠ ANALİZE HAZIR VERİ" : "DATA INGESTION ≠ ANALYTICALLY READY DATA")</div>
+                <h2 class="pika-h2 fw-bold mb-4">
+                    @(tr
+                        ? "Veriyi taşımak ve veriyi anlamlandırmak aynı görev değildir."
+                        : "Moving data and creating meaning from data are different jobs.")
+                </h2>
+
+                <p class="mb-3">
+                    @(tr
+                        ? "Entegrasyon katmanı müşteri, ürün ve işlem kayıtlarını Pika'ya taşır."
+                        : "The integration layer brings customer, product and transaction records into Pika.")
+                </p>
+
+                <p class="mb-3">
+                    @(tr
+                        ? "Bu kayıtlar sonraki süreçlerde veri kontratı doğrulaması, müşteri kimlik çözümleme veya ürün eşleştirme gibi ilgili normalization / resolution adımlarına konu olabilir."
+                        : "Those records can later participate in relevant data-contract validation, customer identity resolution or product-matching processes.")
+                </p>
+
+                <p class="mb-4">
+                    @(tr
+                        ? "Customer Intelligence ve Product Intelligence bu işlenmiş bağlamın analitik anlamını oluşturan ayrı ürün katmanlarıdır."
+                        : "Customer Intelligence and Product Intelligence are separate product layers that create analytical meaning from processed context.")
+                </p>
+
+                <div class="row g-3 mb-4">
+                    <div class="col-md-4">
+                        <div class="p-3 bg-white border rounded-3 h-100">
+                            <span class="badge bg-light text-dark mb-2">Ingestion</span>
+                            <p class="mb-0 small">@(tr ? "veriyi içeri alır." : "brings data in.")</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-3 bg-white border rounded-3 h-100">
+                            <span class="badge bg-light text-dark mb-2">Normalization / Resolution</span>
+                            <p class="mb-0 small">@(tr ? "kayıtların kullanılabilir bağlamını hazırlar." : "prepares usable record context.")</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-3 bg-white border rounded-3 h-100">
+                            <span class="badge bg-light text-dark mb-2">Intelligence</span>
+                            <p class="mb-0 small">@(tr ? "ticari anlamı hesaplar." : "calculates commercial meaning.")</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-3 bg-white border rounded-3">
+                    <p class="fw-bold mb-0">
+                        @(tr
+                            ? "“API çağrısı başarılı” ile “müşteri zekâsı hazır” aynı ürün durumu değildir."
+                            : "“API request accepted” and “customer intelligence ready” are not the same product state.")
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 09 SOURCE SYSTEM CATEGORIES ──────────────────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt">
+    <div class="container">
+        <div class="row justify-content-center mb-4">
+            <div class="col-lg-10 text-center">
+                <div class="pika-sol-eyebrow text-uppercase mb-2">@(tr ? "VERİ NEREDEN GELEBİLİR?" : "WHERE CAN DATA COME FROM?")</div>
+                <h2 class="pika-h2 fw-bold mb-3">
+                    @(tr
+                        ? "Kaynak sistem türünü, native connector iddiasıyla karıştırmayın."
+                        : "Do not confuse a source-system category with a native-connector claim.")
+                </h2>
+                <p class="text-muted">
+                    @(tr
+                        ? "Müşteri, ürün ve işlem verisinin kaynağı işletmenin mevcut teknoloji yapısına göre değişebilir."
+                        : "The origin of customer, product and transaction data can vary according to the organization's existing technology environment.")
+                </p>
+            </div>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-4">
+                <div class="pika-sol-card h-100">
+                    <div class="pika-sol-card-icon"><i class="ri-contacts-book-line"></i></div>
+                    <h4>CRM</h4>
+                    <p>
+                        @(tr
+                            ? "Müşteri kayıtlarının kaynak sistemlerinden biri olabilir."
+                            : "Can be one source of customer records.")
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="pika-sol-card h-100">
+                    <div class="pika-sol-card-icon"><i class="ri-shopping-cart-line"></i></div>
+                    <h4>@(tr ? "E-Ticaret" : "E-Commerce")</h4>
+                    <p>
+                        @(tr
+                            ? "Müşteri, ürün ve sipariş verisinin kaynaklarından biri olabilir."
+                            : "Can be one source of customer, product and order data.")
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="pika-sol-card h-100">
+                    <div class="pika-sol-card-icon"><i class="ri-store-2-line"></i></div>
+                    <h4>@(tr ? "POS / Mağaza Sistemleri" : "POS / Store Systems")</h4>
+                    <p>
+                        @(tr
+                            ? "Mağaza satış ve işlem kayıtlarının kaynaklarından biri olabilir."
+                            : "Can be one source of store sales and transaction records.")
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="pika-sol-card h-100">
+                    <div class="pika-sol-card-icon"><i class="ri-building-line"></i></div>
+                    <h4>ERP</h4>
+                    <p>
+                        @(tr
+                            ? "Ürün, sipariş veya operasyonel kayıtların bulunduğu kaynak sistemlerden biri olabilir."
+                            : "Can be one source system containing product, order or operational records.")
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="pika-sol-card h-100">
+                    <div class="pika-sol-card-icon"><i class="ri-database-2-line"></i></div>
+                    <h4>@(tr ? "Veri Ambarı" : "Data Warehouse")</h4>
+                    <p>
+                        @(tr
+                            ? "Pika'ya aktarılacak hazırlanmış veri setlerinin kaynaklarından biri olabilir."
+                            : "Can be one source of prepared datasets that will be transferred into Pika.")
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mt-4">
+            <div class="col-lg-10">
+                <div class="p-4 bg-white border rounded-3 mb-3">
+                    <h5 class="fw-bold mb-2">@(tr ? "Bunlar: kaynak sistem kategorileridir." : "These are: source-system categories.")</h5>
+                    <h6 class="fw-bold text-danger mb-1">@(tr ? "Şu anlama gelmez:" : "They do not mean:")</h6>
+                    <p class="mb-0 text-muted">
+                        @(tr
+                            ? "“Pika'nın her ürün için hazır native connector'ı vardır.”"
+                            : "“Pika has a ready-made native connector for every product.”")
+                    </p>
+                </div>
+                <p class="mb-0 text-muted">
+                    @(tr
+                        ? "Gerçek entegrasyon yöntemi müşterinin teknik yapısına, veri kontratına ve kullanılacak API veya dosya aktarım yoluna göre belirlenir."
+                        : "The actual integration method depends on the customer's technical environment, data contract and the API or file-import path being used.")
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 10 DATA → CUSTOMER & PRODUCT INTELLIGENCE ─────────────────── *@
+<section class="pika-sol-section" id="platform-relationship">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="pika-sol-eyebrow text-uppercase mb-2">@(tr ? "VERİDEN ANLAMAYA" : "FROM DATA TO UNDERSTANDING")</div>
+                <h2 class="pika-h2 fw-bold mb-4">
+                    @(tr
+                        ? "Entegrasyon veriyi getirir. Intelligence bağlamı hesaplar."
+                        : "Integration brings the data. Intelligence calculates the context.")
+                </h2>
+
+                <p class="mb-3">
+                    @(tr
+                        ? "Müşteri ve işlem verisi, Customer Intelligence'ın müşteri davranışı, değer ve satın alma ritmi gibi bağlamları hesaplayabilmesi için temel girdi sağlar."
+                        : "Customer and transaction data provide foundational input for Customer Intelligence to calculate context such as customer behavior, value and purchase rhythm.")
+                </p>
+
+                <p class="mb-4">
+                    <a href="@(tr ? "/platform/customer-intelligence" : "/en/platform/customer-intelligence")" class="btn pika-btn-outline px-3 py-2">
+                        @(tr ? "Customer Intelligence'ı Keşfedin →" : "Explore Customer Intelligence →")
+                    </a>
+                </p>
+
+                <p class="mb-3">
+                    @(tr
+                        ? "Ürün ve işlem verisi, Product Intelligence'ın ürün anlamı ve ürün ilişkisi bağlamını oluşturabilmesi için temel girdi sağlar."
+                        : "Product and transaction data provide foundational input for Product Intelligence to establish product meaning and product-relationship context.")
+                </p>
+
+                <p class="mb-4">
+                    <a href="@(tr ? "/platform/product-intelligence" : "/en/platform/product-intelligence")" class="btn pika-btn-outline px-3 py-2">
+                        @(tr ? "Product Intelligence'ı Keşfedin →" : "Explore Product Intelligence →")
+                    </a>
+                </p>
+
+                <p class="mb-4">
+                    @(tr
+                        ? "Bu hesaplanmış müşteri ve ürün bağlamları daha sonra Pika 360 ve Günün Fırsatları gibi karar görünümlerini besleyebilir."
+                        : "Calculated customer and product context can then feed decision views such as Pika 360 and Daily Opportunities.")
+                </p>
+
+                <div class="intg-flow-chain my-4" aria-hidden="true">
+                    <span class="intg-flow-node">CUSTOMER + PRODUCT + TRANSACTION DATA</span>
+                    <span class="intg-flow-arrow">→</span>
+                    <span class="intg-flow-node">INGESTION</span>
+                    <span class="intg-flow-arrow">→</span>
+                    <span class="intg-flow-node">CUSTOMER &amp; PRODUCT INTELLIGENCE</span>
+                    <span class="intg-flow-arrow">→</span>
+                    <span class="intg-flow-node">PIKA 360 / DAILY OPPORTUNITIES</span>
+                </div>
+
+                <div class="d-flex flex-wrap gap-2 my-4">
+                    <a href="@(tr ? "/platform/pika-360" : "/en/platform/pika-360")" class="btn pika-btn-outline px-3 py-2">
+                        Pika 360 →
+                    </a>
+                    <a href="@(tr ? "/platform/gunun-firsatlari" : "/en/platform/opportunities")" class="btn pika-btn-outline px-3 py-2">
+                        @(tr ? "Günün Fırsatları →" : "Daily Opportunities →")
+                    </a>
+                </div>
+
+                <p class="fw-bold mb-0">
+                    @(tr
+                        ? "Veriyi içeri almak, Pika'nın anlamlandırma zincirinin başlangıcıdır."
+                        : "Bringing data in is the beginning of Pika's meaning-making chain.")
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 11 FROM DATA TO CONTROLLED ACTION ────────────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="pika-sol-eyebrow text-uppercase mb-2">@(tr ? "ENTEGRASYON ≠ GÖNDERİM" : "INTEGRATION ≠ DELIVERY")</div>
+                <h2 class="pika-h2 fw-bold mb-4">
+                    @(tr
+                        ? "Veri Pika'ya girer. Aksiyon ayrı karar katmanlarında oluşur."
+                        : "Data enters Pika. Action happens in separate decision layers.")
+                </h2>
+
+                <p class="mb-3">
+                    @(tr
+                        ? "Bir kaynaktan müşteri veya işlem verisinin Pika'ya gelmesi, otomatik olarak kampanya başlatıldığı veya mesaj gönderildiği anlamına gelmez."
+                        : "Customer or transaction data arriving from a source does not mean a campaign is automatically launched or a message is sent.")
+                </p>
+
+                <p class="mb-4">
+                    @(tr
+                        ? "Veri önce ilgili intelligence ve decision bağlamlarında değerlendirilir. Daha sonra Audience Manager, Content Studio, Campaign Manager veya Journey Manager gibi ürünler kontrollü aksiyon sürecini yönetebilir."
+                        : "Data is first evaluated within relevant intelligence and decision context. Products such as Audience Manager, Content Studio, Campaign Manager or Journey Manager can then manage the controlled action process.")
+                </p>
+
+                <div class="intg-flow-chain my-4" aria-hidden="true">
+                    <span class="intg-flow-node">DATA</span>
+                    <span class="intg-flow-arrow">→</span>
+                    <span class="intg-flow-node">INTELLIGENCE</span>
+                    <span class="intg-flow-arrow">→</span>
+                    <span class="intg-flow-node">OPPORTUNITY / HUMAN DECISION</span>
+                    <span class="intg-flow-arrow">→</span>
+                    <span class="intg-flow-node">AUDIENCE / CONTENT</span>
+                    <span class="intg-flow-arrow">→</span>
+                    <span class="intg-flow-node">CAMPAIGN / JOURNEY</span>
+                    <span class="intg-flow-arrow">→</span>
+                    <span class="intg-flow-node">EMAIL / SMS / WHATSAPP</span>
+                    <span class="intg-flow-arrow">→</span>
+                    <span class="intg-flow-node">MEASUREMENT</span>
+                </div>
+
+                @* Architecture flow footprint *@
+                <div class="p-4 bg-white border rounded-3 my-4 text-center" aria-hidden="true">
+                    <h5 class="fw-bold mb-3">@(tr ? "Entegrasyon ve Karar Zinciri Akışı" : "Integration & Decision Chain Architecture")</h5>
+                    <div class="intg-flow-chain">
+                        @if (tr)
+                        {
+                            <span class="intg-flow-node">KAYNAK SİSTEM</span>
+                            <span class="intg-flow-arrow">→</span>
+                            <span class="intg-flow-node">API / EXCEL / CSV</span>
+                            <span class="intg-flow-arrow">→</span>
+                            <span class="intg-flow-node">MÜŞTERİ · ÜRÜN · İŞLEM</span>
+                            <span class="intg-flow-arrow">→</span>
+                            <span class="intg-flow-node">PIKA DATA &amp; INGESTION</span>
+                            <span class="intg-flow-arrow">→</span>
+                            <span class="intg-flow-node">INTELLIGENCE &amp; DECISION</span>
+                            <span class="intg-flow-arrow">→</span>
+                            <span class="intg-flow-node">CONTROLLED ACTION</span>
+                        }
+                        else
+                        {
+                            <span class="intg-flow-node">SOURCE SYSTEM</span>
+                            <span class="intg-flow-arrow">→</span>
+                            <span class="intg-flow-node">API / EXCEL / CSV</span>
+                            <span class="intg-flow-arrow">→</span>
+                            <span class="intg-flow-node">CUSTOMER · PRODUCT · TRANSACTION</span>
+                            <span class="intg-flow-arrow">→</span>
+                            <span class="intg-flow-node">PIKA DATA &amp; INGESTION</span>
+                            <span class="intg-flow-arrow">→</span>
+                            <span class="intg-flow-node">INTELLIGENCE &amp; DECISION</span>
+                            <span class="intg-flow-arrow">→</span>
+                            <span class="intg-flow-node">CONTROLLED ACTION</span>
+                        }
+                    </div>
+                </div>
+
+                @* Six-card visual area *@
+                <div class="row g-4 my-4">
+                    <div class="col-md-4">
+                        <div class="pika-sol-card h-100">
+                            <div class="pika-sol-card-icon"><i class="ri-user-line"></i></div>
+                            <h4>@(tr ? "Müşteri Verisi" : "Customer Data")</h4>
+                            <p>
+                                @(tr
+                                    ? "Müşteri kayıtlarını Pika'nın doğrulanmış ingestion yolları üzerinden platforma taşıyın."
+                                    : "Bring customer records into the platform through Pika's verified ingestion paths.")
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="pika-sol-card h-100">
+                            <div class="pika-sol-card-icon"><i class="ri-shopping-bag-3-line"></i></div>
+                            <h4>@(tr ? "Ürün Verisi" : "Product Data")</h4>
+                            <p>
+                                @(tr
+                                    ? "Ürün veya katalog kayıtlarını Product Intelligence'ın kullanabileceği veri temelinin parçası olarak aktarın."
+                                    : "Bring product or catalog records in as part of the data foundation used by Product Intelligence.")
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="pika-sol-card h-100">
+                            <div class="pika-sol-card-icon"><i class="ri-exchange-dollar-line"></i></div>
+                            <h4>@(tr ? "İşlem Verisi" : "Transaction Data")</h4>
+                            <p>
+                                @(tr
+                                    ? "Sipariş, satış veya işlem kayıtlarını müşteri davranışı ve satın alma geçmişi bağlamının girdisi olarak aktarın."
+                                    : "Bring order, sales or transaction records in as input for customer behavior and purchase-history context.")
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="pika-sol-card h-100">
+                            <div class="pika-sol-card-icon"><i class="ri-file-excel-2-line"></i></div>
+                            <h4>Excel / CSV Import</h4>
+                            <p>
+                                @(tr
+                                    ? "Dosya tabanlı müşteri, ürün ve işlem kayıtlarını batch import akışlarıyla Pika'ya alın."
+                                    : "Bring file-based customer, product and transaction records into Pika through batch-import flows.")
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="pika-sol-card h-100">
+                            <div class="pika-sol-card-icon"><i class="ri-code-s-slash-line"></i></div>
+                            <h4>REST Ingestion API</h4>
+                            <p>
+                                @(tr
+                                    ? "Müşteri, ürün ve işlem verisini dokümante edilmiş asenkron REST API üzerinden programatik olarak aktarın."
+                                    : "Programmatically ingest customer, product and transaction data through the documented asynchronous REST API.")
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="pika-sol-card h-100">
+                            <div class="pika-sol-card-icon"><i class="ri-shield-keyhole-line"></i></div>
+                            <h4>Idempotency</h4>
+                            <p>
+                                @(tr
+                                    ? "Retry edilen desteklenen ingestion request'lerinde tekrar işlemeyi kontrol etmeye yardımcı olan idempotency anahtarını kullanın."
+                                    : "Use the supported idempotency key to help control repeated processing when ingestion requests are retried.")
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-wrap gap-2 my-4">
+                    <a href="@(tr ? "/cozumler/audience-manager" : "/en/solutions/audience-manager")" class="btn pika-btn-outline px-3 py-2">
+                        Audience Manager →
+                    </a>
+                    <a href="@(tr ? "/cozumler/content-studio" : "/en/solutions/content-studio")" class="btn pika-btn-outline px-3 py-2">
+                        Content Studio →
+                    </a>
+                    <a href="@(tr ? "/cozumler/campaign-manager" : "/en/solutions/campaign-manager")" class="btn pika-btn-outline px-3 py-2">
+                        Campaign Manager →
+                    </a>
+                    <a href="@(tr ? "/cozumler/journey-manager" : "/en/solutions/journey-manager")" class="btn pika-btn-outline px-3 py-2">
+                        Journey Manager →
+                    </a>
+                    <a href="@(tr ? "/cozumler/analytics-reporting" : "/en/solutions/analytics-reporting")" class="btn pika-btn-outline px-3 py-2">
+                        Analytics &amp; Reporting →
+                    </a>
+                    <a href="@(tr ? "/guvenlik-ve-gizlilik" : "/en/security-and-privacy")" class="btn pika-btn-outline px-3 py-2">
+                        @(tr ? "Güvenlik ve Gizlilik →" : "Security & Privacy →")
+                    </a>
+                </div>
+
+                <div class="row g-3 my-4">
+                    <div class="col-md-6">
+                        <div class="p-3 bg-white border rounded-3 h-100">
+                            <span class="badge bg-light text-dark mb-2">@(tr ? "Entegrasyon sorar:" : "Integration asks:")</span>
+                            <p class="fw-bold mb-0">@(tr ? "“Veri Pika'ya nasıl girer?”" : "“How does data enter Pika?”")</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 bg-white border rounded-3 h-100">
+                            <span class="badge bg-light text-dark mb-2">@(tr ? "Aksiyon ürünleri sorar:" : "Action products ask:")</span>
+                            <p class="fw-bold mb-0">@(tr ? "“Bu veriden oluşan karar nasıl uygulanır?”" : "“How is the resulting decision executed?”")</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="fw-bold mb-0">
+                    @(tr
+                        ? "Entegrasyon, aksiyonun veri temelidir. Aksiyonun kendisi değildir."
+                        : "Integration is the data foundation for action. It is not the action itself.")
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 12 WHAT INTEGRATIONS IS / IS NOT ─────────────────────────── *@
+<section class="pika-sol-section">
+    <div class="container">
+        <div class="row justify-content-center mb-4">
+            <div class="col-lg-10 text-center">
+                <div class="pika-sol-eyebrow text-uppercase mb-2">@(tr ? "DOĞRU SINIRLAR" : "CLEAR BOUNDARIES")</div>
+                <h2 class="pika-h2 fw-bold mb-3">
+                    @(tr
+                        ? "Entegrasyonlar'ı doğru yere koyun."
+                        : "Put Integrations in the right place.")
+                </h2>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="pika-sol-card h-100">
+                    <div class="pika-sol-card-icon"><i class="ri-close-circle-line text-muted"></i></div>
+                    <h4>@(tr ? "Entegrasyonlar, Customer Intelligence değildir." : "Integrations is not Customer Intelligence.")</h4>
+                    <p>
+                        @(tr
+                            ? "Entegrasyonlar veriyi Pika'ya taşır. Customer Intelligence müşteri bağlamını hesaplar."
+                            : "Integrations brings data into Pika. Customer Intelligence calculates customer context.")
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="pika-sol-card h-100">
+                    <div class="pika-sol-card-icon"><i class="ri-close-circle-line text-muted"></i></div>
+                    <h4>@(tr ? "Entegrasyonlar, Product Intelligence değildir." : "Integrations is not Product Intelligence.")</h4>
+                    <p>
+                        @(tr
+                            ? "Entegrasyonlar ürün ve işlem kayıtlarını platforma taşıyabilir. Product Intelligence ürün anlamını ve ilişkilerini oluşturur."
+                            : "Integrations can bring product and transaction records into the platform. Product Intelligence establishes product meaning and relationships.")
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="pika-sol-card h-100">
+                    <div class="pika-sol-card-icon"><i class="ri-close-circle-line text-muted"></i></div>
+                    <h4>@(tr ? "Entegrasyonlar bir campaign trigger motoru değildir." : "Integrations is not a campaign-trigger engine.")</h4>
+                    <p>
+                        @(tr
+                            ? "Verinin Pika'ya ulaşması kendi başına kampanya başlatma kararı değildir. Kampanya ve journey aksiyonu ayrı ürün katmanlarında yönetilir."
+                            : "Data arriving in Pika is not by itself a decision to launch a campaign. Campaign and journey actions are managed in separate product layers.")
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="pika-sol-card h-100">
+                    <div class="pika-sol-card-icon"><i class="ri-close-circle-line text-muted"></i></div>
+                    <h4>@(tr ? "Entegrasyonlar evrensel native connector marketplace değildir." : "Integrations is not a universal native-connector marketplace.")</h4>
+                    <p>
+                        @(tr
+                            ? "CRM, e-ticaret, POS, ERP ve veri ambarı kaynak sistem kategorileridir. C13 her ürün için hazır native connector bulunduğunu iddia etmez."
+                            : "CRM, e-commerce, POS, ERP and data warehouse are source-system categories. C13 does not claim a ready-made native connector for every product.")
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="pika-sol-card h-100">
+                    <div class="pika-sol-card-icon"><i class="ri-close-circle-line text-muted"></i></div>
+                    <h4>@(tr ? "Entegrasyonlar gerçek zaman garantisi vermez." : "Integrations does not guarantee real-time processing.")</h4>
+                    <p>
+                        @(tr
+                            ? "REST ingestion asenkron işleme yaklaşımı kullanır. C13 belirli bir processing latency, instant sync veya millisecond güncelleme taahhüdünde bulunmaz."
+                            : "REST ingestion uses an asynchronous-processing approach. C13 makes no commitment about a particular processing latency, instant sync or millisecond updates.")
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="pika-sol-card h-100">
+                    <div class="pika-sol-card-icon"><i class="ri-close-circle-line text-muted"></i></div>
+                    <h4>@(tr ? "Idempotency, bütün duplicate-data problemlerini çözmez." : "Idempotency does not solve every duplicate-data problem.")</h4>
+                    <p>
+                        @(tr
+                            ? "X-Idempotency-Key aynı request'in tekrar işlenmesini kontrol etmeye yardımcı olur. Customer veya product master resolution ayrı bir veri problemi ve süreçtir."
+                            : "X-Idempotency-Key helps control repeated processing of the same request. Customer or product master resolution is a separate data problem and process.")
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="pika-sol-card h-100">
+                    <div class="pika-sol-card-icon"><i class="ri-close-circle-line text-muted"></i></div>
+                    <h4>@(tr ? "Dosya import'u her şemayı otomatik anlamaz." : "File import does not automatically understand every schema.")</h4>
+                    <p>
+                        @(tr
+                            ? "Excel veya CSV verisinin beklenen veri kontratına uygun olması ve gerektiğinde mapping / validation sürecinden geçmesi gerekebilir."
+                            : "Excel or CSV data may need to follow the expected data contract and pass mapping or validation where required.")
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="pika-sol-card h-100">
+                    <div class="pika-sol-card-icon"><i class="ri-close-circle-line text-muted"></i></div>
+                    <h4>@(tr ? "Entegrasyonlar bir ETL veya iPaaS platformu olarak konumlandırılmaz." : "Integrations is not positioned as an ETL or iPaaS platform.")</h4>
+                    <p>
+                        @(tr
+                            ? "C13'ün ürün rolü Pika'nın ihtiyaç duyduğu müşteri, ürün ve işlem verisini doğrulanmış ingestion yollarıyla platforma almaktır."
+                            : "C13's product role is to bring customer, product and transaction data required by Pika into the platform through verified ingestion paths.")
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mt-5">
+            <div class="col-lg-10">
+                <div class="p-4 bg-white border border-success rounded-3 text-center">
+                    <h5 class="fw-bold mb-2">@(tr ? "Entegrasyonlar'ın görevi:" : "The role of Integrations is not:")</h5>
+                    <p class="mb-2">
+                        @(tr
+                            ? "Her sisteme bağlı olduğumuzu iddia etmek değil,"
+                            : "To claim connection to every system.")
+                    </p>
+                    <h5 class="fw-bold mb-2">@(tr ? "görevi:" : "It is:")</h5>
+                    <p class="fw-bold text-success mb-0">
+                        @(tr
+                            ? "Pika'nın ihtiyaç duyduğu veriyi doğrulanmış API ve dosya yollarıyla karar zincirine taşımaktır."
+                            : "To bring the data Pika requires into the decision chain through verified API and file paths.")
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 13 FAQ ───────────────────────────────────────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt" id="faq">
+    <div class="container">
+        <div class="row justify-content-center mb-4">
+            <div class="col-lg-10 text-center">
+                <h2 class="pika-h2 fw-bold mb-3">@(tr ? "Sıkça Sorulan Sorular" : "Frequently Asked Questions")</h2>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                @if (tr)
+                {
+                    <details class="intg-faq-item">
+                        <summary class="intg-faq-summary">Pika Entegrasyonlar nedir?</summary>
+                        <div class="intg-faq-body">
+                            Entegrasyonlar, müşteri, ürün ve işlem verilerinin asenkron REST Ingestion API veya Excel/CSV batch import akışları üzerinden Pika'ya taşınmasını sağlayan veri ve ingestion katmanıdır.
+                        </div>
+                    </details>
+
+                    <details class="intg-faq-item">
+                        <summary class="intg-faq-summary">Pika'ya Excel veya CSV ile veri aktarılabilir mi?</summary>
+                        <div class="intg-faq-body">
+                            Evet. Dokümante edilmiş import akışları müşteri, ürün ve sipariş / işlem kayıtlarının Excel (.xlsx) veya CSV dosyalarıyla batch olarak aktarılmasını destekler.
+                        </div>
+                    </details>
+
+                    <details class="intg-faq-item">
+                        <summary class="intg-faq-summary">Pika'nın veri aktarımı için REST API'si var mı?</summary>
+                        <div class="intg-faq-body">
+                            Evet. Dokümante edilmiş asenkron REST Ingestion API <code>/api/v1/ingest/</code> kökü altında müşteri, işlem ve ürün veri alanları için programatik ingestion akışı sağlar.
+                        </div>
+                    </details>
+
+                    <details class="intg-faq-item">
+                        <summary class="intg-faq-summary">REST Ingestion API gerçek zamanlı mı çalışır?</summary>
+                        <div class="intg-faq-body">
+                            API asenkron işleme yaklaşımı kullanır. C13 kamuya açık sayfası belirli bir gerçek zaman, instant sync, processing latency veya millisecond güncelleme garantisi vermez.
+                        </div>
+                    </details>
+
+                    <details class="intg-faq-item">
+                        <summary class="intg-faq-summary">X-Idempotency-Key ne işe yarar?</summary>
+                        <div class="intg-faq-body">
+                            Desteklenen ingestion akışında aynı request'in retry edilmesi halinde tekrar işlenmesini kontrol etmeye yardımcı olur. Idempotency, müşteri veya ürün master-data duplicate çözümlemesinin yerine geçmez.
+                        </div>
+                    </details>
+
+                    <details class="intg-faq-item">
+                        <summary class="intg-faq-summary">Pika'nın her CRM veya ERP için hazır entegrasyonu var mı?</summary>
+                        <div class="intg-faq-body">
+                            C13 böyle bir iddia yapmaz. CRM, e-ticaret, POS, ERP ve veri ambarı kaynak sistem kategorileridir. Gerçek entegrasyon yöntemi kullanılacak veri kontratı, API veya dosya aktarım yoluna ve müşterinin teknik yapısına göre belirlenir.
+                        </div>
+                    </details>
+
+                    <details class="intg-faq-item">
+                        <summary class="intg-faq-summary">Pika'ya veri gelmesi kampanyayı otomatik olarak başlatır mı?</summary>
+                        <div class="intg-faq-body">
+                            Hayır. Veri ingestion katmanına gelir ve sonraki intelligence veya decision katmanlarında değerlendirilir. Kampanya veya journey aksiyonu Pika'nın ilgili aksiyon ürünlerinde ayrıca yapılandırılır ve yönetilir.
+                        </div>
+                    </details>
+
+                    <details class="intg-faq-item">
+                        <summary class="intg-faq-summary">Veri Pika'ya girdikten sonra ne olur?</summary>
+                        <div class="intg-faq-body">
+                            Veri ilgili validation, normalization veya resolution süreçlerinden geçebilir; ardından Customer Intelligence, Product Intelligence, Pika 360 ve Günün Fırsatları gibi sonraki ürün katmanlarında kullanılabilir bağlama dönüşebilir.
+                        </div>
+                    </details>
+                }
+                else
+                {
+                    <details class="intg-faq-item">
+                        <summary class="intg-faq-summary">What are Pika Integrations?</summary>
+                        <div class="intg-faq-body">
+                            Integrations is Pika's data and ingestion layer for bringing customer, product and transaction data into the platform through the asynchronous REST Ingestion API or Excel/CSV batch-import flows.
+                        </div>
+                    </details>
+
+                    <details class="intg-faq-item">
+                        <summary class="intg-faq-summary">Can data be imported into Pika through Excel or CSV?</summary>
+                        <div class="intg-faq-body">
+                            Yes. Documented import flows support batch ingestion of customer, product and order / transaction records through Excel (.xlsx) or CSV files.
+                        </div>
+                    </details>
+
+                    <details class="intg-faq-item">
+                        <summary class="intg-faq-summary">Does Pika provide a REST API for data ingestion?</summary>
+                        <div class="intg-faq-body">
+                            Yes. The documented asynchronous REST Ingestion API under <code>/api/v1/ingest/</code> provides programmatic ingestion flows for customer, transaction and product data domains.
+                        </div>
+                    </details>
+
+                    <details class="intg-faq-item">
+                        <summary class="intg-faq-summary">Does the REST Ingestion API operate in real time?</summary>
+                        <div class="intg-faq-body">
+                            The API uses an asynchronous-processing approach. The C13 public page does not promise a specific real-time, instant-sync, processing-latency or millisecond-update guarantee.
+                        </div>
+                    </details>
+
+                    <details class="intg-faq-item">
+                        <summary class="intg-faq-summary">What is X-Idempotency-Key used for?</summary>
+                        <div class="intg-faq-body">
+                            Within the supported ingestion flow, it helps control repeated processing when the same request is retried. Idempotency does not replace customer or product master-data duplicate resolution.
+                        </div>
+                    </details>
+
+                    <details class="intg-faq-item">
+                        <summary class="intg-faq-summary">Does Pika have a ready-made integration for every CRM or ERP?</summary>
+                        <div class="intg-faq-body">
+                            C13 makes no such claim. CRM, e-commerce, POS, ERP and data warehouse are source-system categories. The actual integration method depends on the relevant data contract, API or file-import path and the customer's technical environment.
+                        </div>
+                    </details>
+
+                    <details class="intg-faq-item">
+                        <summary class="intg-faq-summary">Does data arriving in Pika automatically launch a campaign?</summary>
+                        <div class="intg-faq-body">
+                            No. Data enters the ingestion layer and is evaluated in downstream intelligence or decision layers. Campaign or journey action is configured and managed separately in Pika's relevant action products.
+                        </div>
+                    </details>
+
+                    <details class="intg-faq-item">
+                        <summary class="intg-faq-summary">What happens after data enters Pika?</summary>
+                        <div class="intg-faq-body">
+                            Data can pass through relevant validation, normalization or resolution processes and can then become usable context for downstream product layers such as Customer Intelligence, Product Intelligence, Pika 360 and Daily Opportunities.
+                        </div>
+                    </details>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 14 FINAL CTA ─────────────────────────────────────────────── *@
+<section class="pika-sol-cta-section">
+    <div class="container" data-aos="fade-up">
+        <div class="pika-sol-eyebrow text-uppercase text-white-50 mb-2">@(tr ? "VERİDEN BAŞLAYIN" : "START WITH DATA")</div>
+        <h2>
+            @(tr
+                ? "Veriyi Pika'ya taşıyın. Bağlamı intelligence katmanlarında oluşturun. Aksiyonu kontrollü biçimde yönetin."
+                : "Bring data into Pika. Build context in the intelligence layers. Manage action under control.")
+        </h2>
+        <p class="lead">
+            @(tr
+                ? "Pika'nın asenkron REST Ingestion API ve Excel/CSV import akışlarıyla müşteri, ürün ve işlem verinizi karar zincirinin başlangıcına nasıl taşıyabileceğinizi birlikte değerlendirelim."
+                : "Let's evaluate how Pika's asynchronous REST Ingestion API and Excel/CSV import flows can bring your customer, product and transaction data into the beginning of the decision chain.")
+        </p>
+        <p class="small text-white-50 mb-4">
+            @(tr
+                ? "İhtiyacınıza ve kullanım kapsamınıza göre özel teklif."
+                : "Pricing is tailored to your requirements and scope of use.")
+        </p>
+        <div class="pika-sol-cta-actions">
+            <button type="button" class="btn pika-btn-primary px-4 py-2" data-bs-toggle="modal" data-bs-target="#demoModal">
+                @(tr ? "Demo Talep Et" : "Request a Demo") <i class="ri-arrow-right-up-line"></i>
+            </button>
+            <a href="@(tr ? "/iletisim" : "/en/contact")" class="btn pika-btn-ghost px-4 py-2">
+                @(tr ? "Teklif Al" : "Request a Quote")
+            </a>
         </div>
     </div>
 </section>

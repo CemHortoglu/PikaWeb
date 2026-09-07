@@ -244,10 +244,10 @@ public static class SeoHelper
         ["Solutions.Integrations"] = new(
             "/entegrasyonlar",
             "/en/integrations",
-            "Integrations | Entegrasyonlar",
-            "Integrations | Integrations",
-            "CRM, e-ticaret altyapıları, ERP ve veri ambarları ile asenkron API ve dosya entegrasyonu.",
-            "Asynchronous API and file integrations with CRM, e-commerce platforms, ERP, and data warehouses.",
+            "Entegrasyonlar | REST API, Excel/CSV ve Veri Aktarımı | Pika",
+            "Integrations | REST API, Excel/CSV & Data Ingestion | Pika",
+            "Pika Entegrasyonlar; müşteri, ürün ve işlem verilerini asenkron REST Ingestion API veya Excel/CSV içe aktarma akışlarıyla Pika'ya taşımanıza yardımcı olur.",
+            "Pika Integrations helps bring customer, product and transaction data into Pika through an asynchronous REST Ingestion API and Excel/CSV import flows.",
             "Entegrasyonlar",
             "Integrations"),
 

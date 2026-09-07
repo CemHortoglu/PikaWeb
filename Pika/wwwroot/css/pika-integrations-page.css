@@ -1,0 +1,44 @@
+/* Pika Integrations Page Styles - Scoped strictly to .intg-* */
+.intg-hero-pills {
+    display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; padding: 18px 14px;
+}
+.intg-hero-pill {
+    background: #f0f5e8; border: 1px solid #c9dca9; border-radius: 6px; padding: 6px 14px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.04em; color: #35531e; text-transform: uppercase;
+}
+.intg-question-box {
+    background: #ffffff; border: 1px solid #dce5d2; border-left: 4px solid var(--pika-primary, #7c984c);
+    border-radius: 0 12px 12px 0; padding: 1.5rem 2rem; margin: 1.5rem 0;
+}
+.intg-question-box h3 {
+    font-size: 1.35rem; font-weight: 700; color: #1b3d25; margin-bottom: 0; line-height: 1.4;
+}
+.intg-flow-chain {
+    display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 10px; margin: 1.5rem 0;
+}
+.intg-flow-node {
+    background: #ffffff; border: 1px solid #c8deb0; border-radius: 8px; padding: 8px 14px;
+    font-size: 0.82rem; font-weight: 700; letter-spacing: 0.03em; color: #1b3d25;
+}
+.intg-flow-arrow {
+    color: #7c984c; font-weight: 700; font-size: 1rem;
+}
+.intg-faq-item {
+    border: 1px solid #e2ebd8; border-radius: 12px; background: #ffffff;
+    margin-bottom: 0.75rem; overflow: hidden; transition: border-color 0.2s ease;
+}
+.intg-faq-item[open] {
+    border-color: #c5d8b5; background: #fafdf7;
+}
+.intg-faq-summary {
+    padding: 1.1rem 1.25rem; font-weight: 600; font-size: 1rem; color: #1a3826;
+    cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;
+}
+.intg-faq-summary::-webkit-details-marker { display: none; }
+.intg-faq-summary::after {
+    content: "+"; font-size: 1.25rem; color: #7c984c; font-weight: 400; transition: transform 0.2s ease;
+}
+.intg-faq-item[open] .intg-faq-summary::after { content: "−"; }
+.intg-faq-body {
+    padding: 0 1.25rem 1.25rem 1.25rem; color: #4a5c4e; line-height: 1.65; font-size: 0.95rem;
+}
