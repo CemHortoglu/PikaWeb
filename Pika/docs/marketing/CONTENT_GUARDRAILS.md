@@ -60,7 +60,7 @@ Pika must never be reduced to or described merely as:
 | **Email Channel** | E-Posta / Email Marketing | Email Marketing | Mail basma, E-posta gönderim aracı |
 | **SMS Channel** | SMS / SMS Kampanyaları | SMS Campaigns | Toplu SMS, SMS gateway |
 | **WhatsApp Channel** | WhatsApp / WhatsApp Kampanya Yönetimi | WhatsApp Messaging / Campaigns | WhatsApp Botu, WhatsApp Spam |
-| **Push Channel** | Push Bildirimleri (Roadmap) | Push Notifications (Roadmap) | Native Push (Roadmap belirtilmeden kullanılamaz) |
+| **Push Channel** | Push Bildirimleri (Durumu Doğrulanmalı) | Push Notifications (Status Unconfirmed) | Native Push (Doğrulanmadan canlı kanal olarak sunulamaz) |
 | **Product Classification**| Need Group / İhtiyaç Grubu | Need Group | Ürün türü, Etiket |
 | **Commercial Role** | Product Role / Ürün Rolü | Product Role | Ürün sınıfı, Reyon |
 | **Customer Score** | Müşteri Değer Skoru (CVS) | Customer Value Score (CVS) | AI Skoru, Sadakat Puanı |
@@ -102,7 +102,7 @@ The following claims are **strictly restricted**. They cannot be added to any pu
 5. **Certifications & Partnerships (`MARKETING_ONLY`):** Claims of "SOC-2 Certified", "ISO 27001 Certified", "Meta Certified Partner".
 6. **Enterprise SSO / SAML 2.0 (`MARKETING_ONLY`):** Not configured in PikaWeb; prohibited from marketing until confirmed in backend identity server.
 7. **Conversational WhatsApp Chatbots (`CONTRADICTORY`):** Prohibited from marketing; position WhatsApp strictly as outbound approved template messaging.
-8. **Push Notifications (`CONTRADICTORY`):** Prohibited from live claims; must always include `(Roadmap)` qualifier.
+8. **Push Notifications (`CONTRADICTORY` / `UNCONFIRMED`):** Prohibited from live claims; must never be presented as a current live Pika capability until explicitly confirmed by the product owner.
 
 ---
 
@@ -110,7 +110,7 @@ The following claims are **strictly restricted**. They cannot be added to any pu
 
 The following claims are **PROHIBITED** from all public Pika materials:
 
-- ❌ "Pika supports web and mobile push notifications out of the box." *(Push is ROADMAP.)*
+- ❌ "Pika supports web and mobile push notifications out of the box." *(Push live-product status is unconfirmed and is not approved for public live-capability marketing.)*
 - ❌ "Pika provides conversational AI chatbots for two-way WhatsApp support." *(Out of scope; outbound templates only.)*
 - ❌ "Pika is a SOC-compliant enterprise platform." *(No SOC attestation exists.)*
 - ❌ "Pika features enterprise SAML 2.0 / Okta SSO integration." *(Not configured.)*
@@ -145,12 +145,17 @@ When writing about artificial intelligence in Pika, always maintain technical pr
 
 ---
 
-## Roadmap Wording Rules
+## Roadmap & Unconfirmed Capabilities Wording Rules
 
-Any capability marked as **ROADMAP** (e.g. Push Notifications, Conversational WhatsApp bots) must adhere to these rules:
-1. If mentioned in main navigation or feature grids, it **MUST** be explicitly suffixed with `(Roadmap)` or `(Geliştirme Aşamasında)`.
-2. Action buttons must **NEVER** say "Hemen Gönderin" or "Canlı Kullanın". Acceptable action: "Yol Haritasını İnceleyin" or "Bilgi Alın".
-3. Must never be included in core platform capability summaries without qualifier.
+Capabilities must be strictly distinguished between confirmed roadmap items and unconfirmed/contradictory capabilities:
+
+1. **Confirmed ROADMAP Capabilities:**
+   - Any capability explicitly confirmed by the product owner as **ROADMAP** must carry an explicit qualifier such as `(Roadmap)` or `(Geliştirme Aşamasında)` whenever mentioned in navigation, feature grids, or headings.
+   - Action buttons must **NEVER** say "Hemen Gönderin" or "Canlı Kullanın". Acceptable action: "Yol Haritasını İnceleyin" or "Bilgi Alın".
+   - Must never be included in core platform capability summaries without qualifier.
+2. **CONTRADICTORY / UNCONFIRMED Capabilities:**
+   - Capabilities with `CONTRADICTORY` or `UNCONFIRMED` status must **NOT** be marketed as current live capabilities and require explicit product-owner confirmation before any public promotion.
+   - Governance must **NOT** silently convert `UNCONFIRMED` into `ROADMAP` without evidence or product-owner sign-off.
 
 ---
 
@@ -186,7 +191,7 @@ Commercial pricing is strictly quotation-based and varies according to:
 4. **Do not expose legacy `Views/Home/Pricing.cshtml` values** (view deleted in P01; route permanently 301-redirects to `/demo-talebi`).
 5. **Do not claim SLA tiers exist.**
 6. **Do not create pricing calculators** on the public marketing website unless explicitly approved in a future task.
-6. **Do not imply that all customers receive identical commercial terms.**
+7. **Do not imply that all customers receive identical commercial terms.**
 
 ### Approved Public Pricing Language
 - **Turkish:** *"İhtiyacınıza ve kullanım kapsamınıza göre özel teklif"* / *"İşletmenizin ölçeğine ve entegrasyon ihtiyaçlarına göre uyarlanan kurumsal teklif"*
@@ -203,7 +208,7 @@ Commercial pricing is strictly quotation-based and varies according to:
   - `Talk to Sales`
 
 ### Legacy View Governance
-The view file `Views/Home/Pricing.cshtml` is strictly classified as **`LEGACY / DO_NOT_MARKET`**. It must remain unrouted and is recommended for archival/removal from public routing in the Phase P01 route-cleanup phase.
+`Views/Home/Pricing.cshtml` was deleted in P01. Historical pricing routes permanently redirect to the demo/quotation funnel. Fixed public pricing must never be reintroduced without explicit commercial approval.
 
 ---
 
