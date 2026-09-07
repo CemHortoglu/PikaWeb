@@ -1,164 +1,1070 @@
 @{
     var culture = ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr";
     var tr = culture.Equals("tr", StringComparison.OrdinalIgnoreCase);
-    var wikiBase = "/wiki/";
-    ViewData["Title"] = tr ? "Pika 360 | Bütünleşik Müşteri Karar Ekranı" : "Pika 360 | Unified Single-Customer Decision View";
-    ViewData["MetaDescription"] = tr ? "Pika 360, tek bir müşteriyi yalnızca profil olarak değil; değer, davranış, risk, iletişim erişimi ve açık fırsat bağlamıyla birlikte değerlendirmek için tasarlanmış karar ekranıdır." : "Pika 360 provides a unified single-customer decision view evaluating value, behavior, churn risk, channel reachability, and open opportunities.";
     ViewData["BodyClass"] = "pika-platform-page";
 }
 
-@await Html.PartialAsync("_MarketingHero")
+@section Styles {
+    <link rel="stylesheet" href="~/css/pika-360-page.css" asp-append-version="true" />
+}
 
-@* ── NEDEN GÜÇLÜ ────────────────────────────────────────────── *@
-<section class="ph-section ph-section-alt">
-    <div class="container">
-        <div class="row g-5 align-items-center">
-            <div class="col-lg-6" data-aos="fade-right">
-                <span class="ph-eyebrow">Problem</span>
-                <h2 class="pika-h2 fw-bold">@(tr ? "Dağınık müşteri ekranları yerine tek karar özeti" : "One decisive summary instead of fragmented dashboards")</h2>
-                <p class="ph-muted">
-                    @(tr ? "Müşteri bilgisi birçok farklı ekranda dağılmış durumdadır: profil sayfasında adres, başka bir ekranda sipariş geçmişi, bir diğerinde kampanya geçmişi." : "Customer records are typically scattered: addresses in CRM tables, orders in ERPs, campaign logs in messaging consoles.")
+@* ── 01 HERO (Reproduced safely without fabricated customer metrics) ── *@
+<section class="inner-hero inner-hero--customer">
+    <div class="inner-atmosphere" aria-hidden="true"><span></span><span></span></div>
+    <div class="container inner-hero-grid">
+        <div class="inner-intro">
+            <nav class="inner-breadcrumb" aria-label="@(tr ? "Sayfa yolu" : "Breadcrumb")">
+                <a href="@(tr ? "/" : "/en/")">Pika</a>
+                <span>/</span>
+                <a href="@(tr ? "/pika" : "/en/pika")">@(tr ? "Pika Nedir?" : "What Is Pika?")</a>
+                <span>/</span>
+                <span>Pika 360</span>
+            </nav>
+            <div class="inner-eyebrow"><span></span>PIKA 360</div>
+            @if (tr)
+            {
+                <h1>
+                    Müşteriyi yalnızca kimliğiyle değil,<br />
+                    bütün karar bağlamıyla görün.
+                </h1>
+                <p>
+                    Pika 360; müşterinin işlem geçmişini, hesaplanan değer göstergelerini, davranış bağlamını, iletişim erişilebilirliğini ve açık fırsatlarını tek müşteri perspektifinde bir araya getirir.
                 </p>
-                <p class="ph-muted">
-                    @(tr ? "Pika 360, karar vermeyi besleyecek özetleri tek yerde bir araya getirir. Kullanıcı önce müşterinin genel durumunu görür; isterse daha derin sayfalara iner." : "Pika 360 coalesces the essence into one decision cockpit. Operators assess overall health instantly, then dive into granular logs as needed.")
+                <p class="ph-muted" style="color:rgba(255,255,255,0.72);font-size:15px;margin-bottom:30px">
+                    Amaç yalnızca müşteriye ait daha fazla veri göstermek değil, farklı Pika bağlamlarını tek bir soruya cevap verecek şekilde birleştirmektir: Bu müşteri şu anda nasıl bir durumda?
                 </p>
-            </div>
-            <div class="col-lg-6" data-aos="fade-left">
-                <span class="ph-eyebrow">@(tr ? "Pika'nın Yaklaşımı" : "Pika's Approach")</span>
-                <h2 class="pika-h2 fw-bold">@(tr ? "Pika 360 ne sağlar?" : "What does Pika 360 provide?")</h2>
-                <div class="row g-3 mt-2">
-                    <div class="col-6">
-                        <div class="ph-module-card h-100 p-3">
-                            <div class="ph-module-icon mb-2"><i class="ri-shield-star-line"></i></div>
-                            <div class="fw-bold mb-1" style="font-size:.9rem">@(tr ? "Müşteri Değeri" : "Customer Value")</div>
-                            <p class="small ph-muted mb-0">@(tr ? "Göreli önem ve ticari katkı daha görünür" : "Visible relative value and historical contribution")</p>
-                        </div>
+                <div class="inner-actions">
+                    <button class="inner-primary" type="button" data-bs-toggle="modal" data-bs-target="#demoModal">
+                        Demo Talep Et ↗
+                    </button>
+                    <a class="inner-secondary" href="/platform/customer-intelligence">
+                        Customer Intelligence'ı Keşfedin →
+                    </a>
+                    <a class="inner-secondary" href="#inner-content">
+                        Detayları inceleyin ↓
+                    </a>
+                </div>
+            }
+            else
+            {
+                <h1>
+                    See more than customer identity.<br />
+                    See the complete decision context.
+                </h1>
+                <p>
+                    Pika 360 brings the customer's transaction history, calculated value indicators, behavioral context, communication reachability and open opportunities together within a single customer perspective.
+                </p>
+                <p class="ph-muted" style="color:rgba(255,255,255,0.72);font-size:15px;margin-bottom:30px">
+                    The objective is not simply to display more customer data. It is to bring different Pika contexts together around one question: What is the customer's current situation?
+                </p>
+                <div class="inner-actions">
+                    <button class="inner-primary" type="button" data-bs-toggle="modal" data-bs-target="#demoModal">
+                        Request a Demo ↗
+                    </button>
+                    <a class="inner-secondary" href="/en/platform/customer-intelligence">
+                        Explore Customer Intelligence →
+                    </a>
+                    <a class="inner-secondary" href="#inner-content">
+                        Explore the details ↓
+                    </a>
+                </div>
+            }
+        </div>
+        <div class="inner-scene" aria-label="@(tr ? "Platformun çalışma biçimini anlatan örnek görünüm" : "Illustrative view of how the platform works")">
+            <div class="inner-scene-orbit" aria-hidden="true"></div>
+            <div class="inner-scene-window">
+                <div class="inner-window-bar">
+                    <strong>pika<span>✳</span></strong>
+                    <span>Pika 360</span>
+                    <small>@(tr ? "Örnek görünüm" : "Illustration")</small>
+                </div>
+                <div class="p-3 d-flex flex-column gap-2" style="background:#f6f9f0">
+                    <div class="d-flex align-items-center gap-2 p-2 rounded bg-white border" style="font-size:12px;color:#23413b">
+                        <i class="ri-history-line" style="color:#7a9845"></i>
+                        <strong>@(tr ? "İŞLEM GEÇMİŞİ" : "TRANSACTION HISTORY")</strong>
                     </div>
-                    <div class="col-6">
-                        <div class="ph-module-card h-100 p-3">
-                            <div class="ph-module-icon mb-2"><i class="ri-alarm-warning-line"></i></div>
-                            <div class="fw-bold mb-1" style="font-size:.9rem">@(tr ? "Risk Görünürlüğü" : "Risk Visibility")</div>
-                            <p class="small ph-muted mb-0">@(tr ? "Pasifleşme veriyle, hisle değil" : "Empirical churn alerts, not conjecture")</p>
-                        </div>
+                    <div class="d-flex align-items-center gap-2 p-2 rounded bg-white border" style="font-size:12px;color:#23413b">
+                        <i class="ri-shield-star-line" style="color:#7a9845"></i>
+                        <strong>@(tr ? "MÜŞTERİ DEĞERİ" : "CUSTOMER VALUE")</strong>
                     </div>
-                    <div class="col-6">
-                        <div class="ph-module-card h-100 p-3">
-                            <div class="ph-module-icon mb-2"><i class="ri-wifi-line"></i></div>
-                            <div class="fw-bold mb-1" style="font-size:.9rem">@(tr ? "Kanal Erişimi" : "Channel Reach")</div>
-                            <p class="small ph-muted mb-0">@(tr ? "Aksiyon planı için iletişim kanalı bağlamı" : "Direct context for permissible communication")</p>
-                        </div>
+                    <div class="d-flex align-items-center gap-2 p-2 rounded bg-white border" style="font-size:12px;color:#23413b">
+                        <i class="ri-user-follow-line" style="color:#7a9845"></i>
+                        <strong>@(tr ? "DAVRANIŞ" : "BEHAVIOR")</strong>
                     </div>
-                    <div class="col-6">
-                        <div class="ph-module-card h-100 p-3">
-                            <div class="ph-module-icon mb-2"><i class="ri-focus-3-line"></i></div>
-                            <div class="fw-bold mb-1" style="font-size:.9rem">@(tr ? "Açık Fırsatlar" : "Open Opportunities")</div>
-                            <p class="small ph-muted mb-0">@(tr ? "Mevcut fırsat bağlamı tek ekranda" : "Active trigger candidates in one view")</p>
-                        </div>
+                    <div class="d-flex align-items-center gap-2 p-2 rounded bg-white border" style="font-size:12px;color:#23413b">
+                        <i class="ri-chat-check-line" style="color:#7a9845"></i>
+                        <strong>@(tr ? "ERİŞİLEBİLİRLİK" : "REACHABILITY")</strong>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 p-2 rounded bg-white border" style="font-size:12px;color:#23413b">
+                        <i class="ri-focus-3-line" style="color:#7a9845"></i>
+                        <strong>@(tr ? "AÇIK FIRSATLAR" : "OPEN OPPORTUNITIES")</strong>
+                    </div>
+                </div>
+                <div class="inner-insight m-3">
+                    <span>✳</span>
+                    <div>
+                        <strong>@(tr ? "Bütünleşik karar bağlamı." : "Unified decision context.")</strong>
+                        <p>@(tr ? "Tek bir müşteri perspektifinde tüm sinyaller." : "All signals within a single customer perspective.")</p>
                     </div>
                 </div>
             </div>
+            <div class="inner-scene-caption">PIKA 360. MEANINGFUL CONNECTIONS.</div>
+        </div>
+    </div>
+</section>
+<div id="inner-content" class="inner-anchor"></div>
+
+@* ── 02 & 03 DIRECT ANSWER + WHY A CUSTOMER RECORD IS NOT ENOUGH ── *@
+<section class="ph-section ph-section-alt">
+    <div class="container">
+        <div class="row g-5 align-items-start">
+            <div class="col-lg-6">
+                <span class="ph-eyebrow">@(tr ? "KISA CEVAP" : "THE SHORT ANSWER")</span>
+                <h2 class="pika-h2 fw-bold mb-3">@(tr ? "Pika 360 nedir?" : "What is Pika 360?")</h2>
+                @if (tr)
+                {
+                    <p class="ph-muted">
+                        Pika 360, tek bir müşteriye ait işlem geçmişini, hesaplanan müşteri değerini, davranış bağlamını, iletişim erişilebilirliğini ve açık fırsatları aynı karar perspektifinde bir araya getiren Pika katmanıdır.
+                    </p>
+                    <p class="ph-muted">
+                        Pika 360'ın görevi yeni bir müşteri gerçeği üretmek değildir. Customer Intelligence gibi analitik katmanlarda hesaplanan bağlamı, müşteri işlemlerini ve fırsat bilgisini kullanıcı için değerlendirilebilir bir müşteri görünümünde buluşturur.
+                    </p>
+                    <p class="ph-muted mb-2">
+                        Bu nedenle Pika 360 yalnızca: “Bu müşteri kim?” sorusunu cevaplamaya çalışmaz.
+                    </p>
+                    <div class="p-3 my-3 rounded bg-white border" style="border-left:4px solid #b5ee19 !important">
+                        <strong style="color:#23413b">
+                            “Bu müşteri şu anda<br />
+                            nasıl bir durumda<br />
+                            ve hangi bağlam dikkate alınmalı?”
+                        </strong>
+                    </div>
+                    <p class="ph-muted">
+                        Pika 360'ın ürün rolü, müşteri verisini bir profil olmaktan çıkarıp karar vermeyi destekleyen bütünleşik bir bağlama dönüştürmektir.
+                    </p>
+                }
+                else
+                {
+                    <p class="ph-muted">
+                        Pika 360 is the Pika layer that brings a single customer's transaction history, calculated customer value, behavioral context, communication reachability and open opportunities into the same decision perspective.
+                    </p>
+                    <p class="ph-muted">
+                        Pika 360 does not create a new version of customer truth. It brings context calculated by analytical layers such as Customer Intelligence together with customer transactions and opportunity information in a customer view that users can evaluate.
+                    </p>
+                    <p class="ph-muted mb-2">
+                        That means Pika 360 goes beyond answering: “Who is this customer?”
+                    </p>
+                    <div class="p-3 my-3 rounded bg-white border" style="border-left:4px solid #b5ee19 !important">
+                        <strong style="color:#23413b">
+                            “What is this customer's current situation,<br />
+                            and which context should be considered?”
+                        </strong>
+                    </div>
+                    <p class="ph-muted">
+                        The product role of Pika 360 is to turn customer data from a profile into unified context that supports decision making.
+                    </p>
+                }
+            </div>
+
+            <div class="col-lg-6">
+                <span class="ph-eyebrow">@(tr ? "KAYITTAN BAĞLAMA" : "FROM RECORD TO CONTEXT")</span>
+                <h2 class="pika-h2 fw-bold mb-3">
+                    @(tr ? "Bir müşteriyi tanımlamak, onu anlamak değildir." : "Identifying a customer is not the same as understanding them.")
+                </h2>
+                @if (tr)
+                {
+                    <p class="ph-muted">
+                        Ad, telefon, e-posta ve temel profil bilgileri müşterinin kim olduğunu söyler.
+                    </p>
+                    <p class="ph-muted">
+                        Ancak müşterinin bugünkü ticari durumunu tek başına açıklamaz.
+                    </p>
+                    <p class="ph-muted">
+                        Müşterinin geçmiş işlemleri başka bir bağlamdır.
+                    </p>
+                    <p class="ph-muted">
+                        Satın alma ritmi ve davranış değişimi başka bir bağlamdır.
+                    </p>
+                    <p class="ph-muted">
+                        Müşteri değeri başka bir bağlamdır.
+                    </p>
+                    <p class="ph-muted">
+                        İletişim erişilebilirliği ve açık fırsatlar ise kararın başka parçalarıdır.
+                    </p>
+                    <p class="ph-muted">
+                        Bu bilgiler birbirinden kopuk kaldığında kullanıcı karar vermeden önce bağlamı farklı yerlerden zihinsel olarak birleştirmek zorunda kalır.
+                    </p>
+                    <div class="p-3 my-3 rounded bg-white border">
+                        <p class="small mb-1"><strong>Pika 360'ın amacı:</strong></p>
+                        <p class="small mb-1">Daha fazla müşteri verisi göstermek değil,</p>
+                        <p class="small mb-0 fw-bold" style="color:#23413b">karar için gerekli müşteri bağlamını aynı perspektifte buluşturmaktır.</p>
+                    </div>
+                }
+                else
+                {
+                    <p class="ph-muted">
+                        A name, phone number, email address and basic profile details tell you who the customer is.
+                    </p>
+                    <p class="ph-muted">
+                        They do not explain the customer's current commercial situation by themselves.
+                    </p>
+                    <p class="ph-muted">
+                        Transaction history is one context.
+                    </p>
+                    <p class="ph-muted">
+                        Purchase rhythm and behavioral change are another.
+                    </p>
+                    <p class="ph-muted">
+                        Customer value is another.
+                    </p>
+                    <p class="ph-muted">
+                        Communication reachability and open opportunities are additional parts of the decision.
+                    </p>
+                    <p class="ph-muted">
+                        When those signals remain fragmented, users must mentally reconstruct customer context before making a decision.
+                    </p>
+                    <div class="p-3 my-3 rounded bg-white border">
+                        <p class="small mb-1"><strong>The purpose of Pika 360 is not:</strong></p>
+                        <p class="small mb-1">To display more customer data.</p>
+                        <p class="small mb-0 fw-bold" style="color:#23413b">It is: To bring the customer context required for a decision into the same perspective.</p>
+                    </div>
+                }
+            </div>
         </div>
     </div>
 </section>
 
-@* ── ZİNCİR İÇİNDEKİ YERİ ──────────────────────────────────── *@
+@* ── 04 WHAT PIKA 360 BRINGS TOGETHER ───────────────────────── *@
 <section class="ph-section">
     <div class="container">
-        <div class="text-center mb-4" data-aos="fade-up">
-            <span class="ph-eyebrow">@(tr ? "Platform Bütünü" : "Platform Context")</span>
-            <h2 class="pika-h2 fw-bold">@(tr ? "Pika 360, zekâ ve aksiyon arasındaki köprüdür" : "Pika 360 bridges intelligence and action")</h2>
+        <div class="text-center mb-5">
+            <span class="ph-eyebrow">@(tr ? "TEK MÜŞTERİ PERSPEKTİFİ" : "ONE CUSTOMER PERSPECTIVE")</span>
+            <h2 class="pika-h2 fw-bold mb-3">
+                @(tr ? "Karar verirken gereken temel bağlamları birlikte görün." : "Bring the key contexts needed for a decision together.")
+            </h2>
+            <p class="ph-muted" style="max-width:720px;margin-left:auto;margin-right:auto">
+                @(tr ? "Pika 360 farklı bilgi türlerini aynı müşteri perspektifinde bir araya getirir. Her bağlam farklı bir soruya cevap verir." : "Pika 360 brings different types of information into the same customer perspective. Each context answers a different question.")
+            </p>
         </div>
-        <div class="row g-4 justify-content-center" data-aos="fade-up" data-aos-delay="100">
-            <div class="col-lg-8">
-                <div class="d-flex flex-column gap-2">
-                    <div class="d-flex align-items-center gap-3 p-3 rounded" style="background:#f8fdf0;border:1px solid #d4e8b0">
-                        <div class="ph-trust-icon flex-shrink-0"><i class="ri-brain-line"></i></div>
-                        <div class="flex-grow-1">
-                            <div class="fw-bold" style="font-size:.9rem">Customer Intelligence</div>
-                            <div style="font-size:.75rem;color:var(--pika-muted)">@(tr ? "Müşteri davranışı, segment, değer analizi" : "Customer behavior, segmentation, value modeling")</div>
-                        </div>
-                        <a href="@Url.Action("CustomerIntelligence", "Platform", new { culture })" class="small" style="color:var(--pika-primary)">@(tr ? "Detay" : "Details") <i class="ri-arrow-right-line"></i></a>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-center py-1">
-                        <i class="ri-arrow-down-line" style="color:var(--pika-primary)"></i>
-                    </div>
-                    <div class="d-flex align-items-center gap-3 p-3 rounded" style="background:#f0f9e4;border:2px solid var(--pika-primary)">
-                        <div class="ph-trust-icon flex-shrink-0"><i class="ri-user-heart-line"></i></div>
-                        <div class="flex-grow-1">
-                            <div class="fw-bold" style="font-size:.9rem">Pika 360 <span class="badge ms-2" style="background:#c8f542;color:#12362c;font-size:.65rem">@(tr ? "Şu an burada" : "Current location")</span></div>
-                            <div style="font-size:.75rem;color:var(--pika-muted)">@(tr ? "Değer + risk + kanal + fırsat — tek müşteri kararı özeti" : "Value + risk + channel + opportunity — unified decision view")</div>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-center py-1">
-                        <i class="ri-arrow-down-line" style="color:var(--pika-primary)"></i>
-                    </div>
-                    <div class="d-flex align-items-center gap-3 p-3 rounded" style="background:#f8fdf0;border:1px solid #d4e8b0">
-                        <div class="ph-trust-icon flex-shrink-0"><i class="ri-focus-3-line"></i></div>
-                        <div class="flex-grow-1">
-                            <div class="fw-bold" style="font-size:.9rem">@(tr ? "Günün Fırsatları" : "Opportunities")</div>
-                            <div style="font-size:.75rem;color:var(--pika-muted)">@(tr ? "Fırsattan aksiyona geçiş" : "Transition from insight to campaign execution")</div>
-                        </div>
-                        <a href="@(tr ? "/platform/firsatlar" : "/en/platform/opportunities")" class="small" style="color:var(--pika-primary)">@(tr ? "Detay" : "Details") <i class="ri-arrow-right-line"></i></a>
-                    </div>
+
+        <div class="row g-4 justify-content-center">
+            <div class="col-lg-4 col-md-6">
+                <div class="ph-module-card h-100 p-4">
+                    <div class="ph-module-icon mb-3"><i class="ri-history-line"></i></div>
+                    <h3 class="fw-bold mb-2" style="font-size:1.05rem">@(tr ? "İşlem Geçmişi" : "Transaction History")</h3>
+                    <p class="small ph-muted mb-0">
+                        @(tr ? "Müşterinin geçmiş alışverişleri ve ticari hareketleri, bugünkü davranışı değerlendirirken temel tarihsel bağlamı oluşturur." : "Past purchases and commercial activity provide the historical foundation for evaluating current customer behavior.")
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="ph-module-card h-100 p-4">
+                    <div class="ph-module-icon mb-3"><i class="ri-shield-star-line"></i></div>
+                    <h3 class="fw-bold mb-2" style="font-size:1.05rem">@(tr ? "Hesaplanan Müşteri Değeri" : "Calculated Customer Value")</h3>
+                    <p class="small ph-muted mb-0">
+                        @(tr ? "Customer Intelligence tarafından üretilen değer göstergeleri, müşterinin ticari önemini yalnızca tek bir işlem üzerinden değil, geçmiş davranışıyla birlikte değerlendirmeye yardımcı olur." : "Value indicators produced by Customer Intelligence help evaluate the customer's commercial importance through historical behavior rather than one isolated transaction.")
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="ph-module-card h-100 p-4">
+                    <div class="ph-module-icon mb-3"><i class="ri-user-follow-line"></i></div>
+                    <h3 class="fw-bold mb-2" style="font-size:1.05rem">@(tr ? "Davranış Bağlamı" : "Behavioral Context")</h3>
+                    <p class="small ph-muted mb-0">
+                        @(tr ? "Satın alma sıklığı, ritim ve davranış değişimi gibi hesaplanan sinyaller müşterinin kendi geçmişine göre nasıl değiştiğini anlamaya yardımcı olur." : "Calculated signals such as purchase frequency, rhythm and behavioral change help reveal how the customer is changing relative to their own history.")
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="ph-module-card h-100 p-4">
+                    <div class="ph-module-icon mb-3"><i class="ri-chat-check-line"></i></div>
+                    <h3 class="fw-bold mb-2" style="font-size:1.05rem">@(tr ? "İletişim Erişilebilirliği" : "Communication Reachability")</h3>
+                    <p class="small ph-muted mb-0">
+                        @(tr ? "Müşteriyle hangi iletişim kanallarında aksiyon alınabileceğine ilişkin mevcut erişilebilirlik ve izin bağlamı, karar perspektifinin bir parçası olarak değerlendirilebilir." : "Available reachability and permission context for communication channels can form part of the decision perspective when evaluating possible action.")
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="ph-module-card h-100 p-4">
+                    <div class="ph-module-icon mb-3"><i class="ri-focus-3-line"></i></div>
+                    <h3 class="fw-bold mb-2" style="font-size:1.05rem">@(tr ? "Açık Fırsatlar" : "Open Opportunities")</h3>
+                    <p class="small ph-muted mb-0">
+                        @(tr ? "Müşteri için oluşmuş değerlendirilebilir ticari fırsatlar, geçmiş ve davranış bağlamıyla birlikte aynı müşteri perspektifinde görülebilir." : "Evaluable commercial opportunities associated with the customer can be considered alongside historical and behavioral context within the same customer perspective.")
+                    </p>
                 </div>
             </div>
         </div>
+
+        <div class="text-center mt-4">
+            <div class="p-3 rounded d-inline-block text-start" style="background:#f8faf4;border:1px dashed #dce5d3;max-width:720px">
+                <p class="small mb-1" style="color:#62746d">
+                    @(tr ? "Bu bilgiler tek başına karar değildir." : "None of these elements is the decision by itself.")
+                </p>
+                <p class="small mb-0 fw-bold" style="color:#23413b">
+                    @(tr ? "Pika 360'ın değeri, bu parçaları kullanıcının birlikte değerlendirebileceği bir müşteri bağlamında toplamaktır." : "The value of Pika 360 is bringing these pieces into customer context that a user can evaluate together.")
+                </p>
+            </div>
+        </div>
     </div>
 </section>
 
-@* ── İLGİLİ WİKİ ────────────────────────────────────────────── *@
+@* ── 05 FROM PROFILE TO DECISION CONTEXT ─────────────────────── *@
 <section class="ph-section ph-section-alt">
-    <div class="container">
-        <div class="text-center mb-4" data-aos="fade-up">
-            <h2 class="pika-h2 fw-bold">@(tr ? "İlgili Wiki Makaleleri" : "Related Wiki Articles")</h2>
-            <p class="ph-muted">@(tr ? "Pika 360 hakkında daha derin teknik ve ürün bilgisi" : "Deep technical documentation on Pika 360 capabilities")</p>
+    <div class="container" style="max-width:860px">
+        <div class="text-center mb-5">
+            <span class="ph-eyebrow">@(tr ? "SORUYU DEĞİŞTİRİN" : "CHANGE THE QUESTION")</span>
+            <h2 class="pika-h2 fw-bold mb-3">
+                @(tr ? "Profil ekranından karar perspektifine." : "From customer profile to decision perspective.")
+            </h2>
+            <p class="ph-muted">
+                @(tr ? "Geleneksel müşteri görünümü çoğu zaman müşterinin kimlik bilgilerini ve geçmiş kayıtlarını sunar. Bu bilgi önemlidir; ancak ticari karar için yeterli bağlamı her zaman sağlamaz." : "A traditional customer view often presents identity information and historical records. That information matters, but it does not always provide enough context for a commercial decision.")
+            </p>
         </div>
-        <div class="row g-3 justify-content-center" data-aos="fade-up" data-aos-delay="100">
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <a href="@(wikiBase)pika-360" class="text-decoration-none">
-                    <div class="ph-module-card p-3 text-center">
-                        <i class="ri-article-line mb-2" style="font-size:1.2rem;color:var(--pika-primary)"></i>
-                        <div class="fw-bold small">Pika 360</div>
-                    </div>
-                </a>
+
+        <div class="d-flex flex-column gap-3 mb-4">
+            <div class="p-3 rounded bg-white border d-flex justify-content-between align-items-center">
+                <span class="text-muted small">1.</span>
+                <strong style="color:#62746d">@(tr ? "“Bu müşteri kim?”" : "“Who is this customer?”")</strong>
             </div>
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <a href="@(wikiBase)ai-musteri-ozeti" class="text-decoration-none">
-                    <div class="ph-module-card p-3 text-center">
-                        <i class="ri-article-line mb-2" style="font-size:1.2rem;color:var(--pika-primary)"></i>
-                        <div class="fw-bold small">@(tr ? "AI Müşteri Özeti" : "AI Customer Summary")</div>
-                    </div>
-                </a>
+            <div class="p-3 rounded bg-white border d-flex justify-content-between align-items-center">
+                <span class="text-muted small">2.</span>
+                <strong style="color:#62746d">@(tr ? "“Daha önce ne yaptı?”" : "“What have they done before?”")</strong>
             </div>
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <a href="@(wikiBase)aksiyon-calisma-alani" class="text-decoration-none">
-                    <div class="ph-module-card p-3 text-center">
-                        <i class="ri-article-line mb-2" style="font-size:1.2rem;color:var(--pika-primary)"></i>
-                        <div class="fw-bold small">@(tr ? "Aksiyon Çalışma Alanı" : "Action Workspace")</div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <a href="@(wikiBase)musteri-degeri-sadakat" class="text-decoration-none">
-                    <div class="ph-module-card p-3 text-center">
-                        <i class="ri-article-line mb-2" style="font-size:1.2rem;color:var(--pika-primary)"></i>
-                        <div class="fw-bold small">@(tr ? "Müşteri Değeri & Sadakat" : "Customer Value & Loyalty")</div>
-                    </div>
-                </a>
+            <div class="p-4 rounded bg-white border" style="border-left:4px solid #b5ee19 !important">
+                <span class="ph-eyebrow mb-1 d-block">PIKA 360</span>
+                <strong class="d-block" style="font-size:1.15rem;color:#23413b">
+                    @(tr ? "“Şu anda hangi durumda ve neden dikkat gerektiriyor olabilir?”" : "“What is their current situation, and why might they require attention?”")
+                </strong>
             </div>
         </div>
+
+        @if (tr)
+        {
+            <p class="ph-muted">
+                Pika 360'ın farkı, geçmiş kayıtları bugünkü hesaplanan müşteri bağlamı ve açık fırsatlarla aynı perspektifte değerlendirmeye yardımcı olmasıdır.
+            </p>
+            <p class="ph-muted mb-0">
+                Böylece kullanıcı yalnızca geçmişe bakmaz; geçmişin bugün ne ifade ettiğini de değerlendirebilir.
+            </p>
+        }
+        else
+        {
+            <p class="ph-muted">
+                The distinction of Pika 360 is that it helps users evaluate historical records together with current calculated customer context and open opportunities.
+            </p>
+            <p class="ph-muted mb-0">
+                The user does not only look at the past. They can also evaluate what that past means now.
+            </p>
+        }
     </div>
 </section>
 
-@* ── CTA ───────────────────────────────────────────────────── *@
+@* ── 06 CUSTOMER INTELLIGENCE + PIKA 360 ────────────────────── *@
 <section class="ph-section">
     <div class="container">
-        <div class="text-center" data-aos="fade-up">
-            <h2 class="pika-h2 fw-bold mb-3">@(tr ? "Müşterinizi tek ekranda bütünleşik görün" : "View single-customer truth in one unified cockpit")</h2>
-            <p class="ph-muted mb-4">@(tr ? "Pika 360 karar ekranını canlı demo ile keşfedin." : "Explore the Pika 360 decision cockpit with a live demo.")</p>
-            <button type="button" class="ph-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal">
-                @(tr ? "Demo Talep Et" : "Request a Demo") <i class="ri-arrow-right-up-line"></i>
-            </button>
+        <div class="text-center mb-5">
+            <span class="ph-eyebrow">@(tr ? "ANALİZ VE GÖRÜNÜM" : "ANALYSIS AND PERSPECTIVE")</span>
+            <h2 class="pika-h2 fw-bold mb-3">
+                @(tr ? "Customer Intelligence hesaplar. Pika 360 bağlamı bir araya getirir." : "Customer Intelligence calculates. Pika 360 brings context together.")
+            </h2>
+            <p class="ph-muted small" style="max-width:680px;margin-left:auto;margin-right:auto">
+                @(tr ? "Customer Intelligence ile Pika 360 aynı ürün rolünü taşımaz. Customer Intelligence müşterinin işlem ve davranış geçmişinden müşteri değeri, satın alma ritmi ve davranış değişimi gibi hesaplanabilir sinyaller üretir." : "Customer Intelligence and Pika 360 do not play the same product role. Customer Intelligence produces calculable signals such as customer value, purchase rhythm and behavioral change from transaction and behavioral history.")
+            </p>
+            <p class="ph-muted small" style="max-width:680px;margin-left:auto;margin-right:auto">
+                @(tr ? "Pika 360 ise bu hesaplanan müşteri bağlamını işlem geçmişi, iletişim erişilebilirliği ve açık fırsatlar gibi diğer müşteri bilgileriyle aynı karar perspektifinde bir araya getirir." : "Pika 360 brings that calculated customer context together with other customer information such as transaction history, communication reachability and open opportunities within the same decision perspective.")
+            </p>
+        </div>
+
+        <div class="row g-4 justify-content-center mb-4">
+            <div class="col-lg-5">
+                <div class="ph-module-card h-100 p-4" style="border-top:3px solid var(--pika-primary)">
+                    <div class="ph-module-icon mb-3"><i class="ri-user-heart-line"></i></div>
+                    <h3 class="fw-bold mb-2" style="font-size:1.05rem">Customer Intelligence</h3>
+                    <div class="p-3 my-3 rounded bg-white border">
+                        <strong style="color:#23413b">
+                            @(tr ? "“Bu müşterinin davranışında ne oluyor?”" : "“What is happening in this customer's behavior?”")
+                        </strong>
+                    </div>
+                    <a href="@(tr ? "/platform/customer-intelligence" : "/en/platform/customer-intelligence")" class="small fw-bold" style="color:var(--pika-primary)">
+                        @(tr ? "Customer Intelligence'ı Keşfedin →" : "Explore Customer Intelligence →")
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="ph-module-card h-100 p-4" style="border-top:3px solid #c8f542">
+                    <div class="ph-module-icon mb-3"><i class="ri-user-search-line"></i></div>
+                    <h3 class="fw-bold mb-2" style="font-size:1.05rem">Pika 360</h3>
+                    <div class="p-3 my-3 rounded bg-white border">
+                        <strong style="color:#23413b">
+                            @(tr ? "“Bu müşteri hakkında karar verirken hangi bağlamları birlikte görmeliyim?”" : "“Which contexts should I consider together when making a decision about this customer?”")
+                        </strong>
+                    </div>
+                    <span class="small fw-bold" style="color:#666">@(tr ? "Şu an burada" : "Current location")</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <div class="p-3 rounded d-inline-block text-start" style="background:#f8faf4;border:1px dashed #dce5d3;max-width:720px">
+                <p class="small mb-1" style="color:#62746d">
+                    @(tr ? "Customer Intelligence analitik bağlam üretir." : "Customer Intelligence produces analytical context.")
+                </p>
+                <p class="small mb-0 fw-bold" style="color:#23413b">
+                    @(tr ? "Pika 360 bu bağlamın müşteri düzeyinde değerlendirilebildiği karar perspektifidir." : "Pika 360 is the customer-level decision perspective where that context can be evaluated.")
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 07 OPEN OPPORTUNITIES ──────────────────────────────────── *@
+<section class="ph-section ph-section-alt">
+    <div class="container" style="max-width:860px">
+        <span class="ph-eyebrow">@(tr ? "FIRSATI BAĞLAMINDAN AYIRMAYIN" : "KEEP THE OPPORTUNITY IN CONTEXT")</span>
+        <h2 class="pika-h2 fw-bold mb-3">
+            @(tr ? "Bir fırsatı görmek kadar, o fırsatın hangi müşteride oluştuğunu anlamak da önemlidir." : "Seeing an opportunity matters. Understanding the customer behind it matters too.")
+        </h2>
+        @if (tr)
+        {
+            <p class="ph-muted">
+                Günün Fırsatları müşteri ve ürün bağlamından tekrar satın alma, cross-sell ve win-back gibi değerlendirilebilir ticari fırsatları görünür hale getirir.
+            </p>
+            <p class="ph-muted">
+                Pika 360 bu fırsatların tek müşteri perspektifindeki yerini anlamaya yardımcı olur.
+            </p>
+            <p class="ph-muted">
+                Böylece fırsat yalnızca bir listede duran aksiyon adayı değildir.
+            </p>
+            <p class="ph-muted">
+                Müşterinin işlem geçmişi, değeri ve davranış bağlamıyla birlikte değerlendirilebilir.
+            </p>
+            <div class="p-3 my-3 rounded bg-white border">
+                <p class="small mb-1"><strong>Fırsat:</strong> “Ne yapılabilir?”</p>
+                <p class="small mb-0 fw-bold" style="color:#23413b">Pika 360: “Bu fırsat bu müşterinin bütün bağlamı içinde ne ifade ediyor?”</p>
+            </div>
+            <p class="ph-muted">
+                Pika 360 fırsatı hesaplayan motor değildir; açık fırsatı müşteri karar perspektifinin bir parçası haline getirir.
+            </p>
+            <div class="mt-3">
+                <a href="/platform/gunun-firsatlari" class="small fw-bold" style="color:var(--pika-primary)">
+                    Günün Fırsatlarını Keşfedin →
+                </a>
+            </div>
+        }
+        else
+        {
+            <p class="ph-muted">
+                Daily Opportunities makes evaluable commercial opportunities such as repeat purchase, cross-sell and win-back visible from customer and product context.
+            </p>
+            <p class="ph-muted">
+                Pika 360 helps place those opportunities within the single-customer perspective.
+            </p>
+            <p class="ph-muted">
+                The opportunity is no longer only an action candidate in a list.
+            </p>
+            <p class="ph-muted">
+                It can be evaluated together with the customer's transaction history, value and behavioral context.
+            </p>
+            <div class="p-3 my-3 rounded bg-white border">
+                <p class="small mb-1"><strong>Opportunity:</strong> “What could be done?”</p>
+                <p class="small mb-0 fw-bold" style="color:#23413b">Pika 360: “What does this opportunity mean within this customer's complete context?”</p>
+            </div>
+            <p class="ph-muted">
+                Pika 360 is not the engine that calculates the opportunity. It makes the open opportunity part of the customer's decision perspective.
+            </p>
+            <div class="mt-3">
+                <a href="/en/platform/opportunities" class="small fw-bold" style="color:var(--pika-primary)">
+                    Explore Daily Opportunities →
+                </a>
+            </div>
+        }
+    </div>
+</section>
+
+@* ── 08 COMMUNICATION REACHABILITY ──────────────────────────── *@
+<section class="ph-section">
+    <div class="container" style="max-width:860px">
+        <span class="ph-eyebrow">@(tr ? "AKSİYON ÖNCESİ BAĞLAM" : "CONTEXT BEFORE ACTION")</span>
+        <h2 class="pika-h2 fw-bold mb-3">
+            @(tr ? "Bir fırsatın olması, her kanalda iletişim kurulabileceği anlamına gelmez." : "An opportunity does not mean the customer can be contacted on every channel.")
+        </h2>
+        @if (tr)
+        {
+            <p class="ph-muted">
+                Ticari fırsat ile iletişim yapılabilirliği aynı şey değildir.
+            </p>
+            <p class="ph-muted">
+                Bir müşteride anlamlı bir fırsat bulunabilir; ancak olası aksiyon değerlendirilirken iletişim erişilebilirliği ve izin bağlamının da dikkate alınması gerekir.
+            </p>
+            <p class="ph-muted">
+                Pika 360, mevcut iletişim erişilebilirliği bağlamını müşteri perspektifinin bir parçası olarak görünür hale getirebilir.
+            </p>
+            <p class="ph-muted">
+                Bu bilgi fırsatı değiştirmez; fakat kullanıcıya sonraki adımı değerlendirirken önemli bir kontrol bağlamı sağlar.
+            </p>
+            <div class="p-3 my-3 rounded bg-white border">
+                <p class="small mb-1"><strong>Pika 360 bir gönderim motoru değildir.</strong></p>
+                <p class="small mb-0 fw-bold" style="color:#23413b">Pika 360'ın görevi: karar verilmeden önce müşteri bağlamını görünür tutmaktır.</p>
+            </div>
+            <div class="mt-3">
+                <a href="/cozumler/consent-management" class="small fw-bold" style="color:var(--pika-primary)">
+                    Consent Management'i Keşfedin →
+                </a>
+            </div>
+        }
+        else
+        {
+            <p class="ph-muted">
+                Commercial opportunity and communication availability are different concepts.
+            </p>
+            <p class="ph-muted">
+                A meaningful opportunity may exist for a customer, but communication reachability and permission context must also be considered when evaluating possible action.
+            </p>
+            <p class="ph-muted">
+                Pika 360 can make available communication-reachability context visible as part of the customer perspective.
+            </p>
+            <p class="ph-muted">
+                This does not change the opportunity itself. It gives the user important control context when evaluating the next step.
+            </p>
+            <div class="p-3 my-3 rounded bg-white border">
+                <p class="small mb-1"><strong>Pika 360 is not a delivery engine.</strong></p>
+                <p class="small mb-0 fw-bold" style="color:#23413b">Its role is to: Keep customer context visible before a decision is made.</p>
+            </div>
+            <div class="mt-3">
+                <a href="/en/solutions/consent-management" class="small fw-bold" style="color:var(--pika-primary)">
+                    Explore Consent Management →
+                </a>
+            </div>
+        }
+    </div>
+</section>
+
+@* ── 09 FROM CONTEXT TO ACTION ──────────────────────────────── *@
+<section class="ph-section ph-section-alt">
+    <div class="container" style="max-width:860px">
+        <span class="ph-eyebrow">@(tr ? "KARAR SONRASI" : "AFTER THE DECISION")</span>
+        <h2 class="pika-h2 fw-bold mb-3">
+            @(tr ? "Pika 360 aksiyonu göndermez. Aksiyonun nedenini netleştirir." : "Pika 360 does not send the action. It clarifies the context behind it.")
+        </h2>
+        @if (tr)
+        {
+            <p class="ph-muted">
+                Pika 360, Campaign Manager veya Journey Manager'ın yerine geçmez.
+            </p>
+            <p class="ph-muted">
+                Bu araçların görevi kampanya ve yolculuk süreçlerini yönetmektir.
+            </p>
+            <p class="ph-muted">
+                Pika 360'ın görevi ise tek müşteri düzeyinde karar için gerekli bağlamı bir araya getirmektir.
+            </p>
+            <p class="ph-muted">
+                Bir müşteriyle iletişim kurulmasına karar verildiğinde hedef kitle, kampanya, journey veya diğer kontrollü aksiyon süreçleri Pika'nın ilgili katmanlarında yönetilir.
+            </p>
+            <div class="p360-flow-chain">
+                <span class="p360-flow-step">MÜŞTERİ BAĞLAMI</span>
+                <span class="p360-flow-arrow">→</span>
+                <span class="p360-flow-step">KARAR</span>
+                <span class="p360-flow-arrow">→</span>
+                <span class="p360-flow-step">AUDIENCE / CAMPAIGN / JOURNEY</span>
+                <span class="p360-flow-arrow">→</span>
+                <span class="p360-flow-step">KONTROLLÜ AKSİYON</span>
+            </div>
+            <div class="p-3 my-3 rounded bg-white border">
+                <p class="small mb-1"><strong>Pika 360 gönderim ekranı değildir.</strong></p>
+                <p class="small mb-0">Karardan önce müşteriyi doğru bağlamda görebilmek için vardır.</p>
+            </div>
+        }
+        else
+        {
+            <p class="ph-muted">
+                Pika 360 does not replace Campaign Manager or Journey Manager.
+            </p>
+            <p class="ph-muted">
+                Those tools manage campaign and journey processes.
+            </p>
+            <p class="ph-muted">
+                The role of Pika 360 is to bring together the context required for a customer-level decision.
+            </p>
+            <p class="ph-muted">
+                Once a decision to communicate is made, audience, campaign, journey or other controlled action processes are managed by the relevant Pika layers.
+            </p>
+            <div class="p360-flow-chain">
+                <span class="p360-flow-step">CUSTOMER CONTEXT</span>
+                <span class="p360-flow-arrow">→</span>
+                <span class="p360-flow-step">DECISION</span>
+                <span class="p360-flow-arrow">→</span>
+                <span class="p360-flow-step">AUDIENCE / CAMPAIGN / JOURNEY</span>
+                <span class="p360-flow-arrow">→</span>
+                <span class="p360-flow-step">CONTROLLED ACTION</span>
+            </div>
+            <div class="p-3 my-3 rounded bg-white border">
+                <p class="small mb-1"><strong>Pika 360 is not a delivery screen.</strong></p>
+                <p class="small mb-0">It exists to help users see the customer in the right context before action.</p>
+            </div>
+        }
+    </div>
+</section>
+
+@* ── 10 AI CUSTOMER SUMMARY BOUNDARY ────────────────────────── *@
+<section class="ph-section">
+    <div class="container" style="max-width:860px">
+        <span class="ph-eyebrow">@(tr ? "AI MÜŞTERİ ÖZETİ" : "AI CUSTOMER SUMMARY")</span>
+        <h2 class="pika-h2 fw-bold mb-3">
+            @(tr ? "AI bağlamı açıklayabilir. Müşteri gerçeğini üretmez." : "AI can explain context. It does not create customer truth.")
+        </h2>
+        @if (tr)
+        {
+            <p class="ph-muted">
+                Pika 360 içinde değerlendirilen müşteri bağlamının önemli bölümü işlem verisi ve Pika'nın hesaplama katmanlarından gelir.
+            </p>
+            <p class="ph-muted">
+                Yapay zekâ, mevcut müşteri bağlamını daha hızlı açıklamak veya özetlemek için yardımcı olabilir.
+            </p>
+            <p class="ph-muted">
+                Ancak müşteri değeri, satın alma ritmi, davranış sinyalleri veya açık fırsatlar üretken yapay zekânın hayal ettiği bilgiler olarak ele alınmaz.
+            </p>
+            <div class="p360-flow-chain">
+                <span class="p360-flow-step">TRANSACTION &amp; CALCULATED CONTEXT</span>
+                <span class="p360-flow-arrow">→</span>
+                <span class="p360-flow-step">CUSTOMER PERSPECTIVE</span>
+                <span class="p360-flow-arrow">→</span>
+                <span class="p360-flow-step">AI EXPLANATION / SUMMARY</span>
+                <span class="p360-flow-arrow">→</span>
+                <span class="p360-flow-step">HUMAN DECISION</span>
+            </div>
+            <div class="p-3 my-3 rounded bg-white border">
+                <p class="small mb-1">Önce müşteri bağlamı vardır.</p>
+                <p class="small mb-1">AI bu bağlamı anlamayı kolaylaştırabilir.</p>
+                <p class="small mb-0 fw-bold" style="color:#23413b">Son karar kullanıcıda kalır.</p>
+            </div>
+            <div class="mt-3">
+                <a href="/urunler/ai-kampanya-asistani" class="small fw-bold" style="color:var(--pika-primary)">
+                    Pika Pilot'u Keşfedin →
+                </a>
+            </div>
+        }
+        else
+        {
+            <p class="ph-muted">
+                A significant part of the customer context evaluated in Pika 360 comes from transaction data and Pika's calculation layers.
+            </p>
+            <p class="ph-muted">
+                AI may help explain or summarize existing customer context more quickly.
+            </p>
+            <p class="ph-muted">
+                Customer value, purchase rhythm, behavioral signals and open opportunities are not treated as information invented by generative AI.
+            </p>
+            <div class="p360-flow-chain">
+                <span class="p360-flow-step">TRANSACTION &amp; CALCULATED CONTEXT</span>
+                <span class="p360-flow-arrow">→</span>
+                <span class="p360-flow-step">CUSTOMER PERSPECTIVE</span>
+                <span class="p360-flow-arrow">→</span>
+                <span class="p360-flow-step">AI EXPLANATION / SUMMARY</span>
+                <span class="p360-flow-arrow">→</span>
+                <span class="p360-flow-step">HUMAN DECISION</span>
+            </div>
+            <div class="p-3 my-3 rounded bg-white border">
+                <p class="small mb-1">Customer context comes first.</p>
+                <p class="small mb-1">AI can help make that context easier to understand.</p>
+                <p class="small mb-0 fw-bold" style="color:#23413b">The final decision remains with the user.</p>
+            </div>
+            <div class="mt-3">
+                <a href="/en/products/ai-campaign-assistant" class="small fw-bold" style="color:var(--pika-primary)">
+                    Explore Pika Pilot →
+                </a>
+            </div>
+        }
+    </div>
+</section>
+
+@* ── 11 WHERE PIKA 360 SITS IN PIKA ─────────────────────────── *@
+<section class="ph-section ph-section-alt">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="ph-eyebrow">@(tr ? "PLATFORM İÇİNDEKİ YERİ" : "WHERE IT SITS IN THE PLATFORM")</span>
+            <h2 class="pika-h2 fw-bold mb-3">
+                @(tr ? "Pika 360, karar katmanının tek müşteri perspektifidir." : "Pika 360 is the single-customer perspective of the decision layer.")
+            </h2>
+            <p class="ph-muted" style="max-width:720px;margin-left:auto;margin-right:auto">
+                @(tr ? "Pika'nın farklı zekâ ve fırsat katmanları farklı görevler üstlenir." : "Different intelligence and opportunity layers in Pika perform different roles.")
+            </p>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            <div class="col-lg-4 col-md-6">
+                <div class="ph-module-card h-100 p-4">
+                    <div class="ph-module-icon mb-3"><i class="ri-user-heart-line"></i></div>
+                    <h3 class="fw-bold mb-2" style="font-size:1.05rem">Customer Intelligence</h3>
+                    <p class="small ph-muted mb-3">
+                        @(tr ? "Müşterinin davranışını, satın alma ritmini ve hesaplanan değer bağlamını üretir." : "Produces behavioral, purchase-rhythm and calculated customer-value context.")
+                    </p>
+                    <a href="@(tr ? "/platform/customer-intelligence" : "/en/platform/customer-intelligence")" class="small fw-bold" style="color:var(--pika-primary)">
+                        @(tr ? "Customer Intelligence →" : "Customer Intelligence →")
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="ph-module-card h-100 p-4">
+                    <div class="ph-module-icon mb-3"><i class="ri-price-tag-3-line"></i></div>
+                    <h3 class="fw-bold mb-2" style="font-size:1.05rem">Product Intelligence</h3>
+                    <p class="small ph-muted mb-3">
+                        @(tr ? "Ürünlerin müşteri ihtiyacı ve ticari ilişki içindeki anlamını oluşturur." : "Establishes product meaning within customer need and commercial relationships.")
+                    </p>
+                    <a href="@(tr ? "/platform/product-intelligence" : "/en/platform/product-intelligence")" class="small fw-bold" style="color:var(--pika-primary)">
+                        @(tr ? "Product Intelligence →" : "Product Intelligence →")
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="ph-module-card h-100 p-4">
+                    <div class="ph-module-icon mb-3"><i class="ri-flashlight-line"></i></div>
+                    <h3 class="fw-bold mb-2" style="font-size:1.05rem">@(tr ? "Günün Fırsatları" : "Daily Opportunities")</h3>
+                    <p class="small ph-muted mb-3">
+                        @(tr ? "Müşteri ve ürün bağlamından değerlendirilebilir ticari fırsatları görünür hale getirir." : "Makes evaluable commercial opportunities visible from customer and product context.")
+                    </p>
+                    <a href="@(tr ? "/platform/gunun-firsatlari" : "/en/platform/opportunities")" class="small fw-bold" style="color:var(--pika-primary)">
+                        @(tr ? "Günün Fırsatları →" : "Daily Opportunities →")
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="ph-module-card h-100 p-4" style="border:2px solid #b5ee19">
+                    <div class="ph-module-icon mb-3"><i class="ri-user-search-line"></i></div>
+                    <h3 class="fw-bold mb-2" style="font-size:1.05rem">Pika 360</h3>
+                    <p class="small ph-muted mb-0">
+                        @(tr ? "Bu bağlamların müşteriyle ilgili olan bölümlerini işlem geçmişi ve iletişim erişilebilirliğiyle birlikte tek müşteri karar perspektifinde buluşturur." : "Brings the customer-relevant parts of those contexts together with transaction history and communication reachability within a single customer decision perspective.")
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="ph-module-card h-100 p-4">
+                    <div class="ph-module-icon mb-3"><i class="ri-route-line"></i></div>
+                    <h3 class="fw-bold mb-2" style="font-size:1.05rem">Audience / Campaign / Journey</h3>
+                    <p class="small ph-muted mb-0">
+                        @(tr ? "Karar verildikten sonra hedef kitle ve kontrollü pazarlama aksiyonu ilgili ürün katmanlarında yönetilir." : "After a decision is made, audience and controlled marketing action are managed in the relevant product layers.")
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <div class="p-3 rounded d-inline-block text-start" style="background:#fff;border:1px solid #dce5d3;max-width:720px">
+                <p class="small mb-0 fw-bold" style="color:#23413b">
+                    @(tr ? "Pika 360'ın ayırt edici rolü başka bir analiz motoru olmak değil, farklı Pika bağlamlarını müşteri düzeyinde değerlendirilebilir hale getirmektir." : "The distinctive role of Pika 360 is not to become another analytical engine. It is to make different Pika contexts evaluable at the individual-customer level.")
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 12 WHAT PIKA 360 IS / IS NOT ───────────────────────────── *@
+<section class="ph-section">
+    <div class="container" style="max-width:860px">
+        <div class="text-center mb-5">
+            <span class="ph-eyebrow">@(tr ? "DOĞRU SINIRLAR" : "CLEAR BOUNDARIES")</span>
+            <h2 class="pika-h2 fw-bold mb-3">@(tr ? "Pika 360'ı doğru yere koyun." : "Put Pika 360 in the right place.")</h2>
+        </div>
+
+        <div class="d-flex flex-column gap-3">
+            <div class="p-4 rounded bg-white border">
+                <h3 class="fw-bold mb-2" style="font-size:1.05rem;color:#23413b">
+                    @(tr ? "Pika 360 bir CRM değildir." : "Pika 360 is not a CRM.")
+                </h3>
+                <p class="small ph-muted mb-0">
+                    @(tr ? "CRM sistemleri müşteri kayıtlarını ve operasyonel ilişki süreçlerini yönetebilir. Pika 360'ın temel rolü müşteri kaydı tutmak değil, Pika'da oluşan müşteri karar bağlamını tek perspektifte bir araya getirmektir." : "CRM systems may manage customer records and operational relationship processes. The primary role of Pika 360 is not to store the customer record, but to bring customer decision context created in Pika into one perspective.")
+                </p>
+            </div>
+
+            <div class="p-4 rounded bg-white border">
+                <h3 class="fw-bold mb-2" style="font-size:1.05rem;color:#23413b">
+                    @(tr ? "Pika 360, Customer Intelligence değildir." : "Pika 360 is not Customer Intelligence.")
+                </h3>
+                <p class="small ph-muted mb-0">
+                    @(tr ? "Customer Intelligence müşteri davranışına ilişkin hesaplamalar ve analitik bağlam üretir. Pika 360 bu sonuçları diğer müşteri bağlamlarıyla birlikte görünür hale getirir." : "Customer Intelligence produces calculations and analytical context about customer behavior. Pika 360 makes those results visible together with other customer contexts.")
+                </p>
+            </div>
+
+            <div class="p-4 rounded bg-white border">
+                <h3 class="fw-bold mb-2" style="font-size:1.05rem;color:#23413b">
+                    @(tr ? "Pika 360, Günün Fırsatları değildir." : "Pika 360 is not Daily Opportunities.")
+                </h3>
+                <p class="small ph-muted mb-0">
+                    @(tr ? "Günün Fırsatları değerlendirilebilir ticari fırsatları ortaya çıkaran fırsat katmanıdır. Pika 360 açık fırsatları müşterinin diğer bağlamlarıyla birlikte değerlendirmeye yardımcı olur." : "Daily Opportunities is the opportunity layer that surfaces evaluable commercial opportunities. Pika 360 helps evaluate open opportunities alongside the customer's other contexts.")
+                </p>
+            </div>
+
+            <div class="p-4 rounded bg-white border">
+                <h3 class="fw-bold mb-2" style="font-size:1.05rem;color:#23413b">
+                    @(tr ? "Pika 360 bir Campaign Manager değildir." : "Pika 360 is not Campaign Manager.")
+                </h3>
+                <p class="small ph-muted mb-0">
+                    @(tr ? "Pika 360 karar perspektifidir. Kampanya, journey ve kanal icrası Pika'nın ilgili aksiyon katmanlarında yönetilir." : "Pika 360 is a decision perspective. Campaign, journey and channel execution are managed by the relevant action layers in Pika.")
+                </p>
+            </div>
+
+            <div class="p-4 rounded bg-white border">
+                <h3 class="fw-bold mb-2" style="font-size:1.05rem;color:#23413b">
+                    @(tr ? "Pika 360 bir AI müşteri profili değildir." : "Pika 360 is not an AI-generated customer profile.")
+                </h3>
+                <p class="small ph-muted mb-0">
+                    @(tr ? "Temel müşteri bağlamı işlem verisi ve hesaplanan Pika sinyallerinden gelir. AI bu bağlamı açıklamaya veya özetlemeye yardımcı olabilir; müşteri gerçeğinin kaynağı değildir." : "Core customer context comes from transaction data and calculated Pika signals. AI may help explain or summarize that context; it is not the source of customer truth.")
+                </p>
+            </div>
+
+            <div class="p-4 rounded bg-white border">
+                <h3 class="fw-bold mb-2" style="font-size:1.05rem;color:#23413b">
+                    @(tr ? "Pika 360 yalnızca genel bir “Customer 360” veri görünümü değildir." : "Pika 360 is more than a generic “Customer 360” data view.")
+                </h3>
+                <p class="small ph-muted mb-0">
+                    @(tr ? "Customer 360 kavramı çoğu zaman farklı kaynaklardaki müşteri verisini tek profilde birleştirmeyi ifade eder. Pika 360'ın odağı bunun ötesinde, hesaplanan müşteri zekâsını ve açık fırsatları karar bağlamıyla birlikte değerlendirmektir." : "Customer 360 commonly refers to unifying customer data from different sources into one profile. Pika 360 goes further by evaluating calculated customer intelligence and open opportunities within decision context.")
+                </p>
+            </div>
+        </div>
+
+        <div class="p-4 rounded mt-4 text-center" style="background:#f8faf4;border:1px dashed #dce5d3">
+            <small class="text-uppercase fw-bold d-block mb-1" style="font-size:11px;letter-spacing:1px;color:#7a9845">
+                @(tr ? "Pika 360'ın görevi:" : "The role of Pika 360 is not:")
+            </small>
+            <div class="fw-bold" style="font-size:1.15rem;color:#23413b">
+                @(tr ? "Müşteriye ait verileri toplamak değil, müşteri hakkında karar verirken gerekli bağlamı bir araya getirmek." : "To collect more customer data. It is: To bring together the context needed when making a decision about the customer.")
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 13 FAQ ─────────────────────────────────────────────────── *@
+<section class="ph-section ph-section-alt">
+    <div class="container" style="max-width:860px">
+        <div class="text-center mb-5">
+            <span class="ph-eyebrow">@(tr ? "SIKÇA SORULAN SORULAR" : "FREQUENTLY ASKED QUESTIONS")</span>
+            <h2 class="pika-h2 fw-bold mb-3">@(tr ? "Merak Edilenler" : "Questions & Answers")</h2>
+        </div>
+
+        @if (tr)
+        {
+            <details class="p360-faq-details" open>
+                <summary class="p360-faq-summary">
+                    <span>Pika 360 nedir?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="p360-faq-body">
+                    Pika 360; tek bir müşterinin işlem geçmişini, hesaplanan müşteri değerini, davranış bağlamını, iletişim erişilebilirliğini ve açık fırsatlarını aynı karar perspektifinde bir araya getiren Pika katmanıdır.
+                </div>
+            </details>
+
+            <details class="p360-faq-details">
+                <summary class="p360-faq-summary">
+                    <span>Pika 360 hangi bilgileri bir araya getirir?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="p360-faq-body">
+                    Pika 360; işlem geçmişi, Customer Intelligence tarafından üretilen hesaplanan müşteri değeri ve davranış sinyalleri, mevcut iletişim erişilebilirliği bağlamı ve müşteriyle ilişkili açık fırsatları tek müşteri perspektifinde değerlendirmeye yardımcı olur.
+                </div>
+            </details>
+
+            <details class="p360-faq-details">
+                <summary class="p360-faq-summary">
+                    <span>Pika 360 ile Customer Intelligence arasındaki fark nedir?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="p360-faq-body">
+                    Customer Intelligence müşterinin işlem ve davranış geçmişinden değer, ritim ve davranış değişimi gibi analitik bağlam üretir. Pika 360 ise bu hesaplanan bağlamı işlem geçmişi, iletişim erişilebilirliği ve açık fırsatlarla birlikte tek müşteri karar perspektifinde bir araya getirir.
+                </div>
+            </details>
+
+            <details class="p360-faq-details">
+                <summary class="p360-faq-summary">
+                    <span>Pika 360 ile Günün Fırsatları arasındaki fark nedir?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="p360-faq-body">
+                    Günün Fırsatları tekrar satın alma, cross-sell ve win-back gibi değerlendirilebilir ticari fırsatları görünür hale getiren fırsat katmanıdır. Pika 360 bu açık fırsatları müşterinin işlem, değer ve davranış bağlamıyla birlikte değerlendirmeye yardımcı olur.
+                </div>
+            </details>
+
+            <details class="p360-faq-details">
+                <summary class="p360-faq-summary">
+                    <span>Pika 360 bir CRM midir?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="p360-faq-body">
+                    Hayır. Pika 360'ın temel rolü müşteri kayıtlarını veya satış süreçlerini yönetmek değildir. Pika 360, Pika'da oluşan müşteri zekâsını ve karar bağlamını tek müşteri perspektifinde bir araya getirir.
+                </div>
+            </details>
+
+            <details class="p360-faq-details">
+                <summary class="p360-faq-summary">
+                    <span>Pika 360 kampanya gönderir mi?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="p360-faq-body">
+                    Pika 360 bir kampanya veya gönderim motoru değildir. Müşteri hakkında karar verilmeden önce gerekli bağlamı bir araya getirir. Kampanya, journey ve kanal icrası Pika'nın ilgili aksiyon katmanlarında yönetilir.
+                </div>
+            </details>
+
+            <details class="p360-faq-details">
+                <summary class="p360-faq-summary">
+                    <span>Pika 360'taki müşteri bağlamını yapay zekâ mı oluşturur?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="p360-faq-body">
+                    Hayır. Müşteri değer göstergeleri, satın alma ritmi ve temel davranış sinyalleri işlem verisi ve Pika'nın hesaplama katmanlarından gelir. Yapay zekâ mevcut bağlamı açıklamak veya özetlemek için yardımcı olabilir; müşteri gerçeğinin kaynağı değildir.
+                </div>
+            </details>
+
+            <details class="p360-faq-details">
+                <summary class="p360-faq-summary">
+                    <span>Pika 360 ile genel Customer 360 yaklaşımı arasındaki fark nedir?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="p360-faq-body">
+                    Customer 360 yaklaşımı genellikle farklı sistemlerde bulunan müşteri verilerinin tek profilde birleştirilmesine odaklanır. Pika 360 ise müşteri verisinin yanında hesaplanan Customer Intelligence bağlamını ve açık fırsatları da aynı karar perspektifinde değerlendirmeyi amaçlar.
+                </div>
+            </details>
+        }
+        else
+        {
+            <details class="p360-faq-details" open>
+                <summary class="p360-faq-summary">
+                    <span>What is Pika 360?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="p360-faq-body">
+                    Pika 360 is the Pika layer that brings a single customer's transaction history, calculated customer value, behavioral context, communication reachability and open opportunities into the same decision perspective.
+                </div>
+            </details>
+
+            <details class="p360-faq-details">
+                <summary class="p360-faq-summary">
+                    <span>What information does Pika 360 bring together?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="p360-faq-body">
+                    Pika 360 helps evaluate transaction history, calculated customer-value and behavioral signals from Customer Intelligence, available communication-reachability context and open opportunities associated with the customer within one perspective.
+                </div>
+            </details>
+
+            <details class="p360-faq-details">
+                <summary class="p360-faq-summary">
+                    <span>What is the difference between Pika 360 and Customer Intelligence?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="p360-faq-body">
+                    Customer Intelligence produces analytical context such as value, purchase rhythm and behavioral change from transaction and behavioral history. Pika 360 brings that calculated context together with transaction history, communication reachability and open opportunities within a single customer decision perspective.
+                </div>
+            </details>
+
+            <details class="p360-faq-details">
+                <summary class="p360-faq-summary">
+                    <span>What is the difference between Pika 360 and Daily Opportunities?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="p360-faq-body">
+                    Daily Opportunities is the opportunity layer that makes evaluable commercial opportunities such as repeat purchase, cross-sell and win-back visible. Pika 360 helps evaluate those open opportunities alongside customer transaction, value and behavioral context.
+                </div>
+            </details>
+
+            <details class="p360-faq-details">
+                <summary class="p360-faq-summary">
+                    <span>Is Pika 360 a CRM?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="p360-faq-body">
+                    No. The primary role of Pika 360 is not to manage customer records or sales processes. Pika 360 brings customer intelligence and decision context created in Pika together within a single-customer perspective.
+                </div>
+            </details>
+
+            <details class="p360-faq-details">
+                <summary class="p360-faq-summary">
+                    <span>Does Pika 360 send campaigns?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="p360-faq-body">
+                    Pika 360 is not a campaign or delivery engine. It brings together the context required before making a decision about the customer. Campaign, journey and channel execution are managed by the relevant action layers in Pika.
+                </div>
+            </details>
+
+            <details class="p360-faq-details">
+                <summary class="p360-faq-summary">
+                    <span>Is the customer context in Pika 360 generated by AI?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="p360-faq-body">
+                    No. Customer-value indicators, purchase rhythm and core behavioral signals come from transaction data and Pika's calculation layers. AI may help explain or summarize existing context, but it is not the source of customer truth.
+                </div>
+            </details>
+
+            <details class="p360-faq-details">
+                <summary class="p360-faq-summary">
+                    <span>How is Pika 360 different from a generic Customer 360 approach?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="p360-faq-body">
+                    A Customer 360 approach commonly focuses on bringing customer data from different systems into one profile. Pika 360 also evaluates calculated Customer Intelligence context and open opportunities within the same decision perspective.
+                </div>
+            </details>
+        }
+    </div>
+</section>
+
+@* ── 14 FINAL CTA ───────────────────────────────────────────── *@
+<section class="ph-section ph-section-dark">
+    <div class="container">
+        <div class="text-center">
+            <span class="ph-eyebrow" style="color:#b5ee19">
+                @(tr ? "TEK MÜŞTERİ. BÜTÜN KARAR BAĞLAMI." : "ONE CUSTOMER. COMPLETE DECISION CONTEXT.")
+            </span>
+            @if (tr)
+            {
+                <h2 class="pika-h2 ph-cta-title fw-bold mb-3">
+                    Müşteri verisini görmekten<br />
+                    müşteriyi bağlamıyla değerlendirmeye geçin.
+                </h2>
+                <p class="ph-muted ph-cta-desc mb-3" style="max-width:680px;margin-left:auto;margin-right:auto">
+                    Pika 360'ın işlem geçmişini, hesaplanan müşteri değerini, davranış bağlamını, iletişim erişilebilirliğini ve açık fırsatları tek müşteri perspektifinde nasıl bir araya getirdiğini birlikte inceleyelim.
+                </p>
+                <p class="small fw-bold mb-4" style="color:#b5ee19">
+                    İhtiyacınıza ve kullanım kapsamınıza göre özel teklif.
+                </p>
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                    <button type="button" class="ph-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal">
+                        Demo Talep Et <i class="ri-arrow-right-up-line"></i>
+                    </button>
+                    <a href="/demo-talebi" class="ph-btn-outline">
+                        Teklif Al <i class="ri-file-list-3-line"></i>
+                    </a>
+                </div>
+            }
+            else
+            {
+                <h2 class="pika-h2 ph-cta-title fw-bold mb-3">
+                    Move from seeing customer data<br />
+                    to evaluating the customer in context.
+                </h2>
+                <p class="ph-muted ph-cta-desc mb-3" style="max-width:680px;margin-left:auto;margin-right:auto">
+                    Let's explore how Pika 360 brings transaction history, calculated customer value, behavioral context, communication reachability and open opportunities together within one customer perspective.
+                </p>
+                <p class="small fw-bold mb-4" style="color:#b5ee19">
+                    Pricing is tailored to your requirements and scope of use.
+                </p>
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                    <button type="button" class="ph-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal">
+                        Request a Demo <i class="ri-arrow-right-up-line"></i>
+                    </button>
+                    <a href="/en/demo-request" class="ph-btn-outline">
+                        Request a Quote <i class="ri-file-list-3-line"></i>
+                    </a>
+                </div>
+            }
         </div>
     </div>
 </section>

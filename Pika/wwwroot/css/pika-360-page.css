@@ -1,0 +1,84 @@
+/* ============================================================
+   PIKA 360 — PAGE-LOCAL EXTENSIONS
+   Restored visual baseline; small semantic content helpers only.
+   Global elements (hero, containers, typography, buttons,
+   sections) are provided by pika-inner.css.
+   ============================================================ */
+
+.p360-flow-chain {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    background: #eef4e2;
+    border: 1px solid #dae6c8;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 18px 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: #4e6d3a;
+}
+
+.p360-flow-step {
+    background: #ffffff;
+    border: 1px solid #dce5d3;
+    padding: 6px 12px;
+    border-radius: 6px;
+    color: #23413b;
+}
+
+.p360-flow-arrow {
+    color: #7a9845;
+    font-weight: 700;
+}
+
+.p360-faq-details {
+    background: #ffffff;
+    border: 1px solid #dfe6d6;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+}
+
+.p360-faq-details[open] {
+    border-color: #bad39f;
+}
+
+.p360-faq-summary {
+    font-size: 15px;
+    font-weight: 600;
+    color: #23413b;
+    padding: 18px 22px;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+}
+
+.p360-faq-summary::-webkit-details-marker {
+    display: none;
+}
+
+.p360-faq-summary i {
+    font-size: 18px;
+    color: #7a9845;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+}
+
+.p360-faq-details[open] .p360-faq-summary i {
+    transform: rotate(180deg);
+}
+
+.p360-faq-body {
+    padding: 0 22px 18px;
+    font-size: 14px;
+    line-height: 1.8;
+    color: #62746d;
+    border-top: 1px solid #edf2e4;
+    padding-top: 12px;
+}

@@ -306,10 +306,10 @@ public static class SeoHelper
         ["Platform.Pika360"] = new(
             "/platform/pika-360",
             "/en/platform/pika-360",
-            "Pika 360 | Bütünleşik Müşteri Karar Ekranı",
-            "Pika 360 | Unified Customer Decision View",
-            "Pika 360, tek bir müşteriyi yalnızca profil olarak değil; değer, davranış, risk, iletişim erişimi ve açık fırsat bağlamıyla birlikte değerlendiren karar ekranıdır.",
-            "Pika 360 is a unified customer decision screen combining value, behavior, risk, channel access, and open opportunities in a single view.",
+            "Pika 360 | Tek Müşteri Karar Bağlamı ve Müşteri Zekâsı | Pika",
+            "Pika 360 | Unified Customer Decision Context | Pika",
+            "Pika 360; işlem geçmişi, müşteri değeri, davranış bağlamı, iletişim erişilebilirliği ve açık fırsatları tek müşteri karar görünümünde bir araya getirir.",
+            "Pika 360 brings transaction history, customer value, behavioral context, communication reachability and open opportunities into a single customer decision view.",
             "Pika 360",
             "Pika 360"),
 
