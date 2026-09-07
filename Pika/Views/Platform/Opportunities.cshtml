@@ -5,29 +5,6 @@
     ViewData["Title"] = tr ? "Günün Fırsatları | Fırsat ve Karar Motoru" : "Daily Opportunities | Opportunity & Decision Engine";
     ViewData["MetaDescription"] = tr ? "Pika'nın fırsat motoru, müşteri ve ürün verisinden tekrar satın alma, cross-sell, upsell ve geri kazanım fırsatlarını tespit ederek günlük aksiyon öncelikleri oluşturur." : "Pika's opportunity engine identifies repeat purchase, cross-sell, upsell, and win-back opportunities from customer and product data to create prioritized daily actions.";
     ViewData["BodyClass"] = "pika-platform-page";
-    var canonicalUrl = tr ? "https://pika.tr/platform/firsatlar" : "https://pika.tr/en/platform/opportunities";
-}
-
-@section JsonLd {
-<script type="@Html.Raw("application/ld+json")">
-{
-  "@@context": "https://schema.org",
-  "@@type": "WebPage",
-  "@@id": "@canonicalUrl",
-  "name": "@(tr ? "Günün Fırsatları | Fırsat ve Karar Motoru — Pika" : "Daily Opportunities | Opportunity & Decision Engine — Pika")",
-  "description": "@(tr ? "Pika'nın fırsat motoru, müşteri ve ürün verisinden tekrar satın alma, cross-sell, upsell ve geri kazanım fırsatlarını tespit ederek günlük aksiyon öncelikleri oluşturur." : "Pika's opportunity engine identifies repeat purchase, cross-sell, upsell, and win-back opportunities from customer and product data to create prioritized daily actions.")",
-  "url": "@canonicalUrl",
-  "isPartOf": { "@@id": "https://pika.tr/#website" },
-  "breadcrumb": {
-    "@@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@@type": "ListItem", "position": 1, "name": "@(tr ? "Ana Sayfa" : "Home")", "item": "@(tr ? "https://pika.tr/" : "https://pika.tr/en/")" },
-      { "@@type": "ListItem", "position": 2, "name": "Platform", "item": "@(tr ? "https://pika.tr/" : "https://pika.tr/en/")" },
-      { "@@type": "ListItem", "position": 3, "name": "@(tr ? "Günün Fırsatları" : "Daily Opportunities")", "item": "@canonicalUrl" }
-    ]
-  }
-}
-</script>
 }
 
 <section class="ph-hero">

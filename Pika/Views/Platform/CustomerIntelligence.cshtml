@@ -5,29 +5,6 @@
     ViewData["Title"] = tr ? "Customer Intelligence | Müşteri Zekâsı" : "Customer Intelligence | Customer Analytics & Intelligence";
     ViewData["MetaDescription"] = tr ? "Pika Customer Intelligence, müşteri davranışı ve transaction verisinden anlam çıkararak segmentasyon, değer analizi ve fırsat tespitine zemin hazırlar." : "Pika Customer Intelligence extracts deep insights from customer behavior and transaction data to power segmentation, value analysis, and opportunity discovery.";
     ViewData["BodyClass"] = "pika-platform-page";
-    var canonicalUrl = tr ? "https://pika.tr/platform/customer-intelligence" : "https://pika.tr/en/platform/customer-intelligence";
-}
-
-@section JsonLd {
-<script type="@Html.Raw("application/ld+json")">
-{
-  "@@context": "https://schema.org",
-  "@@type": "WebPage",
-  "@@id": "@canonicalUrl",
-  "name": "@(tr ? "Customer Intelligence | Müşteri Zekâsı — Pika" : "Customer Intelligence | Customer Analytics & Intelligence — Pika")",
-  "description": "@(tr ? "Pika Customer Intelligence: müşteri davranışı ve transaction verisinden anlam çıkararak doğru hedefleme, değer analizi ve fırsat tespitini mümkün kılan zekâ katmanı." : "Pika Customer Intelligence: the intelligence layer enabling accurate targeting, value scoring, and opportunity detection from customer behavior and transaction data.")",
-  "url": "@canonicalUrl",
-  "isPartOf": { "@@id": "https://pika.tr/#website" },
-  "breadcrumb": {
-    "@@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@@type": "ListItem", "position": 1, "name": "@(tr ? "Ana Sayfa" : "Home")", "item": "@(tr ? "https://pika.tr/" : "https://pika.tr/en/")" },
-      { "@@type": "ListItem", "position": 2, "name": "Platform", "item": "@(tr ? "https://pika.tr/" : "https://pika.tr/en/")" },
-      { "@@type": "ListItem", "position": 3, "name": "Customer Intelligence", "item": "@canonicalUrl" }
-    ]
-  }
-}
-</script>
 }
 
 <section class="ph-hero">

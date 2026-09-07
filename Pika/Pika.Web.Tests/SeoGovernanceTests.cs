@@ -39,6 +39,12 @@ public class SeoGovernanceTests : IClassFixture<WebApplicationFactory<Program>>
         var match = Regex.Match(html, @"<meta\s+name=""robots""\s+content=""([^""]*)""", RegexOptions.IgnoreCase);
         return match.Success ? match.Groups[1].Value : string.Empty;
     }
+
+    private static List<string> ExtractAllJsonLdBlocks(string html)
+    {
+        var matches = Regex.Matches(html, @"<script[^>]*type=[""']application/ld(?:&#x2B;|\+)json[""'][^>]*>([\s\S]*?)</script>", RegexOptions.IgnoreCase);
+        return matches.Select(m => m.Groups[1].Value).ToList();
+    }
     private static string GetWebRoot()
     {
         var dir = AppContext.BaseDirectory;
@@ -375,5 +381,100 @@ public class SeoGovernanceTests : IClassFixture<WebApplicationFactory<Program>>
         Assert.Equal(expectedDesc, renderedDesc);
 
         Assert.DoesNotContain("İYS ve KVKK uyumlu ticari", renderedDesc, StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Fact]
+    public async Task RenderedStructuredData_Homepage_OmitsDeferredSchemasAndDuplicateWebSite()
+    {
+        var client = CreateNoRedirectClient();
+        var response = await client.GetAsync("/");
+        Assert.Equal(System.Net.HttpStatusCode.OK, response.StatusCode);
+
+        var html = await response.Content.ReadAsStringAsync();
+        var jsonLdBlocks = ExtractAllJsonLdBlocks(html);
+        var allJsonLd = string.Join("\n", jsonLdBlocks);
+
+        Assert.DoesNotContain("SoftwareApplication", allJsonLd, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("FAQPage", allJsonLd, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("Push Notifications", allJsonLd, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("WhatsApp, SMS, Email, Push", allJsonLd, StringComparison.OrdinalIgnoreCase);
+
+        // Asserts single global WebSite schema (#website) without duplicate page-level WebSite
+        var websiteOccurrences = Regex.Matches(html, @"https://pika\.tr/#website").Count;
+        Assert.Equal(1, websiteOccurrences);
+    }
+
+    [Theory]
+    [InlineData("/cozumler/campaign-manager")]
+    [InlineData("/en/solutions/campaign-manager")]
+    public async Task RenderedStructuredData_CampaignManager_OmitsPushAttributionAndPunitiveClaims(string path)
+    {
+        var client = CreateNoRedirectClient();
+        var response = await client.GetAsync(path);
+        Assert.Equal(System.Net.HttpStatusCode.OK, response.StatusCode);
+
+        var html = await response.Content.ReadAsStringAsync();
+        var jsonLdBlocks = ExtractAllJsonLdBlocks(html);
+        var allJsonLd = string.Join("\n", jsonLdBlocks);
+
+        Assert.DoesNotContain("Push", allJsonLd, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("Mobile Push", allJsonLd, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("directly attributed", allJsonLd, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("doğrudan kampanyaya", allJsonLd, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("ceza riskinden korur", allJsonLd, StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Theory]
+    [InlineData("/urunler/ai-kampanya-asistani")]
+    [InlineData("/en/products/ai-campaign-assistant")]
+    public async Task RenderedStructuredData_AiCampaignAssistant_OmitsPushAndUnsupportedQualityClaims(string path)
+    {
+        var client = CreateNoRedirectClient();
+        var response = await client.GetAsync(path);
+        Assert.Equal(System.Net.HttpStatusCode.OK, response.StatusCode);
+
+        var html = await response.Content.ReadAsStringAsync();
+        var jsonLdBlocks = ExtractAllJsonLdBlocks(html);
+        var allJsonLd = string.Join("\n", jsonLdBlocks);
+
+        Assert.DoesNotContain("mobile push", allJsonLd, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("Mobil Push", allJsonLd, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("fully compatible", allJsonLd, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("tam uyumlu", allJsonLd, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("client-tested", allJsonLd, StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Fact]
+    public async Task RenderedStructuredData_Opportunities_UsesCanonicalUrlAndOmitsLegacyFirsatlar()
+    {
+        var client = CreateNoRedirectClient();
+        var response = await client.GetAsync("/platform/gunun-firsatlari");
+        Assert.Equal(System.Net.HttpStatusCode.OK, response.StatusCode);
+
+        var html = await response.Content.ReadAsStringAsync();
+        var jsonLdBlocks = ExtractAllJsonLdBlocks(html);
+        Assert.NotEmpty(jsonLdBlocks);
+        var allJsonLd = string.Join("\n", jsonLdBlocks);
+
+        Assert.Contains("https://pika.tr/platform/gunun-firsatlari", html);
+        Assert.Contains("https://pika.tr/platform/gunun-firsatlari", allJsonLd);
+        Assert.DoesNotContain("https://pika.tr/platform/firsatlar", html);
+        Assert.DoesNotContain("https://pika.tr/platform/firsatlar", allJsonLd);
+        Assert.DoesNotContain("/platform/firsatlar", allJsonLd);
+    }
+
+    [Fact]
+    public void ViewTemplates_DoNotContainPageLevelJsonLdSections()
+    {
+        var webRoot = GetWebRoot();
+        var viewsDir = Path.Combine(webRoot, "Views");
+        var cshtmlFiles = Directory.GetFiles(viewsDir, "*.cshtml", SearchOption.AllDirectories);
+
+        foreach (var file in cshtmlFiles)
+        {
+            var content = File.ReadAllText(file);
+            Assert.False(Regex.IsMatch(content, @"@section\s+JsonLd\b", RegexOptions.IgnoreCase),
+                $"File '{file}' unexpectedly contains an @section JsonLd block.");
+        }
     }
 }

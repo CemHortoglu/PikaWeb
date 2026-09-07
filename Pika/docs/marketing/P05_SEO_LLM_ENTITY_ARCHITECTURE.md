@@ -224,9 +224,26 @@ Injected conditionally on all non-root canonical pages:
 }
 ```
 
-### 6.4 SoftwareApplication / Product / Offer Schema
-- **Status:** `DEFERRED — REQUIRES SEPARATE GOVERNANCE`.
-- SoftwareApplication, Product, and Offer structured data are deferred until verified data schemas can be modeled truthfully without speculative properties or pricing assumptions.
+### 6.4 Central Structured Data Contract & Deferred / Forbidden Schemas
+
+Following P05.3, the structured data architecture enforces a single source of truth managed centrally in `Views/Shared/_Layout.cshtml`:
+
+1. **Global Canonical Schemas (Active):**
+   - **`Organization`:** Global `#organization` identity node with verified contacts and sameAs links.
+   - **`WebSite`:** Global `#website` node with publisher pointing to `#organization` and bilingual language declarations (`tr-TR`, `en-US`). Emitted exactly once across the site.
+   - **`BreadcrumbList`:** Conditionally emitted in `_Layout.cshtml` on all non-root canonical routes using canonical route mappings from `SeoHelper`.
+
+2. **Page-Level Structured Data Policy (`@section JsonLd`):**
+   - **Default: NONE.** All legacy page-level `@section JsonLd` blocks (`Home/Index`, `Solutions/CampaignManager`, `Solutions/AiCampaignAssistant`, `Platform/CustomerIntelligence`, `Platform/ProductIntelligence`, `Platform/Pika360`, `Platform/Opportunities`) have been completely audited and removed.
+   - Page-level schemas are prohibited unless explicitly approved in future phases with unique, verified, claim-safe semantic value that cannot be represented globally.
+
+3. **Deferred / Strictly Forbidden Schema Types:**
+   - **`SoftwareApplication`:** `DEFERRED — REQUIRES SEPARATE GOVERNANCE`. Speculative capability lists, unverified operating systems, and channel inventories are prohibited.
+   - **`Product`:** `DEFERRED — REQUIRES SEPARATE GOVERNANCE`. No packaging, SKU, or pricing assumptions may be published in structured data.
+   - **`Offer`:** `DEFERRED (`CLM-014`)`. Pika operates strictly on customized quotations; publishing pricing offers or trial claims is prohibited.
+   - **`FAQPage`:** `DEFERRED`. Page-level FAQ schemas containing unreviewed or contradictory capability statements (such as Push or automated compliance guarantees) are removed. FAQPage schema may only return in future page phases when visible, content-owner-approved FAQ accordions exist on the page.
+   - **`SearchAction`:** Categorically omitted. Pika provides zero public on-site search endpoints; emitting SearchAction triggers search engine validation errors.
+   - **`AggregateRating` / `Review`:** Strictly forbidden. No third-party or empirical rating certifications are registered.
 
 ---
 
@@ -500,6 +517,11 @@ To ensure that the SEO entity architecture and metadata safety rules cannot regr
 14. **`RenderedMetadata_CanonicalRoutes_UseSeoHelperMetadata_AndOmitLegacyStrings`:** Renders live HTML via `WebApplicationFactory` for `/kurumsal`, `/en/corporate`, `/demo-talebi`, `/en/demo-request`, verifying that `<meta name="description">` uses `SeoHelper` canonical metadata and omits legacy strings (`15 dakikalık demo`, `yüksek güvenlik standartları`, `tüm kanallar`).
 15. **`RenderedMetadata_PushQuarantine_EmitsNoindexAndNoHreflangs`:** Renders live HTML for `/kanallar/push` and `/en/channels/push`, verifying `noindex, follow` directive and zero hreflang links.
 16. **`RenderedMetadata_ConsentManagement_UsesMechanismBasedDescription`:** Renders live HTML for `/cozumler/consent-management` and `/en/solutions/consent-management`, verifying mechanism-based description and absence of unconditional compliance guarantees.
+17. **`RenderedStructuredData_Homepage_OmitsDeferredSchemasAndDuplicateWebSite`:** Asserts that rendered homepage HTML contains zero `SoftwareApplication` or `FAQPage` schemas, omits Push, and contains exactly one global `WebSite` node (`#website`).
+18. **`RenderedStructuredData_CampaignManager_OmitsPushAttributionAndPunitiveClaims`:** Asserts that Campaign Manager rendered JSON-LD contains zero Push, direct attribution, or punitive fine claims.
+19. **`RenderedStructuredData_AiCampaignAssistant_OmitsPushAndUnsupportedQualityClaims`:** Asserts that AI Campaign Assistant rendered JSON-LD contains zero mobile Push, "tam uyumlu", or "client-tested" claims.
+20. **`RenderedStructuredData_Opportunities_UsesCanonicalUrlAndOmitsLegacyFirsatlar`:** Asserts that Opportunities page rendered structured data uses canonical URL `https://pika.tr/platform/gunun-firsatlari` and zero legacy `/platform/firsatlar` references.
+21. **`ViewTemplates_DoNotContainPageLevelJsonLdSections`:** Enforces that zero `.cshtml` templates define an `@section JsonLd` block, guaranteeing central layout governance.
 
 ---
 
@@ -511,8 +533,9 @@ To ensure that the SEO entity architecture and metadata safety rules cannot regr
 | **Entity Registry Alignment** | `docs/marketing/ENTITY_REGISTRY.md` | 5-level evidence vocabulary & CLM-010 qualifier verified | SIGNED OFF |
 | **Metadata Safety Hardening** | `Services/SeoHelper.cs` | Zero forbidden claims, mechanism-based consent metadata | SIGNED OFF |
 | **Layout Runtime Authority & Quarantine** | `Views/Shared/_Layout.cshtml` | SeoHelper authoritative precedence, NoIndex fallback & hreflang suppression | SIGNED OFF |
+| **Central Structured Data Governance** | `Views/Shared/_Layout.cshtml` & all `.cshtml` views | Zero `@section JsonLd` blocks across all views, central schema contract | SIGNED OFF |
 | **LLM Grounding Context** | `wwwroot/llms.txt` & `wwwroot/llms-full.txt` | P04 canon alignment, Push quarantine & mechanism-based consent wording | SIGNED OFF |
-| **Automated Test Guardrails**| `Pika.Web.Tests/SeoGovernanceTests.cs` | 100% dotnet test pass rate (21 test cases) | SIGNED OFF |
+| **Automated Test Guardrails**| `Pika.Web.Tests/SeoGovernanceTests.cs` | 100% dotnet test pass rate (26 test cases) | SIGNED OFF |
 
 ---
-*End of P05.2 Architecture Specification. Phase P05 is CLOSED upon successful test pass.*
+*End of P05.3 Architecture Specification. Phase P05 is CLOSED upon successful test pass.*

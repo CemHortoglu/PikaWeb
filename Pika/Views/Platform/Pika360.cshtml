@@ -5,29 +5,6 @@
     ViewData["Title"] = tr ? "Pika 360 | Bütünleşik Müşteri Karar Ekranı" : "Pika 360 | Unified Single-Customer Decision View";
     ViewData["MetaDescription"] = tr ? "Pika 360, tek bir müşteriyi yalnızca profil olarak değil; değer, davranış, risk, iletişim erişimi ve açık fırsat bağlamıyla birlikte değerlendirmek için tasarlanmış karar ekranıdır." : "Pika 360 provides a unified single-customer decision view evaluating value, behavior, churn risk, channel reachability, and open opportunities.";
     ViewData["BodyClass"] = "pika-platform-page";
-    var canonicalUrl = tr ? "https://pika.tr/platform/pika-360" : "https://pika.tr/en/platform/pika-360";
-}
-
-@section JsonLd {
-<script type="@Html.Raw("application/ld+json")">
-{
-  "@@context": "https://schema.org",
-  "@@type": "WebPage",
-  "@@id": "@canonicalUrl",
-  "name": "@(tr ? "Pika 360 | Bütünleşik Müşteri Karar Ekranı — Pika" : "Pika 360 | Unified Single-Customer Decision View — Pika")",
-  "description": "@(tr ? "Pika 360: tek bir müşteriyi değer, davranış, risk, iletişim erişimi ve açık fırsat bağlamıyla bir arada değerlendiren bütünleşik müşteri karar ekranı." : "Pika 360: unified single-customer decision view evaluating value, risk, channel reachability, and live opportunities.")",
-  "url": "@canonicalUrl",
-  "isPartOf": { "@@id": "https://pika.tr/#website" },
-  "breadcrumb": {
-    "@@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@@type": "ListItem", "position": 1, "name": "@(tr ? "Ana Sayfa" : "Home")", "item": "@(tr ? "https://pika.tr/" : "https://pika.tr/en/")" },
-      { "@@type": "ListItem", "position": 2, "name": "Platform", "item": "@(tr ? "https://pika.tr/" : "https://pika.tr/en/")" },
-      { "@@type": "ListItem", "position": 3, "name": "Pika 360", "item": "@canonicalUrl" }
-    ]
-  }
-}
-</script>
 }
 
 <section class="ph-hero">

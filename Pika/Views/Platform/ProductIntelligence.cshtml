@@ -5,29 +5,6 @@
     ViewData["Title"] = tr ? "Product Intelligence | Ürün Zekâsı" : "Product Intelligence | Product Analytics & Categorization";
     ViewData["MetaDescription"] = tr ? "Pika Product Intelligence, ürünleri yalnızca katalog kaydı değil müşteri ihtiyacı ve ticari rol bağlamında anlamlandıran zekâ katmanıdır." : "Pika Product Intelligence adds context to products beyond SKUs — mapping need groups, product roles, and industry playbooks for accurate customer analytics.";
     ViewData["BodyClass"] = "pika-platform-page";
-    var canonicalUrl = tr ? "https://pika.tr/platform/product-intelligence" : "https://pika.tr/en/platform/product-intelligence";
-}
-
-@section JsonLd {
-<script type="@Html.Raw("application/ld+json")">
-{
-  "@@context": "https://schema.org",
-  "@@type": "WebPage",
-  "@@id": "@canonicalUrl",
-  "name": "@(tr ? "Product Intelligence | Ürün Zekâsı — Pika" : "Product Intelligence | Product Analytics & Categorization — Pika")",
-  "description": "@(tr ? "Pika Product Intelligence: ürünleri yalnızca katalog kaydı değil, müşteri ihtiyacı, ticari rol ve analizde kullanılabilir bağlamla anlamlandıran ürün zekâsı katmanı." : "Pika Product Intelligence: contextualizing products through need groups, commercial roles, and sector playbooks for precision targeting.")",
-  "url": "@canonicalUrl",
-  "isPartOf": { "@@id": "https://pika.tr/#website" },
-  "breadcrumb": {
-    "@@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@@type": "ListItem", "position": 1, "name": "@(tr ? "Ana Sayfa" : "Home")", "item": "@(tr ? "https://pika.tr/" : "https://pika.tr/en/")" },
-      { "@@type": "ListItem", "position": 2, "name": "Platform", "item": "@(tr ? "https://pika.tr/" : "https://pika.tr/en/")" },
-      { "@@type": "ListItem", "position": 3, "name": "Product Intelligence", "item": "@canonicalUrl" }
-    ]
-  }
-}
-</script>
 }
 
 <section class="ph-hero">
