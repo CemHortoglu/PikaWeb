@@ -1,197 +1,916 @@
 @{
-    var culture = (ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").ToLowerInvariant();
-    var tr = culture == "tr";
-    ViewData["Title"] = tr ? "Güvenlik ve Gizlilik | Pika Kurumsal Güven Yaklaşımı" : "Security & Privacy | Pika Enterprise Trust Approach";
-    ViewData["MetaDescription"] = tr
-        ? "Pika'nın veri güvenliği, rol bazlı erişim denetimi (RBAC), İYS/KVKK izin yönetimi, API güvenliği ve veri sorumluluğu sınırlarını inceleyin."
-        : "Explore Pika's data protection architecture, role-based access control (RBAC), IYS/KVKK consent enforcement, API security, and shared responsibility boundaries.";
-    ViewData["CanonicalUrl"] = tr ? "https://pika.tr/guvenlik-ve-gizlilik" : "https://pika.tr/en/security-and-privacy";
+    var culture = ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr";
+    var tr = culture.Equals("tr", StringComparison.OrdinalIgnoreCase);
+    ViewData["BodyClass"] = "pika-platform-page";
 }
 
 @section Styles {
-    <link href="~/css/security-trust.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/security-trust.css" asp-append-version="true" />
 }
 
-<!-- ═══════════════════════════ HERO ═══════════════════════════ -->
-@await Html.PartialAsync("_MarketingHero")
-
-<!-- ═══════════════════════════ TRUST PILLARS ═══════════════════════════ -->
-<section class="sec-section">
-    <div class="container">
-        <div class="sec-section-header">
-            <h2 class="sec-section-h2">@(tr ? "Doğrulanmış Güvenlik ve Uyumluluk Katmanları" : "Verified Security and Compliance Layers")</h2>
-            <p class="text-muted">@(tr ? "Pika platformunda uygulanan temel teknik kontroller ve koruma prensipleri." : "Core technical controls and operational safeguards built directly into the Pika platform.")</p>
+@* ── 01 HERO ─────────────────────────────────────────────────── *@
+<section class="inner-hero inner-hero--security">
+    <div class="inner-atmosphere" aria-hidden="true"><span></span><span></span></div>
+    <div class="container inner-hero-grid">
+        <div class="inner-intro">
+            <nav class="inner-breadcrumb" aria-label="@(tr ? "Sayfa yolu" : "Breadcrumb")">
+                <a href="@(tr ? "/" : "/en/")">Pika</a>
+                <span>/</span>
+                <a href="@(tr ? "/pika" : "/en/pika")">@(tr ? "Pika Nedir?" : "What Is Pika?")</a>
+                <span>/</span>
+                <span>@(tr ? "Güvenlik ve Gizlilik" : "Security & Privacy")</span>
+            </nav>
+            <div class="inner-eyebrow"><span></span>SECURITY &amp; PRIVACY · @(tr ? "Güvenlik ve Gizlilik" : "Security & Privacy")</div>
+            @if (tr)
+            {
+                <h1>
+                    Müşteri verisine erişimi,<br />
+                    açık yetki sınırlarıyla<br />
+                    kontrol altında tutun.
+                </h1>
+                <p>
+                    Pika Security & Privacy; rol bazlı erişim denetimi, maskelenmiş veri görünümü, API erişim kontrolü ve paylaşılan sorumluluk sınırlarıyla müşteri verisinin platform içinde nasıl erişilebilir hale geldiğini yönetmeye yardımcı olur.
+                </p>
+                <p class="text-muted small">
+                    Amaç kanıtlanmamış sertifikasyon veya “tam güvenlik” iddiaları üretmek değil; Pika'da doğrulanabilen teknik erişim ve veri görünürlüğü kontrollerini açık biçimde anlatmaktır.
+                </p>
+                <div class="inner-actions">
+                    <button class="inner-primary" type="button" data-bs-toggle="modal" data-bs-target="#demoModal">Demo Talep Et ↗</button>
+                    <a class="inner-secondary" href="/cozumler/consent-management">Consent Management'i Keşfedin →</a>
+                    <a class="inner-hero-anchor" href="#inner-content" aria-label="İçeriğe atla"><i class="ri-arrow-down-line" aria-hidden="true"></i></a>
+                </div>
+            }
+            else
+            {
+                <h1>
+                    Keep access to customer data<br />
+                    under control<br />
+                    through explicit permission boundaries.
+                </h1>
+                <p>
+                    Pika Security & Privacy helps govern how customer data becomes accessible inside the platform through role-based access control, masked data views, API access control and shared responsibility boundaries.
+                </p>
+                <p class="text-muted small">
+                    The objective is not to publish unverified certifications or “complete security” claims, but to explain the technical access and data-exposure controls that can be verified in Pika.
+                </p>
+                <div class="inner-actions">
+                    <button class="inner-primary" type="button" data-bs-toggle="modal" data-bs-target="#demoModal">Request a Demo ↗</button>
+                    <a class="inner-secondary" href="/en/solutions/consent-management">Explore Consent Management →</a>
+                    <a class="inner-hero-anchor" href="#inner-content" aria-label="Skip to content"><i class="ri-arrow-down-line" aria-hidden="true"></i></a>
+                </div>
+            }
         </div>
 
-        <div class="row g-4 mt-2">
-            <!-- PILLAR 1: ACCESS & AUTH -->
-            <div class="col-lg-6">
-                <div class="sec-pillar-card h-100">
-                    <div class="sec-card-icon"><i class="ri-user-settings-line"></i></div>
-                    <h3>@(tr ? "1. Kimlik Doğrulama & Rol Bazlı Erişim (RBAC)" : "1. Authentication & Role-Based Access Control (RBAC)")</h3>
-                    <p class="sec-card-desc">
-                        @(tr 
-                            ? "Kullanıcılar kurumsal rollerine göre tanımlanır. Hassas müşteri verilerine ve kampanya başlatma yetkilerine erişim, yalnızca yetkilendirilmiş ekip üyeleriyle sınırlandırılır."
-                            : "User access is strictly scoped to organizational roles. Access to customer records, exports, and campaign execution requires explicit administrative privileges.")
-                    </p>
-                    <ul class="sec-list">
-                        <li><i class="ri-checkbox-circle-line"></i> @(tr ? "Rol bazlı yetkilendirme (Admin, Pazarlama Yöneticisi, Operatör)" : "Granular RBAC (Admin, Marketing Manager, Operator)")</li>
-                        <li><i class="ri-checkbox-circle-line"></i> @(tr ? "Güvenli parola saklama ve oturum zaman aşımı kontrolleri" : "Secure credential hashing and session timeout safeguards")</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- PILLAR 2: CONSENT & IYS -->
-            <div class="col-lg-6">
-                <div class="sec-pillar-card h-100">
-                    <div class="sec-card-icon"><i class="ri-shield-keyhole-line"></i></div>
-                    <h3>@(tr ? "2. İzin, Opt-Out ve İYS Uyumluluğu" : "2. Consent, Opt-Out & IYS Enforcement")</h3>
-                    <p class="sec-card-desc">
-                        @(tr 
-                            ? "Ticari elektronik ileti izinleri kanal bazında (Email, SMS, WhatsApp) merkezi olarak kaydedilir. Ret (opt-out) bildirimleri anında tüm kanallarda aktif hale gelir ve izinsiz gönderim sistemsel olarak engellenir."
-                            : "Commercial communication consents are tracked per channel (Email, SMS, WhatsApp). Opt-out signals synchronize across the platform to block unconsented sends at the gateway level.")
-                    </p>
-                    <ul class="sec-list">
-                        <li><i class="ri-checkbox-circle-line"></i> @(tr ? "İYS (İleti Yönetim Sistemi) uyumlu izin sorgulama ve filtreleme" : "IYS-aligned consent verification and pre-send suppression")</li>
-                        <li><i class="ri-checkbox-circle-line"></i> @(tr ? "Tüm kanallarda anlık ret (opt-out) işleme ve kara liste yönetimi" : "Real-time opt-out synchronization and blacklist suppression")</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- PILLAR 3: DATA SEPARATION -->
-            <div class="col-lg-6">
-                <div class="sec-pillar-card h-100">
-                    <div class="sec-card-icon"><i class="ri-database-2-line"></i></div>
-                    <h3>@(tr ? "3. Mantıksal Veri İzolasyonu" : "3. Logical Tenant Data Isolation")</h3>
-                    <p class="sec-card-desc">
-                        @(tr 
-                            ? "Çok kiracılı (multi-tenant) mimaride her işletmenin müşteri, ürün, kampanya ve satış verileri mantıksal olarak birbirinden tamamen yalıtılmış olarak saklanır ve işlenir."
-                            : "Customer, product, campaign, and transaction records for each tenant are strictly segregated and logically isolated across the application layer.")
-                    </p>
-                    <ul class="sec-list">
-                        <li><i class="ri-checkbox-circle-line"></i> @(tr ? "Tenant bazlı veri sorgulama ve izolasyon garantisi" : "Tenant-scoped queries and context isolation")</li>
-                        <li><i class="ri-checkbox-circle-line"></i> @(tr ? "Yalnızca ilgili işletme kullanıcılarının veriye erişimi" : "Access restricted strictly to authenticated tenant personnel")</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- PILLAR 4: API & INTEGRATION -->
-            <div class="col-lg-6">
-                <div class="sec-pillar-card h-100">
-                    <div class="sec-card-icon"><i class="ri-plug-line"></i></div>
-                    <h3>@(tr ? "4. API ve İletim Güvenliği" : "4. API & Transport Security")</h3>
-                    <p class="sec-card-desc">
-                        @(tr 
-                            ? "Pika Ingestion API ve dış entegrasyonlar üzerinden akan tüm veriler modern TLS şifrelemesi ve API Key / Secret kimlik doğrulama protokolleri ile korunur."
-                            : "All data ingested via the Pika Ingestion API or outbound webhook integrations is encrypted in transit via TLS and protected with API Key/Secret credentials.")
-                    </p>
-                    <ul class="sec-list">
-                        <li><i class="ri-checkbox-circle-line"></i> @(tr ? "HTTPS / TLS 1.2+ şifreli veri iletimi" : "Encrypted transport over HTTPS / TLS 1.2+")</li>
-                        <li><i class="ri-checkbox-circle-line"></i> @(tr ? "API Key kimlik doğrulaması ve istek doğrulama kontrolleri" : "API Key token authentication and payload schema validation")</li>
-                    </ul>
+        <div class="inner-scene" aria-hidden="true">
+            <div class="inner-scene-orbit"></div>
+            <div class="inner-scene-window">
+                <div class="inner-window-bar"><span></span><span></span><span></span><small>@(tr ? "Örnek görünüm" : "Illustration")</small></div>
+                <div class="sec-hero-pills">
+                    @if (tr)
+                    {
+                        <span class="sec-hero-pill">KULLANICI</span>
+                        <span class="sec-hero-pill">ROL / YETKİ</span>
+                        <span class="sec-hero-pill">ERİŞİM</span>
+                        <span class="sec-hero-pill">MASKELİ VERİ</span>
+                        <span class="sec-hero-pill">KONTROLLÜ AKSİYON</span>
+                    }
+                    else
+                    {
+                        <span class="sec-hero-pill">USER</span>
+                        <span class="sec-hero-pill">ROLE / PERMISSION</span>
+                        <span class="sec-hero-pill">ACCESS</span>
+                        <span class="sec-hero-pill">MASKED DATA</span>
+                        <span class="sec-hero-pill">CONTROLLED ACTION</span>
+                    }
                 </div>
             </div>
         </div>
     </div>
 </section>
+<div id="inner-content" class="inner-anchor"></div>
 
-<!-- ═══════════════════════════ RESPONSIBILITY BOUNDARY ═══════════════════════════ -->
+@* ── 02 DIRECT ANSWER ─────────────────────────────────────────── *@
+<section class="sec-section">
+    <div class="container">
+        <div class="sec-section-header max-w-800">
+            <span class="sec-badge-sub">@(tr ? "KISA CEVAP" : "THE SHORT ANSWER")</span>
+            <h2 class="sec-section-h2">@(tr ? "Pika Security & Privacy nedir?" : "What is Pika Security & Privacy?")</h2>
+            @if (tr)
+            {
+                <p class="sec-hero-lead mb-3">
+                    Security & Privacy, Pika'da kullanıcıların hangi platform alanlarına ve müşteri verilerine hangi yetki bağlamıyla erişebildiğini kontrol etmeye yardımcı olan güvenlik ve veri gizliliği katmanıdır.
+                </p>
+                <p class="text-muted">
+                    Bu yaklaşımın temel mekanizmaları arasında rol bazlı erişim denetimi, hassas iletişim verilerinin gerektiğinde maskeli gösterimi ve API erişiminin kimlik doğrulama bağlamıyla sınırlandırılması bulunur.
+                </p>
+                <p class="fw-semibold text-dark mt-4 mb-2">Security & Privacy'nin temel sorusu şudur:</p>
+                <div class="sec-callout">
+                    <h3 class="mb-0">“Kim, hangi veriye, hangi yetkiyle erişebilir?”</h3>
+                </div>
+                <p class="text-muted mt-3">
+                    Security & Privacy müşteri davranışını hesaplayan analitik katman değildir, iletişim iznini yöneten Consent Management değildir ve tek başına hukuki uyumluluk garantisi vermez.
+                </p>
+                <div class="sec-emphasis mt-4">
+                    <p class="mb-0 fw-semibold text-dark">
+                        Güvenlik, tek bir rozet veya sertifika değil, erişim ve veri görünürlüğünün kontrollü biçimde yönetilmesidir.
+                    </p>
+                </div>
+            }
+            else
+            {
+                <p class="sec-hero-lead mb-3">
+                    Security & Privacy is Pika's security and data-privacy layer for helping control which platform areas and customer data users can access under their authorization context.
+                </p>
+                <p class="text-muted">
+                    Core mechanisms include role-based access control, masked presentation of sensitive communication data where applicable and restricting API access through authentication context.
+                </p>
+                <p class="fw-semibold text-dark mt-4 mb-2">Security & Privacy answers one central question:</p>
+                <div class="sec-callout">
+                    <h3 class="mb-0">“Who can access which data under which permission?”</h3>
+                </div>
+                <p class="text-muted mt-3">
+                    Security & Privacy is not the analytical layer that calculates customer behavior, it is not Consent Management for communication permission and it does not independently guarantee legal compliance.
+                </p>
+                <div class="sec-emphasis mt-4">
+                    <p class="mb-0 fw-semibold text-dark">
+                        Security is not a single badge or certification. It is controlled management of access and data exposure.
+                    </p>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+@* ── 03 SECURITY THROUGH EXPLICIT CONTROLS ───────────────────── *@
 <section class="sec-section sec-section-alt">
     <div class="container">
         <div class="sec-section-header">
-            <span class="sec-badge-sub">@(tr ? "HUKUKİ VE OPERASYONEL ÇERÇEVE" : "LEGAL & OPERATIONAL FRAMEWORK")</span>
-            <h2 class="sec-section-h2">@(tr ? "Ortak Sorumluluk Modeli" : "Shared Responsibility Boundary")</h2>
+            <span class="sec-badge-sub">@(tr ? "SIFATLARDAN ÇOK KONTROLLER" : "CONTROLS BEFORE ADJECTIVES")</span>
+            <h2 class="sec-section-h2">@(tr ? "Güveni, kanıtlanabilir teknik kontrollerle anlatın." : "Explain trust through verifiable technical controls.")</h2>
             <p class="text-muted">
-                @(tr 
-                    ? "KVKK ve ilgili veri koruma mevzuatları kapsamında Pika'nın teknik platform rolü ile işletmenizin veri sorumlusu yükümlülükleri net biçimde ayrılmıştır."
-                    : "Under data protection regulations, Pika's role as a software platform and your organization's role as the Data Controller are clearly defined.")
+                @(tr
+                    ? "“Güvenli”, “kurumsal” veya “uyumlu” gibi genel ifadeler tek başına platformun nasıl korunduğunu açıklamaz."
+                    : "Generic terms such as “secure,” “enterprise” or “compliant” do not by themselves explain how a platform is protected.")
+            </p>
+            <p class="text-muted">
+                @(tr
+                    ? "Pika Security & Privacy bu nedenle güvenlik anlatısını doğrulanabilen kontrol mekanizmalarına dayandırır."
+                    : "Pika Security & Privacy therefore bases its security narrative on control mechanisms that can be verified.")
             </p>
         </div>
 
         <div class="row g-4 mt-2">
+            <!-- CONTROL 01 -->
             <div class="col-lg-6">
-                <div class="sec-resp-card sec-resp-pika">
-                    <div class="d-flex align-items-center gap-2 mb-3">
-                        <i class="ri-checkbox-circle-fill text-success fs-5"></i>
-                        <h4 class="mb-0">@(tr ? "Pika'nın Sağladığı Teknik Güvenceler" : "Pika's Technical Safeguards")</h4>
-                    </div>
-                    <p class="small text-muted mb-3">@(tr ? "Platform altyapısı ve teknik uyumluluk araçları:" : "Platform infrastructure and technical compliance features:")</p>
-                    <ul class="sec-list">
-                        <li><i class="ri-check-line text-success"></i> @(tr ? "İzinli olmayan kişilere gönderim yapılmasını engelleyen teknik filtreler" : "Technical filters suppressing unconsented recipients")</li>
-                        <li><i class="ri-check-line text-success"></i> @(tr ? "Gelen ret (opt-out) taleplerinin anında sisteme kaydedilmesi" : "Real-time processing of opt-out requests into suppression lists")</li>
-                        <li><i class="ri-check-line text-success"></i> @(tr ? "Rol bazlı kullanıcı erişimi ve güvenli kimlik doğrulama" : "Role-based authentication and restricted user access")</li>
-                        <li><i class="ri-check-line text-success"></i> @(tr ? "Kampanya ve gönderim loglarının denetlenebilir kaydı" : "Auditable logging of campaign dispatches and system actions")</li>
-                    </ul>
+                <div class="sec-pillar-card h-100">
+                    <div class="sec-card-icon"><i class="ri-user-settings-line"></i></div>
+                    <h3>@(tr ? "Rol Bazlı Erişim Denetimi" : "Role-Based Access Control")</h3>
+                    <p class="sec-card-desc mb-0">
+                        @(tr
+                            ? "Kullanıcının platformdaki erişimi yetki bağlamıyla sınırlandırılır."
+                            : "User access inside the platform is constrained through authorization context.")
+                    </p>
                 </div>
             </div>
 
+            <!-- CONTROL 02 -->
             <div class="col-lg-6">
-                <div class="sec-resp-card sec-resp-client">
-                    <div class="d-flex align-items-center gap-2 mb-3">
-                        <i class="ri-information-fill text-primary fs-5"></i>
-                        <h4 class="mb-0">@(tr ? "Müşterinin Veri Sorumlusu Yükümlülükleri" : "Customer's Data Controller Responsibilities")</h4>
-                    </div>
-                    <p class="small text-muted mb-3">@(tr ? "İşletmenizin yasal ve süreçsel sorumlulukları:" : "Your organization's legal and procedural requirements:")</p>
-                    <ul class="sec-list">
-                        <li><i class="ri-arrow-right-s-line text-primary"></i> @(tr ? "Müşterilerinizden geçerli açık rıza ve ticari onayların alınması" : "Collecting lawful consent and commercial permissions from end-users")</li>
-                        <li><i class="ri-arrow-right-s-line text-primary"></i> @(tr ? "KVKK aydınlatma metinlerinin müşterilerinize sunulması" : "Providing proper privacy notices and disclosures to your customers")</li>
-                        <li><i class="ri-arrow-right-s-line text-primary"></i> @(tr ? "Kullanıcı hesapları ve ekip erişim yetkilerinin güncel tutulması" : "Maintaining user accounts and updating team member privileges")</li>
-                        <li><i class="ri-arrow-right-s-line text-primary"></i> @(tr ? "Kampanya içeriğinin yasal mevzuatlara uygunluğunun denetlenmesi" : "Ensuring marketing content adheres to relevant advertising laws")</li>
-                    </ul>
+                <div class="sec-pillar-card h-100">
+                    <div class="sec-card-icon"><i class="ri-eye-off-line"></i></div>
+                    <h3>@(tr ? "Maskelenmiş Veri Görünümü" : "Masked Data View")</h3>
+                    <p class="sec-card-desc mb-0">
+                        @(tr
+                            ? "Hassas iletişim verisinin gereksiz açık gösterimini azaltmak için ilgili arayüzlerde maskeli görünüm kullanılabilir."
+                            : "Masked presentation can be used in relevant interfaces to reduce unnecessary exposure of sensitive communication data.")
+                    </p>
                 </div>
             </div>
+
+            <!-- CONTROL 03 -->
+            <div class="col-lg-6">
+                <div class="sec-pillar-card h-100">
+                    <div class="sec-card-icon"><i class="ri-key-2-line"></i></div>
+                    <h3>@(tr ? "API Erişim Kontrolü" : "API Access Control")</h3>
+                    <p class="sec-card-desc mb-0">
+                        @(tr
+                            ? "Dokümante edilmiş ingestion API erişimi API-key tabanlı kimlik doğrulama bağlamıyla korunur."
+                            : "Documented ingestion API access is protected through API-key based authentication context.")
+                    </p>
+                </div>
+            </div>
+
+            <!-- CONTROL 04 -->
+            <div class="col-lg-6">
+                <div class="sec-pillar-card h-100">
+                    <div class="sec-card-icon"><i class="ri-shield-check-line"></i></div>
+                    <h3>@(tr ? "İzin ve Gönderim Kontrolleri" : "Consent & Delivery Controls")</h3>
+                    <p class="sec-card-desc mb-0">
+                        @(tr
+                            ? "Consent Management ve gönderim güvenliği kontrolleri, iletişimin uygulanabilirliğini ayrı kontrol bağlamında değerlendirir."
+                            : "Consent Management and delivery-safety controls separately evaluate whether communication can be executed.")
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="sec-callout mt-4">
+            @if (tr)
+            {
+                <p class="mb-1"><strong>Doğrulanmış kontrol:</strong> PAZARLANABİLİR.</p>
+                <p class="mb-0"><strong>Kanıtlanmamış sertifika:</strong> PAZARLANMAZ.</p>
+            }
+            else
+            {
+                <p class="mb-1"><strong>Verified control:</strong> CAN BE MARKETED.</p>
+                <p class="mb-0"><strong>Unverified certification:</strong> IS NOT MARKETED.</p>
+            }
+        </div>
+        <p class="fw-semibold text-dark mt-3">
+            @(tr ? "Güvenlik anlatısında mekanizma sıfattan önce gelir." : "In security communication, mechanism comes before adjective.")
+        </p>
+    </div>
+</section>
+
+@* ── 04 ROLE-BASED ACCESS CONTROL ────────────────────────────── *@
+<section class="sec-section">
+    <div class="container">
+        <div class="sec-section-header max-w-800">
+            <span class="sec-badge-sub">RBAC</span>
+            <h2 class="sec-section-h2">@(tr ? "Her kullanıcıya aynı erişimi vermeyin." : "Do not give every user the same access.")</h2>
+            @if (tr)
+            {
+                <p>Pika rol bazlı erişim denetimi (RBAC) kullanır.</p>
+                <p>RBAC, kullanıcının platform içinde erişebileceği işlem ve alanların sahip olduğu yetki bağlamına göre sınırlandırılmasını sağlar.</p>
+                <p>Bu yaklaşım bütün kullanıcıların aynı yönetim veya veri erişim yetkisine sahip olduğu tek seviyeli bir erişim modelinin önüne geçer.</p>
+                <div class="sec-callout">
+                    <p class="mb-2"><strong>Kimlik doğrulama:</strong> “Kullanıcı kim?”</p>
+                    <p class="mb-2"><strong>Yetkilendirme:</strong> “Bu kullanıcı hangi işlemi yapabilir?”</p>
+                    <p class="mb-0"><strong>RBAC:</strong> yetkilendirme kararının rol ve permission bağlamıyla yönetilmesine yardımcı olur.</p>
+                </div>
+                <p class="text-muted">C14 sabit rol isimleri veya her kurulumda aynı yetki matrisi bulunduğu iddiasını yapmaz.</p>
+                <p class="fw-semibold text-dark mt-3">Erişim, yalnızca oturum açmış olmakla değil, yetki bağlamıyla belirlenir.</p>
+            }
+            else
+            {
+                <p>Pika uses role-based access control (RBAC).</p>
+                <p>RBAC allows platform areas and operations available to a user to be constrained according to their authorization context.</p>
+                <p>This avoids treating every authenticated user as if they have the same administrative or data-access permissions.</p>
+                <div class="sec-callout">
+                    <p class="mb-2"><strong>Authentication asks:</strong> “Who is the user?”</p>
+                    <p class="mb-2"><strong>Authorization asks:</strong> “What can this user do?”</p>
+                    <p class="mb-0"><strong>RBAC:</strong> helps manage authorization through role and permission context.</p>
+                </div>
+                <p class="text-muted">C14 does not claim fixed role names or an identical permission matrix in every deployment.</p>
+                <p class="fw-semibold text-dark mt-3">Access is determined not only by being authenticated, but by authorization context.</p>
+            }
         </div>
     </div>
 </section>
 
-<!-- ═══════════════════════════ DEEP DOCUMENTATION LINKS ═══════════════════════════ -->
+@* ── 05 MASKED DATA EXPOSURE ─────────────────────────────────── *@
+<section class="sec-section sec-section-alt">
+    <div class="container">
+        <div class="sec-section-header max-w-800">
+            <span class="sec-badge-sub">@(tr ? "VERİ GÖRÜNÜRLÜĞÜ" : "DATA EXPOSURE")</span>
+            <h2 class="sec-section-h2">@(tr ? "Veriye erişmek, her alanı açık biçimde görmek zorunda olmak değildir." : "Access to data does not have to mean every field is shown in full.")</h2>
+            @if (tr)
+            {
+                <p>Pika'nın güvenlik yaklaşımı yalnızca bir ekrana erişilip erişilemeyeceği sorusuyla sınırlı değildir.</p>
+                <p>İlgili kullanıcı arayüzlerinde hassas iletişim verisinin doğrudan açık gösterimini azaltmak için maskelenmiş veri görünümü kullanılabilir.</p>
+                <p>Maskelenmiş görünüm, verinin kaynak sistemden silindiği veya platformun hiçbir aşamasında bulunmadığı anlamına gelmez.</p>
+                <div class="sec-callout">
+                    <p class="mb-2"><strong>Access control:</strong> kullanıcının alana erişimini yönetir.</p>
+                    <p class="mb-0"><strong>Masked view:</strong> erişilen alanda hassas bilginin gereksiz açık gösterimini azaltır.</p>
+                </div>
+                <p class="fw-semibold text-dark mt-3">Yetki ve görünürlük, aynı güvenlik probleminin farklı katmanlarıdır.</p>
+            }
+            else
+            {
+                <p>Pika's security approach is not limited to whether a user can open a screen.</p>
+                <p>Masked data presentation can be used in relevant interfaces to reduce unnecessary full exposure of sensitive communication data.</p>
+                <p>A masked view does not mean the source data was deleted or that it never exists anywhere in the platform workflow.</p>
+                <div class="sec-callout">
+                    <p class="mb-2"><strong>Access control:</strong> manages whether a user can access an area.</p>
+                    <p class="mb-0"><strong>Masked view:</strong> reduces unnecessary exposure of sensitive information inside an accessible area.</p>
+                </div>
+                <p class="fw-semibold text-dark mt-3">Authorization and visibility are different layers of the same security problem.</p>
+            }
+        </div>
+    </div>
+</section>
+
+@* ── 06 API ACCESS CONTROL ───────────────────────────────────── *@
 <section class="sec-section">
     <div class="container">
-        <div class="sec-docs-panel p-5 rounded-4 bg-light border">
-            <div class="row align-items-center g-4">
-                <div class="col-lg-8">
-                    <h3 class="mb-2">@(tr ? "Detaylı Teknik Dokümantasyon" : "Technical Documentation & Guides")</h3>
-                    <p class="text-muted mb-0">
-                        @(tr 
-                            ? "İzin yönetimi, Ingestion API ve liste yönetimi konularında ayrıntılı teknik rehberlere Pika Bilgi Bankası'ndan ulaşabilirsiniz." 
-                            : "Review implementation guides for consent management, ingestion APIs, and opt-out workflows in the Public Wiki.")
-                    </p>
+        <div class="sec-section-header max-w-800">
+            <span class="sec-badge-sub">@(tr ? "API ERİŞİMİ" : "API ACCESS")</span>
+            <h2 class="sec-section-h2">@(tr ? "Programatik veri girişini, kimlik doğrulamasız bırakmayın." : "Do not leave programmatic data intake without authentication.")</h2>
+            @if (tr)
+            {
+                <p>Pika'nın dokümante edilmiş REST Ingestion API'si programatik veri aktarımı için API-key tabanlı erişim kullanır.</p>
+                <p><strong>X-API-Key:</strong> API anahtarı, kaynağın ingestion endpoint'ine kimlik doğrulama bağlamıyla erişmesini sağlayan teknik kontroldür.</p>
+                <p>Bu mekanizma Integrations katmanındaki veri kontratının veya validation süreçlerinin yerine geçmez.</p>
+                <div class="sec-callout">
+                    <p class="mb-2"><strong>API authentication:</strong> “Bu request yetkili erişim bağlamından mı geliyor?”</p>
+                    <p class="mb-2"><strong>Data validation:</strong> “Payload beklenen veri kontratına uyuyor mu?”</p>
+                    <p class="mb-0">Bunlar: aynı kontrol değildir.</p>
                 </div>
-                <div class="col-lg-4 text-lg-end">
-                    <a href="/wiki/" class="btn pika-btn-primary px-4 py-2">
-                        @(tr ? "Pika Wiki'yi Ziyaret Edin" : "Visit Pika Wiki") <i class="ri-arrow-right-line ms-1"></i>
-                    </a>
+                <p class="fw-semibold text-dark mt-3">API erişim güvenliği, veri ingestion sürecinin erişim katmanıdır.</p>
+                <p><a class="sec-link-arrow" href="/entegrasyonlar">Entegrasyonları Keşfedin →</a></p>
+            }
+            else
+            {
+                <p>Pika's documented REST Ingestion API uses API-key based access for programmatic data ingestion.</p>
+                <p><strong>X-API-Key:</strong> The API key is a technical control that allows a source to access the ingestion endpoint under authentication context.</p>
+                <p>This mechanism does not replace the data contract or validation processes owned by the Integrations layer.</p>
+                <div class="sec-callout">
+                    <p class="mb-2"><strong>API authentication asks:</strong> “Does this request come from an authorized access context?”</p>
+                    <p class="mb-2"><strong>Data validation asks:</strong> “Does the payload match the expected data contract?”</p>
+                    <p class="mb-0">They are: different controls.</p>
+                </div>
+                <p class="fw-semibold text-dark mt-3">API access security is the access layer of the data-ingestion process.</p>
+                <p><a class="sec-link-arrow" href="/en/integrations">Explore Integrations →</a></p>
+            }
+        </div>
+    </div>
+</section>
+
+@* ── 07 TENANT / AUTHORIZATION CONTEXT BOUNDARY ──────────────── *@
+<section class="sec-section sec-section-alt">
+    <div class="container">
+        <div class="sec-section-header max-w-800">
+            <span class="sec-badge-sub">@(tr ? "ERİŞİM BAĞLAMI" : "ACCESS CONTEXT")</span>
+            <h2 class="sec-section-h2">@(tr ? "Tenant bağlamını, “her müşteri için ayrı fiziksel veritabanı” iddiasına dönüştürmeyin." : "Do not turn tenant context into a claim of “a separate physical database for every customer.”")</h2>
+            @if (tr)
+            {
+                <p>Pika çok müşterili bir SaaS platformunda kullanıcı erişimini yalnızca kimlik doğrulama ile değil, ilgili authorization ve tenant bağlamıyla birlikte ele alır.</p>
+                <p>C14'ün güvenlik anlatısı uygulama erişiminin doğru işletme ve yetki bağlamında sınırlandırılmasına odaklanır.</p>
+                <p>Bu ifade her müşteri için fiziksel olarak ayrı veritabanı, ayrı sunucu veya izole ağ bulunduğu anlamına gelmez.</p>
+                <div class="sec-callout">
+                    <p class="mb-2"><strong>Doğru public sınır:</strong> authorization / tenant context.</p>
+                    <p class="mb-0"><strong>Doğrulanmamış iddia:</strong> dedicated database veya physical tenant isolation.</p>
+                </div>
+                <p class="fw-semibold text-dark mt-3">Mantıksal erişim sınırını, kanıtlanmamış altyapı topolojisi iddiasıyla büyütmeyin.</p>
+            }
+            else
+            {
+                <p>In a multi-customer SaaS platform, Pika treats user access through the relevant authorization and tenant context rather than authentication alone.</p>
+                <p>C14's security narrative focuses on constraining application access to the appropriate organization and authorization context.</p>
+                <p>This does not mean every customer has a physically separate database, server or isolated network.</p>
+                <div class="sec-callout">
+                    <p class="mb-2"><strong>The correct public boundary is:</strong> authorization / tenant context.</p>
+                    <p class="mb-0"><strong>The unverified claim is:</strong> dedicated database or physical tenant isolation.</p>
+                </div>
+                <p class="fw-semibold text-dark mt-3">Do not expand a logical access boundary into an unverified infrastructure-topology claim.</p>
+            }
+        </div>
+    </div>
+</section>
+
+@* ── 08 CONSENT & SECURITY RELATIONSHIP ───────────────────────── *@
+<section class="sec-section">
+    <div class="container">
+        <div class="sec-section-header max-w-800">
+            <span class="sec-badge-sub">@(tr ? "GÜVENLİK ≠ İLETİŞİM İZNİ" : "SECURITY ≠ COMMUNICATION CONSENT")</span>
+            <h2 class="sec-section-h2">@(tr ? "Platform erişimi ve müşteri iletişim izni aynı kontrol değildir." : "Platform access and customer communication permission are different controls.")</h2>
+            @if (tr)
+            {
+                <p>Security & Privacy kullanıcının platform ve veri erişimini yönetmeye odaklanır.</p>
+                <p>Consent Management ise müşteriye iletişim uygulanmadan önce mevcut izin, IYS ve opt-out bağlamının değerlendirilmesine yardımcı olur.</p>
+                <p>Bir kullanıcının <a href="/cozumler/campaign-manager">Campaign Manager</a>'a erişim yetkisinin olması, herhangi bir müşteriye izin kontrolü olmadan iletişim gönderebileceği anlamına gelmez.</p>
+                <div class="sec-callout">
+                    <p class="mb-2"><strong>Security & Privacy:</strong> “Bu kullanıcı hangi platform işlemlerine erişebilir?”</p>
+                    <p class="mb-0"><strong>Consent Management:</strong> “Bu müşteriyle bu iletişim bağlamında iletişim kurulabilir mi?”</p>
+                </div>
+                <p class="fw-semibold text-dark mt-3">User authorization ve customer consent iki ayrı kontrol eksenidir.</p>
+                <p><a class="sec-link-arrow" href="/cozumler/consent-management">Consent Management'i Keşfedin →</a></p>
+            }
+            else
+            {
+                <p>Security & Privacy focuses on user access to platform areas and data.</p>
+                <p>Consent Management helps evaluate available consent, IYS and opt-out context before customer communication is executed.</p>
+                <p>A user having permission to access <a href="/en/solutions/campaign-manager">Campaign Manager</a> does not mean communication can be sent to any customer without consent controls.</p>
+                <div class="sec-callout">
+                    <p class="mb-2"><strong>Security & Privacy:</strong> “Which platform operations can this user access?”</p>
+                    <p class="mb-0"><strong>Consent Management:</strong> “Can communication with this customer be executed under this consent context?”</p>
+                </div>
+                <p class="fw-semibold text-dark mt-3">User authorization and customer consent are separate control axes.</p>
+                <p><a class="sec-link-arrow" href="/en/solutions/consent-management">Explore Consent Management →</a></p>
+            }
+        </div>
+    </div>
+</section>
+
+@* ── 09 AI PRIVACY BOUNDARY ──────────────────────────────────── *@
+<section class="sec-section sec-section-alt">
+    <div class="container">
+        <div class="sec-section-header max-w-800">
+            <span class="sec-badge-sub">@(tr ? "AI VE VERİ SINIRI" : "AI & DATA BOUNDARY")</span>
+            <h2 class="sec-section-h2">@(tr ? "AI hazırlık bağlamını, gereksiz doğrudan kişisel tanımlayıcılardan ayırın." : "Separate AI preparation context from unnecessary direct personal identifiers.")</h2>
+            @if (tr)
+            {
+                <p>Pika'nın dokümante edilmiş AI hazırlık mimarisinde doğrudan kişisel tanımlayıcıların üretken AI prompt bağlamından ayrılması yönünde veri minimizasyonu sınırı bulunur.</p>
+                <p>Dokümante edilmiş bu sınır TCKN, ham telefon numarası ve tam ad gibi doğrudan tanımlayıcıların LLM prompt tokenlarına dahil edilmemesini kapsar.</p>
+                <p>Bu mekanizma Pika'nın bütün sistem ve akışlarında hiçbir kişisel veri bulunmadığı anlamına gelmez.</p>
+                <div class="sec-callout">
+                    <p class="mb-2"><strong>Doğru ifade:</strong> AI prompt bağlamında doğrudan tanımlayıcıları sınırlandırmak.</p>
+                    <p class="mb-0"><strong>Yanlış mutlak iddia:</strong> “Pika Zero-PII platformudur.”</p>
+                </div>
+                <p class="fw-semibold text-dark mt-3">AI veri sınırını, ürünün tamamı için mutlak kişisel veri yokluğu iddiasına dönüştürmeyin.</p>
+                <p><a class="sec-link-arrow" href="/urunler/ai-kampanya-asistani">Pika Pilot'ı Keşfedin →</a></p>
+            }
+            else
+            {
+                <p>Pika's documented AI-preparation architecture includes a data-minimization boundary intended to keep direct personal identifiers out of generative-AI prompt context.</p>
+                <p>The documented boundary includes excluding direct identifiers such as TCKN, raw phone numbers and full names from LLM prompt tokens.</p>
+                <p>This mechanism does not mean no personal data exists anywhere across Pika's systems or workflows.</p>
+                <div class="sec-callout">
+                    <p class="mb-2"><strong>The correct statement is:</strong> restrict direct identifiers inside AI prompt context.</p>
+                    <p class="mb-0"><strong>The incorrect absolute claim is:</strong> “Pika is a Zero-PII platform.”</p>
+                </div>
+                <p class="fw-semibold text-dark mt-3">Do not turn the AI data boundary into an absolute claim that the entire product contains no personal data.</p>
+                <p><a class="sec-link-arrow" href="/en/products/ai-campaign-assistant">Explore Pika Pilot →</a></p>
+            }
+        </div>
+    </div>
+</section>
+
+@* ── 10 SHARED RESPONSIBILITY ────────────────────────────────── *@
+<section class="sec-section">
+    <div class="container">
+        <div class="sec-section-header max-w-800">
+            <span class="sec-badge-sub">@(tr ? "PAYLAŞILAN SORUMLULUK" : "SHARED RESPONSIBILITY")</span>
+            <h2 class="sec-section-h2">@(tr ? "Platform kontrol sağlar. Organizasyon kendi erişim ve veri sorumluluklarını yönetir." : "The platform provides controls. The organization manages its own access and data responsibilities.")</h2>
+            <p class="text-muted">
+                @(tr
+                    ? "Pika erişim kontrolü, maskelenmiş veri görünümü, API kimlik doğrulama ve ilgili gönderim kontrolleri gibi teknik mekanizmalar sağlar."
+                    : "Pika provides technical mechanisms such as access control, masked data views, API authentication and relevant delivery controls.")
+            </p>
+            <p class="text-muted">
+                @(tr
+                    ? "Buna karşılık işletme kendi kullanıcı hesaplarını, kimlerin hangi erişime sahip olacağını, sisteme aktardığı verinin kaynağını ve kendi hukuki / operasyonel politikalarını yönetmeye devam eder."
+                    : "The organization continues to manage its own user accounts, who should have which access, the source of data brought into the platform and its own legal and operational policies.")
+            </p>
+        </div>
+
+        <div class="row g-4 mt-2">
+            <!-- PIKA'S CONTROL AREA -->
+            <div class="col-lg-6">
+                <div class="sec-resp-card sec-resp-pika">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <i class="ri-checkbox-circle-fill text-success fs-5"></i>
+                        <h3 class="h4 mb-0">@(tr ? "Pika'nın Teknik Kontrol Alanı" : "Pika's Technical Control Area")</h3>
+                    </div>
+                    <ul class="sec-list">
+                        @if (tr)
+                        {
+                            <li><i class="ri-check-line text-success"></i> Rol ve permission bağlamında platform erişimi.</li>
+                            <li><i class="ri-check-line text-success"></i> İlgili arayüzlerde maskelenmiş iletişim verisi görünümü.</li>
+                            <li><i class="ri-check-line text-success"></i> Dokümante edilmiş API akışlarında API-key erişimi.</li>
+                            <li><i class="ri-check-line text-success"></i> Consent ve delivery katmanlarındaki teknik kontrol mekanizmaları.</li>
+                        }
+                        else
+                        {
+                            <li><i class="ri-check-line text-success"></i> Platform access under role and permission context.</li>
+                            <li><i class="ri-check-line text-success"></i> Masked communication-data views in relevant interfaces.</li>
+                            <li><i class="ri-check-line text-success"></i> API-key access in documented API flows.</li>
+                            <li><i class="ri-check-line text-success"></i> Technical control mechanisms in consent and delivery layers.</li>
+                        }
+                    </ul>
                 </div>
             </div>
 
-            <div class="row g-3 mt-4 pt-3 border-top">
-                <div class="col-md-4">
-                    <a href="/wiki/izin-optout-iys" class="sec-wiki-card">
-                        <i class="ri-shield-check-line text-success"></i>
-                        <div>
-                            <div class="fw-bold text-dark">İzin ve İYS Yönetimi</div>
-                            <div class="small text-muted">İYS entegrasyonu ve opt-out kuralları</div>
-                        </div>
-                    </a>
+            <!-- ORGANIZATION'S CONTROL AREA -->
+            <div class="col-lg-6">
+                <div class="sec-resp-card sec-resp-client">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <i class="ri-information-fill text-primary fs-5"></i>
+                        <h3 class="h4 mb-0">@(tr ? "İşletmenin Kontrol Alanı" : "The Organization's Control Area")</h3>
+                    </div>
+                    <ul class="sec-list">
+                        @if (tr)
+                        {
+                            <li><i class="ri-arrow-right-s-line text-primary"></i> Kullanıcı hesaplarının ve erişim yetkilerinin doğru atanması.</li>
+                            <li><i class="ri-arrow-right-s-line text-primary"></i> Pika'ya aktarılan verinin kaynağı ve kullanım gerekçesi.</li>
+                            <li><i class="ri-arrow-right-s-line text-primary"></i> Kurum içi veri, güvenlik ve erişim politikaları.</li>
+                            <li><i class="ri-arrow-right-s-line text-primary"></i> İlgili hukuki ve operasyonel yükümlülüklerin değerlendirilmesi.</li>
+                        }
+                        else
+                        {
+                            <li><i class="ri-arrow-right-s-line text-primary"></i> Correct assignment of user accounts and access permissions.</li>
+                            <li><i class="ri-arrow-right-s-line text-primary"></i> The source and intended use of data brought into Pika.</li>
+                            <li><i class="ri-arrow-right-s-line text-primary"></i> Internal data, security and access policies.</li>
+                            <li><i class="ri-arrow-right-s-line text-primary"></i> Evaluation of applicable legal and operational obligations.</li>
+                        }
+                    </ul>
                 </div>
-                <div class="col-md-4">
-                    <a href="/wiki/iletisim-listeleri-ve-opt-out" class="sec-wiki-card">
-                        <i class="ri-list-check text-primary"></i>
-                        <div>
-                            <div class="fw-bold text-dark">İletişim Listeleri &amp; Ret</div>
-                            <div class="small text-muted">Kara liste ve kanal uygunluk filtreleri</div>
-                        </div>
-                    </a>
+            </div>
+        </div>
+
+        <p class="fw-semibold text-dark mt-4">
+            @(tr ? "Teknik güvenlik kontrolü, organizasyonel sorumluluğun yerine geçmez." : "A technical security control does not replace organizational responsibility.")
+        </p>
+    </div>
+</section>
+
+@* ── 11 WHAT PIKA DOES NOT CLAIM ─────────────────────────────── *@
+<section class="sec-section sec-section-alt">
+    <div class="container">
+        <div class="sec-section-header max-w-800">
+            <span class="sec-badge-sub">@(tr ? "KANIT SINIRI" : "EVIDENCE BOUNDARY")</span>
+            <h2 class="sec-section-h2">@(tr ? "Doğrulanmamış güvenlik iddiasını ürün özelliği gibi sunmayın." : "Do not present an unverified security claim as a product capability.")</h2>
+            <p class="text-muted">
+                @(tr
+                    ? "C14 güvenlik güvenini büyük sıfatlarla değil, doğrulanmış mekanizmalarla kurar."
+                    : "C14 builds trust through verified mechanisms rather than oversized adjectives.")
+            </p>
+        </div>
+
+        <div class="row g-4 mt-2">
+            <!-- ITEM 1: SOC 2 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="sec-pillar-card h-100">
+                    <div class="sec-card-icon"><i class="ri-shield-line"></i></div>
+                    <h3>@(tr ? "SOC 2 sertifikası iddia edilmez." : "No SOC 2 certification claim.")</h3>
+                    <p class="sec-card-desc mb-0">
+                        @(tr
+                            ? "C14, Pika'yı SOC 2 veya SOC 2 Type II sertifikalı ürün olarak pazarlamaz."
+                            : "C14 does not market Pika as SOC 2 or SOC 2 Type II certified.")
+                    </p>
                 </div>
-                <div class="col-md-4">
-                    <a href="/wiki/ingestion-api" class="sec-wiki-card">
-                        <i class="ri-code-s-slash-line text-warning"></i>
-                        <div>
-                            <div class="fw-bold text-dark">Ingestion API Rehberi</div>
-                            <div class="small text-muted">Güvenli veri aktarımı ve API Key protokolü</div>
-                        </div>
-                    </a>
+            </div>
+
+            <!-- ITEM 2: SAML / SSO -->
+            <div class="col-lg-4 col-md-6">
+                <div class="sec-pillar-card h-100">
+                    <div class="sec-card-icon"><i class="ri-login-box-line"></i></div>
+                    <h3>@(tr ? "SAML / SSO yeteneği iddia edilmez." : "No SAML / SSO capability claim.")</h3>
+                    <p class="sec-card-desc mb-0">
+                        @(tr
+                            ? "SAML, SAML 2.0 veya Single Sign-On kamuya açık doğrulanmış güvenlik yeteneği olarak sunulmaz."
+                            : "SAML, SAML 2.0 or Single Sign-On is not presented as a verified public security capability.")
+                    </p>
                 </div>
+            </div>
+
+            <!-- ITEM 3: AT-REST ENCRYPTION -->
+            <div class="col-lg-4 col-md-6">
+                <div class="sec-pillar-card h-100">
+                    <div class="sec-card-icon"><i class="ri-lock-2-line"></i></div>
+                    <h3>@(tr ? "Belirli at-rest encryption standardı iddia edilmez." : "No specific at-rest encryption claim.")</h3>
+                    <p class="sec-card-desc mb-0">
+                        @(tr
+                            ? "AES-256 veya başka belirli database-at-rest encryption standardı C14 tarafından garanti edilmez."
+                            : "C14 does not guarantee AES-256 or another specific database-at-rest encryption standard.")
+                    </p>
+                </div>
+            </div>
+
+            <!-- ITEM 4: TLS VERSION -->
+            <div class="col-lg-4 col-md-6">
+                <div class="sec-pillar-card h-100">
+                    <div class="sec-card-icon"><i class="ri-global-line"></i></div>
+                    <h3>@(tr ? "Belirli TLS sürümü garanti edilmez." : "No specific TLS version guarantee.")</h3>
+                    <p class="sec-card-desc mb-0">
+                        @(tr
+                            ? "C14 TLS 1.2+, TLS 1.3 veya belirli cipher-suite seviyesinde kamuya açık garanti vermez."
+                            : "C14 makes no public guarantee for TLS 1.2+, TLS 1.3 or a particular cipher-suite level.")
+                    </p>
+                </div>
+            </div>
+
+            <!-- ITEM 5: TENANT ISOLATION -->
+            <div class="col-lg-4 col-md-6">
+                <div class="sec-pillar-card h-100">
+                    <div class="sec-card-icon"><i class="ri-database-2-line"></i></div>
+                    <h3>@(tr ? "Fiziksel tenant izolasyonu iddia edilmez." : "No physical tenant-isolation claim.")</h3>
+                    <p class="sec-card-desc mb-0">
+                        @(tr
+                            ? "Her müşteriye ayrı fiziksel veritabanı, sunucu veya ağ segmenti bulunduğu iddiası yapılmaz."
+                            : "C14 does not claim a separate physical database, server or network segment for every customer.")
+                    </p>
+                </div>
+            </div>
+
+            <!-- ITEM 6: ABSOLUTE SECURITY -->
+            <div class="col-lg-4 col-md-6">
+                <div class="sec-pillar-card h-100">
+                    <div class="sec-card-icon"><i class="ri-alert-line"></i></div>
+                    <h3>@(tr ? "Mutlak güvenlik garantisi verilmez." : "No absolute security guarantee.")</h3>
+                    <p class="sec-card-desc mb-0">
+                        @(tr
+                            ? "Teknik kontroller riski yönetmeye yardımcı olur; herhangi bir yazılım “sıfır güvenlik riski” garantisi vermez."
+                            : "Technical controls help manage risk; no software feature represents a guarantee of zero security risk.")
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <p class="fw-semibold text-dark mt-4">
+            @(tr ? "Bilmediğimizi büyütmek yerine, kanıtladığımız kontrolü anlatırız." : "Instead of expanding what is unknown, we explain the controls we can verify.")
+        </p>
+    </div>
+</section>
+
+@* ── 12 WHAT SECURITY & PRIVACY IS / IS NOT ──────────────────── *@
+<section class="sec-section">
+    <div class="container">
+        <div class="sec-section-header max-w-800">
+            <span class="sec-badge-sub">@(tr ? "DOĞRU SINIRLAR" : "CLEAR BOUNDARIES")</span>
+            <h2 class="sec-section-h2">@(tr ? "Security & Privacy'yi doğru yere koyun." : "Put Security & Privacy in the right place.")</h2>
+        </div>
+
+        <div class="row g-4 mt-2">
+            <!-- ITEM 1 -->
+            <div class="col-md-6">
+                <div class="sec-pillar-card h-100">
+                    <h3>@(tr ? "Security & Privacy, Customer Intelligence değildir." : "Security & Privacy is not Customer Intelligence.")</h3>
+                    <p class="sec-card-desc mb-0">
+                        @(tr
+                            ? "Customer Intelligence müşteri davranışı ve değer bağlamını hesaplar. Security & Privacy kullanıcıların bu veri ve ürün alanlarına hangi yetkiyle erişebileceğiyle ilgilenir."
+                            : "Customer Intelligence calculates customer behavior and value context. Security & Privacy is concerned with the authorization context under which users can access those data and product areas.")
+                    </p>
+                </div>
+            </div>
+
+            <!-- ITEM 2 -->
+            <div class="col-md-6">
+                <div class="sec-pillar-card h-100">
+                    <h3>@(tr ? "Security & Privacy, Consent Management değildir." : "Security & Privacy is not Consent Management.")</h3>
+                    <p class="sec-card-desc mb-0">
+                        @(tr
+                            ? "Security & Privacy kullanıcı erişimini kontrol eder. Consent Management müşteri iletişim izni ve suppression bağlamını değerlendirir."
+                            : "Security & Privacy controls user access. Consent Management evaluates customer communication permission and suppression context.")
+                    </p>
+                </div>
+            </div>
+
+            <!-- ITEM 3 -->
+            <div class="col-md-6">
+                <div class="sec-pillar-card h-100">
+                    <h3>@(tr ? "Security & Privacy, Integrations değildir." : "Security & Privacy is not Integrations.")</h3>
+                    <p class="sec-card-desc mb-0">
+                        @(tr
+                            ? "Integrations verinin Pika'ya nasıl girdiğini yönetir. Security & Privacy programatik erişim ve kullanıcı erişimi üzerindeki güvenlik sınırlarını açıklar."
+                            : "Integrations manages how data enters Pika. Security & Privacy explains security boundaries around programmatic and user access.")
+                    </p>
+                </div>
+            </div>
+
+            <!-- ITEM 4 -->
+            <div class="col-md-6">
+                <div class="sec-pillar-card h-100">
+                    <h3>@(tr ? "RBAC, kimlik doğrulamanın kendisi değildir." : "RBAC is not authentication itself.")</h3>
+                    <p class="sec-card-desc mb-0">
+                        @(tr
+                            ? "Kimlik doğrulama kullanıcının kim olduğunu belirler. RBAC kullanıcının yetkili olduğu işlemleri sınırlandırmaya yardımcı olur."
+                            : "Authentication establishes who the user is. RBAC helps constrain which operations the user is authorized to perform.")
+                    </p>
+                </div>
+            </div>
+
+            <!-- ITEM 5 -->
+            <div class="col-md-6">
+                <div class="sec-pillar-card h-100">
+                    <h3>@(tr ? "Maskelenmiş veri, silinmiş veri değildir." : "Masked data is not deleted data.")</h3>
+                    <p class="sec-card-desc mb-0">
+                        @(tr
+                            ? "Maskeleme kullanıcı arayüzündeki gereksiz açık görünürlüğü azaltır; verinin sistemde hiç bulunmadığı anlamına gelmez."
+                            : "Masking reduces unnecessary full exposure in the user interface; it does not mean the data never exists in the system.")
+                    </p>
+                </div>
+            </div>
+
+            <!-- ITEM 6 -->
+            <div class="col-md-6">
+                <div class="sec-pillar-card h-100">
+                    <h3>@(tr ? "API anahtarı, veri doğrulamanın yerine geçmez." : "An API key does not replace data validation.")</h3>
+                    <p class="sec-card-desc mb-0">
+                        @(tr
+                            ? "X-API-Key erişim kontrolünün parçasıdır. Payload doğrulama ve ingestion veri kontratı ayrı mekanizmalardır."
+                            : "X-API-Key is part of access control. Payload validation and ingestion data contracts are separate mechanisms.")
+                    </p>
+                </div>
+            </div>
+
+            <!-- ITEM 7 -->
+            <div class="col-md-6">
+                <div class="sec-pillar-card h-100">
+                    <h3>@(tr ? "Security & Privacy sertifikasyon kataloğu değildir." : "Security & Privacy is not a certification catalog.")</h3>
+                    <p class="sec-card-desc mb-0">
+                        @(tr
+                            ? "Doğrulanmamış SOC, ISO, SAML, encryption veya infrastructure iddiaları güvenlik özelliği gibi listelenmez."
+                            : "Unverified SOC, ISO, SAML, encryption or infrastructure claims are not listed as security capabilities.")
+                    </p>
+                </div>
+            </div>
+
+            <!-- ITEM 8 -->
+            <div class="col-md-6">
+                <div class="sec-pillar-card h-100">
+                    <h3>@(tr ? "Security & Privacy hukuki garanti değildir." : "Security & Privacy is not a legal guarantee.")</h3>
+                    <p class="sec-card-desc mb-0">
+                        @(tr
+                            ? "Pika teknik kontroller sağlar; işletmenin bütün hukuki ve organizasyonel yükümlülüklerini otomatik olarak yerine getirdiğini garanti etmez."
+                            : "Pika provides technical controls; it does not guarantee that every legal and organizational obligation of the customer is automatically satisfied.")
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="sec-callout-lg mt-5">
+            @if (tr)
+            {
+                <h4 class="mb-2">Security & Privacy'nin görevi:</h4>
+                <p class="lead mb-2">“Tamamen güvenliyiz” demek değil,</p>
+                <p class="lead fw-bold mb-0">kimin hangi veriye hangi kontrol bağlamında erişebildiğini açık ve kanıtlanabilir biçimde anlatmaktır.</p>
+            }
+            else
+            {
+                <h4 class="mb-2">The role of Security & Privacy is not:</h4>
+                <p class="lead mb-2">To say “we are completely secure.”</p>
+                <p class="lead fw-bold mb-0">It is: To explain clearly and verifiably who can access which data under which control context.</p>
+            }
+        </div>
+    </div>
+</section>
+
+@* ── 13 FAQ ──────────────────────────────────────────────────── *@
+<section class="sec-section sec-section-alt">
+    <div class="container">
+        <div class="sec-section-header max-w-800">
+            <h2 class="sec-section-h2">@(tr ? "Sıkça Sorulan Sorular" : "Frequently Asked Questions")</h2>
+        </div>
+
+        <div class="max-w-800">
+            @if (tr)
+            {
+                <!-- FAQ 1 -->
+                <details class="sec-faq-item">
+                    <summary class="sec-faq-summary">Pika Security & Privacy nedir?</summary>
+                    <div class="sec-faq-body">
+                        Pika Security & Privacy, kullanıcıların platform ve müşteri verilerine hangi authorization bağlamıyla erişebildiğini rol bazlı erişim, maskelenmiş veri görünümü ve API erişim kontrolleriyle yönetmeye yardımcı olan güvenlik ve veri gizliliği katmanıdır.
+                    </div>
+                </details>
+
+                <!-- FAQ 2 -->
+                <details class="sec-faq-item">
+                    <summary class="sec-faq-summary">Pika rol bazlı erişim denetimi kullanıyor mu?</summary>
+                    <div class="sec-faq-body">
+                        Evet. Rol bazlı erişim denetimi (RBAC) Pika'nın code-verified güvenlik mekanizmalarından biridir ve kullanıcının platform içindeki yetkili işlemlerini authorization bağlamıyla sınırlandırmaya yardımcı olur.
+                    </div>
+                </details>
+
+                <!-- FAQ 3 -->
+                <details class="sec-faq-item">
+                    <summary class="sec-faq-summary">Pika hassas müşteri verilerini maskeler mi?</summary>
+                    <div class="sec-faq-body">
+                        İlgili kullanıcı arayüzlerinde hassas iletişim verisinin gereksiz açık gösterimini azaltmak için maskelenmiş veri görünümü kullanılabilir. Maskeleme, verinin sistemden silindiği anlamına gelmez.
+                    </div>
+                </details>
+
+                <!-- FAQ 4 -->
+                <details class="sec-faq-item">
+                    <summary class="sec-faq-summary">Pika Ingestion API erişimi nasıl kontrol edilir?</summary>
+                    <div class="sec-faq-body">
+                        Dokümante edilmiş REST Ingestion API API-key tabanlı erişim kullanır ve X-API-Key ilgili programatik erişimin kimlik doğrulama bağlamının bir parçasıdır.
+                    </div>
+                </details>
+
+                <!-- FAQ 5 -->
+                <details class="sec-faq-item">
+                    <summary class="sec-faq-summary">Pika her müşteri için ayrı fiziksel veritabanı kullanıyor mu?</summary>
+                    <div class="sec-faq-body">
+                        C14 böyle bir iddia yapmaz. Pika'nın kamuya açık güvenlik anlatısı authorization ve tenant erişim bağlamına dayanır; her müşteri için fiziksel olarak ayrı veritabanı, sunucu veya ağ bulunduğu garanti edilmez.
+                    </div>
+                </details>
+
+                <!-- FAQ 6 -->
+                <details class="sec-faq-item">
+                    <summary class="sec-faq-summary">Pika SOC 2 veya ISO 27001 sertifikalı mı?</summary>
+                    <div class="sec-faq-body">
+                        C14, doğrulanmış kanıt bulunmadan Pika'yı SOC 2, SOC 2 Type II veya ISO 27001 sertifikalı olarak pazarlamaz. Güvenlik sayfası doğrulanmış teknik kontrolleri anlatır.
+                    </div>
+                </details>
+
+                <!-- FAQ 7 -->
+                <details class="sec-faq-item">
+                    <summary class="sec-faq-summary">Pika AI kişisel verileri tamamen hiç kullanmıyor mu?</summary>
+                    <div class="sec-faq-body">
+                        C14 böyle mutlak bir iddia yapmaz. Dokümante edilmiş AI hazırlık sınırı TCKN, ham telefon numarası ve tam ad gibi doğrudan tanımlayıcıların LLM prompt tokenlarına dahil edilmemesini kapsar; bu, Pika'nın bütün sistemlerinde kişisel veri bulunmadığı anlamına gelmez.
+                    </div>
+                </details>
+
+                <!-- FAQ 8 -->
+                <details class="sec-faq-item">
+                    <summary class="sec-faq-summary">Security & Privacy ile Consent Management arasındaki fark nedir?</summary>
+                    <div class="sec-faq-body">
+                        Security & Privacy kullanıcıların platform ve verilere hangi yetkiyle erişebildiğini yönetmeye odaklanır. Consent Management ise müşteri iletişiminin mevcut izin, IYS ve opt-out bağlamında uygulanabilir olup olmadığını değerlendirir.
+                    </div>
+                </details>
+            }
+            else
+            {
+                <!-- FAQ 1 -->
+                <details class="sec-faq-item">
+                    <summary class="sec-faq-summary">What is Pika Security & Privacy?</summary>
+                    <div class="sec-faq-body">
+                        Pika Security & Privacy is the security and data-privacy layer that helps manage access to platform areas and customer data through role-based access, masked data views and API access controls.
+                    </div>
+                </details>
+
+                <!-- FAQ 2 -->
+                <details class="sec-faq-item">
+                    <summary class="sec-faq-summary">Does Pika use role-based access control?</summary>
+                    <div class="sec-faq-body">
+                        Yes. Role-based access control (RBAC) is one of Pika's code-verified security mechanisms and helps constrain authorized platform operations according to the user's authorization context.
+                    </div>
+                </details>
+
+                <!-- FAQ 3 -->
+                <details class="sec-faq-item">
+                    <summary class="sec-faq-summary">Does Pika mask sensitive customer data?</summary>
+                    <div class="sec-faq-body">
+                        Masked data presentation can be used in relevant interfaces to reduce unnecessary full exposure of sensitive communication data. Masking does not mean the data is deleted from the system.
+                    </div>
+                </details>
+
+                <!-- FAQ 4 -->
+                <details class="sec-faq-item">
+                    <summary class="sec-faq-summary">How is access to the Pika Ingestion API controlled?</summary>
+                    <div class="sec-faq-body">
+                        The documented REST Ingestion API uses API-key based access, and X-API-Key forms part of the authentication context for relevant programmatic access.
+                    </div>
+                </details>
+
+                <!-- FAQ 5 -->
+                <details class="sec-faq-item">
+                    <summary class="sec-faq-summary">Does Pika use a separate physical database for every customer?</summary>
+                    <div class="sec-faq-body">
+                        C14 makes no such claim. Pika's public security narrative is based on authorization and tenant access context; a physically separate database, server or network for every customer is not guaranteed.
+                    </div>
+                </details>
+
+                <!-- FAQ 6 -->
+                <details class="sec-faq-item">
+                    <summary class="sec-faq-summary">Is Pika SOC 2 or ISO 27001 certified?</summary>
+                    <div class="sec-faq-body">
+                        C14 does not market Pika as SOC 2, SOC 2 Type II or ISO 27001 certified without verified evidence. The security page focuses on verified technical controls.
+                    </div>
+                </details>
+
+                <!-- FAQ 7 -->
+                <details class="sec-faq-item">
+                    <summary class="sec-faq-summary">Does Pika AI use no personal data at all?</summary>
+                    <div class="sec-faq-body">
+                        C14 makes no such absolute claim. The documented AI-preparation boundary excludes direct identifiers such as TCKN, raw phone numbers and full names from LLM prompt tokens; this does not mean no personal data exists anywhere in Pika's systems.
+                    </div>
+                </details>
+
+                <!-- FAQ 8 -->
+                <details class="sec-faq-item">
+                    <summary class="sec-faq-summary">What is the difference between Security & Privacy and Consent Management?</summary>
+                    <div class="sec-faq-body">
+                        Security & Privacy focuses on the authorization context under which users access platform areas and data. Consent Management evaluates whether customer communication is eligible under available consent, IYS and opt-out context.
+                    </div>
+                </details>
+            }
+        </div>
+    </div>
+</section>
+
+@* ── 14 FINAL CTA ────────────────────────────────────────────── *@
+<section class="sec-section">
+    <div class="container">
+        <div class="sec-cta-card max-w-800 mx-auto">
+            <span class="sec-badge-sub">@(tr ? "KANITLANABİLİR KONTROL" : "VERIFIABLE CONTROL")</span>
+            <h2 class="sec-section-h2 mb-3">
+                @if (tr)
+                {
+                    <text>Erişimi sınırlandırın.<br />Veri görünürlüğünü kontrol edin.<br />Güveni doğrulanmış mekanizmalarla kurun.</text>
+                }
+                else
+                {
+                    <text>Constrain access.<br />Control data exposure.<br />Build trust through verified mechanisms.</text>
+                }
+            </h2>
+            <p class="text-muted mb-3">
+                @(tr
+                    ? "Pika'nın rol bazlı erişim denetimi, maskelenmiş veri görünümü, API erişim kontrolü ve paylaşılan sorumluluk sınırlarını platformunuzun kullanım bağlamında birlikte inceleyelim."
+                    : "Let's review how Pika's role-based access control, masked data views, API access control and shared responsibility boundaries apply within your platform usage context.")
+            </p>
+            <p class="fw-semibold text-dark mb-4">
+                @(tr
+                    ? "İhtiyacınıza ve kullanım kapsamınıza göre özel teklif."
+                    : "Pricing is tailored to your requirements and scope of use.")
+            </p>
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <button class="btn pika-btn-primary px-4 py-2" type="button" data-bs-toggle="modal" data-bs-target="#demoModal">
+                    @(tr ? "Demo Talep Et" : "Request a Demo") ↗
+                </button>
+                <button class="btn btn-outline-secondary px-4 py-2" type="button" data-bs-toggle="modal" data-bs-target="#demoModal">
+                    @(tr ? "Teklif Al" : "Request a Quote") →
+                </button>
             </div>
         </div>
     </div>

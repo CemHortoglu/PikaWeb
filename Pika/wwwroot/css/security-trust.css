@@ -164,3 +164,116 @@
 .sec-wiki-card i {
     font-size: 1.5rem;
 }
+
+/* Scoped C14 Additions */
+.sec-hero-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    padding: 16px 12px;
+}
+.sec-hero-pill {
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: #047857;
+    text-transform: uppercase;
+}
+.sec-callout {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-left: 4px solid #059669;
+    border-radius: 0 12px 12px 0;
+    padding: 1.5rem 2rem;
+    margin: 1.5rem 0;
+}
+.sec-callout h3, .sec-callout h4 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+.sec-callout-lg {
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-left: 4px solid #047857;
+    border-radius: 0 12px 12px 0;
+    padding: 1.75rem 2.25rem;
+    margin: 2rem 0;
+}
+.sec-emphasis {
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    border-radius: 10px;
+    padding: 1.25rem 1.75rem;
+    margin: 1.5rem 0;
+}
+.sec-faq-item {
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    background: #ffffff;
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+}
+.sec-faq-item[open] {
+    border-color: #a7f3d0;
+    background: #fafdfc;
+}
+.sec-faq-summary {
+    padding: 1.1rem 1.25rem;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #0f172a;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.sec-faq-summary::-webkit-details-marker { display: none; }
+.sec-faq-summary::after {
+    content: "+";
+    font-size: 1.25rem;
+    color: #059669;
+    font-weight: 400;
+    transition: transform 0.2s ease;
+}
+.sec-faq-item[open] .sec-faq-summary::after {
+    content: "−";
+}
+.sec-faq-body {
+    padding: 0 1.25rem 1.25rem 1.25rem;
+    color: #475569;
+    line-height: 1.65;
+    font-size: 0.95rem;
+}
+.sec-cta-card {
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    border: 1px solid #cbd5e1;
+    border-radius: 1.25rem;
+    padding: 3rem 2.5rem;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+}
+.sec-link-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: #059669;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    margin-top: 0.75rem;
+}
+.sec-link-arrow:hover {
+    color: #047857;
+    text-decoration: underline;
+}
+

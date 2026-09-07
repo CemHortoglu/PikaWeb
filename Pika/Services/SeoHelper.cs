@@ -254,10 +254,10 @@ public static class SeoHelper
         ["Solutions.SecurityPrivacy"] = new(
             "/guvenlik-ve-gizlilik",
             "/en/security-and-privacy",
-            "Security & Privacy | Güvenlik ve Gizlilik",
-            "Security & Privacy | Security & Privacy",
-            "Rol bazlı erişim denetimi (RBAC), API belirteç güvenliği ve KVKK aydınlatma standartları ile korunan veri altyapısı.",
-            "Role-based access control (RBAC), API token security, and regulatory privacy standards for customer data protection.",
+            "Security & Privacy | RBAC, API Erişimi ve Veri Gizliliği | Pika",
+            "Security & Privacy | RBAC, API Access & Data Privacy | Pika",
+            "Pika Security & Privacy; rol bazlı erişim denetimi (RBAC), maskelenmiş iletişim verisi görünümü, API anahtar erişimi ve paylaşılan güvenlik sorumluluklarıyla müşteri verisine erişimi kontrollü tutmaya yardımcı olur.",
+            "Pika Security & Privacy helps control access to customer data through role-based access control (RBAC), masked communication-data views, API-key access and shared security responsibilities.",
             "Güvenlik ve Gizlilik",
             "Security & Privacy"),
 
