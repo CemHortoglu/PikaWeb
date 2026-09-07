@@ -1,0 +1,1010 @@
+/* ============================================================
+   PIKA CUSTOMER INTELLIGENCE — PAGE-SCOPED STYLES
+   Scope: .pika-ci-page
+   Brand Palette: Deep Forest Petrol (#0c3a30, #082922),
+                  Pale Sand / Soft Neutral (#f7f9f1, #eaf1df),
+                  Crisp White (#ffffff),
+                  Lime Accent (#84c225, #9edd05),
+                  Ink (#173337, #23413b),
+                  Muted (#5a7167, #62746d)
+   ============================================================ */
+
+.pika-ci-page {
+    --ci-petrol-dark: #082922;
+    --ci-petrol: #0c3a30;
+    --ci-petrol-light: #144e42;
+    --ci-sand: #f7f9f1;
+    --ci-sand-alt: #eff4e7;
+    --ci-sand-subtle: #e4eed5;
+    --ci-white: #ffffff;
+    --ci-lime: #84c225;
+    --ci-lime-bright: #9edd05;
+    --ci-lime-glow: rgba(132, 194, 37, 0.22);
+    --ci-ink: #173337;
+    --ci-ink-heading: #23413b;
+    --ci-muted: #5a7167;
+    --ci-border: #dce5d3;
+    --ci-border-light: #e6edd9;
+    --ci-border-dark: rgba(255, 255, 255, 0.14);
+
+    background-color: #ffffff;
+    color: var(--ci-ink);
+    font-family: inherit;
+    line-height: 1.7;
+    overflow-x: clip;
+}
+
+/* Container */
+.pika-ci-page .pika-ci-container {
+    width: 90%;
+    max-width: 1240px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.pika-ci-page .pika-ci-container--narrow {
+    max-width: 860px;
+}
+
+/* Sections */
+.pika-ci-page .pika-ci-section {
+    padding: clamp(70px, 8vw, 110px) 0;
+    background-color: #ffffff;
+    border-bottom: 1px solid var(--ci-border-light);
+}
+
+.pika-ci-page .pika-ci-section--light {
+    background-color: var(--ci-sand);
+}
+
+.pika-ci-page .pika-ci-section--alt {
+    background-color: var(--ci-sand-alt);
+}
+
+/* Breadcrumb */
+.pika-ci-page .pika-ci-breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 36px;
+}
+
+.pika-ci-page .pika-ci-breadcrumb a {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.pika-ci-page .pika-ci-breadcrumb a:hover {
+    color: var(--ci-lime-bright);
+    text-decoration: underline;
+}
+
+.pika-ci-page .pika-ci-breadcrumb-sep {
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.pika-ci-page .pika-ci-breadcrumb-current {
+    color: var(--ci-lime-bright);
+    font-weight: 500;
+}
+
+/* Eyebrows & Labels */
+.pika-ci-page .pika-ci-eyebrow-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 22px;
+}
+
+.pika-ci-page .pika-ci-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ci-lime-bright);
+}
+
+.pika-ci-page .pika-ci-eyebrow--light {
+    color: var(--ci-lime-bright);
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.pika-ci-page .pika-ci-entity-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #cfdec5;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    padding: 3px 10px;
+    border-radius: 999px;
+    letter-spacing: 0.5px;
+}
+
+.pika-ci-page .pika-ci-section-eyebrow {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: #5c7936;
+    margin-bottom: 16px;
+}
+
+/* Headings */
+.pika-ci-page .pika-ci-section-title {
+    font-size: clamp(28px, 3.4vw, 44px);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -1.2px;
+    color: var(--ci-ink-heading);
+    margin-top: 0;
+    margin-bottom: 26px;
+}
+
+/* 01 Hero Section */
+.pika-ci-page .pika-ci-hero {
+    background: radial-gradient(ellipse at 85% 30%, rgba(132, 194, 37, 0.14), transparent 60%),
+                linear-gradient(175deg, var(--ci-petrol-dark) 0%, var(--ci-petrol) 100%);
+    color: #ffffff;
+    padding: 40px 0 90px;
+    position: relative;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.pika-ci-page .pika-ci-hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.pika-ci-page .pika-ci-hero-title {
+    font-size: clamp(34px, 4.2vw, 56px);
+    font-weight: 600;
+    line-height: 1.12;
+    letter-spacing: -2px;
+    color: #f7faf2;
+    margin-top: 0;
+    margin-bottom: 24px;
+}
+
+.pika-ci-page .pika-ci-hero-lead {
+    font-size: clamp(16px, 1.3vw, 19px);
+    line-height: 1.75;
+    color: #c7d8ce;
+    margin-bottom: 18px;
+    max-width: 620px;
+}
+
+.pika-ci-page .pika-ci-hero-supporting {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #9cb5a8;
+    margin-bottom: 34px;
+    max-width: 580px;
+    font-style: italic;
+}
+
+.pika-ci-page .pika-ci-hero-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+
+/* Conceptual Visual Spine in Hero */
+.pika-ci-page .pika-ci-concept-spine {
+    background: rgba(8, 41, 34, 0.6);
+    border: 1px solid rgba(132, 194, 37, 0.25);
+    border-radius: 14px;
+    padding: 32px 28px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+}
+
+.pika-ci-page .pika-ci-spine-node {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: #e4eee7;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+}
+
+.pika-ci-page .pika-ci-spine-node strong {
+    font-weight: 600;
+}
+
+.pika-ci-page .pika-ci-spine-node--start {
+    border-color: rgba(132, 194, 37, 0.4);
+    background: rgba(132, 194, 37, 0.08);
+}
+
+.pika-ci-page .pika-ci-spine-node--accent {
+    border-color: var(--ci-lime);
+    background: rgba(132, 194, 37, 0.18);
+    color: #f7faf2;
+}
+
+.pika-ci-page .pika-ci-spine-tag {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--ci-lime);
+    background: rgba(132, 194, 37, 0.15);
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-family: monospace;
+}
+
+.pika-ci-page .pika-ci-diagram-caption {
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px dashed rgba(255, 255, 255, 0.15);
+}
+
+.pika-ci-page .pika-ci-skip-anchor {
+    position: absolute;
+    top: -9999px;
+    left: 20px;
+    z-index: 1000;
+    background: var(--ci-lime);
+    color: #082922;
+    padding: 8px 16px;
+    font-weight: 600;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.pika-ci-page .pika-ci-skip-anchor:focus {
+    top: 20px;
+}
+
+.pika-ci-page .pika-ci-spine-connector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 0;
+    color: rgba(132, 194, 37, 0.6);
+    font-size: 18px;
+}
+
+/* Buttons */
+.pika-ci-page .pika-ci-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background-color: var(--ci-lime);
+    color: #0c2b23;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 14px 26px;
+    border-radius: 6px;
+    border: 1px solid var(--ci-lime);
+    text-decoration: none;
+    cursor: pointer;
+    min-height: 48px;
+    transition: all 0.2s ease;
+}
+
+.pika-ci-page .pika-ci-btn-primary:hover {
+    background-color: var(--ci-lime-bright);
+    color: #08201a;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(132, 194, 37, 0.3);
+}
+
+.pika-ci-page .pika-ci-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #e4eee7;
+    font-weight: 500;
+    font-size: 14px;
+    text-decoration: none;
+    padding: 12px 18px;
+    min-height: 44px;
+    transition: color 0.2s ease;
+}
+
+.pika-ci-page .pika-ci-btn-secondary:hover {
+    color: var(--ci-lime-bright);
+}
+
+.pika-ci-page .pika-ci-btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: transparent;
+    color: #e4eee7;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 14px 26px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    text-decoration: none;
+    min-height: 48px;
+    transition: all 0.2s ease;
+}
+
+.pika-ci-page .pika-ci-btn-outline:hover {
+    border-color: var(--ci-lime);
+    color: var(--ci-lime-bright);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* 02 Direct Answer Card */
+.pika-ci-page .pika-ci-direct-answer-card {
+    background: #ffffff;
+    border: 1px solid var(--ci-border);
+    border-left: 4px solid var(--ci-lime);
+    border-radius: 12px;
+    padding: clamp(32px, 5vw, 56px);
+    box-shadow: 0 12px 35px rgba(23, 51, 55, 0.04);
+}
+
+.pika-ci-page .pika-ci-body-text {
+    font-size: 16px;
+    line-height: 1.85;
+    color: #3b534b;
+    margin-bottom: 20px;
+}
+
+.pika-ci-page .pika-ci-body-text:last-child {
+    margin-bottom: 0;
+}
+
+.pika-ci-page .pika-ci-large-question {
+    font-size: clamp(24px, 3.2vw, 36px);
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.8px;
+    color: var(--ci-petrol);
+    background: var(--ci-sand-alt);
+    border: 1px solid var(--ci-border);
+    border-radius: 8px;
+    padding: 24px 30px;
+    margin-top: 28px;
+}
+
+/* 03 The Problem Section */
+.pika-ci-page .pika-ci-emphasis-statement {
+    font-size: clamp(20px, 2.5vw, 28px);
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: -0.5px;
+    color: var(--ci-petrol);
+    padding: 28px 0;
+    border-top: 1px solid var(--ci-border);
+    border-bottom: 1px solid var(--ci-border);
+    margin: 32px 0;
+}
+
+/* 04 What Customer Intelligence Understands (Editorial List) */
+.pika-ci-page .pika-ci-lead-paragraph {
+    font-size: 18px;
+    line-height: 1.75;
+    color: #3f584f;
+    margin-bottom: 40px;
+}
+
+.pika-ci-page .pika-ci-editorial-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-top: 1px solid var(--ci-border);
+}
+
+.pika-ci-page .pika-ci-editorial-item {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 24px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--ci-border);
+    align-items: baseline;
+}
+
+.pika-ci-page .pika-ci-editorial-meta {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+}
+
+.pika-ci-page .pika-ci-editorial-num {
+    font-size: 12px;
+    font-weight: 700;
+    color: #7b9952;
+    font-family: monospace;
+}
+
+.pika-ci-page .pika-ci-editorial-heading {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    color: var(--ci-ink-heading);
+    margin: 0;
+}
+
+.pika-ci-page .pika-ci-editorial-desc {
+    font-size: 15px;
+    line-height: 1.75;
+    color: #4b635a;
+    margin: 0;
+}
+
+.pika-ci-page .pika-ci-closing-box {
+    background: #ffffff;
+    border: 1px solid var(--ci-border);
+    border-radius: 8px;
+    padding: 22px 26px;
+    margin-top: 36px;
+    font-style: italic;
+}
+
+/* 05 Purchase Rhythm Section */
+.pika-ci-page .pika-ci-split-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.pika-ci-page .pika-ci-rhythm-visual {
+    background: #ffffff;
+    border: 1px solid var(--ci-border);
+    border-radius: 12px;
+    padding: 30px 24px;
+    box-shadow: 0 10px 30px rgba(23, 51, 55, 0.04);
+}
+
+.pika-ci-page .pika-ci-timeline-stream {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 10px;
+}
+
+.pika-ci-page .pika-ci-timeline-event {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.pika-ci-page .pika-ci-timeline-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: var(--ci-petrol);
+    border: 3px solid #dbe6ce;
+}
+
+.pika-ci-page .pika-ci-timeline-lbl {
+    font-size: 11px;
+    font-weight: 600;
+    color: #637a6f;
+}
+
+.pika-ci-page .pika-ci-timeline-line {
+    flex: 1;
+    height: 2px;
+    background-color: #dbe6ce;
+    margin: 0 10px;
+    margin-bottom: 22px;
+}
+
+.pika-ci-page .pika-ci-timeline-line--current {
+    background: repeating-linear-gradient(90deg, #dbe6ce, #dbe6ce 4px, transparent 4px, transparent 8px);
+}
+
+.pika-ci-page .pika-ci-timeline-event--now .pika-ci-timeline-pulse {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: var(--ci-lime);
+    border: 3px solid #c2e28a;
+    box-shadow: 0 0 0 4px rgba(132, 194, 37, 0.25);
+}
+
+.pika-ci-page .pika-ci-timeline-caption {
+    text-align: center;
+    font-size: 12px;
+    color: #71887d;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--ci-border);
+}
+
+.pika-ci-page .pika-ci-rhythm-emphasis {
+    background: var(--ci-sand-alt);
+    border: 1px solid var(--ci-border);
+    border-radius: 8px;
+    padding: 22px 24px;
+    margin-top: 24px;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.pika-ci-page .pika-ci-rhythm-lead {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ci-petrol);
+}
+
+.pika-ci-page .pika-ci-text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--ci-petrol);
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: color 0.2s ease;
+    min-height: 44px;
+}
+
+.pika-ci-page .pika-ci-text-link:hover {
+    color: #4c8210;
+}
+
+/* 06 Customer Value Section */
+.pika-ci-page .pika-ci-closing-manifesto {
+    font-size: clamp(20px, 2.4vw, 26px);
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: -0.5px;
+    color: var(--ci-petrol);
+    background: #ffffff;
+    border: 1px solid var(--ci-border);
+    border-left: 4px solid var(--ci-lime);
+    border-radius: 8px;
+    padding: 24px 28px;
+    margin-top: 34px;
+}
+
+/* 07 Change, Risk & Opportunity Section */
+.pika-ci-page .pika-ci-signal-path {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    background: var(--ci-sand-alt);
+    border: 1px solid var(--ci-border);
+    border-radius: 8px;
+    padding: 18px 24px;
+    margin: 30px 0;
+}
+
+.pika-ci-page .pika-ci-path-step {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #556e63;
+}
+
+.pika-ci-page .pika-ci-path-step--active {
+    color: var(--ci-petrol);
+    background: #ffffff;
+    border: 1px solid var(--ci-border);
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+
+.pika-ci-page .pika-ci-path-arrow {
+    color: #92ab9f;
+    font-size: 14px;
+}
+
+.pika-ci-page .pika-ci-boundary-card {
+    background: #ffffff;
+    border: 1px solid var(--ci-border);
+    border-left: 4px solid #5a7b6e;
+    border-radius: 8px;
+    padding: 22px 26px;
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--ci-ink-heading);
+}
+
+/* 08 Customer Intelligence + Product Intelligence Section */
+.pika-ci-page .pika-ci-quote-question {
+    font-size: 18px;
+    font-weight: 600;
+    font-style: italic;
+    color: var(--ci-petrol);
+    padding: 10px 18px;
+    border-left: 3px solid var(--ci-lime);
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 0 6px 6px 0;
+    margin: 10px 0 20px;
+}
+
+.pika-ci-page .pika-ci-formula-statement {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    background: #ffffff;
+    border: 1px solid var(--ci-border);
+    border-radius: 10px;
+    padding: 26px 30px;
+    margin-top: 32px;
+    box-shadow: 0 8px 25px rgba(23, 51, 55, 0.04);
+}
+
+.pika-ci-page .pika-ci-formula-part {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ci-ink-heading);
+}
+
+.pika-ci-page .pika-ci-formula-op {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--ci-lime);
+}
+
+.pika-ci-page .pika-ci-formula-result {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ci-petrol);
+    background: var(--ci-sand-subtle);
+    padding: 6px 14px;
+    border-radius: 6px;
+}
+
+/* 09 Where the Intelligence Goes (Directional Flow) */
+.pika-ci-page .pika-ci-dest-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 30px;
+}
+
+.pika-ci-page .pika-ci-dest-item {
+    background: #ffffff;
+    border: 1px solid var(--ci-border);
+    border-radius: 10px;
+    padding: 24px 28px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pika-ci-page .pika-ci-dest-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(23, 51, 55, 0.06);
+}
+
+.pika-ci-page .pika-ci-dest-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.pika-ci-page .pika-ci-dest-badge {
+    font-size: 11px;
+    font-weight: 700;
+    color: #63853c;
+    background: #edf4e2;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-family: monospace;
+}
+
+.pika-ci-page .pika-ci-dest-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ci-ink-heading);
+    margin: 0;
+}
+
+.pika-ci-page .pika-ci-dest-desc {
+    font-size: 15px;
+    line-height: 1.75;
+    color: #4b635a;
+    margin-bottom: 16px;
+}
+
+/* 10 AI Boundary Pipeline Flow */
+.pika-ci-page .pika-ci-pipeline-flow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    background: #ffffff;
+    border: 1px solid var(--ci-border);
+    border-radius: 8px;
+    padding: 18px 22px;
+    margin: 32px 0;
+}
+
+.pika-ci-page .pika-ci-pipeline-node {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    color: #556e63;
+}
+
+.pika-ci-page .pika-ci-pipeline-node--focus {
+    color: var(--ci-petrol);
+    background: #edf4e2;
+    border: 1px solid #d4e2c2;
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+
+.pika-ci-page .pika-ci-pipeline-arrow {
+    color: #92ab9f;
+    font-size: 14px;
+}
+
+/* 11 What Customer Intelligence Is / Is Not */
+.pika-ci-page .pika-ci-boundary-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin: 32px 0;
+}
+
+.pika-ci-page .pika-ci-boundary-item {
+    background: #ffffff;
+    border: 1px solid var(--ci-border);
+    border-radius: 10px;
+    padding: 24px 28px;
+}
+
+.pika-ci-page .pika-ci-boundary-heading {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ci-ink-heading);
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.pika-ci-page .pika-ci-boundary-desc {
+    font-size: 15px;
+    line-height: 1.75;
+    color: #4b635a;
+    margin-bottom: 0;
+}
+
+.pika-ci-page .pika-ci-large-closing {
+    background: var(--ci-sand-alt);
+    border: 1px solid var(--ci-border);
+    border-radius: 10px;
+    padding: 30px 34px;
+    margin-top: 36px;
+}
+
+.pika-ci-page .pika-ci-large-closing-label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #63853c;
+    margin-bottom: 8px;
+}
+
+.pika-ci-page .pika-ci-large-closing-lead {
+    font-size: clamp(22px, 2.8vw, 32px);
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.8px;
+    color: var(--ci-petrol);
+    margin-bottom: 0;
+}
+
+/* 12 FAQ (Accessible Details Stack) */
+.pika-ci-page .pika-ci-faq-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.pika-ci-page .pika-ci-faq-item {
+    background: #ffffff;
+    border: 1px solid var(--ci-border);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+}
+
+.pika-ci-page .pika-ci-faq-item[open] {
+    border-color: #bcd1a5;
+}
+
+.pika-ci-page .pika-ci-faq-question {
+    padding: 20px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ci-ink-heading);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    user-select: none;
+    min-height: 48px;
+}
+
+.pika-ci-page .pika-ci-faq-question::-webkit-details-marker {
+    display: none;
+}
+
+.pika-ci-page .pika-ci-faq-question i {
+    font-size: 20px;
+    color: #6b8656;
+    transition: transform 0.25s ease;
+}
+
+.pika-ci-page .pika-ci-faq-item[open] .pika-ci-faq-question i {
+    transform: rotate(180deg);
+}
+
+.pika-ci-page .pika-ci-faq-answer {
+    padding: 0 24px 22px;
+    font-size: 15px;
+    line-height: 1.8;
+    color: #486158;
+}
+
+/* 13 Final CTA Section */
+.pika-ci-page .pika-ci-cta {
+    background: radial-gradient(ellipse at 80% 40%, rgba(132, 194, 37, 0.16), transparent 60%),
+                linear-gradient(175deg, var(--ci-petrol-dark) 0%, var(--ci-petrol) 100%);
+    color: #ffffff;
+    padding: clamp(70px, 9vw, 110px) 0;
+    text-align: center;
+}
+
+.pika-ci-page .pika-ci-cta-title {
+    font-size: clamp(30px, 3.8vw, 48px);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -1.5px;
+    color: #f7faf2;
+    margin-top: 0;
+    margin-bottom: 24px;
+}
+
+.pika-ci-page .pika-ci-cta-body {
+    font-size: 17px;
+    line-height: 1.75;
+    color: #c7d8ce;
+    margin-bottom: 20px;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.pika-ci-page .pika-ci-cta-commercial {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ci-lime-bright);
+    margin-bottom: 34px;
+    letter-spacing: 0.3px;
+}
+
+.pika-ci-page .pika-ci-cta-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+
+/* Focus Visibility */
+.pika-ci-page a:focus-visible,
+.pika-ci-page button:focus-visible,
+.pika-ci-page summary:focus-visible {
+    outline: 3px solid var(--ci-lime);
+    outline-offset: 4px;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 991px) {
+    .pika-ci-page .pika-ci-hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .pika-ci-page .pika-ci-hero-diagram-wrap {
+        max-width: 500px;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .pika-ci-page .pika-ci-split-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+    }
+
+    .pika-ci-page .pika-ci-editorial-item {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+}
+
+@media (max-width: 768px) {
+    .pika-ci-page .pika-ci-section {
+        padding: 55px 0;
+    }
+
+    .pika-ci-page .pika-ci-hero {
+        padding: 30px 0 65px;
+    }
+
+    .pika-ci-page .pika-ci-direct-answer-card {
+        padding: 24px;
+    }
+
+    .pika-ci-page .pika-ci-large-question {
+        padding: 18px 20px;
+    }
+
+    .pika-ci-page .pika-ci-signal-path {
+        justify-content: center;
+    }
+
+    .pika-ci-page .pika-ci-pipeline-flow {
+        justify-content: center;
+    }
+
+    .pika-ci-page .pika-ci-formula-statement {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .pika-ci-page .pika-ci-dest-item {
+        padding: 20px;
+    }
+
+    .pika-ci-page .pika-ci-boundary-item {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .pika-ci-page .pika-ci-hero-actions,
+    .pika-ci-page .pika-ci-cta-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .pika-ci-page .pika-ci-btn-primary,
+    .pika-ci-page .pika-ci-btn-outline,
+    .pika-ci-page .pika-ci-btn-secondary {
+        width: 100%;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    .pika-ci-page * {
+        animation: none !important;
+        transition: none !important;
+    }
+}

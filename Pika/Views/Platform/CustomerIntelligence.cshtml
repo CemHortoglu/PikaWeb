@@ -1,257 +1,1313 @@
 @{
     var culture = ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr";
     var tr = culture.Equals("tr", StringComparison.OrdinalIgnoreCase);
-    var wikiBase = "/wiki/";
-    ViewData["Title"] = tr ? "Customer Intelligence | Müşteri Zekâsı" : "Customer Intelligence | Customer Analytics & Intelligence";
-    ViewData["MetaDescription"] = tr ? "Pika Customer Intelligence, müşteri davranışı ve transaction verisinden anlam çıkararak segmentasyon, değer analizi ve fırsat tespitine zemin hazırlar." : "Pika Customer Intelligence extracts deep insights from customer behavior and transaction data to power segmentation, value analysis, and opportunity discovery.";
     ViewData["BodyClass"] = "pika-platform-page";
 }
 
-@await Html.PartialAsync("_MarketingHero")
+@section Styles {
+    <link rel="stylesheet" href="~/css/pika-customer-intelligence.css" asp-append-version="true" />
+}
 
-@* ── PROBLEM & YAKLAŞIM ─────────────────────────────────────── *@
-<section class="ph-section ph-section-alt">
-    <div class="container">
-        <div class="row g-5 align-items-center">
-            <div class="col-lg-5" data-aos="fade-right">
-                <span class="ph-eyebrow">Problem</span>
-                <h2 class="pika-h2 fw-bold">@(tr ? "Veri var, ama anlam yok" : "Data exists, but context is missing")</h2>
-                <p class="ph-muted">
-                    @(tr ? "Müşteri kaydı tabloda bulunur; satış geçmişi sistemde vardır. Ancak \"bu müşteri şu anda nasıl bir durumda?\" sorusunun cevabı dağınık ekranlar arasında kaybolur." : "Customer records sit in database tables; transaction histories live in ERPs. But answering \"what is this customer's current state and momentum?\" gets lost across fragmented dashboards.")
+<div class="pika-ci-page">
+    <a href="#inner-content" class="pika-ci-skip-anchor visually-hidden-focusable">@(tr ? "İçeriğe atla" : "Skip to content")</a>
+
+    @* ── 01 HERO ────────────────────────────────────────────────── *@
+    <section class="pika-ci-hero">
+        <div class="pika-ci-container">
+            <nav class="pika-ci-breadcrumb" aria-label="@(tr ? "Navigasyon" : "Breadcrumb")">
+                <a href="@(tr ? "/" : "/en/")">@(tr ? "Ana Sayfa" : "Home")</a>
+                <span class="pika-ci-breadcrumb-sep" aria-hidden="true">/</span>
+                <a href="@(tr ? "/pika" : "/en/pika")">@(tr ? "Pika Nedir?" : "What Is Pika?")</a>
+                <span class="pika-ci-breadcrumb-sep" aria-hidden="true">/</span>
+                <span class="pika-ci-breadcrumb-current">@(tr ? "Müşteri Zekâsı" : "Customer Intelligence")</span>
+            </nav>
+
+            <div class="pika-ci-hero-grid">
+                <div class="pika-ci-hero-content">
+                    <div class="pika-ci-eyebrow-row">
+                        <span class="pika-ci-eyebrow">CUSTOMER INTELLIGENCE</span>
+                        <span class="pika-ci-entity-label">@(tr ? "Müşteri Zekâsı" : "Customer Intelligence")</span>
+                    </div>
+
+                    @if (tr)
+                    {
+                        <h1 class="pika-ci-hero-title">
+                            Müşterinizin kim olduğunu değil,<br />
+                            nasıl değiştiğini anlayın.
+                        </h1>
+                        <p class="pika-ci-hero-lead">
+                            Pika Customer Intelligence, müşterinin işlem geçmişini tek tek kayıtlar olarak bırakmaz. Satın alma sıklığını, alışveriş ritmini, hesaplanan müşteri değerini ve davranış değişimlerini birlikte değerlendirerek müşterinin bugünkü ticari bağlamını görünür hale getirir.
+                        </p>
+                        <p class="pika-ci-hero-supporting">
+                            Çünkü doğru karar, yalnızca müşterinin geçmişte ne yaptığını değil, davranışının bugün nereye doğru değiştiğini anlamakla başlar.
+                        </p>
+                        <div class="pika-ci-hero-actions">
+                            <button type="button" class="pika-ci-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal">
+                                <span>Demo Talep Et</span>
+                                <i class="ri-arrow-right-up-line" aria-hidden="true"></i>
+                            </button>
+                            <a href="/platform/pika-360" class="pika-ci-btn-secondary">
+                                <span>Pika 360'ı Keşfedin</span>
+                                <i class="ri-arrow-right-line" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    }
+                    else
+                    {
+                        <h1 class="pika-ci-hero-title">
+                            Understand not only who<br />
+                            your customer is, but how they are changing.
+                        </h1>
+                        <p class="pika-ci-hero-lead">
+                            Pika Customer Intelligence does not leave customer transaction history as a collection of isolated records. It evaluates purchase frequency, purchase rhythm, calculated customer value and behavioral change together to make the customer's current commercial context visible.
+                        </p>
+                        <p class="pika-ci-hero-supporting">
+                            Because a better decision begins not only with knowing what the customer did before, but with understanding how their behavior is changing now.
+                        </p>
+                        <div class="pika-ci-hero-actions">
+                            <button type="button" class="pika-ci-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal">
+                                <span>Request a Demo</span>
+                                <i class="ri-arrow-right-up-line" aria-hidden="true"></i>
+                            </button>
+                            <a href="/en/platform/pika-360" class="pika-ci-btn-secondary">
+                                <span>Explore Pika 360</span>
+                                <i class="ri-arrow-right-line" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    }
+                </div>
+
+                <div class="pika-ci-hero-diagram-wrap" aria-hidden="true">
+                    <div class="pika-ci-concept-spine">
+                        <div class="pika-ci-spine-node pika-ci-spine-node--start">
+                            <span class="pika-ci-spine-tag">01</span>
+                            <strong>CUSTOMER</strong>
+                        </div>
+                        <div class="pika-ci-spine-connector">
+                            <i class="ri-arrow-down-line"></i>
+                        </div>
+                        <div class="pika-ci-spine-node">
+                            <span class="pika-ci-spine-tag">02</span>
+                            <strong>TRANSACTIONS OVER TIME</strong>
+                        </div>
+                        <div class="pika-ci-spine-connector">
+                            <i class="ri-arrow-down-line"></i>
+                        </div>
+                        <div class="pika-ci-spine-node">
+                            <span class="pika-ci-spine-tag">03</span>
+                            <strong>BEHAVIORAL CONTEXT</strong>
+                        </div>
+                        <div class="pika-ci-spine-connector">
+                            <i class="ri-arrow-down-line"></i>
+                        </div>
+                        <div class="pika-ci-spine-node">
+                            <span class="pika-ci-spine-tag">04</span>
+                            <strong>VALUE / RHYTHM / CHANGE</strong>
+                        </div>
+                        <div class="pika-ci-spine-connector">
+                            <i class="ri-arrow-down-line"></i>
+                        </div>
+                        <div class="pika-ci-spine-node pika-ci-spine-node--accent">
+                            <span class="pika-ci-spine-tag">05</span>
+                            <strong>OPPORTUNITY SIGNAL</strong>
+                        </div>
+                        <div class="pika-ci-diagram-caption">
+                            @(tr ? "Örnek görünüm · Müşteri verisinden ticari sinyale akış" : "Illustration · Flow from customer data to commercial signal")
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @* ── 02 DIRECT ANSWER ───────────────────────────────────────── *@
+    <section class="pika-ci-section pika-ci-section--light" id="inner-content">
+        <div class="pika-ci-container">
+            <div class="pika-ci-direct-answer-card">
+                <span class="pika-ci-section-eyebrow">@(tr ? "KISA CEVAP" : "THE SHORT ANSWER")</span>
+                <h2 class="pika-ci-section-title">@(tr ? "Customer Intelligence nedir?" : "What is Customer Intelligence?")</h2>
+
+                @if (tr)
+                {
+                    <p class="pika-ci-body-text">
+                        Customer Intelligence, müşteri işlemlerini ve davranışsal veriyi analiz ederek müşterinin değerini, satın alma sıklığını, alışveriş ritmini ve davranış değişimlerini anlamlandıran analitik katmandır.
+                    </p>
+                    <p class="pika-ci-body-text">
+                        Pika'da Customer Intelligence; müşteri kaydının kendisi değildir. Müşterinin zaman içindeki ticari davranışını hesaplanabilir bağlama dönüştürür. Bu bağlam Pika 360'ı, Günün Fırsatları'nı ve hedef kitle kararlarını besler.
+                    </p>
+                    <p class="pika-ci-body-text">
+                        Bu nedenle Customer Intelligence'ın görevi mesaj göndermek değildir. Gönderimden önce cevaplanması gereken daha temel bir soruya odaklanır:
+                    </p>
+                    <div class="pika-ci-large-question">
+                        Bu müşteri şu anda<br />
+                        nasıl bir ticari durumda?
+                    </div>
+                }
+                else
+                {
+                    <p class="pika-ci-body-text">
+                        Customer Intelligence is the analytical layer that interprets customer transactions and behavioral data to understand customer value, purchase frequency, purchase rhythm and behavioral change.
+                    </p>
+                    <p class="pika-ci-body-text">
+                        In Pika, Customer Intelligence is not the customer record itself. It turns the customer's commercial behavior over time into calculated context. That context feeds Pika 360, Daily Opportunities and audience decisions.
+                    </p>
+                    <p class="pika-ci-body-text">
+                        That means Customer Intelligence is not responsible for sending messages. It focuses on a more fundamental question that should be answered before execution:
+                    </p>
+                    <div class="pika-ci-large-question">
+                        What is this customer's<br />
+                        commercial state right now?
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+
+    @* ── 03 THE PROBLEM ─────────────────────────────────────────── *@
+    <section class="pika-ci-section">
+        <div class="pika-ci-container pika-ci-container--narrow">
+            <span class="pika-ci-section-eyebrow">@(tr ? "VERİDEN BAĞLAMA" : "FROM DATA TO CONTEXT")</span>
+            @if (tr)
+            {
+                <h2 class="pika-ci-section-title">
+                    Bir müşteri kaydı,<br />
+                    müşteriyi anlamak için yeterli değildir.
+                </h2>
+                <div class="pika-ci-prose">
+                    <p class="pika-ci-body-text">
+                        Ad, e-posta, telefon ve son sipariş tarihi müşteriyi tanımlar; fakat müşterinin davranışını açıklamaz.
+                    </p>
+                    <p class="pika-ci-body-text">
+                        Aynı toplam harcamaya sahip iki müşteriden biri düzenli alışveriş yapıyor olabilirken diğeri tek seferlik yüksek tutarlı bir alışveriş yapmış olabilir.
+                    </p>
+                    <p class="pika-ci-body-text">
+                        Son alışverişi 30 gün önce olan iki müşteri de aynı durumda olmayabilir. Biri normalde haftada bir alışveriş yaparken diğeri üç ayda bir alışveriş yapıyor olabilir.
+                    </p>
+                    <div class="pika-ci-emphasis-statement">
+                        Tek bir değer,<br />
+                        tek bir tarih<br />
+                        ve tek bir segment<br />
+                        müşterinin bütün hikâyesini anlatmaz.
+                    </div>
+                    <p class="pika-ci-body-text">
+                        Customer Intelligence bu nedenle müşteriyi yalnızca statik özellikleriyle değil, zaman içindeki davranış örüntüsüyle değerlendirir.
+                    </p>
+                </div>
+            }
+            else
+            {
+                <h2 class="pika-ci-section-title">
+                    A customer record<br />
+                    is not enough to understand the customer.
+                </h2>
+                <div class="pika-ci-prose">
+                    <p class="pika-ci-body-text">
+                        A name, email address, phone number and last-order date identify a customer, but they do not explain customer behavior.
+                    </p>
+                    <p class="pika-ci-body-text">
+                        Two customers with the same total spend may be fundamentally different: one may purchase consistently, while the other may have made a single high-value purchase.
+                    </p>
+                    <p class="pika-ci-body-text">
+                        Two customers whose last purchase was 30 days ago may not be in the same state either. One may normally purchase every week, while the other purchases once every three months.
+                    </p>
+                    <div class="pika-ci-emphasis-statement">
+                        One value,<br />
+                        one date<br />
+                        and one segment<br />
+                        cannot tell the whole customer story.
+                    </div>
+                    <p class="pika-ci-body-text">
+                        That is why Customer Intelligence evaluates customers not only through static attributes, but through behavioral patterns over time.
+                    </p>
+                </div>
+            }
+        </div>
+    </section>
+
+    @* ── 04 WHAT CUSTOMER INTELLIGENCE UNDERSTANDS ──────────────── *@
+    <section class="pika-ci-section pika-ci-section--alt">
+        <div class="pika-ci-container pika-ci-container--narrow">
+            <span class="pika-ci-section-eyebrow">@(tr ? "MÜŞTERİ BAĞLAMI" : "CUSTOMER CONTEXT")</span>
+            @if (tr)
+            {
+                <h2 class="pika-ci-section-title">
+                    Pika müşteri davranışını<br />
+                    birden fazla sinyali birlikte okuyarak anlamlandırır.
+                </h2>
+                <p class="pika-ci-lead-paragraph">
+                    Customer Intelligence, tek bir metriği kararın kendisi olarak kullanmaz. Müşteri bağlamı farklı davranış sinyallerinin birlikte değerlendirilmesiyle oluşur.
                 </p>
-                <p class="ph-muted">
-                    @(tr ? "Daha çok müşteriye mesaj atmak değil, doğru müşteriyi doğru bağlamla seçmek pazarlama verimliliğinin temelidir." : "Marketing efficiency is not about messaging more customers; it is about selecting the right customer in the exact right context.")
+
+                <div class="pika-ci-editorial-list">
+                    <div class="pika-ci-editorial-item">
+                        <div class="pika-ci-editorial-meta">
+                            <span class="pika-ci-editorial-num">01</span>
+                            <h3 class="pika-ci-editorial-heading">Güncellik</h3>
+                        </div>
+                        <p class="pika-ci-editorial-desc">
+                            Müşterinin en son ne zaman alışveriş yaptığını ve son etkileşimin geçmiş davranış içindeki yerini değerlendirir.
+                        </p>
+                    </div>
+
+                    <div class="pika-ci-editorial-item">
+                        <div class="pika-ci-editorial-meta">
+                            <span class="pika-ci-editorial-num">02</span>
+                            <h3 class="pika-ci-editorial-heading">Sıklık</h3>
+                        </div>
+                        <p class="pika-ci-editorial-desc">
+                            Müşterinin belirli dönemlerde ne kadar düzenli veya seyrek alışveriş yaptığını anlamaya yardımcı olur.
+                        </p>
+                    </div>
+
+                    <div class="pika-ci-editorial-item">
+                        <div class="pika-ci-editorial-meta">
+                            <span class="pika-ci-editorial-num">03</span>
+                            <h3 class="pika-ci-editorial-heading">Parasal katkı</h3>
+                        </div>
+                        <p class="pika-ci-editorial-desc">
+                            Müşterinin işlem geçmişindeki ticari katkısını yalnızca tek bir sipariş üzerinden değil, zaman içindeki davranışıyla birlikte ele alır.
+                        </p>
+                    </div>
+
+                    <div class="pika-ci-editorial-item">
+                        <div class="pika-ci-editorial-meta">
+                            <span class="pika-ci-editorial-num">04</span>
+                            <h3 class="pika-ci-editorial-heading">Satın alma ritmi</h3>
+                        </div>
+                        <p class="pika-ci-editorial-desc">
+                            Müşterinin alışverişleri arasındaki süreleri değerlendirerek kişisel satın alma düzeninin oluşup oluşmadığını görünür hale getirir.
+                        </p>
+                    </div>
+
+                    <div class="pika-ci-editorial-item">
+                        <div class="pika-ci-editorial-meta">
+                            <span class="pika-ci-editorial-num">05</span>
+                            <h3 class="pika-ci-editorial-heading">Davranış değişimi</h3>
+                        </div>
+                        <p class="pika-ci-editorial-desc">
+                            Müşterinin kendi geçmiş ritmine göre hızlanma, yavaşlama veya pasifleşme sinyali gösterip göstermediğini anlamaya yardımcı olur.
+                        </p>
+                    </div>
+
+                    <div class="pika-ci-editorial-item">
+                        <div class="pika-ci-editorial-meta">
+                            <span class="pika-ci-editorial-num">06</span>
+                            <h3 class="pika-ci-editorial-heading">Müşteri değeri</h3>
+                        </div>
+                        <p class="pika-ci-editorial-desc">
+                            Müşterinin göreli ticari değerini davranış ve işlem geçmişinden hesaplanan göstergelerle değerlendirmek için ortak bir bağlam üretir.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="pika-ci-closing-box">
+                    <p class="pika-ci-body-text mb-0">
+                        Bu sinyaller tek başına bir kampanya kararı değildir. Birlikte, sonraki karar katmanlarının kullanabileceği müşteri bağlamını oluştururlar.
+                    </p>
+                </div>
+            }
+            else
+            {
+                <h2 class="pika-ci-section-title">
+                    Pika interprets customer behavior<br />
+                    by reading multiple signals together.
+                </h2>
+                <p class="pika-ci-lead-paragraph">
+                    Customer Intelligence does not treat a single metric as the decision itself. Customer context emerges from evaluating different behavioral signals together.
                 </p>
-            </div>
-            <div class="col-lg-7" data-aos="fade-left">
-                <span class="ph-eyebrow">@(tr ? "Pika'nın Yaklaşımı" : "Pika's Approach")</span>
-                <h2 class="pika-h2 fw-bold">@(tr ? "Müşteriyi üç katmanda anla" : "Understand customers across three layers")</h2>
-                <div class="row g-3 mt-2">
-                    <div class="col-md-4">
-                        <div class="ph-module-card h-100 p-3">
-                            <div class="ph-module-icon mb-2"><span class="fw-bold" style="font-size:1.1rem">1</span></div>
-                            <div class="fw-bold mb-1" style="font-size:.9rem">@(tr ? "Müşteri Kim?" : "Who is the customer?")</div>
-                            <p class="small ph-muted mb-0">@(tr ? "Temel kayıt, iletişim bilgisi ve müşteri kanıtı" : "Core record, contact details, and evidence profile")</p>
+
+                <div class="pika-ci-editorial-list">
+                    <div class="pika-ci-editorial-item">
+                        <div class="pika-ci-editorial-meta">
+                            <span class="pika-ci-editorial-num">01</span>
+                            <h3 class="pika-ci-editorial-heading">Recency</h3>
+                        </div>
+                        <p class="pika-ci-editorial-desc">
+                            Evaluates when the customer last purchased and how that recent activity fits within their historical behavior.
+                        </p>
+                    </div>
+
+                    <div class="pika-ci-editorial-item">
+                        <div class="pika-ci-editorial-meta">
+                            <span class="pika-ci-editorial-num">02</span>
+                            <h3 class="pika-ci-editorial-heading">Frequency</h3>
+                        </div>
+                        <p class="pika-ci-editorial-desc">
+                            Helps reveal how consistently or infrequently the customer purchases across different periods.
+                        </p>
+                    </div>
+
+                    <div class="pika-ci-editorial-item">
+                        <div class="pika-ci-editorial-meta">
+                            <span class="pika-ci-editorial-num">03</span>
+                            <h3 class="pika-ci-editorial-heading">Monetary contribution</h3>
+                        </div>
+                        <p class="pika-ci-editorial-desc">
+                            Evaluates the customer's commercial contribution through transaction history rather than through one isolated order.
+                        </p>
+                    </div>
+
+                    <div class="pika-ci-editorial-item">
+                        <div class="pika-ci-editorial-meta">
+                            <span class="pika-ci-editorial-num">04</span>
+                            <h3 class="pika-ci-editorial-heading">Purchase rhythm</h3>
+                        </div>
+                        <p class="pika-ci-editorial-desc">
+                            Evaluates the intervals between purchases to make an individual purchasing pattern visible when one exists.
+                        </p>
+                    </div>
+
+                    <div class="pika-ci-editorial-item">
+                        <div class="pika-ci-editorial-meta">
+                            <span class="pika-ci-editorial-num">05</span>
+                            <h3 class="pika-ci-editorial-heading">Behavioral change</h3>
+                        </div>
+                        <p class="pika-ci-editorial-desc">
+                            Helps identify whether the customer is accelerating, slowing down or showing inactivity relative to their own historical rhythm.
+                        </p>
+                    </div>
+
+                    <div class="pika-ci-editorial-item">
+                        <div class="pika-ci-editorial-meta">
+                            <span class="pika-ci-editorial-num">06</span>
+                            <h3 class="pika-ci-editorial-heading">Customer value</h3>
+                        </div>
+                        <p class="pika-ci-editorial-desc">
+                            Creates a common context for evaluating relative commercial value through indicators calculated from behavioral and transaction history.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="pika-ci-closing-box">
+                    <p class="pika-ci-body-text mb-0">
+                        None of these signals is a campaign decision by itself. Together, they create customer context that downstream decision layers can use.
+                    </p>
+                </div>
+            }
+        </div>
+    </section>
+
+    @* ── 05 PURCHASE RHYTHM ─────────────────────────────────────── *@
+    <section class="pika-ci-section">
+        <div class="pika-ci-container">
+            <div class="pika-ci-split-grid">
+                <div>
+                    <span class="pika-ci-section-eyebrow">@(tr ? "SATIN ALMA RİTMİ" : "PURCHASE RHYTHM")</span>
+                    @if (tr)
+                    {
+                        <h2 class="pika-ci-section-title">
+                            Her müşteri aynı takvimle yaşamaz.
+                        </h2>
+                        <p class="pika-ci-body-text">
+                            Sabit bir “30 gündür alışveriş yapmadı” kuralı her müşteriyi aynı davranış modeline zorlar.
+                        </p>
+                        <p class="pika-ci-body-text">
+                            Oysa müşterilerin alışveriş ritimleri farklıdır. Bazı müşteriler sık, bazıları seyrek; bazıları ise belirli ürün veya ihtiyaçlarda düzenli tekrar davranışı gösterebilir.
+                        </p>
+                        <p class="pika-ci-body-text">
+                            Pika Customer Intelligence, müşterinin işlem geçmişindeki satın alma aralıklarını değerlendirerek kişisel ritmin görünür hale gelmesine yardımcı olur.
+                        </p>
+                    }
+                    else
+                    {
+                        <h2 class="pika-ci-section-title">
+                            Not every customer<br />
+                            lives on the same calendar.
+                        </h2>
+                        <p class="pika-ci-body-text">
+                            A fixed rule such as “no purchase for 30 days” forces every customer into the same behavioral model.
+                        </p>
+                        <p class="pika-ci-body-text">
+                            In reality, purchase rhythms differ. Some customers buy frequently, some infrequently, while others may show recurring behavior around specific products or needs.
+                        </p>
+                        <p class="pika-ci-body-text">
+                            Pika Customer Intelligence evaluates the intervals within transaction history to help make an individual purchasing rhythm visible.
+                        </p>
+                    }
+                </div>
+
+                <div>
+                    <div class="pika-ci-rhythm-visual" aria-hidden="true">
+                        <div class="pika-ci-timeline-stream">
+                            <div class="pika-ci-timeline-event">
+                                <span class="pika-ci-timeline-dot"></span>
+                                <span class="pika-ci-timeline-lbl">T1</span>
+                            </div>
+                            <div class="pika-ci-timeline-line"></div>
+                            <div class="pika-ci-timeline-event">
+                                <span class="pika-ci-timeline-dot"></span>
+                                <span class="pika-ci-timeline-lbl">T2</span>
+                            </div>
+                            <div class="pika-ci-timeline-line"></div>
+                            <div class="pika-ci-timeline-event">
+                                <span class="pika-ci-timeline-dot"></span>
+                                <span class="pika-ci-timeline-lbl">T3</span>
+                            </div>
+                            <div class="pika-ci-timeline-line pika-ci-timeline-line--current"></div>
+                            <div class="pika-ci-timeline-event pika-ci-timeline-event--now">
+                                <span class="pika-ci-timeline-pulse"></span>
+                                <span class="pika-ci-timeline-lbl">NOW</span>
+                            </div>
+                        </div>
+                        <div class="pika-ci-timeline-caption">
+                            @(tr ? "Müşterinin geçmiş işlem aralıkları &rarr; Kişisel ritim bağlamı" : "Historical transaction intervals &rarr; Individual rhythm context")
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="ph-module-card h-100 p-3">
-                            <div class="ph-module-icon mb-2"><span class="fw-bold" style="font-size:1.1rem">2</span></div>
-                            <div class="fw-bold mb-1" style="font-size:.9rem">@(tr ? "Hangi Kümeye Ait?" : "Which cohort?")</div>
-                            <p class="small ph-muted mb-0">@(tr ? "Segment, müşteri grubu ve davranış sınıflandırması" : "Segment, customer group, and behavioral cluster")</p>
+
+                    @if (tr)
+                    {
+                        <div class="pika-ci-rhythm-emphasis">
+                            <p class="mb-2">Önemli olan yalnızca<br />“kaç gün geçti?”<br />değildir.</p>
+                            <p class="mb-1 text-muted">Önemli olan:</p>
+                            <p class="pika-ci-rhythm-lead mb-0">“Bu müşterinin kendi normaline göre<br />ne değişti?”</p>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="ph-module-card h-100 p-3">
-                            <div class="ph-module-icon mb-2"><span class="fw-bold" style="font-size:1.1rem">3</span></div>
-                            <div class="fw-bold mb-1" style="font-size:.9rem">@(tr ? "Nasıl Ulaşılır?" : "How to reach?")</div>
-                            <p class="small ph-muted mb-0">@(tr ? "Kanal uygunluğu, izin durumu ve tercih bilgisi" : "Channel reachability, consent status, and preferences")</p>
+                        <p class="pika-ci-body-text mt-3">
+                            Bu bağlam, tekrar satın alma ve pasifleşme gibi fırsatların daha sonra Günün Fırsatları katmanında değerlendirilmesine zemin hazırlar.
+                        </p>
+                        <div class="mt-3">
+                            <a href="/platform/gunun-firsatlari" class="pika-ci-text-link">
+                                Günün Fırsatlarını Keşfedin &rarr;
+                            </a>
                         </div>
-                    </div>
+                    }
+                    else
+                    {
+                        <div class="pika-ci-rhythm-emphasis">
+                            <p class="mb-2">The important question is not only:</p>
+                            <p class="mb-2">“How many days have passed?”</p>
+                            <p class="mb-1 text-muted">It is:</p>
+                            <p class="pika-ci-rhythm-lead mb-0">“What changed relative to<br />this customer's own normal behavior?”</p>
+                        </div>
+                        <p class="pika-ci-body-text mt-3">
+                            This context provides a foundation for repeat-purchase and inactivity opportunities that can later be evaluated by the Daily Opportunities layer.
+                        </p>
+                        <div class="mt-3">
+                            <a href="/en/platform/opportunities" class="pika-ci-text-link">
+                                Explore Daily Opportunities &rarr;
+                            </a>
+                        </div>
+                    }
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-@* ── TEMEL YETENEKLER ──────────────────────────────────────── *@
-<section class="ph-section">
-    <div class="container">
-        <div class="text-center mb-5" data-aos="fade-up">
-            <span class="ph-eyebrow">@(tr ? "Yetenekler" : "Capabilities")</span>
-            <h2 class="pika-h2 fw-bold">@(tr ? "Customer Intelligence neler sağlar?" : "What does Customer Intelligence deliver?")</h2>
-            <p class="ph-muted mx-auto" style="max-width:600px">
-                @(tr ? "Müşteri zekâsı katmanı; segmentasyon, değer analizi, risk tespiti ve fırsat üretimine zemin hazırlayan yapıyı kurar." : "The customer intelligence layer establishes the foundation for segmentation, value analysis, risk identification, and opportunity generation.")
-            </p>
+    @* ── 06 CUSTOMER VALUE ──────────────────────────────────────── *@
+    <section class="pika-ci-section pika-ci-section--light">
+        <div class="pika-ci-container pika-ci-container--narrow">
+            <span class="pika-ci-section-eyebrow">@(tr ? "MÜŞTERİ DEĞERİ" : "CUSTOMER VALUE")</span>
+            @if (tr)
+            {
+                <h2 class="pika-ci-section-title">
+                    Değer,<br />
+                    tek bir yüksek sepetten ibaret değildir.
+                </h2>
+                <div class="pika-ci-prose">
+                    <p class="pika-ci-body-text">
+                        Müşteri değerini yalnızca toplam harcamayla değerlendirmek, davranışın önemli bir bölümünü gözden kaçırabilir.
+                    </p>
+                    <p class="pika-ci-body-text">
+                        Düzenli alışveriş yapan, zaman içinde devamlılık gösteren bir müşteri ile tek seferlik yüksek tutarlı alışveriş yapan bir müşteri aynı ticari bağlama sahip değildir.
+                    </p>
+                    <p class="pika-ci-body-text">
+                        Pika, işlem geçmişinden hesaplanan müşteri değer göstergelerini satın alma sıklığı ve davranış bağlamıyla birlikte ele alır.
+                    </p>
+                    <p class="pika-ci-body-text">
+                        Bu hesaplanan bağlam, hangi müşterilerin daha yakından izlenmesi gerektiğini veya hangi müşteri gruplarının farklı pazarlama yaklaşımı gerektirdiğini değerlendirmeye yardımcı olur.
+                    </p>
+                    <div class="pika-ci-closing-manifesto">
+                        Müşteri değeri bir etiket değil,<br />
+                        karar vermek için kullanılan bağlamdır.
+                    </div>
+                </div>
+            }
+            else
+            {
+                <h2 class="pika-ci-section-title">
+                    Value is more than<br />
+                    one large basket.
+                </h2>
+                <div class="pika-ci-prose">
+                    <p class="pika-ci-body-text">
+                        Evaluating customer value only through total spend can hide important parts of customer behavior.
+                    </p>
+                    <p class="pika-ci-body-text">
+                        A customer who purchases consistently over time and a customer who made one high-value purchase do not represent the same commercial context.
+                    </p>
+                    <p class="pika-ci-body-text">
+                        Pika evaluates calculated customer-value indicators together with purchase frequency and behavioral context.
+                    </p>
+                    <p class="pika-ci-body-text">
+                        This calculated context helps teams evaluate which customers may require closer attention or which customer groups may call for a different marketing approach.
+                    </p>
+                    <div class="pika-ci-closing-manifesto">
+                        Customer value is not merely a label.<br />
+                        It is context for decision making.
+                    </div>
+                </div>
+            }
         </div>
-        <div class="row g-4" data-aos="fade-up" data-aos-delay="100">
-            <div class="col-lg-4 col-md-6">
-                <div class="ph-module-card h-100">
-                    <div class="ph-module-icon"><i class="ri-group-line"></i></div>
-                    <h3 class="fw-bold mb-2" style="font-size:1rem">@(tr ? "Kişi Listesi & Segmentler" : "Contact List & Segments")</h3>
-                    <p class="small ph-muted mb-0">
-                        @(tr ? "Müşteri kaydı, segment üyeliği ve iletişim kanalı uygunluğunu birleştirir. Kampanya hedef kitlesi bu zeminden oluşturulur." : "Combines customer records, segment memberships, and channel availability to build reliable campaign audiences.")
-                    </p>
-                    <div class="mt-3">
-                        <a href="@(wikiBase)kisi-listesi-ve-segmentler" class="small" style="color:var(--pika-primary)">
-                            @(tr ? "Wiki'de oku" : "Read in Wiki") <i class="ri-arrow-right-line"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="ph-module-card h-100">
-                    <div class="ph-module-icon"><i class="ri-dashboard-line"></i></div>
-                    <h3 class="fw-bold mb-2" style="font-size:1rem">BI Kokpit</h3>
-                    <p class="small ph-muted mb-0">
-                        @(tr ? "Satış kanalı performansı, tekrar satın alma analizi ve müşteri segment dağılımını tek görünümde sunan analitik paneli." : "Analytics cockpit providing channel performance, repeat purchase intervals, and cohort distributions in one view.")
-                    </p>
-                    <div class="mt-3">
-                        <a href="@(wikiBase)bi-kokpit" class="small" style="color:var(--pika-primary)">
-                            @(tr ? "Wiki'de oku" : "Read in Wiki") <i class="ri-arrow-right-line"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="ph-module-card h-100">
-                    <div class="ph-module-icon"><i class="ri-heart-pulse-line"></i></div>
-                    <h3 class="fw-bold mb-2" style="font-size:1rem">@(tr ? "Müşteri Değeri & Sadakat" : "Customer Value & Loyalty")</h3>
-                    <p class="small ph-muted mb-0">
-                        @(tr ? "Müşterinin göreli önemi, ticari katkısı, sadakat pozisyonu ve hedefe yakınlığını analiz eden değer modeli." : "Value scoring model analyzing relative contribution, loyalty stance, and proximity to higher tiers.")
-                    </p>
-                    <div class="mt-3">
-                        <a href="@(wikiBase)musteri-degeri-sadakat" class="small" style="color:var(--pika-primary)">
-                            @(tr ? "Wiki'de oku" : "Read in Wiki") <i class="ri-arrow-right-line"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="ph-module-card h-100">
-                    <div class="ph-module-icon"><i class="ri-alert-line"></i></div>
-                    <h3 class="fw-bold mb-2" style="font-size:1rem">@(tr ? "Müşteri Değer Skoru" : "Customer Value & Risk Score")</h3>
-                    <p class="small ph-muted mb-0">
-                        @(tr ? "Pasifleşme ve kayıp riskini veriyle görünür kılan skor sistemi. Hisle değil, kanıtla konuşmak için." : "Scoring framework making churn and dormancy risks visible through empirical data rather than gut feel.")
-                    </p>
-                    <div class="mt-3">
-                        <a href="@(wikiBase)musteri-deger-skoru" class="small" style="color:var(--pika-primary)">
-                            @(tr ? "Wiki'de oku" : "Read in Wiki") <i class="ri-arrow-right-line"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="ph-module-card h-100">
-                    <div class="ph-module-icon"><i class="ri-robot-2-line"></i></div>
-                    <h3 class="fw-bold mb-2" style="font-size:1rem">@(tr ? "AI Müşteri Özeti" : "AI Customer Summary")</h3>
-                    <p class="small ph-muted mb-0">
-                        @(tr ? "Tek müşteri için değer, risk, iletişim erişimi ve açık fırsat bilgisini hızla özetleyen AI destekli karar ekranı." : "AI-driven single customer summary highlighting value tier, churn risk, channel access, and open opportunity signals.")
-                    </p>
-                    <div class="mt-3">
-                        <a href="@(wikiBase)ai-musteri-ozeti" class="small" style="color:var(--pika-primary)">
-                            @(tr ? "Wiki'de oku" : "Read in Wiki") <i class="ri-arrow-right-line"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="ph-module-card h-100">
-                    <div class="ph-module-icon"><i class="ri-tools-line"></i></div>
-                    <h3 class="fw-bold mb-2" style="font-size:1rem">@(tr ? "Aksiyon Çalışma Alanı" : "Action Workspace")</h3>
-                    <p class="small ph-muted mb-0">
-                        @(tr ? "Müşteri zekâsından elde edilen bulguları kampanya veya journey aksiyonuna dönüştürmek için çalışma alanı." : "Dedicated workspace to convert intelligence insights into campaign dispatches or automated journey workflows.")
-                    </p>
-                    <div class="mt-3">
-                        <a href="@(wikiBase)aksiyon-calisma-alani" class="small" style="color:var(--pika-primary)">
-                            @(tr ? "Wiki'de oku" : "Read in Wiki") <i class="ri-arrow-right-line"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
 
-@* ── ZİNCİR POZİSYONU ───────────────────────────────────────── *@
-<section class="ph-section ph-section-alt">
-    <div class="container">
-        <div class="text-center mb-5" data-aos="fade-up">
-            <span class="ph-eyebrow">@(tr ? "Platform Bütünü" : "Platform Context")</span>
-            <h2 class="pika-h2 fw-bold">@(tr ? "Customer Intelligence, platformun zekâ zeminidir" : "Customer Intelligence is the intelligence foundation")</h2>
-            <p class="ph-muted mx-auto" style="max-width:580px">
-                @(tr ? "Müşteri zekâsı tek başına bir hedef değil; doğru kararı ve doğru aksiyonu mümkün kılan temel katmandır." : "Customer intelligence is not an isolated endpoint; it is the foundational layer enabling sound decisions and timely actions.")
-            </p>
-        </div>
-        <div class="row g-3 justify-content-center" data-aos="fade-up" data-aos-delay="100">
-            <div class="col-auto">
-                <div class="ph-module-card p-3 text-center" style="min-width:160px;border:2px solid var(--pika-primary)">
-                    <i class="ri-brain-line mb-1" style="font-size:1.3rem;color:var(--pika-primary)"></i>
-                    <div class="fw-bold small">Customer Intelligence</div>
-                    <div style="font-size:.7rem;color:var(--pika-muted)">@(tr ? "Şu an burada" : "Current location")</div>
+    @* ── 07 CHANGE, RISK & OPPORTUNITY ──────────────────────────── *@
+    <section class="pika-ci-section">
+        <div class="pika-ci-container pika-ci-container--narrow">
+            <span class="pika-ci-section-eyebrow">@(tr ? "DEĞİŞİMİ GÖRÜN" : "SEE THE CHANGE")</span>
+            @if (tr)
+            {
+                <h2 class="pika-ci-section-title">
+                    Risk,<br />
+                    müşteri tamamen kaybolduktan sonra başlamaz.
+                </h2>
+                <div class="pika-ci-prose">
+                    <p class="pika-ci-body-text">
+                        Bir müşterinin davranışındaki değişim, müşterinin tamamen pasif hale gelmesinden önce görülebilir.
+                    </p>
+                    <p class="pika-ci-body-text">
+                        Alışveriş sıklığındaki azalma, kişisel satın alma ritmindeki gecikme veya geçmiş davranıştan sapma; değerlendirilmesi gereken bir risk veya fırsat sinyali oluşturabilir.
+                    </p>
+                    <p class="pika-ci-body-text">
+                        Customer Intelligence bu değişimi müşteri bağlamının parçası haline getirir.
+                    </p>
+
+                    <div class="pika-ci-signal-path" aria-hidden="true">
+                        <div class="pika-ci-path-step">NORMAL</div>
+                        <div class="pika-ci-path-arrow">&rarr;</div>
+                        <div class="pika-ci-path-step">CHANGE</div>
+                        <div class="pika-ci-path-arrow">&rarr;</div>
+                        <div class="pika-ci-path-step">SIGNAL</div>
+                        <div class="pika-ci-path-arrow">&rarr;</div>
+                        <div class="pika-ci-path-step pika-ci-path-step--active">DECISION</div>
+                    </div>
+
+                    <div class="pika-ci-boundary-card">
+                        <p>Customer Intelligence,<br />“bu müşteriye hemen kampanya gönder”<br />kararı vermez.</p>
+                        <p class="mb-0">Customer Intelligence,<br />kararın verilebilmesi için gerekli<br />davranış bağlamını üretir.</p>
+                    </div>
+
+                    <p class="pika-ci-body-text mt-4">
+                        Bu bağlam daha sonra Günün Fırsatları, Pika 360 veya Audience Manager gibi karar ve aksiyon katmanlarında kullanılabilir.
+                    </p>
                 </div>
-            </div>
-            <div class="col-auto d-flex align-items-center"><i class="ri-arrow-right-line" style="font-size:1.2rem;color:var(--pika-muted)"></i></div>
-            <div class="col-auto">
-                <a href="@(tr ? "/platform/firsatlar" : "/en/platform/opportunities")" class="text-decoration-none">
-                    <div class="ph-module-card p-3 text-center" style="min-width:160px">
-                        <i class="ri-focus-3-line mb-1" style="font-size:1.3rem;color:var(--pika-primary)"></i>
-                        <div class="fw-bold small">@(tr ? "Günün Fırsatları" : "Opportunities")</div>
-                        <div style="font-size:.7rem;color:var(--pika-muted)">@(tr ? "Fırsata dönüştür" : "Detect opportunities")</div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-auto d-flex align-items-center"><i class="ri-arrow-right-line" style="font-size:1.2rem;color:var(--pika-muted)"></i></div>
-            <div class="col-auto">
-                <a href="@Url.Action("CampaignManager", "Solutions", new { culture })" class="text-decoration-none">
-                    <div class="ph-module-card p-3 text-center" style="min-width:160px">
-                        <i class="ri-megaphone-line mb-1" style="font-size:1.3rem;color:var(--pika-primary)"></i>
-                        <div class="fw-bold small">Campaign Manager</div>
-                        <div style="font-size:.7rem;color:var(--pika-muted)">@(tr ? "Aksiyona geç" : "Execute campaign")</div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-auto d-flex align-items-center"><i class="ri-arrow-right-line" style="font-size:1.2rem;color:var(--pika-muted)"></i></div>
-            <div class="col-auto">
-                <a href="@Url.Action("Reporting", "Solutions", new { culture })" class="text-decoration-none">
-                    <div class="ph-module-card p-3 text-center" style="min-width:160px">
-                        <i class="ri-bar-chart-box-line mb-1" style="font-size:1.3rem;color:var(--pika-primary)"></i>
-                        <div class="fw-bold small">Analytics</div>
-                        <div style="font-size:.7rem;color:var(--pika-muted)">@(tr ? "Ölç & öğren" : "Measure & learn")</div>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
+            }
+            else
+            {
+                <h2 class="pika-ci-section-title">
+                    Risk does not begin<br />
+                    after the customer has already disappeared.
+                </h2>
+                <div class="pika-ci-prose">
+                    <p class="pika-ci-body-text">
+                        A change in customer behavior may become visible before the customer becomes completely inactive.
+                    </p>
+                    <p class="pika-ci-body-text">
+                        Lower purchase frequency, delay relative to an individual purchase rhythm or deviation from historical behavior can create a risk or opportunity signal worth evaluating.
+                    </p>
+                    <p class="pika-ci-body-text">
+                        Customer Intelligence makes that change part of the customer context.
+                    </p>
 
-@* ── İLGİLİ SAYFALAR ────────────────────────────────────────── *@
-<section class="ph-section">
-    <div class="container">
-        <div class="text-center mb-4" data-aos="fade-up">
-            <h2 class="pika-h2 fw-bold">@(tr ? "İlgili Platform Sayfaları" : "Related Platform Pages")</h2>
-        </div>
-        <div class="row g-4" data-aos="fade-up" data-aos-delay="100">
-            <div class="col-lg-4 col-md-6">
-                <a href="@Url.Action("ProductIntelligence", "Platform", new { culture })" class="text-decoration-none">
-                    <div class="ph-module-card h-100 p-4">
-                        <div class="ph-module-icon mb-3"><i class="ri-shopping-bag-line"></i></div>
-                        <div class="fw-bold mb-2">Product Intelligence</div>
-                        <p class="small ph-muted mb-0">@(tr ? "Ürünün müşteri ihtiyacı ve ticari rolüyle anlamlandırıldığı katman" : "The layer giving meaning to products through roles, need groups, and playbooks")</p>
+                    <div class="pika-ci-signal-path" aria-hidden="true">
+                        <div class="pika-ci-path-step">NORMAL</div>
+                        <div class="pika-ci-path-arrow">&rarr;</div>
+                        <div class="pika-ci-path-step">CHANGE</div>
+                        <div class="pika-ci-path-arrow">&rarr;</div>
+                        <div class="pika-ci-path-step">SIGNAL</div>
+                        <div class="pika-ci-path-arrow">&rarr;</div>
+                        <div class="pika-ci-path-step pika-ci-path-step--active">DECISION</div>
                     </div>
-                </a>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <a href="@Url.Action("Pika360", "Platform", new { culture })" class="text-decoration-none">
-                    <div class="ph-module-card h-100 p-4">
-                        <div class="ph-module-icon mb-3"><i class="ri-user-heart-line"></i></div>
-                        <div class="fw-bold mb-2">Pika 360</div>
-                        <p class="small ph-muted mb-0">@(tr ? "Tek müşteriyi değer, risk ve fırsat bağlamıyla gösteren karar özeti" : "Unified single-customer decision view across value, risk, and open opportunities")</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <a href="@(tr ? "/platform/firsatlar" : "/en/platform/opportunities")" class="text-decoration-none">
-                    <div class="ph-module-card h-100 p-4">
-                        <div class="ph-module-icon mb-3"><i class="ri-focus-3-line"></i></div>
-                        <div class="fw-bold mb-2" data-i18n="nav.mega.opportunities">@(tr ? "Günün Fırsatları" : "Daily Opportunities")</div>
-                        <p class="small ph-muted mb-0">@(tr ? "Müşteri ve ürün verisinden çıkarılan öncelikli ticari fırsatlar" : "Prioritized commercial opportunities computed daily from customer and product signals")</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
 
-@* ── CTA ───────────────────────────────────────────────────── *@
-<section class="ph-section ph-section-alt">
-    <div class="container">
-        <div class="text-center" data-aos="fade-up">
-            <h2 class="pika-h2 fw-bold mb-3">@(tr ? "Müşterinizi gerçekten anlamak ister misiniz?" : "Ready to truly understand your customer data?")</h2>
-            <p class="ph-muted mb-4">@(tr ? "Pika'nın Customer Intelligence katmanını canlı görün." : "Experience Pika's Customer Intelligence in a live demo.")</p>
-            <button type="button" class="ph-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal">
-                @(tr ? "Demo Talep Et" : "Request a Demo") <i class="ri-arrow-right-up-line"></i>
-            </button>
+                    <div class="pika-ci-boundary-card">
+                        <p>Customer Intelligence does not decide:</p>
+                        <p>“Send this customer a campaign immediately.”</p>
+                        <p class="mb-0">Customer Intelligence produces<br />the behavioral context required<br />for that decision to be made.</p>
+                    </div>
+
+                    <p class="pika-ci-body-text mt-4">
+                        That context can then be used by decision and action layers such as Daily Opportunities, Pika 360 or Audience Manager.
+                    </p>
+                </div>
+            }
         </div>
-    </div>
-</section>
+    </section>
+
+    @* ── 08 CUSTOMER INTELLIGENCE + PRODUCT INTELLIGENCE ────────── *@
+    <section class="pika-ci-section pika-ci-section--alt">
+        <div class="pika-ci-container pika-ci-container--narrow">
+            <span class="pika-ci-section-eyebrow">@(tr ? "İKİ ZEKÂ KATMANI" : "TWO INTELLIGENCE LAYERS")</span>
+            @if (tr)
+            {
+                <h2 class="pika-ci-section-title">
+                    Müşteriyi anlamak,<br />
+                    fırsatın yalnızca yarısıdır.
+                </h2>
+                <div class="pika-ci-prose">
+                    <p class="pika-ci-body-text">
+                        Customer Intelligence müşterinin davranışını anlamlandırır.
+                    </p>
+                    <p class="pika-ci-body-text">
+                        Product Intelligence ise ürünün neyi temsil ettiğini, hangi ihtiyaca hizmet ettiğini ve diğer ürünlerle nasıl ilişkilendiğini anlamlandırır.
+                    </p>
+                    <p class="pika-ci-body-text">
+                        Bu iki bağlam birbirinin yerine geçmez.
+                    </p>
+                    <p class="pika-ci-body-text mb-1">
+                        Customer Intelligence şu soruya yaklaşır:
+                    </p>
+                    <div class="pika-ci-quote-question">
+                        “Bu müşteride ne değişiyor?”
+                    </div>
+                    <p class="pika-ci-body-text mb-1 mt-3">
+                        Product Intelligence şu soruya yaklaşır:
+                    </p>
+                    <div class="pika-ci-quote-question">
+                        “Bu ürün veya ürün grubu hangi ihtiyacı ve ticari ilişkiyi temsil ediyor?”
+                    </div>
+                    <p class="pika-ci-body-text mt-4">
+                        Pika'nın fırsat katmanı bu iki dünyayı bir araya getirir.
+                    </p>
+
+                    <div class="pika-ci-formula-statement">
+                        <div class="pika-ci-formula-part">Müşteri bağlamı</div>
+                        <div class="pika-ci-formula-op">+</div>
+                        <div class="pika-ci-formula-part">Ürün bağlamı</div>
+                        <div class="pika-ci-formula-op">=</div>
+                        <div class="pika-ci-formula-result">Ticari fırsat bağlamı</div>
+                    </div>
+
+                    <div class="mt-4 text-center">
+                        <a href="/platform/product-intelligence" class="pika-ci-text-link">
+                            Product Intelligence'ı Keşfedin &rarr;
+                        </a>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <h2 class="pika-ci-section-title">
+                    Understanding the customer<br />
+                    is only half of the opportunity.
+                </h2>
+                <div class="pika-ci-prose">
+                    <p class="pika-ci-body-text">
+                        Customer Intelligence interprets customer behavior.
+                    </p>
+                    <p class="pika-ci-body-text">
+                        Product Intelligence interprets what a product represents, which need it serves and how it relates to other products.
+                    </p>
+                    <p class="pika-ci-body-text">
+                        These two contexts do not replace one another.
+                    </p>
+                    <p class="pika-ci-body-text mb-1">
+                        Customer Intelligence approaches the question:
+                    </p>
+                    <div class="pika-ci-quote-question">
+                        “What is changing for this customer?”
+                    </div>
+                    <p class="pika-ci-body-text mb-1 mt-3">
+                        Product Intelligence approaches the question:
+                    </p>
+                    <div class="pika-ci-quote-question">
+                        “What need and commercial relationship does this product or product group represent?”
+                    </div>
+                    <p class="pika-ci-body-text mt-4">
+                        Pika's opportunity layer brings those two worlds together.
+                    </p>
+
+                    <div class="pika-ci-formula-statement">
+                        <div class="pika-ci-formula-part">Customer context</div>
+                        <div class="pika-ci-formula-op">+</div>
+                        <div class="pika-ci-formula-part">Product context</div>
+                        <div class="pika-ci-formula-op">=</div>
+                        <div class="pika-ci-formula-result">Commercial opportunity context</div>
+                    </div>
+
+                    <div class="mt-4 text-center">
+                        <a href="/en/platform/product-intelligence" class="pika-ci-text-link">
+                            Explore Product Intelligence &rarr;
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+
+    @* ── 09 WHERE THE INTELLIGENCE GOES ─────────────────────────── *@
+    <section class="pika-ci-section">
+        <div class="pika-ci-container pika-ci-container--narrow">
+            <span class="pika-ci-section-eyebrow">@(tr ? "MÜŞTERİ ZEKÂSI NEREDE KULLANILIR?" : "WHERE IS CUSTOMER INTELLIGENCE USED?")</span>
+            @if (tr)
+            {
+                <h2 class="pika-ci-section-title">
+                    Customer Intelligence,<br />
+                    kararın kendisi değil;<br />
+                    kararın beslendiği bağlamdır.
+                </h2>
+                <p class="pika-ci-lead-paragraph">
+                    Customer Intelligence tarafından hesaplanan müşteri bağlamı Pika'nın farklı karar katmanlarında farklı amaçlarla kullanılabilir.
+                </p>
+
+                <div class="pika-ci-dest-flow">
+                    <div class="pika-ci-dest-item">
+                        <div class="pika-ci-dest-header">
+                            <span class="pika-ci-dest-badge">01</span>
+                            <h3 class="pika-ci-dest-title">Pika 360</h3>
+                        </div>
+                        <p class="pika-ci-dest-desc">
+                            Müşterinin işlem geçmişi, hesaplanan değer göstergeleri, davranış bağlamı, iletişim erişilebilirliği ve açık fırsatları tek müşteri perspektifinde bir araya gelir.
+                        </p>
+                        <a href="/platform/pika-360" class="pika-ci-text-link">
+                            Pika 360'ı Keşfedin &rarr;
+                        </a>
+                    </div>
+
+                    <div class="pika-ci-dest-item">
+                        <div class="pika-ci-dest-header">
+                            <span class="pika-ci-dest-badge">02</span>
+                            <h3 class="pika-ci-dest-title">Günün Fırsatları</h3>
+                        </div>
+                        <p class="pika-ci-dest-desc">
+                            Müşteri ritmi ve davranış değişimi, Product Intelligence bağlamıyla birleşerek tekrar satın alma, cross-sell veya win-back gibi değerlendirilebilir ticari fırsatların oluşmasına katkı sağlar.
+                        </p>
+                        <a href="/platform/gunun-firsatlari" class="pika-ci-text-link">
+                            Günün Fırsatlarını Keşfedin &rarr;
+                        </a>
+                    </div>
+
+                    <div class="pika-ci-dest-item">
+                        <div class="pika-ci-dest-header">
+                            <span class="pika-ci-dest-badge">03</span>
+                            <h3 class="pika-ci-dest-title">Audience Manager</h3>
+                        </div>
+                        <p class="pika-ci-dest-desc">
+                            Hesaplanan müşteri bağlamı, hedef kitle ve segment kurallarının davranışsal sinyallerle zenginleştirilmesine yardımcı olur.
+                        </p>
+                        <a href="/cozumler/audience-manager" class="pika-ci-text-link">
+                            Audience Manager'ı Keşfedin &rarr;
+                        </a>
+                    </div>
+
+                    <div class="pika-ci-dest-item">
+                        <div class="pika-ci-dest-header">
+                            <span class="pika-ci-dest-badge">04</span>
+                            <h3 class="pika-ci-dest-title">Analytics &amp; Reporting</h3>
+                        </div>
+                        <p class="pika-ci-dest-desc">
+                            Müşteri davranışının zaman içindeki değişimi ve ticari sonuçlarla ilişkisi ölçüm katmanında değerlendirilir.
+                        </p>
+                        <a href="/cozumler/analytics-reporting" class="pika-ci-text-link">
+                            Analytics &amp; Reporting'i Keşfedin &rarr;
+                        </a>
+                    </div>
+                </div>
+
+                <div class="pika-ci-closing-box mt-4">
+                    <p class="pika-ci-body-text mb-0">
+                        Customer Intelligence'ın değeri tek başına daha fazla veri üretmek değil, Pika'nın geri kalanının daha güçlü bir müşteri bağlamıyla karar verebilmesini sağlamaktır.
+                    </p>
+                </div>
+            }
+            else
+            {
+                <h2 class="pika-ci-section-title">
+                    Customer Intelligence<br />
+                    is not the decision itself;<br />
+                    it is context that feeds the decision.
+                </h2>
+                <p class="pika-ci-lead-paragraph">
+                    Customer context calculated by Customer Intelligence can serve different purposes across Pika's decision layers.
+                </p>
+
+                <div class="pika-ci-dest-flow">
+                    <div class="pika-ci-dest-item">
+                        <div class="pika-ci-dest-header">
+                            <span class="pika-ci-dest-badge">01</span>
+                            <h3 class="pika-ci-dest-title">Pika 360</h3>
+                        </div>
+                        <p class="pika-ci-dest-desc">
+                            Transaction history, calculated value indicators, behavioral context, communication reachability and open opportunities come together within a single customer perspective.
+                        </p>
+                        <a href="/en/platform/pika-360" class="pika-ci-text-link">
+                            Explore Pika 360 &rarr;
+                        </a>
+                    </div>
+
+                    <div class="pika-ci-dest-item">
+                        <div class="pika-ci-dest-header">
+                            <span class="pika-ci-dest-badge">02</span>
+                            <h3 class="pika-ci-dest-title">Daily Opportunities</h3>
+                        </div>
+                        <p class="pika-ci-dest-desc">
+                            Customer rhythm and behavioral change combine with Product Intelligence context to contribute to evaluable commercial opportunities such as repeat purchase, cross-sell or win-back.
+                        </p>
+                        <a href="/en/platform/opportunities" class="pika-ci-text-link">
+                            Explore Daily Opportunities &rarr;
+                        </a>
+                    </div>
+
+                    <div class="pika-ci-dest-item">
+                        <div class="pika-ci-dest-header">
+                            <span class="pika-ci-dest-badge">03</span>
+                            <h3 class="pika-ci-dest-title">Audience Manager</h3>
+                        </div>
+                        <p class="pika-ci-dest-desc">
+                            Calculated customer context helps enrich audience and segment rules with behavioral signals.
+                        </p>
+                        <a href="/en/solutions/audience-manager" class="pika-ci-text-link">
+                            Explore Audience Manager &rarr;
+                        </a>
+                    </div>
+
+                    <div class="pika-ci-dest-item">
+                        <div class="pika-ci-dest-header">
+                            <span class="pika-ci-dest-badge">04</span>
+                            <h3 class="pika-ci-dest-title">Analytics &amp; Reporting</h3>
+                        </div>
+                        <p class="pika-ci-dest-desc">
+                            Changes in customer behavior over time and their relationship with commercial outcomes can be evaluated in the measurement layer.
+                        </p>
+                        <a href="/en/solutions/analytics-reporting" class="pika-ci-text-link">
+                            Explore Analytics &amp; Reporting &rarr;
+                        </a>
+                    </div>
+                </div>
+
+                <div class="pika-ci-closing-box mt-4">
+                    <p class="pika-ci-body-text mb-0">
+                        The value of Customer Intelligence is not to create more data. It is to help the rest of Pika make decisions with stronger customer context.
+                    </p>
+                </div>
+            }
+        </div>
+    </section>
+
+    @* ── 10 DETERMINISTIC INTELLIGENCE & AI BOUNDARY ────────────── *@
+    <section class="pika-ci-section pika-ci-section--light">
+        <div class="pika-ci-container pika-ci-container--narrow">
+            <span class="pika-ci-section-eyebrow">@(tr ? "HESAP ÖNCE, AI SONRA" : "CALCULATION FIRST, AI AFTER")</span>
+            @if (tr)
+            {
+                <h2 class="pika-ci-section-title">
+                    Müşteri gerçeğini<br />
+                    yapay zekâ üretmez.
+                </h2>
+                <div class="pika-ci-prose">
+                    <p class="pika-ci-body-text">
+                        Pika'da müşteri değeri, satın alma ritmi ve davranış sinyalleri üretken yapay zekânın tahmini olarak oluşturulmaz.
+                    </p>
+                    <p class="pika-ci-body-text">
+                        Önce transaction ve davranış verisinden hesaplanabilir müşteri bağlamı oluşturulur.
+                    </p>
+                    <p class="pika-ci-body-text">
+                        Yapay zekâ bu bağlamı açıklamak, özetlemek veya kampanya hazırlığında kullanmak için yardımcı olabilir; müşteri gerçeğinin kaynağı değildir.
+                    </p>
+
+                    <div class="pika-ci-pipeline-flow" aria-hidden="true">
+                        <div class="pika-ci-pipeline-node">DETERMINISTIC DATA &amp; CALCULATION</div>
+                        <div class="pika-ci-pipeline-arrow">&rarr;</div>
+                        <div class="pika-ci-pipeline-node">CUSTOMER CONTEXT</div>
+                        <div class="pika-ci-pipeline-arrow">&rarr;</div>
+                        <div class="pika-ci-pipeline-node">AI EXPLANATION</div>
+                        <div class="pika-ci-pipeline-arrow">&rarr;</div>
+                        <div class="pika-ci-pipeline-node pika-ci-pipeline-node--focus">HUMAN CONTROL</div>
+                    </div>
+
+                    <div class="pika-ci-closing-manifesto">
+                        Önce Pika hesaplar.<br />
+                        Sonra AI açıklamaya yardımcı olur.<br />
+                        Karar kullanıcıda kalır.
+                    </div>
+
+                    <div class="mt-4 text-center">
+                        <a href="/urunler/ai-kampanya-asistani" class="pika-ci-text-link">
+                            Pika Pilot'u Keşfedin &rarr;
+                        </a>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <h2 class="pika-ci-section-title">
+                    AI does not create<br />
+                    customer truth.
+                </h2>
+                <div class="pika-ci-prose">
+                    <p class="pika-ci-body-text">
+                        In Pika, customer value, purchase rhythm and behavioral signals are not created as generative-AI guesses.
+                    </p>
+                    <p class="pika-ci-body-text">
+                        Calculable customer context is created first from transaction and behavioral data.
+                    </p>
+                    <p class="pika-ci-body-text">
+                        AI may then help explain or summarize that context or use it during campaign preparation; it is not the source of customer truth.
+                    </p>
+
+                    <div class="pika-ci-pipeline-flow" aria-hidden="true">
+                        <div class="pika-ci-pipeline-node">DETERMINISTIC DATA &amp; CALCULATION</div>
+                        <div class="pika-ci-pipeline-arrow">&rarr;</div>
+                        <div class="pika-ci-pipeline-node">CUSTOMER CONTEXT</div>
+                        <div class="pika-ci-pipeline-arrow">&rarr;</div>
+                        <div class="pika-ci-pipeline-node">AI EXPLANATION</div>
+                        <div class="pika-ci-pipeline-arrow">&rarr;</div>
+                        <div class="pika-ci-pipeline-node pika-ci-pipeline-node--focus">HUMAN CONTROL</div>
+                    </div>
+
+                    <div class="pika-ci-closing-manifesto">
+                        Pika calculates first.<br />
+                        AI can help explain next.<br />
+                        The user remains in control.
+                    </div>
+
+                    <div class="mt-4 text-center">
+                        <a href="/en/products/ai-campaign-assistant" class="pika-ci-text-link">
+                            Explore Pika Pilot &rarr;
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+
+    @* ── 11 WHAT CUSTOMER INTELLIGENCE IS / IS NOT ─────────────── *@
+    <section class="pika-ci-section">
+        <div class="pika-ci-container pika-ci-container--narrow">
+            <span class="pika-ci-section-eyebrow">@(tr ? "DOĞRU SINIRLAR" : "CLEAR BOUNDARIES")</span>
+            @if (tr)
+            {
+                <h2 class="pika-ci-section-title">
+                    Customer Intelligence'ı<br />
+                    doğru yere koyun.
+                </h2>
+
+                <div class="pika-ci-boundary-list">
+                    <div class="pika-ci-boundary-item">
+                        <h3 class="pika-ci-boundary-heading">Customer Intelligence bir CRM değildir.</h3>
+                        <p class="pika-ci-boundary-desc">
+                            CRM sistemleri müşteri kayıtlarını ve operasyonel ilişki süreçlerini yönetebilir. Customer Intelligence'ın görevi ise mevcut müşteri ve işlem verisini davranışsal bağlama dönüştürmektir.
+                        </p>
+                    </div>
+
+                    <div class="pika-ci-boundary-item">
+                        <h3 class="pika-ci-boundary-heading">Customer Intelligence, Pika 360 değildir.</h3>
+                        <p class="pika-ci-boundary-desc">
+                            Customer Intelligence hesaplama ve analiz katmanıdır. Pika 360 ise Customer Intelligence dahil farklı Pika bağlamlarını tek müşteri karar perspektifinde bir araya getirir.
+                        </p>
+                    </div>
+
+                    <div class="pika-ci-boundary-item">
+                        <h3 class="pika-ci-boundary-heading">Customer Intelligence, Audience Manager değildir.</h3>
+                        <p class="pika-ci-boundary-desc">
+                            Customer Intelligence müşteri sinyallerini üretir. Audience Manager bu sinyalleri ve diğer kuralları hedef kitle oluşturmak için kullanabilir.
+                        </p>
+                    </div>
+
+                    <div class="pika-ci-boundary-item">
+                        <h3 class="pika-ci-boundary-heading">Customer Intelligence yalnızca bir dashboard değildir.</h3>
+                        <p class="pika-ci-boundary-desc">
+                            Grafikler ve raporlar bu bağlamı görünür hale getirebilir; ancak Customer Intelligence'ın asıl değeri, davranışsal müşteri bağlamını diğer Pika karar katmanlarının kullanabileceği şekilde üretmektir.
+                        </p>
+                    </div>
+
+                    <div class="pika-ci-boundary-item">
+                        <h3 class="pika-ci-boundary-heading">Customer Intelligence bir AI müşteri profili değildir.</h3>
+                        <p class="pika-ci-boundary-desc">
+                            Müşteri bağlamının temel sinyalleri işlem ve davranış verisinden hesaplanır. AI bu bağlamı açıklamada yardımcı olabilir fakat müşteri gerçeğini üretmez.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="pika-ci-large-closing">
+                    <p class="pika-ci-large-closing-label">Customer Intelligence'ın görevi:</p>
+                    <p class="pika-ci-large-closing-lead">
+                        Müşteriyi bir kayıttan,<br />
+                        karar verilebilir bir bağlama dönüştürmek.
+                    </p>
+                </div>
+            }
+            else
+            {
+                <h2 class="pika-ci-section-title">
+                    Put Customer Intelligence<br />
+                    in the right place.
+                </h2>
+
+                <div class="pika-ci-boundary-list">
+                    <div class="pika-ci-boundary-item">
+                        <h3 class="pika-ci-boundary-heading">Customer Intelligence is not a CRM.</h3>
+                        <p class="pika-ci-boundary-desc">
+                            CRM systems may manage customer records and operational relationship processes. Customer Intelligence turns existing customer and transaction data into behavioral context.
+                        </p>
+                    </div>
+
+                    <div class="pika-ci-boundary-item">
+                        <h3 class="pika-ci-boundary-heading">Customer Intelligence is not Pika 360.</h3>
+                        <p class="pika-ci-boundary-desc">
+                            Customer Intelligence is the analytical and calculation layer. Pika 360 brings different Pika contexts, including Customer Intelligence, together within a single customer decision perspective.
+                        </p>
+                    </div>
+
+                    <div class="pika-ci-boundary-item">
+                        <h3 class="pika-ci-boundary-heading">Customer Intelligence is not Audience Manager.</h3>
+                        <p class="pika-ci-boundary-desc">
+                            Customer Intelligence produces customer signals. Audience Manager can use those signals together with other rules to build audiences.
+                        </p>
+                    </div>
+
+                    <div class="pika-ci-boundary-item">
+                        <h3 class="pika-ci-boundary-heading">Customer Intelligence is not merely a dashboard.</h3>
+                        <p class="pika-ci-boundary-desc">
+                            Charts and reports may make the context visible, but the primary value of Customer Intelligence is producing behavioral customer context that other Pika decision layers can use.
+                        </p>
+                    </div>
+
+                    <div class="pika-ci-boundary-item">
+                        <h3 class="pika-ci-boundary-heading">Customer Intelligence is not an AI-generated customer profile.</h3>
+                        <p class="pika-ci-boundary-desc">
+                            Core customer-context signals are calculated from transaction and behavioral data. AI may help explain that context, but it does not create customer truth.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="pika-ci-large-closing">
+                    <p class="pika-ci-large-closing-label">The role of Customer Intelligence is to:</p>
+                    <p class="pika-ci-large-closing-lead">
+                        Turn a customer from a record<br />
+                        into decision-ready context.
+                    </p>
+                </div>
+            }
+        </div>
+    </section>
+
+    @* ── 12 FAQ ─────────────────────────────────────────────────── *@
+    <section class="pika-ci-section pika-ci-section--alt">
+        <div class="pika-ci-container pika-ci-container--narrow">
+            <span class="pika-ci-section-eyebrow">@(tr ? "SIKÇA SORULAN SORULAR" : "FREQUENTLY ASKED QUESTIONS")</span>
+            <h2 class="pika-ci-section-title">@(tr ? "Merak Edilenler" : "Questions & Answers")</h2>
+
+            <div class="pika-ci-faq-stack">
+                @if (tr)
+                {
+                    <details class="pika-ci-faq-item" open>
+                        <summary class="pika-ci-faq-question">
+                            <span>Customer Intelligence nedir?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="pika-ci-faq-answer">
+                            Customer Intelligence, müşteri işlemlerini ve davranışsal veriyi analiz ederek müşteri değeri, satın alma sıklığı, alışveriş ritmi ve davranış değişimi gibi hesaplanabilir bağlamlar üreten analitik katmandır. Pika'da bu bağlam Pika 360, Günün Fırsatları ve Audience Manager gibi karar katmanlarını besler.
+                        </div>
+                    </details>
+
+                    <details class="pika-ci-faq-item">
+                        <summary class="pika-ci-faq-question">
+                            <span>Pika Customer Intelligence hangi verileri kullanır?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="pika-ci-faq-answer">
+                            Customer Intelligence'ın temel girdisi müşteri ve işlem geçmişidir. Satın alma zamanı, işlem sıklığı ve ticari katkı gibi davranışsal kanıtlar birlikte değerlendirilerek müşterinin zaman içindeki ticari bağlamı oluşturulur.
+                        </div>
+                    </details>
+
+                    <details class="pika-ci-faq-item">
+                        <summary class="pika-ci-faq-question">
+                            <span>Customer Intelligence hangi metrikleri değerlendirir?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="pika-ci-faq-answer">
+                            Pika Customer Intelligence; güncellik, sıklık, parasal katkı, satın alma ritmi, davranış değişimi ve hesaplanan müşteri değer göstergeleri gibi sinyalleri birlikte değerlendirebilir. Bu sinyaller tek başına kampanya kararı değildir; karar katmanlarını besleyen müşteri bağlamıdır.
+                        </div>
+                    </details>
+
+                    <details class="pika-ci-faq-item">
+                        <summary class="pika-ci-faq-question">
+                            <span>Customer Intelligence ile Pika 360 arasındaki fark nedir?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="pika-ci-faq-answer">
+                            Customer Intelligence müşteri davranışını hesaplayan ve anlamlandıran analitik katmandır. Pika 360 ise Customer Intelligence sonuçlarını işlem geçmişi, iletişim erişilebilirliği ve açık fırsatlar gibi diğer bağlamlarla birleştiren tek müşteri karar perspektifidir.
+                        </div>
+                    </details>
+
+                    <details class="pika-ci-faq-item">
+                        <summary class="pika-ci-faq-question">
+                            <span>Customer Intelligence segmentasyon yapar mı?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="pika-ci-faq-answer">
+                            Customer Intelligence müşteri davranışına ilişkin hesaplanmış sinyaller üretir. Audience Manager bu sinyalleri ve diğer müşteri kurallarını kullanarak hedef kitle ve segment oluşturabilir. Bu nedenle Customer Intelligence ile segmentasyon ilişkili ancak farklı katmanlardır.
+                        </div>
+                    </details>
+
+                    <details class="pika-ci-faq-item">
+                        <summary class="pika-ci-faq-question">
+                            <span>Customer Intelligence tekrar satın alma zamanını anlamaya yardımcı olur mu?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="pika-ci-faq-answer">
+                            Evet. Müşterinin geçmiş işlemleri arasındaki aralıklar, kişisel satın alma ritminin oluşup oluşmadığını değerlendirmek için kullanılabilir. Bu ritim bağlamı daha sonra tekrar satın alma fırsatlarının değerlendirilmesinde kullanılabilir.
+                        </div>
+                    </details>
+
+                    <details class="pika-ci-faq-item">
+                        <summary class="pika-ci-faq-question">
+                            <span>Customer Intelligence yapay zekâ ile mi çalışır?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="pika-ci-faq-answer">
+                            Customer Intelligence'ın temel müşteri bağlamı üretken yapay zekâ tarafından uydurulmaz. Müşteri değeri, satın alma ritmi ve davranış sinyalleri veri ve hesaplama katmanından gelir. AI bu hesaplanan bağlamı açıklamak veya özetlemek için yardımcı olabilir.
+                        </div>
+                    </details>
+
+                    <details class="pika-ci-faq-item">
+                        <summary class="pika-ci-faq-question">
+                            <span>Customer Intelligence neden pazarlama için önemlidir?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="pika-ci-faq-answer">
+                            Çünkü pazarlama kararları yalnızca müşteri listesinden veya son sipariş tarihinden verilmemelidir. Müşterinin değerini, normal alışveriş ritmini ve davranışındaki değişimi anlamak; hedef kitle, fırsat ve iletişim kararlarının daha güçlü bir müşteri bağlamıyla alınmasını sağlar.
+                        </div>
+                    </details>
+                }
+                else
+                {
+                    <details class="pika-ci-faq-item" open>
+                        <summary class="pika-ci-faq-question">
+                            <span>What is Customer Intelligence?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="pika-ci-faq-answer">
+                            Customer Intelligence is the analytical layer that evaluates customer transactions and behavioral data to produce calculable context such as customer value, purchase frequency, purchase rhythm and behavioral change. In Pika, that context feeds decision layers such as Pika 360, Daily Opportunities and Audience Manager.
+                        </div>
+                    </details>
+
+                    <details class="pika-ci-faq-item">
+                        <summary class="pika-ci-faq-question">
+                            <span>What data does Pika Customer Intelligence use?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="pika-ci-faq-answer">
+                            The primary inputs to Customer Intelligence are customer and transaction history. Behavioral evidence such as purchase timing, transaction frequency and commercial contribution is evaluated together to create the customer's commercial context over time.
+                        </div>
+                    </details>
+
+                    <details class="pika-ci-faq-item">
+                        <summary class="pika-ci-faq-question">
+                            <span>Which metrics does Customer Intelligence evaluate?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="pika-ci-faq-answer">
+                            Pika Customer Intelligence can evaluate signals such as recency, frequency, monetary contribution, purchase rhythm, behavioral change and calculated customer-value indicators. These signals are not campaign decisions by themselves; they form customer context for downstream decision layers.
+                        </div>
+                    </details>
+
+                    <details class="pika-ci-faq-item">
+                        <summary class="pika-ci-faq-question">
+                            <span>What is the difference between Customer Intelligence and Pika 360?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="pika-ci-faq-answer">
+                            Customer Intelligence is the analytical layer that calculates and interprets customer behavior. Pika 360 is the single-customer decision perspective that combines Customer Intelligence results with additional context such as transaction history, communication reachability and open opportunities.
+                        </div>
+                    </details>
+
+                    <details class="pika-ci-faq-item">
+                        <summary class="pika-ci-faq-question">
+                            <span>Does Customer Intelligence perform segmentation?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="pika-ci-faq-answer">
+                            Customer Intelligence produces calculated signals about customer behavior. Audience Manager can use those signals together with other customer rules to build audiences and segments. Customer Intelligence and segmentation are therefore related but distinct layers.
+                        </div>
+                    </details>
+
+                    <details class="pika-ci-faq-item">
+                        <summary class="pika-ci-faq-question">
+                            <span>Can Customer Intelligence help understand repeat-purchase timing?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="pika-ci-faq-answer">
+                            Yes. Intervals between historical customer transactions can be used to evaluate whether an individual purchase rhythm exists. That rhythm context can later contribute to the evaluation of repeat-purchase opportunities.
+                        </div>
+                    </details>
+
+                    <details class="pika-ci-faq-item">
+                        <summary class="pika-ci-faq-question">
+                            <span>Does Customer Intelligence rely on generative AI?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="pika-ci-faq-answer">
+                            The core customer context in Customer Intelligence is not invented by generative AI. Customer value, purchase rhythm and behavioral signals come from data and calculation layers. AI may help explain or summarize that calculated context.
+                        </div>
+                    </details>
+
+                    <details class="pika-ci-faq-item">
+                        <summary class="pika-ci-faq-question">
+                            <span>Why is Customer Intelligence important for marketing?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="pika-ci-faq-answer">
+                            Because marketing decisions should not be based only on a customer list or a last-order date. Understanding customer value, normal purchase rhythm and behavioral change gives audience, opportunity and communication decisions stronger customer context.
+                        </div>
+                    </details>
+                }
+            </div>
+        </div>
+    </section>
+
+    @* ── 13 FINAL CTA ───────────────────────────────────────────── *@
+    <section class="pika-ci-cta">
+        <div class="pika-ci-container pika-ci-container--narrow">
+            <span class="pika-ci-eyebrow pika-ci-eyebrow--light">@(tr ? "MÜŞTERİYİ BAĞLAMIYLA GÖRÜN" : "SEE THE CUSTOMER IN CONTEXT")</span>
+            @if (tr)
+            {
+                <h2 class="pika-ci-cta-title">
+                    Müşteri listeniz size<br />
+                    kimin kayıtlı olduğunu söyler.<br /><br />
+                    Customer Intelligence,<br />
+                    kimin değiştiğini anlamanıza yardımcı olur.
+                </h2>
+                <p class="pika-ci-cta-body">
+                    Pika'nın işlem verinizden müşteri değeri, satın alma ritmi ve davranış değişimi bağlamını nasıl oluşturduğunu birlikte inceleyelim.
+                </p>
+                <p class="pika-ci-cta-commercial">
+                    İhtiyacınıza ve kullanım kapsamınıza göre özel teklif.
+                </p>
+                <div class="pika-ci-cta-actions">
+                    <button type="button" class="pika-ci-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal">
+                        <span>Demo Talep Et</span>
+                        <i class="ri-arrow-right-up-line" aria-hidden="true"></i>
+                    </button>
+                    <a href="/demo-talebi" class="pika-ci-btn-outline">
+                        <span>Teklif Al</span>
+                        <i class="ri-file-list-3-line" aria-hidden="true"></i>
+                    </a>
+                </div>
+            }
+            else
+            {
+                <h2 class="pika-ci-cta-title">
+                    Your customer list tells you<br />
+                    who is registered.<br /><br />
+                    Customer Intelligence helps you<br />
+                    understand who is changing.
+                </h2>
+                <p class="pika-ci-cta-body">
+                    Let's explore how Pika can build customer-value, purchase-rhythm and behavioral-change context from your transaction data.
+                </p>
+                <p class="pika-ci-cta-commercial">
+                    Pricing is tailored to your requirements and scope of use.
+                </p>
+                <div class="pika-ci-cta-actions">
+                    <button type="button" class="pika-ci-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal">
+                        <span>Request a Demo</span>
+                        <i class="ri-arrow-right-up-line" aria-hidden="true"></i>
+                    </button>
+                    <a href="/en/demo-request" class="pika-ci-btn-outline">
+                        <span>Request a Quote</span>
+                        <i class="ri-file-list-3-line" aria-hidden="true"></i>
+                    </a>
+                </div>
+            }
+        </div>
+    </section>
+</div>

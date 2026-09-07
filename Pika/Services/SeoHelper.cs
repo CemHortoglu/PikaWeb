@@ -286,11 +286,11 @@ public static class SeoHelper
         ["Platform.CustomerIntelligence"] = new(
             "/platform/customer-intelligence",
             "/en/platform/customer-intelligence",
-            "Customer Intelligence | Müşteri Zekâsı",
-            "Customer Intelligence | Customer Analytics",
-            "Pika Customer Intelligence, müşteri davranışı ve transaction verisinden anlam çıkararak segmentasyon, değer analizi ve fırsat tespitine zemin hazırlar.",
-            "Pika Customer Intelligence extracts meaning from customer behavior and transaction data to enable segmentation, value analysis, and opportunity detection.",
-            "Customer Intelligence",
+            "Customer Intelligence | Müşteri Zekâsı ve Davranış Analizi | Pika",
+            "Customer Intelligence | Customer Behavior & Value Intelligence | Pika",
+            "Pika Customer Intelligence; işlem geçmişi, satın alma ritmi, müşteri değeri ve davranış değişimlerini birlikte değerlendirerek risk ve fırsat bağlamını görünür kılar.",
+            "Pika Customer Intelligence evaluates transaction history, purchase rhythm, customer value and behavioral change together to make risk and opportunity context visible.",
+            "Müşteri Zekâsı",
             "Customer Intelligence"),
 
         ["Platform.ProductIntelligence"] = new(
