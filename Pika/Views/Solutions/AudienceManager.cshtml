@@ -8,9 +8,6 @@
     <link rel="stylesheet" href="~/css/pika-audience-manager-page.css" asp-append-version="true" />
 }
 
-@section Scripts {
-    <script src="~/js/pika-inner.js" asp-append-version="true"></script>
-}
 
 @* ── 01 HERO ─────────────────────────────────────────────────── *@
 <section class="inner-hero inner-hero--audience">
@@ -82,43 +79,36 @@
                     <span>Audience Manager</span>
                     <small>@(tr ? "Örnek görünüm" : "Illustration")</small>
                 </div>
-                <div class="inner-flow" style="padding:20px">
+                <div class="inner-flow" style="padding:24px 20px">
                     <div>
                         <i class="ri-filter-3-line" aria-hidden="true"></i>
                         <span>
-                            <small>@(tr ? "KURAL GRUBU" : "RULE GROUP")</small>
-                            <strong>@(tr ? "Hedef Kitle Koşulları" : "Audience Conditions")</strong>
+                            <strong style="margin:0">@(tr ? "KURAL GRUBU" : "RULE GROUP")</strong>
                         </span>
                         <b>01</b>
                     </div>
-                    <span class="inner-flow-link"></span>
+                    <span class="inner-flow-link" style="height:18px"></span>
+                    <div style="padding:6px 16px;justify-content:center;background:#f0f5e8;border:1px dashed #c9dca9;border-radius:6px;width:fit-content;margin:0 auto">
+                        <strong style="margin:0;font-size:11px;letter-spacing:1px;color:#527233">@(tr ? "VE / VEYA" : "AND / OR")</strong>
+                    </div>
+                    <span class="inner-flow-link" style="height:18px"></span>
                     <div>
                         <i class="ri-user-shared-line" aria-hidden="true"></i>
                         <span>
-                            <small>@(tr ? "MÜŞTERİ BAĞLAMI" : "CUSTOMER CONTEXT")</small>
-                            <strong>@(tr ? "İşlem ve Davranış" : "Transaction & Behavior")</strong>
+                            <strong style="margin:0">@(tr ? "MÜŞTERİ BAĞLAMI" : "CUSTOMER CONTEXT")</strong>
                         </span>
                         <b>02</b>
                     </div>
-                    <span class="inner-flow-link"></span>
+                    <span class="inner-flow-link" style="height:20px"></span>
                     <div class="inner-flow-final">
                         <i class="ri-group-line" aria-hidden="true"></i>
                         <span>
-                            <small>@(tr ? "KİTLE ÖNİZLEMESİ" : "AUDIENCE PREVIEW")</small>
-                            <strong>@(tr ? "Doğrulanmış Kitle" : "Validated Audience")</strong>
+                            <strong style="margin:0">@(tr ? "KİTLE ÖNİZLEMESİ" : "AUDIENCE PREVIEW")</strong>
                         </span>
                         <b>03</b>
                     </div>
                 </div>
-                <div class="inner-insight">
-                    <span>✳</span>
-                    <div>
-                        <strong>@(tr ? "Kural tabanlı hedef kitle." : "Rule-based audience.")</strong>
-                        <p>@(tr ? "Müşteri bağlamından yeniden kullanılabilir kitlelere." : "From customer context to reusable audiences.")</p>
-                    </div>
-                </div>
             </div>
-            <div class="inner-scene-caption">AUDIENCE MANAGER. RULE LOGIC.</div>
         </div>
     </div>
 </section>
