@@ -133,10 +133,10 @@ public static class SeoHelper
         ["Solutions.JourneyManager"] = new(
             "/cozumler/journey-manager",
             "/en/solutions/journey-manager",
-            "Journey Manager | Müşteri Yolculuğu Otomasyonu",
-            "Journey Manager | Customer Journey Automation",
-            "Tetikleyici ve olay bazlı otomatik pazarlama akışları kurgulayın; müşterinize doğru anda doğru kanaldan ulaşın.",
-            "Design event-driven automated marketing journeys to reach customers at the right moment across channels.",
+            "Journey Manager | Müşteri Yolculuğu ve Çok Adımlı Otomasyon | Pika",
+            "Journey Manager | Customer Journeys & Multi-Step Automation | Pika",
+            "Pika Journey Manager; koşul, dallanma, bekleme ve Email, SMS veya WhatsApp aksiyonlarını birleştirerek kontrollü çok adımlı müşteri yolculukları oluşturmanızı sağlar.",
+            "Pika Journey Manager combines conditions, branching, waits and Email, SMS or WhatsApp actions to help build controlled multi-step customer journeys.",
             "Journey Manager",
             "Journey Manager"),
 

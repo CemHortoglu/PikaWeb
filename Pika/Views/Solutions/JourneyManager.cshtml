@@ -1,299 +1,985 @@
 @{
-    var tr = (ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").Equals("tr", StringComparison.OrdinalIgnoreCase);
-    ViewData["Title"] = tr ? "Journey Manager | Pika ile Otomasyon ve Müşteri Yolculuğu Yönetimi" : "Journey Manager | Automation & Customer Journey Management with Pika";
-    ViewData["MetaDescription"] = tr ? "Pika Journey Manager ile davranış ve işlem bazlı otomatik akışlar kurun. Müşteri yolculuğunu SMS, WhatsApp, Email ve Push boyunca yönetin." : "Build automated flows based on behavior and transactions with Pika Journey Manager. Manage customer journeys across SMS, WhatsApp, Email and Push.";
-    ViewData["MetaKeywords"] = "journey manager,müşteri yolculuğu,otomasyon,otomatik akış,trigger,marketing automation,pika";
+    var culture = ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr";
+    var tr = culture.Equals("tr", StringComparison.OrdinalIgnoreCase);
+    ViewData["BodyClass"] = "pika-solutions-page";
 }
 
-<!-- HERO: Motion & Automation -->
-@await Html.PartialAsync("_MarketingHero")
+@section Styles {
+    <link rel="stylesheet" href="~/css/pika-journey-manager-page.css" asp-append-version="true" />
+}
 
-<!-- STICKY SUBNAV -->
+@* ── 01 HERO ─────────────────────────────────────────────────── *@
+<section class="inner-hero inner-hero--journey">
+    <div class="inner-atmosphere" aria-hidden="true"><span></span><span></span></div>
+    <div class="container inner-hero-grid">
+        <div class="inner-intro">
+            <nav class="inner-breadcrumb" aria-label="@(tr ? "Sayfa yolu" : "Breadcrumb")">
+                <a href="@(tr ? "/" : "/en/")">Pika</a>
+                <span>/</span>
+                <a href="@(tr ? "/pika" : "/en/pika")">@(tr ? "Pika Nedir?" : "What Is Pika?")</a>
+                <span>/</span>
+                <span>Journey Manager</span>
+            </nav>
+            <div class="inner-eyebrow"><span></span>JOURNEY MANAGER</div>
+            @if (tr)
+            {
+                <h1>
+                    Tek bir mesajdan,<br />
+                    kontrollü bir müşteri yolculuğuna geçin.
+                </h1>
+                <p>
+                    Pika Journey Manager; başlangıç koşullarını, dallanmaları, bekleme adımlarını ve Email, SMS veya WhatsApp aksiyonlarını bir araya getirerek çok adımlı müşteri yolculukları oluşturmanızı sağlar.
+                </p>
+                <p class="ph-muted" style="color:rgba(255,255,255,0.72);font-size:15px;margin-bottom:30px">
+                    Amaç müşteriye art arda mesaj göndermek değil, önceden tanımlanmış koşul ve zamanlama mantığıyla her adımın ne zaman ve hangi bağlamda ilerleyeceğini yönetmektir.
+                </p>
+                <div class="inner-actions">
+                    <button class="inner-primary" type="button" data-bs-toggle="modal" data-bs-target="#demoModal">
+                        Demo Talep Et ↗
+                    </button>
+                    <a class="inner-secondary" href="/cozumler/campaign-manager">
+                        Campaign Manager'ı Keşfedin →
+                    </a>
+                    <a class="inner-hero-anchor" href="#inner-content" aria-label="İçeriğe atla">
+                        <i class="ri-arrow-down-line" aria-hidden="true"></i>
+                    </a>
+                </div>
+            }
+            else
+            {
+                <h1>
+                    Move from one message<br />
+                    to a controlled customer journey.
+                </h1>
+                <p>
+                    Pika Journey Manager brings entry conditions, branching, wait steps and Email, SMS or WhatsApp actions together to help build multi-step customer journeys.
+                </p>
+                <p class="ph-muted" style="color:rgba(255,255,255,0.72);font-size:15px;margin-bottom:30px">
+                    The objective is not to send customers a sequence of messages without context. It is to manage when and under which predefined conditions each step should progress.
+                </p>
+                <div class="inner-actions">
+                    <button class="inner-primary" type="button" data-bs-toggle="modal" data-bs-target="#demoModal">
+                        Request a Demo ↗
+                    </button>
+                    <a class="inner-secondary" href="/en/solutions/campaign-manager">
+                        Explore Campaign Manager →
+                    </a>
+                    <a class="inner-hero-anchor" href="#inner-content" aria-label="Skip to content">
+                        <i class="ri-arrow-down-line" aria-hidden="true"></i>
+                    </a>
+                </div>
+            }
+        </div>
+        <div class="inner-scene" aria-label="@(tr ? "Journey Manager akış yapısını anlatan örnek görünüm" : "Illustrative view of Journey Manager flow structure")">
+            <div class="inner-scene-orbit" aria-hidden="true"></div>
+            <div class="inner-scene-window">
+                <div class="inner-window-bar">
+                    <strong>pika<span>✳</span></strong>
+                    <span>Journey Manager</span>
+                    <small>@(tr ? "Örnek görünüm" : "Illustration")</small>
+                </div>
+                <div class="inner-flow" style="padding:22px 18px">
+                    <div>
+                        <i class="ri-flag-line" aria-hidden="true"></i>
+                        <span>
+                            <strong style="margin:0">@(tr ? "BAŞLANGIÇ" : "START")</strong>
+                        </span>
+                        <b>01</b>
+                    </div>
+                    <span class="inner-flow-link" style="height:14px"></span>
+                    <div>
+                        <i class="ri-git-branch-line" aria-hidden="true"></i>
+                        <span>
+                            <strong style="margin:0">@(tr ? "KOŞUL" : "CONDITION")</strong>
+                        </span>
+                        <b>02</b>
+                    </div>
+                    <span class="inner-flow-link" style="height:14px"></span>
+                    <div>
+                        <i class="ri-timer-line" aria-hidden="true"></i>
+                        <span>
+                            <strong style="margin:0">@(tr ? "BEKLE" : "WAIT")</strong>
+                        </span>
+                        <b>03</b>
+                    </div>
+                    <span class="inner-flow-link" style="height:14px"></span>
+                    <div class="inner-flow-final">
+                        <i class="ri-send-plane-line" aria-hidden="true"></i>
+                        <span>
+                            <strong style="margin:0">@(tr ? "AKSİYON" : "ACTION")</strong>
+                        </span>
+                        <b>04</b>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div id="inner-content" class="inner-anchor"></div>
+
+@* ── STICKY SUBNAV ───────────────────────────────────────────── *@
 <div class="pika-sol-subnav-wrap">
     <div class="container">
-        <nav class="pika-sol-subnav">
-            <a href="#triggers">@(tr ? "Tetikleyiciler" : "Triggers")</a>
-            <a href="#features">@(tr ? "Özellikler" : "Features")</a>
-            <a href="#canvas">@(tr ? "Journey Canvas" : "Journey Canvas")</a>
-            <a href="#usecases">@(tr ? "Kullanım Senaryoları" : "Use Cases")</a>
-            <a href="#platform">@(tr ? "Entegrasyon" : "Integration")</a>
-            <a href="#faq">SSS / FAQ</a>
+        <nav class="pika-sol-subnav" aria-label="@(tr ? "Alt Gezinme" : "Sub Navigation")">
+            <a href="#overview">@(tr ? "Genel Bakış" : "Overview")</a>
+            <a href="#building-blocks">@(tr ? "Yapı Taşları" : "Building Blocks")</a>
+            <a href="#conditions">@(tr ? "Koşullar" : "Conditions")</a>
+            <a href="#timing">@(tr ? "Zamanlama" : "Timing")</a>
+            <a href="#channels">@(tr ? "Kanallar" : "Channels")</a>
+            <a href="#platform">@(tr ? "Platform İlişkisi" : "Platform Relationships")</a>
+            <a href="#faq">@(tr ? "SSS" : "FAQ")</a>
         </nav>
     </div>
 </div>
 
-<!-- TRIGGER TYPES (light pills) -->
-<section class="pika-sol-section pika-sol-channel-strip" id="triggers">
-    <div class="container">
-        <h2 class="pika-sol-section-title text-center" data-aos="fade-up">@(tr ? "Akışları tetikleyen olay türleri" : "Event types that trigger flows")</h2>
-        <div class="pika-sol-channel-pills" data-aos="fade-up" data-aos-delay="100">
-            <div class="pika-sol-channel-pill"><i class="ri-shopping-cart-line"></i> @(tr ? "İşlem" : "Transaction")</div>
-            <div class="pika-sol-channel-pill"><i class="ri-pulse-line"></i> @(tr ? "Davranış" : "Behavior")</div>
-            <div class="pika-sol-channel-pill"><i class="ri-group-line"></i> @(tr ? "Segment değişimi" : "Segment change")</div>
-            <div class="pika-sol-channel-pill"><i class="ri-calendar-event-line"></i> @(tr ? "Özel olay" : "Custom event")</div>
-        </div>
-    </div>
-</section>
-
-<!-- TRUST STRIP -->
-<section class="pika-sol-section">
+@* ── OPTIONAL TRUST STRIP ────────────────────────────────────── *@
+<section class="pika-sol-section py-4 border-bottom">
     <div class="container">
         <div class="pika-sol-trust-strip" data-aos="fade-up">
-            <div class="pika-sol-trust-item"><i class="ri-route-line"></i><span>@(tr ? "Sürükle bırak akış" : "Drag & drop flow")</span></div>
-            <div class="pika-sol-trust-item"><i class="ri-git-branch-line"></i><span>@(tr ? "Dallanma mantığı" : "Branch logic")</span></div>
-            <div class="pika-sol-trust-item"><i class="ri-timer-line"></i><span>@(tr ? "Zaman gecikmeleri" : "Time delays")</span></div>
-            <div class="pika-sol-trust-item"><i class="ri-share-forward-line"></i><span>@(tr ? "Çok kanallı" : "Multi-channel")</span></div>
-            <div class="pika-sol-trust-item"><i class="ri-line-chart-line"></i><span>@(tr ? "Akış performansı" : "Flow analytics")</span></div>
+            <div class="pika-sol-trust-item"><i class="ri-route-line"></i><span>@(tr ? "Çok Adımlı Akış" : "Multi-Step Flow")</span></div>
+            <div class="pika-sol-trust-item"><i class="ri-git-branch-line"></i><span>@(tr ? "Koşul & Dallanma" : "Conditions & Branching")</span></div>
+            <div class="pika-sol-trust-item"><i class="ri-timer-line"></i><span>@(tr ? "Bekleme Adımları" : "Wait Steps")</span></div>
+            <div class="pika-sol-trust-item"><i class="ri-share-forward-line"></i><span>Email / SMS / WhatsApp</span></div>
+            <div class="pika-sol-trust-item"><i class="ri-shield-check-line"></i><span>@(tr ? "Kontrollü Otomasyon" : "Controlled Automation")</span></div>
         </div>
     </div>
 </section>
 
-<!-- CORE CAPABILITIES -->
-<section class="pika-sol-section pika-sol-section-alt" id="features">
+@* ── 02 DIRECT ANSWER ────────────────────────────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt" id="overview">
     <div class="container">
-        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "Otomasyon için temel yetenekler" : "Core capabilities for automation")</h2>
-        <div class="pika-sol-card-grid">
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="pika-sol-card-icon"><i class="ri-flashlight-line"></i></div>
-                <h4>@(tr ? "Trigger bazlı akışlar" : "Trigger-based flows")</h4>
-                <p>@(tr ? "İşlem, davranış veya olaya göre akışları otomatik başlatın." : "Automatically start flows based on transactions, behavior or events.")</p>
-            </div>
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="pika-sol-card-icon"><i class="ri-git-branch-line"></i></div>
-                <h4>@(tr ? "Dallanma ve koşullar" : "Branching & conditions")</h4>
-                <p>@(tr ? "Koşullara göre akışları farklı yönlere dallandırın." : "Branch flows in different directions based on conditions.")</p>
-            </div>
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="pika-sol-card-icon"><i class="ri-share-forward-line"></i></div>
-                <h4>@(tr ? "Çok kanallı gönderim" : "Multi-channel delivery")</h4>
-                <p>@(tr ? "Aynı akışta SMS, WhatsApp, Email ve Push birlikte." : "SMS, WhatsApp, Email and Push combined in one flow.")</p>
-            </div>
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="pika-sol-card-icon"><i class="ri-timer-line"></i></div>
-                <h4>@(tr ? "Zaman gecikmeleri" : "Time delays")</h4>
-                <p>@(tr ? "Adımlar arasına dakika, saat veya gün gecikmeleri ekleyin." : "Add minute, hour or day delays between steps.")</p>
-            </div>
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="pika-sol-card-icon"><i class="ri-group-line"></i></div>
-                <h4>@(tr ? "Segment entegrasyonu" : "Segment integration")</h4>
-                <p>@(tr ? "Audience Manager segmentlerini akışlara doğrudan bağlayın." : "Connect Audience Manager segments directly to flows.")</p>
-            </div>
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="pika-sol-card-icon"><i class="ri-line-chart-line"></i></div>
-                <h4>@(tr ? "Akış performans takibi" : "Flow performance tracking")</h4>
-                <p>@(tr ? "Her adımın performansını ölçün ve optimize edin." : "Measure and optimize performance of each step.")</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- SHOWCASE: Journey Canvas -->
-<section class="pika-sol-section" id="canvas">
-    <div class="container">
-        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "Journey canvas: akışlarınızı görsel olarak tasarlayın" : "Journey canvas: visually design your flows")</h2>
-        <div class="pika-sol-showcase" data-aos="fade-up" data-aos-delay="100">
-            <div class="pika-sol-showcase-screen">
-                <div class="pika-sol-showcase-panel">
-                    <div class="pika-sol-showcase-panel-title"><i class="ri-route-line"></i> @(tr ? "Akış Tasarımı" : "Flow Design")</div>
-                    <div class="pika-sol-showcase-mock-bar w80"></div>
-                    <div class="pika-sol-showcase-mock-bar w45"></div>
-                    <div class="pika-sol-showcase-mock-bar w70"></div>
-                    <div class="pika-sol-showcase-mock-bar w60"></div>
-                </div>
-                <div class="pika-sol-showcase-panel">
-                    <div class="pika-sol-showcase-panel-title"><i class="ri-line-chart-line"></i> @(tr ? "Akış Performansı" : "Flow Performance")</div>
-                    <div class="pika-sol-showcase-mock-bar w70"></div>
-                    <div class="pika-sol-showcase-mock-bar w80"></div>
-                    <div class="pika-sol-showcase-mock-bar w60"></div>
+        <div class="p-4 rounded-4 mb-4 bg-white border" data-aos="fade-up">
+            <span class="ph-eyebrow">@(tr ? "KISA CEVAP" : "THE SHORT ANSWER")</span>
+            <h2 class="pika-sol-section-title mb-3">@(tr ? "Journey Manager nedir?" : "What is Journey Manager?")</h2>
+            <p class="mb-3" style="font-size:1.05rem;line-height:1.65;color:#23413b">
+                @(tr ? "Journey Manager, Pika'da bir müşterinin veya hedef kitlenin önceden tanımlanmış başlangıç koşulları, karar noktaları, dallanmalar, bekleme adımları ve iletişim aksiyonları boyunca nasıl ilerleyeceğini yöneten çok adımlı journey orchestration katmanıdır." : "Journey Manager is Pika's multi-step journey-orchestration layer for managing how a customer or audience progresses through predefined entry conditions, decision points, branches, wait steps and communication actions.")
+            </p>
+            <p class="ph-muted mb-3" style="font-size:0.98rem;line-height:1.65">
+                @(tr ? "Campaign Manager tanımlı bir kampanyanın kontrollü gönderim sürecine odaklanırken Journey Manager zaman içinde birden fazla adım ve karar noktasından oluşan akışı yönetir." : "Campaign Manager focuses on controlled delivery for a defined campaign, while Journey Manager manages a flow that can contain multiple steps and decision points over time.")
+            </p>
+            <p class="ph-muted mb-2" style="font-size:0.98rem;line-height:1.65">
+                @(tr ? "Journey Manager'ın temel sorusu şudur:" : "Journey Manager answers one central question:")
+            </p>
+            <div class="p-4 rounded-3 text-center my-4" style="background:#f8faf4;border:1px dashed #c9dca9">
+                <span class="d-block small text-uppercase fw-bold mb-1" style="letter-spacing:1px;color:#7c984c">
+                    @(tr ? "TEMEL ODAK SORUSU" : "CENTRAL FOCUS QUESTION")
+                </span>
+                <div class="fw-bold" style="font-size:1.35rem;color:#23413b">
+                    @(tr ? "“Bu müşteri bağlamında sıradaki adım ne olmalı ve hangi koşulda ilerlemeli?”" : "“In this customer context, what should the next step be, and under which condition should it progress?”")
                 </div>
             </div>
-            <div class="pika-sol-showcase-annotations">
-                <div class="pika-sol-annotation"><i class="ri-flashlight-line"></i> @(tr ? "Trigger noktası" : "Trigger point")</div>
-                <div class="pika-sol-annotation"><i class="ri-git-branch-line"></i> @(tr ? "Dallanma koşulu" : "Branch condition")</div>
-                <div class="pika-sol-annotation"><i class="ri-timer-line"></i> @(tr ? "Bekleme süresi" : "Wait time")</div>
-                <div class="pika-sol-annotation"><i class="ri-mail-send-line"></i> @(tr ? "Kanal aksiyonu" : "Channel action")</div>
-                <div class="pika-sol-annotation"><i class="ri-checkbox-circle-line"></i> @(tr ? "Bitiş noktası" : "End point")</div>
-            </div>
+            <p class="ph-muted mb-0" style="font-size:0.95rem;line-height:1.6">
+                @(tr ? "Journey yapısı kullanıcı tarafından tanımlanır ve etkinleştirilir. Etkin journey içindeki ilerleme, yapılandırılmış koşul, bekleme ve aksiyon kurallarına göre yürütülebilir." : "The journey structure is defined and activated by the user. Progress inside an active journey can then follow configured condition, wait and action rules.")
+            </p>
         </div>
     </div>
 </section>
 
-<!-- WORKFLOW -->
-<section class="pika-sol-section pika-sol-section-alt">
-    <div class="container">
-        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "Journey oluşturma süreci" : "Journey creation process")</h2>
-        <div class="pika-sol-workflow-steps" data-aos="fade-up" data-aos-delay="100">
-            <div class="pika-sol-workflow-step">
-                <div class="pika-sol-workflow-num">1</div>
-                <h5>@(tr ? "Tetikleyici Seçin" : "Select Trigger")</h5>
-                <p>@(tr ? "Hangi olay akışı başlatacak belirleyin." : "Define which event will start the flow.")</p>
-            </div>
-            <div class="pika-sol-workflow-step">
-                <div class="pika-sol-workflow-num">2</div>
-                <h5>@(tr ? "Akışı Tasarlayın" : "Design the Flow")</h5>
-                <p>@(tr ? "Dallanma, bekleme ve aksiyonları ekleyin." : "Add branching, delays and actions.")</p>
-            </div>
-            <div class="pika-sol-workflow-step">
-                <div class="pika-sol-workflow-num">3</div>
-                <h5>@(tr ? "Kanalları Belirleyin" : "Set Channels")</h5>
-                <p>@(tr ? "Her aksiyon adımına kanal ve içerik atayın." : "Assign channel and content to each action step.")</p>
-            </div>
-            <div class="pika-sol-workflow-step">
-                <div class="pika-sol-workflow-num">4</div>
-                <h5>@(tr ? "Aktifleştirin" : "Activate")</h5>
-                <p>@(tr ? "Akışı yayına alın ve performansı takip edin." : "Launch the flow and track performance.")</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- USE CASES -->
-<section class="pika-sol-section" id="usecases">
-    <div class="container">
-        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "Journey Manager ile neler yapabilirsiniz?" : "What can you do with Journey Manager?")</h2>
-        <div class="pika-sol-usecase-cards">
-            <div class="pika-sol-usecase-card" data-aos="fade-up" data-aos-delay="50">
-                <div class="pika-sol-usecase-card-icon"><i class="ri-user-add-line"></i></div>
-                <span class="usecase-industry">@(tr ? "Tüm Sektörler" : "All Industries")</span>
-                <h5>@(tr ? "Hoş Geldin Akışı" : "Welcome Flow")</h5>
-                <p>@(tr ? "Yeni üye kaydında otomatik karşılama serisi." : "Automatic welcome series on new member registration.")</p>
-            </div>
-            <div class="pika-sol-usecase-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="pika-sol-usecase-card-icon"><i class="ri-shopping-cart-line"></i></div>
-                <span class="usecase-industry">@(tr ? "E-ticaret" : "E-commerce")</span>
-                <h5>@(tr ? "Sepet Hatırlatma" : "Cart Reminder")</h5>
-                <p>@(tr ? "Terk edilen sepet için otomatik hatırlatma akışı." : "Automatic reminder flow for abandoned carts.")</p>
-            </div>
-            <div class="pika-sol-usecase-card" data-aos="fade-up" data-aos-delay="150">
-                <div class="pika-sol-usecase-card-icon"><i class="ri-gift-line"></i></div>
-                <span class="usecase-industry">@(tr ? "Perakende" : "Retail")</span>
-                <h5>@(tr ? "Doğum Günü Otomasyonu" : "Birthday Automation")</h5>
-                <p>@(tr ? "Doğum günü yaklaşan müşterilere otomatik kampanya." : "Automatic campaign for customers with approaching birthdays.")</p>
-            </div>
-            <div class="pika-sol-usecase-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="pika-sol-usecase-card-icon"><i class="ri-user-unfollow-line"></i></div>
-                <span class="usecase-industry">@(tr ? "SaaS" : "SaaS")</span>
-                <h5>@(tr ? "Re-Engagement Akışı" : "Re-Engagement Flow")</h5>
-                <p>@(tr ? "Uzun süredir etkileşim kurmayanlar için geri kazanım." : "Win-back flow for users who haven't engaged.")</p>
-            </div>
-            <div class="pika-sol-usecase-card" data-aos="fade-up" data-aos-delay="250">
-                <div class="pika-sol-usecase-card-icon"><i class="ri-star-line"></i></div>
-                <span class="usecase-industry">@(tr ? "E-ticaret" : "E-commerce")</span>
-                <h5>@(tr ? "Satın Alma Sonrası" : "Post-Purchase")</h5>
-                <p>@(tr ? "Satın alma sonrası geri bildirim ve çapraz satış akışı." : "Post-purchase feedback and cross-sell flow.")</p>
-            </div>
-            <div class="pika-sol-usecase-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="pika-sol-usecase-card-icon"><i class="ri-vip-crown-line"></i></div>
-                <span class="usecase-industry">@(tr ? "Finans" : "Finance")</span>
-                <h5>@(tr ? "Segment Geçiş Akışı" : "Segment Transition Flow")</h5>
-                <p>@(tr ? "VIP segmentine geçenlere özel kampanya tetikleme." : "Trigger special campaigns for users entering VIP segment.")</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- BUSINESS IMPACT -->
-<section class="pika-sol-section pika-sol-section-impact">
-    <div class="container">
-        <h2 class="pika-sol-section-title text-center" data-aos="fade-up">@(tr ? "İş etkisi" : "Business Impact")</h2>
-        <div class="pika-sol-impact-grid pika-sol-impact-grid--light" data-aos="fade-up" data-aos-delay="100">
-            <div class="pika-sol-impact-card pika-sol-impact-card--light">
-                <div class="pika-sol-impact-icon"><i class="ri-robot-line"></i></div>
-                <h5>@(tr ? "Manuel yükü ortadan kaldırır" : "Eliminates manual workload")</h5>
-                <p>@(tr ? "Tekrarlayan iletişimi otomatik akışlara taşıyın." : "Move repetitive communication to automated flows.")</p>
-            </div>
-            <div class="pika-sol-impact-card pika-sol-impact-card--light">
-                <div class="pika-sol-impact-icon"><i class="ri-timer-line"></i></div>
-                <h5>@(tr ? "Doğru zamanda ulaşır" : "Reaches at the right time")</h5>
-                <p>@(tr ? "Davranış anında tetiklenen iletişim." : "Communication triggered at the moment of behavior.")</p>
-            </div>
-            <div class="pika-sol-impact-card pika-sol-impact-card--light">
-                <div class="pika-sol-impact-icon"><i class="ri-bar-chart-grouped-line"></i></div>
-                <h5>@(tr ? "Etkileşimi artırır" : "Increases engagement")</h5>
-                <p>@(tr ? "Kişiselleştirilmiş akışlarla daha yüksek dönüşüm." : "Higher conversions with personalized flows.")</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- PLATFORM MAP -->
-<section class="pika-sol-section" id="platform">
-    <div class="container">
-        <h2 class="pika-sol-section-title text-center" data-aos="fade-up">@(tr ? "Journey Manager, Pika platformunda nasıl konumlanır?" : "How does Journey Manager fit in the Pika platform?")</h2>
-        <div class="pika-sol-platform-map" data-aos="fade-up" data-aos-delay="100">
-            <div class="pika-sol-platform-satellites">
-                <a class="pika-sol-platform-node" href="@Url.Action("CampaignManager", "Solutions")"><i class="ri-megaphone-line"></i> Campaign Manager</a>
-                <a class="pika-sol-platform-node" href="@Url.Action("AudienceManager", "Solutions")"><i class="ri-focus-3-line"></i> Audience Manager</a>
-            </div>
-            <div class="pika-sol-platform-connector"></div>
-            <div class="pika-sol-platform-center"><i class="ri-route-line"></i> Journey Manager</div>
-            <div class="pika-sol-platform-connector"></div>
-            <div class="pika-sol-platform-satellites">
-                <a class="pika-sol-platform-node" href="@Url.Action("ContentStudio", "Solutions")"><i class="ri-edit-line"></i> Content Studio</a>
-                <a class="pika-sol-platform-node" href="@Url.Action("ConsentManagement", "Solutions")"><i class="ri-shield-check-line"></i> Consent Management</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- FAQ -->
-<section class="pika-sol-section pika-sol-section-alt" id="faq">
-    <div class="container">
-        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "Journey Manager hakkında sık sorulan sorular" : "Journey Manager FAQs")</h2>
-        <div class="accordion faq-pro-accordion" id="journeyFaq">
-            <div class="accordion-item">
-                <h2 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#journeyFaq1" aria-expanded="true" aria-controls="journeyFaq1">@(tr ? "Journey Manager hangi tetikleyicileri destekler?" : "Which triggers does Journey Manager support?")</button></h2>
-                <div id="journeyFaq1" class="accordion-collapse collapse show" data-bs-parent="#journeyFaq"><div class="accordion-body">@(tr ? "İşlem, davranış, segment değişimi ve özel olay tetikleyicilerini destekler." : "It supports transaction, behavior, segment change and custom event triggers.")</div></div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#journeyFaq2" aria-expanded="false" aria-controls="journeyFaq2">@(tr ? "Dallanma mantığı destekleniyor mu?" : "Is branching logic supported?")</button></h2>
-                <div id="journeyFaq2" class="accordion-collapse collapse" data-bs-parent="#journeyFaq"><div class="accordion-body">@(tr ? "Evet. Koşullara göre akışları farklı yönlere dallandırabilirsiniz." : "Yes. You can branch flows in different directions based on conditions.")</div></div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#journeyFaq3" aria-expanded="false" aria-controls="journeyFaq3">@(tr ? "Akışlarda hangi kanallar kullanılabilir?" : "Which channels can be used in flows?")</button></h2>
-                <div id="journeyFaq3" class="accordion-collapse collapse" data-bs-parent="#journeyFaq"><div class="accordion-body">@(tr ? "SMS, WhatsApp, Email ve Push kanallarını aynı akış içinde birlikte kullanabilirsiniz." : "You can use SMS, WhatsApp, Email and Push channels together within the same flow.")</div></div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#journeyFaq4" aria-expanded="false" aria-controls="journeyFaq4">@(tr ? "Akış performansı ölçülebilir mi?" : "Can flow performance be measured?")</button></h2>
-                <div id="journeyFaq4" class="accordion-collapse collapse" data-bs-parent="#journeyFaq"><div class="accordion-body">@(tr ? "Evet. Her adımın performansını detaylı olarak izleyebilir ve optimize edebilirsiniz." : "Yes. You can monitor and optimize each step's performance in detail.")</div></div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#journeyFaq5" aria-expanded="false" aria-controls="journeyFaq5">@(tr ? "Segment bazlı akışlar oluşturulabilir mi?" : "Can segment-based flows be created?")</button></h2>
-                <div id="journeyFaq5" class="accordion-collapse collapse" data-bs-parent="#journeyFaq"><div class="accordion-body">@(tr ? "Evet. Audience Manager segmentlerini tetikleyici veya filtre olarak akışlarda kullanabilirsiniz." : "Yes. You can use Audience Manager segments as triggers or filters in flows.")</div></div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- RELATED -->
+@* ── 03 WHY ONE-OFF CAMPAIGNS ARE NOT ALWAYS ENOUGH ───────────── *@
 <section class="pika-sol-section">
     <div class="container">
-        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "Birlikte en çok kullanılan modüller" : "Most commonly used together")</h2>
-        <div class="pika-sol-related" data-aos="fade-up" data-aos-delay="100">
-            <a class="pika-sol-related-card" href="@Url.Action("CampaignManager", "Solutions")">
-                <div class="pika-sol-related-icon"><i class="ri-megaphone-line"></i></div>
-                <div><h5>Campaign Manager</h5><p>@(tr ? "Akışlara kampanya aksiyonları ekleyin." : "Add campaign actions to flows.")</p></div>
-            </a>
-            <a class="pika-sol-related-card" href="@Url.Action("AudienceManager", "Solutions")">
-                <div class="pika-sol-related-icon"><i class="ri-focus-3-line"></i></div>
-                <div><h5>Audience Manager</h5><p>@(tr ? "Segmentleri akış tetikleyicisi olarak kullanın." : "Use segments as flow triggers.")</p></div>
-            </a>
-            <a class="pika-sol-related-card" href="@Url.Action("Reporting", "Solutions")">
-                <div class="pika-sol-related-icon"><i class="ri-bar-chart-box-line"></i></div>
-                <div><h5>Analytics &amp; Reporting</h5><p>@(tr ? "Akış performansını ölçün." : "Measure flow performance.")</p></div>
-            </a>
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6" data-aos="fade-right">
+                <span class="ph-eyebrow">@(tr ? "TEK GÖNDERİMDEN AKIŞA" : "FROM ONE SEND TO A FLOW")</span>
+                <h2 class="pika-sol-section-title mb-3">
+                    @(tr ? "Bazı müşteri süreçleri tek bir kampanyayla tamamlanmaz." : "Some customer processes do not end with one campaign.")
+                </h2>
+                <p class="ph-muted mb-3" style="font-size:1.02rem;line-height:1.65">
+                    @(tr ? "Bir kampanya belirli bir hedef kitleye belirli bir iletişimin kontrollü biçimde gönderilmesini yönetebilir. Ancak bazı müşteri süreçlerinde sonraki adım, müşterinin verdiği yanıta, geçen zamana veya yeni oluşan bir koşula bağlı olabilir." : "A campaign can manage controlled delivery of a particular communication to a defined audience. But in some customer processes, the next step may depend on a customer response, elapsed time or a newly satisfied condition.")
+                </p>
+                <p class="ph-muted mb-3" style="font-size:1.02rem;line-height:1.65">
+                    @(tr ? "Örneğin müşteri bir adıma ulaştığında sonraki iletişim hemen gönderilmek yerine bekleyebilir. Başka bir durumda koşulun sonucuna göre farklı bir dala ilerleyebilir." : "For example, after reaching one step, the next communication may wait rather than being sent immediately. In another case, the journey may move into a different branch depending on a condition result.")
+                </p>
+                <p class="ph-muted mb-0" style="font-size:1.02rem;line-height:1.65">
+                    @(tr ? "Journey Manager bu tür çok adımlı karar akışlarının önceden tanımlanabilmesini sağlar." : "Journey Manager allows these multi-step decision flows to be defined in advance.")
+                </p>
+            </div>
+            <div class="col-lg-6" data-aos="fade-left">
+                <div class="p-4 rounded-4 bg-white border shadow-sm">
+                    <div class="p-3 rounded-3 mb-3 text-center" style="background:#f8faf4;border:1px dashed #c9dca9">
+                        <small class="text-uppercase fw-bold d-block mb-1" style="font-size:11px;letter-spacing:1px;color:#7c984c">
+                            @(tr ? "TEK KAMPANYA" : "A CAMPAIGN")
+                        </small>
+                        <div class="fw-bold mb-3" style="font-size:1.1rem;color:#23413b">
+                            @(tr ? "bir iletişim kararını yürütür." : "executes a communication decision.")
+                        </div>
+                        <small class="text-uppercase fw-bold d-block mb-1" style="font-size:11px;letter-spacing:1px;color:#7c984c">
+                            @(tr ? "JOURNEY" : "A JOURNEY")
+                        </small>
+                        <div class="fw-bold" style="font-size:1.15rem;color:var(--pika-primary)">
+                            @(tr ? "birden fazla adım arasındaki ilerleme mantığını yönetir." : "manages progression logic across multiple steps.")
+                        </div>
+                    </div>
+                    <p class="small ph-muted mb-0 text-center">
+                        @(tr ? "Bu nedenle Journey Manager'ın değeri daha fazla mesaj üretmek değil, zaman ve koşul içeren müşteri süreçlerini kontrollü bir akışa dönüştürmektir." : "The value of Journey Manager is therefore not to create more messages, but to turn customer processes involving time and conditions into controlled flows.")
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- CTA -->
+@* ── 04 THE BUILDING BLOCKS OF A JOURNEY ──────────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt" id="building-blocks">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="ph-eyebrow">@(tr ? "YAPI TAŞLARI" : "BUILDING BLOCKS")</span>
+            <h2 class="pika-sol-section-title mb-3">
+                @(tr ? "Journey'yi, adımları ve karar noktalarıyla tanımlayın." : "Define the journey through steps and decision points.")
+            </h2>
+            <p class="ph-muted mx-auto" style="max-width:720px">
+                @(tr ? "Journey Manager çok adımlı bir akışı farklı görevleri olan yapı taşlarıyla oluşturur." : "Journey Manager builds a multi-step flow from building blocks with different responsibilities.")
+            </p>
+        </div>
+
+        @* Conceptual Journey Sequence (replaces legacy fake canvas UI) *@
+        <div class="p-4 bg-white rounded-4 border shadow-sm mb-5" aria-hidden="true" data-aos="fade-up">
+            <div class="jny-sequence-flow">
+                <div class="jny-step">
+                    <i class="ri-flag-line"></i>
+                    <span>@(tr ? "BAŞLANGIÇ" : "START")</span>
+                </div>
+                <div class="jny-connector"><i class="ri-arrow-right-line"></i></div>
+                <div class="jny-step">
+                    <i class="ri-shield-check-line"></i>
+                    <span>@(tr ? "KOŞUL" : "CONDITION")</span>
+                </div>
+                <div class="jny-connector"><i class="ri-arrow-right-line"></i></div>
+                <div class="jny-step">
+                    <i class="ri-git-branch-line"></i>
+                    <span>@(tr ? "DAL" : "BRANCH")</span>
+                </div>
+                <div class="jny-connector"><i class="ri-arrow-right-line"></i></div>
+                <div class="jny-step">
+                    <i class="ri-timer-line"></i>
+                    <span>@(tr ? "BEKLE" : "WAIT")</span>
+                </div>
+                <div class="jny-connector"><i class="ri-arrow-right-line"></i></div>
+                <div class="jny-step">
+                    <i class="ri-send-plane-line"></i>
+                    <span>@(tr ? "KANAL AKSİYONU" : "CHANNEL ACTION")</span>
+                </div>
+                <div class="jny-connector"><i class="ri-arrow-right-line"></i></div>
+                <div class="jny-step jny-step-end">
+                    <i class="ri-checkbox-circle-line"></i>
+                    <span>@(tr ? "BİTİŞ" : "END")</span>
+                </div>
+            </div>
+        </div>
+
+        @* 6 Capability Blocks *@
+        <div class="pika-sol-card-grid mb-4">
+            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="50">
+                <div class="pika-sol-card-icon"><i class="ri-flag-line"></i></div>
+                <h4>@(tr ? "Başlangıç" : "Start")</h4>
+                <p>@(tr ? "Müşterinin veya hedef kitlenin journey'e hangi bağlam veya tanımlı giriş koşuluyla dahil olacağını belirler." : "Defines the context or configured entry condition through which a customer or audience enters the journey.")</p>
+            </div>
+            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="pika-sol-card-icon"><i class="ri-shield-check-line"></i></div>
+                <h4>@(tr ? "Koşul" : "Condition")</h4>
+                <p>@(tr ? "Mevcut müşteri, davranış veya journey bağlamının tanımlanan kurala uyup uymadığını değerlendirir." : "Evaluates whether available customer, behavioral or journey context satisfies a defined rule.")</p>
+            </div>
+            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="150">
+                <div class="pika-sol-card-icon"><i class="ri-git-branch-line"></i></div>
+                <h4>@(tr ? "Dallanma" : "Branch")</h4>
+                <p>@(tr ? "Koşul sonucuna göre müşterinin farklı journey yollarından birine ilerlemesini sağlar." : "Allows the customer to progress into a different journey path based on the condition result.")</p>
+            </div>
+            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="pika-sol-card-icon"><i class="ri-timer-line"></i></div>
+                <h4>@(tr ? "Bekleme" : "Wait")</h4>
+                <p>@(tr ? "Bir sonraki adımın hemen çalışması yerine tanımlanan zamanlama mantığına göre beklemesini sağlar." : "Allows the next step to wait according to defined timing logic rather than executing immediately.")</p>
+            </div>
+            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="250">
+                <div class="pika-sol-card-icon"><i class="ri-send-plane-line"></i></div>
+                <h4>@(tr ? "Kanal Aksiyonu" : "Channel Action")</h4>
+                <p>@(tr ? "Journey içindeki uygun iletişim adımını Email, SMS veya WhatsApp kanallarından biriyle ilişkilendirir." : "Associates an appropriate communication step in the journey with Email, SMS or WhatsApp.")</p>
+            </div>
+            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="pika-sol-card-icon"><i class="ri-checkbox-circle-line"></i></div>
+                <h4>@(tr ? "Bitiş" : "End")</h4>
+                <p>@(tr ? "Müşterinin journey içindeki tanımlı sürecinin tamamlandığı veya artık devam etmemesi gereken noktayı ifade eder." : "Represents the point where the customer's defined journey process is complete or should no longer continue.")</p>
+            </div>
+        </div>
+
+        <div class="p-4 rounded-4 bg-white border text-center mx-auto" style="max-width:760px" data-aos="fade-up">
+            <p class="ph-muted mb-0">
+                @(tr ? "Journey'nin anlamı tek tek düğümlerde değil, bu düğümlerin hangi sırada ve hangi kurallarla birbirine bağlandığındadır." : "The meaning of a journey does not come from individual nodes alone, but from how those nodes are connected through sequence and rules.")
+            </p>
+        </div>
+    </div>
+</section>
+
+@* ── 05 ENTRY CONTEXT & TRIGGERS ─────────────────────────────── *@
+<section class="pika-sol-section">
+    <div class="container" style="max-width:860px">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="ph-eyebrow">@(tr ? "BAŞLANGIÇ BAĞLAMI" : "ENTRY CONTEXT")</span>
+            <h2 class="pika-sol-section-title mb-3">
+                @(tr ? "Journey'nin neden başladığını tanımlayın." : "Define why the journey begins.")
+            </h2>
+        </div>
+
+        <div class="p-4 rounded-4 bg-white border shadow-sm" data-aos="fade-up">
+            <p class="mb-3" style="line-height:1.65;color:#23413b">
+                @(tr ? "Bir journey, müşterilerin rastgele içine alındığı bir mesaj dizisi değildir. Önce müşterinin hangi bağlamda veya tanımlı koşulla akışa dahil olacağı belirlenir." : "A journey is not a sequence of messages that customers enter at random. The context or configured condition through which a customer enters the flow is defined first.")
+            </p>
+            <p class="mb-3 ph-muted" style="line-height:1.65">
+                @(tr ? "Başlangıç bağlamı müşteri veya audience üyeliği, uygun işlem bağlamı, davranışsal koşul ya da Pika'da mevcut başka bir tanımlı journey koşulundan gelebilir." : "Entry context can come from customer or audience membership, relevant transaction context, a behavioral condition or another configured journey condition available in Pika.")
+            </p>
+            <p class="mb-4 ph-muted" style="line-height:1.65">
+                @(tr ? "Buradaki trigger kavramı, journey'nin ilerlemeye başlayabilmesi için değerlendirdiği tanımlı giriş koşulunu ifade eder." : "Here, a trigger is the configured entry condition evaluated before journey progression begins.")
+            </p>
+
+            <div class="p-3 rounded-3 mb-4 text-center" style="background:#f8faf4;border:1px dashed #c9dca9">
+                <div class="row g-2 text-start">
+                    <div class="col-sm-6 p-2 border-bottom border-sm-0">
+                        <strong style="color:var(--pika-primary)">Trigger:</strong>
+                        <p class="small mb-0 mt-1" style="color:#23413b">
+                            @(tr ? "“Journey ne zaman değerlendirmeye başlamalı?” sorusuna bağlam sağlar." : "provides context for: “When should this journey begin evaluation?”")
+                        </p>
+                    </div>
+                    <div class="col-sm-6 p-2">
+                        <strong style="color:#c0392b">Trigger:</strong>
+                        <p class="small mb-0 mt-1" style="color:#23413b">
+                            @(tr ? "“Pika ticari kararı kullanıcıdan bağımsız verdi” anlamına gelmez." : "does not mean: “Pika made the commercial decision independently of the user.”")
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="small ph-muted mb-0">
+                @(tr ? "Journey yapısının kendisi kullanıcı tarafından tanımlanır ve etkinleştirilir." : "The journey structure itself is defined and activated by the user.")
+            </p>
+        </div>
+    </div>
+</section>
+
+@* ── 06 CONDITIONS & BRANCHING ───────────────────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt" id="conditions">
+    <div class="container" style="max-width:860px">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="ph-eyebrow">@(tr ? "KOŞUL VE DALLANMA" : "CONDITIONS & BRANCHING")</span>
+            <h2 class="pika-sol-section-title mb-3">
+                @(tr ? "Her müşteri aynı yolu izlemek zorunda değildir." : "Not every customer has to follow the same path.")
+            </h2>
+        </div>
+
+        <div class="p-4 rounded-4 bg-white border shadow-sm" data-aos="fade-up">
+            <p class="mb-3" style="line-height:1.65;color:#23413b">
+                @(tr ? "Çok adımlı bir journey'nin temel avantajlarından biri, bütün müşterileri tek bir doğrusal sıraya zorlamamasıdır." : "One of the key advantages of a multi-step journey is that it does not force every customer through one linear sequence.")
+            </p>
+            <p class="mb-3 ph-muted" style="line-height:1.65">
+                @(tr ? "Bir karar noktasında tanımlı koşul değerlendirilebilir. Koşul karşılanıyorsa bir dala, karşılanmıyorsa başka bir dala ilerlenebilir." : "A configured condition can be evaluated at a decision point. If the condition is satisfied, the journey may progress into one branch; otherwise it may continue into another.")
+            </p>
+            <p class="mb-4 ph-muted" style="line-height:1.65">
+                @(tr ? "Bu koşullar mevcut customer, audience, transaction veya journey bağlamında kullanılabilen verilere dayanır." : "Those conditions rely on available customer, audience, transaction or journey context that can be used in the flow.")
+            </p>
+
+            <div class="p-3 rounded-3 mb-4 text-center" style="background:#f8faf4;border:1px dashed #c9dca9">
+                <small class="text-uppercase fw-bold d-block mb-1" style="font-size:11px;letter-spacing:1px;color:#7c984c">
+                    @(tr ? "DALLANMA MANTIĞI" : "BRANCHING LOGIC")
+                </small>
+                <div class="fw-bold" style="font-size:1.15rem;color:#23413b">
+                    @(tr ? "KOŞUL → EVET / HAYIR → FARKLI JOURNEY YOLLARI" : "CONDITION → YES / NO → DIFFERENT JOURNEY PATHS")
+                </div>
+            </div>
+
+            <p class="small ph-muted mb-0">
+                @(tr ? "Dallanma, müşterinin ne yapacağını tahmin eden AI kararı değildir. Kullanıcının önceden tanımladığı karar mantığının journey içinde uygulanmasıdır." : "Branching is not an AI decision predicting what the customer will do. It is the application of decision logic defined by the user inside the journey.")
+            </p>
+        </div>
+    </div>
+</section>
+
+@* ── 07 WAIT & TIMING ────────────────────────────────────────── *@
+<section class="pika-sol-section" id="timing">
+    <div class="container" style="max-width:860px">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="ph-eyebrow">@(tr ? "BEKLEME VE ZAMANLAMA" : "WAIT & TIMING")</span>
+            <h2 class="pika-sol-section-title mb-3">
+                @(tr ? "Her doğru adım, hemen atılması gereken adım değildir." : "The right next step does not always belong immediately after the current one.")
+            </h2>
+        </div>
+
+        <div class="p-4 rounded-4 bg-white border shadow-sm" data-aos="fade-up">
+            <p class="mb-3" style="line-height:1.65;color:#23413b">
+                @(tr ? "Journey içinde iki adım arasına bekleme mantığı eklenebilir." : "Wait logic can be placed between steps in a journey.")
+            </p>
+            <p class="mb-3 ph-muted" style="line-height:1.65">
+                @(tr ? "Bekleme adımı müşterinin journey'de kalmasını ancak sonraki aksiyonun tanımlanan zamanlama koşuluna kadar ilerlememesini sağlar." : "A wait step keeps the customer within the journey while preventing the next action from progressing until the configured timing condition is reached.")
+            </p>
+            <p class="mb-4 ph-muted" style="line-height:1.65">
+                @(tr ? "Bu sayede çok adımlı iletişimlerin tek bir anda arka arkaya çalışması yerine journey içinde kontrollü bir zaman akışı oluşturulabilir." : "This creates controlled timing across multi-step communication instead of allowing every action to execute one after another at the same moment.")
+            </p>
+
+            <div class="p-3 rounded-3 mb-4 text-center" style="background:#f8faf4;border:1px dashed #c9dca9">
+                <div class="row g-2 text-start">
+                    <div class="col-sm-6 p-2 border-bottom border-sm-0">
+                        <strong style="color:#c0392b">@(tr ? "Bekleme:" : "A wait step:")</strong>
+                        <p class="small mb-0 mt-1" style="color:#23413b">
+                            @(tr ? "“Müşteriye şimdi ne gönderelim?” sorusunu cevaplamaz." : "does not answer: “What should we send the customer now?”")
+                        </p>
+                    </div>
+                    <div class="col-sm-6 p-2">
+                        <strong style="color:var(--pika-primary)">@(tr ? "Bekleme:" : "A wait step:")</strong>
+                        <p class="small mb-0 mt-1" style="color:#23413b">
+                            @(tr ? "“Tanımlanmış sonraki adım ne zaman ilerlemeli?” sorusunu yönetir." : "manages: “When should the configured next step progress?”")
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="small ph-muted mb-0">
+                @(tr ? "Zamanlama journey stratejisinin bir parçasıdır; müşteriye gereksiz sıklıkta iletişim kurulmasının yerine geçecek tek güvenlik kontrolü değildir." : "Timing is part of journey strategy; it is not the only safety control governing communication frequency.")
+            </p>
+        </div>
+    </div>
+</section>
+
+@* ── 08 EMAIL / SMS / WHATSAPP ACTIONS ───────────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt" id="channels">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="ph-eyebrow">@(tr ? "KANAL AKSİYONLARI" : "CHANNEL ACTIONS")</span>
+            <h2 class="pika-sol-section-title mb-3">
+                @(tr ? "Journey kararını, uygun iletişim kanalına bağlayın." : "Connect the journey decision to an appropriate communication channel.")
+            </h2>
+            <p class="ph-muted mx-auto" style="max-width:720px">
+                @(tr ? "Journey içindeki iletişim adımları Email, SMS veya WhatsApp kanallarından biriyle ilişkilendirilebilir." : "Communication steps in a journey can be associated with Email, SMS or WhatsApp.")
+            </p>
+        </div>
+
+        <div class="row g-4 mb-4 justify-content-center" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-4 col-md-6">
+                <div class="p-4 rounded-4 bg-white border h-100 d-flex flex-column shadow-sm">
+                    <div class="pika-sol-card-icon mb-3"><i class="ri-mail-line"></i></div>
+                    <h4 class="fw-bold mb-2">Email</h4>
+                    <p class="small ph-muted mb-4">
+                        @(tr ? "Daha zengin ve görsel içeriğin gerektiği journey adımlarında kullanılabilecek iletişim kanalıdır." : "A communication channel for journey steps that require richer or visual content.")
+                    </p>
+                    <a href="@(tr ? "/kanallar/email" : "/en/channels/email")" class="small fw-bold mt-auto" style="color:var(--pika-primary)">
+                        @(tr ? "Email'i Keşfedin →" : "Explore Email →")
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="p-4 rounded-4 bg-white border h-100 d-flex flex-column shadow-sm">
+                    <div class="pika-sol-card-icon mb-3"><i class="ri-message-2-line"></i></div>
+                    <h4 class="fw-bold mb-2">SMS</h4>
+                    <p class="small ph-muted mb-4">
+                        @(tr ? "Kısa ve zaman açısından hassas journey iletişimlerinde kullanılabilecek doğrudan mesaj kanalıdır." : "A direct message channel for concise and time-sensitive journey communication.")
+                    </p>
+                    <a href="@(tr ? "/kanallar/sms" : "/en/channels/sms")" class="small fw-bold mt-auto" style="color:var(--pika-primary)">
+                        @(tr ? "SMS'i Keşfedin →" : "Explore SMS →")
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="p-4 rounded-4 bg-white border h-100 d-flex flex-column shadow-sm">
+                    <div class="pika-sol-card-icon mb-3"><i class="ri-whatsapp-line"></i></div>
+                    <h4 class="fw-bold mb-2">WhatsApp</h4>
+                    <p class="small ph-muted mb-4">
+                        @(tr ? "Onaylı WhatsApp şablonlarıyla journey içindeki uygun iletişim adımlarında kullanılabilecek mesajlaşma kanalıdır." : "A messaging channel that can be used for relevant journey communication steps through approved WhatsApp templates.")
+                    </p>
+                    <a href="@(tr ? "/kanallar/whatsapp" : "/en/channels/whatsapp")" class="small fw-bold mt-auto" style="color:var(--pika-primary)">
+                        @(tr ? "WhatsApp'ı Keşfedin →" : "Explore WhatsApp →")
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-4 rounded-4 bg-white border text-center mx-auto" style="max-width:760px" data-aos="fade-up">
+            <p class="ph-muted mb-2">
+                @(tr ? "Kanal aksiyonu journey mantığının yalnızca bir parçasıdır. Koşul, sıra, bekleme ve izin kontrolleri ayrı bağlamlardır." : "A channel action is only one part of journey logic. Conditions, sequence, waits and permission controls are separate contexts.")
+            </p>
+            <div class="fw-bold mb-3" style="font-size:1.1rem;color:#23413b">
+                @(tr ? "Journey hangi adımın ilerleyeceğini belirler. Kanal, o iletişim adımının icra yoludur." : "The journey determines which step progresses. The channel is the execution path for that communication step.")
+            </div>
+            <div>
+                <a href="@(tr ? "/cozumler/content-studio" : "/en/solutions/content-studio")" class="small fw-bold" style="color:var(--pika-primary)">
+                    @(tr ? "Content Studio'yu Keşfedin →" : "Explore Content Studio →")
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 09 AUDIENCE MANAGER → JOURNEY MANAGER ───────────────────── *@
+<section class="pika-sol-section" id="platform">
+    <div class="container" style="max-width:860px">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="ph-eyebrow">@(tr ? "“KİM?”DEN “SONRA NE?”YE" : "FROM “WHO?” TO “WHAT NEXT?”")</span>
+            <h2 class="pika-sol-section-title mb-3">
+                @(tr ? "Audience Manager kimin dahil olduğunu tanımlar. Journey Manager sonraki akışı yönetir." : "Audience Manager defines who belongs. Journey Manager manages what happens next.")
+            </h2>
+        </div>
+
+        <div class="p-4 rounded-4 bg-white border shadow-sm" data-aos="fade-up">
+            <p class="mb-3" style="line-height:1.65;color:#23413b">
+                @(tr ? "Audience Manager ve Journey Manager aynı ürün rolünü taşımaz. Audience Manager müşteri bağlamı ve kurallardan belirli bir hedef kitleyi tanımlar." : "Audience Manager and Journey Manager do not perform the same product role. Audience Manager defines a relevant customer group from customer context and rules.")
+            </p>
+            <p class="mb-4 ph-muted" style="line-height:1.65">
+                @(tr ? "Journey Manager ise bu müşterilerin tanımlı çok adımlı akış içinde hangi sıra ve koşullarla ilerleyeceğini yönetir." : "Journey Manager manages the sequence and conditions through which those customers progress inside a configured multi-step flow.")
+            </p>
+
+            <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                    <div class="p-3 rounded-3 h-100" style="background:#f8faf4;border:1px solid #dce5d2">
+                        <small class="text-uppercase fw-bold d-block mb-1" style="font-size:11px;letter-spacing:1px;color:#7c984c">
+                            AUDIENCE MANAGER
+                        </small>
+                        <div class="small ph-muted">
+                            @(tr ? "“Bu bağlama uyan müşteriler kimler?”" : "“Which customers match this context?”")
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-3 rounded-3 h-100" style="background:#f8faf4;border:1px solid #dce5d2">
+                        <small class="text-uppercase fw-bold d-block mb-1" style="font-size:11px;letter-spacing:1px;color:#7c984c">
+                            JOURNEY MANAGER
+                        </small>
+                        <div class="small ph-muted">
+                            @(tr ? "“Bu müşteriler journey'e girdikten sonra hangi sıra ve koşullarla ilerlemeli?”" : "“After those customers enter the journey, through which sequence and conditions should they progress?”")
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="small ph-muted mb-3">
+                @(tr ? "Bir audience journey'nin başlangıç bağlamlarından biri olabilir. Audience tanımı journey akışının kendisi değildir." : "An audience can be one entry context for a journey. The audience definition is not the journey itself.")
+            </p>
+
+            <div class="text-end">
+                <a href="@(tr ? "/cozumler/audience-manager" : "/en/solutions/audience-manager")" class="small fw-bold" style="color:var(--pika-primary)">
+                    @(tr ? "Audience Manager'ı Keşfedin →" : "Explore Audience Manager →")
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 10 OPPORTUNITY → JOURNEY & USE CASES ────────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="ph-eyebrow">@(tr ? "FIRSATTAN AKIŞA" : "FROM OPPORTUNITY TO FLOW")</span>
+            <h2 class="pika-sol-section-title mb-3">
+                @(tr ? "Journey Manager fırsatı üretmez. Kararı çok adımlı bir sürece bağlar." : "Journey Manager does not create the opportunity. It connects a decision to a multi-step process.")
+            </h2>
+        </div>
+
+        <div class="p-4 rounded-4 bg-white border shadow-sm mb-5" data-aos="fade-up">
+            <p class="mb-3" style="line-height:1.65;color:#23413b">
+                @(tr ? "Günün Fırsatları tekrar satın alma, cross-sell ve win-back gibi değerlendirilebilir ticari fırsatları görünür hale getirir." : "Daily Opportunities makes evaluable commercial opportunities such as repeat purchase, cross-sell and win-back visible.")
+            </p>
+            <p class="mb-3 ph-muted" style="line-height:1.65">
+                @(tr ? "Bir fırsat için çok adımlı ilişki süreci oluşturulmasına karar verildiğinde Journey Manager tanımlanmış koşul, bekleme ve iletişim adımlarını yönetmek için kullanılabilir." : "When a decision is made to build a multi-step relationship process around an opportunity, Journey Manager can manage configured conditions, waits and communication steps.")
+            </p>
+            <p class="mb-4 ph-muted" style="line-height:1.65">
+                @(tr ? "Bu ilişki, fırsatın otomatik olarak journey başlattığı anlamına gelmez. Journey tasarımı ve etkinleştirilmesi kullanıcı kontrolündedir." : "This relationship does not mean that an opportunity automatically launches a journey. Journey design and activation remain under user control.")
+            </p>
+
+            <div class="p-3 rounded-3 mb-4 text-center" style="background:#f8faf4;border:1px dashed #c9dca9">
+                <small class="text-uppercase fw-bold d-block mb-2" style="font-size:11px;letter-spacing:1px;color:#7c984c">
+                    @(tr ? "KARAR VE AKIŞ ZİNCİRİ" : "DECISION & FLOW CHAIN")
+                </small>
+                <div class="small fw-bold" style="color:#23413b;line-height:1.8">
+                    @if (tr)
+                    {
+                        <text>CUSTOMER &amp; PRODUCT INTELLIGENCE → GÜNÜN FIRSATLARI → HUMAN DECISION → AUDIENCE / ENTRY CONTEXT → JOURNEY MANAGER → EMAIL / SMS / WHATSAPP</text>
+                    }
+                    else
+                    {
+                        <text>CUSTOMER &amp; PRODUCT INTELLIGENCE → DAILY OPPORTUNITIES → HUMAN DECISION → AUDIENCE / ENTRY CONTEXT → JOURNEY MANAGER → EMAIL / SMS / WHATSAPP</text>
+                    }
+                </div>
+            </div>
+
+            <div class="p-3 rounded-3 mb-3 bg-light text-center">
+                <div class="row g-2">
+                    <div class="col-md-4">
+                        <div class="fw-bold small" style="color:var(--pika-primary)">@(tr ? "Fırsat:" : "Opportunity:")</div>
+                        <div class="small text-muted">@(tr ? "“Neden?”" : "“Why?”")</div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="fw-bold small" style="color:var(--pika-primary)">@(tr ? "Audience / Entry:" : "Audience / Entry:")</div>
+                        <div class="small text-muted">@(tr ? "“Kim?”" : "“Who?”")</div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="fw-bold small" style="color:var(--pika-primary)">Journey:</div>
+                        <div class="small text-muted">@(tr ? "“Sonra hangi sıra ve koşullar?”" : "“What sequence and conditions come next?”")</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-end">
+                <a href="@(tr ? "/platform/gunun-firsatlari" : "/en/platform/opportunities")" class="small fw-bold" style="color:var(--pika-primary)">
+                    @(tr ? "Günün Fırsatlarını Keşfedin →" : "Explore Daily Opportunities →")
+                </a>
+            </div>
+        </div>
+
+        @* 4 Exact Customer-Process Examples *@
+        <div class="pika-sol-usecase-cards mb-2" data-aos="fade-up">
+            <div class="pika-sol-usecase-card">
+                <div class="pika-sol-usecase-card-icon"><i class="ri-user-smile-line"></i></div>
+                <h5>@(tr ? "Hoş Geldin Serisi" : "Welcome Series")</h5>
+                <p>@(tr ? "Yeni müşteri veya üye bağlamında tanımlanan giriş koşulundan sonra birden fazla iletişim adımının sıralı biçimde yönetilebileceği journey örneği." : "An example journey where multiple communication steps can be managed in sequence after a configured entry condition for a new customer or member context.")</p>
+            </div>
+            <div class="pika-sol-usecase-card">
+                <div class="pika-sol-usecase-card-icon"><i class="ri-shopping-cart-line"></i></div>
+                <h5>@(tr ? "Sepet Tamamlama Akışı" : "Cart Completion Flow")</h5>
+                <p>@(tr ? "Uygun sepet veya işlem bağlamından sonra bekleme, koşul ve iletişim adımlarının bir araya getirilebileceği journey örneği." : "An example journey where waits, conditions and communication steps can be combined after relevant cart or transaction context.")</p>
+            </div>
+            <div class="pika-sol-usecase-card">
+                <div class="pika-sol-usecase-card-icon"><i class="ri-repeat-line"></i></div>
+                <h5>@(tr ? "Tekrar Satın Alma Hatırlatması" : "Repeat-Purchase Reminder")</h5>
+                <p>@(tr ? "Tekrar satın alma bağlamı değerlendirildikten sonra tanımlı zamanlama ve iletişim adımlarının kullanılabileceği journey örneği." : "An example journey where configured timing and communication steps can be used after repeat-purchase context has been evaluated.")</p>
+            </div>
+            <div class="pika-sol-usecase-card">
+                <div class="pika-sol-usecase-card-icon"><i class="ri-heart-pulse-line"></i></div>
+                <h5>@(tr ? "Geri Kazanım Akışı" : "Win-Back Flow")</h5>
+                <p>@(tr ? "Davranış değişimi veya uygun win-back bağlamı sonrasında birden fazla kontrollü adımın kurgulanabileceği journey örneği." : "An example journey where multiple controlled steps can be configured after relevant behavioral change or win-back context.")</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 11 CAMPAIGN MANAGER VS JOURNEY MANAGER ──────────────────── *@
+<section class="pika-sol-section">
+    <div class="container" style="max-width:860px">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="ph-eyebrow">@(tr ? "KAMPANYA VE JOURNEY" : "CAMPAIGN AND JOURNEY")</span>
+            <h2 class="pika-sol-section-title mb-3">
+                @(tr ? "Campaign Manager ve Journey Manager, aynı gönderim problemini çözmez." : "Campaign Manager and Journey Manager do not solve the same delivery problem.")
+            </h2>
+        </div>
+
+        <div class="p-4 rounded-4 bg-white border shadow-sm" data-aos="fade-up">
+            <div class="row g-4 mb-4">
+                <div class="col-md-6">
+                    <div class="p-3 rounded-3 h-100" style="background:#f8faf4;border:1px solid #dce5d2">
+                        <small class="text-uppercase fw-bold d-block mb-1" style="font-size:11px;letter-spacing:1px;color:#7c984c">
+                            CAMPAIGN MANAGER
+                        </small>
+                        <div class="fw-bold mb-1" style="color:#23413b">Campaign Manager</div>
+                        <p class="small ph-muted mb-2">
+                            @(tr ? "Tanımlı bir hedef kitle için içerik, kanal, zamanlama ve gönderim öncesi kontrolleri aynı kampanya bağlamında yönetir." : "Manages content, channel, timing and pre-send controls within one campaign context for a defined audience.")
+                        </p>
+                        <div class="small fw-bold" style="color:var(--pika-primary)">
+                            @(tr ? "“Hangi kampanya ve kontrollü gönderim uygulanmalı?”" : "“Which campaign and controlled delivery should be executed?”")
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-3 rounded-3 h-100" style="background:#f8faf4;border:1px solid #dce5d2">
+                        <small class="text-uppercase fw-bold d-block mb-1" style="font-size:11px;letter-spacing:1px;color:#7c984c">
+                            JOURNEY MANAGER
+                        </small>
+                        <div class="fw-bold mb-1" style="color:#23413b">Journey Manager</div>
+                        <p class="small ph-muted mb-2">
+                            @(tr ? "Müşterinin birden fazla karar, bekleme ve iletişim adımı boyunca hangi sıra ve koşullarla ilerleyeceğini yönetir." : "Manages the sequence and conditions through which a customer progresses across multiple decisions, waits and communication steps.")
+                        </p>
+                        <div class="small fw-bold" style="color:var(--pika-primary)">
+                            @(tr ? "“Journey içindeki sonraki adım ne ve hangi koşulda ilerlemeli?”" : "“What is the next step in the journey, and under which condition should it progress?”")
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-3 rounded-3 mb-3 text-center" style="background:#f8faf4;border:1px dashed #c9dca9">
+                <div class="fw-bold" style="font-size:1.1rem;color:#23413b">
+                    @if (tr)
+                    {
+                        <text>Campaign: tanımlı kampanya icrası. Journey: çok adımlı karar ve ilerleme akışı.</text>
+                    }
+                    else
+                    {
+                        <text>Campaign: defined campaign execution. Journey: multi-step decision and progression flow.</text>
+                    }
+                </div>
+            </div>
+
+            <p class="small ph-muted mb-3">
+                @(tr ? "Bir journey içinde iletişim aksiyonları bulunabilir; ancak bu, Campaign Manager ile Journey Manager'ın aynı ürün olduğu anlamına gelmez." : "A journey can contain communication actions, but that does not make Campaign Manager and Journey Manager the same product.")
+            </p>
+
+            <div class="text-end">
+                <a href="@(tr ? "/cozumler/campaign-manager" : "/en/solutions/campaign-manager")" class="small fw-bold" style="color:var(--pika-primary)">
+                    @(tr ? "Campaign Manager'ı Keşfedin →" : "Explore Campaign Manager →")
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 12 CONTROL, CONSENT & AI BOUNDARY ───────────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt">
+    <div class="container" style="max-width:860px">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="ph-eyebrow">@(tr ? "OTOMASYON ≠ KONTROLSÜZ İLETİŞİM" : "AUTOMATION ≠ UNCONTROLLED COMMUNICATION")</span>
+            <h2 class="pika-sol-section-title mb-3">
+                @(tr ? "Journey ilerleyebilir. Kontrol ortadan kalkmaz." : "The journey can progress. Control does not disappear.")
+            </h2>
+        </div>
+
+        <div class="p-4 rounded-4 bg-white border shadow-sm" data-aos="fade-up">
+            <p class="mb-3" style="line-height:1.65;color:#23413b">
+                @(tr ? "Journey Manager bir otomasyon ürünüdür; ancak otomasyon journey'nin kullanıcı tarafından tanımlanmış koşul, sıra, bekleme ve aksiyon mantığına göre ilerlemesini ifade eder." : "Journey Manager is an automation product, but automation means progressing according to conditions, sequence, waits and actions configured by the user.")
+            </p>
+            <p class="mb-3 ph-muted" style="line-height:1.65">
+                @(tr ? "Bir müşterinin journey içinde bir kanal aksiyonuna ulaşması, seçilen kanalda iletişimin hiçbir kontrol olmadan gönderileceği anlamına gelmez." : "A customer reaching a channel-action step in a journey does not mean communication is sent through that channel without controls.")
+            </p>
+            <p class="mb-3 ph-muted" style="line-height:1.65">
+                @(tr ? "Mevcut consent, opt-out, erişilebilirlik ve ilgili gönderim uygunluğu kontrolleri iletişim icrasında ayrıca değerlendirilir." : "Available consent, opt-out, reachability and relevant delivery-eligibility controls are evaluated separately during communication execution.")
+            </p>
+            <p class="mb-4 ph-muted" style="line-height:1.65">
+                @(tr ? "Üretken yapay zekâ journey'nin ticari gerçeğini veya müşterinin sıradaki adımını kendi başına belirleyen kaynak değildir." : "Generative AI is not the source that independently determines commercial truth or the customer's next journey step.")
+            </p>
+
+            <div class="p-3 rounded-3 mb-4" style="background:#f8faf4;border:1px dashed #c9dca9">
+                <div class="row g-2">
+                    <div class="col-sm-6 p-2">
+                        <strong style="color:var(--pika-primary)">Journey Manager:</strong>
+                        <p class="small mb-0 mt-1" style="color:#23413b">
+                            @(tr ? "tanımlanmış akışı otomatik ilerletebilir." : "can progress a configured flow automatically.")
+                        </p>
+                    </div>
+                    <div class="col-sm-6 p-2">
+                        <strong style="color:var(--pika-primary)">@(tr ? "İnsan:" : "The user:")</strong>
+                        <p class="small mb-0 mt-1" style="color:#23413b">
+                            @(tr ? "journey yapısını ve iş kurallarını tanımlar." : "defines the journey structure and business rules.")
+                        </p>
+                    </div>
+                    <div class="col-sm-6 p-2">
+                        <strong style="color:var(--pika-primary)">Consent / delivery controls:</strong>
+                        <p class="small mb-0 mt-1" style="color:#23413b">
+                            @(tr ? "iletişim aksiyonunun uygulanabilirliğini ayrıca değerlendirir." : "separately evaluate whether communication can be executed.")
+                        </p>
+                    </div>
+                    <div class="col-sm-6 p-2">
+                        <strong style="color:var(--pika-primary)">AI:</strong>
+                        <p class="small mb-0 mt-1" style="color:#23413b">
+                            @(tr ? "hazırlık veya açıklama süreçlerine yardımcı olabilir; kontrolü devralmaz." : "may assist preparation or explanation; it does not take control.")
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="small ph-muted mb-3">
+                @(tr ? "Otomasyonun amacı insan kontrolünü kaldırmak değil, tanımlanmış karar mantığını tekrar edilebilir hale getirmektir." : "The purpose of automation is not to remove human control, but to make configured decision logic repeatable.")
+            </p>
+
+            <div class="d-flex gap-3 justify-content-end flex-wrap">
+                <a href="@(tr ? "/cozumler/consent-management" : "/en/solutions/consent-management")" class="small fw-bold" style="color:var(--pika-primary)">
+                    Consent Management →
+                </a>
+                <a href="@(tr ? "/urunler/ai-kampanya-asistani" : "/en/products/ai-campaign-assistant")" class="small fw-bold" style="color:var(--pika-primary)">
+                    Pika Pilot →
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 13 FAQ ─────────────────────────────────────────────────── *@
+<section class="pika-sol-section" id="faq">
+    <div class="container" style="max-width:860px">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2 class="pika-sol-section-title">@(tr ? "Sıkça Sorulan Sorular" : "Frequently Asked Questions")</h2>
+        </div>
+
+        @if (tr)
+        {
+            <details class="jny-faq-details" open>
+                <summary class="jny-faq-summary">
+                    <span>Journey Manager nedir?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="jny-faq-body">
+                    Journey Manager, Pika'da müşterilerin önceden tanımlanmış başlangıç koşulları, karar noktaları, dallanmalar, bekleme adımları ve Email, SMS veya WhatsApp iletişim aksiyonları boyunca nasıl ilerleyeceğini yöneten çok adımlı journey orchestration katmanıdır.
+                </div>
+            </details>
+
+            <details class="jny-faq-details">
+                <summary class="jny-faq-summary">
+                    <span>Journey Manager ile Campaign Manager arasındaki fark nedir?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="jny-faq-body">
+                    Campaign Manager tanımlı bir hedef kitle için kampanya içeriği, kanal, zamanlama ve kontrollü gönderim sürecini yönetir. Journey Manager ise müşterinin birden fazla koşul, bekleme ve aksiyon adımı boyunca hangi sıra ile ilerleyeceğini yönetir.
+                </div>
+            </details>
+
+            <details class="jny-faq-details">
+                <summary class="jny-faq-summary">
+                    <span>Journey Manager hangi iletişim kanallarını kullanabilir?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="jny-faq-body">
+                    C08 kapsamındaki doğrulanmış aktif iletişim kanalları Email, SMS ve WhatsApp'tır. Journey içindeki uygun iletişim adımları bu kanallardan biriyle ilişkilendirilebilir.
+                </div>
+            </details>
+
+            <details class="jny-faq-details">
+                <summary class="jny-faq-summary">
+                    <span>Journey Manager'da koşul ve dallanma ne işe yarar?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="jny-faq-body">
+                    Koşul, mevcut müşteri veya journey bağlamının tanımlı kurala uyup uymadığını değerlendirir. Dallanma ise bu sonuca göre müşterinin farklı bir journey yolunda ilerlemesini sağlar.
+                </div>
+            </details>
+
+            <details class="jny-faq-details">
+                <summary class="jny-faq-summary">
+                    <span>Journey Manager'da bekleme adımı ne işe yarar?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="jny-faq-body">
+                    Bekleme adımı, müşteriyi journey içinde tutarken sonraki aksiyonun tanımlı zamanlama koşuluna kadar ilerlememesini sağlar. Böylece çok adımlı iletişimler kontrollü bir zaman akışında yürütülebilir.
+                </div>
+            </details>
+
+            <details class="jny-faq-details">
+                <summary class="jny-faq-summary">
+                    <span>Journey Manager tamamen otomatik mi çalışır?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="jny-faq-body">
+                    Journey yapısı, koşullar, dallanmalar, bekleme adımları ve aksiyonlar kullanıcı tarafından tanımlanır ve journey kullanıcı tarafından etkinleştirilir. Etkinleştirmeden sonra müşteriler bu yapılandırılmış kurallara göre akış içinde ilerleyebilir. Bu, sistemin ticari stratejiyi kullanıcıdan bağımsız oluşturduğu anlamına gelmez.
+                </div>
+            </details>
+
+            <details class="jny-faq-details">
+                <summary class="jny-faq-summary">
+                    <span>Journey Manager iletişim izinlerini ortadan kaldırır mı?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="jny-faq-body">
+                    Hayır. Journey içinde bir müşterinin iletişim adımına ulaşması gönderim izninin otomatik olarak uygun olduğu anlamına gelmez. Mevcut consent, opt-out, erişilebilirlik ve ilgili kanal kontrolleri iletişim icrasında ayrıca değerlendirilir.
+                </div>
+            </details>
+
+            <details class="jny-faq-details">
+                <summary class="jny-faq-summary">
+                    <span>Journey Manager journey'leri yapay zekâ ile kendi kendine oluşturur mu?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="jny-faq-body">
+                    Hayır. Journey Manager kullanıcı kontrolünü ortadan kaldıran otonom bir AI journey motoru olarak konumlandırılmaz. Pika Pilot hazırlık süreçlerine yardımcı olabilir; journey yapısının ve iş kurallarının kontrolü kullanıcıda kalır.
+                </div>
+            </details>
+        }
+        else
+        {
+            <details class="jny-faq-details" open>
+                <summary class="jny-faq-summary">
+                    <span>What is Journey Manager?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="jny-faq-body">
+                    Journey Manager is Pika's multi-step journey-orchestration layer for managing how customers progress through predefined entry conditions, decision points, branching, wait steps and Email, SMS or WhatsApp communication actions.
+                </div>
+            </details>
+
+            <details class="jny-faq-details">
+                <summary class="jny-faq-summary">
+                    <span>What is the difference between Journey Manager and Campaign Manager?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="jny-faq-body">
+                    Campaign Manager manages campaign content, channel, timing and controlled delivery for a defined audience. Journey Manager manages the sequence through which a customer progresses across multiple conditions, waits and action steps.
+                </div>
+            </details>
+
+            <details class="jny-faq-details">
+                <summary class="jny-faq-summary">
+                    <span>Which communication channels can Journey Manager use?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="jny-faq-body">
+                    The confirmed active communication channels in C08 are Email, SMS and WhatsApp. Relevant communication steps in a journey can be associated with one of these channels.
+                </div>
+            </details>
+
+            <details class="jny-faq-details">
+                <summary class="jny-faq-summary">
+                    <span>What do conditions and branching do in Journey Manager?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="jny-faq-body">
+                    A condition evaluates whether available customer or journey context satisfies a configured rule. Branching allows the customer to progress through a different journey path based on that result.
+                </div>
+            </details>
+
+            <details class="jny-faq-details">
+                <summary class="jny-faq-summary">
+                    <span>What does a wait step do in Journey Manager?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="jny-faq-body">
+                    A wait step keeps the customer within the journey while preventing the next action from progressing until the configured timing condition is reached. This allows multi-step communication to follow controlled timing.
+                </div>
+            </details>
+
+            <details class="jny-faq-details">
+                <summary class="jny-faq-summary">
+                    <span>Is Journey Manager fully automatic?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="jny-faq-body">
+                    The journey structure, conditions, branches, waits and actions are defined by the user, and the journey is activated by the user. After activation, customers can progress according to those configured rules. This does not mean the system creates commercial strategy independently of the user.
+                </div>
+            </details>
+
+            <details class="jny-faq-details">
+                <summary class="jny-faq-summary">
+                    <span>Does Journey Manager bypass communication consent?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="jny-faq-body">
+                    No. Reaching a communication step inside a journey does not automatically mean delivery permission is valid. Available consent, opt-out, reachability and relevant channel controls are evaluated separately during communication execution.
+                </div>
+            </details>
+
+            <details class="jny-faq-details">
+                <summary class="jny-faq-summary">
+                    <span>Does Journey Manager create journeys autonomously with AI?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="jny-faq-body">
+                    No. Journey Manager is not positioned as an autonomous AI journey engine that removes user control. Pika Pilot may assist preparation, while control of journey structure and business rules remains with the user.
+                </div>
+            </details>
+        }
+    </div>
+</section>
+
+@* ── 14 FINAL CTA ────────────────────────────────────────────── *@
 <section class="pika-sol-cta-section">
     <div class="container" data-aos="fade-up">
-        <h2>@(tr ? "Müşteri etkileşimini otomatikleştirin, doğru zamanda doğru mesajı iletin" : "Automate customer engagement, deliver the right message at the right time")</h2>
-        <p>@(tr ? "Pika Journey Manager ile davranış bazlı akışları kurun ve çalıştırın." : "Set up and run behavior-based flows with Pika Journey Manager.")</p>
+        <span class="ph-eyebrow text-white opacity-75 mb-2 d-inline-block">@(tr ? "KONTROLLÜ YOLCULUKLAR" : "CONTROLLED JOURNEYS")</span>
+        <h2>
+            @(tr ? "Koşulu tanımlayın." : "Define the condition.")<br />
+            @(tr ? "Sırayı kurun." : "Build the sequence.")<br />
+            @(tr ? "Journey'nin kontrollü ilerlemesini sağlayın." : "Let the journey progress under control.")
+        </h2>
+        <p class="mx-auto" style="max-width:760px">
+            @(tr ? "Pika Journey Manager'ın başlangıç koşullarını, dallanmaları, bekleme adımlarını ve Email, SMS ile WhatsApp aksiyonlarını kontrollü çok adımlı müşteri yolculuklarında nasıl bir araya getirdiğini birlikte inceleyelim." : "Let's explore how Pika Journey Manager brings entry conditions, branching, wait steps and Email, SMS and WhatsApp actions together within controlled multi-step customer journeys.")
+        </p>
+        <p class="small text-white-50 mt-2 mb-4">
+            @(tr ? "İhtiyacınıza ve kullanım kapsamınıza göre özel teklif." : "Pricing is tailored to your requirements and scope of use.")
+        </p>
         <div class="pika-sol-cta-actions">
-            <button type="button" class="btn pika-btn-primary px-4 py-2" data-bs-toggle="modal" data-bs-target="#demoModal">@(tr ? "Demo Talep Et" : "Request a Demo") <i class="ri-arrow-right-up-line"></i></button>
-            <a href="@Url.Action("Contact", "Home")" class="btn pika-btn-ghost px-4 py-2">@(tr ? "Bizimle İletişime Geçin" : "Contact Us")</a>
+            <button type="button" class="btn pika-btn-primary px-4 py-2" data-bs-toggle="modal" data-bs-target="#demoModal">
+                @(tr ? "Demo Talep Et" : "Request a Demo") <i class="ri-arrow-right-up-line" aria-hidden="true"></i>
+            </button>
+            <button type="button" class="btn pika-btn-ghost px-4 py-2" data-bs-toggle="modal" data-bs-target="#demoModal">
+                @(tr ? "Teklif Al" : "Request a Quote")
+            </button>
         </div>
     </div>
 </section>

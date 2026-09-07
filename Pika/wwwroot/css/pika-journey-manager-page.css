@@ -1,0 +1,98 @@
+/* ── PIKA JOURNEY MANAGER PAGE EXTENSION ─────────────────────── */
+/* Scope: .jny-* only. Target < 90 lines.                         */
+
+.jny-sequence-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 24px 16px;
+    background: #fbfcf8;
+    border-radius: 16px;
+}
+
+.jny-step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 18px;
+    background: #ffffff;
+    border: 1px solid #dce5d2;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #23413b;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.jny-step i {
+    font-size: 1.15rem;
+    color: var(--pika-primary, #4a7c59);
+}
+
+.jny-step-end {
+    border-color: #c4dda8;
+    background: #f4faee;
+}
+
+.jny-step-end i {
+    color: #27ae60;
+}
+
+.jny-connector {
+    color: #9cb580;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+}
+
+/* FAQ Details/Summary */
+.jny-faq-details {
+    background: #ffffff;
+    border: 1px solid #e2ebd8;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.jny-faq-details[open] {
+    border-color: #b5cfa0;
+    box-shadow: 0 4px 14px rgba(35, 65, 59, 0.05);
+}
+
+.jny-faq-summary {
+    padding: 18px 22px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #23413b;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.05rem;
+}
+
+.jny-faq-summary::-webkit-details-marker {
+    display: none;
+}
+
+.jny-faq-summary i {
+    transition: transform 0.2s ease;
+    font-size: 1.2rem;
+    color: #62746d;
+}
+
+.jny-faq-details[open] .jny-faq-summary i {
+    transform: rotate(180deg);
+    color: #23413b;
+}
+
+.jny-faq-body {
+    padding: 0 22px 20px 22px;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: #486258;
+}
