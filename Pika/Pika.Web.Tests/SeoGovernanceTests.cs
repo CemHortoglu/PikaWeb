@@ -2,14 +2,43 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Testing;
 using Pika.Services;
 using Xunit;
 
 namespace Pika.Web.Tests;
 
-public class SeoGovernanceTests
+public class SeoGovernanceTests : IClassFixture<WebApplicationFactory<Program>>
 {
+    private readonly WebApplicationFactory<Program> _factory;
+
+    public SeoGovernanceTests(WebApplicationFactory<Program> factory)
+    {
+        _factory = factory;
+    }
+
+    private HttpClient CreateNoRedirectClient()
+    {
+        return _factory.CreateClient(new WebApplicationFactoryClientOptions
+        {
+            AllowAutoRedirect = false
+        });
+    }
+
+    private static string ExtractMetaDescription(string html)
+    {
+        var match = Regex.Match(html, @"<meta\s+name=""description""\s+content=""([^""]*)""", RegexOptions.IgnoreCase);
+        return match.Success ? match.Groups[1].Value : string.Empty;
+    }
+
+    private static string ExtractMetaRobots(string html)
+    {
+        var match = Regex.Match(html, @"<meta\s+name=""robots""\s+content=""([^""]*)""", RegexOptions.IgnoreCase);
+        return match.Success ? match.Groups[1].Value : string.Empty;
+    }
     private static string GetWebRoot()
     {
         var dir = AppContext.BaseDirectory;
@@ -279,5 +308,72 @@ public class SeoGovernanceTests
         Assert.DoesNotContain("CODEBASE_VERIFIED", content);
         Assert.DoesNotContain("UI_VERIFIED", content);
         Assert.DoesNotContain("UNCONFIRMED_CAPABILITY", content);
+    }
+
+    [Theory]
+    [InlineData("/kurumsal", "Home", "Corporate", true)]
+    [InlineData("/en/corporate", "Home", "Corporate", false)]
+    [InlineData("/demo-talebi", "Home", "DemoRequest", true)]
+    [InlineData("/en/demo-request", "Home", "DemoRequest", false)]
+    public async Task RenderedMetadata_CanonicalRoutes_UseSeoHelperMetadata_AndOmitLegacyStrings(string path, string controller, string action, bool isTr)
+    {
+        var client = CreateNoRedirectClient();
+        var response = await client.GetAsync(path);
+        Assert.Equal(System.Net.HttpStatusCode.OK, response.StatusCode);
+
+        var html = await response.Content.ReadAsStringAsync();
+        var renderedDesc = ExtractMetaDescription(html);
+        Assert.False(string.IsNullOrWhiteSpace(renderedDesc), $"Rendered meta description was empty for {path}");
+
+        var expectedMeta = SeoHelper.GetMetadata(controller, action);
+        Assert.NotNull(expectedMeta);
+        var expectedDesc = isTr ? expectedMeta.DescriptionTr : expectedMeta.DescriptionEn;
+        Assert.Equal(expectedDesc, renderedDesc);
+
+        // Assert that rendered metadata does NOT contain legacy strings
+        Assert.DoesNotContain("15 dakikalık demo", renderedDesc, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("15-minute tailored demo", renderedDesc, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("yüksek güvenlik standartları", renderedDesc, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("high security standards", renderedDesc, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("tüm kanallar", renderedDesc, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("all channels", renderedDesc, StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Theory]
+    [InlineData("/kanallar/push")]
+    [InlineData("/en/channels/push")]
+    public async Task RenderedMetadata_PushQuarantine_EmitsNoindexAndNoHreflangs(string path)
+    {
+        var client = CreateNoRedirectClient();
+        var response = await client.GetAsync(path);
+        Assert.Equal(System.Net.HttpStatusCode.OK, response.StatusCode);
+
+        var html = await response.Content.ReadAsStringAsync();
+        var renderedRobots = ExtractMetaRobots(html);
+        Assert.Equal("noindex, follow", renderedRobots);
+
+        // Asserts no hreflang alternates are emitted for quarantined route
+        Assert.DoesNotContain("<link rel=\"alternate\" hreflang=", html, StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Theory]
+    [InlineData("/cozumler/consent-management", true)]
+    [InlineData("/en/solutions/consent-management", false)]
+    public async Task RenderedMetadata_ConsentManagement_UsesMechanismBasedDescription(string path, bool isTr)
+    {
+        var client = CreateNoRedirectClient();
+        var response = await client.GetAsync(path);
+        Assert.Equal(System.Net.HttpStatusCode.OK, response.StatusCode);
+
+        var html = await response.Content.ReadAsStringAsync();
+        var renderedDesc = ExtractMetaDescription(html);
+        Assert.False(string.IsNullOrWhiteSpace(renderedDesc));
+
+        var expectedMeta = SeoHelper.GetMetadata("Solutions", "ConsentManagement");
+        Assert.NotNull(expectedMeta);
+        var expectedDesc = isTr ? expectedMeta.DescriptionTr : expectedMeta.DescriptionEn;
+        Assert.Equal(expectedDesc, renderedDesc);
+
+        Assert.DoesNotContain("İYS ve KVKK uyumlu ticari", renderedDesc, StringComparison.OrdinalIgnoreCase);
     }
 }

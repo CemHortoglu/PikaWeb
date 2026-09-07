@@ -153,10 +153,10 @@ public static class SeoHelper
         ["Solutions.ConsentManagement"] = new(
             "/cozumler/consent-management",
             "/en/solutions/consent-management",
-            "Consent Management | İzin ve Uyumluluk Yönetimi",
-            "Consent Management | Consent & Compliance Management",
-            "İYS ve KVKK uyumlu ticari elektronik ileti izinlerini merkezi olarak denetleyin, onaysız gönderimleri engelleyin.",
-            "Centrally manage opt-in consents and support regulatory compliance workflows across communication channels.",
+            "Consent Management | İzin ve Tercih Yönetimi",
+            "Consent Management | Consent & Preference Management",
+            "İYS izin durumu doğrulaması, opt-out ve tercih yönetimi ile ticari elektronik ileti izin süreçlerini merkezi olarak denetleyin.",
+            "Centrally manage opt-in consents, IYS status verification, and opt-out workflows supporting KVKK/IYS consent governance.",
             "Consent Management",
             "Consent Management"),
 

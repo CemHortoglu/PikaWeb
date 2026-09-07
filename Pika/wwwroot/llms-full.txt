@@ -25,7 +25,7 @@ Pika does not position itself as a generic bulk message broadcaster or standalon
 - **Customer Journey Automation**: Journey Manager provides visual workflow automation for event-driven lifecycle triggers, delays, and conditional branching.
 - **Content Studio**: Drag-and-drop template designer for responsive email templates and multi-channel message formatting.
 - **AI Campaign Assistant (Pika Pilot)**: Assistive AI co-pilot that suggests campaign ideas, audience criteria, and draft copy from natural language prompts, with mandatory human approval. Internal product documentation describes an anonymized-parameter AI boundary in which direct personal identifiers are intended to be excluded from LLM prompt context.
-- **Governed Channel Execution**: Outbound delivery across Email, SMS, and official Meta WhatsApp Business API integration with automated IYS and KVKK consent verification workflows.
+- **Governed Channel Execution**: Outbound delivery across Email, SMS, and official Meta WhatsApp Business API integration with IYS status verification and opt-out workflows supporting KVKK/IYS governance context.
 - **Analytics & Attribution**: Unified reporting dashboard for tracking delivery metrics, engagement rates, and store-level attribution.
 - **Data Security & Privacy**: Role-based access control (RBAC) and privacy-focused operational safeguards.
 
@@ -105,7 +105,7 @@ Unified campaign analytics and reporting dashboard. Tracks delivery rates, opens
 ### Consent Management
 **URL**: https://pika.tr/en/solutions/consent-management
 
-KVKK and IYS (İleti Yönetim Sistemi) compliance management. Automatically checks recipient opt-in status prior to dispatch, maintains suppression lists, and syncs unsubscribe events.
+Consent and preference management with IYS status verification and opt-out workflows supporting KVKK/IYS governance. Automatically checks recipient opt-in status prior to dispatch, maintains suppression lists, and syncs unsubscribe events.
 
 ### Integrations
 **URL**: https://pika.tr/en/integrations

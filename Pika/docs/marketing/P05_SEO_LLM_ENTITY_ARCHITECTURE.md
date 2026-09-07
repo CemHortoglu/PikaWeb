@@ -49,7 +49,7 @@ The semantic web model of Pika is organized into distinct, hierarchically govern
   │     └── WhatsApp (Official Meta WhatsApp Business API — Evidence: B. DOCUMENTED)
   │
   └── [ Compliance & Governance ]
-        ├── Consent Management (İYS & KVKK Sync — Evidence: A. CODE_VERIFIED / B. DOCUMENTED; CLM-010)
+        ├── Consent Management (İYS Status Verification & Opt-Out Workflows — Evidence: A. CODE_VERIFIED / B. DOCUMENTED; CLM-010: PUBLIC_WITH_QUALIFIER)
         ├── Delivery Telemetry & Attribution (BI Kokpit — Evidence: B. DOCUMENTED)
         └── Role-Based Access Control (RBAC — Evidence: B. DOCUMENTED)
 ```
@@ -282,7 +282,7 @@ The following table documents the authoritative runtime metadata implemented in 
 | **Solutions.AudienceManager**<br>`/cozumler/audience-manager` / `/en/solutions/audience-manager` | Audience Manager \| Hedef Kitle ve Segmentasyon / Audience Manager \| Audience & Segmentation | Audience Manager | `index, follow` |
 | **Solutions.JourneyManager**<br>`/cozumler/journey-manager` / `/en/solutions/journey-manager` | Journey Manager \| Müşteri Yolculuğu Otomasyonu / Journey Manager \| Customer Journey Automation | Journey Manager | `index, follow` |
 | **Solutions.ContentStudio**<br>`/cozumler/content-studio` / `/en/solutions/content-studio` | Content Studio \| İçerik ve Şablon Tasarımı / Content Studio \| Content & Template Design | Content Studio | `index, follow` |
-| **Solutions.ConsentManagement**<br>`/cozumler/consent-management` / `/en/solutions/consent-management` | Consent Management \| İzin ve Uyumluluk Yönetimi / Consent & Compliance Management | Consent Management | `index, follow` |
+| **Solutions.ConsentManagement**<br>`/cozumler/consent-management` / `/en/solutions/consent-management` | Consent Management \| İzin ve Tercih Yönetimi / Consent Management \| Consent & Preference Management | Consent Management | `index, follow` |
 | **Solutions.EmailMarketing**<br>`/kanallar/email` / `/en/channels/email` | Email Marketing \| E-Posta Pazarlama Çözümleri / Email Marketing \| Email Marketing Solutions | Email Marketing | `index, follow` |
 | **Solutions.SmsCampaigns**<br>`/kanallar/sms` / `/en/channels/sms` | SMS Campaigns \| SMS Kampanya Yönetimi / SMS Campaigns \| SMS Campaign Management | SMS Campaigns | `index, follow` |
 | **Solutions.WhatsAppMessaging**<br>`/kanallar/whatsapp` / `/en/channels/whatsapp` | WhatsApp Messaging \| WhatsApp Kampanya ve Mesajlaşma / WhatsApp Messaging \| WhatsApp Marketing & Messaging | WhatsApp Messaging | `index, follow` |
@@ -380,13 +380,13 @@ The following table maps the authoritative claims from `CLAIMS_REGISTRY.md` (CLM
 
 ## 13. Security, Privacy & Compliance Messaging Contract
 
-### 13.1 Regulatory Compliance
-- **KVKK Compliance:** Native consent tracking, explicit marketing opt-in logging, customer data anonymization workflows. *(Evidence: `A. CODE_VERIFIED` / `B. DOCUMENTED`; CLM-010)*
-- **İYS (İleti Yönetim Sistemi) Integration:** Synchronized opt-in/opt-out status verification workflows prior to dispatching commercial electronic messages. *(Evidence: `B. DOCUMENTED`; CLM-010)*
+### 13.1 Regulatory Compliance & Consent Governance
+- **KVKK Consent & Privacy Governance:** Native consent tracking, explicit marketing opt-in logging, customer data anonymization workflows supporting KVKK compliance context. *(Evidence: `A. CODE_VERIFIED` / `B. DOCUMENTED`; CLM-010: PUBLIC_WITH_QUALIFIER — Altyapı ve süreç desteği; yasal bağışıklık veya nihai hukuki garanti olarak sunulamaz)*
+- **İYS (İleti Yönetim Sistemi) Integration:** Synchronized opt-in/opt-out status verification workflows prior to dispatching commercial electronic messages. *(Evidence: `B. DOCUMENTED`; CLM-010: PUBLIC_WITH_QUALIFIER)*
 
 ### 13.2 Technical Security Safeguards
 - **Role-Based Access Control (RBAC):** Tiered permissions separating campaign creators, analysts, and administrative managers. *(Evidence: `B. DOCUMENTED`)*
-- **Transport Security:** Standard TLS/HTTPS encryption across public web endpoints.
+- **Transport Security:** PikaWeb configures HTTPS redirection for public web requests. Deployment-level TLS termination and cipher configuration is `NEEDS_EVIDENCE_REGISTRATION`.
 - **Audit Logging:** Internal audit trail workflows. *(Status: `NEEDS_EVIDENCE_REGISTRATION`)*
 
 ### 13.3 Forbidden Security Claims
@@ -405,8 +405,8 @@ Pika operates strictly on a customized quotation commercial model. The following
 4. **Tailored Quotations:** Pricing is tailored to requirements and scope of use.
 5. **Approved Commercial CTAs:**
    - `Demo Talep Et` (TR) / `Request a Demo` (EN)
-   - `Teklif Al` (TR) / `Get a Quote` (EN)
-   - `Satış Ekibiyle Görüşün` (TR) / `Contact Sales` (EN)
+   - `Teklif Al` (TR) / `Request a Quote` (EN)
+   - `Satış Ekibiyle Görüşün` (TR) / `Talk to Sales` (EN)
 6. **SLA Omission (`CLM-016`):** Corporate SLA tiers remain `DO_NOT_MARKET / NEEDS_CONFIRMATION` and are not advertised as a public capability or pricing factor.
 
 ---
@@ -414,12 +414,14 @@ Pika operates strictly on a customized quotation commercial model. The following
 ## 15. Sitemap & Indexation Governance
 
 ### 15.1 Existing Sitemap Contract (`sitemap.xml`)
-1. **Root Priority:** Root homepage (`https://pika.tr/`, `https://pika.tr/en/`) has `priority = 1.0`.
-2. **Subpage Priority:** All indexable canonical subpages have `priority = 0.8`.
-3. **Change Frequency:** Set to `changefreq = weekly`.
-4. **Exclusion of Redirects:** 301 redirect stubs (`/cozumler/personalization`, `/cozumler/template-management`, `/cozumler/ab-testing`, etc.) are completely excluded.
-5. **Exclusion of Noindex Pages:** Quarantined routes (`/kanallar/push` and `/en/channels/push`) are completely excluded.
-6. **Date Stamping:** The current `sitemap.xml` does not emit `<lastmod>` elements; any future date-stamping task is `DEFERRED`.
+1. **Root Priorities:** Root Turkish homepage (`https://pika.tr/`) has `priority = 1.0`; English homepage (`https://pika.tr/en/`) has `priority = 0.9`.
+2. **Subpage Priorities:** Turkish marketing and solution subpages have `priority = 0.8`; English marketing and solution subpages have `priority = 0.7`; wiki pages have `priority = 0.7`.
+3. **Change Frequency:** Set to `changefreq = weekly` for marketing pages, `monthly` for wiki pages.
+4. **Legacy Crawl Hints:** Note that `priority` and `changefreq` values are legacy search engine crawl hints and are not part of P05 entity ownership semantics. P05 does not establish a new priority policy.
+5. **Exclusion of Redirects:** 301 redirect stubs (`/cozumler/personalization`, `/cozumler/template-management`, `/cozumler/ab-testing`, etc.) are completely excluded.
+6. **Exclusion of Noindex Pages:** Quarantined routes (`/kanallar/push` and `/en/channels/push`) are completely excluded.
+7. **No Fixed Pricing Route:** Zero pricing package or calculator routes exist in the sitemap.
+8. **Date Stamping:** The current `sitemap.xml` does not emit `<lastmod>` elements; any future date-stamping task is `DEFERRED`.
 
 ---
 
@@ -433,15 +435,18 @@ Cross-linking follows the platform value chain:
 - **Campaign Manager** links forward to **Channels (Email, SMS, WhatsApp)** and **Consent Management**.
 - **All Modules** link to **Demo Request** as the commercial action anchor.
 
-### 16.2 Approved Anchor Texts
-| Target Page | Approved TR Anchor Texts | Approved EN Anchor Texts | Forbidden Anchors |
-| :--- | :--- | :--- | :--- |
-| Customer Intelligence | Müşteri Zekâsı, CVS Analizi | Customer Intelligence, CVS Analytics | CRM Modülü, Müşteri Takip |
-| Product Intelligence | Ürün Zekâsı, İhtiyaç Grupları | Product Intelligence, Need Groups | Ürün Kataloğu, Stok Listesi |
-| Günün Fırsatları | Günün Fırsatları, Karar Motoru | Daily Opportunities, Opportunity Engine | İndirimli Ürünler, Günlük Fırsat |
-| Campaign Manager | Kampanya Yönetimi, Campaign Manager | Campaign Manager, Campaign Orchestration | Toplu Mailer, SMS Gönderici |
-| WhatsApp | WhatsApp Business API, Kurumsal WhatsApp | WhatsApp Business API, Official WhatsApp | WhatsApp Botu, Chatbot |
-| Consent Management | İYS ve İzin Yönetimi, KVKK Uyum | Consent Management, IYS Compliance | Spam Koruması, SMS Onayı |
+### 16.2 Semantic Anchor Guidance
+
+Canonical entity names may be used directly as anchor text. Proposed semantic variants are classified as `APPROVED_CONCEPT` or `NEEDS_CONTENT_OWNER` and must not be represented as exact approved marketing copy unless explicitly approved by the content owner.
+
+| Target Page | Canonical Entity Anchor (Approved) | Proposed Semantic Variants (Guidance Only) | Variant Status | Forbidden Anchors |
+| :--- | :--- | :--- | :--- | :--- |
+| Customer Intelligence | Customer Intelligence / Müşteri Zekâsı | CVS Analizi / CVS Analytics | `APPROVED_CONCEPT` | CRM Modülü, Müşteri Takip |
+| Product Intelligence | Product Intelligence / Ürün Zekâsı | İhtiyaç Grupları / Need Groups | `APPROVED_CONCEPT` | Ürün Kataloğu, Stok Listesi |
+| Günün Fırsatları | Günün Fırsatları / Daily Opportunities | Karar Motoru / Opportunity Engine | `APPROVED_CONCEPT` | İndirimli Ürünler, Günlük Fırsat |
+| Campaign Manager | Campaign Manager / Kampanya Yönetimi | Campaign Orchestration / Çok Kanallı Kampanya | `APPROVED_CONCEPT` | Toplu Mailer, SMS Gönderici |
+| WhatsApp | WhatsApp / WhatsApp Business API | Kurumsal WhatsApp / Official WhatsApp | `NEEDS_CONTENT_OWNER` | WhatsApp Botu, Chatbot |
+| Consent Management | Consent Management / İzin ve Tercih Yönetimi | İYS ve İzin Yönetimi / IYS Consent Workflows | `NEEDS_CONTENT_OWNER` | Spam Koruması, SMS Onayı, KVKK Uyum |
 
 ---
 
@@ -454,7 +459,7 @@ Cross-linking follows the platform value chain:
 
 ### 17.2 Entity Disambiguation for Knowledge Engines
 - **Distinction from Media Tools:** Pika must be disambiguated from creative AI video tools (such as Pika Labs / Pika Art).
-- **Core Semantic Disambiguator:** Pika is a **B2B SaaS Enterprise Retail Marketing Platform** operating in Turkey, focused on transaction data, RFM analysis, and regulated communication delivery.
+- **Canonical Category & Semantic Disambiguator:** Pika's canonical category is **Customer Intelligence & Omnichannel Marketing Platform** (TR: **Müşteri Zekâsı ve Omnichannel Pazarlama Platformu**). For disambiguation from creative media tools, factual context may state that Pika is a B2B SaaS platform focused on customer, product, and transaction intelligence plus governed omnichannel action.
 
 ---
 
@@ -489,8 +494,12 @@ To ensure that the SEO entity architecture and metadata safety rules cannot regr
 8. **`LlmsFiles_DoNotMarketPushAsCurrentOrRoadmap`:** Reads `llms.txt` and `llms-full.txt` to verify that Push is never marketed as a current or roadmap capability.
 9. **`LlmsFiles_OmitAllStrictlyForbiddenClaims`:** Verifies that forbidden terms (`SOC-compliant`, `SAML`, `SSO`, `chatbot`, fixed pricing) do not appear anywhere in LLM grounding files.
 10. **`SeoHelper_TitlesAndDescriptions_DoNotContainForbiddenClaims`:** Scans all metadata definitions in `SeoHelper.cs` to ensure zero occurrences of forbidden claims.
-11. **`P05Documentation_DoesNotReferenceNonExistentClaimIds`:** Verifies that `P05_SEO_LLM_ENTITY_ARCHITECTURE.md` only references valid registry IDs (`CLM-001` through `CLM-020`) and never unregistered higher claim IDs.
-12. **`EntityRegistry_DoesNotContainUngovernedEvidenceLabels`:** Verifies that `ENTITY_REGISTRY.md` uses the established 5-level evidence model and contains zero occurrences of `CODEBASE_VERIFIED`, `UI_VERIFIED`, or `UNCONFIRMED_CAPABILITY`.
+11. **`SeoHelper_FormatPageTitle_AppliesCanonicalCategoryFallback`:** Asserts that empty/brand-only titles fall back to canonical category while specific page titles append brand suffix.
+12. **`P05Documentation_DoesNotReferenceNonExistentClaimIds`:** Verifies that `P05_SEO_LLM_ENTITY_ARCHITECTURE.md` only references valid registry IDs (`CLM-001` through `CLM-020`) and never unregistered higher claim IDs.
+13. **`EntityRegistry_DoesNotContainUngovernedEvidenceLabels`:** Verifies that `ENTITY_REGISTRY.md` uses the established 5-level evidence model and contains zero occurrences of `CODEBASE_VERIFIED`, `UI_VERIFIED`, or `UNCONFIRMED_CAPABILITY`.
+14. **`RenderedMetadata_CanonicalRoutes_UseSeoHelperMetadata_AndOmitLegacyStrings`:** Renders live HTML via `WebApplicationFactory` for `/kurumsal`, `/en/corporate`, `/demo-talebi`, `/en/demo-request`, verifying that `<meta name="description">` uses `SeoHelper` canonical metadata and omits legacy strings (`15 dakikalık demo`, `yüksek güvenlik standartları`, `tüm kanallar`).
+15. **`RenderedMetadata_PushQuarantine_EmitsNoindexAndNoHreflangs`:** Renders live HTML for `/kanallar/push` and `/en/channels/push`, verifying `noindex, follow` directive and zero hreflang links.
+16. **`RenderedMetadata_ConsentManagement_UsesMechanismBasedDescription`:** Renders live HTML for `/cozumler/consent-management` and `/en/solutions/consent-management`, verifying mechanism-based description and absence of unconditional compliance guarantees.
 
 ---
 
@@ -499,11 +508,11 @@ To ensure that the SEO entity architecture and metadata safety rules cannot regr
 | Deliverable | Source / Target File | Verification Method | Status |
 | :--- | :--- | :--- | :--- |
 | **SEO Master Architecture** | `docs/marketing/P05_SEO_LLM_ENTITY_ARCHITECTURE.md` | Inspection & Governance Review | SIGNED OFF |
-| **Entity Registry Alignment** | `docs/marketing/ENTITY_REGISTRY.md` | 5-level evidence vocabulary & P01 redirects verified | SIGNED OFF |
-| **Metadata Safety Hardening** | `Services/SeoHelper.cs` | Zero forbidden claims, homepage channel scope fixed | SIGNED OFF |
-| **Layout Structured Data & Runtime NoIndex** | `Views/Shared/_Layout.cshtml` | Founding location removed, NoIndex fallback wired | SIGNED OFF |
-| **LLM Grounding Context** | `wwwroot/llms.txt` & `wwwroot/llms-full.txt` | P04 canon alignment, Push quarantine & AI privacy bounds | SIGNED OFF |
-| **Automated Test Guardrails**| `Pika.Web.Tests/SeoGovernanceTests.cs` | 100% dotnet test pass rate | SIGNED OFF |
+| **Entity Registry Alignment** | `docs/marketing/ENTITY_REGISTRY.md` | 5-level evidence vocabulary & CLM-010 qualifier verified | SIGNED OFF |
+| **Metadata Safety Hardening** | `Services/SeoHelper.cs` | Zero forbidden claims, mechanism-based consent metadata | SIGNED OFF |
+| **Layout Runtime Authority & Quarantine** | `Views/Shared/_Layout.cshtml` | SeoHelper authoritative precedence, NoIndex fallback & hreflang suppression | SIGNED OFF |
+| **LLM Grounding Context** | `wwwroot/llms.txt` & `wwwroot/llms-full.txt` | P04 canon alignment, Push quarantine & mechanism-based consent wording | SIGNED OFF |
+| **Automated Test Guardrails**| `Pika.Web.Tests/SeoGovernanceTests.cs` | 100% dotnet test pass rate (21 test cases) | SIGNED OFF |
 
 ---
-*End of P05.1 Architecture Specification. Phase P05 is CLOSED upon successful test pass.*
+*End of P05.2 Architecture Specification. Phase P05 is CLOSED upon successful test pass.*
