@@ -1,796 +1,324 @@
 @{
     var culture = (ViewData["culture"] as string ?? ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").ToLowerInvariant();
     var isTr = culture == "tr";
-    ViewData["BodyClass"] = "pika-home-v2";
+    ViewData["BodyClass"] = "pika-home-v2 pika-orbit";
 }
-
-@* ══════════════════════════════════════════════════════════════════════════
-   CHAPTER 1: HERO — Unified Commercial Intelligence Above the Fold
-   ══════════════════════════════════════════════════════════════════════════ *@
-<section class="pw2-section pw2-home-hero" id="hero">
-    <div class="pw2-container pw2-container--stage">
-        <div class="pw2-home-hero__content" data-aos="fade-up" data-aos-duration="600">
-            <div class="pw2-eyebrow">
-                <i class="ri-sparkling-fill" aria-hidden="true"></i>
-                @(isTr ? "Müşteri Zekâsı ve Omnichannel Pazarlama Platformu" : "Customer Intelligence & Omnichannel Marketing Platform")
+@section Styles {
+    <link href="~/css/pika-orbit.css" rel="stylesheet" asp-append-version="true" />
+}
+<section class="pw2-hero-insider orbit-hero" id="hero">
+    <div class="orbit-grid" aria-hidden="true"></div>
+    <div class="orbit-shell">
+        <div class="orbit-copy">
+            <div class="orbit-kicker"><span></span> AI CUSTOMER ANALYTICS</div>
+            <h1>@(isTr ? "Her müşterinin" : "Every customer")<br />@(isTr ? "bir sonraki" : "has a next")<br /><em>@(isTr ? "adımını keşfedin." : "move. Find it.")</em></h1>
+            <p>@(isTr ? "Verinizin içindeki fırsatları görün. Müşterinizi anlayın, doğru anı yakalayın ve her etkileşimi anlamlı bir ilişkiye dönüştürün." : "Find the opportunities in your data. Understand your customers, meet the moment, and turn every interaction into a meaningful relationship.")</p>
+            <div class="orbit-actions">
+                <button class="orbit-button" type="button" data-bs-toggle="modal" data-bs-target="#demoModal">@(isTr ? "Pika ile tanışın" : "Meet Pika") <span>↗</span></button>
+                <a class="orbit-tour" href="#calisma-modeli"><span>↓</span> @(isTr ? "Nasıl çalışır?" : "How it works")</a>
             </div>
-            <h1 class="pw2-display">
-                @(isTr ? "Müşteriyi ve ürünü anlayın. Doğru fırsatı bulun. Doğru anda aksiyona geçin." : "Understand your customers and products. Identify the right opportunity. Act at the right moment.")
-            </h1>
-            <p class="pw2-lead">
-                @(isTr ? "Pika; müşteri, ürün ve satış verisini birlikte anlamlandırarak işletmenin bugün hangi müşteride hangi ticari fırsatın oluştuğunu görmesini ve bu fırsatı kontrollü, ölçülebilir çok kanallı aksiyona dönüştürmesini sağlayan müşteri zekâsı ve pazarlama platformudur." : "Pika is a customer intelligence and marketing platform that brings customer, product and sales data together to identify commercial opportunities and turn them into controlled, measurable omnichannel actions.")
-            </p>
-            <div class="pw2-home-hero__actions">
-                <button type="button" class="pw2-btn pw2-btn--primary pw2-btn--lg" data-bs-toggle="modal" data-bs-target="#demoModal">
-                    @(isTr ? "Demo Talep Et" : "Request a Demo") <i class="ri-arrow-right-up-line" aria-hidden="true"></i>
-                </button>
-                <a href="#firsatlar" class="pw2-btn pw2-btn--secondary pw2-btn--lg">
-                    @(isTr ? "Fırsat Motorunu İnceleyin" : "Explore Opportunity Engine") <i class="ri-arrow-down-line" aria-hidden="true"></i>
-                </a>
-                <a href="@(isTr ? "/demo-talebi" : "/en/demo-request")" class="pw2-btn pw2-btn--tertiary">
-                    @(isTr ? "Teklif Al" : "Request a Quote") <i class="ri-arrow-right-line" aria-hidden="true"></i>
-                </a>
-            </div>
-            <div class="pw2-home-hero__tags">
-                <span class="pw2-home-tag"><i class="ri-brain-line" aria-hidden="true"></i> Customer &amp; Product Intelligence</span>
-                <span class="pw2-home-tag"><i class="ri-focus-3-line" aria-hidden="true"></i> @(isTr ? "Günün Fırsatları (CCE)" : "Daily Opportunities (CCE)")</span>
-                <span class="pw2-home-tag"><i class="ri-route-line" aria-hidden="true"></i> @(isTr ? "Audience &amp; Journey" : "Audience &amp; Journey")</span>
-                <span class="pw2-home-tag"><i class="ri-message-3-line" aria-hidden="true"></i> Email · SMS · WhatsApp</span>
-            </div>
+            <div class="orbit-caption">@(isTr ? "Müşteri zekâsı. Doğru zaman. Gerçek bağ." : "Customer intelligence. Right timing. Real connection.")</div>
         </div>
+        <div class="orbit-scene" role="img" aria-label="@(isTr ? "Müşteri verisi, fırsat ve iletişim arasında dönen animasyonlu veri yörüngesi. Örnek senaryo." : "Animated data orbit connecting customer insight, opportunity and communication. Illustrative scenario.")">
+            <canvas id="pika-orbit-canvas" aria-hidden="true"></canvas>
+            <div class="orbit-core" aria-hidden="true"><span class="orbit-mark"></span><span>pika<span class="orbit-core-dot">.</span></span><small>INTELLIGENCE IN MOTION</small></div>
+            <div class="orbit-label orbit-label-top">01 / @(isTr ? "ANLA" : "UNDERSTAND")</div>
+            <div class="orbit-label orbit-label-bottom">02 / @(isTr ? "KEŞFET" : "DISCOVER")</div>
+            <div class="pw2-hero-console-card orbit-card orbit-customer"><span class="orbit-avatar">D</span><div><small>PIKA 360</small><strong>@(isTr ? "Bir müşteriden fazlası." : "More than a customer.")</strong><span>@(isTr ? "Tercihler · Davranışlar · Potansiyel" : "Preferences · Behavior · Potential")</span></div><span class="orbit-card-status">↗</span></div>
+            <div class="pw2-float-badge orbit-card orbit-opportunity"><div class="orbit-op-icon">✳</div><div><small>@(isTr ? "FIRSAT TESPİT EDİLDİ" : "OPPORTUNITY IDENTIFIED")</small><strong>@(isTr ? "Yeniden alışveriş zamanı." : "Time to shop again.")</strong><div class="orbit-meter"><span></span></div><span>@(isTr ? "İhtiyaç oluştuğunda, siz oradasınız." : "Be there when the need arises.")</span></div></div>
+            <div class="orbit-card orbit-message"><i class="ri-whatsapp-line" aria-hidden="true"></i><div><small>@(isTr ? "DOĞRU KANAL, DOĞRU AN" : "RIGHT CHANNEL, RIGHT MOMENT")</small><strong>@(isTr ? "Merhaba Deniz 👋" : "Hello Deniz 👋")</strong><span>@(isTr ? "Sizin için seçtiğimiz öneriler var." : "We have some ideas just for you.")</span></div></div>
+            <span class="orbit-example">@(isTr ? "Örnek müşteri senaryosu" : "Illustrative customer scenario")</span>
+        </div>
+    </div>
+    <div class="orbit-bottom"><span>DATA INTO UNDERSTANDING. UNDERSTANDING INTO ACTION.</span><a href="#firsatlar">@(isTr ? "KEŞFETMEYE DEVAM EDİN" : "KEEP EXPLORING") ↓</a></div>
+</section>
 
-        @* Hero Asymmetric Dual-Stage Product Composition *@
-        <div class="pw2-home-hero-stage" data-aos="fade-up" data-aos-duration="800" data-aos-delay="150">
-            <div class="pw2-home-hero-stage__main">
-                <div class="pw2-product-frame">
-                    <div class="pw2-product-frame__header">
-                        <div class="pw2-product-frame__dots">
-                            <span class="pw2-product-frame__dot"></span>
-                            <span class="pw2-product-frame__dot"></span>
-                            <span class="pw2-product-frame__dot"></span>
-                        </div>
-                        <span class="pw2-product-frame__title">pika-360.decision-console</span>
-                    </div>
-                    <img src="~/wiki/assets/images/img_pika-360_7.png" 
-                         alt="@(isTr ? "Pika 360 bütünleşik müşteri karar konsolu: Zaman tüneli, hesaplanan CVS skoru ve açık fırsatlar" : "Pika 360 unified customer decision console: Order timeline, calculated CVS score, and open opportunities")"
-                         width="1672" 
-                         height="941" 
-                         loading="eager" />
-                </div>
-                <div class="pw2-product-caption">
-                    <span class="pw2-badge pw2-badge--demo">@(isTr ? "Örnek Gösterim" : "Sample View")</span>
-                    <span>@(isTr ? "Pika 360 Müşteri Karar Konsolu: Zaman tüneli, hesaplanan CVS skoru ve açık fırsatlar." : "Pika 360 Customer Decision Console: Timeline, calculated CVS score, and open opportunities.")</span>
+
+@* ── Channel & Capability Ribbon ── *@
+<div class="pw2-trust-ribbon">
+    <div class="pw2-container pw2-container--wide">
+        <div class="pw2-trust-ribbon__items">
+            <div class="pw2-trust-ribbon__item">
+                <div class="pw2-trust-ribbon__icon"><i class="ri-whatsapp-line" aria-hidden="true"></i></div>
+                <div>
+                    <div class="fw-bold">WhatsApp Business API</div>
+                    <div class="small text-white-50">@(isTr ? "Resmi Meta API Altyapısı" : "Official Meta API")</div>
                 </div>
             </div>
-
-            <div class="pw2-home-hero-stage__companion d-none d-lg-block">
-                <div class="pw2-product-frame">
-                    <div class="pw2-product-frame__header">
-                        <div class="pw2-product-frame__dots">
-                            <span class="pw2-product-frame__dot"></span>
-                            <span class="pw2-product-frame__dot"></span>
-                            <span class="pw2-product-frame__dot"></span>
-                        </div>
-                        <span class="pw2-product-frame__title">gunun-firsatlari.feed</span>
-                    </div>
-                    <img src="~/wiki/assets/images/img_gunun-firsatlari.png" 
-                         alt="@(isTr ? "Günün Fırsatları öncelik sıralı aksiyon akışı" : "Daily Opportunities prioritized action feed")"
-                         width="1024" 
-                         height="832" 
-                         loading="eager" />
+            <div class="pw2-trust-ribbon__item">
+                <div class="pw2-trust-ribbon__icon"><i class="ri-mail-send-line" aria-hidden="true"></i></div>
+                <div>
+                    <div class="fw-bold">Email &amp; SMS</div>
+                    <div class="small text-white-50">@(isTr ? "Doğrulanmış İcra Kanalları" : "Verified Execution Channels")</div>
                 </div>
-                <div class="pw2-product-caption">
-                    <span class="pw2-badge pw2-badge--demo">@(isTr ? "Örnek Veri" : "Example Data")</span>
-                    <span>@(isTr ? "Günün Fırsatları aksiyon akışı." : "Daily Opportunities action feed.")</span>
+            </div>
+            <div class="pw2-trust-ribbon__item">
+                <div class="pw2-trust-ribbon__icon"><i class="ri-focus-3-line" aria-hidden="true"></i></div>
+                <div>
+                    <div class="fw-bold">Pika Opportunity Engine</div>
+                    <div class="small text-white-50">@(isTr ? "Günlük Algoritmik Tespit" : "Daily Algorithmic Discovery")</div>
+                </div>
+            </div>
+            <div class="pw2-trust-ribbon__item">
+                <div class="pw2-trust-ribbon__icon"><i class="ri-shield-check-line" aria-hidden="true"></i></div>
+                <div>
+                    <div class="fw-bold">İYS &amp; KVKK</div>
+                    <div class="small text-white-50">@(isTr ? "Gönderim Öncesi İzin Denetimi" : "Pre-Dispatch Consent Verification")</div>
                 </div>
             </div>
         </div>
     </div>
-</section>
+</div>
 
 @* ══════════════════════════════════════════════════════════════════════════
-   CHAPTER 2: GÜNÜN FIRSATLARI — "Pika Bugün Hangi Fırsatları Buldu?"
+   CHAPTER 2: GÜNÜN FIRSATLARI (COMMERCIAL OPPORTUNITY ENGINE)
    ══════════════════════════════════════════════════════════════════════════ *@
-<section class="pw2-section pw2-home-firsatlar" id="firsatlar">
+<section class="pw2-section pw2-section--subtle" id="firsatlar">
     <div class="pw2-container">
-        <div class="pw2-editorial-split align-items-center">
-            <div data-aos="fade-right" data-aos-duration="700">
-                <div class="pw2-eyebrow">
-                    <i class="ri-focus-3-line" aria-hidden="true"></i>
-                    @(isTr ? "Fırsat ve Karar Motoru" : "Opportunity & Decision Engine")
-                </div>
-                <h2 class="pw2-h2">
-                    @(isTr ? "Pika bugün hangi fırsatları buldu?" : "What opportunities did Pika discover today?")
-                </h2>
-                <p class="pw2-lead">
-                    @(isTr ? "Geniş kitlelere rastgele mesaj göndermek yerine, müşteri tüketim ritmi ve ürün dinamiklerinden çıkan günlük öncelikli fırsatları keşfedin. Her sabah aksiyona hazır, filtrelenmiş ve kontrollü ticari öneriler." : "Instead of broadcasting indiscriminate campaigns, unlock daily prioritized opportunities derived from customer consumption rhythms and catalog dynamics. Governed commercial recommendations ready for action every morning.")
-                </p>
-
-                <div class="pw2-home-opp-list">
-                    <div class="pw2-home-opp-item">
-                        <div class="pw2-home-opp-item__icon pw2-home-opp-item__icon--repurchase">
-                            <i class="ri-refresh-line" aria-hidden="true"></i>
-                        </div>
-                        <div class="pw2-home-opp-item__body">
-                            <div class="pw2-home-opp-item__title">
-                                @(isTr ? "Tekrar Satın Alma (%80–%120 Tüketim Penceresi)" : "Repurchase Rhythm (80%–120% Cycle Window)")
-                            </div>
-                            <p class="pw2-home-opp-item__desc">
-                                @(isTr ? "Müşterinin geçmiş işlem sıklığına göre hesaplanan bireysel tüketim penceresinde, ihtiyaç tükenmeden önce zamanında hatırlatma." : "Algorithmic calculation of individualized consumption windows, triggering engagement right before replenishment cycles lapse.")
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="pw2-home-opp-item">
-                        <div class="pw2-home-opp-item__icon pw2-home-opp-item__icon--crosssell">
-                            <i class="ri-shopping-basket-2-line" aria-hidden="true"></i>
-                        </div>
-                        <div class="pw2-home-opp-item__body">
-                            <div class="pw2-home-opp-item__title">
-                                @(isTr ? "Çapraz Satış ve Sepet Birlikteliği" : "Cross-Sell & Market Basket Affinity")
-                            </div>
-                            <p class="pw2-home-opp-item__desc">
-                                @(isTr ? "Birlikte satın alma kuralları (Support, Confidence, Lift) ve Need Group eşleştirmesiyle sepeti tamamlayan doğru ürün önerisi." : "Basket association rules and Need Group alignments recommending complementary products with proven commercial affinity.")
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="pw2-home-opp-item">
-                        <div class="pw2-home-opp-item__icon pw2-home-opp-item__icon--winback">
-                            <i class="ri-user-unfollow-line" aria-hidden="true"></i>
-                        </div>
-                        <div class="pw2-home-opp-item__body">
-                            <div class="pw2-home-opp-item__title">
-                                @(isTr ? "Geri Kazanım ve Kayıp Riski Sinyalleri" : "Win-Back & Churn Prevention Signals")
-                            </div>
-                            <p class="pw2-home-opp-item__desc">
-                                @(isTr ? "Alışveriş ritmi aksayan ve pasifleşme riski taşıyan değerli müşterilerin erken evrede tespiti ve hedeflenmesi." : "Early detection and targeted re-engagement of slipping high-value patrons before dormancy becomes permanent.")
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="d-flex gap-3 flex-wrap">
-                    <a href="@(isTr ? "/platform/gunun-firsatlari" : "/en/platform/opportunities")" class="pw2-btn pw2-btn--secondary">
-                        @(isTr ? "Günün Fırsatlarını Keşfedin" : "Explore Daily Opportunities") <i class="ri-arrow-right-line" aria-hidden="true"></i>
-                    </a>
-                    <button type="button" class="pw2-btn pw2-btn--primary" data-bs-toggle="modal" data-bs-target="#demoModal">
-                        @(isTr ? "Demo Talep Et" : "Request a Demo")
-                    </button>
-                </div>
-            </div>
-
-            <div data-aos="fade-left" data-aos-duration="700">
-                <div class="pw2-product-frame">
-                    <div class="pw2-product-frame__header">
-                        <div class="pw2-product-frame__dots">
-                            <span class="pw2-product-frame__dot"></span>
-                            <span class="pw2-product-frame__dot"></span>
-                            <span class="pw2-product-frame__dot"></span>
-                        </div>
-                        <span class="pw2-product-frame__title">gunun-firsatlari.cockpit</span>
-                    </div>
-                    <img src="~/wiki/assets/images/img_gunun-firsatlari.png" 
-                         alt="@(isTr ? "Günün Fırsatları modülü: Tekrar satın alma, cross-sell ve win-back listesi" : "Daily Opportunities module: Repurchase, cross-sell, and win-back action list")"
-                         width="1024" 
-                         height="832" 
-                         loading="lazy" />
-                </div>
-                <div class="pw2-product-caption">
-                    <span class="pw2-badge pw2-badge--demo">@(isTr ? "Örnek Gösterim" : "Sample View")</span>
-                    <span>@(isTr ? "Günün Fırsatları günlük ticari karar ve öncelik sıralı aksiyon akışı." : "Daily Opportunities commercial decision feed ranked by priority.")</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-@* ══════════════════════════════════════════════════════════════════════════
-   CHAPTER 3: DATA → INTELLIGENCE → OPPORTUNITY (Operating Model)
-   ══════════════════════════════════════════════════════════════════════════ *@
-<section class="pw2-section pw2-section--subtle" id="calisma-modeli">
-    <div class="pw2-container">
-        <div class="pw2-text-center mb-5" data-aos="fade-up">
+        <div class="text-center mb-5" data-aos="fade-up">
             <div class="pw2-eyebrow">
-                <i class="ri-git-commit-line" aria-hidden="true"></i>
-                @(isTr ? "Çalışma Modeli" : "Operating Model")
+                <i class="ri-focus-3-line" aria-hidden="true"></i>
+                @(isTr ? "Günün Fırsatları (CCE)" : "Commercial Opportunity Engine")
             </div>
             <h2 class="pw2-h2">
-                @(isTr ? "Pika’nın başlangıç noktası mesaj göndermek değil, anlamaktır." : "Pika's starting point is not merely sending messages; it is understanding.")
+                @(isTr ? "Veri çok. Doğru fırsat bir adım ötede." : "More data. Clearer opportunities.")
             </h2>
             <p class="pw2-lead mx-auto" style="max-width:760px">
-                @(isTr ? "Pika, veriyi depolamakla veya salt mesaj iletmekle yetinmez. Çevrimdışı fişler, e-ticaret siparişleri ve ürün özellikleri önce zekâ katmanında işlenir, ardından ticari fırsat ve karara dönüşür." : "Pika does not merely store records or blast dispatches. Offline receipts, e-commerce orders, and catalog attributes are first enriched in the intelligence layer, then translated into commercial opportunities and decisions.")
+                @(isTr ? "Pika'nın Commercial Opportunity Engine (CCE) algoritması; müşteri işlem geçmişi, ürün tüketim döngüleri ve sepet birlikteliklerini sürekli analiz ederek bugün kimin neye ihtiyacı olduğunu tespit eder." : "Pika's Commercial Opportunity Engine (CCE) continuously evaluates transaction logs, consumption rhythms, and basket affinities to pinpoint exactly who needs what today.")
             </p>
         </div>
 
-        @* Connected 3-Step Flow *@
-        <div class="pw2-home-flow" data-aos="fade-up" data-aos-delay="100">
-            <div class="pw2-home-flow__step">
-                <div class="pw2-home-flow__step-num">01</div>
-                <h3 class="pw2-h4">@(isTr ? "Veri ve Entegrasyon" : "Data & Ingestion")</h3>
-                <p class="pw2-body-sm">
-                    @(isTr ? "Asenkron Ingestion API, CSV/Excel kolay aktarımı ve POS/ERP bağlayıcıları. Müşteri kimlik tekilleştirmesi ve işlem geçmişinin konsolidasyonu." : "Asynchronous Ingestion API, CSV/Excel imports, and POS/ERP connectors. Identity resolution and consolidated transactional history.")
-                </p>
-            </div>
-
-            <div class="pw2-home-flow__arrow" aria-hidden="true">
-                <i class="ri-arrow-right-line" aria-hidden="true"></i>
-            </div>
-
-            <div class="pw2-home-flow__step">
-                <div class="pw2-home-flow__step-num">02</div>
-                <h3 class="pw2-h4">@(isTr ? "Müşteri ve Ürün Zekâsı" : "Customer & Product Intelligence")</h3>
-                <p class="pw2-body-sm">
-                    @(isTr ? "Hesaplanan Customer Value Score (CVS), tüketim ritmi döngüsü, Need Group ihtiyaç eşleştirmesi ve Product Role ticari konumlandırması." : "Calculated Customer Value Score (CVS), consumption rhythms, Need Group intent mapping, and Product Role merchandise classification.")
-                </p>
-            </div>
-
-            <div class="pw2-home-flow__arrow" aria-hidden="true">
-                <i class="ri-arrow-right-line" aria-hidden="true"></i>
-            </div>
-
-            <div class="pw2-home-flow__step">
-                <div class="pw2-home-flow__step-num">03</div>
-                <h3 class="pw2-h4">@(isTr ? "Fırsat ve Karar" : "Opportunity & Decision")</h3>
-                <p class="pw2-body-sm">
-                    @(isTr ? "CCE öncelik hiyerarşisi: Risk ve frekans filtreleri, tekrar satın alma, çapraz satış ve geri kazanım sinyalleri aksiyona hazır." : "CCE priority hierarchy: Risk and frequency gating, replenishment alerts, basket cross-sells, and win-back cohorts primed for action.")
-                </p>
-            </div>
-        </div>
-
-        @* Ingestion Workbench Real Screenshot (Clean Crop y:36 removes browser bar) *@
-        <div class="pw2-product-stage" data-aos="fade-up" data-aos-delay="200">
-            <div class="pw2-product-frame pw2-home-ingestion-crop">
-                <div class="pw2-product-frame__header">
-                    <div class="pw2-product-frame__dots">
-                        <span class="pw2-product-frame__dot"></span>
-                        <span class="pw2-product-frame__dot"></span>
-                        <span class="pw2-product-frame__dot"></span>
-                    </div>
-                    <span class="pw2-product-frame__title">ingestion-workbench.import</span>
+        @* 4-Card Bento Grid *@
+        <div class="pw2-cce-grid" data-aos="fade-up" data-aos-delay="100">
+            @* 01. Repurchase Rhythm *@
+            <div class="pw2-cce-card">
+                <span class="pw2-cce-card__badge" style="background:#e0f2fe;color:#0369a1">01</span>
+                <div class="pw2-cce-card__icon" style="background:#e0f2fe;color:#0284c7">
+                    <i class="ri-repeat-line" aria-hidden="true"></i>
                 </div>
-                <img src="~/wiki/assets/images/img_excel-csv-aktarimi_1.png" 
-                     alt="@(isTr ? "Pika veri entegrasyonu ve kolon eşleştirme çalışma alanı" : "Pika data ingestion and column mapping workspace")"
-                     width="1885" 
-                     height="974" 
-                     loading="lazy" />
+                <h3 class="h5 fw-bold mb-2">@(isTr ? "Tekrar Satın Alma Ritmi" : "Repurchase Rhythm")</h3>
+                <p class="small text-secondary mb-3">
+                    @(isTr ? "Müşterinin geçmiş işlem sıklığına göre hesaplanan bireysel tüketim penceresinde (%80-%120), ihtiyaç tükenmeden önce zamanında hatırlatma." : "Individualized consumption windows (80%-120%) calculated algorithmically to trigger engagement before replenishment cycles lapse.")
+                </p>
+                <div class="pw2-cce-meter-bar">
+                    <div class="pw2-cce-meter-fill" style="width:88%"></div>
+                </div>
+                <div class="d-flex justify-content-between small text-muted">
+                    <span>@(isTr ? "Tüketim İlerlemesi" : "Cycle Progress")</span>
+                    <span class="fw-bold text-dark">%88</span>
+                </div>
             </div>
-            <div class="pw2-product-caption">
-                <span>@(isTr ? "Asenkron veri aktarımı ve kolon eşleştirme ekranı." : "Asynchronous data ingestion and column mapping interface.")</span>
-                <a href="@(isTr ? "/entegrasyonlar" : "/en/integrations")" class="pw2-btn pw2-btn--tertiary">
-                    @(isTr ? "Entegrasyonları Görün" : "View Integrations") <i class="ri-arrow-right-line" aria-hidden="true"></i>
-                </a>
+
+            @* 02. Cross-Category Expansion *@
+            <div class="pw2-cce-card">
+                <span class="pw2-cce-card__badge" style="background:#fef3c7;color:#b45309">02</span>
+                <div class="pw2-cce-card__icon" style="background:#fef3c7;color:#d97706">
+                    <i class="ri-compass-3-line" aria-hidden="true"></i>
+                </div>
+                <h3 class="h5 fw-bold mb-2">@(isTr ? "Çapraz Kategori Genişleme" : "Cross-Category Expansion")</h3>
+                <p class="small text-secondary mb-3">
+                    @(isTr ? "Tek bir kategoriye bağlı kalan müşterilere, Need Group ve ürün rolü affinitesi yüksek tamamlayıcı kategorilerin önerilmesi." : "Introducing high-affinity complementary categories to single-category shoppers based on Need Group affinity matrices.")
+                </p>
+                <div class="pw2-cce-meter-bar">
+                    <div class="pw2-cce-meter-fill" style="width:74%;background:linear-gradient(90deg,#d97706,#f59e0b)"></div>
+                </div>
+                <div class="d-flex justify-content-between small text-muted">
+                    <span>@(isTr ? "Need Group Uyumu" : "Need Group Affinity")</span>
+                    <span class="fw-bold text-dark">%74</span>
+                </div>
+            </div>
+
+            @* 03. Basket Complement *@
+            <div class="pw2-cce-card">
+                <span class="pw2-cce-card__badge" style="background:#f0fdf4;color:#15803d">03</span>
+                <div class="pw2-cce-card__icon" style="background:#f0fdf4;color:#16a34a">
+                    <i class="ri-shopping-basket-2-line" aria-hidden="true"></i>
+                </div>
+                <h3 class="h5 fw-bold mb-2">@(isTr ? "Sepet Tamamlama" : "Basket Association")</h3>
+                <p class="small text-secondary mb-3">
+                    @(isTr ? "Birlikte satın alma olasılığı kanıtlanmış ürün kombinasyonlarıyla ortalama sepet büyüklüğünü (AOV) artırma." : "Increasing average order value (AOV) with algorithmically proven co-purchase product associations.")
+                </p>
+                <div class="pw2-cce-meter-bar">
+                    <div class="pw2-cce-meter-fill" style="width:95%;background:linear-gradient(90deg,#16a34a,#10b981)"></div>
+                </div>
+                <div class="d-flex justify-content-between small text-muted">
+                    <span>@(isTr ? "Sepet Birliktelik Gücü" : "Co-purchase Confidence")</span>
+                    <span class="fw-bold text-dark">%95</span>
+                </div>
+            </div>
+
+            @* 04. Churn Intervention *@
+            <div class="pw2-cce-card">
+                <span class="pw2-cce-card__badge" style="background:#fee2e2;color:#b91c1c">04</span>
+                <div class="pw2-cce-card__icon" style="background:#fee2e2;color:#dc2626">
+                    <i class="ri-alarm-warning-line" aria-hidden="true"></i>
+                </div>
+                <h3 class="h5 fw-bold mb-2">@(isTr ? "Kayıp Riski Müdahalesi" : "Churn Intervention")</h3>
+                <p class="small text-secondary mb-3">
+                    @(isTr ? "Alışveriş frekansı sapan ve kayıp eşiğine yaklaşan değerli müşterileri tespit edip, pasifleşmeden önce geri kazanma." : "Early detection of churn-risk customers when activity deviates from historical baselines before attrition becomes permanent.")
+                </p>
+                <div class="pw2-cce-meter-bar">
+                    <div class="pw2-cce-meter-fill" style="width:82%;background:linear-gradient(90deg,#dc2626,#f43f5e)"></div>
+                </div>
+                <div class="d-flex justify-content-between small text-muted">
+                    <span>@(isTr ? "Kurtarma Hassasiyeti" : "Retention Sensitivity")</span>
+                    <span class="fw-bold text-dark">%82</span>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
 @* ══════════════════════════════════════════════════════════════════════════
-   CHAPTER 4: CUSTOMER + PRODUCT INTELLIGENCE (Twin Intelligence Domains)
+   CHAPTER 3: OPERATING MODEL (DATA -> INTEL -> OPPORTUNITY)
    ══════════════════════════════════════════════════════════════════════════ *@
-<section class="pw2-section" id="zeka-katmani">
+<section class="pw2-section scene-model" id="calisma-modeli">
+ <div class="scene-halo" aria-hidden="true"></div>
+ <div class="pw2-container scene-split">
+  <div class="scene-story"><div class="pw2-eyebrow">01 — @(isTr ? "VERİDEN DEĞERE" : "DATA TO VALUE")</div>
+   <h2>@(isTr ? "Her şey birbirine" : "Everything starts")<br/><em>@(isTr ? "bağlandığında." : "with connection.")</em></h2>
+   <p>@(isTr ? "Mağazanız, e-ticaretiniz, müşteriniz. Pika tüm hikâyeyi bir araya getirir; sıradaki fırsatı görünür kılar." : "Your stores, your online business, your customers. Pika brings the whole story together to reveal the next opportunity.")</p>
+   <div class="scene-steps">
+    <button type="button" class="pw2-step-card active" data-scene-step="0" aria-pressed="true"><span>01</span><div><strong>@(isTr ? "Verinizi birleştirin" : "Connect your data")</strong><p>@(isTr ? "Her temas noktası, tek bir müşteri hikâyesi." : "Every touchpoint. One customer story.")</p></div><b>↗</b></button>
+    <button type="button" class="pw2-step-card" data-scene-step="1" aria-pressed="false"><span>02</span><div><strong>@(isTr ? "Fırsatı keşfedin" : "Discover the opportunity")</strong><p>@(isTr ? "Kim, neye, ne zaman ihtiyaç duyuyor?" : "Who needs what, and when?")</p></div><b>↗</b></button>
+    <button type="button" class="pw2-step-card" data-scene-step="2" aria-pressed="false"><span>03</span><div><strong>@(isTr ? "Doğru anda ulaşın" : "Meet the moment")</strong><p>@(isTr ? "İzinli kanallarda, kişiye özel bir deneyim." : "A personal experience, through consented channels.")</p></div><b>↗</b></button>
+   </div>
+  </div>
+  <div class="pw2-pipeline-stage scene-network" data-network-step="0">
+   <div class="network-orbit network-orbit-one" aria-hidden="true"></div><div class="network-orbit network-orbit-two" aria-hidden="true"></div>
+   <div class="network-center"><span>pika<span>✳</span></span><small>INTELLIGENCE</small></div>
+   <div class="network-node network-shop"><i class="ri-store-2-line" aria-hidden="true"></i><span>@(isTr ? "Mağaza" : "In-store")</span></div>
+   <div class="network-node network-cart"><i class="ri-shopping-bag-3-line" aria-hidden="true"></i><span>E-commerce</span></div>
+   <div class="network-node network-data"><i class="ri-database-2-line" aria-hidden="true"></i><span>CRM / ERP</span></div>
+   <div class="network-node network-person"><i class="ri-user-heart-line" aria-hidden="true"></i><span>@(isTr ? "Müşteriniz" : "Your customer")</span></div>
+   <div class="network-insight" aria-live="polite"><span class="network-spark">✳</span><div><small>@(isTr ? "BİRLEŞİK MÜŞTERİ GÖRÜNÜMÜ" : "UNIFIED CUSTOMER VIEW")</small><strong data-scene-title>@(isTr ? "Parçalar birleşir. Hikâye tamamlanır." : "The pieces connect. The story comes together.")</strong><p data-scene-description>@(isTr ? "Alışverişler, tercihler ve etkileşimler tek yerde." : "Purchases, preferences and interactions, together.")</p></div></div>
+   <div class="scene-simulation">@(isTr ? "Platform çalışma modeli · Görsel anlatım" : "Platform workflow · Illustration")</div>
+  </div>
+ </div>
+</section>
+
+
+@* ══════════════════════════════════════════════════════════════════════════
+   CHAPTER 4: TWIN INTELLIGENCE (CUSTOMER & PRODUCT)
+   ══════════════════════════════════════════════════════════════════════════ *@
+<section class="pw2-section intelligence-chapter" id="zeka-katmani">
+ <div class="pw2-container"><div class="product-heading"><div><div class="pw2-eyebrow">@(isTr ? "Zekâ Katmanı" : "Intelligence Layer")</div><h2>@(isTr ? "Müşteriyi anlayın." : "Understand your customer.")<br/><em>@(isTr ? "Ürünle bağını keşfedin." : "Find the product connection.")</em></h2></div><p>@(isTr ? "Alışverişin iki tarafını birlikte görün. Müşterinin değişen ihtiyaçlarıyla ürünlerin taşıdığı potansiyeli buluşturun." : "See both sides of every purchase. Connect changing customer needs with the potential in your products.")</p></div>
+ <div class="pw2-intel-grid intelligence-pair">
+  <article class="pw2-intel-card intelligence-customer"><div class="intelligence-caption"><span>01 / CUSTOMER INTELLIGENCE</span><i class="ri-user-heart-line" aria-hidden="true"></i></div><h3>@(isTr ? "Her müşterinin" : "Every customer")<br/>@(isTr ? "kendine ait bir ritmi var." : "has their own rhythm.")</h3><p>@(isTr ? "Alışveriş alışkanlıklarını, müşteri değerini ve yeniden ihtiyaç duyulabilecek anı birlikte değerlendirin." : "Bring purchase habits, customer value and the next moment of need into focus.")</p>
+   <div class="intelligence-visual rhythm-visual"><div class="rhythm-profile"><span>DK</span><div><strong>Deniz Kaya</strong><small>@(isTr ? "Örnek müşteri profili" : "Sample customer profile")</small></div><span class="rhythm-loyal">@(isTr ? "Sadık müşteri" : "Loyal customer")</span></div><div class="rhythm-overview"><div class="pw2-cvs-circle rhythm-score"><div><strong>84</strong><small>CVS / 100</small></div></div><div class="rhythm-value"><small>@(isTr ? "MÜŞTERİ DEĞERİ" : "CUSTOMER VALUE")</small><strong>@(isTr ? "İlişkinin gücünü görün." : "See the strength of the relationship.")</strong><span>@(isTr ? "Sıklık · Alışveriş tutarı · Sadakat" : "Frequency · Spend · Loyalty")</span></div></div><div class="rhythm-history"><div><small>@(isTr ? "ALIŞVERİŞ RİTMİ" : "PURCHASE RHYTHM")</small><span>@(isTr ? "Örnek zaman çizgisi" : "Illustrative timeline")</span></div><div class="rhythm-line" aria-hidden="true"><span></span><span></span><span></span><span class="rhythm-next"></span></div><div class="rhythm-dates"><span>01.04</span><span>01.05</span><span>31.05</span><span>@(isTr ? "Sıradaki an" : "Next moment")</span></div></div></div>
+   <a class="intelligence-link" href="@(isTr ? "/platform/customer-intelligence" : "/en/platform/customer-intelligence")">@(isTr ? "Müşteri zekâsını keşfedin" : "Explore customer intelligence") <span>↗</span></a>
+  </article>
+  <article class="pw2-intel-card intelligence-product"><div class="intelligence-caption"><span>02 / PRODUCT INTELLIGENCE</span><i class="ri-shopping-bag-3-line" aria-hidden="true"></i></div><h3>@(isTr ? "Bir ürünün ötesinde," : "Beyond one product,")<br/>@(isTr ? "yeni bir ihtiyaç var." : "there’s another need.")</h3><p>@(isTr ? "Birlikte tercih edilen ürünleri ve tamamlayıcı ihtiyaçları anlayın. Her öneriyi alışveriş bağlamıyla şekillendirin." : "Understand products purchased together and complementary needs. Shape every recommendation around purchase context.")</p>
+   <div class="intelligence-visual affinity-visual"><div class="affinity-top"><span>@(isTr ? "ÜRÜN İLİŞKİLERİ" : "PRODUCT RELATIONSHIPS")</span><small>@(isTr ? "Örnek eşleştirme" : "Sample pairing")</small></div><div class="affinity-map"><div class="affinity-item"><div class="affinity-icon"><i class="ri-cup-line" aria-hidden="true"></i></div><small>@(isTr ? "ANA ÜRÜN" : "PRIMARY PRODUCT")</small><strong>@(isTr ? "Filtre kahve" : "Filter coffee")</strong></div><div class="affinity-connector" aria-hidden="true"><span></span><b>+</b><span></span></div><div class="affinity-item"><div class="affinity-icon affinity-icon-second"><i class="ri-filter-line" aria-hidden="true"></i></div><small>@(isTr ? "TAMAMLAYICI" : "COMPLEMENTARY")</small><strong>@(isTr ? "Kahve filtresi" : "Coffee filters")</strong></div></div><div class="affinity-insight"><span>✳</span><div><strong>@(isTr ? "Aynı ritüelin iki parçası." : "Two parts of the same ritual.")</strong><p>@(isTr ? "Ürün rolü ve birlikte alışveriş davranışı, ilgili öneriyi buluşturur." : "Product roles and co-purchase behavior inform a relevant suggestion.")</p></div></div></div>
+   <a class="intelligence-link" href="@(isTr ? "/platform/product-intelligence" : "/en/platform/product-intelligence")">@(isTr ? "Ürün zekâsını keşfedin" : "Explore product intelligence") <span>↗</span></a>
+  </article>
+ </div></div>
+</section>
+
+
+@* ══════════════════════════════════════════════════════════════════════════
+   CHAPTER 5: PIKA 360 (UNIFIED CUSTOMER DECISION CONSOLE)
+   ══════════════════════════════════════════════════════════════════════════ *@
+<section class="pw2-section product-chapter" id="pika-360">
+ <div class="pw2-container">
+  <div class="product-heading"><div><div class="pw2-eyebrow">@(isTr ? "Bütünleşik Müşteri Konsolu" : "Unified Customer Console")</div><h2>@(isTr ? "Bir profilin arkasındaki" : "See the person")<br/><em>@(isTr ? "bütün hikâye." : "behind the profile.")</em></h2></div><p>@(isTr ? "Geçmiş alışverişler, bugünün ihtiyaçları ve bir sonraki fırsat. Müşterinizi anlamak için ihtiyacınız olan bağlam, tek bir görünümde." : "Past purchases, current needs and the next opportunity. The context you need to understand your customer, in one view.")</p></div>
+  <div class="pw2-360-stage studio-console">
+   <div class="studio-topbar"><span class="studio-brand">pika<span>✳</span></span><span>Workspace <b>/</b> Pika 360</span><small>@(isTr ? "Örnek ürün görünümü" : "Illustrative product view")</small></div>
+   <div class="studio-body">
+    <aside class="studio-profile"><div class="profile-portrait">CK</div><span class="studio-kicker">CUSTOMER PROFILE</span><h3>Caner Kaya</h3><span class="studio-status">@(isTr ? "Sadık müşteri" : "Loyal customer")</span><dl><dt>@(isTr ? "Müşteri olduğundan beri" : "Customer since")</dt><dd>2023</dd><dt>@(isTr ? "Tercih ettiği kanal" : "Preferred channel")</dt><dd><i class="ri-whatsapp-line" aria-hidden="true"></i> WhatsApp</dd><dt>@(isTr ? "İlgi alanı" : "Interest")</dt><dd>@(isTr ? "Kahve & yaşam" : "Coffee & lifestyle")</dd></dl><div class="profile-tags"><span>@(isTr ? "Mağaza" : "In-store")</span><span>E-commerce</span></div></aside>
+    <div class="studio-detail"><div class="studio-detail-title"><h3>@(isTr ? "Müşteri özeti" : "Customer overview")</h3><span>@(isTr ? "Örnek veriler" : "Sample data")</span></div>
+     <div class="studio-metrics"><div><small>@(isTr ? "Müşteri değer skoru" : "Customer value score")</small><strong>91<em>/100</em></strong><div class="score-track"><span></span></div></div><div><small>@(isTr ? "Toplam alışveriş" : "Total purchases")</small><strong>₺24.850</strong><span>@(isTr ? "Müşteri geçmişi" : "Customer history")</span></div><div><small>@(isTr ? "Son etkileşim" : "Last interaction")</small><strong>14 <em>@(isTr ? "gün" : "days")</em></strong><span>@(isTr ? "E-ticaret alışverişi" : "Online purchase")</span></div></div>
+     <div class="studio-lower"><div class="studio-timeline"><h4>@(isTr ? "İlişkinin zaman çizgisi" : "Relationship timeline")</h4><div><i class="ri-shopping-bag-3-line" aria-hidden="true"></i><p><strong>@(isTr ? "Yeni bir favori" : "A new favorite")</strong><span>@(isTr ? "E-ticaret siparişi · ₺1.420" : "Online order · ₺1,420")</span></p><small>@(isTr ? "14 gün önce" : "14 days ago")</small></div><div><i class="ri-store-2-line" aria-hidden="true"></i><p><strong>@(isTr ? "Mağazada bir buluşma" : "An in-store visit")</strong><span>@(isTr ? "Bağdat Caddesi · ₺2.890" : "Bağdat Avenue · ₺2,890")</span></p><small>@(isTr ? "45 gün önce" : "45 days ago")</small></div></div>
+     <div class="studio-opportunity"><span class="studio-kicker">✳ @(isTr ? "SIRADAKİ FIRSAT" : "NEXT OPPORTUNITY")</span><h4>@(isTr ? "Kahve ritmi devam etsin." : "Keep the coffee ritual going.")</h4><p>@(isTr ? "Alışveriş ritmine göre yeniden ihtiyaç duyabileceği zaman yaklaşıyor." : "Their purchase rhythm suggests the next replenishment window is approaching.")</p><a href="@(isTr ? "/platform/pika-360" : "/en/platform/pika-360")">@(isTr ? "Pika 360’ı keşfedin" : "Explore Pika 360") ↗</a></div></div>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+
+@* ══════════════════════════════════════════════════════════════════════════
+   CHAPTER 6: DECISION TO ACTION (OMNICHANNEL BENTO & PHONE FRAME)
+   ══════════════════════════════════════════════════════════════════════════ *@
+<section class="pw2-section scene-channels" id="aksiyon-ve-icra">
+ <div class="channel-ribbon channel-ribbon-one" aria-hidden="true"></div><div class="channel-ribbon channel-ribbon-two" aria-hidden="true"></div>
+ <div class="pw2-container">
+  <div class="scene-channel-heading"><div class="pw2-eyebrow">02 — @(isTr ? "BAĞ KURUN" : "MAKE A CONNECTION")</div><h2>@(isTr ? "Doğru an." : "The right moment.")<br/><em>@(isTr ? "Size ait bir deneyim." : "An experience that’s yours.")</em></h2><p>@(isTr ? "WhatsApp, e-posta ve SMS. Tek bir yolculukta, müşterinizin tercih ettiği yerde buluşun." : "WhatsApp, email and SMS. One connected journey, wherever your customer prefers.")</p></div>
+  <div class="pw2-omni-bento scene-channel-grid">
+   <article class="channel-tile channel-whatsapp"><div class="channel-title"><i class="ri-whatsapp-line" aria-hidden="true"></i><span>WhatsApp</span><span>01</span></div><h3>@(isTr ? "Sohbet kadar doğal." : "As natural as a conversation.")</h3>
+    <div class="pw2-phone-mockup"><div class="pw2-phone-speaker"></div><div class="pw2-phone-screen"><div class="pw2-wa-header"><span class="coffee-icon">☕</span><div><strong>PIKA COFFEE</strong><small>@(isTr ? "Örnek marka" : "Illustrative brand")</small></div></div><div class="coffee-art" aria-hidden="true"><div class="coffee-pack">pika<br/><small>DAILY BLEND</small><span>☕</span></div></div><div class="pw2-wa-bubble"><strong>@(isTr ? "Kahve molasına hazır mısın?" : "Ready for a coffee break?")</strong><p>@(isTr ? "Merhaba Deniz, favori kahvenle güne güzel bir başlangıç yap. ☀" : "Hi Deniz, start your day with your favorite coffee. ☀")</p></div><a class="pw2-wa-btn" href="@(isTr ? "/kanallar/whatsapp" : "/en/channels/whatsapp")">@(isTr ? "WhatsApp’ı keşfedin" : "Explore WhatsApp") ↗</a></div></div>
+   </article>
+   <article class="channel-tile channel-email"><div class="channel-title"><i class="ri-mail-line" aria-hidden="true"></i><span>E-mail</span><span>02</span></div><h3>@(isTr ? "Her açılışta ilham." : "Inspiration in every inbox.")</h3><div class="email-preview"><div class="email-chrome"><span>● ● ●</span><small>@(isTr ? "Sizin için seçtik" : "Picked for you")</small></div><div class="email-art"><span>THE EVERYDAY<br/>COLLECTION.</span><div class="product-sculpture" aria-hidden="true"></div></div><div class="email-copy"><small>PIKA STUDIO</small><h4>@(isTr ? "Tam sizin tarzınız." : "Just your style.")</h4><p>@(isTr ? "Sevdiğiniz detaylar. Yeni keşifler." : "The details you love. Something new.")</p><a href="@(isTr ? "/kanallar/email" : "/en/channels/email")">@(isTr ? "E-postayı keşfedin" : "Explore email") ↗</a></div></div></article>
+   <article class="channel-tile channel-sms"><div class="channel-title"><i class="ri-message-2-line" aria-hidden="true"></i><span>SMS</span><span>03</span></div><h3>@(isTr ? "Az kelime. Güçlü bağ." : "A few words. A real connection.")</h3><div class="sms-preview"><div class="sms-clock">09:41</div><div class="sms-date">@(isTr ? "Güne güzel bir başlangıç" : "A good start to the day")</div><div class="sms-notification"><div><i class="ri-message-2-fill" aria-hidden="true"></i> MESSAGES <span>@(isTr ? "şimdi" : "now")</span></div><strong>PIKA</strong><p>@(isTr ? "Deniz, seni yeniden görmek güzel! Sana özel seçkimiz hazır. Yeni favorini birlikte keşfedelim." : "Deniz, it’s good to see you again! Your personal selection is ready. Find your next favorite.")</p></div></div><a class="sms-link" href="@(isTr ? "/kanallar/sms" : "/en/channels/sms")">@(isTr ? "SMS’i keşfedin" : "Explore SMS") ↗</a></article>
+  </div>
+  <div class="channel-journey"><span>✳</span><div><strong>@(isTr ? "Ayrı kanallar. Birlikte çalışan bir yolculuk." : "Individual channels. One connected journey.")</strong><p>@(isTr ? "İzin kontrolleri ve gönderim zaman pencereleriyle, her adım kontrolünüzde." : "Consent checks and quiet-hours dispatch windows keep every step under your control.")</p></div><a href="@(isTr ? "/cozumler/journey-manager" : "/en/solutions/journey-manager")">Journey Manager ↗</a></div>
+ </div>
+</section>
+
+
+@* ══════════════════════════════════════════════════════════════════════════
+   CHAPTER 7: PIKA PILOT AI (LUMINOUS GROUNDED AI COPILOT)
+   ══════════════════════════════════════════════════════════════════════════ *@
+<section class="pw2-section pilot-chapter" id="pika-pilot">
+ <div class="pw2-container pilot-layout"><div class="pilot-story"><div class="pw2-eyebrow">@(isTr ? "Grounded AI Kampanya Asistanı" : "Grounded AI Campaign Assistant")</div><h2>@(isTr ? "Fikrinizden" : "From your idea")<br/><em>@(isTr ? "ilk taslağa." : "to the first draft.")</em></h2><p>@(isTr ? "Pika Pilot, müşterilerinizi ve ürünlerinizi tanıyan kampanya asistanınız. Hedefinizi söyleyin; kitle, içerik ve kanal önerisini birlikte değerlendirin." : "Pika Pilot is your campaign assistant, grounded in your customers and products. Start with your goal, then review audience, content and channel suggestions together.")</p><div class="pilot-principle"><span>01</span><div><strong>@(isTr ? "Sizin verinizle düşünür." : "Grounded in your data.")</strong><p>@(isTr ? "Ürün kataloğu ve müşteri geçmişinden bağlam alır." : "Uses your catalog and customer history as context.")</p></div></div><div class="pilot-principle"><span>02</span><div><strong>@(isTr ? "Son karar sizindir." : "You make the final call.")</strong><p>@(isTr ? "Öneriler incelemenize sunulur; onayınızla ilerler." : "Suggestions are prepared for your review and approval.")</p></div></div><a class="pilot-explore" href="@(isTr ? "/urunler/ai-kampanya-asistani" : "/en/products/ai-campaign-assistant")">@(isTr ? "Pika Pilot ile tanışın" : "Meet Pika Pilot") ↗</a></div>
+  <div class="pw2-ai-terminal pilot-workspace"><div class="pilot-toolbar"><span>✳ <strong>Pika Pilot</strong></span><small>@(isTr ? "Örnek kampanya taslağı" : "Sample campaign draft")</small></div><div class="pilot-workspace-body"><div class="pw2-ai-prompt-box pilot-request"><span class="pilot-user">C</span><p>@(isTr ? "Bir süredir alışveriş yapmayan kahve müşterilerimiz için bir geri kazanım kampanyası hazırlayalım." : "Let’s prepare a win-back campaign for coffee customers who haven’t shopped recently.")</p></div><div class="pilot-context"><span>✓ @(isTr ? "Ürün kataloğu" : "Product catalog")</span><span>✓ @(isTr ? "Müşteri geçmişi" : "Customer history")</span></div><div class="pilot-answer"><div class="pilot-answer-label">✳ PIKA PILOT</div><h3>@(isTr ? "Bir fincanla yeniden başlayalım." : "Let’s reconnect over a cup.")</h3><p>@(isTr ? "Kahve kategorisinde alışveriş yapmış, tekrar alışveriş zamanı yaklaşan müşteriler için bir taslak." : "A draft for customers who have purchased coffee and may be approaching their next purchase.")</p><div class="pilot-draft-meta"><div><small>@(isTr ? "HEDEF KİTLE" : "AUDIENCE")</small><strong>@(isTr ? "Yeniden alışveriş fırsatı" : "Repeat purchase opportunity")</strong></div><div><small>@(isTr ? "KANAL ÖNERİSİ" : "CHANNEL SUGGESTION")</small><strong>WhatsApp · E-mail</strong></div></div><div class="pilot-message-draft"><small>@(isTr ? "MESAJ TASLAĞI" : "MESSAGE DRAFT")</small><p>@(isTr ? "Merhaba, kahve molalarını özledik. Sevdiğin lezzetler ve keşfetmeni istediğimiz yeni favoriler seni bekliyor. ☕" : "Hello, we’ve missed our coffee breaks. Your favorite flavors and a few new discoveries are waiting for you. ☕")</p></div><div class="pilot-review"><span><i class="ri-shield-check-line" aria-hidden="true"></i> @(isTr ? "İnceleme ve onay bekliyor" : "Awaiting review and approval")</span><span>@(isTr ? "Taslak" : "Draft")</span></div></div></div></div>
+ </div>
+</section>
+
+
+@* ══════════════════════════════════════════════════════════════════════════
+   CHAPTER 8: MEASUREMENT & GOVERNANCE (DARK PETROL TELEMETRY)
+   ══════════════════════════════════════════════════════════════════════════ *@
+<section class="pw2-section measurement-chapter" id="yonetisim-ve-olcumleme">
+ <div class="pw2-container"><div class="measurement-heading"><div class="pw2-eyebrow">@(isTr ? "Ölçümleme ve Yönetişim" : "Measurement & Governance")</div><h2>@(isTr ? "Etkiyi görün." : "See the impact.")<br/><em>@(isTr ? "Kontrolü koruyun." : "Stay in control.")</em></h2><p>@(isTr ? "İletişiminiz nereye ulaşıyor, hangi alışverişlerle ilişkileniyor? Sonuçları açıkça izleyin; her adımı izinler ve erişim kurallarıyla yönetin." : "Where does your communication reach, and which purchases are associated with it? Follow the results clearly, with consent and access controls at every step.")</p></div>
+ <div class="measurement-layout"><div class="pw2-telemetry-stage measurement-report"><div class="report-heading"><div><span class="studio-kicker">PIKA ANALYTICS</span><h3>@(isTr ? "İletişimden alışverişe" : "From communication to purchase")</h3></div><small>@(isTr ? "Örnek rapor · 30 gün" : "Sample report · 30 days")</small></div><div class="report-summary"><div><small>@(isTr ? "İlişkilendirilen ciro" : "Attributed revenue")</small><strong>₺84.250</strong></div><span>@(isTr ? "Temaslarla ilişkili siparişler" : "Orders associated with touchpoints")</span></div>
+ <div class="report-chart" role="img" aria-label="@(isTr ? "Örnek ilişkilendirilen ciro grafiği, gün 1 ile gün 30 arası. Gerçek müşteri sonucu değildir." : "Sample attributed revenue chart for days 1 to 30. Not an actual customer result.")"><div class="chart-scale"><span>30k</span><span>20k</span><span>10k</span><span>0</span></div><svg viewBox="0 0 600 200" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="measurementFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#829e45" stop-opacity=".3"/><stop offset="100%" stop-color="#829e45" stop-opacity="0"/></linearGradient></defs><path d="M0 20H600 M0 75H600 M0 130H600 M0 185H600" stroke="#e3e8dc" stroke-width="1"/><path d="M0 164 C35 164 45 124 80 132 S135 170 170 118 S220 150 265 96 S320 125 355 78 S425 112 465 52 S550 82 600 25 V200 H0Z" fill="url(#measurementFill)"/><path d="M0 164 C35 164 45 124 80 132 S135 170 170 118 S220 150 265 96 S320 125 355 78 S425 112 465 52 S550 82 600 25" fill="none" stroke="#68863c" stroke-width="3"/></svg><div class="chart-days"><span>01</span><span>10</span><span>20</span><span>30</span></div></div>
+ <div class="report-channels"><div><span class="channel-dot"></span>WhatsApp<strong>₺42.100</strong></div><div><span class="channel-dot dot-email"></span>E-mail<strong>₺28.750</strong></div><div><span class="channel-dot dot-sms"></span>SMS<strong>₺13.400</strong></div></div><p class="report-note">@(isTr ? "Gösterim amaçlı veriler. İlişkilendirme, satışın yalnızca kampanyadan kaynaklandığını göstermez." : "Illustrative data. Attribution does not establish that a campaign alone caused a sale.")</p></div>
+ <div class="governance-panel"><span class="governance-symbol"><i class="ri-shield-check-line" aria-hidden="true"></i></span><span class="studio-kicker">@(isTr ? "GÜVEN, TASARIMIN BİR PARÇASI." : "TRUST, BUILT IN.")</span><h3>@(isTr ? "Her adımda" : "At every step,")<br/>@(isTr ? "sizin kurallarınız." : "your rules.")</h3><div class="governance-row"><span>01</span><div><h4>@(isTr ? "İzinli iletişim" : "Consented communication")</h4><p>@(isTr ? "Gönderim öncesi izin ve vazgeçme kontrolleri." : "Consent and opt-out checks before dispatch.")</p></div></div><div class="governance-row"><span>02</span><div><h4>@(isTr ? "Doğru zaman aralığı" : "The right time window")</h4><p>@(isTr ? "Gönderim zaman pencereleri ve iletişim sınırları." : "Quiet-hours dispatch window and communication limits.")</p></div></div><div class="governance-row"><span>03</span><div><h4>@(isTr ? "Görünür işlem geçmişi" : "A visible activity history")</h4><p>@(isTr ? "Rol bazlı erişim, veri ayrımı ve işlem kayıtları." : "Role-based access, data isolation and activity records.")</p></div></div><a href="@(isTr ? "/guvenlik-ve-gizlilik" : "/en/security-and-privacy")">@(isTr ? "Güvenlik yaklaşımımız" : "Our approach to security") ↗</a></div></div>
+ </div>
+</section>
+
+
+@* ══════════════════════════════════════════════════════════════════════════
+   CHAPTER 9: FINAL COMMERCIAL CTA (ATMOSPHERIC HORIZON)
+   ══════════════════════════════════════════════════════════════════════════ *@
+<section class="pw2-cta-horizon scene-finale" id="teklif-ve-demo"><div class="finale-landscape" aria-hidden="true"><span></span><span></span><span></span><span></span><div class="finale-sun"></div></div>
     <div class="pw2-container">
-        <div class="pw2-text-center mb-5" data-aos="fade-up">
-            <div class="pw2-eyebrow">
-                <i class="ri-brain-line" aria-hidden="true"></i>
-                @(isTr ? "İkiz Zekâ Katmanı" : "Twin Intelligence Domains")
-            </div>
-            <h2 class="pw2-h2">
-                @(isTr ? "Müşteri Zekâsı ve Ürün Zekâsı: İlişkili Ama İki Ayrı Uzmanlık" : "Customer & Product Intelligence: Distinct Yet Interconnected Domains")
-            </h2>
-            <p class="pw2-lead mx-auto" style="max-width:760px">
-                @(isTr ? "Müşteriyi sadece demografiyle değil, işlem ritmi ve hesaplanan Customer Value Score (CVS) ile değerlendirin. Ürünleri sadece stok koduyla değil, tüketici ihtiyacı (Need Group) ve ticari rolüyle (Product Role) konumlandırın." : "Evaluate customers not by static demographics, but by transaction cadence and calculated Customer Value Score (CVS). Contextualize products beyond SKUs through consumer Need Groups and commercial Product Roles.")
-            </p>
-        </div>
-
-        @* Domain A: Customer Intelligence *@
-        <div class="pw2-editorial-split pw2-home-intel-block align-items-center">
-            <div data-aos="fade-right" data-aos-duration="700">
-                <span class="pw2-badge pw2-badge--status mb-2">Customer Intelligence</span>
-                <h3 class="pw2-h3">
-                    @(isTr ? "Kimin, Ne Zaman ve Hangi Değerle Satın Aldığını Anlayın" : "Understand Who Purchases, When, and at What Value")
-                </h3>
-                <p class="pw2-body">
-                    @(isTr ? "Statik müşteri listelerinin ötesine geçin. Pika Customer Intelligence; işlem sıklığı, sepet tutarı, son alışveriş zamanı ve sadakat değişkenleriyle hesaplanan CVS skorunu (0-100) üretir. Müşterinin doğal tüketim döngüsünü (%80-%120 penceresi) izleyerek ihtiyaç anını yakalar, kayıp riskini pasifleşmeden önce haber verir." : "Move beyond static customer lists. Pika Customer Intelligence calculates a deterministic Customer Value Score (CVS 0-100) weighting recency, frequency, monetary value, and loyalty. It monitors individualized consumption windows (80%-120%) and alerts to churn risk before attrition becomes permanent.")
-                </p>
-                <div class="pw2-home-pill-list">
-                    <span class="pw2-home-tag"><i class="ri-dashboard-3-line" aria-hidden="true"></i> @(isTr ? "Hesaplanan CVS Skoru (0-100)" : "Calculated CVS Score (0-100)")</span>
-                    <span class="pw2-home-tag"><i class="ri-timer-line" aria-hidden="true"></i> @(isTr ? "%80–%120 Tüketim Ritmi" : "80%–120% Repurchase Cadence")</span>
-                    <span class="pw2-home-tag"><i class="ri-shield-user-line" aria-hidden="true"></i> @(isTr ? "Kayıp Riski Erken Uyarısı" : "Early Churn Detection")</span>
-                </div>
-                <a href="@(isTr ? "/platform/customer-intelligence" : "/en/platform/customer-intelligence")" class="pw2-btn pw2-btn--secondary">
-                    @(isTr ? "Customer Intelligence İnceleyin" : "Explore Customer Intelligence") <i class="ri-arrow-right-line" aria-hidden="true"></i>
-                </a>
-            </div>
-            <div data-aos="fade-left" data-aos-duration="700">
-                <div class="pw2-product-frame">
-                    <div class="pw2-product-frame__header">
-                        <div class="pw2-product-frame__dots">
-                            <span class="pw2-product-frame__dot"></span>
-                            <span class="pw2-product-frame__dot"></span>
-                            <span class="pw2-product-frame__dot"></span>
-                        </div>
-                        <span class="pw2-product-frame__title">customer-intel.repurchase-analysis</span>
-                    </div>
-                    <img src="~/wiki/assets/images/img_tekrar-satin-alma-analizi_6.png" 
-                         alt="@(isTr ? "Tekrar satın alma analizi ve müşteri tüketim zamanlaması dağılımı" : "Repeat purchase analysis and customer consumption cadence distribution")"
-                         width="1774" 
-                         height="887" 
-                         loading="lazy" />
-                </div>
-                <div class="pw2-product-caption">
-                    <span class="pw2-badge pw2-badge--demo">@(isTr ? "Örnek Gösterim" : "Sample View")</span>
-                    <span>@(isTr ? "Müşteri tüketim döngüsü ve tekrar satın alma zamanlama analizi." : "Customer consumption cycle and repeat purchase timing analysis.")</span>
-                </div>
-            </div>
-        </div>
-
-        @* Domain B: Product Intelligence (Reversed Split) *@
-        <div class="pw2-editorial-split pw2-editorial-split--reversed pw2-home-intel-block align-items-center">
-            <div data-aos="fade-left" data-aos-duration="700">
-                <span class="pw2-badge pw2-badge--status mb-2">Product Intelligence</span>
-                <h3 class="pw2-h3">
-                    @(isTr ? "Ürünlerinizi Tüketici İhtiyacı ve Ticari Rolüyle Anlamlandırın" : "Contextualize Inventory by Consumer Need and Commercial Role")
-                </h3>
-                <p class="pw2-body">
-                    @(isTr ? "Katalogdaki her ürün aynı ticari amaca hizmet etmez. Product Intelligence; ürünleri tüketici ihtiyacına göre Need Group (Kahvaltı, Cilt Bakımı vb.) ve ticari misyonuna göre Product Role (Trafik Çekici, Sepet Büyütücü, Kâr Odaklı, Prestij) olarak sınıflandırır. Çapraz satış kurgularında yüksek hacimli ürünlerle kârlı ürünlerin doğru eşleşmesini sağlar." : "Not every product serves the same commercial purpose. Product Intelligence classifies inventory by consumer Need Group (Breakfast, Skincare, etc.) and commercial Product Role (Traffic Driver, Basket Booster, Margin Generator, Prestige). It ensures high-traffic staples are systematically paired with high-margin companions in cross-sell campaigns.")
-                </p>
-                <div class="pw2-home-pill-list">
-                    <span class="pw2-home-tag"><i class="ri-price-tag-3-line" aria-hidden="true"></i> Need Groups (İhtiyaç Grupları)</span>
-                    <span class="pw2-home-tag"><i class="ri-store-2-line" aria-hidden="true"></i> Product Roles (Ticari Roller)</span>
-                    <span class="pw2-home-tag"><i class="ri-git-merge-line" aria-hidden="true"></i> @(isTr ? "Sepet Birlikteliği Matrisi" : "Basket Association Matrix")</span>
-                </div>
-                <a href="@(isTr ? "/platform/product-intelligence" : "/en/platform/product-intelligence")" class="pw2-btn pw2-btn--secondary">
-                    @(isTr ? "Product Intelligence İnceleyin" : "Explore Product Intelligence") <i class="ri-arrow-right-line" aria-hidden="true"></i>
-                </a>
-            </div>
-            <div data-aos="fade-right" data-aos-duration="700">
-                <div class="pw2-product-frame">
-                    <div class="pw2-product-frame__header">
-                        <div class="pw2-product-frame__dots">
-                            <span class="pw2-product-frame__dot"></span>
-                            <span class="pw2-product-frame__dot"></span>
-                            <span class="pw2-product-frame__dot"></span>
-                        </div>
-                        <span class="pw2-product-frame__title">product-intel.classification-workbench</span>
-                    </div>
-                    <img src="~/wiki/assets/images/img_urun-siniflandirma-workbench_13.png" 
-                         alt="@(isTr ? "Ürün sınıflandırma çalışma alanı: Need Group ve Product Role tanımları" : "Product classification workbench: Need Group and Product Role definitions")"
-                         width="1672" 
-                         height="941" 
-                         loading="lazy" />
-                </div>
-                <div class="pw2-product-caption">
-                    <span>@(isTr ? "Ürün zekâsı sınıflandırma ve zenginleştirme çalışma alanı." : "Product intelligence classification and enrichment workbench.")</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-@* ══════════════════════════════════════════════════════════════════════════
-   CHAPTER 5: PIKA 360 — Bütünleşik Müşteri Karar Konsolu
-   ══════════════════════════════════════════════════════════════════════════ *@
-<section class="pw2-section pw2-section--subtle" id="pika-360">
-    <div class="pw2-container pw2-container--stage">
-        <div class="pw2-text-center mb-5" data-aos="fade-up">
-            <div class="pw2-eyebrow">
-                <i class="ri-user-star-line" aria-hidden="true"></i>
-                @(isTr ? "Bütünleşik Karar Ekranı" : "Unified Decision Cockpit")
-            </div>
-            <h2 class="pw2-h2">
-                @(isTr ? "Pika 360: Tek Ekranda Bütün Müşteri Bağlamı" : "Pika 360: Complete Customer Context on a Single Screen")
-            </h2>
-            <p class="pw2-lead mx-auto" style="max-width:760px">
-                @(isTr ? "Dağınık sipariş listeleri, ayrı izin tabloları ve parçalı raporlar arasında kaybolmayın. Pika 360; tek bir müşterinin geçmiş siparişlerini, hesaplanan CVS skorunu, iletişim izinlerini, kayıp riskini ve bekleyen fırsatlarını tek ekranda toplar." : "Stop toggling between disconnected order records, separate consent lists, and disjointed reports. Pika 360 unifies an individual customer's order history, calculated CVS score, channel permissions, churn risk, and pending opportunities on a single screen.")
-            </p>
-        </div>
-
-        <div class="pw2-product-stage" data-aos="fade-up" data-aos-duration="800">
-            <div class="pw2-product-frame pw2-product-frame--stage">
-                <div class="pw2-product-frame__header">
-                    <div class="pw2-product-frame__dots">
-                        <span class="pw2-product-frame__dot"></span>
-                        <span class="pw2-product-frame__dot"></span>
-                        <span class="pw2-product-frame__dot"></span>
-                    </div>
-                    <span class="pw2-product-frame__title">pika-360.single-customer-view</span>
-                </div>
-                <img src="~/wiki/assets/images/img_pika-360_7.png" 
-                     alt="@(isTr ? "Pika 360 tekil müşteri konsolu: Değer skoru, sipariş geçmişi ve açık fırsatlar" : "Pika 360 unified single customer view: Customer score, timeline, and open opportunities")"
-                     width="1672" 
-                     height="941" 
-                     loading="lazy" />
-            </div>
-            <div class="pw2-product-caption">
-                <span class="pw2-badge pw2-badge--demo">@(isTr ? "Örnek Gösterim" : "Sample View")</span>
-                <span>@(isTr ? "Pika 360 tekil müşteri karar konsolu: Zaman tüneli, hesaplanan CVS skoru ve açık fırsatlar." : "Pika 360 single customer decision cockpit: Order timeline, calculated CVS score, and open opportunities.")</span>
-            </div>
-        </div>
-
-        @* 5 Single-Customer Decision Dimensions *@
-        <div class="row g-4 mt-4" data-aos="fade-up" data-aos-delay="100">
-            <div class="col-md-4">
-                <div class="pw2-surface p-3 h-100">
-                    <div class="fw-bold mb-1" style="color:var(--pw2-text-primary)">
-                        <i class="ri-line-chart-line me-1" style="color:var(--pw2-accent-ink)" aria-hidden="true"></i>
-                        @(isTr ? "Hesaplanan CVS Skoru" : "Calculated CVS Score")
-                    </div>
-                    <p class="pw2-body-sm mb-0">
-                        @(isTr ? "Harcama tutarı, sıklık, son işlem zamanı ve sadakat ağırlıklarıyla hesaplanan 0-100 arası deterministik değer skoru." : "Deterministic 0-100 customer value metric computed from monetary, frequency, recency, and loyalty weights.")
-                    </p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="pw2-surface p-3 h-100">
-                    <div class="fw-bold mb-1" style="color:var(--pw2-text-primary)">
-                        <i class="ri-history-line me-1" style="color:var(--pw2-accent-ink)" aria-hidden="true"></i>
-                        @(isTr ? "İşlem Zaman Tüneli" : "Transaction Timeline")
-                    </div>
-                    <p class="pw2-body-sm mb-0">
-                        @(isTr ? "Çevrimdışı mağaza fişleri ve e-ticaret siparişlerinin birleşik kronolojik işlem akışı." : "Unified chronological order history consolidating offline POS receipts and e-commerce transactions.")
-                    </p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="pw2-surface p-3 h-100">
-                    <div class="fw-bold mb-1" style="color:var(--pw2-text-primary)">
-                        <i class="ri-shield-check-line me-1" style="color:var(--pw2-accent-ink)" aria-hidden="true"></i>
-                        @(isTr ? "Kanal İzin ve Tercihleri" : "Channel Reachability & Permissions")
-                    </div>
-                    <p class="pw2-body-sm mb-0">
-                        @(isTr ? "E-posta, SMS ve WhatsApp izin durumları, son onay zamanı ve opt-out geçmişi (Push dahil edilmez)." : "Verified opt-in statuses, timestamp audits, and preference management across Email, SMS, and WhatsApp (Push excluded).")
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="pw2-text-center mt-4">
-            <a href="@(isTr ? "/platform/pika-360" : "/en/platform/pika-360")" class="pw2-btn pw2-btn--secondary">
-                @(isTr ? "Pika 360 Yeteneklerini İnceleyin" : "Explore Pika 360 Capabilities") <i class="ri-arrow-right-line" aria-hidden="true"></i>
-            </a>
-        </div>
-    </div>
-</section>
-
-@* ══════════════════════════════════════════════════════════════════════════
-   CHAPTER 6: FROM DECISION TO ACTION — Audience, Campaign, Journey, Content
-   ══════════════════════════════════════════════════════════════════════════ *@
-<section class="pw2-section" id="aksiyon-ve-icra">
-    <div class="pw2-container">
-        <div class="pw2-text-center mb-5" data-aos="fade-up">
-            <div class="pw2-eyebrow">
-                <i class="ri-play-circle-line" aria-hidden="true"></i>
-                @(isTr ? "Karardan Aksiyona" : "From Decision to Action")
-            </div>
-            <h2 class="pw2-h2">
-                @(isTr ? "Tespit Edilen Fırsatları Kontrollü Çok Kanallı Aksiyona Dönüştürün" : "Turn Identified Opportunities into Controlled Omnichannel Action")
-            </h2>
-            <p class="pw2-lead mx-auto" style="max-width:760px">
-                @(isTr ? "Zekâ katmanında belirlenen fırsatlar, manuel veri aktarımına gerek kalmadan hedef kitleye, çok kanallı kampanyaya ve otomatik müşteri yolculuğuna bağlanır." : "Signals identified in the intelligence layer connect directly into targeted audiences, multi-channel campaigns, and automated customer journeys without manual data transfers.")
-            </p>
-        </div>
-
-        @* Connected 4-Step Narrative Header *@
-        <div class="pw2-home-action-flow" data-aos="fade-up">
-            <div class="pw2-home-action-step">
-                <div class="pw2-home-action-step__question">@(isTr ? "KİME?" : "WHO?")</div>
-                <div class="pw2-home-action-step__module">Audience Manager</div>
-                <p class="pw2-home-action-step__desc">
-                    @(isTr ? "Kural ağaçları (AND/OR), RFM metrikleri ve işlem geçmişine göre hedeflenen dinamik müşteri kitleleri." : "Dynamic and static cohorts built with logical rule trees (AND/OR), RFM metrics, and transaction filters.")
-                </p>
-            </div>
-
-            <div class="pw2-home-action-step">
-                <div class="pw2-home-action-step__question">@(isTr ? "NE ZAMAN / AKIŞ?" : "WHEN / SEQUENCE?")</div>
-                <div class="pw2-home-action-step__module">Journey Manager</div>
-                <p class="pw2-home-action-step__desc">
-                    @(isTr ? "Olay, zaman ve koşul bazlı görsel iş akışı tuvaliyle çok adımlı müşteri yolculukları." : "Multi-step automated customer journeys orchestrated on an intuitive event-driven visual canvas.")
-                </p>
-            </div>
-
-            <div class="pw2-home-action-step">
-                <div class="pw2-home-action-step__question">@(isTr ? "HANGİ KAMPANYA?" : "WHAT CAMPAIGN?")</div>
-                <div class="pw2-home-action-step__module">Campaign Manager</div>
-                <p class="pw2-home-action-step__desc">
-                    @(isTr ? "E-posta, SMS ve WhatsApp gönderimlerini tek merkezden zamanlama, izin denetimi ve satış turnover atfı." : "Multi-channel broadcast scheduling, pre-dispatch consent verification, and attributed revenue tracking.")
-                </p>
-            </div>
-
-            <div class="pw2-home-action-step">
-                <div class="pw2-home-action-step__question">@(isTr ? "HANGİ İÇERİK?" : "WHAT CONTENT?")</div>
-                <div class="pw2-home-action-step__module">Content Studio</div>
-                <p class="pw2-home-action-step__desc">
-                    @(isTr ? "Sürükle-bırak görsel editör, dinamik ürün blokları ve çok kanallı şablon kütüphanesi." : "Drag-and-drop template designer, dynamic product blocks, and omnichannel creative template store.")
-                </p>
-            </div>
-        </div>
-
-        @* Authentic Execution Visual Proof Composition (Covering all 4 modules per user guidance) *@
-        <div class="pw2-home-action-stages" data-aos="fade-up" data-aos-delay="100">
-            @* Dominant Stage: Journey Manager Visual Canvas *@
-            <div>
-                <div class="pw2-product-frame">
-                    <div class="pw2-product-frame__header">
-                        <div class="pw2-product-frame__dots">
-                            <span class="pw2-product-frame__dot"></span>
-                            <span class="pw2-product-frame__dot"></span>
-                            <span class="pw2-product-frame__dot"></span>
-                        </div>
-                        <span class="pw2-product-frame__title">journey-manager.visual-canvas</span>
-                    </div>
-                    <img src="~/wiki/assets/images/img_journey-tasarim-tuvali_18.png" 
-                         alt="@(isTr ? "Journey Manager görsel yolculuk tasarım tuvali" : "Journey Manager visual journey design canvas")"
-                         width="1672" 
-                         height="941" 
-                         loading="lazy" />
-                </div>
-                <div class="pw2-product-caption">
-                    <span>@(isTr ? "Journey Manager: Olay ve kural bazlı görsel iş akışı tuvali." : "Journey Manager: Event and rule-based visual workflow canvas.")</span>
-                    <a href="@(isTr ? "/cozumler/journey-manager" : "/en/solutions/journey-manager")" class="pw2-btn pw2-btn--tertiary">
-                        @(isTr ? "Yolculuk Tasarımını İnceleyin" : "Explore Journey Design") <i class="ri-arrow-right-line" aria-hidden="true"></i>
-                    </a>
-                </div>
-            </div>
-
-            @* Secondary Supporting Proof: Audience, Campaign, Content Studio *@
-            <div class="pw2-home-action-secondary">
-                <div class="pw2-product-frame">
-                    <div class="pw2-product-frame__header">
-                        <div class="pw2-product-frame__dots">
-                            <span class="pw2-product-frame__dot"></span>
-                            <span class="pw2-product-frame__dot"></span>
-                            <span class="pw2-product-frame__dot"></span>
-                        </div>
-                        <span class="pw2-product-frame__title">audience-manager.cohort-rules</span>
-                    </div>
-                    <img src="~/wiki/assets/images/img_kisi-listesi-ve-segmentler_3.png" 
-                         alt="@(isTr ? "Audience Manager segment ve hedef kitle yönetimi ekranı" : "Audience Manager segmentation and cohort management interface")"
-                         width="1672" 
-                         height="941" 
-                         loading="lazy" />
-                </div>
-                <div class="pw2-product-caption">
-                    <span class="pw2-badge pw2-badge--demo">@(isTr ? "Örnek Gösterim" : "Sample View")</span>
-                    <span>@(isTr ? "Audience Manager: Kural bazlı dinamik segmentasyon." : "Audience Manager: Rule-based dynamic segmentation.")</span>
-                </div>
-
-                <div class="pw2-product-frame">
-                    <div class="pw2-product-frame__header">
-                        <div class="pw2-product-frame__dots">
-                            <span class="pw2-product-frame__dot"></span>
-                            <span class="pw2-product-frame__dot"></span>
-                            <span class="pw2-product-frame__dot"></span>
-                        </div>
-                        <span class="pw2-product-frame__title">campaign-manager.broadcast-ops</span>
-                    </div>
-                    <img src="~/wiki/assets/images/img_yayinlama-sablon-ve-yonetim_27.png" 
-                         alt="@(isTr ? "Campaign Manager yayınlama ve zamanlama konsolu" : "Campaign Manager broadcast dispatch and scheduling console")"
-                         width="1672" 
-                         height="941" 
-                         loading="lazy" />
-                </div>
-                <div class="pw2-product-caption">
-                    <span class="pw2-badge pw2-badge--demo">@(isTr ? "Örnek Gösterim" : "Sample View")</span>
-                    <span>@(isTr ? "Campaign Manager: Çok kanallı yayınlama ve izin kontrolü." : "Campaign Manager: Multi-channel broadcast and consent check.")</span>
-                </div>
-            </div>
-        </div>
-
-        @* Confirmed Channels Bar (Only Email, SMS, WhatsApp - NO Push!) *@
-        <div class="pw2-home-channels-bar" data-aos="fade-up" data-aos-delay="150">
-            <span class="small fw-bold text-uppercase" style="color:var(--pw2-text-muted);letter-spacing:0.06em">
-                @(isTr ? "Onaylı İcra Kanalları:" : "Confirmed Execution Channels:")
-            </span>
-            <div class="pw2-home-channel-item pw2-home-channel-item--email">
-                <i class="ri-mail-check-line" aria-hidden="true"></i>
-                <span>Email (E-Posta)</span>
-            </div>
-            <div class="pw2-home-channel-item pw2-home-channel-item--sms">
-                <i class="ri-message-2-line" aria-hidden="true"></i>
-                <span>SMS</span>
-            </div>
-            <div class="pw2-home-channel-item pw2-home-channel-item--wa">
-                <i class="ri-whatsapp-line" aria-hidden="true"></i>
-                <span>WhatsApp Business API</span>
-            </div>
-        </div>
-    </div>
-</section>
-
-@* ══════════════════════════════════════════════════════════════════════════
-   CHAPTER 7: AI — PIKA PILOT (Assistive AI with Mandatory Human Control)
-   ══════════════════════════════════════════════════════════════════════════ *@
-<section class="pw2-section pw2-section--subtle" id="pika-pilot">
-    <div class="pw2-container">
-        <div class="pw2-text-center mb-5" data-aos="fade-up">
-            <div class="pw2-eyebrow">
-                <i class="ri-robot-line" aria-hidden="true"></i>
-                @(isTr ? "Yardımcı Yapay Zekâ" : "Assistive Artificial Intelligence")
-            </div>
-            <h2 class="pw2-h2">
-                @(isTr ? "Pika Pilot: Doğal Dilden Onaylanabilir Kampanya Kurgusuna" : "Pika Pilot: From Natural Language to Governed Campaign Drafts")
-            </h2>
-
-            @* Visual Conceptual Boundary Flow *@
-            <div class="pw2-home-ai-boundary mx-auto" style="max-width:820px" data-aos="fade-up" data-aos-delay="100">
-                <div class="pw2-home-ai-boundary__step">
-                    <i class="ri-database-2-line" aria-hidden="true"></i>
-                    @(isTr ? "Deterministik Zekâ" : "Deterministic Intelligence")
-                </div>
-                <span class="pw2-home-ai-boundary__arrow" aria-hidden="true">→</span>
-                <div class="pw2-home-ai-boundary__step">
-                    <i class="ri-sparkling-line" aria-hidden="true"></i>
-                    @(isTr ? "AI Açıklama ve Taslak" : "AI Explanation & Drafting")
-                </div>
-                <span class="pw2-home-ai-boundary__arrow" aria-hidden="true">→</span>
-                <div class="pw2-home-ai-boundary__step">
-                    <i class="ri-user-follow-line" aria-hidden="true"></i>
-                    @(isTr ? "Zorunlu İnsan Onayı" : "Mandatory Human Control")
-                </div>
-                <span class="pw2-home-ai-boundary__arrow" aria-hidden="true">→</span>
-                <div class="pw2-home-ai-boundary__step">
-                    <i class="ri-send-plane-2-line" aria-hidden="true"></i>
-                    @(isTr ? "Güvenli Gönderim" : "Governed Dispatch")
-                </div>
-            </div>
-
-            @* P04 Approved Canonical Text *@
-            <p class="pw2-lead mx-auto" style="max-width:780px">
-                @(isTr ? "Pika AI, müşteriyi veya fırsatı hayal ederek oluşturmaz. Pika'nın hesapladığı müşteri, ürün ve fırsat bağlamını kullanarak kampanya hazırlığını ve içerik üretimini hızlandırır; son karar kullanıcıda kalır." : "Pika AI does not invent the customer or the opportunity. It uses customer, product and opportunity context calculated by Pika to accelerate campaign preparation and content creation, while the final decision remains with the user.")
-            </p>
-        </div>
-
-        @* Pika Pilot Real Product Stage *@
-        <div class="pw2-product-stage" data-aos="fade-up" data-aos-duration="800">
-            <div class="pw2-product-frame">
-                <div class="pw2-product-frame__header">
-                    <div class="pw2-product-frame__dots">
-                        <span class="pw2-product-frame__dot"></span>
-                        <span class="pw2-product-frame__dot"></span>
-                        <span class="pw2-product-frame__dot"></span>
-                    </div>
-                    <span class="pw2-product-frame__title">pika-pilot.campaign-assistant</span>
-                </div>
-                <img src="~/wiki/assets/images/img_pika-pilot-ai-kampanya-asistani_16.png" 
-                     alt="@(isTr ? "Pika Pilot AI kampanya asistanı: Doğal dilde brief, hedef kitle ve şablon önerisi" : "Pika Pilot AI campaign assistant: Natural language brief, cohort suggestion, and draft template")"
-                     width="1672" 
-                     height="941" 
-                     loading="lazy" />
-            </div>
-            <div class="pw2-product-caption">
-                <span class="pw2-badge pw2-badge--demo">@(isTr ? "Örnek Gösterim" : "Sample View")</span>
-                <span>@(isTr ? "Pika Pilot AI Kampanya Asistanı çalışma alanı: Doğal dilde kampanya brief'i ve onaylanabilir e-posta taslağı." : "Pika Pilot AI Campaign Assistant workspace: Natural language brief and reviewable draft template.")</span>
-            </div>
-        </div>
-
-        <div class="pw2-text-center mt-4">
-            <a href="@(isTr ? "/urunler/ai-kampanya-asistani" : "/en/products/ai-campaign-assistant")" class="pw2-btn pw2-btn--secondary">
-                @(isTr ? "Pika Pilot Yeteneklerini İnceleyin" : "Explore Pika Pilot Capabilities") <i class="ri-arrow-right-line" aria-hidden="true"></i>
-            </a>
-        </div>
-    </div>
-</section>
-
-@* ══════════════════════════════════════════════════════════════════════════
-   CHAPTER 8: MEASUREMENT / TRUST / GOVERNANCE (Dark Petrol Chapter)
-   ══════════════════════════════════════════════════════════════════════════ *@
-<section class="pw2-section pw2-section--dark" id="yonetisim-ve-olcumleme">
-    <div class="pw2-container pw2-container--stage">
-        <div class="pw2-text-center mb-5" data-aos="fade-up">
-            <div class="pw2-eyebrow">
-                <i class="ri-shield-keyhole-line" aria-hidden="true"></i>
-                @(isTr ? "Ölçümleme ve Yönetişim" : "Measurement & Governance")
-            </div>
-            <h2 class="pw2-h2">
-                @(isTr ? "Teslimat Telemetrisi, İlişkilendirilen Ciro ve İzin Denetimi" : "Delivery Telemetry, Attributed Revenue, and Consent Governance")
-            </h2>
-            <p class="pw2-lead mx-auto" style="max-width:760px">
-                @(isTr ? "Gönderimden sonra döngü kapanır: Teslimat durumları izlenir, ilişkilendirilen ciro ölçülür ve iletişim izinleri gönderim anına kadar doğrulanır." : "Closing the operational loop: Monitor delivery state machines, track attributed revenue, and enforce continuous consent verification across all dispatches.")
-            </p>
-        </div>
-
-        @* BI Cockpit Real Screenshot *@
-        <div class="pw2-product-stage" data-aos="fade-up" data-aos-duration="800">
-            <div class="pw2-product-frame pw2-product-frame--stage">
-                <div class="pw2-product-frame__header">
-                    <div class="pw2-product-frame__dots">
-                        <span class="pw2-product-frame__dot"></span>
-                        <span class="pw2-product-frame__dot"></span>
-                        <span class="pw2-product-frame__dot"></span>
-                    </div>
-                    <span class="pw2-product-frame__title">analytics.bi-cockpit</span>
-                </div>
-                <img src="~/wiki/assets/images/img_bi-kokpit_5.png" 
-                     alt="@(isTr ? "Pika BI Kokpit: Teslimat telemetrisi, mağaza bazlı performans ve satış atfı" : "Pika BI Cockpit: Delivery telemetry, store-level performance, and attributed revenue")"
-                     width="1672" 
-                     height="941" 
-                     loading="lazy" />
-            </div>
-            <div class="pw2-product-caption">
-                <span class="pw2-badge pw2-badge--demo">@(isTr ? "Örnek Gösterim" : "Sample View")</span>
-                <span>@(isTr ? "BI Kokpit: Kanal, kampanya ve segment bazında teslimat telemetrisi ve ciro atfı." : "BI Cockpit: Delivery telemetry and attributed revenue across channels, campaigns, and cohorts.")</span>
-            </div>
-        </div>
-
-        @* 3 Mechanism-Based Governance Pillars (No False Certifications) *@
-        <div class="pw2-home-gov-grid" data-aos="fade-up" data-aos-delay="100">
-            <div class="pw2-home-gov-card">
-                <div class="pw2-home-gov-card__icon">
-                    <i class="ri-bar-chart-box-line" aria-hidden="true"></i>
-                </div>
-                <h3 class="pw2-home-gov-card__title">
-                    @(isTr ? "BI Kokpit ve Ciro Atfı" : "Attributed Revenue & BI Cockpit")
-                </h3>
-                <p class="pw2-home-gov-card__desc">
-                    @(isTr ? "Mağaza, kanal, kampanya ve segment bazında açılma, tıklama, teslimat durumu (state machine) ve ilişkilendirilen ciro takibi." : "Track state-machine delivery telemetry, bounces, engagement, and attributed revenue across store, channel, campaign, and segment dimensions.")
-                </p>
-            </div>
-
-            <div class="pw2-home-gov-card">
-                <div class="pw2-home-gov-card__icon">
-                    <i class="ri-shield-check-line" aria-hidden="true"></i>
-                </div>
-                <h3 class="pw2-home-gov-card__title">
-                    @(isTr ? "İzin ve Gönderim Pencereleri" : "Consent & Dispatch Windows")
-                </h3>
-                <p class="pw2-home-gov-card__desc">
-                    @(isTr ? "Gönderim öncesi otomatik İYS izin durumu doğrulaması, opt-out ve tercih yönetimi ile gönderim zaman pencereleri (quiet-hours) denetimi." : "Automated pre-dispatch IYS status verification, opt-out and preference management, and quiet-hours dispatch window controls.")
-                </p>
-            </div>
-
-            <div class="pw2-home-gov-card">
-                <div class="pw2-home-gov-card__icon">
-                    <i class="ri-lock-password-line" aria-hidden="true"></i>
-                </div>
-                <h3 class="pw2-home-gov-card__title">
-                    @(isTr ? "Yetkilendirme ve Güvenlik" : "RBAC & Platform Security")
-                </h3>
-                <p class="pw2-home-gov-card__desc">
-                    @(isTr ? "Rol bazlı erişim denetimi (RBAC), API belirteç güvenliği ve kiracı bazında güvenli veri ayrımı." : "Role-based access control (RBAC), API token authentication security, and multi-tenant operational data isolation.")
-                </p>
-            </div>
-        </div>
-
-        <div class="pw2-text-center mt-4">
-            <a href="@(isTr ? "/cozumler/analytics-reporting" : "/en/solutions/analytics-reporting")" class="pw2-btn pw2-btn--dark-secondary">
-                @(isTr ? "Ölçümleme ve Raporlamayı İnceleyin" : "Explore Analytics & Reporting") <i class="ri-arrow-right-line" aria-hidden="true"></i>
-            </a>
-        </div>
-    </div>
-</section>
-
-@* ══════════════════════════════════════════════════════════════════════════
-   CHAPTER 9: FINAL COMMERCIAL CTA — Tailored Quotation & Demo
-   ══════════════════════════════════════════════════════════════════════════ *@
-<section class="pw2-section" id="teklif-ve-demo">
-    <div class="pw2-container">
-        <div class="pw2-home-cta-card" data-aos="fade-up">
-            <div class="pw2-eyebrow mb-3">
+        <div data-aos="fade-up">
+            <div class="pw2-eyebrow pw2-eyebrow--dark mb-3">
                 <i class="ri-hand-heart-line" aria-hidden="true"></i>
                 @(isTr ? "Doğru Anda" : "At the Right Moment")
             </div>
-            <h2 class="pw2-home-cta-card__title">
-                @(isTr ? "Daha çok mesaj değil, daha doğru ilişki." : "Not more messages. Better customer relationships.")
+            <h2 class="pw2-display">
+                <span class="pw2-display-gradient">
+                    @(isTr ? "Bir sonraki büyüme hikâyeniz, burada başlıyor." : "Your next growth story starts here.")
+                </span>
             </h2>
-            <div class="pw2-home-cta-card__notice">
+            <div class="h5 fw-bold text-white mb-3">
                 @(isTr ? "İhtiyacınıza ve kullanım kapsamınıza göre özel teklif." : "Custom quote based on your specific needs and usage scope.")
             </div>
-            <p class="pw2-home-cta-card__lead">
+            <p class="pw2-lead pw2-lead--dark mx-auto" style="max-width:680px">
                 @(isTr ? "İşletmeniz için doğru ticari fırsatları ve platform kapsamını birlikte belirleyelim." : "Let's evaluate the right commercial opportunities and platform scope tailored to your operational needs.")
             </p>
-            <div class="pw2-home-cta-card__actions">
+
+            <div class="d-flex flex-wrap justify-content-center gap-3 mt-4">
                 <button type="button" class="pw2-btn pw2-btn--primary pw2-btn--lg" data-bs-toggle="modal" data-bs-target="#demoModal">
                     @(isTr ? "Demo Talep Et" : "Request a Demo") <i class="ri-arrow-right-up-line" aria-hidden="true"></i>
                 </button>
                 <a href="@(isTr ? "/demo-talebi" : "/en/demo-request")" class="pw2-btn pw2-btn--secondary pw2-btn--lg">
                     @(isTr ? "Teklif Al" : "Request a Quote")
                 </a>
-                <a href="@(isTr ? "/iletisim" : "/en/contact")" class="pw2-btn pw2-btn--tertiary">
+                <a href="@(isTr ? "/iletisim" : "/en/contact")" class="pw2-btn pw2-btn--tertiary text-white">
                     @(isTr ? "Satış Ekibiyle Görüşün" : "Talk to Sales") <i class="ri-arrow-right-line" aria-hidden="true"></i>
                 </a>
             </div>
         </div>
+
+        @* Giant PIKA Brand Watermark *@
+        <div class="pw2-brand-watermark finale-signature">intelligence. connection. growth.</div>
     </div>
 </section>
 
+@section Scripts {
+    <script src="~/js/pika-orbit.js" asp-append-version="true" defer></script>
+}

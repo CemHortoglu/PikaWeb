@@ -282,24 +282,56 @@ public class P06HomepageTests : IClassFixture<WebApplicationFactory<Program>>
     }
 
     // =========================================================================
-    // 13: Manifest-Driven Demo Badges
+    // 13: Insider One-Style Fluid Storytelling & Animated Mockups
     // =========================================================================
 
-    [Fact]
-    public async Task Homepage_DemoBadgesAreRenderedOnlyForDemoSyntheticScreenshots()
+    [Theory]
+    [InlineData("/")]
+    [InlineData("/en/")]
+    public async Task Homepage_RendersInsiderOneFluidCompositionsAndMockups(string url)
     {
         var client = CreateNoRedirectClient();
-        var response = await client.GetAsync("/");
+        var response = await client.GetAsync(url);
         var html = await response.Content.ReadAsStringAsync();
 
-        // Contains demo badges for DEMO_SYNTHETIC captures
-        Assert.Contains("pw2-badge--demo", html);
-        Assert.Contains("Örnek Gösterim", html);
+        // Atmospheric Dark Hero & Floating Vignettes
+        Assert.Contains("pw2-hero-insider", html);
+        Assert.Contains("pw2-hero-console-card", html);
+        Assert.Contains("pw2-float-badge", html);
 
-        // Verify excel-csv clean import frame does NOT have a demo badge
-        var excelCsvBlockMatch = Regex.Match(html, @"<div class=""pw2-product-stage""[\s\S]*?img_excel-csv-aktarimi_1\.png[\s\S]*?</div>\s*</div>", RegexOptions.IgnoreCase);
-        Assert.True(excelCsvBlockMatch.Success, "Excel/CSV import visual block found");
-        Assert.DoesNotContain("pw2-badge--demo", excelCsvBlockMatch.Value);
+        // Trust & Channel Ribbon
+        Assert.Contains("pw2-trust-ribbon", html);
+
+        // CCE Bento Grid
+        Assert.Contains("pw2-cce-grid", html);
+        Assert.Contains("pw2-cce-card", html);
+
+        // Operating Model Pipeline
+        Assert.Contains("pw2-pipeline-stage", html);
+
+        // Twin Intelligence & CVS Dial
+        Assert.Contains("pw2-intel-grid", html);
+        Assert.Contains("pw2-cvs-circle", html);
+
+        // Pika 360 Console Stage
+        Assert.Contains("pw2-360-stage", html);
+
+        // Omnichannel Bento with Smartphone WhatsApp Mockup
+        Assert.Contains("pw2-omni-bento", html);
+        Assert.Contains("pw2-phone-mockup", html);
+        Assert.Contains("pw2-wa-bubble", html);
+
+        // Grounded AI Studio Terminal
+        Assert.Contains("pw2-ai-terminal", html);
+        Assert.Contains("pw2-ai-prompt-box", html);
+
+        // Telemetry & Attributed Revenue SVG Area Chart
+        Assert.Contains("pw2-telemetry-stage", html);
+        Assert.Contains("<svg", html);
+
+        // Atmospheric Horizon CTA & Giant Watermark
+        Assert.Contains("pw2-cta-horizon", html);
+        Assert.Contains("pw2-brand-watermark", html);
     }
 
     // =========================================================================

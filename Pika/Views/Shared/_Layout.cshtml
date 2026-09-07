@@ -11,7 +11,7 @@
     var culture = (ViewData["culture"] as string ?? ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").ToLowerInvariant();
     var isTr = culture == "tr";
     var seoMeta = SeoHelper.GetMetadata(ctrl, act);
-    
+
     var canonicalTitle = isTr ? seoMeta?.TitleTr : seoMeta?.TitleEn;
     var rawTitle = !string.IsNullOrWhiteSpace(canonicalTitle) ? canonicalTitle : (ViewData["Title"] as string ?? site.BrandName);
     var fullTitle = SeoHelper.FormatPageTitle(rawTitle, site.BrandName);
@@ -201,7 +201,7 @@
         <nav class="navbar navbar-expand-lg bg-color-ffffff" id="navbar" aria-label="Ana Gezinme">
             <div class="container-fluid side-padding position-relative">
                 <a class="navbar-brand logo-brand p-0" href="@homeUrl">
-                    <img src="~/logo.png" alt="Pika Omnichannel Pazarlama Platformu Logosu" style="width: 80%;">
+                    @if (bodyClass.Contains("pika-orbit")) { <span class="orbit-nav-mark" aria-hidden="true"></span><span class="orbit-nav-word">pika</span> } else { <img src="~/logo.png" alt="Pika Omnichannel Pazarlama Platformu Logosu" style="width: 80%;"> }
                 </a>
                 <a class="navbar-toggler" data-bs-toggle="offcanvas" href="#navbarOffcanvas" role="button" aria-controls="navbarOffcanvas" aria-label="Menüyü aç">
                     <span class="burger-menu">
@@ -499,7 +499,7 @@
                     @* Brand description col *@
                     <div class="col-xl-3 col-lg-12 col-md-12">
                         <div class="footer-weight mt-4">
-                            <a href="@homeUrl" class="d-inline-block mb-3"><img src="~/web/assets/images/white-logo.png" alt="Pika Omnichannel Pazarlama Platformu Logosu" style="height:32px"></a>
+                            <a href="@homeUrl" class="d-inline-block mb-3">@if (bodyClass.Contains("pika-orbit")) { <span class="footer-brand-word">pika<span>✳</span></span> } else { <img src="~/web/assets/images/white-logo.png" alt="Pika Omnichannel Pazarlama Platformu Logosu" style="height:32px"> }</a>
                             <p class="text-white-50 small" data-i18n="footer.brandDesc">@(isTr ? "Pika, müşteri ve ürün verisinden anlam çıkaran, fırsatı tespit eden ve doğru aksiyonu doğru anda uygulayan omnichannel pazarlama platformudur." : "Pika is the omnichannel marketing platform that extracts insight from customer and product data, detects revenue opportunities, and orchestrates timely engagement.")</p>
                         </div>
                     </div>
@@ -568,6 +568,7 @@
                 </div>
             </div>
         </div>
+
 
         <div class="copyright-area bg-color-0c3a30">
             <div class="container">
