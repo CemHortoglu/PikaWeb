@@ -52,8 +52,7 @@
     "piiStatus": "ANONYMIZED",
     "metricStatus": "DEMO_SYNTHETIC",
     "entities": [
-      "Customer Intelligence",
-      "Günün Fırsatları"
+      "Customer Intelligence"
     ],
     "presentationModes": [
       "FULL_STAGE",
@@ -282,8 +281,7 @@
     "metricStatus": "DEMO_SYNTHETIC",
     "entities": [
       "Consent Management",
-      "Integrations",
-      "Security & Privacy"
+      "Integrations"
     ],
     "presentationModes": [
       "FULL_STAGE",
@@ -321,8 +319,7 @@
     "piiStatus": "NONE",
     "metricStatus": "DEMO_SYNTHETIC",
     "entities": [
-      "Analytics & Reporting",
-      "Security & Privacy"
+      "Analytics & Reporting"
     ],
     "presentationModes": [
       "FULL_STAGE",
@@ -1010,8 +1007,7 @@
     "piiStatus": "ANONYMIZED",
     "metricStatus": "DEMO_SYNTHETIC",
     "entities": [
-      "Customer Intelligence",
-      "Günün Fırsatları"
+      "Customer Intelligence"
     ],
     "presentationModes": [
       "FULL_STAGE",

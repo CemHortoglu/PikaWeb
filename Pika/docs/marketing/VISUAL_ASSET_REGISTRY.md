@@ -28,10 +28,10 @@ This document inventories all real product UI screenshots, diagrams, and marketi
 
 > [!CAUTION]
 > **Git-History PII Security Follow-up:**
-> - The current public working tree is completely sanitized; `img_tekrar-satin-alma-analizi_6.png` contains strictly anonymized synthetic demo data.
+> - The current version of the affected Repeat Purchase visual asset (`img_tekrar-satin-alma-analizi_6.png`) is sanitized and contains synthetic demo identifiers.
 > - Historical Git commits prior to P03 may still contain the superseded raw binary.
 > - If this repository or its commit history has been or will be made publicly accessible, a formal Git-history sanitization pass (e.g., `git-filter-repo` or BFG) must be evaluated separately.
-> - A historical Git rewrite is intentionally OUT OF SCOPE for P03.1 and must be coordinated with repository maintainers.
+> - A historical Git rewrite is intentionally OUT OF SCOPE for P03.2 and must be coordinated with repository maintainers.
 
 ---
 
@@ -57,8 +57,8 @@ This document inventories all real product UI screenshots, diagrams, and marketi
 | `img_email-store_20.png` | .png / PNG | 1672 × 941 | **PUBLIC_SUPPORTING** | No | NONE | DEMO_SYNTHETIC | Content Studio / Email Channel | `FULL_STAGE` / `FOCAL_CROP` |
 | `img_email-template-editor_17.png` | .png / PNG | 1672 × 941 | **PUBLIC_HERO** | No | NONE | NONE | Content Studio / Email Channel | `FULL_STAGE` / `ANNOTATED_STAGE` |
 | `img_excel-csv-aktarimi_1.png` | .png / PNG | 1885 × 974 | **PUBLIC_WITH_CROP** | No | NONE (Cropped) | NONE | Integrations | `FULL_STAGE` (Crop y:36) / `FOCAL_CROP` |
-| `img_gmail-kisi-aktarimi_23.png` | .png / PNG | 1024 × 503 | **PUBLIC_SUPPORTING** | No | ANONYMIZED | DEMO_SYNTHETIC | Integrations / Consent / Security | `FULL_STAGE` / `EDITORIAL_SPLIT` |
-| `img_gonderim-operasyonu-izleme_28.png` | .png / PNG | 1672 × 941 | **PUBLIC_SUPPORTING** | No | NONE | DEMO_SYNTHETIC | Analytics & Reporting / Security | `FULL_STAGE` / `ANNOTATED_STAGE` |
+| `img_gmail-kisi-aktarimi_23.png` | .png / PNG | 1024 × 503 | **PUBLIC_SUPPORTING** | No | ANONYMIZED | DEMO_SYNTHETIC | Integrations / Consent Management | `FULL_STAGE` / `EDITORIAL_SPLIT` |
+| `img_gonderim-operasyonu-izleme_28.png` | .png / PNG | 1672 × 941 | **PUBLIC_SUPPORTING** | No | NONE | DEMO_SYNTHETIC | Analytics & Reporting | `FULL_STAGE` / `ANNOTATED_STAGE` |
 | `img_gunun-firsatlari.png` | .png / **JPEG** | 1024 × 832 | **PUBLIC_HERO** | No | ANONYMIZED | DEMO_SYNTHETIC | Günün Fırsatları | `FULL_STAGE` / `ANNOTATED_STAGE` |
 | `img_izin-kanal-zamanlama_25.png` | .png / PNG | 1672 × 941 | **PUBLIC_HERO** | No | ANONYMIZED | DEMO_SYNTHETIC | Consent Management / Channels | `FULL_STAGE` / `DETAIL_ZOOM` |
 | `img_journey-karar-kurallari_19.png` | .png / PNG | 1672 × 941 | **PUBLIC_SUPPORTING** | No | NONE | DEMO_SYNTHETIC | Journey Manager | `FOCAL_CROP` / `DETAIL_ZOOM` |
@@ -76,7 +76,7 @@ This document inventories all real product UI screenshots, diagrams, and marketi
 | `img_satis-veri-operasyonlari_2.png` | .png / PNG | 1672 × 941 | **PUBLIC_SUPPORTING** | No | NONE | DEMO_SYNTHETIC | Integrations | `FULL_STAGE` / `EDITORIAL_SPLIT` |
 | `img_segment-sablonlari_22.png` | .png / PNG | 1888 × 932 | **INTERNAL_ONLY** | No | NONE | NONE | *Unsuitable for Public Marketing* | *DO_NOT_DEPLOY* |
 | `img_segmentasyon-ve-firsatlar_26.png` | .png / **JPEG** | 1024 × 832 | **DUPLICATE** | No | ANONYMIZED | DEMO_SYNTHETIC | *Duplicate of img_gunun-firsatlari* | *USE_CANONICAL_ASSET* |
-| `img_tekrar-satin-alma-analizi_6.png` | .png / PNG | 1774 × 887 | **PUBLIC_SUPPORTING** | No | ANONYMIZED | DEMO_SYNTHETIC | Customer Intelligence / Repeat Purchase | `FULL_STAGE` / `FOCAL_CROP` |
+| `img_tekrar-satin-alma-analizi_6.png` | .png / PNG | 1774 × 887 | **PUBLIC_SUPPORTING** | No | ANONYMIZED | DEMO_SYNTHETIC | Customer Intelligence (Repeat Purchase) | `FULL_STAGE` / `FOCAL_CROP` |
 | `img_urun-siniflandirma-workbench_13.png` | .png / PNG | 1672 × 941 | **PUBLIC_HERO** | No | NONE | NONE | Product Intelligence | `FULL_STAGE` / `ANNOTATED_STAGE` |
 | `img_yayinlama-sablon-ve-yonetim_27.png` | .png / PNG | 1672 × 941 | **PUBLIC_HERO** | No | NONE | DEMO_SYNTHETIC | Campaign Manager | `FULL_STAGE` / `ANNOTATED_STAGE` |
 | `kisi-aktarimi-gmail-outlook-anonim.png` | .png / PNG | 1600 × 920 | **PUBLIC_SUPPORTING** | No | NONE | NONE | Integrations | `FULL_STAGE` / `EDITORIAL_SPLIT` |
