@@ -610,9 +610,205 @@
   visible = entries[0].isIntersecting;
   if (visible) start(); else reset();
  }, { threshold: .25 }).observe(chart);
- reduced.addEventListener('change', start);
- document.addEventListener('visibilitychange', () => {
-  if (document.hidden) animations.forEach(animation => animation.pause());
-  else if (visible && !reduced.matches) animations.forEach(animation => animation.play());
- });
+  reduced.addEventListener('change', start);
+  document.addEventListener('visibilitychange', () => {
+   if (document.hidden) animations.forEach(animation => animation.pause());
+   else if (visible && !reduced.matches) animations.forEach(animation => animation.play());
+  });
+
+  // Floating Frosted-Glass Navbar Scroll Handler
+  (() => {
+    const header = document.querySelector('.pika-orbit .top-header-info');
+    if (!header) return;
+
+    let ticking = false;
+    const updateScroll = () => {
+      const isScrolled = window.scrollY > 20;
+      header.classList.toggle('is-scrolled', isScrolled);
+      ticking = false;
+    };
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(updateScroll);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    updateScroll();
+  })();
+
+  // Pika Navbar & Dropdown Controller (Mutual exclusivity, hover, click & universal dismissal)
+  (() => {
+    const navbar = document.querySelector('.pika-orbit #navbar');
+    if (!navbar) return;
+
+    const navDropdowns = Array.from(navbar.querySelectorAll('.nav-item.dropdown'));
+    const langDropdown = navbar.querySelector('.nav-language-dropdown');
+    const allDropdowns = [...navDropdowns, langDropdown].filter(Boolean);
+
+    function isDropdownOpen(dropdown) {
+      if (!dropdown) return false;
+      const menu = dropdown.querySelector('.dropdown-menu');
+      return dropdown.classList.contains('show') || (menu && menu.classList.contains('show'));
+    }
+
+    function closeDropdown(dropdown) {
+      if (!dropdown) return;
+      dropdown.classList.remove('show');
+      const toggle = dropdown.querySelector('[data-bs-toggle="dropdown"], .nav-language-trigger, .dropdown-toggle');
+      const menu = dropdown.querySelector('.dropdown-menu');
+      if (toggle) {
+        toggle.classList.remove('show');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+      if (menu) {
+        menu.classList.remove('show');
+      }
+    }
+
+    function openDropdown(dropdown) {
+      if (!dropdown) return;
+      allDropdowns.forEach(other => {
+        if (other !== dropdown) closeDropdown(other);
+      });
+
+      dropdown.classList.add('show');
+      const toggle = dropdown.querySelector('[data-bs-toggle="dropdown"], .nav-language-trigger, .dropdown-toggle');
+      const menu = dropdown.querySelector('.dropdown-menu');
+      if (toggle) {
+        toggle.classList.add('show');
+        toggle.setAttribute('aria-expanded', 'true');
+      }
+      if (menu) {
+        menu.classList.add('show');
+      }
+    }
+
+    function closeAllDropdowns() {
+      allDropdowns.forEach(closeDropdown);
+    }
+
+    let closeTimer = null;
+    let activeDropdown = null;
+
+    // Standard nav dropdowns (Platform, Kanallar, Kaynaklar, Kurumsal)
+    navDropdowns.forEach(dropdown => {
+      const toggle = dropdown.querySelector('[data-bs-toggle="dropdown"], .dropdown-toggle');
+
+      dropdown.addEventListener('mouseenter', () => {
+        if (window.innerWidth < 992) return;
+        if (closeTimer) {
+          clearTimeout(closeTimer);
+          closeTimer = null;
+        }
+        activeDropdown = dropdown;
+        openDropdown(dropdown);
+      });
+
+      dropdown.addEventListener('mouseleave', () => {
+        if (window.innerWidth < 992) return;
+        closeTimer = setTimeout(() => {
+          if (activeDropdown === dropdown) {
+            closeDropdown(dropdown);
+            activeDropdown = null;
+          }
+        }, 180);
+      });
+
+      if (toggle) {
+        toggle.addEventListener('click', (e) => {
+          if (window.innerWidth >= 992) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (isDropdownOpen(dropdown)) {
+              closeDropdown(dropdown);
+              activeDropdown = null;
+            } else {
+              activeDropdown = dropdown;
+              openDropdown(dropdown);
+            }
+          }
+        });
+      }
+    });
+
+    // Language Dropdown Controller (Full hover, click toggle & clean dismissal)
+    if (langDropdown) {
+      const langTrigger = langDropdown.querySelector('.nav-language-trigger, [data-bs-toggle="dropdown"], .dropdown-toggle');
+
+      // Desktop Hover
+      langDropdown.addEventListener('mouseenter', () => {
+        if (window.innerWidth < 992) return;
+        if (closeTimer) {
+          clearTimeout(closeTimer);
+          closeTimer = null;
+        }
+        openDropdown(langDropdown);
+      });
+
+      langDropdown.addEventListener('mouseleave', () => {
+        if (window.innerWidth < 992) return;
+        if (closeTimer) clearTimeout(closeTimer);
+        closeTimer = setTimeout(() => {
+          closeDropdown(langDropdown);
+        }, 180);
+      });
+
+      // Click Toggle (Works for both desktop click and mobile tap)
+      if (langTrigger) {
+        langTrigger.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          if (isDropdownOpen(langDropdown)) {
+            closeDropdown(langDropdown);
+          } else {
+            openDropdown(langDropdown);
+          }
+        });
+      }
+
+      // Close on selecting any language item (Only items inside .dropdown-menu, NOT the trigger button!)
+      langDropdown.querySelectorAll('.dropdown-menu .dropdown-item, .dropdown-menu button, .dropdown-menu a').forEach(btn => {
+        btn.addEventListener('click', () => {
+          closeDropdown(langDropdown);
+        });
+      });
+    }
+
+    // Universal Outside-Click Dismissal
+    document.addEventListener('click', (e) => {
+      if (langDropdown && !langDropdown.contains(e.target)) {
+        closeDropdown(langDropdown);
+      }
+      if (!navbar.contains(e.target)) {
+        closeAllDropdowns();
+        activeDropdown = null;
+      }
+    });
+
+    // Escape Key Dismissal
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeAllDropdowns();
+        activeDropdown = null;
+      }
+    });
+
+    // Scroll Dismissal
+    window.addEventListener('scroll', () => {
+      if (langDropdown && isDropdownOpen(langDropdown)) {
+        closeDropdown(langDropdown);
+      }
+    }, { passive: true });
+
+    // Close on clicking dropdown items across navbar
+    navbar.querySelectorAll('.dropdown-item').forEach(item => {
+      item.addEventListener('click', () => {
+        closeAllDropdowns();
+        activeDropdown = null;
+      });
+    });
+  })();
 })();
+

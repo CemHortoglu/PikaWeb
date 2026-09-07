@@ -213,7 +213,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto">
                         @* Platform mega dropdown: Intelligence → Action → Measure/Platform *@
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown pika-has-wide-dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="nav.platform">Platform</a>
                             <div class="dropdown-menu pika-mega-dropdown pika-mega-dropdown--wide">
                                 <div class="row g-0 pika-mega-grid">
@@ -403,7 +403,8 @@
                                 </ul>
                             </div>
                         </li>
-                        <li><a href="/giris" class="search-btn login"><i class="ri-account-circle-line"></i> <span data-i18n="nav.login">@(isTr ? "Giriş" : "Login")</span></a></li>
+                        <li class="pika-nav-divider" aria-hidden="true"></li>
+                        <li><a href="/giris" class="search-btn login"><i class="ri-user-line"></i> <span data-i18n="nav.login">@(isTr ? "Giriş" : "Login")</span></a></li>
                         <li><button type="button" class="default-btn" data-bs-toggle="modal" data-bs-target="#demoModal"><span data-i18n="nav.demo">@(isTr ? "Demo Talebi" : "Demo Request")</span> <i class="ri-arrow-right-up-line"></i></button></li>
                     </ul>
                 </div>

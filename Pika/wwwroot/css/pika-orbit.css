@@ -1,18 +1,12 @@
 /* Pika — intelligence in motion. Scoped to the marketing home page. */
 .pika-orbit{--lime:#b5ee19;--ink:#10292e;--pw2-brand-teal:#568600;--pw2-brand-cyan:#b5ee19;--pw2-dark-midnight:#0a1c20;--pw2-dark-petrol:#10292e;--pw2-bg-subtle:#f3f5ef;color:var(--ink);font-family:Inter,"Segoe UI",sans-serif}
 html:has(.pika-orbit){scroll-behavior:smooth;scroll-padding-top:100px}
-.pika-orbit .top-header-info{position:sticky;top:0;z-index:100;background:#f9faf6}
-.pika-orbit #navbar{background:#f9faf6!important;border-bottom:1px solid #18323715;min-height:86px}
-.pika-orbit #navbar .nav-link{color:#173237!important;font-size:14px;font-weight:600}
-.pika-orbit .logo-brand{display:flex;align-items:center;gap:10px;min-width:135px}
 .orbit-nav-mark,.orbit-mark{display:block;flex-shrink:0;background-image:url('/images/pika-brand-original.png');background-repeat:no-repeat;mix-blend-mode:multiply}
-.orbit-nav-mark{width:36px;height:49px;background-size:185px 93px;background-position:-73px -9px}
-.orbit-nav-word{font-size:38px;font-weight:800;letter-spacing:-2.5px;line-height:1;color:#10292e}
 .orbit-hero.pw2-hero-insider{padding:0;background:#0a1c20;min-height:740px;overflow:hidden;isolation:isolate;position:relative}
 .orbit-hero:before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 76% 50%,#5c891325,transparent 50%);pointer-events:none;z-index:-1;animation:none}
 .orbit-hero:after{display:none}
 .orbit-grid{position:absolute;inset:0;background-image:linear-gradient(#b2d5c004 1px,transparent 1px),linear-gradient(90deg,#b2d5c004 1px,transparent 1px);background-size:72px 72px;pointer-events:none}
-.orbit-shell{max-width:1500px;margin:auto;padding:90px 5% 65px;display:grid;grid-template-columns:1.05fr 1.1fr;align-items:center;gap:0;min-height:690px}
+.orbit-shell{max-width:1500px;margin:auto;padding:125px 5% 65px;display:grid;grid-template-columns:1.05fr 1.1fr;align-items:center;gap:0;min-height:690px}
 .orbit-copy{position:relative;z-index:3}
 .orbit-kicker{color:#c7d3c4;font-size:12px;letter-spacing:2.4px;font-weight:600;display:flex;align-items:center;gap:10px;margin-bottom:26px}
 .orbit-kicker>span{width:6px;height:6px;border-radius:50%;background:var(--lime);box-shadow:0 0 16px #b5ee1980}
@@ -106,26 +100,898 @@ html:has(.pika-orbit){scroll-behavior:smooth;scroll-padding-top:100px}
 .pika-orbit :is(a,button):focus-visible{outline:3px solid #8daf28;outline-offset:5px}
 @keyframes orbit-float{0%,100%{translate:0 0}50%{translate:0 -13px}}
 @keyframes orbit-reveal{from{opacity:.2;translate:0 24px}to{opacity:1;translate:0 0}}
-@media(min-width:1500px){.orbit-shell{padding-top:110px;padding-bottom:95px}.orbit-hero.pw2-hero-insider{min-height:810px}}
-@media(max-width:1100px){.orbit-shell{padding:65px 5% 45px}.orbit-copy h1{letter-spacing:-2.5px}.orbit-scene{height:510px}.orbit-card{padding:13px;gap:8px}.orbit-customer{left:0}.orbit-opportunity{right:0}.orbit-message{left:15px}.orbit-card strong{font-size:12px}.orbit-card div>span{font-size:10px}.pika-orbit .pw2-cce-card{padding:27px 18px}}
-@media(max-width:767px){.pika-orbit #navbar{min-height:72px}.orbit-shell{grid-template-columns:1fr;padding:50px 6% 20px}.orbit-copy h1{font-size:clamp(39px,8.7vw,62px);letter-spacing:-2px}.orbit-copy>p{font-size:16px;max-width:500px}.orbit-kicker{font-size:10px;margin-bottom:22px}.orbit-scene{height:450px;margin:15px -8px 0}.orbit-core>span:not(.orbit-mark){font-size:60px}.orbit-customer{top:35px;left:2px}.orbit-opportunity{top:205px}.orbit-message{bottom:35px;left:12px}.orbit-bottom{padding:17px 6%}.orbit-bottom>span{display:none}.orbit-bottom a{margin:auto}.orbit-label-top{top:10px}.orbit-label-bottom{bottom:105px;left:10px}.pika-orbit .pw2-section{padding:72px 0}.pika-orbit .pw2-cce-grid{grid-template-columns:1fr 1fr;margin-top:35px}.pika-orbit .pw2-cce-card{border-bottom:1px solid #cdd5c4}.pika-orbit .pw2-cce-card:nth-child(2){border-right:0}.pika-orbit .pw2-cce-card p{min-height:0}.pika-orbit .pw2-cce-card h3{font-size:19px}.pika-orbit .pw2-lead{font-size:16px}.pika-orbit .pw2-trust-ribbon__items{display:grid;grid-template-columns:1fr 1fr;gap:20px}.pika-orbit .pw2-360-header-profile,.pika-orbit .pw2-360-user{flex-wrap:wrap;gap:20px}.pika-orbit .pw2-360-columns{grid-template-columns:1fr}.pika-orbit .pw2-360-stage{transform:none}.pika-orbit .pw2-cta-horizon{padding-top:80px}.pika-orbit .pw2-brand-watermark{margin-top:50px}.orbit-actions{gap:20px}.orbit-button{gap:20px}}
+@media(min-width:1500px){.orbit-shell{padding-top:140px;padding-bottom:95px}.orbit-hero.pw2-hero-insider{min-height:810px}}
+@media(max-width:1100px){.orbit-shell{padding:105px 5% 45px}.orbit-copy h1{letter-spacing:-2.5px}.orbit-scene{height:510px}.orbit-card{padding:13px;gap:8px}.orbit-customer{left:0}.orbit-opportunity{right:0}.orbit-message{left:15px}.orbit-card strong{font-size:12px}.orbit-card div>span{font-size:10px}.pika-orbit .pw2-cce-card{padding:27px 18px}}
+@media(max-width:767px){.orbit-shell{grid-template-columns:1fr;padding:85px 6% 20px}.orbit-copy h1{font-size:clamp(39px,8.7vw,62px);letter-spacing:-2px}.orbit-copy>p{font-size:16px;max-width:500px}.orbit-kicker{font-size:10px;margin-bottom:22px}.orbit-scene{height:450px;margin:15px -8px 0}.orbit-core>span:not(.orbit-mark){font-size:60px}.orbit-customer{top:35px;left:2px}.orbit-opportunity{top:205px}.orbit-message{bottom:35px;left:12px}.orbit-bottom{padding:17px 6%}.orbit-bottom>span{display:none}.orbit-bottom a{margin:auto}.orbit-label-top{top:10px}.orbit-label-bottom{bottom:105px;left:10px}.pika-orbit .pw2-section{padding:72px 0}.pika-orbit .pw2-cce-grid{grid-template-columns:1fr 1fr;margin-top:35px}.pika-orbit .pw2-cce-card{border-bottom:1px solid #cdd5c4}.pika-orbit .pw2-cce-card:nth-child(2){border-right:0}.pika-orbit .pw2-cce-card p{min-height:0}.pika-orbit .pw2-cce-card h3{font-size:19px}.pika-orbit .pw2-lead{font-size:16px}.pika-orbit .pw2-trust-ribbon__items{display:grid;grid-template-columns:1fr 1fr;gap:20px}.pika-orbit .pw2-360-header-profile,.pika-orbit .pw2-360-user{flex-wrap:wrap;gap:20px}.pika-orbit .pw2-360-columns{grid-template-columns:1fr}.pika-orbit .pw2-360-stage{transform:none}.pika-orbit .pw2-cta-horizon{padding-top:80px}.pika-orbit .pw2-brand-watermark{margin-top:50px}.orbit-actions{gap:20px}.orbit-button{gap:20px}}
 @media(max-width:390px){.orbit-card{padding:11px}.orbit-card strong{font-size:11px}.orbit-card small{font-size:8px}.orbit-customer{left:0}.orbit-message{left:0}.pika-orbit .pw2-cce-grid{grid-template-columns:1fr}.pika-orbit .pw2-cce-card{border-right:0}.pika-orbit .pw2-cce-card h3{min-height:0}}
 @media(prefers-reduced-motion:reduce){html:has(.pika-orbit){scroll-behavior:auto}.pika-orbit *, .pika-orbit *:before,.pika-orbit *:after{animation:none!important;transition:none!important}.pika-orbit .pw2-360-stage{transform:none}}
-/* Immersive chapters and a stronger editorial navigation. */
-.pika-orbit .top-header-info{background:#101e22;padding:12px 3%;border:0}
-.pika-orbit #navbar{min-height:74px;border-radius:12px;background:#f8f9f3!important;border:0;box-shadow:0 8px 30px #0002}
-.pika-orbit #navbar>.container-fluid{padding:0 28px!important;max-width:1600px}
-.pika-orbit #navbar .nav-link{font-size:15px;padding:26px 17px!important;font-weight:650}
-.pika-orbit #navbar .nav-link:hover,.pika-orbit #navbar .nav-link.show{color:#5d850a!important}
-.pika-orbit #navbar .logo-brand{min-width:170px}.pika-orbit .orbit-nav-word{font-size:44px}
-.pika-orbit #navbar .default-btn{border-radius:7px;background:#b5ee19!important;color:#13282b!important;box-shadow:none!important}
-.pika-orbit .pika-mega-dropdown{border:1px solid #dfe5d7;border-radius:0 0 16px 16px!important;box-shadow:0 32px 70px #00161935!important;padding:28px!important;background:#fcfdf9!important}
-.pika-orbit .pika-mega-dropdown--wide{width:min(1050px,89vw)!important;left:50%!important;transform:translateX(-40%)!important}
-.pika-orbit .pika-mega-col{padding:8px 22px}.pika-orbit .pika-mega-col-header{margin-bottom:20px;padding-bottom:18px}
-.pika-orbit .pika-mega-col-badge{border:0;background:transparent;color:#5a761c;font-size:12px;letter-spacing:1px}
-.pika-orbit .pika-mega-item{padding:14px 10px;gap:13px;border-radius:8px}.pika-orbit .pika-mega-title{font-size:15px;font-weight:650}.pika-orbit .pika-mega-desc{font-size:12px;line-height:1.5;color:#667568}
-.pika-orbit .pika-mega-icon{border:0;background:#edf2e4;color:#527316;border-radius:50%;width:39px;height:39px;flex-shrink:0}.pika-orbit .pika-mega-item:hover{background:#eaf1da;transform:translateX(3px)}
-.pika-orbit .pika-mega-footer{margin-top:22px;padding:22px;border-radius:10px;background:#122c2e}.pika-orbit .pika-mega-ai-title{color:#f3f6ed;font-size:16px}.pika-orbit .pika-mega-ai-desc{color:#c1ccbb;font-size:13px}.pika-orbit .pika-mega-ai-arrow{color:#b5ee19}.pika-orbit .pika-mega-ai-icon{background:#b5ee19;color:#10292e}
+/* ==========================================================================
+   PIKA FLOATING CAPSULE NAVIGATION (World-Class SaaS Standard)
+   ========================================================================== */
+
+/* Outer fixed passthrough wrapper: completely transparent, zero background bleed */
+.pika-orbit .top-header-info {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background: transparent !important;
+  padding: 14px 24px 0 !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  pointer-events: none !important;
+  z-index: 1050 !important;
+  transition: padding 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pika-orbit .top-header-info.is-scrolled {
+  padding: 8px 20px 0 !important;
+}
+
+/* Floating Solid White Capsule */
+.pika-orbit #navbar {
+  --pika-navbar-height: 64px;
+  pointer-events: auto !important;
+  position: relative !important;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto !important;
+  height: var(--pika-navbar-height) !important;
+  min-height: var(--pika-navbar-height) !important;
+  border-radius: 16px !important;
+  background: #ffffff !important;
+  border: 1px solid #e1e7db !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* Scrolled capsule state: compact, solid white, elevated shadow */
+.pika-orbit .top-header-info.is-scrolled #navbar {
+  --pika-navbar-height: 56px;
+  height: var(--pika-navbar-height) !important;
+  min-height: var(--pika-navbar-height) !important;
+  background: #ffffff !important;
+  border: 1px solid #d4ddd0 !important;
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Inner container */
+.pika-orbit #navbar > .container-fluid {
+  padding: 0 22px !important;
+  max-width: 100%;
+  height: 100% !important;
+  min-height: inherit;
+  display: flex !important;
+  align-items: stretch !important;
+  justify-content: space-between;
+  position: static !important;
+}
+
+/* Brand Logo */
+.pika-orbit #navbar .logo-brand {
+  align-self: center !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  min-width: unset;
+  padding: 0;
+  transition: transform 0.2s ease;
+}
+
+.pika-orbit #navbar .logo-brand:hover {
+  transform: scale(1.02);
+}
+
+.pika-orbit .orbit-nav-mark {
+  width: 28px;
+  height: 38px;
+  background-size: 145px 73px;
+  background-position: -57px -7px;
+  transition: all 0.3s ease;
+}
+
+.pika-orbit .orbit-nav-word {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -2px;
+  line-height: 1;
+  color: #10292e;
+  transition: font-size 0.3s ease;
+}
+
+.pika-orbit .top-header-info.is-scrolled .orbit-nav-mark {
+  width: 25px;
+  height: 34px;
+  background-size: 130px 65px;
+  background-position: -51px -6px;
+}
+
+.pika-orbit .top-header-info.is-scrolled .orbit-nav-word {
+  font-size: 29px;
+}
+
+/* Navigation Links */
+.pika-orbit #navbar .navbar-collapse {
+  position: static !important;
+  height: 100% !important;
+  align-self: stretch !important;
+  display: flex !important;
+  align-items: stretch !important;
+}
+
+.pika-orbit #navbar .navbar-nav {
+  position: static !important;
+  height: 100% !important;
+  align-self: stretch !important;
+  display: flex !important;
+  align-items: stretch !important;
+  gap: 3px;
+}
+
+.pika-orbit #navbar .nav-item {
+  position: relative !important;
+  height: 100% !important;
+  align-self: stretch !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+.pika-orbit #navbar .nav-item.pika-has-wide-dropdown,
+.pika-orbit #navbar .nav-item:has(.pika-mega-dropdown--wide) {
+  position: static !important;
+}
+
+.pika-orbit #navbar .nav-link {
+  color: #173237 !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.15px;
+  padding: 8px 14px !important;
+  border-radius: 8px;
+  line-height: 1.4;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.pika-orbit #navbar .nav-link:hover,
+.pika-orbit #navbar .nav-link.show,
+.pika-orbit #navbar .nav-item:hover > .nav-link {
+  color: #4a700d !important;
+  background: rgba(181, 238, 25, 0.16) !important;
+}
+
+/* Dropdown Caret Icon Smoothing */
+.pika-orbit #navbar .dropdown-toggle::after {
+  display: inline-block;
+  margin-left: 3px;
+  vertical-align: 0.15em;
+  border-top: 4px solid currentColor;
+  border-right: 4px solid transparent;
+  border-bottom: 0;
+  border-left: 4px solid transparent;
+  transition: transform 0.2s ease;
+}
+
+.pika-orbit #navbar .dropdown-toggle.show::after,
+.pika-orbit #navbar .nav-item:hover > .dropdown-toggle::after {
+  transform: rotate(180deg);
+}
+
+/* ==========================================================================
+   MEGA DROPDOWNS & STANDARD MENUS (Solid White Architectural Design)
+   ========================================================================== */
+
+/* Wide Mega Dropdown (Platform: Intelligence, Action, Measure + Full-width Seamless Footer) */
+.pika-orbit .pika-mega-dropdown--wide {
+  position: absolute !important;
+  top: calc(100% + 10px) !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  transform: none !important;
+  margin: 0 !important;
+  background: #ffffff !important;
+  border: 1px solid #e1e7db !important;
+  border-radius: 20px !important;
+  box-shadow: 0 28px 70px rgba(8, 26, 30, 0.16), 0 4px 16px rgba(8, 26, 30, 0.04) !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  z-index: 1100 !important;
+}
+
+/* Invisible hover bridge between navbar and dropdown */
+.pika-orbit .pika-mega-dropdown--wide::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 0;
+  right: 0;
+  height: 12px;
+}
+
+/* 3-Column Grid inside Wide Mega Menu */
+.pika-orbit .pika-mega-dropdown--wide .pika-mega-grid {
+  position: relative;
+  padding: 24px 30px 20px 30px !important;
+  margin: 0 !important;
+  background: #ffffff !important;
+}
+
+.pika-orbit .pika-mega-col {
+  padding: 6px 20px;
+  border-right: 1px solid #edf1e7;
+}
+
+.pika-orbit .pika-mega-col--last {
+  border-right: none;
+}
+
+.pika-orbit .pika-mega-col-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #edf1e8;
+}
+
+.pika-orbit .pika-mega-col-badge {
+  font-size: 11.5px;
+  font-weight: 750;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #557718;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pika-orbit .pika-mega-col-badge i {
+  font-size: 15px;
+}
+
+.pika-orbit .pika-mega-col-sub {
+  font-size: 11px;
+  color: #889685;
+  font-weight: 500;
+}
+
+.pika-orbit .pika-mega-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.18s ease;
+  margin-bottom: 3px;
+}
+
+.pika-orbit .pika-mega-item:hover {
+  background: #f4f7ee;
+  transform: translateX(3px);
+}
+
+.pika-orbit .pika-mega-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  background: #edf3e4;
+  color: #4f7212;
+  display: grid;
+  place-items: center;
+  font-size: 17px;
+  flex-shrink: 0;
+  transition: all 0.18s ease;
+}
+
+.pika-orbit .pika-mega-item:hover .pika-mega-icon {
+  background: #b5ee19;
+  color: #10292e;
+}
+
+.pika-orbit .pika-mega-title {
+  font-size: 14px;
+  font-weight: 650;
+  color: #122c2e;
+  line-height: 1.3;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pika-orbit .pika-mega-desc {
+  font-size: 11.5px;
+  color: #728071;
+  line-height: 1.45;
+  margin-top: 2px;
+}
+
+.pika-orbit .pika-badge-pulse {
+  background: #eef7d5;
+  color: #4a6d0c;
+  font-size: 9.5px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 20px;
+  letter-spacing: 0.4px;
+  border: 1px solid #d3e5aa;
+}
+
+/* Featured Footer Card in Mega Menu: True full-width card footer */
+.pika-orbit .pika-mega-footer {
+  margin: 0 !important;
+  width: 100% !important;
+  padding: 16px 30px !important;
+  background: #0d2226 !important;
+  border-top: 1px solid #1a383e !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  border-radius: 0 0 19px 19px !important;
+  box-sizing: border-box !important;
+  transition: background 0.2s ease, border-color 0.2s ease !important;
+}
+
+.pika-orbit .pika-mega-footer:hover {
+  background: #122e33 !important;
+  border-top-color: #2b565d !important;
+}
+
+.pika-orbit .pika-mega-ai-link {
+  text-decoration: none !important;
+  display: block;
+}
+
+.pika-orbit .pika-mega-ai-icon {
+  background: #b5ee19;
+  color: #0c2023;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.pika-orbit .pika-mega-ai-title {
+  color: #f7faf2 !important;
+  font-size: 14.5px !important;
+  font-weight: 650 !important;
+}
+
+.pika-orbit .pika-ai-badge {
+  background: #b5ee19 !important;
+  color: #0c2023 !important;
+  font-size: 9.5px !important;
+  font-weight: 800 !important;
+  padding: 2px 7px !important;
+  border-radius: 4px !important;
+  letter-spacing: 0.5px !important;
+  display: inline-block !important;
+  line-height: 1.2 !important;
+}
+
+.pika-orbit .pika-mega-ai-desc {
+  color: #a7b7a6 !important;
+  font-size: 12px !important;
+  line-height: 1.4 !important;
+  margin: 0 !important;
+}
+
+.pika-orbit .pika-mega-ai-arrow {
+  color: #b5ee19;
+  font-size: 18px;
+  transition: transform 0.2s ease;
+}
+
+.pika-orbit .pika-mega-ai-link:hover .pika-mega-ai-arrow {
+  transform: translateX(4px);
+}
+
+/* Small Mega Menu (Kanallar) */
+.pika-orbit .pika-mega-dropdown--sm {
+  position: absolute !important;
+  top: calc(100% + 10px) !important;
+  left: 0 !important;
+  right: auto !important;
+  transform: none !important;
+  width: 360px !important;
+  max-width: 90vw !important;
+  padding: 14px !important;
+  margin: 0 !important;
+  background: #ffffff !important;
+  border: 1px solid #e1e7db !important;
+  border-radius: 14px !important;
+  box-shadow: 0 20px 50px rgba(8, 26, 30, 0.14), 0 2px 6px rgba(8, 26, 30, 0.04) !important;
+  z-index: 1100 !important;
+}
+
+.pika-orbit .pika-mega-dropdown--sm .pika-mega-item {
+  margin-bottom: 5px;
+}
+
+/* Standard Dropdowns (Kaynaklar, Kurumsal) */
+.pika-orbit #navbar .navbar-nav > .nav-item:not(.pika-has-wide-dropdown) > .dropdown-menu:not(.pika-mega-dropdown) {
+  position: absolute !important;
+  top: calc(100% + 10px) !important;
+  left: 0 !important;
+  right: auto !important;
+  transform: none !important;
+  background: #ffffff !important;
+  border: 1px solid #e1e8db !important;
+  border-radius: 14px !important;
+  box-shadow: 0 20px 50px rgba(8, 26, 30, 0.14), 0 2px 6px rgba(8, 26, 30, 0.04) !important;
+  padding: 8px !important;
+  min-width: 240px !important;
+  margin: 0 !important;
+  z-index: 1100 !important;
+}
+
+.pika-orbit #navbar .navbar-nav > .nav-item:not(.pika-has-wide-dropdown) > .dropdown-menu:not(.pika-mega-dropdown) li {
+  list-style: none !important;
+  margin: 0 0 2px 0 !important;
+  display: block !important;
+  width: 100% !important;
+}
+
+.pika-orbit #navbar .navbar-nav > .nav-item:not(.pika-has-wide-dropdown) > .dropdown-menu:not(.pika-mega-dropdown) .dropdown-item {
+  border-radius: 8px !important;
+  font-size: 13.5px !important;
+  font-weight: 550 !important;
+  padding: 9px 14px !important;
+  color: #173237 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  background: transparent !important;
+  transition: all 0.18s ease !important;
+}
+
+.pika-orbit #navbar .navbar-nav > .nav-item:not(.pika-has-wide-dropdown) > .dropdown-menu:not(.pika-mega-dropdown) .dropdown-item:hover {
+  background: #f0f5e8 !important;
+  color: #3d6010 !important;
+}
+
+.pika-orbit #navbar .navbar-nav > .nav-item:not(.pika-has-wide-dropdown) > .dropdown-menu:not(.pika-mega-dropdown) .dropdown-item i {
+  font-size: 16px !important;
+  color: #658428 !important;
+}
+
+/* Wide Menu Entrance Animation (Pure vertical fade, no horizontal translation) */
+@keyframes pikaWideMenuFade {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pika-orbit #navbar .pika-mega-dropdown--wide.show,
+.pika-orbit #navbar .nav-item.pika-has-wide-dropdown:hover .pika-mega-dropdown--wide,
+.pika-orbit #navbar .nav-item:has(.pika-mega-dropdown--wide):hover .pika-mega-dropdown--wide {
+  display: block !important;
+  animation: pikaWideMenuFade 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
+/* Submenu Entrance Animation (Kanallar, Kaynaklar, Kurumsal - pure vertical fade) */
+@keyframes pikaMenuFade {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pika-orbit #navbar .navbar-nav > .nav-item > .dropdown-menu:not(.pika-mega-dropdown--wide).show,
+.pika-orbit #navbar .navbar-nav > .nav-item:hover > .dropdown-menu:not(.pika-mega-dropdown--wide) {
+  display: block !important;
+  animation: pikaMenuFade 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
+/* Invisible hover bridge between navbar and dropdown for all menus */
+.pika-orbit #navbar .dropdown-menu::before {
+  content: '' !important;
+  position: absolute !important;
+  top: -14px !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 14px !important;
+  display: block !important;
+  background: transparent !important;
+  pointer-events: auto !important;
+}
+
+/* Guarantee Bootstrap [data-bs-popper] never overrides top / margin */
+.pika-orbit #navbar .dropdown-menu[data-bs-popper] {
+  top: calc(100% + 10px) !important;
+  margin-top: 0 !important;
+}
+
+/* ==========================================================================
+   RIGHT CONTROLS: LANGUAGE, LOGIN, CTA
+   ========================================================================== */
+
+.pika-orbit #navbar .others-options {
+  position: relative;
+  height: 100% !important;
+  align-self: stretch !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.pika-orbit #navbar .others-options ul {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0 !important;
+  height: 100% !important;
+  align-self: stretch !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+.pika-orbit #navbar .others-options > ul > li {
+  display: inline-flex !important;
+  align-items: center !important;
+  height: 100% !important;
+  align-self: stretch !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  position: relative !important;
+}
+
+/* Eradicate legacy border/dashed lines and pseudo-elements on .login completely */
+.pika-orbit #navbar .others-options .login::before,
+.pika-orbit #navbar .others-options .login::after,
+.pika-orbit #navbar .others-options li::after {
+  content: none !important;
+  display: none !important;
+  position: static !important;
+  width: 0 !important;
+  height: 0 !important;
+  border: none !important;
+}
+
+/* Language Selector Trigger Button */
+.pika-orbit #navbar .nav-language-dropdown {
+  min-width: unset !important;
+  position: relative !important;
+  height: 100% !important;
+  align-self: stretch !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+.pika-orbit #navbar .nav-language-trigger {
+  min-width: unset !important;
+  height: 38px !important;
+  padding: 0 6px !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: #153235 !important;
+  font-size: 13.5px !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.15px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  transition: color 0.18s ease !important;
+}
+
+.pika-orbit #navbar .nav-language-trigger:hover,
+.pika-orbit #navbar .nav-language-trigger:focus,
+.pika-orbit #navbar .nav-language-dropdown.show .nav-language-trigger {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: #3f680c !important;
+}
+
+/* Delicate, fine caret for language trigger */
+.pika-orbit #navbar .nav-language-trigger::after {
+  display: inline-block !important;
+  margin-left: 4px !important;
+  vertical-align: 0.15em !important;
+  border-top: 3.5px solid #5a746d !important;
+  border-right: 3.5px solid transparent !important;
+  border-bottom: 0 !important;
+  border-left: 3.5px solid transparent !important;
+  opacity: 0.75 !important;
+  transition: transform 0.2s ease, border-top-color 0.18s ease, opacity 0.18s ease !important;
+}
+
+.pika-orbit #navbar .nav-language-trigger:hover::after,
+.pika-orbit #navbar .nav-language-dropdown.show .nav-language-trigger::after {
+  border-top-color: #3f680c !important;
+  opacity: 1 !important;
+}
+
+/* Symmetrical Separator between Dil and Giriş */
+/* Case A: In-DOM divider element (.pika-nav-divider) */
+.pika-orbit #navbar .others-options .pika-nav-divider {
+  display: inline-block !important;
+  width: 1px !important;
+  height: 16px !important;
+  background: #dbe2d5 !important;
+  margin: 0 14px !important;
+  padding: 0 !important;
+  border: none !important;
+  flex-shrink: 0 !important;
+  align-self: center !important;
+}
+
+/* Case B: Fallback divider when .pika-nav-divider is not yet in DOM (precompiled view) */
+.pika-orbit #navbar .others-options:not(:has(.pika-nav-divider)) > ul > li:has(.search-btn.login)::before,
+.pika-orbit #navbar .others-options > ul > li:nth-child(2):not(.pika-nav-divider)::before {
+  content: '' !important;
+  display: inline-block !important;
+  position: static !important;
+  width: 1px !important;
+  height: 16px !important;
+  background: #dbe2d5 !important;
+  margin-left: 14px !important;
+  margin-right: 14px !important;
+  padding: 0 !important;
+  border: none !important;
+  flex-shrink: 0 !important;
+  align-self: center !important;
+}
+
+/* Suppress li::before if .pika-nav-divider is already present */
+.pika-orbit #navbar .others-options:has(.pika-nav-divider) > ul > li::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* Demo Talebi CTA button spacing */
+.pika-orbit #navbar .others-options .default-btn {
+  margin-left: 14px !important;
+}
+
+/* Ensure login icon renders delicate single-stroke user outline */
+.pika-orbit #navbar .search-btn.login .ri-account-circle-line::before {
+  content: "\f25c" !important;
+}
+
+/* Language Dropdown Menu (Vertical layout, crisp card) */
+.pika-orbit #navbar .nav-language-dropdown .dropdown-menu {
+  display: none !important;
+  position: absolute !important;
+  top: calc(100% + 10px) !important;
+  right: 0 !important;
+  left: auto !important;
+  transform: none !important;
+  flex-direction: column !important;
+  min-width: 155px !important;
+  padding: 6px !important;
+  background: #ffffff !important;
+  border: 1px solid #e1e8db !important;
+  border-radius: 12px !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.04) !important;
+  z-index: 1150 !important;
+}
+
+.pika-orbit #navbar .nav-language-dropdown.show .dropdown-menu,
+.pika-orbit #navbar .nav-language-dropdown .dropdown-menu.show {
+  display: flex !important;
+  animation: pikaMenuFadeRight 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
+@keyframes pikaMenuFadeRight {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pika-orbit #navbar .nav-language-dropdown .dropdown-menu li {
+  display: block !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+.pika-orbit #navbar .nav-language-dropdown .dropdown-item {
+  display: block !important;
+  width: 100% !important;
+  padding: 8px 12px !important;
+  font-size: 13px !important;
+  font-weight: 550 !important;
+  color: #173237 !important;
+  border-radius: 7px !important;
+  text-align: left !important;
+  white-space: nowrap !important;
+  background: transparent !important;
+  border: none !important;
+  transition: background 0.18s ease, color 0.18s ease !important;
+}
+
+.pika-orbit #navbar .nav-language-dropdown .dropdown-item:hover {
+  background: #edf3e6 !important;
+  color: #2e5309 !important;
+}
+
+/* Login Link (Clean architectural text/icon link - NO button background) */
+.pika-orbit #navbar .search-btn.login {
+  position: static !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 0 6px !important;
+  height: 38px !important;
+  border-radius: 0 !important;
+  color: #153235 !important;
+  font-size: 13.5px !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.15px !important;
+  text-decoration: none !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+  transition: color 0.18s ease !important;
+}
+
+/* Light, refined, non-bold icon rendering for Dil and Giriş */
+.pika-orbit #navbar .nav-language-trigger i,
+.pika-orbit #navbar .search-btn.login i {
+  position: static !important;
+  font-size: 15px !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  line-height: 1 !important;
+  margin: 0 !important;
+  top: auto !important;
+  left: auto !important;
+  color: #5a746d !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  font-synthesis: none !important;
+  transition: color 0.18s ease !important;
+}
+
+.pika-orbit #navbar .nav-language-trigger:hover i,
+.pika-orbit #navbar .search-btn.login:hover i {
+  color: #3f680c !important;
+}
+
+.pika-orbit #navbar .search-btn.login:hover {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: #3f680c !important;
+  transform: none !important;
+}
+
+.pika-orbit #navbar .search-btn.login:active {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Primary Brand CTA (Matches "Pika ile tanışın" .orbit-button) */
+.pika-orbit #navbar .default-btn {
+  background: var(--lime) !important;
+  color: #10292e !important;
+  font-size: 13.5px !important;
+  font-weight: 650 !important;
+  letter-spacing: -0.2px !important;
+  height: 38px !important;
+  padding: 0 16px !important;
+  border-radius: 7px !important;
+  border: 1px solid var(--lime) !important;
+  box-shadow: 0 2px 8px rgba(181, 238, 25, 0.28) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 7px !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+  cursor: pointer !important;
+  user-select: none !important;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.22s ease !important;
+}
+
+.pika-orbit #navbar .default-btn i {
+  font-size: 14.5px !important;
+  font-weight: 700 !important;
+  color: #10292e !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.pika-orbit #navbar .default-btn:hover {
+  background: #bbf324 !important;
+  border-color: #bbf324 !important;
+  color: #10292e !important;
+  transform: translateY(-1.5px) !important;
+  box-shadow: 0 6px 20px rgba(181, 238, 25, 0.45) !important;
+}
+
+.pika-orbit #navbar .default-btn:hover i {
+  transform: translate(2px, -2px) !important;
+}
+
+.pika-orbit #navbar .default-btn:active {
+  transform: translateY(0) !important;
+  box-shadow: 0 2px 6px rgba(181, 238, 25, 0.25) !important;
+}
+
+/* Responsive Navbar */
+@media (max-width: 1100px) {
+  .pika-orbit #navbar .nav-link {
+    padding: 7px 10px !important;
+    font-size: 13.5px !important;
+  }
+  .pika-orbit #navbar .others-options ul {
+    gap: 0 !important;
+  }
+  .pika-orbit #navbar .others-options .pika-nav-divider,
+  .pika-orbit #navbar .others-options:not(:has(.pika-nav-divider)) > ul > li:has(.search-btn.login)::before,
+  .pika-orbit #navbar .others-options > ul > li:nth-child(2):not(.pika-nav-divider)::before {
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+  }
+  .pika-orbit #navbar .others-options .default-btn {
+    margin-left: 10px !important;
+  }
+}
+
+@media (max-width: 991px) {
+  .pika-orbit .top-header-info {
+    padding: 8px 14px 0 !important;
+  }
+  .pika-orbit #navbar {
+    min-height: 58px !important;
+    border-radius: 12px !important;
+  }
+  .pika-orbit #navbar > .container-fluid {
+    padding: 0 16px !important;
+  }
+  .pika-orbit .orbit-nav-word {
+    font-size: 28px !important;
+  }
+  .pika-orbit .orbit-nav-mark {
+    width: 24px !important;
+    height: 32px !important;
+    background-size: 120px 60px !important;
+    background-position: -47px -6px !important;
+  }
+  .pika-orbit .pika-mega-dropdown {
+    position: static !important;
+    transform: none !important;
+    width: 100% !important;
+    box-shadow: none !important;
+    border-radius: 12px !important;
+    padding: 16px !important;
+  }
+  .pika-orbit .pika-mega-col {
+    border-right: none !important;
+    padding: 10px 0 !important;
+  }
+}
 .pika-orbit .scene-model{position:relative;isolation:isolate;overflow:hidden;background:#edf1e7;padding:115px 0 130px}
 .scene-halo{position:absolute;width:950px;height:950px;right:-200px;top:-220px;border-radius:50%;background:radial-gradient(ellipse,#cee59280,transparent 65%);filter:blur(20px);animation:scene-drift 15s ease-in-out infinite alternate;z-index:-1}
 .pika-orbit .scene-split{display:grid;grid-template-columns:.9fr 1.1fr;gap:65px;align-items:center;max-width:1380px}
@@ -163,7 +1029,7 @@ html:has(.pika-orbit){scroll-behavior:smooth;scroll-padding-top:100px}
 .pika-orbit footer{background:#0b1b20;border-top:1px solid #d3e5bd1a}.pika-orbit .footer-area{background:#0b1b20!important;padding:65px 0 30px!important}.pika-orbit .footer-area>.container{max-width:1380px;width:90%}.pika-orbit .footer-weight h3{font-size:13px!important;letter-spacing:1px;font-weight:500!important;padding-bottom:0!important;margin-bottom:22px!important;color:#e1ead6!important}.pika-orbit .footer-weight h3:after,.pika-orbit .footer-weight h3:before{display:none!important}.pika-orbit .footer-weight .service-link li{margin-bottom:12px}.pika-orbit .footer-weight .service-link a{font-size:13px;color:#a6b8ad!important}.pika-orbit .footer-weight .service-link a:hover{color:#b5ee19!important}.pika-orbit .footer-weight>p{font-size:14px!important;line-height:1.9;color:#a6b8ad!important;max-width:245px}.pika-orbit .copyright-area{background:#0b1b20!important;padding-top:0!important}.pika-orbit .copyright-border{border-top:1px solid #b0c59922!important;margin-top:25px;padding-top:25px!important}.footer-brand-word{color:#e8f2db;font-size:60px;font-weight:750;letter-spacing:-4px}.footer-brand-word>span{color:#b5ee19}.footer-statement{font-size:clamp(65px,15vw,220px);letter-spacing:-.065em;line-height:1.1;color:#d7e9c8;font-weight:550;max-width:1380px;width:90%;margin:35px auto 0;white-space:nowrap;border-bottom:1px solid #d3e5bd22;padding-bottom:25px}.footer-statement>span{color:#b5ee19}
 @keyframes scene-drift{to{translate:65px 35px;rotate:8deg}}@keyframes network-spin{to{transform:translate(-50%,-50%) rotate(360deg)}}@keyframes landscape-tide{to{translate:25px -20px;rotate:4deg}}@keyframes scene-glow{to{opacity:.55;scale:1.2}}
 @media(max-width:1100px){.pika-orbit #navbar .logo-brand{min-width:125px}.pika-orbit #navbar .nav-link{padding-left:10px!important;padding-right:10px!important;font-size:14px}.pika-orbit .scene-split{gap:25px}.network-orbit{width:340px;height:340px}.network-orbit-two{width:240px;height:240px}.network-node{padding:13px;font-size:12px}.channel-tile{padding:22px 16px 0}.channel-tile h3{font-size:22px}.channel-sms,.channel-email{padding-bottom:22px}.network-person{right:0}.network-data{left:0}}
-@media(max-width:991px){.pika-orbit .top-header-info{padding:8px 3%}.pika-orbit #navbar{min-height:65px}.pika-orbit .scene-split{grid-template-columns:1fr}.scene-story{max-width:650px}.pika-orbit .scene-network{max-width:580px;width:100%;margin:auto;height:560px}.pika-orbit .scene-channel-grid{gap:12px}.channel-tile h3{font-size:20px}.channel-title{font-size:12px}.channel-journey{flex-wrap:wrap}.channel-journey a{margin-left:62px}}
+@media(max-width:991px){.pika-orbit .scene-split{grid-template-columns:1fr}.scene-story{max-width:650px}.pika-orbit .scene-network{max-width:580px;width:100%;margin:auto;height:560px}.pika-orbit .scene-channel-grid{gap:12px}.channel-tile h3{font-size:20px}.channel-title{font-size:12px}.channel-journey{flex-wrap:wrap}.channel-journey a{margin-left:62px}}
 @media(max-width:700px){.pika-orbit .scene-model,.pika-orbit .scene-channels{padding:65px 0}.scene-story h2,.scene-channel-heading h2{letter-spacing:-1.7px}.scene-story>p{font-size:16px}.pika-orbit .scene-network{height:500px}.network-center{width:130px;height:130px;border-radius:26px}.network-center>span{font-size:40px}.network-orbit{width:300px;height:300px}.network-orbit-two{width:210px;height:210px}.network-shop{top:45px;left:0}.network-cart{top:92px;right:0}.network-data{top:255px}.network-person{top:285px}.network-insight{padding:16px;left:0;right:0;bottom:30px}.network-insight strong{font-size:14px}.network-insight p{font-size:12px}.pika-orbit .scene-channel-grid{grid-template-columns:1fr;gap:25px;max-width:440px;margin:auto}.channel-tile{padding:28px 27px 0}.channel-email,.channel-sms{margin:0;padding-bottom:28px}.channel-tile h3{font-size:27px}.channel-title{font-size:15px}.channel-email .email-art{height:220px}.sms-preview{min-height:340px}.channel-journey strong{font-size:16px}.channel-journey>div{flex:1}.pika-orbit .scene-finale{min-height:720px;padding-top:75px}.pika-orbit .pw2-brand-watermark.finale-signature{margin-top:160px;font-size:9px;letter-spacing:2px}.pika-orbit .footer-area{padding-top:35px!important}.footer-statement{font-size:16vw;white-space:normal}.pika-orbit .footer-area .row{--bs-gutter-y:1rem}.pika-orbit .footer-area .col-md-4,.pika-orbit .footer-area .col-md-6{width:50%}.pika-orbit .footer-area .col-md-12{width:100%}.pika-orbit .footer-weight>p{max-width:100%}.pika-orbit #navbar>.container-fluid{padding:0 18px!important}}
 @media(prefers-reduced-motion:reduce){.scene-halo,.network-orbit,.network-node,.channel-ribbon,.sms-notification,.finale-landscape>span,.finale-sun{animation:none!important}}
 /* Product storytelling: readable hierarchy, coherent application surfaces. */
