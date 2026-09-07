@@ -329,6 +329,12 @@ public static class SeoHelper
         if (string.IsNullOrWhiteSpace(controller) || string.IsNullOrWhiteSpace(action))
             return null;
 
+        if (string.Equals(controller, "Home", StringComparison.OrdinalIgnoreCase) &&
+            string.Equals(action, "EnglishIndex", StringComparison.OrdinalIgnoreCase))
+        {
+            action = "Index";
+        }
+
         var key = $"{controller}.{action}";
         if (RouteMetadata.TryGetValue(key, out var meta))
         {
