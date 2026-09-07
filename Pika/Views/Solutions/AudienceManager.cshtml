@@ -1,298 +1,1361 @@
 @{
-    var tr = (ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").Equals("tr", StringComparison.OrdinalIgnoreCase);
-    ViewData["Title"] = tr ? "Audience Manager | Pika ile Hedef Kitle ve Segmentasyon Yönetimi" : "Audience Manager | Audience Targeting & Segmentation with Pika";
-    ViewData["MetaDescription"] = tr ? "Pika Audience Manager ile transaction ve davranış verilerine dayalı segmentler oluşturun, kampanyalarınızı doğru kitleyle eşleştirin." : "Create segments based on transaction and behavioral data with Pika Audience Manager and match campaigns to the right audience.";
-    ViewData["MetaKeywords"] = "audience manager,segmentasyon,hedef kitle,transaction segmentasyon,davranış segmentasyon,pika";
+    var culture = ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr";
+    var tr = culture.Equals("tr", StringComparison.OrdinalIgnoreCase);
+    ViewData["BodyClass"] = "pika-solutions-page";
 }
 
-<!-- HERO: Targeting Intelligence -->
-@await Html.PartialAsync("_MarketingHero")
+@section Styles {
+    <link rel="stylesheet" href="~/css/pika-audience-manager-page.css" asp-append-version="true" />
+}
 
-<!-- STICKY SUBNAV -->
+@section Scripts {
+    <script src="~/js/pika-inner.js" asp-append-version="true"></script>
+}
+
+@* ── 01 HERO ─────────────────────────────────────────────────── *@
+<section class="inner-hero inner-hero--audience">
+    <div class="inner-atmosphere" aria-hidden="true"><span></span><span></span></div>
+    <div class="container inner-hero-grid">
+        <div class="inner-intro">
+            <nav class="inner-breadcrumb" aria-label="@(tr ? "Sayfa yolu" : "Breadcrumb")">
+                <a href="@(tr ? "/" : "/en/")">Pika</a>
+                <span>/</span>
+                <a href="@(tr ? "/pika" : "/en/pika")">@(tr ? "Pika Nedir?" : "What Is Pika?")</a>
+                <span>/</span>
+                <span>Audience Manager</span>
+            </nav>
+            <div class="inner-eyebrow"><span></span>AUDIENCE MANAGER</div>
+            @if (tr)
+            {
+                <h1>
+                    Doğru kitleyi,<br />
+                    müşteri bağlamından oluşturun.
+                </h1>
+                <p>
+                    Pika Audience Manager; müşteri özelliklerini, işlem geçmişini, davranış sinyallerini ve kural mantığını bir araya getirerek kampanya ve journey'ler için yeniden kullanılabilir hedef kitleler oluşturmanıza yardımcı olur.
+                </p>
+                <p class="ph-muted" style="color:rgba(255,255,255,0.72);font-size:15px;margin-bottom:30px">
+                    Amaç yalnızca bir müşteri listesi çıkarmak değil, hangi müşterilerin belirli bir karar bağlamına neden dahil olduğunu açık kurallarla tanımlayabilmektir.
+                </p>
+                <div class="inner-actions">
+                    <button class="inner-primary" type="button" data-bs-toggle="modal" data-bs-target="#demoModal">
+                        Demo Talep Et ↗
+                    </button>
+                    <a class="inner-secondary" href="/platform/customer-intelligence">
+                        Customer Intelligence'ı Keşfedin →
+                    </a>
+                    <a class="inner-hero-anchor" href="#inner-content" aria-label="İçeriğe atla">
+                        <i class="ri-arrow-down-line" aria-hidden="true"></i>
+                    </a>
+                </div>
+            }
+            else
+            {
+                <h1>
+                    Build the right audience<br />
+                    from customer context.
+                </h1>
+                <p>
+                    Pika Audience Manager brings customer attributes, transaction history, behavioral signals and rule logic together to help create reusable audiences for campaigns and journeys.
+                </p>
+                <p class="ph-muted" style="color:rgba(255,255,255,0.72);font-size:15px;margin-bottom:30px">
+                    The objective is not simply to produce a customer list. It is to define, through explicit rules, which customers belong in a specific decision context and why.
+                </p>
+                <div class="inner-actions">
+                    <button class="inner-primary" type="button" data-bs-toggle="modal" data-bs-target="#demoModal">
+                        Request a Demo ↗
+                    </button>
+                    <a class="inner-secondary" href="/en/platform/customer-intelligence">
+                        Explore Customer Intelligence →
+                    </a>
+                    <a class="inner-hero-anchor" href="#inner-content" aria-label="Skip to content">
+                        <i class="ri-arrow-down-line" aria-hidden="true"></i>
+                    </a>
+                </div>
+            }
+        </div>
+        <div class="inner-scene" aria-label="@(tr ? "Platformun çalışma biçimini anlatan örnek görünüm" : "Illustrative view of how the platform works")">
+            <div class="inner-scene-orbit" aria-hidden="true"></div>
+            <div class="inner-scene-window">
+                <div class="inner-window-bar">
+                    <strong>pika<span>✳</span></strong>
+                    <span>Audience Manager</span>
+                    <small>@(tr ? "Örnek görünüm" : "Illustration")</small>
+                </div>
+                <div class="inner-flow" style="padding:20px">
+                    <div>
+                        <i class="ri-filter-3-line" aria-hidden="true"></i>
+                        <span>
+                            <small>@(tr ? "KURAL GRUBU" : "RULE GROUP")</small>
+                            <strong>@(tr ? "Hedef Kitle Koşulları" : "Audience Conditions")</strong>
+                        </span>
+                        <b>01</b>
+                    </div>
+                    <span class="inner-flow-link"></span>
+                    <div>
+                        <i class="ri-user-shared-line" aria-hidden="true"></i>
+                        <span>
+                            <small>@(tr ? "MÜŞTERİ BAĞLAMI" : "CUSTOMER CONTEXT")</small>
+                            <strong>@(tr ? "İşlem ve Davranış" : "Transaction & Behavior")</strong>
+                        </span>
+                        <b>02</b>
+                    </div>
+                    <span class="inner-flow-link"></span>
+                    <div class="inner-flow-final">
+                        <i class="ri-group-line" aria-hidden="true"></i>
+                        <span>
+                            <small>@(tr ? "KİTLE ÖNİZLEMESİ" : "AUDIENCE PREVIEW")</small>
+                            <strong>@(tr ? "Doğrulanmış Kitle" : "Validated Audience")</strong>
+                        </span>
+                        <b>03</b>
+                    </div>
+                </div>
+                <div class="inner-insight">
+                    <span>✳</span>
+                    <div>
+                        <strong>@(tr ? "Kural tabanlı hedef kitle." : "Rule-based audience.")</strong>
+                        <p>@(tr ? "Müşteri bağlamından yeniden kullanılabilir kitlelere." : "From customer context to reusable audiences.")</p>
+                    </div>
+                </div>
+            </div>
+            <div class="inner-scene-caption">AUDIENCE MANAGER. RULE LOGIC.</div>
+        </div>
+    </div>
+</section>
+<div id="inner-content" class="inner-anchor"></div>
+
+@* ── STICKY SUBNAV ───────────────────────────────────────────── *@
 <div class="pika-sol-subnav-wrap">
     <div class="container">
         <nav class="pika-sol-subnav">
             <a href="#overview">@(tr ? "Genel Bakış" : "Overview")</a>
-            <a href="#features">@(tr ? "Özellikler" : "Features")</a>
-            <a href="#showcase">@(tr ? "Segment Builder" : "Segment Builder")</a>
-            <a href="#usecases">@(tr ? "Kullanım Senaryoları" : "Use Cases")</a>
-            <a href="#platform">@(tr ? "Entegrasyon" : "Integration")</a>
-            <a href="#faq">SSS / FAQ</a>
+            <a href="#audience-context">@(tr ? "Kitle Bağlamı" : "Audience Context")</a>
+            <a href="#rule-logic">@(tr ? "Kural Mantığı" : "Rule Logic")</a>
+            <a href="#dynamic-audiences">@(tr ? "Dinamik Kitleler" : "Dynamic Audiences")</a>
+            <a href="#platform-relationships">@(tr ? "Platform İlişkisi" : "Platform Relationships")</a>
+            <a href="#faq">@(tr ? "SSS" : "FAQ")</a>
         </nav>
     </div>
 </div>
 
-<!-- TRUST STRIP -->
+@* ── TRUST STRIP ─────────────────────────────────────────────── *@
 <section class="pika-sol-section" id="overview">
     <div class="container">
         <div class="pika-sol-trust-strip" data-aos="fade-up">
-            <div class="pika-sol-trust-item"><i class="ri-database-2-line"></i><span>@(tr ? "Veri tabanlı" : "Data-driven")</span></div>
-            <div class="pika-sol-trust-item"><i class="ri-filter-3-line"></i><span>@(tr ? "Kural motoru" : "Rule engine")</span></div>
-            <div class="pika-sol-trust-item"><i class="ri-loop-left-line"></i><span>@(tr ? "Yeniden kullanılabilir" : "Reusable")</span></div>
-            <div class="pika-sol-trust-item"><i class="ri-link"></i><span>@(tr ? "Kampanya entegrasyonu" : "Campaign integration")</span></div>
-            <div class="pika-sol-trust-item"><i class="ri-shield-check-line"></i><span>@(tr ? "KVKK uyumlu" : "KVKK compliant")</span></div>
+            <div class="pika-sol-trust-item"><i class="ri-filter-3-line"></i><span>@(tr ? "Kural Tabanlı" : "Rule-Based")</span></div>
+            <div class="pika-sol-trust-item"><i class="ri-shopping-cart-line"></i><span>@(tr ? "Transaction Bağlamı" : "Transaction Context")</span></div>
+            <div class="pika-sol-trust-item"><i class="ri-pulse-line"></i><span>@(tr ? "Davranış Bağlamı" : "Behavioral Context")</span></div>
+            <div class="pika-sol-trust-item"><i class="ri-loop-left-line"></i><span>@(tr ? "Yeniden Kullanılabilir" : "Reusable")</span></div>
+            <div class="pika-sol-trust-item"><i class="ri-route-line"></i><span>@(tr ? "Campaign & Journey" : "Campaign & Journey")</span></div>
         </div>
     </div>
 </section>
 
-<!-- SHOWCASE: Segment Builder -->
+@* ── 02 DIRECT ANSWER ────────────────────────────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt">
+    <div class="container" style="max-width:860px">
+        <span class="pika-sol-eyebrow">@(tr ? "KISA CEVAP" : "THE SHORT ANSWER")</span>
+        <h2 class="pika-sol-section-title mb-3">@(tr ? "Audience Manager nedir?" : "What is Audience Manager?")</h2>
+        @if (tr)
+        {
+            <p class="ph-lead mb-3">
+                Audience Manager, Pika'da hangi müşterilerin belirli bir pazarlama kararı veya kontrollü aksiyon için hedef kitleye dahil edilmesi gerektiğini kural tabanlı olarak tanımlayan segmentasyon katmanıdır.
+            </p>
+            <p class="ph-muted">
+                Audience Manager; müşteri özelliklerini, işlem ve davranış bağlamını, Customer Intelligence tarafından üretilen sinyalleri ve kullanılabilir diğer müşteri kurallarını birlikte değerlendirebilir.
+            </p>
+            <p class="ph-muted">
+                Audience Manager'ın temel sorusu şudur:
+            </p>
+            <div class="p-4 rounded my-4 text-center bg-white border" style="border-left:4px solid var(--pika-primary) !important">
+                <div class="fw-bold" style="font-size:1.25rem;color:#23413b;line-height:1.5">
+                    “Bu karar için<br />
+                    hangi müşteriler<br />
+                    hedef kitleye dahil olmalı?”
+                </div>
+            </div>
+            <p class="ph-muted mb-0">
+                Audience Manager müşteri davranışını hesaplayan analitik motor değildir ve kampanyayı gönderen katman da değildir. Hesaplanmış müşteri bağlamını açık kitle kurallarına dönüştürerek karar ile aksiyon arasındaki “KİM?” sorusunu cevaplar.
+            </p>
+        }
+        else
+        {
+            <p class="ph-lead mb-3">
+                Audience Manager is Pika's rule-based segmentation layer for defining which customers should belong in the audience for a specific marketing decision or controlled action.
+            </p>
+            <p class="ph-muted">
+                Audience Manager can evaluate customer attributes, transaction and behavioral context, signals produced by Customer Intelligence and other available customer rules together.
+            </p>
+            <p class="ph-muted">
+                Audience Manager answers one central question:
+            </p>
+            <div class="p-4 rounded my-4 text-center bg-white border" style="border-left:4px solid var(--pika-primary) !important">
+                <div class="fw-bold" style="font-size:1.25rem;color:#23413b;line-height:1.5">
+                    “Which customers<br />
+                    should belong in the audience<br />
+                    for this decision?”
+                </div>
+            </div>
+            <p class="ph-muted mb-0">
+                Audience Manager is not the analytical engine that calculates customer behavior, and it is not the layer that sends the campaign. It turns calculated customer context into explicit audience rules and answers the “WHO?” between decision and action.
+            </p>
+        }
+    </div>
+</section>
+
+@* ── 03 WHY STATIC LISTS ARE NOT ENOUGH ──────────────────────── *@
+<section class="pika-sol-section">
+    <div class="container" style="max-width:860px">
+        <span class="pika-sol-eyebrow">@(tr ? "LİSTEDEN KURALA" : "FROM LIST TO RULE")</span>
+        <h2 class="pika-sol-section-title mb-3">
+            @(tr ? "Müşteri listesi bir anı gösterir. Kural ise bağlamı tanımlar." : "A customer list captures a moment. A rule defines the context.")
+        </h2>
+        @if (tr)
+        {
+            <p class="ph-muted">
+                Bir müşteri listesini dışa aktardığınız anda o liste belirli bir zamanın görüntüsüdür.
+            </p>
+            <p class="ph-muted">
+                Müşteri yeni bir alışveriş yaptığında, davranışı değiştiğinde veya başka bir koşul artık geçerli olmadığında statik liste bunu kendi başına açıklayamaz.
+            </p>
+            <p class="ph-muted">
+                Pazarlama açısından daha önemli olan soru yalnızca:
+            </p>
+            <div class="p-3 my-2 rounded bg-white border">
+                <span class="ph-muted">“Listede kim var?” değildir.</span>
+            </div>
+            <div class="p-3 my-3 rounded bg-white border" style="border-left:4px solid var(--pika-primary) !important">
+                <strong style="color:#23413b;font-size:1.05rem">
+                    Asıl soru: “Bu müşteriyi bu hedef kitleye dahil eden hangi koşullar geçerli?”
+                </strong>
+            </div>
+            <p class="ph-muted">
+                Audience Manager hedef kitleyi kişilerden önce kurallarla tanımlar.
+            </p>
+            <p class="ph-muted">
+                Böylece hedef kitle, tek seferlik bir dosyadan çok yeniden değerlendirilebilir bir müşteri tanımına dönüşür.
+            </p>
+            <div class="p-3 rounded mt-3 text-center" style="background:#f8faf4;border:1px dashed #dce5d3">
+                <p class="small mb-1 text-muted">Statik liste sonucu saklar.</p>
+                <strong style="color:#23413b">Kural tabanlı audience, sonucun neden oluştuğunu da tanımlar.</strong>
+            </div>
+        }
+        else
+        {
+            <p class="ph-muted">
+                The moment a customer list is exported, it becomes a snapshot of a specific point in time.
+            </p>
+            <p class="ph-muted">
+                When a customer makes another purchase, their behavior changes or a condition no longer applies, the static list cannot explain that change by itself.
+            </p>
+            <p class="ph-muted">
+                For marketing, the more important question is not only:
+            </p>
+            <div class="p-3 my-2 rounded bg-white border">
+                <span class="ph-muted">“Who is on the list?”</span>
+            </div>
+            <div class="p-3 my-3 rounded bg-white border" style="border-left:4px solid var(--pika-primary) !important">
+                <strong style="color:#23413b;font-size:1.05rem">
+                    The more important question is: “Which conditions make this customer belong in this audience?”
+                </strong>
+            </div>
+            <p class="ph-muted">
+                Audience Manager defines the audience through rules before defining it through individual people.
+            </p>
+            <p class="ph-muted">
+                This turns the audience from a one-time file into a customer definition that can be evaluated again.
+            </p>
+            <div class="p-3 rounded mt-3 text-center" style="background:#f8faf4;border:1px dashed #dce5d3">
+                <p class="small mb-1 text-muted">A static list stores the result.</p>
+                <strong style="color:#23413b">A rule-based audience also defines why that result exists.</strong>
+            </div>
+        }
+    </div>
+</section>
+
+@* ── 04 WHAT CAN DEFINE AN AUDIENCE ─────────────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt" id="audience-context">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="pika-sol-eyebrow">@(tr ? "KİTLE BAĞLAMI" : "AUDIENCE CONTEXT")</span>
+            <h2 class="pika-sol-section-title mb-3">
+                @(tr ? "Bir hedef kitleyi tek bir özellik tanımlamak zorunda değildir." : "An audience does not have to be defined by one attribute.")
+            </h2>
+            <p class="ph-muted mx-auto" style="max-width:680px">
+                @(tr ? "Audience Manager farklı müşteri bağlamlarını aynı kural tanımında bir araya getirebilir. Kullanılabilecek bağlam, Pika'da mevcut ve ilgili müşteri verisine bağlıdır." : "Audience Manager can bring different customer contexts together within the same rule definition. Available context depends on relevant customer data present in Pika.")
+            </p>
+        </div>
+
+        <div class="pika-sol-card-grid">
+            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="50">
+                <div class="pika-sol-card-icon"><i class="ri-user-settings-line"></i></div>
+                <h4>@(tr ? "Müşteri Özellikleri" : "Customer Attributes")</h4>
+                <p>@(tr ? "Müşteriye ait kullanılabilir profil ve tanımlayıcı özellikler hedef kitle koşullarının bir parçası olabilir." : "Available customer profile and descriptive attributes can form part of audience conditions.")</p>
+            </div>
+
+            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="pika-sol-card-icon"><i class="ri-shopping-cart-line"></i></div>
+                <h4>@(tr ? "Transaction Geçmişi" : "Transaction History")</h4>
+                <p>@(tr ? "Satın alma geçmişi, işlem sıklığı veya belirli ürün ve kategori alışverişleri hedef kitle tanımında kullanılabilir." : "Purchase history, transaction frequency or purchases from particular products and categories can be used in audience definitions.")</p>
+            </div>
+
+            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="150">
+                <div class="pika-sol-card-icon"><i class="ri-pulse-line"></i></div>
+                <h4>@(tr ? "Davranış Bağlamı" : "Behavioral Context")</h4>
+                <p>@(tr ? "Müşterinin işlem geçmişinden oluşan davranış değişimleri ve alışveriş bağlamı kitle kurallarını zenginleştirebilir." : "Behavioral change and purchasing context derived from transaction history can enrich audience rules.")</p>
+            </div>
+
+            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="pika-sol-card-icon"><i class="ri-brain-line"></i></div>
+                <h4>@(tr ? "Customer Intelligence Sinyalleri" : "Customer Intelligence Signals")</h4>
+                <p>@(tr ? "Customer Intelligence tarafından hesaplanan değer, ritim veya diğer uygun müşteri sinyalleri hedef kitle kararına bağlam sağlayabilir." : "Calculated value, rhythm or other relevant customer signals from Customer Intelligence can provide context for audience decisions.")</p>
+            </div>
+
+            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="250">
+                <div class="pika-sol-card-icon"><i class="ri-store-2-line"></i></div>
+                <h4>@(tr ? "Ürün / Kategori Bağlamı" : "Product / Category Context")</h4>
+                <p>@(tr ? "Müşterinin satın aldığı ürün veya kategori bilgisi, belirli ihtiyaç veya ürün davranışına yönelik kitlelerin tanımlanmasına yardımcı olabilir." : "Products or categories purchased by the customer can help define audiences around relevant needs or product behavior.")</p>
+            </div>
+
+            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="pika-sol-card-icon"><i class="ri-shield-check-line"></i></div>
+                <h4>@(tr ? "İzin / Erişilebilirlik Bağlamı" : "Permission / Reachability Context")</h4>
+                <p>@(tr ? "Mevcut izin veya iletişim erişilebilirliği bilgisi uygun olduğunda kitle kuralının veya sonraki aksiyon değerlendirmesinin bir parçası olabilir." : "Available permission or communication-reachability context can form part of an audience rule or downstream action evaluation where appropriate.")</p>
+            </div>
+        </div>
+
+        <div class="p-4 rounded text-center mx-auto mt-4" style="background:#f8faf4;border:1px dashed #dce5d3;max-width:760px">
+            <p class="ph-muted mb-1">
+                @(tr ? "Bu bağlamların hiçbiri tek başına “doğru hedef kitle” değildir." : "None of these contexts alone defines the “right audience.”")
+            </p>
+            <p class="fw-bold mb-0" style="color:#23413b">
+                @(tr ? "Audience Manager'ın görevi, gerekli bağlamları açık kurallarla bir araya getirmektir." : "The role of Audience Manager is to combine the required context through explicit rules.")
+            </p>
+        </div>
+    </div>
+</section>
+
+@* ── 05 RULE LOGIC — AND / OR ────────────────────────────────── *@
+<section class="pika-sol-section" id="rule-logic">
+    <div class="container" style="max-width:860px">
+        <span class="pika-sol-eyebrow">@(tr ? "KURAL MANTIĞI" : "RULE LOGIC")</span>
+        <h2 class="pika-sol-section-title mb-3">
+            @(tr ? "Hedef kitleyi açık koşullarla tanımlayın." : "Define the audience through explicit conditions.")
+        </h2>
+        @if (tr)
+        {
+            <p class="ph-muted">
+                Gerçek hedefleme ihtiyacı çoğu zaman tek bir koşuldan oluşmaz.
+            </p>
+            <p class="ph-muted">
+                Bir müşterinin bir özelliğe sahip olması yeterli olabilirken başka bir audience tanımında birden fazla koşulun aynı anda sağlanması gerekebilir.
+            </p>
+            <p class="ph-muted">
+                Audience Manager kural gruplarında VE / VEYA mantığını kullanarak bu koşulların nasıl birleşeceğini tanımlamanıza yardımcı olur.
+            </p>
+
+            <div class="row g-3 my-3">
+                <div class="col-md-6">
+                    <div class="aud-rule-box h-100">
+                        <span class="aud-rule-badge">VE / AND</span>
+                        <p class="small ph-muted mb-0">
+                            Müşterinin tanımlanan koşulların birlikte sağlanması gereken bölümüne uymasını ifade eder.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="aud-rule-box h-100">
+                        <span class="aud-rule-badge">VEYA / OR</span>
+                        <p class="small ph-muted mb-0">
+                            Tanımlanan alternatif koşullardan uygun olanlardan birini karşılayan müşterilerin değerlendirilmesini sağlar.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="ph-muted">
+                Örneğin bir kitle tanımı şu bağlamları birlikte değerlendirebilir:
+            </p>
+            <div class="p-3 my-3 rounded bg-white border">
+                <div class="mb-2" style="color:#23413b">Belirli bir ürün veya kategori davranışı</div>
+                <div class="badge bg-light text-dark border my-1">VE</div>
+                <div class="my-2" style="color:#23413b">uygun bir müşteri davranış sinyali</div>
+                <div class="badge bg-light text-dark border my-1">VE</div>
+                <div class="mt-2" style="color:#23413b">aksiyon açısından dikkate alınması gereken izin / erişilebilirlik bağlamı.</div>
+            </div>
+
+            <p class="ph-muted">
+                Bu örnek sabit bir Pika segmenti değildir.
+            </p>
+            <p class="ph-muted">
+                Audience Manager'ın değerini oluşturan şey, kullanıcının kendi iş kuralını açık biçimde tanımlayabilmesidir.
+            </p>
+            <div class="p-3 rounded mt-3 text-center" style="background:#f8faf4;border:1px dashed #dce5d3">
+                <strong style="color:#23413b">Kitleyi bir isimle değil, onu oluşturan kurallarla tanımlayın.</strong>
+            </div>
+        }
+        else
+        {
+            <p class="ph-muted">
+                Real targeting requirements rarely consist of one condition.
+            </p>
+            <p class="ph-muted">
+                One customer attribute may be enough for one audience, while another audience may require several conditions to be true at the same time.
+            </p>
+            <p class="ph-muted">
+                Audience Manager helps define how those conditions combine through AND / OR logic inside rule groups.
+            </p>
+
+            <div class="row g-3 my-3">
+                <div class="col-md-6">
+                    <div class="aud-rule-box h-100">
+                        <span class="aud-rule-badge">AND</span>
+                        <p class="small ph-muted mb-0">
+                            Represents the part of the definition where the customer must satisfy conditions that are required together.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="aud-rule-box h-100">
+                        <span class="aud-rule-badge">OR</span>
+                        <p class="small ph-muted mb-0">
+                            Allows customers to be evaluated when they satisfy one of the relevant alternative conditions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="ph-muted">
+                For example, an audience definition may evaluate:
+            </p>
+            <div class="p-3 my-3 rounded bg-white border">
+                <div class="mb-2" style="color:#23413b">A relevant product or category behavior</div>
+                <div class="badge bg-light text-dark border my-1">AND</div>
+                <div class="my-2" style="color:#23413b">an appropriate customer behavioral signal</div>
+                <div class="badge bg-light text-dark border my-1">AND</div>
+                <div class="mt-2" style="color:#23413b">permission / reachability context that should be considered for action.</div>
+            </div>
+
+            <p class="ph-muted">
+                This example is not a fixed Pika segment.
+            </p>
+            <p class="ph-muted">
+                The value of Audience Manager is that users can define their own business rules explicitly.
+            </p>
+            <div class="p-3 rounded mt-3 text-center" style="background:#f8faf4;border:1px dashed #dce5d3">
+                <strong style="color:#23413b">Define the audience not only by its name, but by the rules that create it.</strong>
+            </div>
+        }
+    </div>
+</section>
+
+@* ── 06 DYNAMIC & REUSABLE AUDIENCES ─────────────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt" id="dynamic-audiences">
+    <div class="container" style="max-width:860px">
+        <span class="pika-sol-eyebrow">@(tr ? "DİNAMİK KİTLELER" : "DYNAMIC AUDIENCES")</span>
+        <h2 class="pika-sol-section-title mb-3">
+            @(tr ? "Kitleyi bir kez çıkarmak yerine, kuralını yeniden kullanın." : "Instead of exporting the audience once, reuse the rule that defines it.")
+        </h2>
+        @if (tr)
+        {
+            <p class="ph-muted">
+                Audience tanımının değeri yalnızca bugün oluşturduğu müşteri listesinden gelmez.
+            </p>
+            <p class="ph-muted">
+                Asıl değer, aynı iş kuralının daha sonra yeniden değerlendirilebilmesidir.
+            </p>
+            <p class="ph-muted">
+                Müşteri verisi ve davranış bağlamı değiştiğinde aynı audience kuralı tekrar değerlendirilebilir.
+            </p>
+            <p class="ph-muted">
+                Bu değerlendirme sonucunda müşteriler kuralları karşılamaya başlayabilir veya artık karşılamayabilir.
+            </p>
+
+            <div class="p-4 rounded my-4 bg-white border" style="border-left:4px solid var(--pika-primary) !important">
+                <p class="small mb-1 text-uppercase fw-bold" style="color:#62746d">“Dinamik audience”</p>
+                <p class="mb-2" style="color:#c0392b">“her değişikliğin gerçek zamanlı ve anında işlendiği” anlamına gelmez.</p>
+                <p class="small mb-1 text-uppercase fw-bold" style="color:#62746d">Dinamiklik burada:</p>
+                <p class="fw-bold mb-0" style="color:#23413b">üyeliğin sabit bir dosya yerine yeniden değerlendirilebilir kurallara dayanmasıdır.</p>
+            </div>
+
+            <p class="ph-muted">
+                Tanımlanan audience daha sonra farklı kampanya veya journey çalışmalarında yeniden kullanılabilir.
+            </p>
+            <div class="p-3 rounded mt-3 text-center" style="background:#f8faf4;border:1px dashed #dce5d3">
+                <strong style="color:#23413b">Listeyi tekrar üretmek yerine, hedef kitle mantığını tekrar kullanın.</strong>
+            </div>
+        }
+        else
+        {
+            <p class="ph-muted">
+                The value of an audience definition does not come only from the customer list it produces today.
+            </p>
+            <p class="ph-muted">
+                The greater value is that the same business rule can be evaluated again later.
+            </p>
+            <p class="ph-muted">
+                As customer data and behavioral context change, the same audience rule can be evaluated again.
+            </p>
+            <p class="ph-muted">
+                Customers may begin to satisfy those rules or may no longer satisfy them.
+            </p>
+
+            <div class="p-4 rounded my-4 bg-white border" style="border-left:4px solid var(--pika-primary) !important">
+                <p class="small mb-1 text-uppercase fw-bold" style="color:#62746d">“Dynamic audience”</p>
+                <p class="mb-2" style="color:#c0392b">does not mean: “every change is processed instantly and in real time.”</p>
+                <p class="small mb-1 text-uppercase fw-bold" style="color:#62746d">Dynamic here means:</p>
+                <p class="fw-bold mb-0" style="color:#23413b">membership is based on rules that can be re-evaluated rather than on a permanently fixed file.</p>
+            </div>
+
+            <p class="ph-muted">
+                A defined audience can later be reused across different campaign or journey workflows.
+            </p>
+            <div class="p-3 rounded mt-3 text-center" style="background:#f8faf4;border:1px dashed #dce5d3">
+                <strong style="color:#23413b">Instead of rebuilding the list, reuse the audience logic.</strong>
+            </div>
+        }
+    </div>
+</section>
+
+@* ── 07 CUSTOMER INTELLIGENCE → AUDIENCE MANAGER ─────────────── *@
+<section class="pika-sol-section">
+    <div class="container" style="max-width:860px">
+        <span class="pika-sol-eyebrow">@(tr ? "ANALİZDEN HEDEF KİTLEYE" : "FROM ANALYSIS TO AUDIENCE")</span>
+        <h2 class="pika-sol-section-title mb-3">
+            @(tr ? "Customer Intelligence bağlam üretir. Audience Manager o bağlamla kitle tanımlar." : "Customer Intelligence creates context. Audience Manager defines an audience with it.")
+        </h2>
+        @if (tr)
+        {
+            <p class="ph-muted">
+                Customer Intelligence ile Audience Manager aynı görevi yapmaz.
+            </p>
+            <p class="ph-muted">
+                Customer Intelligence müşterinin işlem ve davranış geçmişinden değer, satın alma ritmi ve davranış değişimi gibi hesaplanabilir müşteri bağlamı üretir.
+            </p>
+            <p class="ph-muted">
+                Audience Manager ise bu müşteri bağlamının kitle kurallarında kullanılabileceği segmentasyon katmanıdır.
+            </p>
+
+            <div class="row g-3 my-4">
+                <div class="col-md-6">
+                    <div class="p-3 rounded bg-white border h-100">
+                        <small class="text-uppercase fw-bold d-block mb-1" style="color:var(--pika-primary)">Customer Intelligence:</small>
+                        <strong style="color:#23413b">“Bu müşterinin davranışında ne oluyor?”</strong>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-3 rounded bg-white border h-100">
+                        <small class="text-uppercase fw-bold d-block mb-1" style="color:var(--pika-primary)">Audience Manager:</small>
+                        <strong style="color:#23413b">“Bu bağlama uyan müşteriler kimler?”</strong>
+                    </div>
+                </div>
+            </div>
+
+            <p class="ph-muted">
+                Örneğin hesaplanmış bir müşteri sinyali, tek başına kampanya değildir.
+            </p>
+            <p class="ph-muted">
+                Bu sinyal Audience Manager içinde diğer koşullarla birlikte hedef kitle tanımına katkı sağlayabilir.
+            </p>
+
+            <div class="p-3 rounded mt-3 text-center" style="background:#f8faf4;border:1px dashed #dce5d3">
+                <p class="small mb-1 text-muted">Önce müşteri bağlamı hesaplanır.</p>
+                <strong style="color:#23413b">Sonra bu bağlam, kimin hedef kitleye dahil olacağını tanımlamak için kullanılabilir.</strong>
+            </div>
+
+            <div class="mt-4">
+                <a href="/platform/customer-intelligence" class="small fw-bold" style="color:var(--pika-primary)">
+                    Customer Intelligence'ı Keşfedin →
+                </a>
+            </div>
+        }
+        else
+        {
+            <p class="ph-muted">
+                Customer Intelligence and Audience Manager do not perform the same role.
+            </p>
+            <p class="ph-muted">
+                Customer Intelligence produces calculable customer context such as value, purchase rhythm and behavioral change from transaction and behavioral history.
+            </p>
+            <p class="ph-muted">
+                Audience Manager is the segmentation layer where that customer context can be used in audience rules.
+            </p>
+
+            <div class="row g-3 my-4">
+                <div class="col-md-6">
+                    <div class="p-3 rounded bg-white border h-100">
+                        <small class="text-uppercase fw-bold d-block mb-1" style="color:var(--pika-primary)">Customer Intelligence:</small>
+                        <strong style="color:#23413b">“What is happening in this customer's behavior?”</strong>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-3 rounded bg-white border h-100">
+                        <small class="text-uppercase fw-bold d-block mb-1" style="color:var(--pika-primary)">Audience Manager:</small>
+                        <strong style="color:#23413b">“Which customers match this context?”</strong>
+                    </div>
+                </div>
+            </div>
+
+            <p class="ph-muted">
+                A calculated customer signal is not a campaign by itself.
+            </p>
+            <p class="ph-muted">
+                Inside Audience Manager, that signal can contribute to an audience definition together with other conditions.
+            </p>
+
+            <div class="p-3 rounded mt-3 text-center" style="background:#f8faf4;border:1px dashed #dce5d3">
+                <p class="small mb-1 text-muted">Customer context is calculated first.</p>
+                <strong style="color:#23413b">That context can then help define who belongs in the audience.</strong>
+            </div>
+
+            <div class="mt-4">
+                <a href="/en/platform/customer-intelligence" class="small fw-bold" style="color:var(--pika-primary)">
+                    Explore Customer Intelligence →
+                </a>
+            </div>
+        }
+    </div>
+</section>
+
+@* ── 08 PRODUCT & TRANSACTION CONTEXT ────────────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt">
+    <div class="container" style="max-width:860px">
+        <span class="pika-sol-eyebrow">@(tr ? "NE SATIN ALDIKLARI DA BAĞLAMDIR" : "WHAT CUSTOMERS PURCHASE IS CONTEXT TOO")</span>
+        <h2 class="pika-sol-section-title mb-3">
+            @(tr ? "Hedef kitle yalnızca müşteri özelliklerinden oluşmaz." : "An audience is defined by more than customer attributes.")
+        </h2>
+        @if (tr)
+        {
+            <p class="ph-muted">
+                Müşterinin ne satın aldığı, hangi kategorilerle işlem yaptığı ve satın alma geçmişinin nasıl geliştiği de hedef kitle kararına bağlam sağlayabilir.
+            </p>
+            <p class="ph-muted">
+                Audience Manager işlem ve satın alma verisini kural tanımlarında kullanarak yalnızca “müşteri kim?” sorusuna değil, “müşteri ne yaptı?” sorusuna da yaklaşır.
+            </p>
+            <p class="ph-muted">
+                Product Intelligence ise ürünün katalog kodunun ötesindeki anlamını oluşturan ayrı katmandır.
+            </p>
+            <p class="ph-muted">
+                Audience Manager ile Product Intelligence aynı ürün değildir.
+            </p>
+
+            <div class="row g-3 my-4">
+                <div class="col-md-6">
+                    <div class="p-3 rounded bg-white border h-100">
+                        <small class="text-uppercase fw-bold d-block mb-1" style="color:var(--pika-primary)">Product Intelligence:</small>
+                        <strong style="color:#23413b">“Bu ürün neyi temsil ediyor?”</strong>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-3 rounded bg-white border h-100">
+                        <small class="text-uppercase fw-bold d-block mb-1" style="color:var(--pika-primary)">Audience Manager:</small>
+                        <strong style="color:#23413b">“Bu ürün veya kategori davranışına uyan müşteriler kimler?”</strong>
+                    </div>
+                </div>
+            </div>
+
+            <p class="ph-muted">
+                Ürün anlamı ile müşteri satın alma davranışı birlikte düşünüldüğünde hedef kitle daha anlamlı ticari bağlama oturabilir.
+            </p>
+
+            <div class="mt-4">
+                <a href="/platform/product-intelligence" class="small fw-bold" style="color:var(--pika-primary)">
+                    Product Intelligence'ı Keşfedin →
+                </a>
+            </div>
+        }
+        else
+        {
+            <p class="ph-muted">
+                What a customer purchased, which categories they transacted with and how their purchase history developed can also provide context for audience decisions.
+            </p>
+            <p class="ph-muted">
+                By using transaction and purchase data in rule definitions, Audience Manager can address not only “Who is the customer?” but also “What has the customer done?”
+            </p>
+            <p class="ph-muted">
+                Product Intelligence is a separate layer that establishes meaning beyond the product's catalog code.
+            </p>
+            <p class="ph-muted">
+                Audience Manager and Product Intelligence are not the same product.
+            </p>
+
+            <div class="row g-3 my-4">
+                <div class="col-md-6">
+                    <div class="p-3 rounded bg-white border h-100">
+                        <small class="text-uppercase fw-bold d-block mb-1" style="color:var(--pika-primary)">Product Intelligence:</small>
+                        <strong style="color:#23413b">“What does this product represent?”</strong>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-3 rounded bg-white border h-100">
+                        <small class="text-uppercase fw-bold d-block mb-1" style="color:var(--pika-primary)">Audience Manager:</small>
+                        <strong style="color:#23413b">“Which customers match this product or category behavior?”</strong>
+                    </div>
+                </div>
+            </div>
+
+            <p class="ph-muted">
+                When product meaning and customer purchase behavior are considered together, the audience can sit within stronger commercial context.
+            </p>
+
+            <div class="mt-4">
+                <a href="/en/platform/product-intelligence" class="small fw-bold" style="color:var(--pika-primary)">
+                    Explore Product Intelligence →
+                </a>
+            </div>
+        }
+    </div>
+</section>
+
+@* ── 09 CONSENT / PERMISSION BOUNDARY ────────────────────────── *@
+<section class="pika-sol-section">
+    <div class="container" style="max-width:860px">
+        <span class="pika-sol-eyebrow">@(tr ? "KİTLE ≠ GÖNDERİM İZNİ" : "AUDIENCE ≠ PERMISSION TO SEND")</span>
+        <h2 class="pika-sol-section-title mb-3">
+            @(tr ? "Bir müşterinin hedef kitleye uyması, ona her kanaldan mesaj gönderilebileceği anlamına gelmez." : "Matching an audience does not mean the customer can be contacted through every channel.")
+        </h2>
+        @if (tr)
+        {
+            <p class="ph-muted">
+                Hedef kitle uygunluğu ile iletişim izni aynı kavram değildir.
+            </p>
+            <p class="ph-muted">
+                Bir müşteri audience kurallarını karşılayabilir; ancak gerçek iletişim aksiyonunda izin, erişilebilirlik ve kanal kontrollerinin ayrıca değerlendirilmesi gerekir.
+            </p>
+            <p class="ph-muted">
+                Mevcut izin veya erişilebilirlik bağlamı uygun olduğunda audience tanımında dikkate alınabilir.
+            </p>
+            <p class="ph-muted">
+                Ancak bu, Audience Manager'ın gönderim öncesi bütün izin kontrollerinin yerine geçtiği anlamına gelmez.
+            </p>
+
+            <div class="row g-3 my-4">
+                <div class="col-md-6">
+                    <div class="p-3 rounded bg-white border h-100 text-center">
+                        <small class="text-uppercase fw-bold d-block mb-1" style="color:var(--pika-primary)">Audience Manager:</small>
+                        <div class="fw-bold" style="font-size:1.3rem;color:#23413b">“KİM?”</div>
+                        <span class="small ph-muted">sorusunu cevaplar.</span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-3 rounded bg-white border h-100 text-center">
+                        <small class="text-uppercase fw-bold d-block mb-1" style="color:var(--pika-primary)">Consent / delivery controls:</small>
+                        <strong style="color:#23413b" class="d-block mb-1">“Bu aksiyon bu kanalda uygulanabilir mi?”</strong>
+                        <span class="small ph-muted">sorusunu ayrıca değerlendirir.</span>
+                    </div>
+                </div>
+            </div>
+
+            <p class="ph-muted mb-0">
+                Bu ayrım hedef kitle mantığı ile gönderim güvenliğinin birbirine karıştırılmasını önler.
+            </p>
+
+            <div class="mt-4">
+                <a href="/cozumler/consent-management" class="small fw-bold" style="color:var(--pika-primary)">
+                    Consent Management'i Keşfedin →
+                </a>
+            </div>
+        }
+        else
+        {
+            <p class="ph-muted">
+                Audience eligibility and communication permission are different concepts.
+            </p>
+            <p class="ph-muted">
+                A customer may satisfy audience rules, while consent, reachability and channel controls still need to be evaluated for actual communication.
+            </p>
+            <p class="ph-muted">
+                Available permission or reachability context can be considered within an audience definition where appropriate.
+            </p>
+            <p class="ph-muted">
+                That does not mean Audience Manager replaces final pre-send consent controls.
+            </p>
+
+            <div class="row g-3 my-4">
+                <div class="col-md-6">
+                    <div class="p-3 rounded bg-white border h-100 text-center">
+                        <small class="text-uppercase fw-bold d-block mb-1" style="color:var(--pika-primary)">Audience Manager answers:</small>
+                        <div class="fw-bold" style="font-size:1.3rem;color:#23413b">“WHO?”</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-3 rounded bg-white border h-100 text-center">
+                        <small class="text-uppercase fw-bold d-block mb-1" style="color:var(--pika-primary)">Consent / delivery controls separately evaluate:</small>
+                        <strong style="color:#23413b" class="d-block">“Can this action be executed through this channel?”</strong>
+                    </div>
+                </div>
+            </div>
+
+            <p class="ph-muted mb-0">
+                This distinction prevents audience logic and delivery safety from being treated as the same control.
+            </p>
+
+            <div class="mt-4">
+                <a href="/en/solutions/consent-management" class="small fw-bold" style="color:var(--pika-primary)">
+                    Explore Consent Management →
+                </a>
+            </div>
+        }
+    </div>
+</section>
+
+@* ── 10 AUDIENCE PREVIEW & VALIDATION ────────────────────────── *@
 <section class="pika-sol-section pika-sol-section-alt" id="showcase">
     <div class="container">
-        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "Segment builder: hedeflemeyi görselleştirin" : "Segment builder: visualize your targeting")</h2>
+        <div class="text-center mb-5">
+            <span class="pika-sol-eyebrow">@(tr ? "KAYDETMEDEN ÖNCE KONTROL EDİN" : "CHECK BEFORE YOU USE THE AUDIENCE")</span>
+            <h2 class="pika-sol-section-title mb-3">
+                @(tr ? "Kuralın ne ifade ettiğini, kitleyi kullanmadan önce değerlendirin." : "Evaluate what the rule produces before using the audience.")
+            </h2>
+            @if (tr)
+            {
+                <p class="ph-muted mx-auto" style="max-width:680px">
+                    Bir audience kuralını yazmak ile o kuralın beklenen müşteri grubunu oluşturduğunu doğrulamak aynı şey değildir.
+                </p>
+                <p class="ph-muted mx-auto" style="max-width:680px">
+                    Audience Manager, kural sonucunun önizlenmesini ve oluşan kitle büyüklüğünün değerlendirilmesini destekleyerek kullanıcıya tanımı kullanmadan önce kontrol noktası sağlar.
+                </p>
+                <p class="ph-muted mx-auto" style="max-width:680px">
+                    Önizleme bir performans veya dönüşüm tahmini değildir. Kuralın mevcut veri bağlamında hangi müşteri grubunu kapsadığını değerlendirmeye yardımcı olur.
+                </p>
+            }
+            else
+            {
+                <p class="ph-muted mx-auto" style="max-width:680px">
+                    Writing an audience rule and confirming that the rule produces the intended customer group are not the same thing.
+                </p>
+                <p class="ph-muted mx-auto" style="max-width:680px">
+                    Audience Manager supports previewing the rule result and evaluating the resulting audience size, giving users a control point before using the definition.
+                </p>
+                <p class="ph-muted mx-auto" style="max-width:680px">
+                    Audience preview is not a performance or conversion forecast. It helps evaluate which customer group the rule covers within the available data context.
+                </p>
+            }
+        </div>
+
+        @* Conceptual Segment Builder Showcase *@
         <div class="pika-sol-showcase" data-aos="fade-up" data-aos-delay="100">
             <div class="pika-sol-showcase-screen">
                 <div class="pika-sol-showcase-panel">
-                    <div class="pika-sol-showcase-panel-title"><i class="ri-filter-3-line"></i> @(tr ? "Filtre Kuralları" : "Filter Rules")</div>
+                    <div class="pika-sol-showcase-panel-title">
+                        <i class="ri-filter-3-line"></i> @(tr ? "KURAL GRUBU" : "RULE GROUP")
+                    </div>
                     <div class="pika-sol-showcase-mock-bar w80"></div>
                     <div class="pika-sol-showcase-mock-bar w60"></div>
                     <div class="pika-sol-showcase-mock-bar w45"></div>
                     <div class="pika-sol-showcase-mock-bar w70"></div>
                 </div>
                 <div class="pika-sol-showcase-panel">
-                    <div class="pika-sol-showcase-panel-title"><i class="ri-group-line"></i> @(tr ? "Segment Önizleme" : "Segment Preview")</div>
+                    <div class="pika-sol-showcase-panel-title">
+                        <i class="ri-group-line"></i> @(tr ? "KİTLE ÖNİZLEMESİ" : "AUDIENCE PREVIEW")
+                    </div>
                     <div class="pika-sol-showcase-mock-bar w70"></div>
                     <div class="pika-sol-showcase-mock-bar w80"></div>
                     <div class="pika-sol-showcase-mock-bar w60"></div>
                 </div>
             </div>
             <div class="pika-sol-showcase-annotations">
-                <div class="pika-sol-annotation"><i class="ri-shopping-cart-line"></i> @(tr ? "Transaction verisi" : "Transaction data")</div>
-                <div class="pika-sol-annotation"><i class="ri-focus-3-line"></i> @(tr ? "Davranış filtresi" : "Behavior filter")</div>
-                <div class="pika-sol-annotation"><i class="ri-git-branch-line"></i> @(tr ? "VE/VEYA koşullar" : "AND/OR conditions")</div>
-                <div class="pika-sol-annotation"><i class="ri-eye-line"></i> @(tr ? "Anlık önizleme" : "Real-time preview")</div>
+                <div class="pika-sol-annotation"><i class="ri-filter-line"></i> @(tr ? "KURAL GRUBU" : "RULE GROUP")</div>
+                <div class="pika-sol-annotation"><i class="ri-user-shared-line"></i> @(tr ? "MÜŞTERİ BAĞLAMI" : "CUSTOMER CONTEXT")</div>
+                <div class="pika-sol-annotation"><i class="ri-git-branch-line"></i> @(tr ? "VE / VEYA" : "AND / OR")</div>
+                <div class="pika-sol-annotation"><i class="ri-eye-line"></i> @(tr ? "KİTLE ÖNİZLEMESİ" : "AUDIENCE PREVIEW")</div>
             </div>
         </div>
-    </div>
-</section>
 
-<!-- PROBLEM/SOLUTION -->
-<section class="pika-sol-section">
-    <div class="container">
-        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "Hedefleme kalitesini artırın" : "Improve targeting quality")</h2>
-        <div class="pika-sol-problem-grid" data-aos="fade-up" data-aos-delay="100">
-            <div class="pika-sol-problem-card pika-sol-problem-card--problem"><i class="ri-error-warning-line"></i> @(tr ? "Genel gönderimlerle düşük etkileşim" : "Low engagement with generic sends")</div>
-            <div class="pika-sol-problem-card pika-sol-problem-card--solution"><i class="ri-check-double-line"></i> @(tr ? "Veri tabanlı doğru segmentasyon" : "Data-driven accurate segmentation")</div>
-            <div class="pika-sol-problem-card pika-sol-problem-card--problem"><i class="ri-error-warning-line"></i> @(tr ? "Tekrar eden manuel segment oluşturma" : "Repetitive manual segment creation")</div>
-            <div class="pika-sol-problem-card pika-sol-problem-card--solution"><i class="ri-check-double-line"></i> @(tr ? "Yeniden kullanılabilir segment şablonları" : "Reusable segment templates")</div>
+        <div class="p-4 rounded my-4 text-center mx-auto bg-white border" style="max-width:760px;border-left:4px solid var(--pika-primary) !important">
+            @if (tr)
+            {
+                <p class="small mb-1 text-uppercase fw-bold" style="color:#62746d">Audience preview:</p>
+                <p class="mb-2" style="color:#23413b">Kural sonucunu kontrol etmeye yardımcı olur.</p>
+                <p class="small mb-1 text-uppercase fw-bold" style="color:#62746d">Şunu garanti etmez:</p>
+                <p class="fw-bold mb-0" style="color:#c0392b">“Bu kitle kampanyada belirli bir dönüşüm sağlayacak.”</p>
+            }
+            else
+            {
+                <p class="small mb-1 text-uppercase fw-bold" style="color:#62746d">Audience preview:</p>
+                <p class="mb-2" style="color:#23413b">Helps validate the rule result.</p>
+                <p class="small mb-1 text-uppercase fw-bold" style="color:#62746d">It does not guarantee:</p>
+                <p class="fw-bold mb-0" style="color:#c0392b">“This audience will produce a particular campaign conversion.”</p>
+            }
         </div>
-    </div>
-</section>
 
-<!-- CORE CAPABILITIES -->
-<section class="pika-sol-section pika-sol-section-alt" id="features">
-    <div class="container">
-        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "Segmentasyon için temel yetenekler" : "Core capabilities for segmentation")</h2>
-        <div class="pika-sol-card-grid">
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="pika-sol-card-icon"><i class="ri-shopping-cart-line"></i></div>
-                <h4>@(tr ? "Transaction bazlı segmentasyon" : "Transaction-based segmentation")</h4>
-                <p>@(tr ? "Satın alma verilerine göre segment oluşturun." : "Create segments based on purchase data.")</p>
-            </div>
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="pika-sol-card-icon"><i class="ri-pulse-line"></i></div>
-                <h4>@(tr ? "Davranış bazlı segmentasyon" : "Behavior-based segmentation")</h4>
-                <p>@(tr ? "Kullanıcı etkileşimlerine göre hedefleme yapın." : "Target based on user interactions.")</p>
-            </div>
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="pika-sol-card-icon"><i class="ri-git-branch-line"></i></div>
-                <h4>@(tr ? "Kural tabanlı filtreler" : "Rule-based filters")</h4>
-                <p>@(tr ? "VE/VEYA mantığıyla esnek koşullar tanımlayın." : "Define flexible conditions with AND/OR logic.")</p>
-            </div>
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="pika-sol-card-icon"><i class="ri-loop-left-line"></i></div>
-                <h4>@(tr ? "Yeniden kullanılabilir segmentler" : "Reusable segments")</h4>
-                <p>@(tr ? "Segmentleri kaydedin, kampanyalarda tekrar kullanın." : "Save segments and reuse them in campaigns.")</p>
-            </div>
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="pika-sol-card-icon"><i class="ri-eye-line"></i></div>
-                <h4>@(tr ? "Anlık segment önizleme" : "Real-time segment preview")</h4>
-                <p>@(tr ? "Segment boyutunu ve profilini kaydetmeden görün." : "View segment size and profile before saving.")</p>
-            </div>
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="pika-sol-card-icon"><i class="ri-link"></i></div>
-                <h4>@(tr ? "Kampanya ve journey entegrasyonu" : "Campaign & journey integration")</h4>
-                <p>@(tr ? "Segmentleri kampanya ve akışlara doğrudan bağlayın." : "Connect segments directly to campaigns and flows.")</p>
-            </div>
+        <div class="p-3 rounded text-center mx-auto" style="background:#f8faf4;border:1px dashed #dce5d3;max-width:760px">
+            <strong style="color:#23413b">
+                @(tr ? "Önce kuralı görün. Sonra kitleyi kullanın." : "Review the rule first. Use the audience next.")
+            </strong>
         </div>
-    </div>
-</section>
 
-<!-- WORKFLOW -->
-<section class="pika-sol-section">
-    <div class="container">
-        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "Segmentasyon sürecini 4 adımda tamamlayın" : "Complete the segmentation process in 4 steps")</h2>
-        <div class="pika-sol-workflow-steps" data-aos="fade-up" data-aos-delay="100">
-            <div class="pika-sol-workflow-step">
-                <div class="pika-sol-workflow-num">1</div>
-                <h5>@(tr ? "Veri Kaynağını Seçin" : "Select Data Source")</h5>
-                <p>@(tr ? "Transaction veya davranış verisini belirleyin." : "Choose transaction or behavior data.")</p>
-            </div>
-            <div class="pika-sol-workflow-step">
-                <div class="pika-sol-workflow-num">2</div>
-                <h5>@(tr ? "Koşulları Tanımlayın" : "Define Conditions")</h5>
-                <p>@(tr ? "Filtre kurallarını VE/VEYA mantığıyla oluşturun." : "Build filter rules with AND/OR logic.")</p>
-            </div>
-            <div class="pika-sol-workflow-step">
-                <div class="pika-sol-workflow-num">3</div>
-                <h5>@(tr ? "Önizleyin" : "Preview")</h5>
-                <p>@(tr ? "Segment boyutu ve profilini kontrol edin." : "Check segment size and profile.")</p>
-            </div>
-            <div class="pika-sol-workflow-step">
-                <div class="pika-sol-workflow-num">4</div>
-                <h5>@(tr ? "Kaydedin ve Kullanın" : "Save & Use")</h5>
-                <p>@(tr ? "Segmenti kampanya veya journey'e bağlayın." : "Connect the segment to a campaign or journey.")</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- USE CASES -->
-<section class="pika-sol-section pika-sol-section-alt" id="usecases">
-    <div class="container">
-        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "Audience Manager ile neler yapabilirsiniz?" : "What can you do with Audience Manager?")</h2>
-        <div class="pika-sol-usecase-cards">
+        @* 6 Audience Contexts (reused cards) *@
+        <div class="pika-sol-usecase-cards mt-5">
             <div class="pika-sol-usecase-card" data-aos="fade-up" data-aos-delay="50">
                 <div class="pika-sol-usecase-card-icon"><i class="ri-vip-crown-line"></i></div>
-                <span class="usecase-industry">@(tr ? "E-ticaret" : "E-commerce")</span>
-                <h5>@(tr ? "VIP Müşteri Segmenti" : "VIP Customer Segment")</h5>
-                <p>@(tr ? "Yüksek harcama yapan müşterileri otomatik segmentleyin." : "Automatically segment high-spending customers.")</p>
+                <h5>@(tr ? "Hesaplanan Müşteri Değeri" : "Calculated Customer Value")</h5>
+                <p>@(tr ? "Customer Intelligence bağlamını kullanarak belirli değer koşullarını karşılayan müşterileri kitle tanımına dahil edin." : "Use Customer Intelligence context to include customers who satisfy relevant value conditions in an audience definition.")</p>
             </div>
             <div class="pika-sol-usecase-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="pika-sol-usecase-card-icon"><i class="ri-user-unfollow-line"></i></div>
-                <span class="usecase-industry">@(tr ? "Perakende" : "Retail")</span>
-                <h5>@(tr ? "Churn Riski Yüksek Kitle" : "High Churn Risk Audience")</h5>
-                <p>@(tr ? "Uzun süredir etkileşim kurmayanları hedefleyin." : "Target users who haven't engaged in a long time.")</p>
+                <div class="pika-sol-usecase-card-icon"><i class="ri-shopping-cart-line"></i></div>
+                <h5>@(tr ? "Satın Alma Davranışı" : "Purchase Behavior")</h5>
+                <p>@(tr ? "Belirli işlem, ürün veya kategori davranışına uyan müşterileri kurallarla tanımlayın." : "Define customers through rules based on relevant transaction, product or category behavior.")</p>
             </div>
             <div class="pika-sol-usecase-card" data-aos="fade-up" data-aos-delay="150">
-                <div class="pika-sol-usecase-card-icon"><i class="ri-map-pin-line"></i></div>
-                <span class="usecase-industry">@(tr ? "Tüm Sektörler" : "All Industries")</span>
-                <h5>@(tr ? "Lokasyon Bazlı Hedefleme" : "Location-Based Targeting")</h5>
-                <p>@(tr ? "Bölge ve şehir bazlı segmentler oluşturun." : "Create region and city-based segments.")</p>
+                <div class="pika-sol-usecase-card-icon"><i class="ri-pulse-line"></i></div>
+                <h5>@(tr ? "Davranış Değişimi" : "Behavioral Change")</h5>
+                <p>@(tr ? "Müşterinin kendi geçmişine göre oluşan uygun davranış sinyallerini kitle koşullarında değerlendirin." : "Evaluate appropriate signals relative to the customer's own history within audience conditions.")</p>
             </div>
             <div class="pika-sol-usecase-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="pika-sol-usecase-card-icon"><i class="ri-shopping-bag-line"></i></div>
-                <span class="usecase-industry">@(tr ? "E-ticaret" : "E-commerce")</span>
-                <h5>@(tr ? "Kategori Bazlı Segment" : "Category-Based Segment")</h5>
-                <p>@(tr ? "Belirli kategorilerde alışveriş yapanları hedefleyin." : "Target shoppers in specific categories.")</p>
+                <div class="pika-sol-usecase-card-icon"><i class="ri-refresh-line"></i></div>
+                <h5>@(tr ? "Tekrar Satın Alma Bağlamı" : "Repeat-Purchase Context")</h5>
+                <p>@(tr ? "Satın alma ritmi ve ilgili ürün bağlamını kullanan hedef kitle kuralları oluşturun." : "Create audience rules using purchase-rhythm and relevant product context.")</p>
             </div>
             <div class="pika-sol-usecase-card" data-aos="fade-up" data-aos-delay="250">
-                <div class="pika-sol-usecase-card-icon"><i class="ri-user-add-line"></i></div>
-                <span class="usecase-industry">@(tr ? "SaaS / Finans" : "SaaS / Finance")</span>
-                <h5>@(tr ? "Yeni Müşteri Onboarding" : "New Customer Onboarding")</h5>
-                <p>@(tr ? "Son 30 günde katılan müşterileri segmentleyin." : "Segment customers who joined in the last 30 days.")</p>
+                <div class="pika-sol-usecase-card-icon"><i class="ri-focus-3-line"></i></div>
+                <h5>@(tr ? "Açık Fırsat Bağlamı" : "Open Opportunity Context")</h5>
+                <p>@(tr ? "Uygun fırsat veya karar bağlamlarını sonraki hedef kitle çalışmalarında değerlendirin." : "Evaluate relevant opportunity or decision context in downstream audience workflows.")</p>
             </div>
             <div class="pika-sol-usecase-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="pika-sol-usecase-card-icon"><i class="ri-refresh-line"></i></div>
-                <span class="usecase-industry">@(tr ? "Perakende" : "Retail")</span>
-                <h5>@(tr ? "Tekrar Satın Alma Hedeflemesi" : "Repeat Purchase Targeting")</h5>
-                <p>@(tr ? "Düzenli alışveriş yapan müşterilere özel kampanyalar." : "Special campaigns for regularly purchasing customers.")</p>
+                <div class="pika-sol-usecase-card-icon"><i class="ri-shield-check-line"></i></div>
+                <h5>@(tr ? "İzin / Erişilebilirlik Bağlamı" : "Permission / Reachability Context")</h5>
+                <p>@(tr ? "Mevcut izin veya kanal erişilebilirliği bilgisini uygun olduğunda hedef kitle değerlendirmesine dahil edin." : "Include available permission or channel-reachability information in audience evaluation where appropriate.")</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- PLATFORM MAP -->
-<section class="pika-sol-section" id="platform">
+@* ── 11 FROM AUDIENCE TO CAMPAIGN / JOURNEY ──────────────────── *@
+<section class="pika-sol-section" id="platform-relationships">
     <div class="container">
-        <h2 class="pika-sol-section-title text-center" data-aos="fade-up">@(tr ? "Audience Manager, Pika platformunda nasıl konumlanır?" : "How does Audience Manager fit in the Pika platform?")</h2>
-        <div class="pika-sol-platform-map" data-aos="fade-up" data-aos-delay="100">
-            <div class="pika-sol-platform-satellites">
-                <a class="pika-sol-platform-node" href="@Url.Action("CampaignManager", "Solutions")"><i class="ri-megaphone-line"></i> Campaign Manager</a>
-                <a class="pika-sol-platform-node" href="@Url.Action("JourneyManager", "Solutions")"><i class="ri-route-line"></i> Journey Manager</a>
+        <div class="text-center mb-5">
+            <span class="pika-sol-eyebrow">@(tr ? "“KİM?”DEN AKSİYONA" : "FROM “WHO?” TO ACTION")</span>
+            <h2 class="pika-sol-section-title mb-3">
+                @(tr ? "Audience Manager kitleyi tanımlar. Kampanya ve journey aksiyonu yönetir." : "Audience Manager defines the audience. Campaign and journey layers manage the action.")
+            </h2>
+            <p class="ph-muted mx-auto" style="max-width:680px">
+                @(tr ? "Audience Manager Pika'nın karar zincirindeki hedef kitle katmanıdır." : "Audience Manager is the audience layer within Pika's decision chain.")
+            </p>
+        </div>
+
+        <div class="row g-3 justify-content-center mb-4">
+            <div class="col-lg-2 col-md-4 col-6">
+                <div class="p-3 rounded text-center bg-white border h-100">
+                    <div class="fw-bold mb-1" style="font-size:0.75rem;color:var(--pika-primary)">01</div>
+                    <div class="fw-bold small mb-1" style="color:#23413b">INTELLIGENCE / OPPORTUNITY CONTEXT</div>
+                    <p class="small ph-muted mb-0" style="font-size:0.75rem">
+                        @(tr ? "Müşteri, ürün veya fırsat bağlamı kararın nedenini oluşturur." : "Customer, product or opportunity context provides the reason behind the decision.")
+                    </p>
+                </div>
             </div>
-            <div class="pika-sol-platform-connector"></div>
-            <div class="pika-sol-platform-center"><i class="ri-focus-3-line"></i> Audience Manager</div>
-            <div class="pika-sol-platform-connector"></div>
-            <div class="pika-sol-platform-satellites">
-                <a class="pika-sol-platform-node" href="@Url.Action("Reporting", "Solutions")"><i class="ri-bar-chart-box-line"></i> Analytics &amp; Reporting</a>
-                <a class="pika-sol-platform-node" href="@Url.Action("ConsentManagement", "Solutions")"><i class="ri-shield-check-line"></i> Consent Management</a>
+
+            <div class="col-lg-2 col-md-4 col-6">
+                <div class="p-3 rounded text-center bg-white border h-100" style="border:2px solid var(--pika-primary) !important">
+                    <div class="fw-bold mb-1" style="font-size:0.75rem;color:var(--pika-primary)">02</div>
+                    <div class="fw-bold small mb-1" style="color:#23413b">AUDIENCE MANAGER</div>
+                    <p class="small ph-muted mb-0" style="font-size:0.75rem">
+                        @(tr ? "Bu karar bağlamına uyan müşterilerin kim olduğunu kurallarla tanımlar." : "Defines through rules which customers fit that decision context.")
+                    </p>
+                </div>
             </div>
+
+            <div class="col-lg-2 col-md-4 col-6">
+                <div class="p-3 rounded text-center bg-white border h-100">
+                    <div class="fw-bold mb-1" style="font-size:0.75rem;color:var(--pika-primary)">03</div>
+                    <div class="fw-bold small mb-1" style="color:#23413b">CAMPAIGN MANAGER</div>
+                    <p class="small ph-muted mb-0" style="font-size:0.75rem">
+                        @(tr ? "Seçilen hedef kitle için kampanya ve kontrollü gönderim sürecini yönetir." : "Manages the campaign and controlled delivery process for the selected audience.")
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-2 col-md-4 col-6">
+                <div class="p-3 rounded text-center bg-white border h-100">
+                    <div class="fw-bold mb-1" style="font-size:0.75rem;color:var(--pika-primary)">04</div>
+                    <div class="fw-bold small mb-1" style="color:#23413b">JOURNEY MANAGER</div>
+                    <p class="small ph-muted mb-0" style="font-size:0.75rem">
+                        @(tr ? "Kitleyi çok adımlı koşul, sıra ve zamanlama mantığına bağlayabilir." : "Can connect the audience to multi-step conditions, sequence and timing logic.")
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-2 col-md-4 col-6">
+                <div class="p-3 rounded text-center bg-white border h-100">
+                    <div class="fw-bold mb-1" style="font-size:0.75rem;color:var(--pika-primary)">05</div>
+                    <div class="fw-bold small mb-1" style="color:#23413b">CONTENT STUDIO</div>
+                    <p class="small ph-muted mb-0" style="font-size:0.75rem">
+                        @(tr ? "İletişimde kullanılacak içeriğin hazırlanmasını destekler." : "Supports preparation of the content used in communication.")
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-2 col-md-4 col-6">
+                <div class="p-3 rounded text-center bg-white border h-100">
+                    <div class="fw-bold mb-1" style="font-size:0.75rem;color:var(--pika-primary)">06</div>
+                    <div class="fw-bold small mb-1" style="color:#23413b">EMAIL / SMS / WHATSAPP</div>
+                    <p class="small ph-muted mb-0" style="font-size:0.75rem">
+                        @(tr ? "Uygun iletişim, ilgili kontrol katmanlarının ardından doğrulanmış kanallarda yürütülür." : "Appropriate communication is executed through confirmed channels after relevant control layers.")
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-4 rounded text-center mx-auto my-4 bg-white border" style="max-width:760px">
+            <div class="row g-2 text-start">
+                <div class="col-sm-6 p-2 border-bottom">
+                    <strong style="color:var(--pika-primary)">Audience Manager:</strong>
+                    <span style="color:#23413b" class="fw-bold ms-1">@(tr ? "KİM?" : "WHO?")</span>
+                </div>
+                <div class="col-sm-6 p-2 border-bottom">
+                    <strong style="color:var(--pika-primary)">Campaign Manager:</strong>
+                    <span style="color:#23413b" class="fw-bold ms-1">@(tr ? "HANGİ KAMPANYA / GÖNDERİM?" : "WHICH CAMPAIGN / SEND?")</span>
+                </div>
+                <div class="col-sm-6 p-2">
+                    <strong style="color:var(--pika-primary)">Journey Manager:</strong>
+                    <span style="color:#23413b" class="fw-bold ms-1">@(tr ? "HANGİ SIRA / KOŞUL / ZAMANLAMA?" : "WHICH SEQUENCE / CONDITION / TIMING?")</span>
+                </div>
+                <div class="col-sm-6 p-2">
+                    <strong style="color:var(--pika-primary)">Content Studio:</strong>
+                    <span style="color:#23413b" class="fw-bold ms-1">@(tr ? "HANGİ İÇERİK?" : "WHAT CONTENT?")</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-3 rounded text-center mx-auto mb-4" style="background:#f8faf4;border:1px dashed #dce5d3;max-width:760px">
+            <p class="ph-muted mb-1">
+                @(tr ? "Audience Manager aksiyonu göndermez." : "Audience Manager does not send the action.")
+            </p>
+            <p class="fw-bold mb-0" style="color:#23413b">
+                @(tr ? "Aksiyon için doğru müşteri grubunu tanımlar." : "It defines the customer group for the action.")
+            </p>
+        </div>
+
+        <div class="d-flex justify-content-center gap-4 flex-wrap text-center">
+            <a href="@(tr ? "/cozumler/campaign-manager" : "/en/solutions/campaign-manager")" class="small fw-bold" style="color:var(--pika-primary)">
+                Campaign Manager →
+            </a>
+            <a href="@(tr ? "/cozumler/journey-manager" : "/en/solutions/journey-manager")" class="small fw-bold" style="color:var(--pika-primary)">
+                Journey Manager →
+            </a>
+            <a href="@(tr ? "/cozumler/content-studio" : "/en/solutions/content-studio")" class="small fw-bold" style="color:var(--pika-primary)">
+                Content Studio →
+            </a>
         </div>
     </div>
 </section>
 
-<!-- BUSINESS IMPACT -->
-<section class="pika-sol-section pika-sol-section-impact">
-    <div class="container">
-        <h2 class="pika-sol-section-title text-center" data-aos="fade-up">@(tr ? "İş etkisi" : "Business Impact")</h2>
-        <div class="pika-sol-impact-grid pika-sol-impact-grid--light" data-aos="fade-up" data-aos-delay="100">
-            <div class="pika-sol-impact-card pika-sol-impact-card--light">
-                <div class="pika-sol-impact-icon"><i class="ri-focus-3-line"></i></div>
-                <h5>@(tr ? "Hedefleme kalitesini artırır" : "Improves targeting quality")</h5>
-                <p>@(tr ? "Doğru kişilere doğru mesajı gönderin." : "Send the right message to the right people.")</p>
-            </div>
-            <div class="pika-sol-impact-card pika-sol-impact-card--light">
-                <div class="pika-sol-impact-icon"><i class="ri-speed-line"></i></div>
-                <h5>@(tr ? "Operasyon hızını artırır" : "Increases operational speed")</h5>
-                <p>@(tr ? "Segment oluşturma süresini kısaltın." : "Reduce segment creation time.")</p>
-            </div>
-            <div class="pika-sol-impact-card pika-sol-impact-card--light">
-                <div class="pika-sol-impact-icon"><i class="ri-bar-chart-grouped-line"></i></div>
-                <h5>@(tr ? "Kampanya ROI'sini yükseltir" : "Boosts campaign ROI")</h5>
-                <p>@(tr ? "Daha doğru hedeflemeyle daha yüksek dönüşüm." : "Higher conversions with more accurate targeting.")</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- FAQ -->
-<section class="pika-sol-section" id="faq">
-    <div class="container">
-        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "Audience Manager hakkında sık sorulan sorular" : "Audience Manager FAQs")</h2>
-        <div class="accordion faq-pro-accordion" id="audienceFaq">
-            <div class="accordion-item">
-                <h2 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#audienceFaq1" aria-expanded="true" aria-controls="audienceFaq1">@(tr ? "Hangi veri kaynaklarıyla segment oluşturulabilir?" : "Which data sources can be used for segmentation?")</button></h2>
-                <div id="audienceFaq1" class="accordion-collapse collapse show" data-bs-parent="#audienceFaq"><div class="accordion-body">@(tr ? "Transaction verileri, kullanıcı davranışları, demografik bilgiler ve özel alanlarla segment oluşturabilirsiniz." : "You can create segments using transaction data, user behavior, demographics and custom fields.")</div></div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#audienceFaq2" aria-expanded="false" aria-controls="audienceFaq2">@(tr ? "Segmentler kampanyalarda kullanılabilir mi?" : "Can segments be used in campaigns?")</button></h2>
-                <div id="audienceFaq2" class="accordion-collapse collapse" data-bs-parent="#audienceFaq"><div class="accordion-body">@(tr ? "Evet. Oluşturduğunuz segmentleri doğrudan Campaign Manager ve Journey Manager'da kullanabilirsiniz." : "Yes. You can use created segments directly in Campaign Manager and Journey Manager.")</div></div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#audienceFaq3" aria-expanded="false" aria-controls="audienceFaq3">@(tr ? "Segmentler yeniden kullanılabilir mi?" : "Are segments reusable?")</button></h2>
-                <div id="audienceFaq3" class="accordion-collapse collapse" data-bs-parent="#audienceFaq"><div class="accordion-body">@(tr ? "Evet. Segmentleri kaydedebilir ve birden fazla kampanyada tekrar kullanabilirsiniz." : "Yes. You can save segments and reuse them across multiple campaigns.")</div></div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#audienceFaq4" aria-expanded="false" aria-controls="audienceFaq4">@(tr ? "VE/VEYA mantığı destekleniyor mu?" : "Is AND/OR logic supported?")</button></h2>
-                <div id="audienceFaq4" class="accordion-collapse collapse" data-bs-parent="#audienceFaq"><div class="accordion-body">@(tr ? "Evet. Birden fazla koşulu VE/VEYA mantığıyla birleştirerek detaylı segmentler tanımlayabilirsiniz." : "Yes. You can combine multiple conditions with AND/OR logic to define detailed segments.")</div></div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#audienceFaq5" aria-expanded="false" aria-controls="audienceFaq5">@(tr ? "Segment boyutunu önceden görebilir miyim?" : "Can I preview segment size beforehand?")</button></h2>
-                <div id="audienceFaq5" class="accordion-collapse collapse" data-bs-parent="#audienceFaq"><div class="accordion-body">@(tr ? "Evet. Segment oluşturma sırasında anlık önizleme ile tahmini kitle boyutunu görebilirsiniz." : "Yes. You can see the estimated audience size with real-time preview during segment creation.")</div></div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- RELATED PRODUCTS -->
+@* ── 12 WHAT AUDIENCE MANAGER IS / IS NOT ────────────────────── *@
 <section class="pika-sol-section pika-sol-section-alt">
-    <div class="container">
-        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "Birlikte en çok kullanılan modüller" : "Most commonly used together")</h2>
-        <div class="pika-sol-related" data-aos="fade-up" data-aos-delay="100">
-            <a class="pika-sol-related-card" href="@Url.Action("CampaignManager", "Solutions")">
-                <div class="pika-sol-related-icon"><i class="ri-megaphone-line"></i></div>
-                <div><h5>Campaign Manager</h5><p>@(tr ? "Segmentleri kampanyalara bağlayın." : "Connect segments to campaigns.")</p></div>
-            </a>
-            <a class="pika-sol-related-card" href="@Url.Action("JourneyManager", "Solutions")">
-                <div class="pika-sol-related-icon"><i class="ri-route-line"></i></div>
-                <div><h5>Journey Manager</h5><p>@(tr ? "Segmentleri otomatik akışlara entegre edin." : "Integrate segments into automated flows.")</p></div>
-            </a>
-            <a class="pika-sol-related-card" href="@Url.Action("Reporting", "Solutions")">
-                <div class="pika-sol-related-icon"><i class="ri-bar-chart-box-line"></i></div>
-                <div><h5>Analytics &amp; Reporting</h5><p>@(tr ? "Segment performansını ölçün." : "Measure segment performance.")</p></div>
-            </a>
+    <div class="container" style="max-width:860px">
+        <div class="text-center mb-5">
+            <span class="pika-sol-eyebrow">@(tr ? "DOĞRU SINIRLAR" : "CLEAR BOUNDARIES")</span>
+            <h2 class="pika-sol-section-title mb-3">
+                @(tr ? "Audience Manager'ı doğru yere koyun." : "Put Audience Manager in the right place.")
+            </h2>
+        </div>
+
+        <div class="d-flex flex-column gap-3">
+            <div class="p-4 rounded bg-white border">
+                <h3 class="fw-bold mb-2" style="font-size:1.05rem;color:#23413b">
+                    @(tr ? "Audience Manager bir CRM değildir." : "Audience Manager is not a CRM.")
+                </h3>
+                <p class="small ph-muted mb-0">
+                    @(tr ? "CRM sistemleri müşteri kayıtlarını ve operasyonel ilişki süreçlerini yönetebilir. Audience Manager'ın rolü müşteri kaydı tutmak değil, mevcut müşteri bağlamından hedef kitle kuralları oluşturmaktır." : "CRM systems may manage customer records and operational relationship processes. Audience Manager does not exist to store customer records; it creates audience rules from available customer context.")
+                </p>
+            </div>
+
+            <div class="p-4 rounded bg-white border">
+                <h3 class="fw-bold mb-2" style="font-size:1.05rem;color:#23413b">
+                    @(tr ? "Audience Manager, Customer Intelligence değildir." : "Audience Manager is not Customer Intelligence.")
+                </h3>
+                <p class="small ph-muted mb-0">
+                    @(tr ? "Customer Intelligence müşteri davranışını hesaplar ve analitik bağlam üretir. Audience Manager bu bağlamı kitle kurallarında kullanabilir." : "Customer Intelligence calculates customer behavior and produces analytical context. Audience Manager can use that context in audience rules.")
+                </p>
+            </div>
+
+            <div class="p-4 rounded bg-white border">
+                <h3 class="fw-bold mb-2" style="font-size:1.05rem;color:#23413b">
+                    @(tr ? "Audience Manager, Günün Fırsatları değildir." : "Audience Manager is not Daily Opportunities.")
+                </h3>
+                <p class="small ph-muted mb-0">
+                    @if (tr)
+                    {
+                        <text><a href="/platform/gunun-firsatlari" style="color:var(--pika-primary);text-decoration:underline">Günün Fırsatları</a> hangi ticari fırsatların değerlendirilmeye değer olduğunu görünür hale getirir. Audience Manager ise belirli bir karar veya aksiyon için hangi müşterilerin hedef kitleye dahil olduğunu tanımlar.</text>
+                    }
+                    else
+                    {
+                        <text><a href="/en/platform/opportunities" style="color:var(--pika-primary);text-decoration:underline">Daily Opportunities</a> makes commercial opportunities worth evaluating visible. Audience Manager defines which customers belong in the audience for a specific decision or action.</text>
+                    }
+                </p>
+            </div>
+
+            <div class="p-4 rounded bg-white border">
+                <h3 class="fw-bold mb-2" style="font-size:1.05rem;color:#23413b">
+                    @(tr ? "Audience Manager, Campaign Manager değildir." : "Audience Manager is not Campaign Manager.")
+                </h3>
+                <p class="small ph-muted mb-0">
+                    @(tr ? "Audience Manager “KİM?” sorusunu cevaplar. Kampanyanın kurulması, yönetilmesi ve kontrollü gönderimi Campaign Manager'ın ayrı ürün rolüdür." : "Audience Manager answers “WHO?”. Campaign setup, management and controlled delivery are the separate product role of Campaign Manager.")
+                </p>
+            </div>
+
+            <div class="p-4 rounded bg-white border">
+                <h3 class="fw-bold mb-2" style="font-size:1.05rem;color:#23413b">
+                    @(tr ? "Audience Manager bir izin yönetimi sistemi değildir." : "Audience Manager is not a consent-management system.")
+                </h3>
+                <p class="small ph-muted mb-0">
+                    @(tr ? "İzin veya erişilebilirlik bağlamı kitle tanımında dikkate alınabilir; ancak final consent ve gönderim kontrolleri ayrı kontrol katmanlarında yönetilir." : "Permission or reachability context can be considered in audience definitions, while final consent and delivery controls are managed by separate control layers.")
+                </p>
+            </div>
+
+            <div class="p-4 rounded bg-white border">
+                <h3 class="fw-bold mb-2" style="font-size:1.05rem;color:#23413b">
+                    @(tr ? "Audience Manager bir AI segmentasyon kara kutusu değildir." : "Audience Manager is not an AI segmentation black box.")
+                </h3>
+                <p class="small ph-muted mb-0">
+                    @(tr ? "Audience tanımı açık kural mantığına dayanır. Üretken yapay zekâ müşterileri açıklanamayan biçimde hedef kitleye dahil eden tek karar kaynağı olarak konumlandırılmaz." : "Audience definitions are based on explicit rule logic. Generative AI is not positioned as the sole source that places customers into audiences through unexplained decisions.")
+                </p>
+            </div>
+
+            <div class="p-4 rounded bg-white border">
+                <h3 class="fw-bold mb-2" style="font-size:1.05rem;color:#23413b">
+                    @(tr ? "Audience Manager yalnızca statik liste oluşturucu değildir." : "Audience Manager is more than a static list builder.")
+                </h3>
+                <p class="small ph-muted mb-0">
+                    @(tr ? "Audience tanımları yeniden kullanılabilir kurallara dayanabilir ve alttaki müşteri bağlamı değiştikçe yeniden değerlendirilebilir." : "Audience definitions can be based on reusable rules and re-evaluated as underlying customer context changes.")
+                </p>
+            </div>
+        </div>
+
+        <div class="p-4 rounded mt-4 text-center" style="background:#f8faf4;border:1px dashed #dce5d3">
+            <small class="text-uppercase fw-bold d-block mb-1" style="font-size:11px;letter-spacing:1px;color:#7a9845">
+                @(tr ? "Audience Manager'ın görevi:" : "The role of Audience Manager is not:")
+            </small>
+            <div class="fw-bold" style="font-size:1.15rem;color:#23413b">
+                @(tr ? "Daha fazla müşteri listesi üretmek değil, belirli bir karar için doğru müşteri grubunu açık kurallarla tanımlamaktır." : "To create more customer lists. It is: To define the right customer group for a specific decision through explicit rules.")
+            </div>
         </div>
     </div>
 </section>
 
-<!-- CTA -->
-<section class="pika-sol-cta-section">
-    <div class="container" data-aos="fade-up">
-        <h2>@(tr ? "Hedef kitlenizi veriye dayalı olarak tanımlayın ve kampanya etkisini artırın" : "Define your audience with data and increase campaign impact")</h2>
-        <p>@(tr ? "Pika Audience Manager ile segmentasyonu kampanyalarınızın gücüne dönüştürün." : "Turn segmentation into campaign power with Pika Audience Manager.")</p>
-        <div class="pika-sol-cta-actions">
-            <button type="button" class="btn pika-btn-primary px-4 py-2" data-bs-toggle="modal" data-bs-target="#demoModal">@(tr ? "Demo Talep Et" : "Request a Demo") <i class="ri-arrow-right-up-line"></i></button>
-            <a href="@Url.Action("Contact", "Home")" class="btn pika-btn-ghost px-4 py-2">@(tr ? "Bizimle İletişime Geçin" : "Contact Us")</a>
+@* ── 13 FAQ ─────────────────────────────────────────────────── *@
+<section class="pika-sol-section" id="faq">
+    <div class="container" style="max-width:860px">
+        <div class="text-center mb-5">
+            <h2 class="pika-sol-section-title">@(tr ? "Sıkça Sorulan Sorular" : "Frequently Asked Questions")</h2>
         </div>
+
+        @if (tr)
+        {
+            <details class="aud-faq-details" open>
+                <summary class="aud-faq-summary">
+                    <span>Audience Manager nedir?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="aud-faq-body">
+                    Audience Manager, Pika'da belirli bir pazarlama kararı veya kontrollü aksiyon için hangi müşterilerin hedef kitleye dahil olması gerektiğini müşteri özellikleri, işlem ve davranış bağlamı ile açık kurallar üzerinden tanımlayan segmentasyon katmanıdır.
+                </div>
+            </details>
+
+            <details class="aud-faq-details">
+                <summary class="aud-faq-summary">
+                    <span>Audience Manager hangi verileri segmentasyonda kullanabilir?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="aud-faq-body">
+                    Mevcut Pika bağlamına göre müşteri özellikleri, işlem geçmişi, davranış sinyalleri, Customer Intelligence tarafından hesaplanan uygun müşteri bağlamları, ürün veya kategori satın alma bilgileri ve kullanılabilir izin ya da erişilebilirlik bilgileri kitle kurallarına katkı sağlayabilir.
+                </div>
+            </details>
+
+            <details class="aud-faq-details">
+                <summary class="aud-faq-summary">
+                    <span>Dinamik hedef kitle nedir?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="aud-faq-body">
+                    Dinamik hedef kitle, üyeliği yalnızca bir kez dışa aktarılmış sabit müşteri listesine değil, yeniden değerlendirilebilir kurallara dayanan audience tanımıdır. Alttaki müşteri verisi veya davranış bağlamı değiştiğinde aynı kurallar yeniden değerlendirilebilir.
+                </div>
+            </details>
+
+            <details class="aud-faq-details">
+                <summary class="aud-faq-summary">
+                    <span>Audience Manager ile Customer Intelligence arasındaki fark nedir?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="aud-faq-body">
+                    Customer Intelligence müşterinin işlem ve davranış geçmişinden değer, satın alma ritmi ve davranış değişimi gibi analitik bağlam üretir. Audience Manager ise bu ve diğer müşteri bağlamlarını kural tabanlı hedef kitle tanımlarında kullanabilir.
+                </div>
+            </details>
+
+            <details class="aud-faq-details">
+                <summary class="aud-faq-summary">
+                    <span>Audience Manager ile Günün Fırsatları arasındaki fark nedir?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="aud-faq-body">
+                    Günün Fırsatları hangi ticari fırsatların bugün değerlendirilmeye değer olduğunu görünür hale getirir. Audience Manager ise belirli bir karar veya aksiyon için hangi müşterilerin hedef kitleye dahil olması gerektiğini tanımlar.
+                </div>
+            </details>
+
+            <details class="aud-faq-details">
+                <summary class="aud-faq-summary">
+                    <span>Audience Manager kampanya gönderir mi?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="aud-faq-body">
+                    Hayır. Audience Manager hedef kitleyi tanımlar. Kampanyanın kurulması, kontrollü gönderimi, journey akışı ve kanal icrası Pika'nın ilgili aksiyon ve gönderim katmanlarında ayrıca yönetilir.
+                </div>
+            </details>
+
+            <details class="aud-faq-details">
+                <summary class="aud-faq-summary">
+                    <span>Audience Manager iletişim iznini garanti eder mi?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="aud-faq-body">
+                    Hayır. Mevcut izin veya erişilebilirlik bilgisi uygun olduğunda kitle kurallarında dikkate alınabilir; ancak bir müşterinin audience'a dahil olması iletişim izninin kesin olarak uygun olduğu anlamına gelmez. Gönderim öncesi izin ve kanal kontrolleri ayrı süreçlerdir.
+                </div>
+            </details>
+
+            <details class="aud-faq-details">
+                <summary class="aud-faq-summary">
+                    <span>Audience Manager yapay zekâ ile mi segment oluşturur?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="aud-faq-body">
+                    Audience Manager'ın temel hedef kitle mantığı açık müşteri verisi ve kural tanımlarına dayanır. Üretken yapay zekâ açıklanamayan şekilde müşterileri hedef kitleye dahil eden tek karar kaynağı değildir.
+                </div>
+            </details>
+        }
+        else
+        {
+            <details class="aud-faq-details" open>
+                <summary class="aud-faq-summary">
+                    <span>What is Audience Manager?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="aud-faq-body">
+                    Audience Manager is Pika's segmentation layer for defining, through customer attributes, transaction and behavioral context and explicit rules, which customers should belong in the audience for a specific marketing decision or controlled action.
+                </div>
+            </details>
+
+            <details class="aud-faq-details">
+                <summary class="aud-faq-summary">
+                    <span>What data can Audience Manager use for segmentation?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="aud-faq-body">
+                    Depending on available Pika context, customer attributes, transaction history, behavioral signals, relevant calculated Customer Intelligence context, product or category purchase information and available permission or reachability information can contribute to audience rules.
+                </div>
+            </details>
+
+            <details class="aud-faq-details">
+                <summary class="aud-faq-summary">
+                    <span>What is a dynamic audience?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="aud-faq-body">
+                    A dynamic audience is an audience definition whose membership is based on rules that can be re-evaluated rather than only on a one-time exported customer list. As underlying customer data or behavioral context changes, the same rules can be evaluated again.
+                </div>
+            </details>
+
+            <details class="aud-faq-details">
+                <summary class="aud-faq-summary">
+                    <span>What is the difference between Audience Manager and Customer Intelligence?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="aud-faq-body">
+                    Customer Intelligence produces analytical context such as value, purchase rhythm and behavioral change from customer transaction and behavioral history. Audience Manager can use that and other customer context inside rule-based audience definitions.
+                </div>
+            </details>
+
+            <details class="aud-faq-details">
+                <summary class="aud-faq-summary">
+                    <span>What is the difference between Audience Manager and Daily Opportunities?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="aud-faq-body">
+                    Daily Opportunities makes commercial opportunities worth evaluating today visible. Audience Manager defines which customers should belong in the audience for a specific decision or action.
+                </div>
+            </details>
+
+            <details class="aud-faq-details">
+                <summary class="aud-faq-summary">
+                    <span>Does Audience Manager send campaigns?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="aud-faq-body">
+                    No. Audience Manager defines the audience. Campaign setup, controlled delivery, journey flow and channel execution are managed separately by Pika's relevant action and delivery layers.
+                </div>
+            </details>
+
+            <details class="aud-faq-details">
+                <summary class="aud-faq-summary">
+                    <span>Does Audience Manager guarantee communication permission?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="aud-faq-body">
+                    No. Available permission or reachability information may be considered in audience rules where appropriate, but inclusion in an audience does not guarantee that communication permission is valid for execution. Pre-send consent and channel controls are separate processes.
+                </div>
+            </details>
+
+            <details class="aud-faq-details">
+                <summary class="aud-faq-summary">
+                    <span>Does Audience Manager use AI to create segments?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="aud-faq-body">
+                    The core audience logic in Audience Manager is based on explicit customer data and rule definitions. Generative AI is not the sole decision source that places customers into an audience through unexplained logic.
+                </div>
+            </details>
+        }
+    </div>
+</section>
+
+@* ── 14 FINAL CTA ───────────────────────────────────────────── *@
+<section class="pika-sol-cta-section">
+    <div class="container text-center" data-aos="fade-up">
+        <span class="pika-sol-eyebrow" style="color:#b5ee19">
+            @(tr ? "KİM?" : "WHO?")
+        </span>
+        @if (tr)
+        {
+            <h2 class="mb-3">
+                Hedef kitlenizi<br />
+                listeyle değil,<br />
+                bağlam ve kurallarla tanımlayın.
+            </h2>
+            <p class="mb-3" style="max-width:680px;margin-left:auto;margin-right:auto">
+                Pika Audience Manager'ın müşteri özelliklerini, işlem ve davranış bağlamını açık kurallarla birleştirerek yeniden kullanılabilir hedef kitleler oluşturmanıza nasıl yardımcı olduğunu birlikte inceleyelim.
+            </p>
+            <p class="small fw-bold mb-4" style="color:#b5ee19">
+                İhtiyacınıza ve kullanım kapsamınıza göre özel teklif.
+            </p>
+            <div class="pika-sol-cta-actions d-flex justify-content-center gap-3 flex-wrap">
+                <button type="button" class="btn pika-btn-primary px-4 py-2" data-bs-toggle="modal" data-bs-target="#demoModal">
+                    Demo Talep Et <i class="ri-arrow-right-up-line"></i>
+                </button>
+                <a href="/demo-talebi" class="btn pika-btn-ghost px-4 py-2">
+                    Teklif Al <i class="ri-file-list-3-line"></i>
+                </a>
+            </div>
+        }
+        else
+        {
+            <h2 class="mb-3">
+                Define your audience<br />
+                through context and rules,<br />
+                not only through a list.
+            </h2>
+            <p class="mb-3" style="max-width:680px;margin-left:auto;margin-right:auto">
+                Let's explore how Pika Audience Manager combines customer attributes, transaction and behavioral context with explicit rules to help create reusable audiences.
+            </p>
+            <p class="small fw-bold mb-4" style="color:#b5ee19">
+                Pricing is tailored to your requirements and scope of use.
+            </p>
+            <div class="pika-sol-cta-actions d-flex justify-content-center gap-3 flex-wrap">
+                <button type="button" class="btn pika-btn-primary px-4 py-2" data-bs-toggle="modal" data-bs-target="#demoModal">
+                    Request a Demo <i class="ri-arrow-right-up-line"></i>
+                </button>
+                <a href="/en/demo-request" class="btn pika-btn-ghost px-4 py-2">
+                    Request a Quote <i class="ri-file-list-3-line"></i>
+                </a>
+            </div>
+        }
     </div>
 </section>

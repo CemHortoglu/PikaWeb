@@ -123,10 +123,10 @@ public static class SeoHelper
         ["Solutions.AudienceManager"] = new(
             "/cozumler/audience-manager",
             "/en/solutions/audience-manager",
-            "Audience Manager | Hedef Kitle ve Segmentasyon",
-            "Audience Manager | Audience & Segmentation",
-            "İşlem, davranış ve özel kurallara göre dinamik müşteri segmentleri oluşturun ve kampanyalarınızda hedefleyin.",
-            "Create dynamic customer segments based on transactions, behaviors, and custom rules for targeted campaigns.",
+            "Audience Manager | Dinamik Hedef Kitle ve Segmentasyon | Pika",
+            "Audience Manager | Dynamic Audiences & Segmentation | Pika",
+            "Pika Audience Manager; müşteri özellikleri, işlem ve davranış bağlamı ile kural mantığını birleştirerek yeniden kullanılabilir dinamik hedef kitleler oluşturmanıza yardımcı olur.",
+            "Pika Audience Manager combines customer attributes, transaction and behavioral context with rule logic to help create reusable dynamic audiences.",
             "Audience Manager",
             "Audience Manager"),
 
