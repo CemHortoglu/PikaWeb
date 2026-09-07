@@ -300,8 +300,12 @@ The homepage is the flagship architectural showcase of Pika Web 2.0. It must bal
 
 ### Chapter 7: The AI Boundary (Pika Pilot)
 - **Communication Objective:** Position Pika Pilot clearly as an assistive co-pilot, reinforcing human agency and data safety.
-- **Approved Message (TR):** `Pika AI, müşteriyi veya fırsatı hayal ederek oluşturmaz. Kampanya hazırlığını hızlandırır; son karar sizde kalır.` *(Status: APPROVED_COPY | Source: PRODUCT_OWNER_APPROVED_CANON)*
-- **Approved Message (EN):** `Pika AI does not invent the customer or the opportunity. It accelerates campaign preparation, while the final decision remains with you.` *(Status: APPROVED_COPY | Source: PRODUCT_OWNER_APPROVED_CANON)*
+- **Approved Message (TR):**  
+  > Pika AI, müşteriyi veya fırsatı hayal ederek oluşturmaz. Pika'nın hesapladığı müşteri, ürün ve fırsat bağlamını kullanarak kampanya hazırlığını ve içerik üretimini hızlandırır; son karar kullanıcıda kalır.  
+  *(Status: APPROVED_COPY | Source: PRODUCT_OWNER_APPROVED_CANON)*
+- **Approved Message (EN):**  
+  > Pika AI does not invent the customer or the opportunity. It uses customer, product and opportunity context calculated by Pika to accelerate campaign preparation and content creation, while the final decision remains with the user.  
+  *(Status: APPROVED_COPY | Source: PRODUCT_OWNER_APPROVED_CANON)*
 - **Supporting Concept:** Doğal dilde kampanya brief'i; taslak e-posta ve hedef kitle önerisi; insan onayı zorunluluğu. *(Status: APPROVED_CONCEPT)*
 - **Prohibited Claims:** No autonomous sending, no AI self-optimization without human verification. *(Claim: CLM-017)*
 - **Canonical Visual from P03:** `img_pika-pilot-ai-kampanya-asistani_16.png` (FULL_STAGE).
@@ -480,9 +484,9 @@ Pika markets three active delivery channels. Channel marketing must strictly con
 ### 14.1 Email Channel
 - **Role in Pika:** High-content, visual, story-driven communication channel for newsletters, product showcases, catalog announcements, and detailed lifecycle workflows.
 - **Relationship to Platform:** Powered by Content Studio templates; orchestrated via Campaign Manager and Journey Manager.
-- **Consent & Governance:** Enforces opt-out unsubscribe links, bounce tracking, and standard authentication standards (SPF, DKIM, DMARC).
+- **Consent & Governance:** Enforces opt-out unsubscribe links and delivery bounce tracking. *(Note: Any separate domain authentication claims such as SPF/DKIM/DMARC require independent verification: Source: NEEDS_EVIDENCE_REGISTRATION).*
 - **Approved Visual:** `img_email-template-editor_17.png` (Hero) and `img_email-store_20.png` (Supporting).
-- **Content Boundary:** Do not claim proprietary IP pool management algorithms; emphasize deliverability standards and template responsiveness. *(Claim: CLM-015)*
+- **Content Boundary:** Do not market dedicated IP management or spam-score checking (Claim: CLM-015 | DO_NOT_MARKET). Emphasize verified template responsiveness and delivery tracking.
 - **Copy Ownership State:** APPROVED_CONCEPT
 
 ### 14.2 SMS Channel
@@ -601,7 +605,7 @@ All reusable claims and messaging blocks in this Bible derive their authority fr
 | **CLM-012** | "Chatbot flows, two-way conversations with customers" | Level D `CONTRADICTORY` / Level C `MARKETING_ONLY` | DO_NOT_MARKET | Outbound template WhatsApp API; no conversational AI dialog engine exists in repo. |
 | **CLM-013** | "Automatic winner selection and statistical significance" | Level C `MARKETING_ONLY` | DO_NOT_MARKET | Auto-winner engine is unverified; market strictly as "Varyant ve kreatif performans karşılaştırması". |
 | **CLM-014** | Sabit paket fiyatlandırması (₺9.900/ay Start, ₺24.900/ay Growth) | Level A `CODE_VERIFIED` (in legacy view) | DO_NOT_MARKET | Fixed pricing retired in P01; strictly quotation-based commercial model (*"İhtiyacınıza ve kullanım kapsamınıza göre özel teklif"*). |
-| **CLM-015** | "Dedicated IP management, spam score checking" | Level C `MARKETING_ONLY` | DO_NOT_MARKET | Dedicated IP pool rotation not in repo; rephrase to domain authentication (SPF, DKIM, DMARC) support. |
+| **CLM-015** | "Dedicated IP management, spam score checking" | Level C `MARKETING_ONLY` | DO_NOT_MARKET | Do not market dedicated IP management or spam-score checking. Any separate SPF/DKIM/DMARC capability claim requires its own verified evidence before public use. (Source: NEEDS_EVIDENCE_REGISTRATION) |
 | **CLM-016** | "Kurumsal destek seviyeleri (SLA)" | Level E `UNVERIFIED` | DO_NOT_MARKET / NEEDS_CONFIRMATION | No SLA response tiers exist in repo; do not claim predefined SLA packages. |
 | **CLM-017** | "AI kampanyayı otomatik oluşturur ve gönderir" | Level A `CODE_VERIFIED` | PUBLIC_OK (when stated as Co-pilot) | Autonomous dispatch refuted; marketed strictly as assistive co-pilot with mandatory human approval. |
 | **CLM-018** | Kişisel Veri & AI Güvenliği (Zero-PII) | Level B `DOCUMENTED` | PUBLIC_WITH_QUALIFIER | Documented that personal identifiers are omitted from LLM prompts; absolute public marketing guarantee requires confirmation (NEEDS_PRODUCT_CONFIRMATION). |
@@ -698,7 +702,7 @@ To prevent SEO keyword stuffing and maintain high evidentiary standards, Pika es
 - **Target Page:** `/entegrasyonlar`, `/kaynaklar/sss`
 - **Source:** Data Architecture
 - **Status:** APPROVED_CONCEPT
-- **Approved Answer Concept:** Pika; sipariş fişleri, fatura satırları, ürün katalog bilgileri ve müşteri iletişim izin verilerini kullanır. Kişisel kimlik verileri (TCKN, ham şifreler) işlenmez veya saklanmaz.
+- **Approved Answer Concept:** Pika; sipariş fişleri, fatura ve sepet satırları, ürün katalog bilgileri ile müşteri iletişim ve izin verilerini kullanır. Gizlilik ve veri işleme sınırlarına ilişkin iddialar, Güvenlik ve Gizlilik ile AI veri sınırları kanıtları kapsamında ayrıca yönetilir.
 - **Final Copy Status:** `NEEDS_CONTENT_OWNER`
 
 ### Q4: Customer Intelligence (Müşteri Zekâsı) nedir?
@@ -745,10 +749,15 @@ To prevent SEO keyword stuffing and maintain high evidentiary standards, Pika es
 
 ### Q10: Pika fiyatlandırması nasıl belirlenir?
 - **Target Page:** `/demo-talebi`
-- **Source:** PRODUCT_OWNER_APPROVED_CANON
-- **Status:** APPROVED_COPY
-- **Approved Answer (TR):**  
-  > Pika'da sabit paket fiyatlandırması bulunmamaktadır. İhtiyacınıza ve kullanım kapsamınıza göre özel teklif hazırlanır.
+- **Status:** APPROVED_CONCEPT
+- **Approved Canonical Sentence (TR):**  
+  > "İhtiyacınıza ve kullanım kapsamınıza göre özel teklif."  
+  *(Status: APPROVED_COPY | Source: PRODUCT_OWNER_APPROVED_CANON)*
+- **Approved Canonical Sentence (EN):**  
+  > "Pricing is tailored to your requirements and scope of use."  
+  *(Status: APPROVED_COPY | Source: PRODUCT_OWNER_APPROVED_CANON)*
+- **Supporting Concept:** Pika does not publish fixed public pricing. Commercial quotations are customized based on scope of use and requirements.
+- **Final Copy Status:** `NEEDS_CONTENT_OWNER`
 
 ### Q11: Demo nasıl talep edilir?
 - **Target Page:** `/demo-talebi`
