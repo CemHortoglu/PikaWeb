@@ -14,7 +14,8 @@ public static class SeoHelper
         string DescriptionTr,
         string DescriptionEn,
         string? BreadcrumbTitleTr = null,
-        string? BreadcrumbTitleEn = null);
+        string? BreadcrumbTitleEn = null,
+        bool NoIndex = false);
 
     private static readonly Dictionary<string, PageSeoMetadata> RouteMetadata = new(StringComparer.OrdinalIgnoreCase)
     {
@@ -53,8 +54,8 @@ public static class SeoHelper
             "/en/demo-request",
             "Demo Talebi",
             "Request a Demo",
-            "Pika omnichannel pazarlama platformunu canlı keşfedin. 15 dakikalık demo ile ihtiyacınıza özel akışları birlikte kuralım.",
-            "Discover the Pika omnichannel marketing platform live. Schedule a 15-minute tailored demo with our team.",
+            "Pika müşteri zekâsı ve omnichannel pazarlama platformunu canlı keşfedin. İhtiyacınıza ve kullanım kapsamınıza göre özel teklif alın.",
+            "Discover the Pika customer intelligence and omnichannel marketing platform live. Get a tailored quote based on your requirements and scope of use.",
             "Demo Talebi",
             "Demo Request"),
 
@@ -114,8 +115,8 @@ public static class SeoHelper
             "/en/solutions/campaign-manager",
             "Campaign Manager | Çok Kanallı Kampanya Yönetimi",
             "Campaign Manager | Multi-Channel Campaign Management",
-            "SMS, WhatsApp, Email ve Push kampanyalarını tek merkezden oluşturun, zamanlayın, kişiselleştirin ve yönetin.",
-            "Create, schedule, personalize and manage SMS, WhatsApp, Email and Push campaigns from a single hub.",
+            "SMS, WhatsApp ve E-posta kampanyalarını tek merkezden oluşturun, zamanlayın, kişiselleştirin ve yönetin.",
+            "Create, schedule, personalize and manage SMS, WhatsApp, and Email campaigns from a single hub.",
             "Campaign Manager",
             "Campaign Manager"),
 
@@ -154,8 +155,8 @@ public static class SeoHelper
             "/en/solutions/consent-management",
             "Consent Management | İzin ve Uyumluluk Yönetimi",
             "Consent Management | Consent & Compliance Management",
-            "IYS ve KVKK uyumlu ticari elektronik ileti izinlerini merkezi olarak yönetin, onaysız gönderimleri engelleyin.",
-            "Centrally manage opt-in consents and ensure strict regulatory compliance across all communication channels.",
+            "İYS ve KVKK uyumlu ticari elektronik ileti izinlerini merkezi olarak denetleyin, onaysız gönderimleri engelleyin.",
+            "Centrally manage opt-in consents and support regulatory compliance workflows across communication channels.",
             "Consent Management",
             "Consent Management"),
 
@@ -164,8 +165,8 @@ public static class SeoHelper
             "/en/channels/email",
             "Email Marketing | E-Posta Pazarlama Çözümleri",
             "Email Marketing | Email Marketing Solutions",
-            "Zengin görsel şablonlar, dinamik kişiselleştirme ve yüksek teslimat oranları ile e-posta kampanyalarınızı ölçekleyin.",
-            "Scale your email marketing with rich templates, dynamic personalization, and high deliverability rates.",
+            "Zengin görsel şablonlar, dinamik kişiselleştirme ve teslimat takibi ile e-posta kampanyalarınızı yönetin.",
+            "Manage your email marketing with rich templates, dynamic personalization, and delivery tracking.",
             "Email Marketing",
             "Email Marketing"),
 
@@ -174,8 +175,8 @@ public static class SeoHelper
             "/en/channels/sms",
             "SMS Campaigns | SMS Kampanya Yönetimi",
             "SMS Campaigns | SMS Campaign Management",
-            "Kritik duyurular ve anlık fırsatlar için yüksek teslimatlı, zamanlanmış ve kişiselleştirilmiş SMS gönderimleri yapın.",
-            "Deliver high-impact, scheduled, and personalized SMS messages with reliable delivery performance.",
+            "Kritik duyurular ve anlık fırsatlar için zamanlanmış ve kişiselleştirilmiş SMS gönderimleri yapın.",
+            "Deliver targeted, scheduled, and personalized SMS messages across operator networks.",
             "SMS Campaigns",
             "SMS Campaigns"),
 
@@ -194,18 +195,19 @@ public static class SeoHelper
             "/en/channels/push",
             "Push Notifications | Anlık Bildirim Yönetimi",
             "Push Notifications | Push Notification Management",
-            "Web ve mobil uygulamalarda kullanıcı davranışlarına göre anlık tetiklenen zengin bildirimler gönderin.",
-            "Engage web and mobile app users with real-time, behavior-triggered rich push notifications.",
+            "Web ve mobil uygulamalarda kullanıcı davranışlarına göre tetiklenen bildirim senaryoları.",
+            "Behavior-triggered notification workflows for web and mobile touchpoints.",
             "Push Notifications",
-            "Push Notifications"),
+            "Push Notifications",
+            NoIndex: true),
 
         ["Solutions.Reporting"] = new(
             "/cozumler/analytics-reporting",
             "/en/solutions/analytics-reporting",
             "Analytics & Reporting | Performans ve Raporlama",
             "Analytics & Reporting | Analytics & Reporting",
-            "Kampanya, kanal ve segment bazında anlık açılma, tıklama, dönüşüm ve gelir metriklerini canlı takip edin.",
-            "Monitor live delivery, open, click, conversion, and revenue metrics across campaigns, channels, and segments.",
+            "Kampanya, kanal ve segment bazında açılma, tıklama ve ciro atfı metriklerini konsolide olarak takip edin.",
+            "Monitor delivery telemetry, opens, clicks, and attributed sales turnover across campaigns, channels, and segments.",
             "Analytics & Reporting",
             "Analytics & Reporting"),
 
@@ -214,8 +216,8 @@ public static class SeoHelper
             "/en/solutions/deliverability-compliance",
             "Deliverability & Compliance | Teslim Edilebilirlik ve Uyumluluk",
             "Deliverability & Compliance | Deliverability & Compliance",
-            "Gönderici itibarını koruyun, spam riskini minimize edin ve regülasyon uyumluluğunu uçtan uca güvenceye alın.",
-            "Protect sender reputation, minimize spam placement, and ensure end-to-end regulatory compliance.",
+            "Gönderici itibarını koruyun, spam riskini minimize edin ve izin/opt-out süreçlerini denetim altında tutun.",
+            "Protect sender reputation, minimize spam placement, and manage consent and opt-out workflows.",
             "Deliverability & Compliance",
             "Deliverability & Compliance"),
 
@@ -224,18 +226,18 @@ public static class SeoHelper
             "/en/solutions/data-management-etl",
             "Data Management ETL | Veri Yönetimi ve Entegrasyon",
             "Data Management ETL | Data Management ETL",
-            "Farklı veri kaynaklarını birleştirin, temizleyin ve pazarlama kampanyaları için gerçek zamanlı kullanılabilir hale getirin.",
-            "Ingest, transform, and synchronize customer data from multiple sources for real-time marketing activation.",
+            "Farklı veri kaynaklarını birleştirin, temizleyin ve pazarlama kampanyaları için kullanılabilir hale getirin.",
+            "Ingest, transform, and synchronize customer data from multiple sources for marketing activation.",
             "Data Management ETL",
             "Data Management ETL"),
 
         ["Solutions.RealTimeEventProcessing"] = new(
             "/cozumler/real-time-event-processing",
             "/en/solutions/real-time-event-processing",
-            "Real-Time Event Processing | Gerçek Zamanlı Olay İşleme",
-            "Real-Time Event Processing | Real-Time Event Processing",
-            "Kullanıcı eylemlerini milisaniyeler içinde işleyerek anlık otomatik tetikleyicilerle etkileşim sağlayın.",
-            "Process customer events in milliseconds to trigger instant, contextual omnichannel interactions.",
+            "Real-Time Event Processing | Olay Bazlı Tetikleme",
+            "Real-Time Event Processing | Event-Driven Processing",
+            "Kullanıcı eylemlerini olay gerçekleştiğinde saniyeler içinde işleyerek otomatik tetikleyicilerle etkileşim sağlayın.",
+            "Process customer events in seconds to trigger automated, contextual omnichannel interactions.",
             "Real-Time Event Processing",
             "Real-Time Event Processing"),
 
@@ -244,8 +246,8 @@ public static class SeoHelper
             "/en/integrations",
             "Integrations | Entegrasyonlar",
             "Integrations | Integrations",
-            "CRM, e-ticaret altyapıları, ERP ve veri ambarları ile çift yönlü kesintisiz API entegrasyonu.",
-            "Seamless two-way API integrations with CRM, e-commerce platforms, ERP, and data warehouses.",
+            "CRM, e-ticaret altyapıları, ERP ve veri ambarları ile asenkron API ve dosya entegrasyonu.",
+            "Asynchronous API and file integrations with CRM, e-commerce platforms, ERP, and data warehouses.",
             "Entegrasyonlar",
             "Integrations"),
 
@@ -254,8 +256,8 @@ public static class SeoHelper
             "/en/security-and-privacy",
             "Security & Privacy | Güvenlik ve Gizlilik",
             "Security & Privacy | Security & Privacy",
-            "Kurumsal düzeyde veri şifreleme, rol bazlı erişim denetimi (RBAC), SSO ve KVKK uyumlu veri güvenliği altyapısı.",
-            "Enterprise-grade data encryption, role-based access control (RBAC), SSO, and strict data security compliance.",
+            "Rol bazlı erişim denetimi (RBAC), API belirteç güvenliği ve KVKK aydınlatma standartları ile korunan veri altyapısı.",
+            "Role-based access control (RBAC), API token security, and regulatory privacy standards for customer data protection.",
             "Güvenlik ve Gizlilik",
             "Security & Privacy"),
 
@@ -363,9 +365,17 @@ public static class SeoHelper
         return isTr ? $"{BaseDomain}/" : $"{BaseDomain}/en/";
     }
 
+    public static IReadOnlyDictionary<string, PageSeoMetadata> AllRouteMetadata => RouteMetadata;
+    public static IEnumerable<PageSeoMetadata> AllPages => RouteMetadata.Values;
+
     public static List<HreflangEntry> GetHreflangAlternates(string? controller, string? action)
     {
         var meta = GetMetadata(controller, action);
+        return GetHreflangAlternates(meta);
+    }
+
+    public static List<HreflangEntry> GetHreflangAlternates(PageSeoMetadata? meta)
+    {
         if (meta == null)
         {
             return
@@ -388,7 +398,7 @@ public static class SeoHelper
     {
         if (string.IsNullOrWhiteSpace(pageTitle) || pageTitle.Trim().Equals(brandName, StringComparison.OrdinalIgnoreCase))
         {
-            return $"{brandName} | Omnichannel Pazarlama Otomasyonu";
+            return $"{brandName} | Müşteri Zekâsı ve Omnichannel Pazarlama Platformu";
         }
 
         var trimmed = pageTitle.Trim();

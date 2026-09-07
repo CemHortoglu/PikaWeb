@@ -108,18 +108,10 @@
       "@@type": "Organization",
       "@@id": "https://pika.tr/#organization",
       "name": "Pika",
-      "alternateName": "Pika Omnichannel Pazarlama Platformu",
+      "alternateName": "Pika Müşteri Zekâsı ve Omnichannel Pazarlama Platformu",
       "url": "https://pika.tr/",
       "logo": "https://pika.tr/logo.png",
-      "description": "Türkiye'de omnichannel pazarlama otomasyonu, müşteri yolculuğu yönetimi ve AI destekli kampanya çözümleri sunan B2B SaaS platformu.",
-      "foundingLocation": {
-        "@@type": "Place",
-        "address": {
-          "@@type": "PostalAddress",
-          "addressCountry": "TR",
-          "addressLocality": "İstanbul"
-        }
-      },
+      "description": "Pika; müşteri, ürün ve satış verisini birlikte anlamlandırarak işletmenin bugün hangi müşteride hangi ticari fırsatın oluştuğunu görmesini ve bu fırsatı kontrollü, ölçülebilir çok kanallı aksiyona dönüştürmesini sağlayan müşteri zekâsı ve pazarlama platformudur.",
       "contactPoint": [
         {
           "@@type": "ContactPoint",
@@ -136,6 +128,21 @@
       "sameAs": [
         "https://www.linkedin.com/company/pikatr"
       ]
+    }
+    </script>
+
+    <!-- WebSite JSON-LD -->
+    <script type="@Html.Raw("application/ld+json")">
+    {
+      "@@context": "https://schema.org",
+      "@@type": "WebSite",
+      "@@id": "https://pika.tr/#website",
+      "url": "https://pika.tr/",
+      "name": "Pika",
+      "inLanguage": ["tr-TR", "en-US"],
+      "publisher": {
+        "@@id": "https://pika.tr/#organization"
+      }
     }
     </script>
     @if (seoMeta != null && (ctrl != "Home" || (act != "Index" && act != "EnglishIndex")) && !string.IsNullOrWhiteSpace(canonicalUrl))

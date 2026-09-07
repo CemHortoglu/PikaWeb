@@ -36,7 +36,7 @@ Pika does not position itself as a generic bulk message broadcaster or standalon
 - **Supported Languages**: Turkish (tr), English (en)
 - **Platform Type**: B2B SaaS
 - **Target Market**: Turkey (architecture supports multi-lingual English and Turkish interfaces)
-- **Execution Channels**: Email, SMS, Official Meta WhatsApp Business API. (Note: Mobile/web push notification status requires explicit product-owner confirmation and is not marketed as a live capability.)
+- **Execution Channels**: Email, SMS, Official Meta WhatsApp Business API. (Note: Push is CONTRADICTORY / UNCONFIRMED and is excluded from public channel/capability signals until explicit product-owner confirmation. Future confirmation may change its governance state. It must not be inferred as a live capability.)
 
 ---
 
