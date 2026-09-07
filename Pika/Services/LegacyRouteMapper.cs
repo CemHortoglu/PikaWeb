@@ -30,6 +30,16 @@ public static class LegacyRouteMapper
         ["/en/Home"] = "/en/",
         ["/en/Home/Index"] = "/en/",
 
+        // Auth & Login
+        ["/giris"] = "/Account/Login",
+        ["/giris/"] = "/Account/Login",
+        ["/tr/giris"] = "/Account/Login",
+        ["/tr/giris/"] = "/Account/Login",
+        ["/en/login"] = "/Account/Login",
+        ["/en/login/"] = "/Account/Login",
+        ["/login"] = "/Account/Login",
+        ["/login/"] = "/Account/Login",
+
         // Pika / Hakkımızda
         ["/home/pika"] = "/pika",
         ["/Home/Pika"] = "/pika",

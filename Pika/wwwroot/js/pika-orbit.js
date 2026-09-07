@@ -40,28 +40,37 @@
   // Index 1: Opportunity (right)
   // Index 2: Customer 360 (top-left)
   // Opportunity tracking configurations mapped to cards
-  // Flow follows continuous rotation along the torus (counter-clockwise):
-  // Step 0: WhatsApp (bottom-left) -> sweeps along lower-left rim (~140px of movement)
-  // Step 1: Customer 360 (top-left) -> sweeps along upper-left rim (~170px of movement)
-  // Step 2: Opportunity (right) -> sweeps along upper-right rim (~190px of movement)
+  // Connected directly to specific physical particles on the rotating torus:
+  // Step 0: WhatsApp (bottom-left) -> sweeps along lower-left rim
+  // Step 1: Customer 360 (top-left) -> sweeps along upper-left rim
+  // Step 2: Opportunity (right) -> sweeps along upper-right rim
   const oppConfigs = [
     {
       targetId: "0",
-      uStart: Math.PI * 0.76,
-      uEnd: Math.PI * 1.02,
-      v: -0.25
+      startAngle: Math.PI * 0.58, // lower-left sector entry (~104°)
+      vAngle: -0.25,
+      pointIndex: 0,
+      ringIndex: 0,
+      anchorUBase: 0,
+      anchorV: -0.25
     },
     {
       targetId: "2",
-      uStart: Math.PI * 0.98,
-      uEnd: Math.PI * 1.28,
-      v: 0.10
+      startAngle: Math.PI * 0.98, // upper-left sector entry (~176°)
+      vAngle: 0.10,
+      pointIndex: 0,
+      ringIndex: 0,
+      anchorUBase: 0,
+      anchorV: 0.10
     },
     {
       targetId: "1",
-      uStart: -Math.PI * 0.38,
-      uEnd: -Math.PI * 0.06,
-      v: -0.20
+      startAngle: -Math.PI * 0.35, // right sector entry (~ -63°)
+      vAngle: -0.20,
+      pointIndex: 0,
+      ringIndex: 0,
+      anchorUBase: 0,
+      anchorV: -0.20
     }
   ];
 
@@ -81,8 +90,8 @@
   let isIntro = !reduced.matches;
   let introStart = 0;
 
-  // Opportunity rotation: 30s per opportunity tracking a moving point on the torus
-  const OPP_DURATION = 30000;
+  // Opportunity rotation: 9s per opportunity tracking a synchronized physical particle on the torus
+  const OPP_DURATION = 9000;
   let currentOppStep = 0;
   let oppElapsed = 0;
   let isCardHovered = false;
@@ -104,7 +113,28 @@
     oppElapsed = 0;
     isTransitioningCard = false;
 
-    const currentTargetId = oppConfigs[currentOppStep].targetId;
+    const cfg = oppConfigs[currentOppStep];
+    const currentTargetId = cfg.targetId;
+
+    // Synchronize anchor node directly with a physical particle on the rotating torus
+    const currentRotation = phase * 0.12 + mouseX * 0.08;
+    const uOffset = phase * 0.065;
+
+    // Desired angle at the start of the card's appearance:
+    // u + rotation = startAngle => u_point = startAngle - currentRotation - uOffset
+    let desiredUPoint = cfg.startAngle - currentRotation - uOffset;
+    desiredUPoint = ((desiredUPoint % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
+
+    // Snap to the exact nearest particle in the ring (0 to POINTS_PER_RING - 1)
+    const ptIdx = Math.round((desiredUPoint / (Math.PI * 2)) * POINTS_PER_RING) % POINTS_PER_RING;
+    cfg.pointIndex = ptIdx;
+    cfg.anchorUBase = (ptIdx / POINTS_PER_RING) * Math.PI * 2;
+
+    // Snap to the exact nearest ring on the torus (0 to RINGS - 1)
+    let normV = ((cfg.vAngle % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
+    const ringIdx = Math.round((normV / (Math.PI * 2)) * RINGS) % RINGS;
+    cfg.ringIndex = ringIdx;
+    cfg.anchorV = (ringIdx / RINGS) * Math.PI * 2;
 
     Object.keys(cardMap).forEach(targetId => {
       const c = cardMap[targetId];
@@ -194,24 +224,24 @@
 
     let particleIdx = 0;
     let anchorPx = null, anchorPy = null;
+    let anchorDepth = 0;
     if (!isIntro && oppConfigs.length > 0) {
       const cfg = oppConfigs[currentOppStep] || oppConfigs[0];
-      const progress = Math.min(oppElapsed / OPP_DURATION, 1.0);
-      // Smoothly advance angle along the rotating torus surface
-      const currentAngle = cfg.uStart + (cfg.uEnd - cfg.uStart) * progress;
-      const currentV = cfg.v;
+      const uAnchor = cfg.anchorUBase + phase * 0.065;
+      const vAnchor = cfg.anchorV;
 
-      const rAnchor = radius + Math.cos(currentV) * radius * 0.29;
-      // 3D coordinates aligned with the torus surface
-      const targetX = rAnchor * Math.cos(currentAngle - rotation);
-      const targetY = rAnchor * Math.sin(currentAngle - rotation);
-      const targetZ = Math.sin(currentV) * radius * 0.29;
+      // 3D coordinates aligned with the exact torus particle mesh
+      const trA = radius + Math.cos(vAnchor) * radius * 0.29;
+      const targetXA = trA * Math.cos(uAnchor);
+      const targetYA = trA * Math.sin(uAnchor);
+      const targetZA = Math.sin(vAnchor) * radius * 0.29;
 
-      const xxA = targetX * Math.cos(rotation) - targetY * Math.sin(rotation);
-      const yyA = targetX * Math.sin(rotation) + targetY * Math.cos(rotation);
-      const syA = yyA * Math.cos(tilt) - targetZ * Math.sin(tilt);
-      const depthA = yyA * Math.sin(tilt) + targetZ * Math.cos(tilt);
+      const xxA = targetXA * Math.cos(rotation) - targetYA * Math.sin(rotation);
+      const yyA = targetXA * Math.sin(rotation) + targetYA * Math.cos(rotation);
+      const syA = yyA * Math.cos(tilt) - targetZA * Math.sin(tilt);
+      const depthA = yyA * Math.sin(tilt) + targetZA * Math.cos(tilt);
 
+      anchorDepth = depthA;
       const safeDepthA = Math.min(depthA, 580);
       const persA = Math.max(0.1, 650 / (650 - safeDepthA));
       anchorPx = cx + xxA * persA;
@@ -811,4 +841,374 @@
     });
   })();
 })();
+
+// ==========================================================================
+// Pika Demo Request Modal - UI & Interaction Enhancer
+// ==========================================================================
+(() => {
+  function enhanceDemoModal() {
+    const modal = document.getElementById('demoModal');
+    if (!modal) return;
+
+    // Ensure root classes are present
+    if (!modal.classList.contains('pika-demo-modal-root')) {
+      modal.classList.add('pika-demo-modal-root');
+    }
+
+    const dialog = modal.querySelector('.modal-dialog');
+    if (dialog && !dialog.classList.contains('pika-demo-dialog')) {
+      dialog.classList.add('pika-demo-dialog');
+    }
+
+    const content = modal.querySelector('.modal-content');
+    if (content && !content.classList.contains('pika-demo-modal-content')) {
+      content.classList.add('pika-demo-modal-content');
+    }
+
+    const form = modal.querySelector('#demoRequestForm');
+    if (!form) return;
+
+    const isTr = !document.documentElement.lang || document.documentElement.lang.toLowerCase().startsWith('tr');
+
+    // 1. If split-grid layout is missing, construct the split container
+    let grid = modal.querySelector('.pika-demo-grid');
+    if (!grid && content) {
+      const showcaseHtml = `
+        <div class="pika-demo-showcase">
+          <div class="pika-demo-showcase-bg-orb" aria-hidden="true"></div>
+          <div class="pika-demo-showcase-inner">
+            <div class="pika-demo-brand">
+              <span class="orbit-nav-mark" aria-hidden="true"></span>
+              <span class="orbit-nav-word">pika</span>
+              <span class="pika-demo-badge">
+                <i class="ri-flashlight-fill"></i>
+                <span>${isTr ? 'CANLI DEMO' : 'LIVE DEMO'}</span>
+              </span>
+            </div>
+
+            <div class="pika-demo-hero-text">
+              <h3 class="pika-demo-headline">
+                ${isTr ? 'Akıllı Pazarlamanın Yeni Nesil Dünyasını Keşfedin' : 'Discover Next-Gen Marketing Intelligence'}
+              </h3>
+              <p class="pika-demo-subtext">
+                ${isTr ? '15 dakikalık interaktif demoda, platformun işletmenize özel müşteri ve kampanya zekâsını nasıl ürettiğini canlı görün.' : 'In a 15-minute live walkthrough, see how Pika transforms customer & product data into high-converting automated actions.'}
+              </p>
+            </div>
+
+            <div class="pika-demo-features">
+              <div class="pika-demo-feat-item">
+                <div class="pika-demo-feat-icon pika-demo-feat-icon--intel">
+                  <i class="ri-brain-line"></i>
+                </div>
+                <div class="pika-demo-feat-content">
+                  <strong>${isTr ? 'Müşteri & Ürün Zekâsı' : 'Customer & Product Intelligence'}</strong>
+                  <span>${isTr ? 'Müşteri niyetlerini ve satın alma ritmini anlık karar motoruyla yakalayın.' : 'Capture customer intent and repeat-purchase rhythms with real-time decisioning.'}</span>
+                </div>
+              </div>
+
+              <div class="pika-demo-feat-item">
+                <div class="pika-demo-feat-icon pika-demo-feat-icon--action">
+                  <i class="ri-route-line"></i>
+                </div>
+                <div class="pika-demo-feat-content">
+                  <strong>${isTr ? 'Omnichannel Orkestrasyon' : 'Omnichannel Flow Automation'}</strong>
+                  <span>${isTr ? 'WhatsApp, SMS ve E-posta akışlarını tek bir tuvalde zahmetsizce yönetin.' : 'Orchestrate WhatsApp, SMS, and Email journeys effortlessly in one unified canvas.'}</span>
+                </div>
+              </div>
+
+              <div class="pika-demo-feat-item">
+                <div class="pika-demo-feat-icon pika-demo-feat-icon--custom">
+                  <i class="ri-magic-line"></i>
+                </div>
+                <div class="pika-demo-feat-content">
+                  <strong>${isTr ? 'Sektörünüze Özel Canlı Senaryo' : 'Tailored Business Scenarios'}</strong>
+                  <span>${isTr ? 'Genel slaytlar değil; tam sizin sektörünüze ve verilerinize uygun canlı simülasyon.' : 'Not generic slides: a live simulation specifically tailored to your industry and growth goals.'}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="pika-demo-trust-footer">
+              <div class="pika-demo-trust-pill">
+                <i class="ri-shield-check-line"></i>
+                <span>${isTr ? 'KVKK & İYS Uyumlu' : 'KVKK & GDPR Compliant'}</span>
+              </div>
+              <div class="pika-demo-trust-pill">
+                <i class="ri-time-line"></i>
+                <span>${isTr ? '15 Dk Hızlı Tur' : '15-Min Fast Tour'}</span>
+              </div>
+              <div class="pika-demo-trust-pill">
+                <i class="ri-user-star-line"></i>
+                <span>${isTr ? 'Birebir Uzman Desteği' : '1-on-1 Specialist'}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      grid = document.createElement('div');
+      grid.className = 'pika-demo-grid';
+      grid.innerHTML = showcaseHtml;
+
+      const formPane = document.createElement('div');
+      formPane.className = 'pika-demo-form-pane';
+      formPane.appendChild(form);
+      grid.appendChild(formPane);
+
+      let closeBtn = modal.querySelector('.pika-demo-close-btn');
+      if (!closeBtn) {
+        closeBtn = document.createElement('button');
+        closeBtn.type = 'button';
+        closeBtn.className = 'btn-close pika-demo-close-btn';
+        closeBtn.setAttribute('data-bs-dismiss', 'modal');
+        closeBtn.setAttribute('aria-label', isTr ? 'Kapat' : 'Close');
+        closeBtn.innerHTML = '<i class="ri-close-line"></i>';
+      }
+
+      content.innerHTML = '';
+      content.appendChild(closeBtn);
+      content.appendChild(grid);
+    }
+
+    // 2. Eradicate any rogue legacy elements inside form
+    form.querySelectorAll('.modal-header, .modal-footer, .demo-request-modal > p.mb-3, .modal-title, button.btn-close').forEach(el => el.remove());
+
+    // 3. Ensure balanced 5-row field layout (Ad+Soyad, Email+Phone, Company (col-12), Website+City, Message)
+    const companyCol = form.querySelector('input[name="companyName"]')?.closest('.col-sm-6, .col-md-6');
+    const isLegacyLayout = !form.querySelector('.pika-demo-fields') || !!companyCol;
+
+    if (isLegacyLayout) {
+      const vals = {
+        firstName: form.querySelector('[name="firstName"]')?.value || '',
+        lastName: form.querySelector('[name="lastName"]')?.value || '',
+        email: form.querySelector('[name="email"]')?.value || '',
+        phone: form.querySelector('[name="phone"]')?.value || '',
+        companyName: form.querySelector('[name="companyName"]')?.value || '',
+        website: form.querySelector('[name="website"]')?.value || '',
+        city: form.querySelector('[name="city"]')?.value || '',
+        message: form.querySelector('[name="message"]')?.value || ''
+      };
+
+      const recipientEmail = form.dataset.recipientEmail || '';
+
+      form.innerHTML = `
+        <div class="pika-demo-form-header">
+          <div class="pika-demo-form-eyebrow">${isTr ? 'HIZLI BAŞLANGIÇ' : 'GET STARTED'}</div>
+          <h4 class="pika-demo-form-title" id="demoModalTitle">${isTr ? 'Demo Talep Edin' : 'Request a Live Demo'}</h4>
+          <p class="pika-demo-form-subtitle">${isTr ? 'Formu doldurun, ürün uzmanımız 24 saat içinde sizinle iletişime geçsin.' : 'Fill in your details and our product specialists will connect with you within 24 hours.'}</p>
+        </div>
+
+        <div class="pika-demo-fields">
+          <div class="row g-3">
+            <!-- Row 1: Ad & Soyad -->
+            <div class="col-sm-6">
+              <div class="pika-input-group">
+                <label class="pika-input-label">${isTr ? 'Adınız' : 'First Name'} <span class="text-danger">*</span></label>
+                <div class="pika-input-wrap">
+                  <i class="ri-user-line pika-input-icon"></i>
+                  <input class="form-control pika-form-control" name="firstName" required placeholder="${isTr ? 'Adınız' : 'First Name'}" autocomplete="given-name" value="${vals.firstName.replace(/"/g, '&quot;')}" />
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="pika-input-group">
+                <label class="pika-input-label">${isTr ? 'Soyadınız' : 'Last Name'} <span class="text-danger">*</span></label>
+                <div class="pika-input-wrap">
+                  <i class="ri-user-line pika-input-icon"></i>
+                  <input class="form-control pika-form-control" name="lastName" required placeholder="${isTr ? 'Soyadınız' : 'Last Name'}" autocomplete="family-name" value="${vals.lastName.replace(/"/g, '&quot;')}" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 2: E-posta & Telefon -->
+            <div class="col-sm-6">
+              <div class="pika-input-group">
+                <label class="pika-input-label">${isTr ? 'İş E-postası' : 'Work Email'} <span class="text-danger">*</span></label>
+                <div class="pika-input-wrap">
+                  <i class="ri-mail-line pika-input-icon"></i>
+                  <input class="form-control pika-form-control" type="email" name="email" required placeholder="ad@sirketiniz.com" autocomplete="email" value="${vals.email.replace(/"/g, '&quot;')}" />
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="pika-input-group">
+                <label class="pika-input-label">${isTr ? 'Telefon Numarası' : 'Phone Number'} <span class="text-danger">*</span></label>
+                <div class="pika-input-wrap pika-phone-wrap">
+                  <span class="pika-phone-code"><i class="ri-phone-line"></i> +90</span>
+                  <input class="form-control pika-form-control pika-phone-input" name="phone" type="tel" required maxlength="13" inputmode="numeric" placeholder="5XX XXX XX XX" autocomplete="tel" value="${vals.phone.replace(/"/g, '&quot;')}" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 3: Şirket Adı (Tam Satır - Boşluk Bırakmaz) -->
+            <div class="col-12">
+              <div class="pika-input-group">
+                <label class="pika-input-label">${isTr ? 'Şirket Adı' : 'Company Name'} <span class="text-danger">*</span></label>
+                <div class="pika-input-wrap">
+                  <i class="ri-building-line pika-input-icon"></i>
+                  <input class="form-control pika-form-control" name="companyName" required placeholder="${isTr ? 'Şirketinizin Adı' : 'Your Company Name'}" autocomplete="organization" value="${vals.companyName.replace(/"/g, '&quot;')}" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 4: Web Sitesi & Şehir (Dengeli İkili Satır) -->
+            <div class="col-sm-6">
+              <div class="pika-input-group">
+                <label class="pika-input-label">${isTr ? 'Web Sitesi' : 'Website'} <span class="pika-label-sub">(${isTr ? 'İsteğe Bağlı' : 'Optional'})</span></label>
+                <div class="pika-input-wrap">
+                  <i class="ri-global-line pika-input-icon"></i>
+                  <input class="form-control pika-form-control" name="website" placeholder="sirketiniz.com" autocomplete="url" value="${vals.website.replace(/"/g, '&quot;')}" />
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="pika-input-group">
+                <label class="pika-input-label">${isTr ? 'Şehir' : 'City'} <span class="text-danger">*</span></label>
+                <div class="pika-input-wrap">
+                  <i class="ri-map-pin-line pika-input-icon"></i>
+                  <input class="form-control pika-form-control" name="city" required placeholder="${isTr ? 'Örn. İstanbul' : 'e.g. Istanbul'}" value="${vals.city.replace(/"/g, '&quot;')}" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 5: Mesaj (Tam Satır) -->
+            <div class="col-12">
+              <div class="pika-input-group">
+                <label class="pika-input-label">${isTr ? 'Mesajınız veya İhtiyaçlarınız' : 'Your Message or Requirements'} <span class="pika-label-sub">(${isTr ? 'İsteğe Bağlı' : 'Optional'})</span></label>
+                <div class="pika-input-wrap">
+                  <textarea class="form-control pika-form-control pika-textarea" rows="3" name="message" placeholder="${isTr ? 'Öne çıkarmak istediğiniz hedefler veya sorularınız...' : 'Goals, target channels, or questions for the demo...'}">${vals.message}</textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="demoResult" class="pika-alert d-none mt-3"></div>
+
+        <div class="pika-demo-form-footer">
+          <button type="submit" class="pika-demo-submit-btn">
+            <span class="pika-demo-btn-text">${isTr ? 'Ücretsiz Demo Talep Edin' : 'Request Free Demo'}</span>
+            <i class="ri-arrow-right-up-line pika-demo-btn-icon"></i>
+          </button>
+          <div class="pika-demo-privacy-note">
+            <i class="ri-lock-2-line"></i>
+            <span>${isTr ? 'Bilgileriniz KVKK kapsamında korunur ve 3. taraflarla paylaşılmaz.' : 'Your data is strictly protected under KVKK/GDPR and never shared.'}</span>
+          </div>
+        </div>
+      `;
+
+      if (recipientEmail) {
+        form.dataset.recipientEmail = recipientEmail;
+      }
+    }
+
+    // 4. Close button guarantee
+    let closeBtn = modal.querySelector('.pika-demo-close-btn');
+    if (closeBtn && !closeBtn.querySelector('i')) {
+      closeBtn.innerHTML = '<i class="ri-close-line"></i>';
+    }
+
+    // 5. Phone input formatting mask
+    const phoneInput = form.querySelector('input[name="phone"]');
+    if (phoneInput && !phoneInput.dataset.formatted) {
+      phoneInput.dataset.formatted = 'true';
+      phoneInput.addEventListener('input', function() {
+        const v = this.value.replace(/\D/g, '').substring(0, 10);
+        let f = '';
+        if (v.length > 0) f = v.substring(0, 3);
+        if (v.length > 3) f += ' ' + v.substring(3, 6);
+        if (v.length > 6) f += ' ' + v.substring(6, 8);
+        if (v.length > 8) f += ' ' + v.substring(8, 10);
+        this.value = f;
+      });
+    }
+  }
+
+  function enhanceMobileDrawer() {
+    const drawer = document.getElementById('navbarOffcanvas');
+    if (!drawer) return;
+
+    // 1. Ensure clean Orbit branding in drawer header
+    const header = drawer.querySelector('.offcanvas-header');
+    if (header) {
+      const logoLink = header.querySelector('.logo, .logo-brand');
+      if (logoLink) {
+        const legacyImg = logoLink.querySelector('img');
+        if (legacyImg) {
+          logoLink.innerHTML = `
+            <span class="orbit-nav-mark" aria-hidden="true"></span>
+            <span class="orbit-nav-word">pika</span>
+          `;
+          logoLink.className = 'logo navbar-brand logo-brand p-0 d-inline-flex align-items-center';
+        }
+      }
+
+      const closeBtn = header.querySelector('.close-btn');
+      if (closeBtn && (!closeBtn.querySelector('i') || closeBtn.querySelector('.ri-close-fill'))) {
+        closeBtn.innerHTML = '<i class="ri-close-line"></i>';
+      }
+    }
+
+    // 2. Ensure others-options uses modern segmented language switch and clean buttons
+    const others = drawer.querySelector('.others-options');
+    if (others && !others.querySelector('.pika-mobile-lang-segmented')) {
+      const isEn = window.location.pathname.startsWith('/en') || (document.documentElement.lang && document.documentElement.lang.toLowerCase().startsWith('en'));
+      const isTr = !isEn;
+      others.innerHTML = `
+        <div class="pika-mobile-actions">
+          <div class="pika-mobile-lang-segmented" role="group" aria-label="Dil Seçimi">
+            <button type="button" class="pika-mobile-lang-pill ${isTr ? 'active' : ''}" data-lang-set="tr">
+              <i class="ri-global-line"></i>
+              <span>Türkçe (TR)</span>
+            </button>
+            <button type="button" class="pika-mobile-lang-pill ${isEn ? 'active' : ''}" data-lang-set="en">
+              <i class="ri-global-line"></i>
+              <span>English (EN)</span>
+            </button>
+          </div>
+          <a href="/Account/Login" class="pika-mobile-login-btn">
+            <i class="ri-user-line"></i>
+            <span>${isTr ? 'Giriş' : 'Login'}</span>
+          </a>
+          <button type="button" class="pika-mobile-demo-btn" data-bs-toggle="modal" data-bs-target="#demoModal">
+            <span>${isTr ? 'Demo Talebi' : 'Demo Request'}</span>
+            <i class="ri-arrow-right-up-line"></i>
+          </button>
+        </div>
+      `;
+
+      others.querySelectorAll('[data-lang-set]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const lang = btn.getAttribute('data-lang-set');
+          const fallback = lang === 'en' ? '/en/' : '/';
+          const alternate = document.querySelector(`link[rel="alternate"][hreflang="${lang}"]`)?.getAttribute('href');
+          window.location.assign(alternate || fallback);
+        });
+      });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      enhanceDemoModal();
+      enhanceMobileDrawer();
+    });
+  } else {
+    enhanceDemoModal();
+    enhanceMobileDrawer();
+  }
+
+  document.addEventListener('show.bs.modal', (e) => {
+    if (e.target && e.target.id === 'demoModal') {
+      enhanceDemoModal();
+    }
+  });
+
+  document.addEventListener('show.bs.offcanvas', (e) => {
+    if (e.target && e.target.id === 'navbarOffcanvas') {
+      enhanceMobileDrawer();
+    }
+  });
+})();
+
+
 

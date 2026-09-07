@@ -1535,11 +1535,15 @@ textarea.pika-input {
   border: 1px solid #dce5e3;
   padding: 6px;
   min-width: 165px;
+  height: auto !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
 }
 
 .nav-language-dropdown .dropdown-item {
   border-radius: 8px;
   font-weight: 500;
+  box-sizing: border-box !important;
 }
 
 .demo-request-modal .form-control {
@@ -4552,3 +4556,60 @@ textarea.pika-input {
         margin-bottom: 24px;
     }
 }
+
+/* Global Footer Contact & Social Styling */
+.pika-footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.pika-footer-contact-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #a6b8ad !important;
+    font-size: 13px !important;
+    text-decoration: none !important;
+    transition: color 0.2s ease;
+}
+
+.pika-footer-contact-item i {
+    color: #84c225;
+    font-size: 15px;
+}
+
+.pika-footer-contact-item:hover {
+    color: #ffffff !important;
+}
+
+.pika-footer-social {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.pika-footer-social-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #a6b8ad !important;
+    font-size: 16px;
+    text-decoration: none !important;
+    transition: all 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.pika-footer-social-btn:hover {
+    background: rgba(132, 194, 37, 0.15);
+    border-color: rgba(132, 194, 37, 0.45);
+    color: #84c225 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(132, 194, 37, 0.18);
+}
+
