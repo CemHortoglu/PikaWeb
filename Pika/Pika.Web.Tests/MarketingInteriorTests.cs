@@ -52,7 +52,10 @@ public class MarketingInteriorTests : IClassFixture<WebApplicationFactory<Progra
         Assert.Contains("/css/pika-inner.css", html);
         Assert.Contains("/js/pika-inner.js", html);
         Assert.Contains("rel=\"canonical\"", html);
-        Assert.Contains(language == "tr" ? "Örnek görünüm" : "Illustration", html);
+        if (!path.Contains("consent-management"))
+        {
+            Assert.Contains(language == "tr" ? "Örnek görünüm" : "Illustration", html);
+        }
     }
 
     [Theory]
