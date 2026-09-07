@@ -316,10 +316,10 @@ public static class SeoHelper
         ["Platform.Opportunities"] = new(
             "/platform/gunun-firsatlari",
             "/en/platform/opportunities",
-            "Günün Fırsatları | Fırsat ve Karar Motoru",
-            "Daily Opportunities | Opportunity & Decision Engine",
-            "Pika'nın fırsat motoru, müşteri ve ürün verisinden tekrar satın alma, cross-sell, upsell ve geri kazanım fırsatlarını tespit ederek günlük aksiyon öncelikleri oluşturur.",
-            "Pika's opportunity engine detects repeat purchase, cross-sell, upsell, and win-back signals from customer and product data to build daily action priorities.",
+            "Günün Fırsatları | Tekrar Satın Alma, Cross-sell ve Win-back | Pika",
+            "Daily Opportunities | Repeat Purchase, Cross-sell & Win-back | Pika",
+            "Pika Günün Fırsatları; müşteri ve ürün bağlamından tekrar satın alma, cross-sell ve win-back fırsatlarını günlük karar adayları olarak görünür hale getirir.",
+            "Pika Daily Opportunities turns customer and product context into daily repeat-purchase, cross-sell and win-back opportunity candidates for evaluation.",
             "Günün Fırsatları",
             "Daily Opportunities"),
     };

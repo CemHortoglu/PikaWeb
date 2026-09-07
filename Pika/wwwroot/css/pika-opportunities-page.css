@@ -1,0 +1,68 @@
+/* Pika Daily Opportunities / Günün Fırsatları Page Styles */
+.opp-faq-details {
+    border: 1px solid #e2e8db;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    background: #fff;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.opp-faq-details[open] {
+    border-color: #23413b;
+    box-shadow: 0 4px 12px rgba(35, 65, 59, 0.05);
+}
+
+.opp-faq-summary {
+    padding: 18px 20px;
+    font-weight: 600;
+    color: #23413b;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.05rem;
+}
+
+.opp-faq-summary::-webkit-details-marker {
+    display: none;
+}
+
+.opp-faq-summary i {
+    transition: transform 0.2s ease;
+    font-size: 1.2rem;
+    color: #62746d;
+}
+
+.opp-faq-details[open] .opp-faq-summary i {
+    transform: rotate(180deg);
+    color: #23413b;
+}
+
+.opp-faq-body {
+    padding: 0 20px 20px 20px;
+    color: #4a5d55;
+    font-size: 0.95rem;
+    line-height: 1.65;
+}
+
+.opp-chain-step {
+    background: #ffffff;
+    border: 1px solid #e2e8db;
+    border-radius: 8px;
+    padding: 16px 20px;
+    text-align: center;
+    min-width: 140px;
+}
+
+.opp-chain-step.active {
+    border: 2px solid var(--pika-primary);
+}
+
+.opp-chain-arrow {
+    color: #8c9e96;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

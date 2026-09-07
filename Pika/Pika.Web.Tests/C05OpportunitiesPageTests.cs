@@ -11,11 +11,11 @@ using Xunit;
 
 namespace Pika.Web.Tests;
 
-public class C04Pika360PageTests : IClassFixture<WebApplicationFactory<Program>>
+public class C05OpportunitiesPageTests : IClassFixture<WebApplicationFactory<Program>>
 {
     private readonly WebApplicationFactory<Program> _factory;
 
-    public C04Pika360PageTests(WebApplicationFactory<Program> factory)
+    public C05OpportunitiesPageTests(WebApplicationFactory<Program> factory)
     {
         _factory = factory;
     }
@@ -91,9 +91,9 @@ public class C04Pika360PageTests : IClassFixture<WebApplicationFactory<Program>>
 
     // 1 & 2: HTTP 200 for TR and EN routes
     [Theory]
-    [InlineData("/platform/pika-360")]
-    [InlineData("/en/platform/pika-360")]
-    public async Task GetPika360_ReturnsSuccess200(string path)
+    [InlineData("/platform/gunun-firsatlari")]
+    [InlineData("/en/platform/opportunities")]
+    public async Task GetOpportunities_ReturnsSuccess200(string path)
     {
         var client = CreateNoRedirectClient();
         var response = await client.GetAsync(path);
@@ -102,15 +102,15 @@ public class C04Pika360PageTests : IClassFixture<WebApplicationFactory<Program>>
 
     // 3: Exact SeoHelper Title & Description for TR & EN
     [Theory]
-    [InlineData("/platform/pika-360", "tr")]
-    [InlineData("/en/platform/pika-360", "en")]
+    [InlineData("/platform/gunun-firsatlari", "tr")]
+    [InlineData("/en/platform/opportunities", "en")]
     public async Task RenderedSeo_MatchesSeoHelper_ForTrAndEn(string path, string lang)
     {
         var client = CreateNoRedirectClient();
         var response = await client.GetAsync(path);
         var html = await response.Content.ReadAsStringAsync();
 
-        var meta = SeoHelper.GetMetadata("Platform", "Pika360");
+        var meta = SeoHelper.GetMetadata("Platform", "Opportunities");
         Assert.NotNull(meta);
 
         var expectedTitle = lang == "tr" ? meta.TitleTr : meta.TitleEn;
@@ -125,8 +125,8 @@ public class C04Pika360PageTests : IClassFixture<WebApplicationFactory<Program>>
 
     // 4: Exactly one H1
     [Theory]
-    [InlineData("/platform/pika-360")]
-    [InlineData("/en/platform/pika-360")]
+    [InlineData("/platform/gunun-firsatlari")]
+    [InlineData("/en/platform/opportunities")]
     public async Task RenderedPage_HasExactlyOneH1(string path)
     {
         var client = CreateNoRedirectClient();
@@ -142,11 +142,11 @@ public class C04Pika360PageTests : IClassFixture<WebApplicationFactory<Program>>
     public async Task TurkishH1_MatchesExactCopy()
     {
         var client = CreateNoRedirectClient();
-        var response = await client.GetAsync("/platform/pika-360");
+        var response = await client.GetAsync("/platform/gunun-firsatlari");
         var html = await response.Content.ReadAsStringAsync();
 
         var h1Text = ExtractH1(html);
-        Assert.Equal("Müşteriyi yalnızca kimliğiyle değil, bütün karar bağlamıyla görün.", h1Text);
+        Assert.Equal("Bugün hangi müşteride hangi fırsat var?", h1Text);
     }
 
     // 6: Exact EN H1
@@ -154,11 +154,11 @@ public class C04Pika360PageTests : IClassFixture<WebApplicationFactory<Program>>
     public async Task EnglishH1_MatchesExactCopy()
     {
         var client = CreateNoRedirectClient();
-        var response = await client.GetAsync("/en/platform/pika-360");
+        var response = await client.GetAsync("/en/platform/opportunities");
         var html = await response.Content.ReadAsStringAsync();
 
         var h1Text = ExtractH1(html);
-        Assert.Equal("See more than customer identity. See the complete decision context.", h1Text);
+        Assert.Equal("Which customer has which opportunity today?", h1Text);
     }
 
     // 7: TR Direct answer question
@@ -166,11 +166,11 @@ public class C04Pika360PageTests : IClassFixture<WebApplicationFactory<Program>>
     public async Task TurkishPage_ContainsDirectAnswerQuestion()
     {
         var client = CreateNoRedirectClient();
-        var response = await client.GetAsync("/platform/pika-360");
+        var response = await client.GetAsync("/platform/gunun-firsatlari");
         var html = await response.Content.ReadAsStringAsync();
         var decoded = WebUtility.HtmlDecode(html);
 
-        Assert.Contains("Pika 360 nedir?", decoded);
+        Assert.Contains("Günün Fırsatları nedir?", decoded);
     }
 
     // 8: EN Direct answer question
@@ -178,106 +178,97 @@ public class C04Pika360PageTests : IClassFixture<WebApplicationFactory<Program>>
     public async Task EnglishPage_ContainsDirectAnswerQuestion()
     {
         var client = CreateNoRedirectClient();
-        var response = await client.GetAsync("/en/platform/pika-360");
+        var response = await client.GetAsync("/en/platform/opportunities");
         var html = await response.Content.ReadAsStringAsync();
         var decoded = WebUtility.HtmlDecode(html);
 
-        Assert.Contains("What is Pika 360?", decoded);
+        Assert.Contains("What are Daily Opportunities?", decoded);
     }
 
-    // 9: Canonical terms
-    [Theory]
-    [InlineData("/platform/pika-360")]
-    [InlineData("/en/platform/pika-360")]
-    public async Task RenderedPage_ContainsCanonicalTerms(string path)
-    {
-        var client = CreateNoRedirectClient();
-        var response = await client.GetAsync(path);
-        var html = await response.Content.ReadAsStringAsync();
-        var decoded = WebUtility.HtmlDecode(html);
-
-        Assert.Contains("Pika 360", decoded);
-        Assert.Contains("Customer Intelligence", decoded);
-        Assert.Contains("Product Intelligence", decoded);
-    }
-
-    // 10: TR Günün Fırsatları
+    // 9: Core opportunity types
     [Fact]
-    public async Task TurkishPage_ContainsGununFirsatlari()
+    public async Task TurkishPage_ContainsCoreOpportunityTypes()
     {
         var client = CreateNoRedirectClient();
-        var response = await client.GetAsync("/platform/pika-360");
+        var response = await client.GetAsync("/platform/gunun-firsatlari");
         var html = await response.Content.ReadAsStringAsync();
         var decoded = WebUtility.HtmlDecode(html);
 
-        Assert.Contains("Günün Fırsatları", decoded);
-    }
-
-    // 11: EN Daily Opportunities
-    [Fact]
-    public async Task EnglishPage_ContainsDailyOpportunities()
-    {
-        var client = CreateNoRedirectClient();
-        var response = await client.GetAsync("/en/platform/pika-360");
-        var html = await response.Content.ReadAsStringAsync();
-        var decoded = WebUtility.HtmlDecode(html);
-
-        Assert.Contains("Daily Opportunities", decoded);
-    }
-
-    // 12: Five core semantic contexts
-    [Fact]
-    public async Task TurkishPage_ContainsFiveSemanticContexts()
-    {
-        var client = CreateNoRedirectClient();
-        var response = await client.GetAsync("/platform/pika-360");
-        var html = await response.Content.ReadAsStringAsync();
-        var decoded = WebUtility.HtmlDecode(html);
-
-        Assert.Contains("İşlem Geçmişi", decoded);
-        Assert.Contains("Müşteri Değeri", decoded);
-        Assert.Contains("Davranış Bağlamı", decoded);
-        Assert.Contains("İletişim Erişilebilirliği", decoded);
-        Assert.Contains("Açık Fırsatlar", decoded);
+        Assert.Contains("Tekrar Satın Alma", decoded);
+        Assert.Contains("Cross-sell", decoded);
+        Assert.Contains("Geri Kazanım", decoded);
     }
 
     [Fact]
-    public async Task EnglishPage_ContainsFiveSemanticContexts()
+    public async Task EnglishPage_ContainsCoreOpportunityTypes()
     {
         var client = CreateNoRedirectClient();
-        var response = await client.GetAsync("/en/platform/pika-360");
+        var response = await client.GetAsync("/en/platform/opportunities");
         var html = await response.Content.ReadAsStringAsync();
         var decoded = WebUtility.HtmlDecode(html);
 
-        Assert.Contains("Transaction History", decoded);
-        Assert.Contains("Customer Value", decoded);
-        Assert.Contains("Behavioral Context", decoded);
-        Assert.Contains("Communication Reachability", decoded);
-        Assert.Contains("Open Opportunities", decoded);
+        Assert.Contains("Repeat Purchase", decoded);
+        Assert.Contains("Cross-sell", decoded);
+        Assert.Contains("Win-back", decoded);
     }
 
-    // 13: View contains no wiki, no jsonld section, no viewdata overrides
+    // 10: View contains no forbidden legacy elements
     [Fact]
-    public void Pika360View_ContainsNoForbiddenElements()
+    public void OpportunitiesView_ContainsNoForbiddenElements()
     {
         var root = GetProjectRoot();
-        var viewPath = Path.Combine(root, "Views", "Platform", "Pika360.cshtml");
+        var viewPath = Path.Combine(root, "Views", "Platform", "Opportunities.cshtml");
         var viewContent = File.ReadAllText(viewPath);
 
-        Assert.DoesNotContain("/wiki/", viewContent, StringComparison.OrdinalIgnoreCase);
         Assert.DoesNotContain("wikiBase", viewContent, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("/wiki/", viewContent, StringComparison.OrdinalIgnoreCase);
         Assert.DoesNotContain("@section JsonLd", viewContent);
         Assert.DoesNotContain("ViewData[\"Title\"]", viewContent);
         Assert.DoesNotContain("ViewData[\"MetaDescription\"]", viewContent);
         Assert.DoesNotContain("ViewData[\"CanonicalUrl\"]", viewContent);
     }
 
-    // 14: View contains no <img> or screenshot references
+    // 11: Rendered page contains no canonical opportunity cards/headings named Upsell, Loyalty, Value Retention, Opportunity Confidence
+    [Theory]
+    [InlineData("/platform/gunun-firsatlari")]
+    [InlineData("/en/platform/opportunities")]
+    public async Task RenderedPage_ContainsNoRemovedOpportunityBucketsInHeadingsOrCards(string path)
+    {
+        var client = CreateNoRedirectClient();
+        var response = await client.GetAsync(path);
+        var html = await response.Content.ReadAsStringAsync();
+
+        // Check headings h1-h4
+        var headingMatches = Regex.Matches(html, @"<h[1-4][^>]*>(.*?)</h[1-4]>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+        foreach (Match match in headingMatches)
+        {
+            var text = Regex.Replace(match.Groups[1].Value, @"<[^>]+>", " ").Trim();
+            Assert.DoesNotContain("Upsell", text, StringComparison.OrdinalIgnoreCase);
+            Assert.DoesNotContain("Loyalty", text, StringComparison.OrdinalIgnoreCase);
+            Assert.DoesNotContain("Value Retention", text, StringComparison.OrdinalIgnoreCase);
+            Assert.DoesNotContain("Opportunity Confidence", text, StringComparison.OrdinalIgnoreCase);
+        }
+    }
+
+    // 12: No links to /platform/firsatlar
+    [Theory]
+    [InlineData("/platform/gunun-firsatlari")]
+    [InlineData("/en/platform/opportunities")]
+    public async Task RenderedPage_ContainsNoLegacyFirsatlarLinks(string path)
+    {
+        var client = CreateNoRedirectClient();
+        var response = await client.GetAsync(path);
+        var html = await response.Content.ReadAsStringAsync();
+
+        Assert.DoesNotContain("/platform/firsatlar", html);
+    }
+
+    // 13: View contains no <img> or screenshot references
     [Fact]
-    public void Pika360View_ContainsNoImageTagsOrScreenshots()
+    public void OpportunitiesView_ContainsNoImageTagsOrScreenshots()
     {
         var root = GetProjectRoot();
-        var viewPath = Path.Combine(root, "Views", "Platform", "Pika360.cshtml");
+        var viewPath = Path.Combine(root, "Views", "Platform", "Opportunities.cshtml");
         var viewContent = File.ReadAllText(viewPath);
 
         Assert.DoesNotContain("<img", viewContent, StringComparison.OrdinalIgnoreCase);
@@ -285,29 +276,24 @@ public class C04Pika360PageTests : IClassFixture<WebApplicationFactory<Program>>
         Assert.DoesNotContain("ekran görüntüsü", viewContent, StringComparison.OrdinalIgnoreCase);
     }
 
-    // 15: No push references in page body
+    // 14: No fabricated customer names or metrics
     [Theory]
-    [InlineData("/platform/pika-360")]
-    [InlineData("/en/platform/pika-360")]
-    public async Task RenderedPage_ContainsNoPushReferences(string path)
+    [InlineData("/platform/gunun-firsatlari")]
+    [InlineData("/en/platform/opportunities")]
+    public async Task RenderedPage_ContainsNoFabricatedMetricsOrCustomerNames(string path)
     {
         var client = CreateNoRedirectClient();
         var response = await client.GetAsync(path);
         var html = await response.Content.ReadAsStringAsync();
 
-        var bodyMatch = Regex.Match(html, @"<main[^>]*>(.*?)</main>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
-        var pageBody = bodyMatch.Success ? bodyMatch.Groups[1].Value : html;
-        var contentWithoutScripts = Regex.Replace(pageBody, @"<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>", "", RegexOptions.IgnoreCase);
-
-        Assert.DoesNotContain("push", contentWithoutScripts, StringComparison.OrdinalIgnoreCase);
-        Assert.DoesNotContain("mobile push", contentWithoutScripts, StringComparison.OrdinalIgnoreCase);
-        Assert.DoesNotContain("web push", contentWithoutScripts, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("Deniz Kaya", html, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("84/100", html);
     }
 
-    // 16: No forbidden claims in page body
+    // 15: No forbidden claims in page body
     [Theory]
-    [InlineData("/platform/pika-360")]
-    [InlineData("/en/platform/pika-360")]
+    [InlineData("/platform/gunun-firsatlari")]
+    [InlineData("/en/platform/opportunities")]
     public async Task RenderedPage_ContainsNoForbiddenClaims(string path)
     {
         var client = CreateNoRedirectClient();
@@ -318,50 +304,25 @@ public class C04Pika360PageTests : IClassFixture<WebApplicationFactory<Program>>
         var pageBody = bodyMatch.Success ? bodyMatch.Groups[1].Value : html;
         var contentWithoutScripts = Regex.Replace(pageBody, @"<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>", "", RegexOptions.IgnoreCase);
 
-        Assert.DoesNotContain("single-customer truth", contentWithoutScripts, StringComparison.OrdinalIgnoreCase);
-        Assert.DoesNotContain("single source of truth", contentWithoutScripts, StringComparison.OrdinalIgnoreCase);
-        Assert.DoesNotContain("instantly", contentWithoutScripts, StringComparison.OrdinalIgnoreCase);
-        Assert.DoesNotContain("empirical churn", contentWithoutScripts, StringComparison.OrdinalIgnoreCase);
-        Assert.DoesNotContain("active trigger", contentWithoutScripts, StringComparison.OrdinalIgnoreCase);
         Assert.DoesNotContain("real-time", contentWithoutScripts, StringComparison.OrdinalIgnoreCase);
         Assert.DoesNotContain("real time", contentWithoutScripts, StringComparison.OrdinalIgnoreCase);
-        Assert.DoesNotContain("milisaniye", contentWithoutScripts, StringComparison.OrdinalIgnoreCase);
-        Assert.DoesNotContain("milliseconds", contentWithoutScripts, StringComparison.OrdinalIgnoreCase);
-        Assert.DoesNotContain("guaranteed", contentWithoutScripts, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("ROAS", contentWithoutScripts, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("next best action", contentWithoutScripts, StringComparison.OrdinalIgnoreCase);
+
+        // Stripping allowed explicit negation "not guaranteed" / "satış garantisi vermez" / "garanti edilmez"
+        var withoutAllowedNegation = contentWithoutScripts
+            .Replace("not guaranteed", "", StringComparison.OrdinalIgnoreCase)
+            .Replace("does not guarantee", "", StringComparison.OrdinalIgnoreCase)
+            .Replace("garantisi vermez", "", StringComparison.OrdinalIgnoreCase)
+            .Replace("garanti edilmez", "", StringComparison.OrdinalIgnoreCase);
+
+        Assert.DoesNotContain("guaranteed", withoutAllowedNegation, StringComparison.OrdinalIgnoreCase);
     }
 
-    // 17: No fabricated customer name: Deniz Kaya
+    // 16: No page-level SoftwareApplication, FAQPage, Offer JSON-LD
     [Theory]
-    [InlineData("/platform/pika-360")]
-    [InlineData("/en/platform/pika-360")]
-    public async Task RenderedPage_ContainsNoFabricatedCustomerName(string path)
-    {
-        var client = CreateNoRedirectClient();
-        var response = await client.GetAsync(path);
-        var html = await response.Content.ReadAsStringAsync();
-
-        Assert.DoesNotContain("Deniz Kaya", html, StringComparison.OrdinalIgnoreCase);
-    }
-
-    // 18: No fabricated metrics: 84/100, 30 gün, 30 days
-    [Theory]
-    [InlineData("/platform/pika-360")]
-    [InlineData("/en/platform/pika-360")]
-    public async Task RenderedPage_ContainsNoFabricatedMetrics(string path)
-    {
-        var client = CreateNoRedirectClient();
-        var response = await client.GetAsync(path);
-        var html = await response.Content.ReadAsStringAsync();
-
-        Assert.DoesNotContain("84/100", html);
-        Assert.DoesNotContain("30 gün", html, StringComparison.OrdinalIgnoreCase);
-        Assert.DoesNotContain("30 days", html, StringComparison.OrdinalIgnoreCase);
-    }
-
-    // 19: No page-level SoftwareApplication, FAQPage, Offer JSON-LD
-    [Theory]
-    [InlineData("/platform/pika-360")]
-    [InlineData("/en/platform/pika-360")]
+    [InlineData("/platform/gunun-firsatlari")]
+    [InlineData("/en/platform/opportunities")]
     public async Task RenderedPage_ContainsNoForbiddenStructuredData(string path)
     {
         var client = CreateNoRedirectClient();
@@ -374,25 +335,25 @@ public class C04Pika360PageTests : IClassFixture<WebApplicationFactory<Program>>
         Assert.DoesNotContain("\"@type\":\"Offer\"", html);
     }
 
-    // 20: Exactly 8 Turkish FAQ questions
+    // 17: Exactly 8 Turkish FAQ questions
     [Fact]
     public async Task TurkishPage_ContainsAllEightFaqQuestions()
     {
         var client = CreateNoRedirectClient();
-        var response = await client.GetAsync("/platform/pika-360");
+        var response = await client.GetAsync("/platform/gunun-firsatlari");
         var html = await response.Content.ReadAsStringAsync();
         var decoded = WebUtility.HtmlDecode(html);
 
         var expectedQuestions = new[]
         {
-            "Pika 360 nedir?",
-            "Pika 360 hangi bilgileri bir araya getirir?",
-            "Pika 360 ile Customer Intelligence arasındaki fark nedir?",
-            "Pika 360 ile Günün Fırsatları arasındaki fark nedir?",
-            "Pika 360 bir CRM midir?",
-            "Pika 360 kampanya gönderir mi?",
-            "Pika 360'taki müşteri bağlamını yapay zekâ mı oluşturur?",
-            "Pika 360 ile genel Customer 360 yaklaşımı arasındaki fark nedir?"
+            "Günün Fırsatları nedir?",
+            "Günün Fırsatları hangi fırsat türlerini gösterir?",
+            "Tekrar satın alma fırsatı nasıl oluşur?",
+            "Cross-sell fırsatı nasıl oluşur?",
+            "Geri kazanım fırsatı nasıl oluşur?",
+            "Günün Fırsatları otomatik kampanya gönderir mi?",
+            "Günün Fırsatları ile Pika 360 arasındaki fark nedir?",
+            "Günün Fırsatları yapay zekâ tarafından mı oluşturulur?"
         };
 
         foreach (var q in expectedQuestions)
@@ -401,25 +362,25 @@ public class C04Pika360PageTests : IClassFixture<WebApplicationFactory<Program>>
         }
     }
 
-    // 21: Exactly 8 English FAQ questions
+    // 18: Exactly 8 English FAQ questions
     [Fact]
     public async Task EnglishPage_ContainsAllEightFaqQuestions()
     {
         var client = CreateNoRedirectClient();
-        var response = await client.GetAsync("/en/platform/pika-360");
+        var response = await client.GetAsync("/en/platform/opportunities");
         var html = await response.Content.ReadAsStringAsync();
         var decoded = WebUtility.HtmlDecode(html);
 
         var expectedQuestions = new[]
         {
-            "What is Pika 360?",
-            "What information does Pika 360 bring together?",
-            "What is the difference between Pika 360 and Customer Intelligence?",
-            "What is the difference between Pika 360 and Daily Opportunities?",
-            "Is Pika 360 a CRM?",
-            "Does Pika 360 send campaigns?",
-            "Is the customer context in Pika 360 generated by AI?",
-            "How is Pika 360 different from a generic Customer 360 approach?"
+            "What are Daily Opportunities?",
+            "Which opportunity types does Daily Opportunities show?",
+            "How is a repeat-purchase opportunity formed?",
+            "How is a cross-sell opportunity formed?",
+            "How is a win-back opportunity formed?",
+            "Does Daily Opportunities automatically send campaigns?",
+            "What is the difference between Daily Opportunities and Pika 360?",
+            "Are Daily Opportunities generated by AI?"
         };
 
         foreach (var q in expectedQuestions)
@@ -428,55 +389,67 @@ public class C04Pika360PageTests : IClassFixture<WebApplicationFactory<Program>>
         }
     }
 
-    // 22: Required internal links for TR
+    // 19: Required internal links for TR
     [Fact]
     public async Task TurkishPage_ContainsRequiredInternalLinks()
     {
         var client = CreateNoRedirectClient();
-        var response = await client.GetAsync("/platform/pika-360");
+        var response = await client.GetAsync("/platform/gunun-firsatlari");
         var html = await response.Content.ReadAsStringAsync();
 
         Assert.Contains("href=\"/pika\"", html);
         Assert.Contains("href=\"/platform/customer-intelligence\"", html);
         Assert.Contains("href=\"/platform/product-intelligence\"", html);
-        Assert.Contains("href=\"/platform/gunun-firsatlari\"", html);
-        Assert.Contains("href=\"/cozumler/consent-management\"", html);
-        Assert.Contains("href=\"/urunler/ai-kampanya-asistani\"", html);
+        Assert.Contains("href=\"/platform/pika-360\"", html);
+        Assert.Contains("href=\"/cozumler/audience-manager\"", html);
+        Assert.Contains("href=\"/cozumler/campaign-manager\"", html);
+        Assert.Contains("href=\"/cozumler/journey-manager\"", html);
     }
 
-    // 23: Required internal links for EN
+    // 20: Required internal links for EN
     [Fact]
     public async Task EnglishPage_ContainsRequiredInternalLinks()
     {
         var client = CreateNoRedirectClient();
-        var response = await client.GetAsync("/en/platform/pika-360");
+        var response = await client.GetAsync("/en/platform/opportunities");
         var html = await response.Content.ReadAsStringAsync();
 
         Assert.Contains("href=\"/en/pika\"", html);
         Assert.Contains("href=\"/en/platform/customer-intelligence\"", html);
         Assert.Contains("href=\"/en/platform/product-intelligence\"", html);
-        Assert.Contains("href=\"/en/platform/opportunities\"", html);
-        Assert.Contains("href=\"/en/solutions/consent-management\"", html);
-        Assert.Contains("href=\"/en/products/ai-campaign-assistant\"", html);
+        Assert.Contains("href=\"/en/platform/pika-360\"", html);
+        Assert.Contains("href=\"/en/solutions/audience-manager\"", html);
+        Assert.Contains("href=\"/en/solutions/campaign-manager\"", html);
+        Assert.Contains("href=\"/en/solutions/journey-manager\"", html);
     }
 
-    // 24: No legacy /platform/firsatlar links
-    [Theory]
-    [InlineData("/platform/pika-360")]
-    [InlineData("/en/platform/pika-360")]
-    public async Task RenderedPage_ContainsNoLegacyFirsatlarLinks(string path)
+    // 21: Exact pricing copy in final CTA
+    [Fact]
+    public async Task TurkishPage_ContainsExactPricingCopy()
     {
         var client = CreateNoRedirectClient();
-        var response = await client.GetAsync(path);
+        var response = await client.GetAsync("/platform/gunun-firsatlari");
         var html = await response.Content.ReadAsStringAsync();
+        var decoded = WebUtility.HtmlDecode(html);
 
-        Assert.DoesNotContain("/platform/firsatlar", html);
+        Assert.Contains("İhtiyacınıza ve kullanım kapsamınıza göre özel teklif.", decoded);
     }
 
-    // 25: No fixed public pricing patterns in page body
+    [Fact]
+    public async Task EnglishPage_ContainsExactPricingCopy()
+    {
+        var client = CreateNoRedirectClient();
+        var response = await client.GetAsync("/en/platform/opportunities");
+        var html = await response.Content.ReadAsStringAsync();
+        var decoded = WebUtility.HtmlDecode(html);
+
+        Assert.Contains("Pricing is tailored to your requirements and scope of use.", decoded);
+    }
+
+    // 22: No fixed public pricing patterns in page body
     [Theory]
-    [InlineData("/platform/pika-360")]
-    [InlineData("/en/platform/pika-360")]
+    [InlineData("/platform/gunun-firsatlari")]
+    [InlineData("/en/platform/opportunities")]
     public async Task RenderedPage_ContainsNoFixedPublicPricingPatterns(string path)
     {
         var client = CreateNoRedirectClient();
@@ -494,30 +467,7 @@ public class C04Pika360PageTests : IClassFixture<WebApplicationFactory<Program>>
         Assert.DoesNotContain("ücretsiz deneme", contentWithoutScripts, StringComparison.OrdinalIgnoreCase);
     }
 
-    // 26: Exact pricing copy in final CTA
-    [Fact]
-    public async Task TurkishPage_ContainsExactPricingCopy()
-    {
-        var client = CreateNoRedirectClient();
-        var response = await client.GetAsync("/platform/pika-360");
-        var html = await response.Content.ReadAsStringAsync();
-        var decoded = WebUtility.HtmlDecode(html);
-
-        Assert.Contains("İhtiyacınıza ve kullanım kapsamınıza göre özel teklif.", decoded);
-    }
-
-    [Fact]
-    public async Task EnglishPage_ContainsExactPricingCopy()
-    {
-        var client = CreateNoRedirectClient();
-        var response = await client.GetAsync("/en/platform/pika-360");
-        var html = await response.Content.ReadAsStringAsync();
-        var decoded = WebUtility.HtmlDecode(html);
-
-        Assert.Contains("Pricing is tailored to your requirements and scope of use.", decoded);
-    }
-
-    // 27: Homepage frozen files unchanged
+    // 23: Homepage frozen files unchanged
     [Fact]
     public void HomepageFrozenFiles_AreUnchanged()
     {
@@ -538,7 +488,7 @@ public class C04Pika360PageTests : IClassFixture<WebApplicationFactory<Program>>
         }
     }
 
-    // 28: _MarketingHero.cshtml unchanged
+    // 24: _MarketingHero.cshtml unchanged
     [Fact]
     public void MarketingHero_IsUnchanged()
     {
@@ -548,20 +498,20 @@ public class C04Pika360PageTests : IClassFixture<WebApplicationFactory<Program>>
         Assert.True(string.IsNullOrWhiteSpace(diff), $"Shared marketing hero was modified: {file}");
     }
 
-    // 29: SeoHelper has only Platform.Pika360 modified
+    // 25: SeoHelper has only Platform.Opportunities modified in this stage
     [Fact]
-    public void SeoHelper_OnlyPika360WasModified()
+    public void SeoHelper_OnlyOpportunitiesWasModified()
     {
         var root = GetProjectRoot();
-        var diff = RunGitCommand(root, "diff 32c20a3f4e31d56e108f30fd1c100809ae3c6ab3..7f9ea1c2da3e3fcc684f5a363f460330ad893fbf -- Services/SeoHelper.cs");
+        var diff = RunGitCommand(root, "diff 7f9ea1c2da3e3fcc684f5a363f460330ad893fbf -- Services/SeoHelper.cs");
         Assert.NotEmpty(diff);
-        Assert.Contains("Platform.Pika360", diff);
+        Assert.Contains("Platform.Opportunities", diff);
 
-        // Ensure no other keys in SeoHelper were touched in C04
+        // Ensure no other keys in SeoHelper were touched in C05
         var keyMatches = Regex.Matches(diff, @"^\+\s*\[""([^""]+)""\]", RegexOptions.Multiline);
         foreach (Match match in keyMatches)
         {
-            Assert.Equal("Platform.Pika360", match.Groups[1].Value);
+            Assert.Equal("Platform.Opportunities", match.Groups[1].Value);
         }
     }
 }
