@@ -1,6 +1,6 @@
 # Pika Web 2.0 Design Constitution
 
-**Phase:** P02 — Brand & Web Design Constitution  
+**Phase:** P02 / P02.1 — Brand & Web Design Constitution (Accessibility & Contract Hardening)  
 **Target Repository:** `CemHortoglu/PikaWeb`  
 **Governing Inputs:** `PRODUCT_TRUTH.md`, `CLAIMS_REGISTRY.md`, `CONTENT_GUARDRAILS.md`, `ENTITY_REGISTRY.md`, `PUBLIC_ROUTE_AUDIT.md`, `VISUAL_ASSET_REGISTRY.md`, `P00_FINDINGS.md`, `P01_INFORMATION_ARCHITECTURE.md`.  
 **Namespace:** `.pw2-*`  
@@ -10,10 +10,10 @@
 
 ## 1. Design Mission
 
-Pika Web 2.0 exists to visually communicate a mature, deeply engineered enterprise B2B platform: **"Müşteri Zekâsı ve Omnichannel Pazarlama Platformu"** (Customer Intelligence & Omnichannel Marketing Platform).
+Pika Web 2.0 exists to visually communicate an operationally serious, enterprise-oriented B2B software platform: **"Müşteri Zekâsı ve Omnichannel Pazarlama Platformu"** (Customer Intelligence & Omnichannel Marketing Platform).
 
-Pika is trusted with sensitive customer records, high-volume order histories, dynamic product master catalogs, and mission-critical message dispatch. The visual design must communicate:
-- **Enterprise Gravitas:** A solid, reliable platform capable of handling enterprise retail, e-commerce, and multi-store data volume.
+Pika is trusted with customer, product, transaction, and campaign workflows. The visual design must communicate:
+- **Enterprise Gravitas:** A solid, reliable platform engineered for retail, e-commerce, and multi-store commercial operations.
 - **Analytical & Decision Depth:** Visualizing intelligence before action (Customer Context Engine, Product Intelligence, Customer Value Scoring, and Günün Fırsatları).
 - **Operational Clarity:** High-density, understandable interfaces where technical complexity is mastered rather than masked behind empty whitespace.
 - **Authenticity Over Illusion:** Real product proof from `https://app.pika.tr` is the centerpiece of the visual argument.
@@ -39,7 +39,7 @@ Pika’s brand character is grounded in operational trust and technical intellig
 | **Calm** | Controlled whitespace, restrained palettes, quiet backgrounds (`#ffffff`, `#f8faf9`). | Neon flashes, noisy textures, aggressive alert banners. |
 | **Precise** | Sharp typography hierarchy, hairline borders (`1px solid #e3ede8`), structured data alignment. | Arbitrary offset borders, sloppy card padding, irregular margins. |
 | **Intelligent** | Clear workflow diagrams, structured decision matrices, authentic software telemetry. | Decorative stock diagrams, sci-fi nodes, floating abstract 3D spheres. |
-| **Premium** | Subdued elevation shadows, dark petrol structural chapters (`#0c3a30`), high-resolution screenshots. | Cheap drop shadows, gradient text overloads, glassmorphism blur. |
+| **Premium** | Subdued elevation shadows, solid dark petrol structural chapters (`#0c3a30`), high-resolution screenshots. | Cheap drop shadows, gradient text overloads, glassmorphism blur. |
 | **Technical** | Explicit data contracts, formula explanations, clear operational states. | Oversimplified consumer illustrations, cartoon mascots, hand-waving abstractions. |
 | **Human** | Readable editorial type sizes, clear human approval steps in AI workflows, contextual explanations. | Cold, robotic cyber aesthetics or fake AI-generated avatar headshots. |
 | **Controlled** | Lime accent (`#84c225` / `#9edd05`) used with surgical restraint (CTAs, focus rings, small badges). | Drenching whole sections or borders in neon lime green. |
@@ -71,8 +71,8 @@ Pika’s brand character is grounded in operational trust and technical intellig
 ### Classification Key
 - **`ADOPT`**: Preserves the established Pika value identically under the modern `--pw2-*` token family.
 - **`ALIAS`**: Directly maps an existing shorthand token to its canonical semantic token.
-- **`REFINE`**: Adjusts a value slightly to satisfy explicit P02 design principles with documented rationale.
-- **`NEW`**: Introduces an essential design token required by P02 section archetypes.
+- **`REFINE`**: Adjusts a value slightly to satisfy explicit P02 design/accessibility principles with documented rationale.
+- **`NEW`**: Introduces an essential design token required by P02 section archetypes or WCAG AA compliance.
 
 ### Token Reconciliation Matrix
 
@@ -80,7 +80,8 @@ Pika’s brand character is grounded in operational trust and technical intellig
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **Brand Primary** | `--pika-color-brand-primary` | `--pw2-brand-primary` | `ADOPT` | `#84c225` | Canonical Pika lime green brand color. Unchanged. |
 | **Primary Hover** | `--pika-color-brand-primary-hover` | `--pw2-brand-primary-hover` | `ADOPT` | `#73aa20` | Darker lime for active and hover states. |
-| **Primary Dark** | `--pika-color-brand-primary-dark` | `--pw2-brand-primary-dark` | `ADOPT` | `#5c8c15` | High-contrast variant for text/icons on light backgrounds. |
+| **Primary Dark** | `--pika-color-brand-primary-dark` | `--pw2-brand-primary-dark` | `ADOPT` | `#5c8c15` | Retained for non-text graphics (4.03:1 on white). |
+| **Accent Ink** | *(None)* | `--pw2-accent-ink` | `NEW` | `#3f5802` | High-contrast brand text ink: 8.05:1 on white, 7.54:1 on tint (WCAG AA compliant >= 4.5:1). |
 | **Brand Secondary** | `--pika-color-brand-secondary` | `--pw2-brand-secondary` / `--pw2-bg-dark` | `ADOPT` | `#0c3a30` | Deep petrol/forest green structural background. |
 | **Secondary Hover** | `--pika-color-brand-secondary-hover`| `--pw2-brand-secondary-hover`| `ADOPT` | `#124d40` | Subtle hover state for dark buttons/links. |
 | **Brand Accent** | `--pika-color-brand-accent` | `--pw2-accent` | `ADOPT` | `#9edd05` | High-visibility lime highlight accent. |
@@ -89,15 +90,17 @@ Pika’s brand character is grounded in operational trust and technical intellig
 | **Canvas Pure** | `--pika-color-bg` | `--pw2-bg-primary` | `ADOPT` | `#ffffff` | Pure white default background. |
 | **Surface Subtle** | `--pika-color-surface-subtle` | `--pw2-bg-subtle` | `ADOPT` | `#f8faf9` | Alternating section surface. |
 | **Surface Muted** | `--pika-color-surface-muted` | `--pw2-bg-muted` | `ADOPT` | `#f1f6f3` | Inset wells, code blocks, table headers. |
-| **Surface Dark** | `--pika-color-surface-dark` | `--pw2-bg-dark` | `ADOPT` | `#0c3a30` | Structural dark chapter background. |
-| **Dark Deep** | `--pika-color-surface-dark-subtle`| `--pw2-bg-dark-deep` | `ADOPT` | `#082922` | Deep petrol anchor for dark chapter gradients. |
+| **Surface Dark** | `--pika-color-surface-dark` | `--pw2-bg-dark` | `ADOPT` | `#0c3a30` | Solid structural dark chapter background. |
+| **Dark Deep** | `--pika-color-surface-dark-subtle`| `--pw2-bg-dark-deep` | `ADOPT` | `#082922` | Deep petrol anchor for stage insets and frames. |
 | **Stage Surface** | *(None)* | `--pw2-surface-stage` | `NEW` | `#0e322a` | High-contrast framing surface for authentic screenshots. |
-| **Text Primary** | `--pika-color-text-primary` | `--pw2-text-primary` | `ADOPT` | `#0d2821` | Deep charcoal-petrol ink for maximum contrast. |
-| **Text Secondary** | `--pika-color-text-secondary` | `--pw2-text-secondary` | `ADOPT` | `#365147` | Editorial body and explanatory lead paragraphs. |
-| **Text Muted** | `--pika-color-text-muted` | `--pw2-text-muted` | `ADOPT` | `#5e7a70` | Secondary metadata and captions. |
-| **Text Subtle** | `--pika-color-text-subtle` | `--pw2-text-subtle` | `ADOPT` | `#8da49c` | Hairlines and disabled elements. |
-| **Text On Dark** | `--pika-color-text-on-dark` | `--pw2-text-on-dark` | `ADOPT` | `#ffffff` | High-contrast pure white text for dark chapters. |
-| **On Dark Muted** | `--pika-color-text-on-dark-muted` | `--pw2-text-on-dark-muted` | `ADOPT` | `rgba(255, 255, 255, 0.74)` | Secondary body text on dark chapters. |
+| **Text Primary** | `--pika-color-text-primary` | `--pw2-text-primary` | `ADOPT` | `#0d2821` | Deep charcoal-petrol ink: 15.64:1 on white, 14.92:1 on subtle. |
+| **Text Secondary** | `--pika-color-text-secondary` | `--pw2-text-secondary` | `ADOPT` | `#365147` | Editorial body text: 8.66:1 on white, 8.26:1 on subtle. |
+| **Text Muted** | `--pika-color-text-muted` (`#5e7a70`) | `--pw2-text-muted` | `REFINE` | `#4a685e` | Refined to established `--ph-text-muted` value. Achieves 6.12:1 on white, 5.84:1 on subtle (safely exceeds 4.5:1 on both). |
+| **Text Subtle** | `--pika-color-text-subtle` | `--pw2-text-subtle` | `ADOPT` | `#8da49c` | Non-critical placeholders, disabled elements only. |
+| **Text On Dark** | `--pika-color-text-on-dark` | `--pw2-text-on-dark` | `ADOPT` | `#ffffff` | Pure white text on dark petrol: 12.62:1 contrast. |
+| **On Dark Muted** | `--pika-color-text-on-dark-muted` | `--pw2-text-on-dark-muted` | `ADOPT` | `rgba(255, 255, 255, 0.74)` | 7.65:1 effective contrast on dark petrol. |
+| **Focus on Light**| *(None)* | `--pw2-focus-on-light` | `NEW` | `#3f5802` | High-contrast focus indicator on light surfaces (8.05:1 on white, exceeds 3:1 non-text threshold). |
+| **Focus on Dark** | *(None)* | `--pw2-focus-on-dark` | `NEW` | `#9edd05` | High-contrast focus indicator on dark petrol surfaces (7.69:1 on #0c3a30, exceeds 3:1 non-text threshold). |
 | **Border Default** | `--pika-color-border` | `--pw2-border-default` | `ADOPT` | `#e3ede8` | Crisp structural border. |
 | **Border Subtle** | `--pika-color-border-subtle` | `--pw2-border-subtle` | `ADOPT` | `#edf4f0` | Soft hairline dividers. |
 | **Border Strong** | `--pika-color-border-strong` | `--pw2-border-strong` | `ADOPT` | `#c2d8cd` | Input states and focused borders. |
@@ -139,10 +142,10 @@ Pika’s brand character is grounded in operational trust and technical intellig
 [SUBTLE RESTRAINED SURFACE: #f8faf9 / #f4f9f1]
           │
           ▼
-[DARK PETROL STRUCTURE: #0c3a30 / #082922]
+[SOLID DARK PETROL STRUCTURE: #0c3a30 / #082922]
           │
           ▼
-[DARK NEUTRAL TYPOGRAPHY: #0d2821 / #365147]
+[DARK NEUTRAL TYPOGRAPHY: #0d2821 / #365147 / #4a685e]
           │
           ▼
 [PIKA LIME ACCENT (STRICTLY RESTRAINED): #84c225 / #9edd05]
@@ -151,10 +154,11 @@ Pika’s brand character is grounded in operational trust and technical intellig
 ### Color Usage Rules
 - **Primary Background (`--pw2-bg-primary: #ffffff`):** Default for 80% of page surfaces. Clean, open, high clarity.
 - **Subtle Background (`--pw2-bg-subtle: #f8faf9`):** Alternating background for editorial sections to establish visual rhythm.
-- **Dark Petrol (`--pw2-bg-dark: #0c3a30`):** Used selectively for high-impact chapters: Hero banners, Value Chain overviews, Architecture, Security & Governance, and Final CTAs.
+- **Dark Petrol (`--pw2-bg-dark: #0c3a30`):** Restrained solid background for high-impact chapters: Hero banners, Value Chain overviews, Architecture, Security & Governance, and Final CTAs. (No default decorative gradient).
 - **Lime Accent (`--pw2-accent: #9edd05` / `--pw2-brand-primary: #84c225`):**
   - **Allowed:** Primary CTA buttons, small status indicator dots, active tab underlines, diagram directional arrows, subtle badge backgrounds (`#f4f9f1` with `#dbeec8` border).
   - **Forbidden:** Card backgrounds, card borders, whole section backgrounds, large headline text, body text.
+- **Accessible Brand Ink (`--pw2-accent-ink: #3f5802`):** Used exclusively for small informative text on white/tint surfaces (`.pw2-eyebrow`, `.pw2-badge--status`, `.pw2-btn--tertiary:hover`) to guarantee $ge$ 4.5:1 contrast.
 
 ---
 
@@ -254,7 +258,7 @@ A mathematical 4pt / 8pt spacing family:
 - `.pw2-surface`: Pure white elevated surface (`#ffffff`) with subtle border.
 - `.pw2-surface--subtle`: Light sage tint (`#f8faf9`) for soft grouping.
 - `.pw2-surface--muted`: Inset grey/green well (`#f1f6f3`) for code, raw data contracts, or telemetry.
-- `.pw2-surface--dark`: Deep petrol structural container (`#0c3a30`).
+- `.pw2-surface--dark`: Solid deep petrol structural container (`#0c3a30`).
 - `.pw2-surface--stage`: High-contrast screenshot backdrop (`#0e322a`).
 
 ### Radius Scale (Restrained)
@@ -276,21 +280,30 @@ A mathematical 4pt / 8pt spacing family:
 
 Buttons are visual hierarchy primitives and are decoupled from rigid copy:
 
+### Interactive Target Mandate
+- **All buttons intended for user interaction must retain a minimum 44px interactive target.**
+- `.pw2-btn--sm` retains `min-height: 44px; padding: 10px 18px;` with a compact font size.
+- `.pw2-btn--tertiary` retains `min-height: 44px; display: inline-flex; align-items: center; padding: 8px 4px;` to protect the clickable hit area while maintaining lightweight visual link aesthetics.
+
 ### Visual Hierarchy Variants
 1. **Primary Button (`.pw2-btn--primary`):**
-   - Solid lime fill (`#84c225`), dark petrol text (`#0c3a30`, `weight: 600`).
-   - Hover: `#73aa20`. Active: `#5c8c15`.
-   - Used for the single primary conversion action in a viewport.
+   - Solid lime fill (`#84c225`), dark petrol text (`#0d2821`, `weight: 600`). Contrast: **7.24:1**.
+   - Hover: `#73aa20` background, `#0d2821` text. Contrast: **5.59:1**.
+   - Active: Retains `#73aa20` background with `transform: translateY(1px)` for accessible physical feedback without contrast degradation.
 2. **Secondary Button (`.pw2-btn--secondary`):**
    - Outlined border (`1.5px solid #c2d8cd`), transparent/white background, dark petrol text (`#0d2821`).
    - Hover: `#f8faf9` background, `#0d2821` border.
-   - Used for secondary exploration (e.g. "Platformu Keşfedin", "Teklif Alın").
 3. **Dark Section Primary Button (`.pw2-btn--dark-primary`):**
-   - Solid lime fill (`#84c225`) on dark petrol backgrounds.
+   - Solid lime fill (`#84c225`), dark text (`#0d2821`) on dark petrol backgrounds.
 4. **Dark Section Secondary Button (`.pw2-btn--dark-secondary`):**
    - White hairline outline (`1.5px solid rgba(255, 255, 255, 0.3)`), white text (`#ffffff`).
 5. **Tertiary / Text Link (`.pw2-btn--tertiary`):**
-   - No background, no border. Dark text with subtle hover shift and trailing arrow icon (`ri-arrow-right-line`).
+   - Lightweight link appearance with 44px touch area. Hover color: `var(--pw2-accent-ink)` (**8.05:1** contrast).
+
+### Focus Behavior
+- Light surfaces: `outline: 2px solid var(--pw2-focus-on-light);` (**8.05:1** contrast).
+- Dark sections: `outline: 2px solid var(--pw2-focus-on-dark);` (**7.69:1** contrast).
+- Zero glow effects.
 
 ### Preferred Site-Wide Conversion Labels
 - **Primary Conversion CTA:**
@@ -307,79 +320,80 @@ Buttons are visual hierarchy primitives and are decoupled from rigid copy:
 
 ---
 
-## 11. Section Archetypes
+## 11. Section Archetypes as Composition Patterns
 
-Pika Web 2.0 uses **13 distinct section archetypes** to create narrative variety without chaotic inconsistency:
+Section archetypes are **compositional patterns** built from foundational PW2 primitives, not monolithic one-class components:
 
-### 1. HERO / PRODUCT HERO (`.pw2-archetype-hero`)
-- **Intended Use:** Top of homepage, solution pages, and platform capability pages.
-- **Composition:** Asymmetrical editorial split or centered high-impact display headline + lead paragraph + primary/secondary CTA pair + immediate product stage screenshot frame below.
+### 1. HERO / PRODUCT HERO
+- **Primitive Composition:**
+  - Container: `.pw2-section .pw2-section--hero` + `.pw2-container`
+  - Content: `.pw2-display` + `.pw2-lead` + CTA row (`.pw2-btn--primary` + `.pw2-btn--secondary`)
+  - Media: `.pw2-product-stage` containing `.pw2-product-frame` with authentic screenshot (`img_gunun-firsatlari.png` or `img_pika-360_7.png`)
 - **Text Budget:** Headline max 12 words; lead max 35 words.
-- **Screenshot Behavior:** High-resolution authentic screenshot (e.g. `img_gunun-firsatlari.png` or `img_pika-360_7.png`) loaded inside a structured browser/app frame.
-- **Common Misuse to Avoid:** Adding floating CSS badges with unverified metrics or hiding the product below the fold.
 
-### 2. EDITORIAL SPLIT (`.pw2-archetype-editorial-split`)
-- **Intended Use:** Explaining a specific capability (e.g. Customer Value Score, Product Intelligence resolution).
-- **Composition:** 50/50 or 45/55 split. Left column: Eyebrow + H2 + lead + 2-3 structured capability bullet points + tertiary text link. Right column: Authentic product screenshot crop or interactive focus window.
-- **Responsive:** Stacks intentionally on mobile (text first, visual second).
-- **Common Misuse to Avoid:** Converting the left column into 4 nested cards.
+### 2. EDITORIAL SPLIT
+- **Primitive Composition:**
+  - Container: `.pw2-section` + `.pw2-container`
+  - Layout: `.pw2-editorial-split` (optional `.pw2-editorial-split--reversed`)
+  - Text Column: `.pw2-eyebrow` + `.pw2-h2` + `.pw2-lead` + `.pw2-body` + `.pw2-btn--tertiary`
+  - Visual Column: `.pw2-product-frame` (focal crop of real UI)
 
-### 3. PRODUCT STAGE (`.pw2-archetype-product-stage`)
-- **Intended Use:** Highlighting a flagship operational cockpit (e.g. Günün Fırsatları, Journey Manager canvas).
-- **Composition:** Centered intro header (H2 + lead) over a wide 1340px stage container with a high-resolution screenshot, annotated with 2-3 precise callouts below the frame.
-- **Text Budget:** Maximum 2 short sentences in header.
-- **Common Misuse to Avoid:** Shrinking the screenshot to fit inside a narrow 800px column.
+### 3. PRODUCT STAGE
+- **Primitive Composition:**
+  - Container: `.pw2-section` + `.pw2-container .pw2-container--stage`
+  - Header: `.pw2-text-center` + `.pw2-eyebrow` + `.pw2-h2` + `.pw2-lead`
+  - Stage: `.pw2-product-stage` containing `.pw2-product-frame` + `.pw2-product-caption`
 
-### 4. FULL-WIDTH SCREENSHOT (`.pw2-archetype-full-screenshot`)
-- **Intended Use:** Visual walkthroughs of complex drag-and-drop workspaces (e.g. `img_journey-tasarim-tuvali_18.png`, `img_email-template-editor_17.png`).
-- **Composition:** Subtle or dark stage background spanning full container width, screenshot in crisp detail with horizontal scroll on mobile.
-- **Common Misuse to Avoid:** Cropping off crucial interface context such as the navigation menu or action toolbar.
+### 4. FULL-WIDTH SCREENSHOT
+- **Primitive Composition:**
+  - Container: `.pw2-section .pw2-section--subtle` + `.pw2-container .pw2-container--full`
+  - Frame: `.pw2-product-frame .pw2-product-frame--stage` spanning wide viewport width with authentic high-res UI
 
-### 5. SCREENSHOT + EXPLANATION (`.pw2-archetype-screenshot-explanation`)
-- **Intended Use:** Feature deep dive (e.g. Consent and Quiet-Hours scheduling).
-- **Composition:** 60% screenshot with a 40% structured explanation card that highlights specific UI elements using matching index numbers (1, 2, 3).
-- **Common Misuse to Avoid:** Leaving the user to guess what part of the UI the text refers to.
+### 5. SCREENSHOT + EXPLANATION
+- **Primitive Composition:**
+  - Container: `.pw2-section` + `.pw2-container`
+  - Layout: `.pw2-editorial-split` with 60% `.pw2-product-frame` and 40% structured explanation card `.pw2-surface`
 
-### 6. DARK CHAPTER (`.pw2-archetype-dark-chapter`)
-- **Intended Use:** Structural chapter break for Infrastructure, Delivery Workers, Security, or AI Trust Boundaries.
-- **Composition:** Dark petrol surface (`#0c3a30`), white text, subtle hairline borders (`rgba(255, 255, 255, 0.12)`).
-- **Common Misuse to Avoid:** Using pure black (`#000000`) or making every section dark.
+### 6. DARK CHAPTER
+- **Primitive Composition:**
+  - Container: `.pw2-section .pw2-section--dark` + `.pw2-container`
+  - Header: `.pw2-eyebrow` + `.pw2-h2` + `.pw2-lead`
+  - Content: Solid petrol background (`#0c3a30`), high-contrast white text, CTAs (`.pw2-btn--dark-primary` + `.pw2-btn--dark-secondary`)
 
-### 7. PROCESS / VALUE CHAIN (`.pw2-archetype-value-chain`)
-- **Intended Use:** Explaining Pika's 6-step decision and execution loop.
-- **Composition:** Horizontal progressive flow with 6 linked stages (Data → Intelligence → Opportunity → Action → Channel → Measurement). Clean typography nodes with directional arrows.
-- **Responsive:** Stacks vertically on mobile with connected timeline bar.
-- **Common Misuse to Avoid:** Making 6 identical heavy boxes with generic icons.
+### 7. PROCESS / VALUE CHAIN
+- **Primitive Composition:**
+  - Container: `.pw2-section` + `.pw2-container`
+  - Flow: `.pw2-value-chain` containing 6 `.pw2-value-chain__step` nodes representing Pika's 6-step loop
 
-### 8. DATA → INTELLIGENCE FLOW (`.pw2-archetype-data-flow`)
-- **Intended Use:** Demonstrating how messy transactional data becomes actionable customer context.
-- **Composition:** Left: Raw data inputs (Excel, Ingestion API, POS). Center: Pika Intelligence Engines (CCE, Product Roles, Value Scoring). Right: Targeted multi-channel actions.
-- **Common Misuse to Avoid:** Overly complex sci-fi network diagrams.
+### 8. DATA → INTELLIGENCE FLOW
+- **Primitive Composition:**
+  - Container: `.pw2-section` + `.pw2-container`
+  - Flow: `.pw2-data-flow` containing `.pw2-data-flow__col` (Input sources) + `.pw2-data-flow__arrow` + `.pw2-data-flow__col` (Intelligence engines) + `.pw2-data-flow__arrow` + `.pw2-data-flow__col` (Channel execution)
 
-### 9. FEATURE DETAIL (`.pw2-archetype-feature-detail`)
-- **Intended Use:** Breaking down a technical module into 3 key operational aspects.
-- **Composition:** Clean 3-column layout without cards: Small icon/number + H4 title + 2-sentence description. Separated by whitespace and subtle hairlines.
-- **Common Misuse to Avoid:** Putting each feature in a rounded box with a bright green border.
+### 9. FEATURE DETAIL
+- **Primitive Composition:**
+  - Container: `.pw2-section` + `.pw2-container`
+  - Grid: `.pw2-trust-layout` (3-column layout without cards) containing `.pw2-h4` + `.pw2-body` separated by hairlines
 
-### 10. TRUST / GOVERNANCE (`.pw2-archetype-trust`)
-- **Intended Use:** Privacy, KVKK, IYS compliance, RBAC, data encryption.
-- **Composition:** Layout-neutral structured columns (`.pw2-trust-layout`) with authentic UI proof (e.g. `img_kullanici-roller-yetkiler_24.png` or `img_izin-kanal-zamanlama_25.png`).
-- **Common Misuse to Avoid:** Fake certification badges or unverified claims.
+### 10. TRUST / GOVERNANCE
+- **Primitive Composition:**
+  - Container: `.pw2-section .pw2-section--subtle` + `.pw2-container`
+  - Content: `.pw2-trust-layout` with authentic UI proof (`img_kullanici-roller-yetkiler_24.png` or `img_izin-kanal-zamanlama_25.png`) + `.pw2-badge`
 
-### 11. METRIC / PROOF (`.pw2-archetype-proof`)
-- **Intended Use:** Illustrating analytical outcomes, store comparisons, or business simulations.
-- **Composition:** Layout-neutral proof display (`.pw2-proof-layout`) with prominent numerical display + contextual metric label + **mandatory `ÖRNEK SENARYO` disclosure tag**.
-- **Common Misuse to Avoid:** Disguising synthetic demo stats as real customer case studies.
+### 11. METRIC / PROOF
+- **Primitive Composition:**
+  - Container: `.pw2-section` + `.pw2-container`
+  - Proof Layout: `.pw2-proof-layout` containing `.pw2-surface` units with prominent numbers and **mandatory `.pw2-badge--demo`**
 
-### 12. FAQ (`.pw2-archetype-faq`)
-- **Intended Use:** Handling customer objections, compliance questions, commercial quotation details.
-- **Composition:** Single reading-width column (760px), accordion elements with clean hairlines, accessible keyboard toggles.
-- **Common Misuse to Avoid:** Scattering FAQs into a 3-column masonry grid.
+### 12. FAQ
+- **Primitive Composition:**
+  - Container: `.pw2-section` + `.pw2-container .pw2-container--reading`
+  - Accordion: Multiple `.pw2-faq-item` units containing `.pw2-faq-question` + `.pw2-faq-answer`
 
-### 13. FINAL CTA (`.pw2-archetype-final-cta`)
-- **Intended Use:** Bottom-of-page conversion anchor.
-- **Composition:** Dark petrol or subtle green container, bold H2, clear value summary, primary CTA ("Demo Talep Et") + secondary commercial CTA ("Teklif Al").
-- **Common Misuse to Avoid:** Generic "Subscribe to newsletter" form.
+### 13. FINAL CTA
+- **Primitive Composition:**
+  - Container: `.pw2-section .pw2-section--dark` + `.pw2-container .pw2-container--reading` + `.pw2-text-center`
+  - Content: `.pw2-h2` + `.pw2-lead` + CTA row (`.pw2-btn--dark-primary` + `.pw2-btn--dark-secondary`)
 
 ---
 
@@ -482,7 +496,8 @@ Diagrams must visually represent the 6-step value chain and data ingestion pipel
   - Data Security & Zero-PII Trust Boundaries
   - High-impact mid-page transition dividers
   - Final CTA banners
-- **Dark Section Text:** Must use `--pw2-text-on-dark: #ffffff` and `--pw2-text-on-dark-muted: rgba(255, 255, 255, 0.74)` to guarantee WCAG AAA contrast.
+- **Default Surface:** Solid `var(--pw2-bg-dark): #0c3a30`. No default decorative gradients.
+- **Dark Section Text:** Must use `--pw2-text-on-dark: #ffffff` and `--pw2-text-on-dark-muted: rgba(255, 255, 255, 0.74)` to guarantee WCAG AA contrast.
 
 ---
 
@@ -515,16 +530,38 @@ Layouts must adapt intentionally across the 4 verified breakpoints:
 
 ---
 
-## 20. Accessibility (WCAG AA Compliance)
+## 20. Accessibility (WCAG 2.1 AA Compliance)
 
-- **Contrast Ratios:**
-  - Primary text (`#0d2821`) on white (`#ffffff`): **16.2:1** (Exceeds WCAG AAA).
-  - Secondary text (`#365147`) on white (`#ffffff`): **8.8:1** (Exceeds WCAG AAA).
-  - Text on dark petrol (`#ffffff` on `#0c3a30`): **13.5:1** (Exceeds WCAG AAA).
-- **Keyboard Navigation:** Every interactive element (`.pw2-btn`, links, tabs, accordions) must display a clear, high-contrast focus ring:
-  `outline: 2px solid var(--pw2-accent); outline-offset: 2px;`.
-- **Target Size:** Interactive buttons must maintain a minimum bounding box of `44px × 44px`.
-- **Screen Reader Support:** Provide `.pw2-sr-only` utility for visually hidden accessibility labels.
+### Verified Relative Luminance Contrast Ratios
+All color pairs have been verified via the standard WCAG 2.1 relative luminance algorithm:
+
+| Foreground | Background | Actual Ratio | Standard | Status |
+| :--- | :--- | :--- | :--- | :--- |
+| Primary Text (`#0d2821`) | Pure White (`#ffffff`) | **15.64:1** | WCAG AA ($ge$ 4.5:1) | PASS |
+| Primary Text (`#0d2821`) | Subtle Sage (`#f8faf9`) | **14.92:1** | WCAG AA ($ge$ 4.5:1) | PASS |
+| Secondary Text (`#365147`) | Pure White (`#ffffff`) | **8.66:1** | WCAG AA ($ge$ 4.5:1) | PASS |
+| Secondary Text (`#365147`) | Subtle Sage (`#f8faf9`) | **8.26:1** | WCAG AA ($ge$ 4.5:1) | PASS |
+| Muted Text (`#4a685e`) | Pure White (`#ffffff`) | **6.12:1** | WCAG AA ($ge$ 4.5:1) | PASS |
+| Muted Text (`#4a685e`) | Subtle Sage (`#f8faf9`) | **5.84:1** | WCAG AA ($ge$ 4.5:1) | PASS |
+| Accent Ink (`#3f5802`) | Pure White (`#ffffff`) | **8.05:1** | WCAG AA ($ge$ 4.5:1) | PASS |
+| Accent Ink (`#3f5802`) | Green Tint (`#f4f9f1`) | **7.54:1** | WCAG AA ($ge$ 4.5:1) | PASS |
+| Primary Button Text (`#0d2821`) | Primary Lime (`#84c225`) | **7.24:1** | WCAG AA ($ge$ 4.5:1) | PASS |
+| Primary Button Text (`#0d2821`) | Hover Lime (`#73aa20`) | **5.59:1** | WCAG AA ($ge$ 4.5:1) | PASS |
+| Focus on Light (`#3f5802`) | Pure White (`#ffffff`) | **8.05:1** | Non-Text UI ($ge$ 3.0:1) | PASS |
+| Focus on Dark (`#9edd05`) | Dark Petrol (`#0c3a30`) | **7.69:1** | Non-Text UI ($ge$ 3.0:1) | PASS |
+| Text on Dark (`#ffffff`) | Dark Petrol (`#0c3a30`) | **12.62:1** | WCAG AA ($ge$ 4.5:1) | PASS |
+| Text on Dark Muted (74%) | Dark Petrol (`#0c3a30`) | **7.65:1** | WCAG AA ($ge$ 4.5:1) | PASS |
+
+### Mandatory Contrast Rules for Future Tasks
+1. **Normal text (< 18pt / < 24px regular):** Must achieve $ge$ **4.5:1** against adjacent background.
+2. **Large text ($ge$ 18pt / $ge$ 14pt bold):** Must achieve $ge$ **3.0:1** against adjacent background.
+3. **Focus indicators and interactive UI boundaries:** Must achieve $ge$ **3.0:1** against adjacent background.
+4. **Baseline is WCAG AA:** Individual high-contrast pairs that reach AAA do not warrant a blanket AAA claim for the platform.
+
+### Target Size & Focus Discipline
+- **Target Size:** Every clickable button, link, accordion toggle, or tab must provide at least a **44px × 44px** hit area.
+- **Focus Rings:** Distinct 2px solid outlines with 2px offset (`--pw2-focus-on-light` on light surfaces, `--pw2-focus-on-dark` on dark sections). Zero glow effects.
+- **Screen Reader Support:** Provide `.pw2-sr-only` utility for accessibility labels.
 
 ---
 
@@ -596,6 +633,8 @@ Every subsequent page phase (P03–P25) must satisfy this quantitative checklist
 - [ ] **Namespace Compliance:** Are 100% of new CSS classes scoped under `.pw2-*`?
 - [ ] **Typography Hierarchy:** Is the heading hierarchy strictly sequential (H1 $\rightarrow$ H2 $\rightarrow$ H3)?
 - [ ] **Accent Restraint:** Is the lime accent restricted to CTAs, badges, and small focal highlights?
+- [ ] **Accessibility Compliance:** Do all text/background pairs meet $ge$ 4.5:1 and UI boundaries/focus rings meet $ge$ 3:1?
+- [ ] **Touch Target Verification:** Do all interactive elements (buttons, links, toggles) maintain $ge$ 44px hit targets?
 - [ ] **Screenshot Legibility:** Are screenshots cropped or zoomed so interface text is sharp and legible?
 - [ ] **Mobile Responsiveness:** Does the page flow naturally on mobile with left-aligned reading text and accessible touch targets?
 - [ ] **Metric Governance:** Are all demo/sample metrics explicitly badged with `ÖRNEK SENARYO`?
