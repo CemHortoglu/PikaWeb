@@ -8,1358 +8,1034 @@
     <link rel="stylesheet" href="~/css/pika-product-intelligence.css" asp-append-version="true" />
 }
 
-<div class="pika-pi-page">
-    <a href="#inner-content" class="pika-pi-skip-anchor visually-hidden-focusable">@(tr ? "İçeriğe atla" : "Skip to content")</a>
-
-    @* ── 01 HERO ────────────────────────────────────────────────── *@
-    <section class="pika-pi-hero">
-        <div class="pika-pi-container">
-            <nav class="pika-pi-breadcrumb" aria-label="@(tr ? "Navigasyon" : "Breadcrumb")">
-                <a href="@(tr ? "/" : "/en/")">@(tr ? "Ana Sayfa" : "Home")</a>
-                <span class="pika-pi-breadcrumb-sep" aria-hidden="true">/</span>
+@* ── 01 HERO (Restored existing hero shell) ─────────────────── *@
+<section class="inner-hero inner-hero--product">
+    <div class="inner-atmosphere" aria-hidden="true"><span></span><span></span></div>
+    <div class="container inner-hero-grid">
+        <div class="inner-intro">
+            <nav class="inner-breadcrumb" aria-label="@(tr ? "Sayfa yolu" : "Breadcrumb")">
+                <a href="@(tr ? "/" : "/en/")">Pika</a>
+                <span>/</span>
                 <a href="@(tr ? "/pika" : "/en/pika")">@(tr ? "Pika Nedir?" : "What Is Pika?")</a>
-                <span class="pika-pi-breadcrumb-sep" aria-hidden="true">/</span>
-                <span class="pika-pi-breadcrumb-current">@(tr ? "Ürün Zekâsı" : "Product Intelligence")</span>
+                <span>/</span>
+                <span>@(tr ? "Ürün Zekâsı" : "Product Intelligence")</span>
             </nav>
-
-            <div class="pika-pi-hero-grid">
-                <div class="pika-pi-hero-content">
-                    <div class="pika-pi-eyebrow-row">
-                        <span class="pika-pi-eyebrow">PRODUCT INTELLIGENCE</span>
-                        <span class="pika-pi-entity-label">@(tr ? "Ürün Zekâsı" : "Product Intelligence")</span>
-                    </div>
-
-                    @if (tr)
-                    {
-                        <h1 class="pika-pi-hero-title">
-                            Ürünün ne olduğunu değil,<br />
-                            ne ifade ettiğini anlayın.
-                        </h1>
-                        <p class="pika-pi-hero-lead">
-                            Pika Product Intelligence, ürünleri yalnızca stok kodu, kategori veya katalog adıyla değerlendirmez. Ürünün hangi müşteri ihtiyacına hizmet ettiğini, bu ihtiyaç içindeki rolünü, tekrar satın alma davranışını ve diğer ürünlerle ilişkisini anlamlandırarak ürünü ticari karar bağlamına taşır.
-                        </p>
-                        <p class="pika-pi-hero-supporting">
-                            Çünkü müşteri davranışını doğru yorumlamak için yalnızca ne satın alındığını değil, satın alınan ürünün müşteri açısından ne anlama geldiğini de bilmek gerekir.
-                        </p>
-                        <div class="pika-pi-hero-actions">
-                            <button type="button" class="pika-pi-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal">
-                                <span>Demo Talep Et</span>
-                                <i class="ri-arrow-right-up-line" aria-hidden="true"></i>
-                            </button>
-                            <a href="/platform/customer-intelligence" class="pika-pi-btn-secondary">
-                                <span>Customer Intelligence'ı Keşfedin</span>
-                                <i class="ri-arrow-right-line" aria-hidden="true"></i>
-                            </a>
-                        </div>
-                    }
-                    else
-                    {
-                        <h1 class="pika-pi-hero-title">
-                            Understand not only what<br />
-                            a product is, but what it means.
-                        </h1>
-                        <p class="pika-pi-hero-lead">
-                            Pika Product Intelligence evaluates products beyond stock codes, categories and catalog names. It turns products into commercial decision context by interpreting the customer need they serve, their role within that need, repeat-purchase behavior and relationships with other products.
-                        </p>
-                        <p class="pika-pi-hero-supporting">
-                            Because understanding customer behavior requires knowing not only what was purchased, but what that product means from the customer's perspective.
-                        </p>
-                        <div class="pika-pi-hero-actions">
-                            <button type="button" class="pika-pi-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal">
-                                <span>Request a Demo</span>
-                                <i class="ri-arrow-right-up-line" aria-hidden="true"></i>
-                            </button>
-                            <a href="/en/platform/customer-intelligence" class="pika-pi-btn-secondary">
-                                <span>Explore Customer Intelligence</span>
-                                <i class="ri-arrow-right-line" aria-hidden="true"></i>
-                            </a>
-                        </div>
-                    }
+            <div class="inner-eyebrow"><span></span>PRODUCT INTELLIGENCE</div>
+            @if (tr)
+            {
+                <h1>
+                    Ürünün ne olduğunu değil,<br />
+                    ne ifade ettiğini anlayın.
+                </h1>
+                <p>
+                    Pika Product Intelligence, ürünleri yalnızca stok kodu, kategori veya katalog adıyla değerlendirmez. Ürünün hangi müşteri ihtiyacına hizmet ettiğini, bu ihtiyaç içindeki rolünü, tekrar satın alma davranışını ve diğer ürünlerle ilişkisini anlamlandırarak ürünü ticari karar bağlamına taşır.
+                </p>
+                <p class="ph-muted" style="color:rgba(255,255,255,0.72);font-size:15px;margin-bottom:30px">
+                    Çünkü müşteri davranışını doğru yorumlamak için yalnızca ne satın alındığını değil, satın alınan ürünün müşteri açısından ne anlama geldiğini de bilmek gerekir.
+                </p>
+                <div class="inner-actions">
+                    <button class="inner-primary" type="button" data-bs-toggle="modal" data-bs-target="#demoModal">
+                        Demo Talep Et ↗
+                    </button>
+                    <a class="inner-secondary" href="/platform/customer-intelligence">
+                        Customer Intelligence'ı Keşfedin →
+                    </a>
+                    <a class="inner-secondary" href="#inner-content">
+                        Detayları inceleyin ↓
+                    </a>
                 </div>
-
-                <div class="pika-pi-hero-diagram-wrap" aria-hidden="true">
-                    <div class="pika-pi-concept-spine">
-                        <div class="pika-pi-spine-node pika-pi-spine-node--start">
-                            <span class="pika-pi-spine-tag">01</span>
-                            <strong>PRODUCT</strong>
-                        </div>
-                        <div class="pika-pi-spine-connector">
-                            <i class="ri-arrow-down-line"></i>
-                        </div>
-                        <div class="pika-pi-spine-node">
-                            <span class="pika-pi-spine-tag">02</span>
-                            <strong>NEED</strong>
-                        </div>
-                        <div class="pika-pi-spine-connector">
-                            <i class="ri-arrow-down-line"></i>
-                        </div>
-                        <div class="pika-pi-spine-node">
-                            <span class="pika-pi-spine-tag">03</span>
-                            <strong>ROLE</strong>
-                        </div>
-                        <div class="pika-pi-spine-connector">
-                            <i class="ri-arrow-down-line"></i>
-                        </div>
-                        <div class="pika-pi-spine-node">
-                            <span class="pika-pi-spine-tag">04</span>
-                            <strong>RELATIONSHIPS</strong>
-                        </div>
-                        <div class="pika-pi-spine-connector">
-                            <i class="ri-arrow-down-line"></i>
-                        </div>
-                        <div class="pika-pi-spine-node pika-pi-spine-node--accent">
-                            <span class="pika-pi-spine-tag">05</span>
-                            <strong>COMMERCIAL CONTEXT</strong>
-                        </div>
-                        <div class="pika-pi-diagram-caption">
-                            @(tr ? "Örnek görünüm · Ürün verisinden ticari bağlama akış" : "Illustration · Flow from product data to commercial context")
-                        </div>
+            }
+            else
+            {
+                <h1>
+                    Understand not only what<br />
+                    a product is, but what it means.
+                </h1>
+                <p>
+                    Pika Product Intelligence evaluates products beyond stock codes, categories and catalog names. It turns products into commercial decision context by interpreting the customer need they serve, their role within that need, repeat-purchase behavior and relationships with other products.
+                </p>
+                <p class="ph-muted" style="color:rgba(255,255,255,0.72);font-size:15px;margin-bottom:30px">
+                    Because understanding customer behavior requires knowing not only what was purchased, but what that product means from the customer's perspective.
+                </p>
+                <div class="inner-actions">
+                    <button class="inner-primary" type="button" data-bs-toggle="modal" data-bs-target="#demoModal">
+                        Request a Demo ↗
+                    </button>
+                    <a class="inner-secondary" href="/en/platform/customer-intelligence">
+                        Explore Customer Intelligence →
+                    </a>
+                    <a class="inner-secondary" href="#inner-content">
+                        Explore the details ↓
+                    </a>
+                </div>
+            }
+        </div>
+        <div class="inner-scene" aria-label="@(tr ? "Platformun çalışma biçimini anlatan örnek görünüm" : "Illustrative view of how the platform works")">
+            <div class="inner-scene-orbit" aria-hidden="true"></div>
+            <div class="inner-scene-window">
+                <div class="inner-window-bar">
+                    <strong>pika<span>✳</span></strong>
+                    <span>Product Intelligence</span>
+                    <small>@(tr ? "Örnek görünüm" : "Illustration")</small>
+                </div>
+                <div class="inner-products">
+                    <div>
+                        <i class="ri-cup-line" aria-hidden="true"></i>
+                        <small>@(tr ? "ANA ÜRÜN" : "PRIMARY PRODUCT")</small>
+                        <strong>@(tr ? "Filtre kahve" : "Filter coffee")</strong>
+                    </div>
+                    <span>+</span>
+                    <div>
+                        <i class="ri-filter-line" aria-hidden="true"></i>
+                        <small>@(tr ? "TAMAMLAYICI" : "COMPLEMENTARY")</small>
+                        <strong>@(tr ? "Kahve filtresi" : "Coffee filters")</strong>
+                    </div>
+                </div>
+                <div class="inner-insight">
+                    <span>✳</span>
+                    <div>
+                        <strong>@(tr ? "Aynı ritüelin iki parçası." : "Two parts of the same ritual.")</strong>
+                        <p>@(tr ? "Ürün ilişkilerinden anlamlı önerilere." : "From product relationships to relevant suggestions.")</p>
                     </div>
                 </div>
             </div>
+            <div class="inner-scene-caption">PRODUCT INTELLIGENCE. MEANINGFUL CONNECTIONS.</div>
         </div>
-    </section>
+    </div>
+</section>
+<div id="inner-content" class="inner-anchor"></div>
 
-    @* ── 02 DIRECT ANSWER ───────────────────────────────────────── *@
-    <section class="pika-pi-section pika-pi-section--light" id="inner-content">
-        <div class="pika-pi-container">
-            <div class="pika-pi-direct-answer-card">
-                <span class="pika-pi-section-eyebrow">@(tr ? "KISA CEVAP" : "THE SHORT ANSWER")</span>
-                <h2 class="pika-pi-section-title">@(tr ? "Product Intelligence nedir?" : "What is Product Intelligence?")</h2>
-
+@* ── 02 & 03 DIRECT ANSWER + WHY A SKU IS NOT ENOUGH ────────── *@
+<section class="ph-section ph-section-alt">
+    <div class="container">
+        <div class="row g-5 align-items-start">
+            <div class="col-lg-6">
+                <span class="ph-eyebrow">@(tr ? "KISA CEVAP" : "THE SHORT ANSWER")</span>
+                <h2 class="pika-h2 fw-bold mb-3">@(tr ? "Product Intelligence nedir?" : "What is Product Intelligence?")</h2>
                 @if (tr)
                 {
-                    <p class="pika-pi-body-text">
+                    <p class="ph-muted">
                         Product Intelligence, ürün kayıtlarını müşteri ihtiyacı ve ticari bağlam açısından anlamlandıran ürün zekâsı katmanıdır.
                     </p>
-                    <p class="pika-pi-body-text">
+                    <p class="ph-muted">
                         Pika'da Product Intelligence; bir ürünün yalnızca hangi kategoriye ait olduğunu değil, hangi ihtiyacı karşıladığını, bu ihtiyaç içindeki rolünü, tekrar satın alma davranışını ve diğer ürünlerle ilişkisini değerlendirmeye yardımcı olur.
                     </p>
-                    <p class="pika-pi-body-text">
+                    <p class="ph-muted mb-2">
                         Bu sayede işlem verisindeki: “müşteri X ürününü satın aldı” bilgisi daha anlamlı bir soruya dönüşebilir:
                     </p>
-                    <div class="pika-pi-large-question">
-                        “Müşteri hangi ihtiyacı<br />
-                        karşılayan nasıl bir ürün satın aldı?”
+                    <div class="p-3 my-3 rounded bg-white border" style="border-left:4px solid #b5ee19 !important">
+                        <strong style="color:#23413b">“Müşteri hangi ihtiyacı karşılayan nasıl bir ürün satın aldı?”</strong>
                     </div>
-                    <p class="pika-pi-body-text mt-4">
+                    <p class="ph-muted">
                         Bu ürün bağlamı daha sonra Customer Intelligence ile birleşerek Pika'nın fırsat ve karar katmanlarını besler.
                     </p>
                 }
                 else
                 {
-                    <p class="pika-pi-body-text">
+                    <p class="ph-muted">
                         Product Intelligence is the product-intelligence layer that gives product records meaning in terms of customer need and commercial context.
                     </p>
-                    <p class="pika-pi-body-text">
+                    <p class="ph-muted">
                         In Pika, Product Intelligence helps evaluate not only which category a product belongs to, but which need it serves, its role within that need, repeat-purchase behavior and relationships with other products.
                     </p>
-                    <p class="pika-pi-body-text">
+                    <p class="ph-muted mb-2">
                         This turns the transaction statement: “the customer purchased product X” into a more meaningful question:
                     </p>
-                    <div class="pika-pi-large-question">
-                        “What kind of product did the customer buy,<br />
-                        and which need did it serve?”
+                    <div class="p-3 my-3 rounded bg-white border" style="border-left:4px solid #b5ee19 !important">
+                        <strong style="color:#23413b">“What kind of product did the customer buy, and which need did it serve?”</strong>
                     </div>
-                    <p class="pika-pi-body-text mt-4">
+                    <p class="ph-muted">
                         That product context can then combine with Customer Intelligence to feed Pika's opportunity and decision layers.
                     </p>
                 }
             </div>
-        </div>
-    </section>
 
-    @* ── 03 WHY A SKU IS NOT ENOUGH ─────────────────────────────── *@
-    <section class="pika-pi-section">
-        <div class="pika-pi-container pika-pi-container--narrow">
-            <span class="pika-pi-section-eyebrow">@(tr ? "KATALOGDAN ANLAMA" : "FROM CATALOG TO MEANING")</span>
-            @if (tr)
-            {
-                <h2 class="pika-pi-section-title">
-                    Stok kodu,<br />
-                    ticari anlam değildir.
-                </h2>
-                <div class="pika-pi-prose">
-                    <p class="pika-pi-body-text">
-                        Ürün kodları ve katalog kategorileri operasyon için gereklidir. Hangi ürünün satıldığını, hangi kategoride bulunduğunu veya hangi varyantın işlem gördüğünü tanımlarlar.
-                    </p>
-                    <p class="pika-pi-body-text">
-                        Ancak müşteri davranışını anlamlandırmak için bu bilgi çoğu zaman yeterli değildir.
-                    </p>
-                    <p class="pika-pi-body-text">
-                        Aynı katalog kategorisindeki iki ürün farklı müşteri ihtiyaçlarına hizmet edebilir.
-                    </p>
-                    <p class="pika-pi-body-text">
-                        Farklı kategorilerdeki iki ürün ise müşterinin aynı ihtiyacını karşılıyor olabilir.
-                    </p>
-                    <div class="pika-pi-emphasis-statement">
-                        <p class="mb-2"><strong>Katalog:</strong></p>
-                        <p class="mb-3">“Bu ürün nedir?” sorusuna cevap verir.</p>
-                        <p class="mb-2"><strong>Product Intelligence:</strong></p>
-                        <p class="mb-0">“Bu ürün müşteri ve ticari karar açısından ne ifade ediyor?” sorusuna yaklaşır.</p>
-                    </div>
-                    <p class="pika-pi-body-text">
-                        Pika'nın ürün zekâsı yaklaşımı, operasyonel ürün kaydını değiştirmek yerine onun üzerine karar verilebilir bir anlam katmanı ekler.
-                    </p>
-                </div>
-            }
-            else
-            {
-                <h2 class="pika-pi-section-title">
-                    A stock code<br />
-                    is not commercial meaning.
-                </h2>
-                <div class="pika-pi-prose">
-                    <p class="pika-pi-body-text">
-                        Product codes and catalog categories are essential for operations. They identify which product was sold, where it belongs and which variant was transacted.
-                    </p>
-                    <p class="pika-pi-body-text">
-                        But that information is often not enough to interpret customer behavior.
-                    </p>
-                    <p class="pika-pi-body-text">
-                        Two products in the same catalog category may serve different customer needs.
-                    </p>
-                    <p class="pika-pi-body-text">
-                        Two products in different categories may satisfy the same underlying need.
-                    </p>
-                    <div class="pika-pi-emphasis-statement">
-                        <p class="mb-2"><strong>The catalog answers:</strong></p>
-                        <p class="mb-3">“What is this product?”</p>
-                        <p class="mb-2"><strong>Product Intelligence approaches:</strong></p>
-                        <p class="mb-0">“What does this product mean for the customer and the commercial decision?”</p>
-                    </div>
-                    <p class="pika-pi-body-text">
-                        Pika's Product Intelligence approach does not replace the operational product record. It adds a decision-ready meaning layer on top of it.
-                    </p>
-                </div>
-            }
-        </div>
-    </section>
-
-    @* ── 04 FROM PRODUCT RECORD TO PRODUCT MEANING ──────────────── *@
-    <section class="pika-pi-section pika-pi-section--alt">
-        <div class="pika-pi-container pika-pi-container--narrow">
-            <span class="pika-pi-section-eyebrow">@(tr ? "ÜRÜN BAĞLAMI" : "PRODUCT CONTEXT")</span>
-            @if (tr)
-            {
-                <h2 class="pika-pi-section-title">
-                    Ürün bilgisini<br />
-                    katmanlar halinde anlamlandırın.
-                </h2>
-                <p class="pika-pi-lead-paragraph">
-                    Product Intelligence, ürün anlamını tek bir etiketle açıklamaz. Farklı bağlam katmanları birlikte kullanıldığında ürün analitik olarak daha kullanılabilir hale gelir.
-                </p>
-
-                <div class="pika-pi-editorial-list">
-                    <div class="pika-pi-editorial-item">
-                        <div class="pika-pi-editorial-meta">
-                            <span class="pika-pi-editorial-num">01</span>
-                            <h3 class="pika-pi-editorial-heading">ÜRÜN KAYDI</h3>
-                        </div>
-                        <p class="pika-pi-editorial-desc">
-                            Ürün adı, kodu, kategori ve temel katalog bilgisi operasyonel başlangıç noktasıdır.
-                        </p>
-                    </div>
-
-                    <div class="pika-pi-editorial-item">
-                        <div class="pika-pi-editorial-meta">
-                            <span class="pika-pi-editorial-num">02</span>
-                            <h3 class="pika-pi-editorial-heading">SINIFLANDIRMA BAĞLAMI</h3>
-                        </div>
-                        <p class="pika-pi-editorial-desc">
-                            Ürünün hangi sınıflandırma çerçevesinde değerlendirilmesi gerektiği belirlenir.
-                        </p>
-                    </div>
-
-                    <div class="pika-pi-editorial-item">
-                        <div class="pika-pi-editorial-meta">
-                            <span class="pika-pi-editorial-num">03</span>
-                            <h3 class="pika-pi-editorial-heading">İHTİYAÇ</h3>
-                        </div>
-                        <p class="pika-pi-editorial-desc">
-                            Ürünün müşteri açısından hangi ihtiyaca hizmet ettiği anlamlandırılır.
-                        </p>
-                    </div>
-
-                    <div class="pika-pi-editorial-item">
-                        <div class="pika-pi-editorial-meta">
-                            <span class="pika-pi-editorial-num">04</span>
-                            <h3 class="pika-pi-editorial-heading">ÜRÜN ROLÜ</h3>
-                        </div>
-                        <p class="pika-pi-editorial-desc">
-                            Ürünün ihtiyaç ve ticari bağlam içindeki fonksiyonu değerlendirilir.
-                        </p>
-                    </div>
-
-                    <div class="pika-pi-editorial-item">
-                        <div class="pika-pi-editorial-meta">
-                            <span class="pika-pi-editorial-num">05</span>
-                            <h3 class="pika-pi-editorial-heading">DAVRANIŞ &amp; İLİŞKİLER</h3>
-                        </div>
-                        <p class="pika-pi-editorial-desc">
-                            Tekrar satın alma davranışı ve diğer ürünlerle oluşan ilişkiler değerlendirme bağlamına eklenir.
-                        </p>
-                    </div>
-
-                    <div class="pika-pi-editorial-item">
-                        <div class="pika-pi-editorial-meta">
-                            <span class="pika-pi-editorial-num">06</span>
-                            <h3 class="pika-pi-editorial-heading">TİCARİ BAĞLAM</h3>
-                        </div>
-                        <p class="pika-pi-editorial-desc">
-                            Ürün, müşteri zekâsı ve fırsat katmanlarının kullanabileceği daha anlamlı bir veri varlığına dönüşür.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="pika-pi-closing-box">
-                    <p class="pika-pi-body-text mb-0">
-                        Amaç ürüne daha fazla etiket eklemek değil, ürün bilgisini ticari karar için daha anlamlı hale getirmektir.
-                    </p>
-                </div>
-            }
-            else
-            {
-                <h2 class="pika-pi-section-title">
-                    Build product meaning<br />
-                    in layers.
-                </h2>
-                <p class="pika-pi-lead-paragraph">
-                    Product Intelligence does not explain a product through one label. Product data becomes more useful analytically when multiple context layers are evaluated together.
-                </p>
-
-                <div class="pika-pi-editorial-list">
-                    <div class="pika-pi-editorial-item">
-                        <div class="pika-pi-editorial-meta">
-                            <span class="pika-pi-editorial-num">01</span>
-                            <h3 class="pika-pi-editorial-heading">PRODUCT RECORD</h3>
-                        </div>
-                        <p class="pika-pi-editorial-desc">
-                            Product name, code, category and basic catalog data form the operational starting point.
-                        </p>
-                    </div>
-
-                    <div class="pika-pi-editorial-item">
-                        <div class="pika-pi-editorial-meta">
-                            <span class="pika-pi-editorial-num">02</span>
-                            <h3 class="pika-pi-editorial-heading">CLASSIFICATION CONTEXT</h3>
-                        </div>
-                        <p class="pika-pi-editorial-desc">
-                            The framework through which the product should be evaluated is established.
-                        </p>
-                    </div>
-
-                    <div class="pika-pi-editorial-item">
-                        <div class="pika-pi-editorial-meta">
-                            <span class="pika-pi-editorial-num">03</span>
-                            <h3 class="pika-pi-editorial-heading">NEED</h3>
-                        </div>
-                        <p class="pika-pi-editorial-desc">
-                            The customer need served by the product is interpreted.
-                        </p>
-                    </div>
-
-                    <div class="pika-pi-editorial-item">
-                        <div class="pika-pi-editorial-meta">
-                            <span class="pika-pi-editorial-num">04</span>
-                            <h3 class="pika-pi-editorial-heading">PRODUCT ROLE</h3>
-                        </div>
-                        <p class="pika-pi-editorial-desc">
-                            The product's function within need and commercial context is evaluated.
-                        </p>
-                    </div>
-
-                    <div class="pika-pi-editorial-item">
-                        <div class="pika-pi-editorial-meta">
-                            <span class="pika-pi-editorial-num">05</span>
-                            <h3 class="pika-pi-editorial-heading">BEHAVIOR &amp; RELATIONSHIPS</h3>
-                        </div>
-                        <p class="pika-pi-editorial-desc">
-                            Repeat-purchase behavior and relationships with other products are added to the evaluation context.
-                        </p>
-                    </div>
-
-                    <div class="pika-pi-editorial-item">
-                        <div class="pika-pi-editorial-meta">
-                            <span class="pika-pi-editorial-num">06</span>
-                            <h3 class="pika-pi-editorial-heading">COMMERCIAL CONTEXT</h3>
-                        </div>
-                        <p class="pika-pi-editorial-desc">
-                            The product becomes a more meaningful data asset that customer-intelligence and opportunity layers can use.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="pika-pi-closing-box">
-                    <p class="pika-pi-body-text mb-0">
-                        The objective is not to attach more labels to a product. It is to make product data more meaningful for commercial decision making.
-                    </p>
-                </div>
-            }
-        </div>
-    </section>
-
-    @* ── 05 NEED GROUP ──────────────────────────────────────────── *@
-    <section class="pika-pi-section">
-        <div class="pika-pi-container pika-pi-container--narrow">
-            <span class="pika-pi-section-eyebrow">NEED GROUP</span>
-            @if (tr)
-            {
-                <h2 class="pika-pi-section-title">
-                    Kategori,<br />
-                    müşterinin ihtiyacıyla<br />
-                    aynı şey değildir.
-                </h2>
-                <div class="pika-pi-prose">
-                    <p class="pika-pi-body-text">
-                        Katalog kategorileri ürünleri operasyonel veya ticari hiyerarşi içinde düzenler.
-                    </p>
-                    <p class="pika-pi-body-text mb-2">
-                        Need Group ise ürüne başka bir açıdan bakar:
-                    </p>
-                    <div class="pika-pi-large-question">
-                        “Bu ürün müşterinin<br />
-                        hangi ihtiyacına hizmet ediyor?”
-                    </div>
-                    <p class="pika-pi-body-text mt-4">
-                        Bu ayrım önemlidir; çünkü aynı ihtiyacı karşılayan ürünler her zaman aynı katalog kategorisinde bulunmayabilir.
-                    </p>
-                    <p class="pika-pi-body-text">
-                        Benzer şekilde aynı kategoride yer alan ürünler müşterinin farklı ihtiyaçlarını karşılıyor olabilir.
-                    </p>
-                    <div class="pika-pi-comparison-box">
-                        <div class="pika-pi-comparison-item">
-                            <span class="pika-pi-comparison-badge">CATEGORY</span>
-                            <p class="mb-0">Ürünün katalogdaki yeri.</p>
-                        </div>
-                        <div class="pika-pi-comparison-item pika-pi-comparison-item--accent">
-                            <span class="pika-pi-comparison-badge pika-pi-comparison-badge--accent">NEED GROUP</span>
-                            <p class="mb-0">Ürünün müşteri ihtiyacı içindeki anlamı.</p>
-                        </div>
-                    </div>
-                    <p class="pika-pi-body-text mt-4">
-                        Need Group bağlamı, ürün bilgisinin müşteri davranışıyla daha anlamlı biçimde ilişkilendirilmesine yardımcı olur.
-                    </p>
-                </div>
-            }
-            else
-            {
-                <h2 class="pika-pi-section-title">
-                    A category<br />
-                    is not the same thing<br />
-                    as a customer need.
-                </h2>
-                <div class="pika-pi-prose">
-                    <p class="pika-pi-body-text">
-                        Catalog categories organize products within an operational or commercial hierarchy.
-                    </p>
-                    <p class="pika-pi-body-text mb-2">
-                        A Need Group looks at the product from another perspective:
-                    </p>
-                    <div class="pika-pi-large-question">
-                        “Which customer need<br />
-                        does this product serve?”
-                    </div>
-                    <p class="pika-pi-body-text mt-4">
-                        This distinction matters because products serving the same need do not always belong to the same catalog category.
-                    </p>
-                    <p class="pika-pi-body-text">
-                        Likewise, products in the same category may serve different customer needs.
-                    </p>
-                    <div class="pika-pi-comparison-box">
-                        <div class="pika-pi-comparison-item">
-                            <span class="pika-pi-comparison-badge">CATEGORY</span>
-                            <p class="mb-0">Where the product sits in the catalog.</p>
-                        </div>
-                        <div class="pika-pi-comparison-item pika-pi-comparison-item--accent">
-                            <span class="pika-pi-comparison-badge pika-pi-comparison-badge--accent">NEED GROUP</span>
-                            <p class="mb-0">What the product means within customer need.</p>
-                        </div>
-                    </div>
-                    <p class="pika-pi-body-text mt-4">
-                        Need Group context helps product data relate more meaningfully to customer behavior.
-                    </p>
-                </div>
-            }
-        </div>
-    </section>
-
-    @* ── 06 PRODUCT ROLE ────────────────────────────────────────── *@
-    <section class="pika-pi-section pika-pi-section--light">
-        <div class="pika-pi-container pika-pi-container--narrow">
-            <span class="pika-pi-section-eyebrow">PRODUCT ROLE</span>
-            @if (tr)
-            {
-                <h2 class="pika-pi-section-title">
-                    Aynı ihtiyaca hizmet eden<br />
-                    her ürün aynı rolü taşımaz.
-                </h2>
-                <div class="pika-pi-prose">
-                    <p class="pika-pi-body-text">
-                        Need Group, ürünün hangi ihtiyaca hizmet ettiğini açıklar.
-                    </p>
-                    <p class="pika-pi-body-text">
-                        Product Role ise ürünün bu ihtiyaç ve ticari bağlam içinde nasıl bir fonksiyon taşıdığını değerlendirmeye yardımcı olur.
-                    </p>
-                    <p class="pika-pi-body-text">
-                        Bir ürün müşteri için ihtiyacın merkezinde olabilir.
-                    </p>
-                    <p class="pika-pi-body-text">
-                        Başka bir ürün aynı ihtiyacı tamamlayabilir.
-                    </p>
-                    <p class="pika-pi-body-text">
-                        Bir başka ürün ise alternatif veya farklı bir ticari işlev taşıyabilir.
-                    </p>
-                    <p class="pika-pi-body-text">
-                        Bu rol bilgisi özellikle ürünlerin birbirleriyle ilişkisini, teklif yapısını ve fırsat bağlamını değerlendirirken önem kazanır.
-                    </p>
-                    <div class="pika-pi-closing-manifesto">
-                        <p class="mb-1"><strong>Need Group:</strong> “Neden?”</p>
-                        <p class="mb-0"><strong>Product Role:</strong> “Bu ihtiyacın içinde nasıl bir rol?”</p>
-                    </div>
-                    <p class="pika-pi-body-text mt-4">
-                        Pika böylece ürünleri yalnızca aynı kategori altında toplamak yerine, müşteri ihtiyacı içindeki fonksiyonları açısından da değerlendirebilir.
-                    </p>
-                </div>
-            }
-            else
-            {
-                <h2 class="pika-pi-section-title">
-                    Products serving the same need<br />
-                    do not necessarily play the same role.
-                </h2>
-                <div class="pika-pi-prose">
-                    <p class="pika-pi-body-text">
-                        A Need Group explains which need a product serves.
-                    </p>
-                    <p class="pika-pi-body-text">
-                        Product Role helps evaluate the function the product plays within that need and commercial context.
-                    </p>
-                    <p class="pika-pi-body-text">
-                        One product may sit at the center of the customer's need.
-                    </p>
-                    <p class="pika-pi-body-text">
-                        Another may complement that need.
-                    </p>
-                    <p class="pika-pi-body-text">
-                        Another may serve as an alternative or play a different commercial function.
-                    </p>
-                    <p class="pika-pi-body-text">
-                        Role context becomes especially useful when evaluating product relationships, offer structure and commercial opportunities.
-                    </p>
-                    <div class="pika-pi-closing-manifesto">
-                        <p class="mb-1"><strong>Need Group:</strong> “Why?”</p>
-                        <p class="mb-0"><strong>Product Role:</strong> “What role does the product play within that need?”</p>
-                    </div>
-                    <p class="pika-pi-body-text mt-4">
-                        This allows Pika to evaluate products not only as members of the same category, but through their function within customer need.
-                    </p>
-                </div>
-            }
-        </div>
-    </section>
-
-    @* ── 07 PLAYBOOK & CLASSIFICATION CONTEXT ───────────────────── *@
-    <section class="pika-pi-section">
-        <div class="pika-pi-container pika-pi-container--narrow">
-            <span class="pika-pi-section-eyebrow">PLAYBOOK</span>
-            @if (tr)
-            {
-                <h2 class="pika-pi-section-title">
-                    Ürün anlamı,<br />
-                    sektör bağlamından bağımsız değildir.
-                </h2>
-                <div class="pika-pi-prose">
-                    <p class="pika-pi-body-text">
-                        Aynı sınıflandırma mantığını her ürün dünyasına zorla uygulamak, ürünün ticari anlamını zayıflatabilir.
-                    </p>
-                    <p class="pika-pi-body-text">
-                        Pika Playbook yaklaşımı, ürünlerin hangi anlamlandırma boyutlarıyla değerlendirileceğini sektör ve kategori bağlamında düzenlemeye yardımcı olur.
-                    </p>
-                    <p class="pika-pi-body-text">
-                        Playbook; ürün kategorisi, Need Group, Product Role ve gerektiğinde ek sınıflandırma özellikleri arasında ortak bir çerçeve oluşturur.
-                    </p>
-                    <p class="pika-pi-body-text">
-                        Bu çerçevenin amacı ürünleri daha karmaşık hale getirmek değildir.
-                    </p>
-                    <div class="pika-pi-emphasis-statement">
-                        <p class="mb-1"><strong>Amaç:</strong></p>
-                        <p class="mb-0">Farklı ürün dünyalarını aynı ticari karar dili içinde tutarlı biçimde anlamlandırabilmek.</p>
-                    </div>
-                    <p class="pika-pi-body-text mt-4">
-                        Sınıflandırma sonuçları gerektiğinde insan incelemesi ve doğrulamasıyla kontrol edilebilir; ürün gerçeği yalnızca üretken yapay zekâ tarafından belirlenmiş bir etiket olarak ele alınmaz.
-                    </p>
-                </div>
-            }
-            else
-            {
-                <h2 class="pika-pi-section-title">
-                    Product meaning<br />
-                    depends on industry context.
-                </h2>
-                <div class="pika-pi-prose">
-                    <p class="pika-pi-body-text">
-                        Forcing the same classification logic onto every product universe can weaken commercial meaning.
-                    </p>
-                    <p class="pika-pi-body-text">
-                        Pika's Playbook approach helps organize which dimensions should be used to interpret products within industry and category context.
-                    </p>
-                    <p class="pika-pi-body-text">
-                        A Playbook provides a common framework across product category, Need Group, Product Role and additional classification attributes where required.
-                    </p>
-                    <p class="pika-pi-body-text">
-                        The purpose of that framework is not to make products more complicated.
-                    </p>
-                    <div class="pika-pi-emphasis-statement">
-                        <p class="mb-1"><strong>The purpose is:</strong></p>
-                        <p class="mb-0">To interpret different product universes consistently within the same commercial decision language.</p>
-                    </div>
-                    <p class="pika-pi-body-text mt-4">
-                        Classification results can be reviewed and verified by people where needed; product truth is not treated merely as a label generated by generative AI.
-                    </p>
-                </div>
-            }
-        </div>
-    </section>
-
-    @* ── 08 REPEAT-PURCHASE CONTEXT ─────────────────────────────── *@
-    <section class="pika-pi-section pika-pi-section--light">
-        <div class="pika-pi-container pika-pi-container--narrow">
-            <span class="pika-pi-section-eyebrow">@(tr ? "TEKRAR SATIN ALMA" : "REPEAT PURCHASE")</span>
-            @if (tr)
-            {
-                <h2 class="pika-pi-section-title">
-                    Bazı ürünlerin değeri,<br />
-                    bir kez satın alındıkları anda bitmez.
-                </h2>
-                <div class="pika-pi-prose">
-                    <p class="pika-pi-body-text">
-                        Ürünler tekrar satın alma davranışı açısından birbirinden farklıdır.
-                    </p>
-                    <p class="pika-pi-body-text">
-                        Bazı ürünlerde düzenli veya tekrar eden satın alma örüntüsü oluşabilirken bazı ürünlerde bu davranış anlamlı olmayabilir.
-                    </p>
-                    <p class="pika-pi-body-text">
-                        Product Intelligence ürün bağlamının, geçmiş işlem davranışıyla birlikte değerlendirilmesine yardımcı olur.
-                    </p>
-                    <p class="pika-pi-body-text">
-                        Bu sayede tekrar davranışı anlamlı olan ürünler için ürünün kendisi, müşteri ritmi ve geçmiş işlem aralıkları aynı fırsat bağlamında değerlendirilebilir.
-                    </p>
-                    <div class="pika-pi-boundary-card">
-                        <p><strong>Product Intelligence:</strong><br />“Bu müşterinin bir sonraki alışverişini kesin olarak bilir” iddiasında bulunmaz.</p>
-                        <p class="mb-0"><strong>Product Intelligence:</strong><br />Ürünün tekrar davranışı açısından değerlendirilebilir bağlamını sağlar.</p>
-                    </div>
-                    <p class="pika-pi-body-text mt-4">
-                        Müşteri bazındaki kişisel satın alma ritmi Customer Intelligence tarafından değerlendirilir; ürün bağlamı ile müşteri bağlamı daha sonra Günün Fırsatları katmanında bir araya gelebilir.
-                    </p>
-                    <div class="mt-4">
-                        <a href="/platform/gunun-firsatlari" class="pika-pi-text-link">
-                            Günün Fırsatlarını Keşfedin &rarr;
-                        </a>
-                    </div>
-                </div>
-            }
-            else
-            {
-                <h2 class="pika-pi-section-title">
-                    The value of some products<br />
-                    does not end with one purchase.
-                </h2>
-                <div class="pika-pi-prose">
-                    <p class="pika-pi-body-text">
-                        Products differ in repeat-purchase behavior.
-                    </p>
-                    <p class="pika-pi-body-text">
-                        Some products may show recurring purchasing patterns, while repeat behavior may not be meaningful for others.
-                    </p>
-                    <p class="pika-pi-body-text">
-                        Product Intelligence helps product context be evaluated together with historical transaction behavior.
-                    </p>
-                    <p class="pika-pi-body-text">
-                        For products where repeat behavior is meaningful, the product itself, customer rhythm and historical transaction intervals can contribute to the same opportunity context.
-                    </p>
-                    <div class="pika-pi-boundary-card">
-                        <p><strong>Product Intelligence does not claim:</strong><br />“We know exactly when this customer will purchase again.”</p>
-                        <p class="mb-0"><strong>Product Intelligence provides:</strong><br />Product context that can be evaluated for repeat behavior.</p>
-                    </div>
-                    <p class="pika-pi-body-text mt-4">
-                        Individual customer purchase rhythm is evaluated by Customer Intelligence; product and customer context can later come together in the Daily Opportunities layer.
-                    </p>
-                    <div class="mt-4">
-                        <a href="/en/platform/opportunities" class="pika-pi-text-link">
-                            Explore Daily Opportunities &rarr;
-                        </a>
-                    </div>
-                </div>
-            }
-        </div>
-    </section>
-
-    @* ── 09 PRODUCT RELATIONSHIPS & CROSS-SELL ──────────────────── *@
-    <section class="pika-pi-section">
-        <div class="pika-pi-container pika-pi-container--narrow">
-            <span class="pika-pi-section-eyebrow">@(tr ? "ÜRÜN İLİŞKİLERİ" : "PRODUCT RELATIONSHIPS")</span>
-            @if (tr)
-            {
-                <h2 class="pika-pi-section-title">
-                    Birlikte satın alınan ürünler,<br />
-                    tek başına tesadüf değildir;<br />
-                    ama tek başına anlam da değildir.
-                </h2>
-                <div class="pika-pi-prose">
-                    <p class="pika-pi-body-text">
-                        İşlem geçmişi, hangi ürünlerin aynı sepetlerde veya müşteri yolculuklarında birlikte görüldüğüne ilişkin kanıt üretebilir.
-                    </p>
-                    <p class="pika-pi-body-text">
-                        Ancak yalnızca “bu iki ürün birlikte satıldı” bilgisi her zaman yeterli değildir.
-                    </p>
-                    <p class="pika-pi-body-text">
-                        Product Intelligence, bu ilişkiyi ürünlerin Need Group ve Product Role bağlamıyla birlikte değerlendirmeye yardımcı olur.
-                    </p>
-
-                    <div class="pika-pi-formula-statement">
-                        <div class="pika-pi-formula-part">Davranış ilişkisi</div>
-                        <div class="pika-pi-formula-op">+</div>
-                        <div class="pika-pi-formula-part">Ürün anlamı</div>
-                        <div class="pika-pi-formula-op">=</div>
-                        <div class="pika-pi-formula-result">Daha güçlü cross-sell bağlamı</div>
-                    </div>
-
-                    <p class="pika-pi-body-text mt-4">
-                        Bu yaklaşımın amacı her birlikte satın almayı otomatik olarak öneri haline getirmek değil, ürün ilişkilerinin ticari olarak neden anlamlı olabileceğini daha iyi değerlendirmektir.
-                    </p>
-                    <div class="pika-pi-closing-box mt-3">
-                        <p class="mb-1">Cross-sell yalnızca: “Bunu alan şunu da aldı” değildir.</p>
-                        <p class="mb-0 fw-bold">Asıl soru: “Neden birlikte anlamlılar?”</p>
-                    </div>
-                </div>
-            }
-            else
-            {
-                <h2 class="pika-pi-section-title">
-                    Products purchased together<br />
-                    are not necessarily random;<br />
-                    but co-occurrence alone is not meaning.
-                </h2>
-                <div class="pika-pi-prose">
-                    <p class="pika-pi-body-text">
-                        Transaction history can provide evidence about which products appear together across baskets or customer journeys.
-                    </p>
-                    <p class="pika-pi-body-text">
-                        But knowing only that “these two products were purchased together” is not always enough.
-                    </p>
-                    <p class="pika-pi-body-text">
-                        Product Intelligence helps evaluate that relationship together with Need Group and Product Role context.
-                    </p>
-
-                    <div class="pika-pi-formula-statement">
-                        <div class="pika-pi-formula-part">Behavioral relationship</div>
-                        <div class="pika-pi-formula-op">+</div>
-                        <div class="pika-pi-formula-part">Product meaning</div>
-                        <div class="pika-pi-formula-op">=</div>
-                        <div class="pika-pi-formula-result">Stronger cross-sell context</div>
-                    </div>
-
-                    <p class="pika-pi-body-text mt-4">
-                        The purpose is not to turn every co-purchase into an automatic recommendation, but to better evaluate why a product relationship may be commercially meaningful.
-                    </p>
-                    <div class="pika-pi-closing-box mt-3">
-                        <p class="mb-1">Cross-sell is more than: “People who bought this also bought that.”</p>
-                        <p class="mb-0 fw-bold">The more important question is: “Why do these products make sense together?”</p>
-                    </div>
-                </div>
-            }
-        </div>
-    </section>
-
-    @* ── 10 CUSTOMER INTELLIGENCE + PRODUCT INTELLIGENCE ────────── *@
-    <section class="pika-pi-section pika-pi-section--alt">
-        <div class="pika-pi-container pika-pi-container--narrow">
-            <span class="pika-pi-section-eyebrow">@(tr ? "İKİ ZEKÂ KATMANI" : "TWO INTELLIGENCE LAYERS")</span>
-            @if (tr)
-            {
-                <h2 class="pika-pi-section-title">
-                    Doğru müşteri<br />
-                    +<br />
-                    doğru ürün bağlamı.
-                </h2>
-                <div class="pika-pi-prose">
-                    <p class="pika-pi-body-text">
-                        Pika'da Customer Intelligence ve Product Intelligence aynı işi yapan iki farklı modül değildir.
-                    </p>
-                    <p class="pika-pi-body-text">
-                        Customer Intelligence müşterinin zaman içindeki davranışını anlamlandırır.
-                    </p>
-                    <p class="pika-pi-body-text">
-                        Product Intelligence ürünün müşteri ihtiyacı ve ticari ilişki içindeki anlamını oluşturur.
-                    </p>
-
-                    <div class="pika-pi-split-questions">
-                        <div class="pika-pi-question-box">
-                            <span class="pika-pi-question-label">Customer Intelligence:</span>
-                            <div class="pika-pi-quote-question">“Bu müşteride ne değişiyor?”</div>
-                        </div>
-                        <div class="pika-pi-question-box">
-                            <span class="pika-pi-question-label">Product Intelligence:</span>
-                            <div class="pika-pi-quote-question">“Bu ürün neyi temsil ediyor?”</div>
-                        </div>
-                    </div>
-
-                    <div class="pika-pi-large-question mt-4">
-                        Birlikte:<br />
-                        “Bu müşteri için bu ürün veya ihtiyaç şu anda neden anlamlı olabilir?”
-                    </div>
-
-                    <p class="pika-pi-body-text mt-4">
-                        Bu kesişim Pika'nın fırsat yaklaşımının temelidir.
-                    </p>
-
-                    <div class="mt-4 text-center">
-                        <a href="/platform/customer-intelligence" class="pika-pi-text-link">
-                            Customer Intelligence'ı Keşfedin &rarr;
-                        </a>
-                    </div>
-                </div>
-            }
-            else
-            {
-                <h2 class="pika-pi-section-title">
-                    The right customer<br />
-                    +<br />
-                    the right product context.
-                </h2>
-                <div class="pika-pi-prose">
-                    <p class="pika-pi-body-text">
-                        Customer Intelligence and Product Intelligence are not two modules doing the same job.
-                    </p>
-                    <p class="pika-pi-body-text">
-                        Customer Intelligence interprets how the customer behaves over time.
-                    </p>
-                    <p class="pika-pi-body-text">
-                        Product Intelligence establishes what a product means within customer need and commercial relationships.
-                    </p>
-
-                    <div class="pika-pi-split-questions">
-                        <div class="pika-pi-question-box">
-                            <span class="pika-pi-question-label">Customer Intelligence:</span>
-                            <div class="pika-pi-quote-question">“What is changing for this customer?”</div>
-                        </div>
-                        <div class="pika-pi-question-box">
-                            <span class="pika-pi-question-label">Product Intelligence:</span>
-                            <div class="pika-pi-quote-question">“What does this product represent?”</div>
-                        </div>
-                    </div>
-
-                    <div class="pika-pi-large-question mt-4">
-                        Together:<br />
-                        “Why might this product or need be meaningful for this customer right now?”
-                    </div>
-
-                    <p class="pika-pi-body-text mt-4">
-                        That intersection is central to Pika's opportunity approach.
-                    </p>
-
-                    <div class="mt-4 text-center">
-                        <a href="/en/platform/customer-intelligence" class="pika-pi-text-link">
-                            Explore Customer Intelligence &rarr;
-                        </a>
-                    </div>
-                </div>
-            }
-        </div>
-    </section>
-
-    @* ── 11 WHERE PRODUCT INTELLIGENCE IS USED ───────────────────── *@
-    <section class="pika-pi-section">
-        <div class="pika-pi-container pika-pi-container--narrow">
-            <span class="pika-pi-section-eyebrow">@(tr ? "ÜRÜN ZEKÂSI NEREDE KULLANILIR?" : "WHERE IS PRODUCT INTELLIGENCE USED?")</span>
-            @if (tr)
-            {
-                <h2 class="pika-pi-section-title">
-                    Product Intelligence,<br />
-                    ürün kataloğunun son noktası değil;<br />
-                    ticari kararın girdisidir.
-                </h2>
-                <p class="pika-pi-lead-paragraph">
-                    Product Intelligence tarafından oluşturulan ürün bağlamı Pika'nın farklı analiz ve fırsat katmanlarında kullanılabilir.
-                </p>
-
-                <div class="pika-pi-dest-flow">
-                    <div class="pika-pi-dest-item">
-                        <div class="pika-pi-dest-header">
-                            <span class="pika-pi-dest-badge">01</span>
-                            <h3 class="pika-pi-dest-title">Customer Intelligence</h3>
-                        </div>
-                        <p class="pika-pi-dest-desc">
-                            Müşteri işlemlerindeki ürünlerin anlamı, müşteri davranışının yalnızca işlem sayısı veya tutarı üzerinden değil, satın alınan ihtiyaç ve ürün bağlamıyla birlikte yorumlanmasına yardımcı olur.
-                        </p>
-                        <a href="/platform/customer-intelligence" class="pika-pi-text-link">
-                            Customer Intelligence'ı Keşfedin &rarr;
-                        </a>
-                    </div>
-
-                    <div class="pika-pi-dest-item">
-                        <div class="pika-pi-dest-header">
-                            <span class="pika-pi-dest-badge">02</span>
-                            <h3 class="pika-pi-dest-title">Günün Fırsatları</h3>
-                        </div>
-                        <p class="pika-pi-dest-desc">
-                            Müşteri ritmi ve ürün bağlamı birleşerek tekrar satın alma, cross-sell ve diğer değerlendirilebilir ticari fırsatların oluşmasına katkı sağlayabilir.
-                        </p>
-                        <a href="/platform/gunun-firsatlari" class="pika-pi-text-link">
-                            Günün Fırsatlarını Keşfedin &rarr;
-                        </a>
-                    </div>
-
-                    <div class="pika-pi-dest-item">
-                        <div class="pika-pi-dest-header">
-                            <span class="pika-pi-dest-badge">03</span>
-                            <h3 class="pika-pi-dest-title">Cross-sell bağlamı</h3>
-                        </div>
-                        <p class="pika-pi-dest-desc">
-                            Ürünlerin birlikte görülme davranışı Need Group ve Product Role gibi anlam katmanlarıyla birlikte değerlendirilebilir.
-                        </p>
-                    </div>
-
-                    <div class="pika-pi-dest-item">
-                        <div class="pika-pi-dest-header">
-                            <span class="pika-pi-dest-badge">04</span>
-                            <h3 class="pika-pi-dest-title">Analytics &amp; Reporting</h3>
-                        </div>
-                        <p class="pika-pi-dest-desc">
-                            Ürün, kategori, ihtiyaç ve ticari bağlamların satış ve müşteri davranışıyla ilişkisi analitik katmanda değerlendirilebilir.
-                        </p>
-                        <a href="/cozumler/analytics-reporting" class="pika-pi-text-link">
-                            Analytics &amp; Reporting'i Keşfedin &rarr;
-                        </a>
-                    </div>
-                </div>
-
-                <div class="pika-pi-closing-box mt-4">
-                    <p class="pika-pi-body-text mb-2">
-                        Product Intelligence'ın amacı ürün kataloğunu yeniden üretmek değildir.
-                    </p>
-                    <p class="pika-pi-body-text mb-0">
-                        Amaç, ürün verisini Pika'nın müşteri ve fırsat kararlarının anlayabileceği bir dile çevirmektir.
-                    </p>
-                </div>
-            }
-            else
-            {
-                <h2 class="pika-pi-section-title">
-                    Product Intelligence<br />
-                    is not the end of the catalog;<br />
-                    it is input to commercial decisions.
-                </h2>
-                <p class="pika-pi-lead-paragraph">
-                    Product context created by Product Intelligence can be used across different analytical and opportunity layers in Pika.
-                </p>
-
-                <div class="pika-pi-dest-flow">
-                    <div class="pika-pi-dest-item">
-                        <div class="pika-pi-dest-header">
-                            <span class="pika-pi-dest-badge">01</span>
-                            <h3 class="pika-pi-dest-title">Customer Intelligence</h3>
-                        </div>
-                        <p class="pika-pi-dest-desc">
-                            The meaning of products within customer transactions helps customer behavior be interpreted through purchased need and product context rather than only transaction count or value.
-                        </p>
-                        <a href="/en/platform/customer-intelligence" class="pika-pi-text-link">
-                            Explore Customer Intelligence &rarr;
-                        </a>
-                    </div>
-
-                    <div class="pika-pi-dest-item">
-                        <div class="pika-pi-dest-header">
-                            <span class="pika-pi-dest-badge">02</span>
-                            <h3 class="pika-pi-dest-title">Daily Opportunities</h3>
-                        </div>
-                        <p class="pika-pi-dest-desc">
-                            Customer rhythm and product context can combine to contribute to evaluable commercial opportunities such as repeat purchase and cross-sell.
-                        </p>
-                        <a href="/en/platform/opportunities" class="pika-pi-text-link">
-                            Explore Daily Opportunities &rarr;
-                        </a>
-                    </div>
-
-                    <div class="pika-pi-dest-item">
-                        <div class="pika-pi-dest-header">
-                            <span class="pika-pi-dest-badge">03</span>
-                            <h3 class="pika-pi-dest-title">Cross-sell context</h3>
-                        </div>
-                        <p class="pika-pi-dest-desc">
-                            Co-purchase behavior can be evaluated together with meaning layers such as Need Group and Product Role.
-                        </p>
-                    </div>
-
-                    <div class="pika-pi-dest-item">
-                        <div class="pika-pi-dest-header">
-                            <span class="pika-pi-dest-badge">04</span>
-                            <h3 class="pika-pi-dest-title">Analytics &amp; Reporting</h3>
-                        </div>
-                        <p class="pika-pi-dest-desc">
-                            Relationships between product, category, need, commercial context, sales and customer behavior can be evaluated in the analytics layer.
-                        </p>
-                        <a href="/en/solutions/analytics-reporting" class="pika-pi-text-link">
-                            Explore Analytics &amp; Reporting &rarr;
-                        </a>
-                    </div>
-                </div>
-
-                <div class="pika-pi-closing-box mt-4">
-                    <p class="pika-pi-body-text mb-2">
-                        The purpose of Product Intelligence is not to recreate the product catalog.
-                    </p>
-                    <p class="pika-pi-body-text mb-0">
-                        Its purpose is to translate product data into a language that Pika's customer and opportunity decisions can understand.
-                    </p>
-                </div>
-            }
-        </div>
-    </section>
-
-    @* ── 12 WHAT PRODUCT INTELLIGENCE IS / IS NOT ───────────────── *@
-    <section class="pika-pi-section pika-pi-section--light">
-        <div class="pika-pi-container pika-pi-container--narrow">
-            <span class="pika-pi-section-eyebrow">@(tr ? "DOĞRU SINIRLAR" : "CLEAR BOUNDARIES")</span>
-            @if (tr)
-            {
-                <h2 class="pika-pi-section-title">
-                    Product Intelligence'ı<br />
-                    doğru yere koyun.
-                </h2>
-
-                <div class="pika-pi-boundary-list">
-                    <div class="pika-pi-boundary-item">
-                        <h3 class="pika-pi-boundary-heading">Product Intelligence bir PIM değildir.</h3>
-                        <p class="pika-pi-boundary-desc">
-                            PIM sistemleri ürün bilgisini toplamak, düzenlemek ve kanallara dağıtmak için kullanılabilir. Product Intelligence'ın görevi ise mevcut ürün verisine müşteri ihtiyacı ve ticari karar bağlamı eklemektir.
-                        </p>
-                    </div>
-
-                    <div class="pika-pi-boundary-item">
-                        <h3 class="pika-pi-boundary-heading">Product Intelligence bir stok veya ERP sistemi değildir.</h3>
-                        <p class="pika-pi-boundary-desc">
-                            Stok miktarı, satın alma, tedarik ve operasyonel ürün yönetimi Product Intelligence'ın temel rolü değildir. Pika ürün zekâsı, ürünün analitik ve ticari anlamına odaklanır.
-                        </p>
-                    </div>
-
-                    <div class="pika-pi-boundary-item">
-                        <h3 class="pika-pi-boundary-heading">Product Intelligence yalnızca kategori yönetimi değildir.</h3>
-                        <p class="pika-pi-boundary-desc">
-                            Kategori ürünün katalog hiyerarşisindeki yerini açıklar. Product Intelligence buna Need Group, Product Role, tekrar davranışı ve ürün ilişkileri gibi ek anlam katmanları ekler.
-                        </p>
-                    </div>
-
-                    <div class="pika-pi-boundary-item">
-                        <h3 class="pika-pi-boundary-heading">Product Intelligence, Customer Intelligence değildir.</h3>
-                        <p class="pika-pi-boundary-desc">
-                            Customer Intelligence müşterinin davranışını anlamlandırır. Product Intelligence ürünün anlamını oluşturur. Pika fırsat bağlamı bu iki katmanın birlikte kullanılmasından güç alır.
-                        </p>
-                    </div>
-
-                    <div class="pika-pi-boundary-item">
-                        <h3 class="pika-pi-boundary-heading">Product Intelligence yalnızca AI sınıflandırması değildir.</h3>
-                        <p class="pika-pi-boundary-desc">
-                            Ürün bağlamı Playbook, sınıflandırma kuralları, ürün verisi ve gerektiğinde insan doğrulamasıyla yönetilir. Ürün gerçeği yalnızca üretken yapay zekânın oluşturduğu bir etikete bırakılmaz.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="pika-pi-large-closing">
-                    <p class="pika-pi-large-closing-label">Product Intelligence'ın görevi:</p>
-                    <p class="pika-pi-large-closing-lead">
-                        Bir ürünü stok kodundan,<br />
-                        ticari anlamı olan bir bağlama dönüştürmek.
-                    </p>
-                </div>
-            }
-            else
-            {
-                <h2 class="pika-pi-section-title">
-                    Put Product Intelligence<br />
-                    in the right place.
-                </h2>
-
-                <div class="pika-pi-boundary-list">
-                    <div class="pika-pi-boundary-item">
-                        <h3 class="pika-pi-boundary-heading">Product Intelligence is not a PIM.</h3>
-                        <p class="pika-pi-boundary-desc">
-                            PIM systems may be used to collect, organize and distribute product information across channels. Product Intelligence adds customer-need and commercial-decision context to existing product data.
-                        </p>
-                    </div>
-
-                    <div class="pika-pi-boundary-item">
-                        <h3 class="pika-pi-boundary-heading">Product Intelligence is not an inventory or ERP system.</h3>
-                        <p class="pika-pi-boundary-desc">
-                            Stock quantities, purchasing, supply and operational product management are not the primary role of Product Intelligence. Pika Product Intelligence focuses on analytical and commercial product meaning.
-                        </p>
-                    </div>
-
-                    <div class="pika-pi-boundary-item">
-                        <h3 class="pika-pi-boundary-heading">Product Intelligence is more than category management.</h3>
-                        <p class="pika-pi-boundary-desc">
-                            Category explains where the product sits within the catalog hierarchy. Product Intelligence adds additional meaning layers such as Need Group, Product Role, repeat behavior and product relationships.
-                        </p>
-                    </div>
-
-                    <div class="pika-pi-boundary-item">
-                        <h3 class="pika-pi-boundary-heading">Product Intelligence is not Customer Intelligence.</h3>
-                        <p class="pika-pi-boundary-desc">
-                            Customer Intelligence interprets customer behavior. Product Intelligence establishes product meaning. Pika's opportunity context becomes stronger when these two layers are used together.
-                        </p>
-                    </div>
-
-                    <div class="pika-pi-boundary-item">
-                        <h3 class="pika-pi-boundary-heading">Product Intelligence is not merely AI classification.</h3>
-                        <p class="pika-pi-boundary-desc">
-                            Product context is governed through Playbooks, classification rules, product data and human verification where required. Product truth is not left solely to a label generated by generative AI.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="pika-pi-large-closing">
-                    <p class="pika-pi-large-closing-label">The role of Product Intelligence is to:</p>
-                    <p class="pika-pi-large-closing-lead">
-                        Turn a product from a stock code<br />
-                        into commercially meaningful context.
-                    </p>
-                </div>
-            }
-        </div>
-    </section>
-
-    @* ── 13 FAQ ─────────────────────────────────────────────────── *@
-    <section class="pika-pi-section pika-pi-section--alt">
-        <div class="pika-pi-container pika-pi-container--narrow">
-            <span class="pika-pi-section-eyebrow">@(tr ? "SIKÇA SORULAN SORULAR" : "FREQUENTLY ASKED QUESTIONS")</span>
-            <h2 class="pika-pi-section-title">@(tr ? "Merak Edilenler" : "Questions & Answers")</h2>
-
-            <div class="pika-pi-faq-stack">
+            <div class="col-lg-6">
+                <span class="ph-eyebrow">@(tr ? "KATALOGDAN ANLAMA" : "FROM CATALOG TO MEANING")</span>
+                <h2 class="pika-h2 fw-bold mb-3">@(tr ? "Stok kodu, ticari anlam değildir." : "A stock code is not commercial meaning.")</h2>
                 @if (tr)
                 {
-                    <details class="pika-pi-faq-item" open>
-                        <summary class="pika-pi-faq-question">
-                            <span>Product Intelligence nedir?</span>
-                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
-                        </summary>
-                        <div class="pika-pi-faq-answer">
-                            Product Intelligence, ürün kayıtlarını müşteri ihtiyacı ve ticari bağlam açısından anlamlandıran ürün zekâsı katmanıdır. Pika'da ürünün kategorisini, hizmet ettiği ihtiyacı, Product Role bağlamını, tekrar davranışını ve diğer ürünlerle ilişkisini birlikte değerlendirmeye yardımcı olur.
-                        </div>
-                    </details>
-
-                    <details class="pika-pi-faq-item">
-                        <summary class="pika-pi-faq-question">
-                            <span>Need Group nedir?</span>
-                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
-                        </summary>
-                        <div class="pika-pi-faq-answer">
-                            Need Group, ürünün katalogda nerede bulunduğunu değil, müşterinin hangi ihtiyacına hizmet ettiğini ifade eden anlam katmanıdır. Aynı ihtiyaca hizmet eden ürünler farklı katalog kategorilerinde bulunabilir.
-                        </div>
-                    </details>
-
-                    <details class="pika-pi-faq-item">
-                        <summary class="pika-pi-faq-question">
-                            <span>Product Role nedir?</span>
-                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
-                        </summary>
-                        <div class="pika-pi-faq-answer">
-                            Product Role, ürünün hizmet ettiği ihtiyaç ve ticari bağlam içinde nasıl bir fonksiyon taşıdığını değerlendirmeye yardımcı olur. Aynı Need Group içindeki ürünler aynı ihtiyaca hizmet etseler bile farklı roller taşıyabilir.
-                        </div>
-                    </details>
-
-                    <details class="pika-pi-faq-item">
-                        <summary class="pika-pi-faq-question">
-                            <span>Product Intelligence ile kategori yönetimi arasındaki fark nedir?</span>
-                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
-                        </summary>
-                        <div class="pika-pi-faq-answer">
-                            Kategori yönetimi ürünün katalog hiyerarşisindeki yerini belirler. Product Intelligence ise bunun üzerine müşteri ihtiyacı, Product Role, tekrar davranışı ve ürün ilişkileri gibi ticari anlam katmanları ekler.
-                        </div>
-                    </details>
-
-                    <details class="pika-pi-faq-item">
-                        <summary class="pika-pi-faq-question">
-                            <span>Product Intelligence tekrar satın alma analizinde nasıl kullanılır?</span>
-                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
-                        </summary>
-                        <div class="pika-pi-faq-answer">
-                            Ürünün tekrar satın alma davranışı, müşterinin geçmiş işlem ritmiyle birlikte değerlendirilebilir. Product Intelligence ürün bağlamını sağlar; Customer Intelligence müşterinin kişisel satın alma ritmini değerlendirir. Bu iki bağlam Günün Fırsatları katmanında tekrar satın alma fırsatlarına katkı sağlayabilir.
-                        </div>
-                    </details>
-
-                    <details class="pika-pi-faq-item">
-                        <summary class="pika-pi-faq-question">
-                            <span>Product Intelligence cross-sell analizine nasıl yardımcı olur?</span>
-                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
-                        </summary>
-                        <div class="pika-pi-faq-answer">
-                            İşlem geçmişindeki birlikte satın alma davranışı, ürünlerin Need Group ve Product Role bağlamıyla birlikte değerlendirilebilir. Böylece yalnızca hangi ürünlerin birlikte satıldığı değil, bu ilişkinin neden ticari olarak anlamlı olabileceği de analiz bağlamına eklenir.
-                        </div>
-                    </details>
-
-                    <details class="pika-pi-faq-item">
-                        <summary class="pika-pi-faq-question">
-                            <span>Product Intelligence yapay zekâ ile mi sınıflandırma yapar?</span>
-                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
-                        </summary>
-                        <div class="pika-pi-faq-answer">
-                            Product Intelligence yalnızca üretken yapay zekâ sınıflandırmasına dayanmaz. Ürün bağlamı Playbook, sınıflandırma kuralları, mevcut ürün verisi ve gerektiğinde insan incelemesiyle yönetilir. Yapay zekâ yardımcı olabilir; ürün gerçeğinin tek kaynağı değildir.
-                        </div>
-                    </details>
-
-                    <details class="pika-pi-faq-item">
-                        <summary class="pika-pi-faq-question">
-                            <span>Product Intelligence ile Customer Intelligence arasındaki fark nedir?</span>
-                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
-                        </summary>
-                        <div class="pika-pi-faq-answer">
-                            Customer Intelligence müşterinin zaman içindeki davranışını anlamlandırır. Product Intelligence ise satın alınan ürünün müşteri ihtiyacı ve ticari ilişki içindeki anlamını oluşturur. Pika bu iki bağlamı birlikte kullanarak daha güçlü fırsat ve karar bağlamı üretir.
-                        </div>
-                    </details>
+                    <p class="ph-muted">
+                        Ürün kodları ve katalog kategorileri operasyon için gereklidir. Hangi ürünün satıldığını, hangi kategoride bulunduğunu veya hangi varyantın işlem gördüğünü tanımlarlar.
+                    </p>
+                    <p class="ph-muted">
+                        Ancak müşteri davranışını anlamlandırmak için bu bilgi çoğu zaman yeterli değildir.
+                    </p>
+                    <p class="ph-muted">
+                        Aynı katalog kategorisindeki iki ürün farklı müşteri ihtiyaçlarına hizmet edebilir.
+                    </p>
+                    <p class="ph-muted">
+                        Farklı kategorilerdeki iki ürün ise müşterinin aynı ihtiyacını karşılıyor olabilir.
+                    </p>
+                    <div class="p-3 my-3 rounded bg-white border">
+                        <p class="small mb-1"><strong>Katalog:</strong> “Bu ürün nedir?” sorusuna cevap verir.</p>
+                        <p class="small mb-0"><strong>Product Intelligence:</strong> “Bu ürün müşteri ve ticari karar açısından ne ifade ediyor?” sorusuna yaklaşır.</p>
+                    </div>
+                    <p class="ph-muted">
+                        Pika'nın ürün zekâsı yaklaşımı, operasyonel ürün kaydını değiştirmek yerine onun üzerine karar verilebilir bir anlam katmanı ekler.
+                    </p>
                 }
                 else
                 {
-                    <details class="pika-pi-faq-item" open>
-                        <summary class="pika-pi-faq-question">
-                            <span>What is Product Intelligence?</span>
-                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
-                        </summary>
-                        <div class="pika-pi-faq-answer">
-                            Product Intelligence is the product-intelligence layer that gives product records meaning in terms of customer need and commercial context. In Pika, it helps evaluate product category, the need served, Product Role context, repeat behavior and relationships with other products.
-                        </div>
-                    </details>
-
-                    <details class="pika-pi-faq-item">
-                        <summary class="pika-pi-faq-question">
-                            <span>What is a Need Group?</span>
-                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
-                        </summary>
-                        <div class="pika-pi-faq-answer">
-                            A Need Group describes which customer need a product serves rather than where the product sits in the catalog. Products serving the same need can exist in different catalog categories.
-                        </div>
-                    </details>
-
-                    <details class="pika-pi-faq-item">
-                        <summary class="pika-pi-faq-question">
-                            <span>What is Product Role?</span>
-                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
-                        </summary>
-                        <div class="pika-pi-faq-answer">
-                            Product Role helps evaluate the function a product plays within the need and commercial context it serves. Products within the same Need Group can serve the same need while playing different roles.
-                        </div>
-                    </details>
-
-                    <details class="pika-pi-faq-item">
-                        <summary class="pika-pi-faq-question">
-                            <span>What is the difference between Product Intelligence and category management?</span>
-                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
-                        </summary>
-                        <div class="pika-pi-faq-answer">
-                            Category management establishes where the product sits in the catalog hierarchy. Product Intelligence adds commercial meaning layers such as customer need, Product Role, repeat behavior and product relationships.
-                        </div>
-                    </details>
-
-                    <details class="pika-pi-faq-item">
-                        <summary class="pika-pi-faq-question">
-                            <span>How is Product Intelligence used in repeat-purchase analysis?</span>
-                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
-                        </summary>
-                        <div class="pika-pi-faq-answer">
-                            Product repeat behavior can be evaluated together with the customer's historical transaction rhythm. Product Intelligence provides product context, while Customer Intelligence evaluates the customer's individual purchase rhythm. These two contexts can contribute to repeat-purchase opportunities in the Daily Opportunities layer.
-                        </div>
-                    </details>
-
-                    <details class="pika-pi-faq-item">
-                        <summary class="pika-pi-faq-question">
-                            <span>How does Product Intelligence support cross-sell analysis?</span>
-                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
-                        </summary>
-                        <div class="pika-pi-faq-answer">
-                            Co-purchase behavior in transaction history can be evaluated together with Need Group and Product Role context. This adds not only which products were purchased together, but why the relationship may be commercially meaningful.
-                        </div>
-                    </details>
-
-                    <details class="pika-pi-faq-item">
-                        <summary class="pika-pi-faq-question">
-                            <span>Does Product Intelligence classify products with AI?</span>
-                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
-                        </summary>
-                        <div class="pika-pi-faq-answer">
-                            Product Intelligence does not rely solely on generative-AI classification. Product context is governed through Playbooks, classification rules, existing product data and human review where required. AI may assist, but it is not the sole source of product truth.
-                        </div>
-                    </details>
-
-                    <details class="pika-pi-faq-item">
-                        <summary class="pika-pi-faq-question">
-                            <span>What is the difference between Product Intelligence and Customer Intelligence?</span>
-                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
-                        </summary>
-                        <div class="pika-pi-faq-answer">
-                            Customer Intelligence interprets customer behavior over time. Product Intelligence establishes what the purchased product means within customer need and commercial relationships. Pika uses these contexts together to create stronger opportunity and decision context.
-                        </div>
-                    </details>
+                    <p class="ph-muted">
+                        Product codes and catalog categories are essential for operations. They identify which product was sold, where it belongs and which variant was transacted.
+                    </p>
+                    <p class="ph-muted">
+                        But that information is often not enough to interpret customer behavior.
+                    </p>
+                    <p class="ph-muted">
+                        Two products in the same catalog category may serve different customer needs.
+                    </p>
+                    <p class="ph-muted">
+                        Two products in different categories may satisfy the same underlying need.
+                    </p>
+                    <div class="p-3 my-3 rounded bg-white border">
+                        <p class="small mb-1"><strong>The catalog answers:</strong> “What is this product?”</p>
+                        <p class="small mb-0"><strong>Product Intelligence approaches:</strong> “What does this product mean for the customer and the commercial decision?”</p>
+                    </div>
+                    <p class="ph-muted">
+                        Pika's Product Intelligence approach does not replace the operational product record. It adds a decision-ready meaning layer on top of it.
+                    </p>
                 }
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    @* ── 14 FINAL CTA ───────────────────────────────────────────── *@
-    <section class="pika-pi-cta">
-        <div class="pika-pi-container pika-pi-container--narrow">
-            <span class="pika-pi-eyebrow pika-pi-eyebrow--light">@(tr ? "ÜRÜNÜ ANLAMADAN FIRSATI ANLAYAMAZSINIZ" : "UNDERSTAND THE PRODUCT TO UNDERSTAND THE OPPORTUNITY")</span>
+@* ── 04 FROM PRODUCT RECORD TO PRODUCT MEANING ──────────────── *@
+<section class="ph-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="ph-eyebrow">@(tr ? "ÜRÜN BAĞLAMI" : "PRODUCT CONTEXT")</span>
+            <h2 class="pika-h2 fw-bold mb-3">@(tr ? "Ürün bilgisini katmanlar halinde anlamlandırın." : "Build product meaning in layers.")</h2>
+            <p class="ph-muted" style="max-width:720px;margin-left:auto;margin-right:auto">
+                @(tr ? "Product Intelligence, ürün anlamını tek bir etiketle açıklamaz. Farklı bağlam katmanları birlikte kullanıldığında ürün analitik olarak daha kullanılabilir hale gelir." : "Product Intelligence does not explain a product through one label. Product data becomes more useful analytically when multiple context layers are evaluated together.")
+            </p>
+        </div>
+
+        @{
+            var flowTr = new[]
+            {
+                ("01", "ÜRÜN KAYDI", "Ürün adı, kodu, kategori ve temel katalog bilgisi operasyonel başlangıç noktasıdır."),
+                ("02", "SINIFLANDIRMA BAĞLAMI", "Ürünün hangi sınıflandırma çerçevesinde değerlendirilmesi gerektiği belirlenir."),
+                ("03", "İHTİYAÇ", "Ürünün müşteri açısından hangi ihtiyaca hizmet ettiği anlamlandırılır."),
+                ("04", "ÜRÜN ROLÜ", "Ürünün ihtiyaç ve ticari bağlam içindeki fonksiyonu değerlendirilir."),
+                ("05", "DAVRANIŞ & İLİŞKİLER", "Tekrar satın alma davranışı ve diğer ürünlerle oluşan ilişkiler değerlendirme bağlamına eklenir."),
+                ("06", "TİCARİ BAĞLAM", "Ürün, müşteri zekâsı ve fırsat katmanlarının kullanabileceği daha anlamlı bir veri varlığına dönüşür.")
+            };
+            var flowEn = new[]
+            {
+                ("01", "PRODUCT RECORD", "Product name, code, category and basic catalog data form the operational starting point."),
+                ("02", "CLASSIFICATION CONTEXT", "The framework through which the product should be evaluated is established."),
+                ("03", "NEED", "The customer need served by the product is interpreted."),
+                ("04", "PRODUCT ROLE", "The product's function within need and commercial context is evaluated."),
+                ("05", "BEHAVIOR & RELATIONSHIPS", "Repeat-purchase behavior and relationships with other products are added to the evaluation context."),
+                ("06", "COMMERCIAL CONTEXT", "The product becomes a more meaningful data asset that customer-intelligence and opportunity layers can use.")
+            };
+            var flowSteps = tr ? flowTr : flowEn;
+        }
+
+        <div class="row g-3">
+            @foreach (var (num, title, desc) in flowSteps)
+            {
+                <div class="col-lg-4 col-md-6">
+                    <div class="d-flex align-items-start gap-3 p-3 rounded h-100" style="background:#fff;border:1px solid #dce5d3">
+                        <div class="fw-bold" style="font-size:.85rem;color:#7a9845;min-width:24px">@num</div>
+                        <div>
+                            <div class="fw-bold mb-1" style="font-size:.9rem;color:#23413b">@title</div>
+                            <div style="font-size:.82rem;color:#62746d;line-height:1.6">@desc</div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="mt-4 p-3 rounded text-center" style="background:#f8faf4;border:1px dashed #dce5d3;max-width:720px;margin-left:auto;margin-right:auto">
+            <p class="small mb-0" style="color:#62746d">
+                @(tr ? "Amaç ürüne daha fazla etiket eklemek değil, ürün bilgisini ticari karar için daha anlamlı hale getirmektir." : "The objective is not to attach more labels to a product. It is to make product data more meaningful for commercial decision making.")
+            </p>
+        </div>
+    </div>
+</section>
+
+@* ── 05, 06, 07 NEED GROUP, PRODUCT ROLE, PLAYBOOK ──────────── *@
+<section class="ph-section ph-section-alt">
+    <div class="container">
+        <div class="row g-4 mb-4">
+            <div class="col-lg-6">
+                <div class="ph-module-card h-100 p-4">
+                    <div class="ph-module-icon mb-3"><i class="ri-list-check-3"></i></div>
+                    <span class="ph-eyebrow">NEED GROUP</span>
+                    <h2 class="pika-h2 fw-bold mb-3" style="font-size:1.35rem">
+                        @(tr ? "Kategori, müşterinin ihtiyacıyla aynı şey değildir." : "A category is not the same thing as a customer need.")
+                    </h2>
+                    @if (tr)
+                    {
+                        <p class="ph-muted small">
+                            Katalog kategorileri ürünleri operasyonel veya ticari hiyerarşi içinde düzenler.
+                        </p>
+                        <p class="ph-muted small mb-2">
+                            Need Group ise ürüne başka bir açıdan bakar:
+                        </p>
+                        <div class="p-3 my-3 rounded bg-white border" style="border-left:3px solid #b5ee19 !important">
+                            <strong style="color:#23413b">“Bu ürün müşterinin hangi ihtiyacına hizmet ediyor?”</strong>
+                        </div>
+                        <p class="ph-muted small">
+                            Bu ayrım önemlidir; çünkü aynı ihtiyacı karşılayan ürünler her zaman aynı katalog kategorisinde bulunmayabilir.
+                        </p>
+                        <p class="ph-muted small">
+                            Benzer şekilde aynı kategoride yer alan ürünler müşterinin farklı ihtiyaçlarını karşılıyor olabilir.
+                        </p>
+                        <div class="p-3 my-3 rounded bg-white border">
+                            <p class="small mb-1"><strong>CATEGORY:</strong> Ürünün katalogdaki yeri.</p>
+                            <p class="small mb-0"><strong>NEED GROUP:</strong> Ürünün müşteri ihtiyacı içindeki anlamı.</p>
+                        </div>
+                        <p class="ph-muted small mb-0">
+                            Need Group bağlamı, ürün bilgisinin müşteri davranışıyla daha anlamlı biçimde ilişkilendirilmesine yardımcı olur.
+                        </p>
+                    }
+                    else
+                    {
+                        <p class="ph-muted small">
+                            Catalog categories organize products within an operational or commercial hierarchy.
+                        </p>
+                        <p class="ph-muted small mb-2">
+                            A Need Group looks at the product from another perspective:
+                        </p>
+                        <div class="p-3 my-3 rounded bg-white border" style="border-left:3px solid #b5ee19 !important">
+                            <strong style="color:#23413b">“Which customer need does this product serve?”</strong>
+                        </div>
+                        <p class="ph-muted small">
+                            This distinction matters because products serving the same need do not always belong to the same catalog category.
+                        </p>
+                        <p class="ph-muted small">
+                            Likewise, products in the same category may serve different customer needs.
+                        </p>
+                        <div class="p-3 my-3 rounded bg-white border">
+                            <p class="small mb-1"><strong>CATEGORY:</strong> Where the product sits in the catalog.</p>
+                            <p class="small mb-0"><strong>NEED GROUP:</strong> What the product means within customer need.</p>
+                        </div>
+                        <p class="ph-muted small mb-0">
+                            Need Group context helps product data relate more meaningfully to customer behavior.
+                        </p>
+                    }
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="ph-module-card h-100 p-4">
+                    <div class="ph-module-icon mb-3"><i class="ri-price-tag-3-line"></i></div>
+                    <span class="ph-eyebrow">PRODUCT ROLE</span>
+                    <h2 class="pika-h2 fw-bold mb-3" style="font-size:1.35rem">
+                        @(tr ? "Aynı ihtiyaca hizmet eden her ürün aynı rolü taşımaz." : "Products serving the same need do not necessarily play the same role.")
+                    </h2>
+                    @if (tr)
+                    {
+                        <p class="ph-muted small">
+                            Need Group, ürünün hangi ihtiyaca hizmet ettiğini açıklar.
+                        </p>
+                        <p class="ph-muted small">
+                            Product Role ise ürünün bu ihtiyaç ve ticari bağlam içinde nasıl bir fonksiyon taşıdığını değerlendirmeye yardımcı olur.
+                        </p>
+                        <p class="ph-muted small">
+                            Bir ürün müşteri için ihtiyacın merkezinde olabilir.
+                        </p>
+                        <p class="ph-muted small">
+                            Başka bir ürün aynı ihtiyacı tamamlayabilir.
+                        </p>
+                        <p class="ph-muted small">
+                            Bir başka ürün ise alternatif veya farklı bir ticari işlev taşıyabilir.
+                        </p>
+                        <p class="ph-muted small">
+                            Bu rol bilgisi özellikle ürünlerin birbirleriyle ilişkisini, teklif yapısını ve fırsat bağlamını değerlendirirken önem kazanır.
+                        </p>
+                        <div class="p-3 my-3 rounded bg-white border">
+                            <p class="small mb-1"><strong>Need Group:</strong> “Neden?”</p>
+                            <p class="small mb-0"><strong>Product Role:</strong> “Bu ihtiyacın içinde nasıl bir rol?”</p>
+                        </div>
+                        <p class="ph-muted small mb-0">
+                            Pika böylece ürünleri yalnızca aynı kategori altında toplamak yerine, müşteri ihtiyacı içindeki fonksiyonları açısından da değerlendirebilir.
+                        </p>
+                    }
+                    else
+                    {
+                        <p class="ph-muted small">
+                            A Need Group explains which need a product serves.
+                        </p>
+                        <p class="ph-muted small">
+                            Product Role helps evaluate the function the product plays within that need and commercial context.
+                        </p>
+                        <p class="ph-muted small">
+                            One product may sit at the center of the customer's need.
+                        </p>
+                        <p class="ph-muted small">
+                            Another may complement that need.
+                        </p>
+                        <p class="ph-muted small">
+                            Another may serve as an alternative or play a different commercial function.
+                        </p>
+                        <p class="ph-muted small">
+                            Role context becomes especially useful when evaluating product relationships, offer structure and commercial opportunities.
+                        </p>
+                        <div class="p-3 my-3 rounded bg-white border">
+                            <p class="small mb-1"><strong>Need Group:</strong> “Why?”</p>
+                            <p class="small mb-0"><strong>Product Role:</strong> “What role does the product play within that need?”</p>
+                        </div>
+                        <p class="ph-muted small mb-0">
+                            This allows Pika to evaluate products not only as members of the same category, but through their function within customer need.
+                        </p>
+                    }
+                </div>
+            </div>
+        </div>
+
+        @* Playbook Card *@
+        <div class="ph-module-card p-4">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <span class="ph-eyebrow">PLAYBOOK</span>
+                    <h2 class="pika-h2 fw-bold mb-3" style="font-size:1.35rem">
+                        @(tr ? "Ürün anlamı, sektör bağlamından bağımsız değildir." : "Product meaning depends on industry context.")
+                    </h2>
+                    @if (tr)
+                    {
+                        <p class="ph-muted small">
+                            Aynı sınıflandırma mantığını her ürün dünyasına zorla uygulamak, ürünün ticari anlamını zayıflatabilir.
+                        </p>
+                        <p class="ph-muted small">
+                            Pika Playbook yaklaşımı, ürünlerin hangi anlamlandırma boyutlarıyla değerlendirileceğini sektör ve kategori bağlamında düzenlemeye yardımcı olur.
+                        </p>
+                        <p class="ph-muted small">
+                            Playbook; ürün kategorisi, Need Group, Product Role ve gerektiğinde ek sınıflandırma özellikleri arasında ortak bir çerçeve oluşturur.
+                        </p>
+                        <p class="ph-muted small">
+                            Bu çerçevenin amacı ürünleri daha karmaşık hale getirmek değildir.
+                        </p>
+                        <div class="p-3 my-2 rounded bg-white border">
+                            <p class="small mb-1"><strong>Amaç:</strong></p>
+                            <p class="small mb-0">Farklı ürün dünyalarını aynı ticari karar dili içinde tutarlı biçimde anlamlandırabilmek.</p>
+                        </div>
+                        <p class="ph-muted small mb-0 mt-3">
+                            Sınıflandırma sonuçları gerektiğinde insan incelemesi ve doğrulamasıyla kontrol edilebilir; ürün gerçeği yalnızca üretken yapay zekâ tarafından belirlenmiş bir etiket olarak ele alınmaz.
+                        </p>
+                    }
+                    else
+                    {
+                        <p class="ph-muted small">
+                            Forcing the same classification logic onto every product universe can weaken commercial meaning.
+                        </p>
+                        <p class="ph-muted small">
+                            Pika's Playbook approach helps organize which dimensions should be used to interpret products within industry and category context.
+                        </p>
+                        <p class="ph-muted small">
+                            A Playbook provides a common framework across product category, Need Group, Product Role and additional classification attributes where required.
+                        </p>
+                        <p class="ph-muted small">
+                            The purpose of that framework is not to make products more complicated.
+                        </p>
+                        <div class="p-3 my-2 rounded bg-white border">
+                            <p class="small mb-1"><strong>The purpose is:</strong></p>
+                            <p class="small mb-0">To interpret different product universes consistently within the same commercial decision language.</p>
+                        </div>
+                        <p class="ph-muted small mb-0 mt-3">
+                            Classification results can be reviewed and verified by people where needed; product truth is not treated merely as a label generated by generative AI.
+                        </p>
+                    }
+                </div>
+                <div class="col-lg-4 text-center mt-4 mt-lg-0">
+                    <div class="p-4 rounded" style="background:#f8faf4;border:1px solid #dce5d3">
+                        <div class="ph-module-icon mx-auto mb-3"><i class="ri-book-open-line"></i></div>
+                        <h3 class="fw-bold mb-2" style="font-size:1.05rem">Playbook</h3>
+                        <p class="small ph-muted mb-0">
+                            @(tr ? "Sektörel ürün sınıflandırma çerçevesi" : "Industry-specific product classification framework")
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 08 & 09 REPEAT PURCHASE & PRODUCT RELATIONSHIPS ────────── *@
+<section class="ph-section">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-6">
+                <div class="ph-module-card h-100 p-4">
+                    <div class="ph-module-icon mb-3"><i class="ri-repeat-2-line"></i></div>
+                    <span class="ph-eyebrow">@(tr ? "TEKRAR SATIN ALMA" : "REPEAT PURCHASE")</span>
+                    <h2 class="pika-h2 fw-bold mb-3" style="font-size:1.35rem">
+                        @(tr ? "Bazı ürünlerin değeri, bir kez satın alındıkları anda bitmez." : "The value of some products does not end with one purchase.")
+                    </h2>
+                    @if (tr)
+                    {
+                        <p class="ph-muted small">
+                            Ürünler tekrar satın alma davranışı açısından birbirinden farklıdır.
+                        </p>
+                        <p class="ph-muted small">
+                            Bazı ürünlerde düzenli veya tekrar eden satın alma örüntüsü oluşabilirken bazı ürünlerde bu davranış anlamlı olmayabilir.
+                        </p>
+                        <p class="ph-muted small">
+                            Product Intelligence ürün bağlamının, geçmiş işlem davranışıyla birlikte değerlendirilmesine yardımcı olur.
+                        </p>
+                        <p class="ph-muted small">
+                            Bu sayede tekrar davranışı anlamlı olan ürünler için ürünün kendisi, müşteri ritmi ve geçmiş işlem aralıkları aynı fırsat bağlamında değerlendirilebilir.
+                        </p>
+                        <div class="p-3 my-3 rounded bg-white border">
+                            <p class="small mb-2">
+                                <strong>Product Intelligence:</strong><br />
+                                “Bu müşterinin bir sonraki alışverişini kesin olarak bilir” iddiasında bulunmaz.
+                            </p>
+                            <p class="small mb-0">
+                                <strong>Product Intelligence:</strong><br />
+                                Ürünün tekrar davranışı açısından değerlendirilebilir bağlamını sağlar.
+                            </p>
+                        </div>
+                        <p class="ph-muted small">
+                            Müşteri bazındaki kişisel satın alma ritmi Customer Intelligence tarafından değerlendirilir; ürün bağlamı ile müşteri bağlamı daha sonra Günün Fırsatları katmanında bir araya gelebilir.
+                        </p>
+                        <div class="mt-3">
+                            <a href="/platform/gunun-firsatlari" class="small fw-bold" style="color:var(--pika-primary)">
+                                Günün Fırsatlarını Keşfedin →
+                            </a>
+                        </div>
+                    }
+                    else
+                    {
+                        <p class="ph-muted small">
+                            Products differ in repeat-purchase behavior.
+                        </p>
+                        <p class="ph-muted small">
+                            Some products may show recurring purchasing patterns, while repeat behavior may not be meaningful for others.
+                        </p>
+                        <p class="ph-muted small">
+                            Product Intelligence helps product context be evaluated together with historical transaction behavior.
+                        </p>
+                        <p class="ph-muted small">
+                            For products where repeat behavior is meaningful, the product itself, customer rhythm and historical transaction intervals can contribute to the same opportunity context.
+                        </p>
+                        <div class="p-3 my-3 rounded bg-white border">
+                            <p class="small mb-2">
+                                <strong>Product Intelligence does not claim:</strong><br />
+                                “We know exactly when this customer will purchase again.”
+                            </p>
+                            <p class="small mb-0">
+                                <strong>Product Intelligence provides:</strong><br />
+                                Product context that can be evaluated for repeat behavior.
+                            </p>
+                        </div>
+                        <p class="ph-muted small">
+                            Individual customer purchase rhythm is evaluated by Customer Intelligence; product and customer context can later come together in the Daily Opportunities layer.
+                        </p>
+                        <div class="mt-3">
+                            <a href="/en/platform/opportunities" class="small fw-bold" style="color:var(--pika-primary)">
+                                Explore Daily Opportunities →
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="ph-module-card h-100 p-4">
+                    <div class="ph-module-icon mb-3"><i class="ri-git-merge-line"></i></div>
+                    <span class="ph-eyebrow">@(tr ? "ÜRÜN İLİŞKİLERİ" : "PRODUCT RELATIONSHIPS")</span>
+                    <h2 class="pika-h2 fw-bold mb-3" style="font-size:1.35rem">
+                        @(tr ? "Birlikte satın alınan ürünler, tek başına tesadüf değildir; ama tek başına anlam da değildir." : "Products purchased together are not necessarily random; but co-occurrence alone is not meaning.")
+                    </h2>
+                    @if (tr)
+                    {
+                        <p class="ph-muted small">
+                            İşlem geçmişi, hangi ürünlerin aynı sepetlerde veya müşteri yolculuklarında birlikte görüldüğüne ilişkin kanıt üretebilir.
+                        </p>
+                        <p class="ph-muted small">
+                            Ancak yalnızca “bu iki ürün birlikte satıldı” bilgisi her zaman yeterli değildir.
+                        </p>
+                        <p class="ph-muted small">
+                            Product Intelligence, bu ilişkiyi ürünlerin Need Group ve Product Role bağlamıyla birlikte değerlendirmeye yardımcı olur.
+                        </p>
+                        <div class="pi-formula-bar">
+                            <span>Davranış ilişkisi</span>
+                            <span class="pi-formula-op">+</span>
+                            <span>Ürün anlamı</span>
+                            <span class="pi-formula-op">=</span>
+                            <span class="pi-formula-result">Daha güçlü cross-sell bağlamı</span>
+                        </div>
+                        <p class="ph-muted small">
+                            Bu yaklaşımın amacı her birlikte satın almayı otomatik olarak öneri haline getirmek değil, ürün ilişkilerinin ticari olarak neden anlamlı olabileceğini daha iyi değerlendirmektir.
+                        </p>
+                        <div class="p-3 my-3 rounded bg-white border">
+                            <p class="small mb-1">Cross-sell yalnızca: “Bunu alan şunu da aldı” değildir.</p>
+                            <p class="small mb-0 fw-bold">Asıl soru: “Neden birlikte anlamlılar?”</p>
+                        </div>
+                    }
+                    else
+                    {
+                        <p class="ph-muted small">
+                            Transaction history can provide evidence about which products appear together across baskets or customer journeys.
+                        </p>
+                        <p class="ph-muted small">
+                            But knowing only that “these two products were purchased together” is not always enough.
+                        </p>
+                        <p class="ph-muted small">
+                            Product Intelligence helps evaluate that relationship together with Need Group and Product Role context.
+                        </p>
+                        <div class="pi-formula-bar">
+                            <span>Behavioral relationship</span>
+                            <span class="pi-formula-op">+</span>
+                            <span>Product meaning</span>
+                            <span class="pi-formula-op">=</span>
+                            <span class="pi-formula-result">Stronger cross-sell context</span>
+                        </div>
+                        <p class="ph-muted small">
+                            The purpose is not to turn every co-purchase into an automatic recommendation, but to better evaluate why a product relationship may be commercially meaningful.
+                        </p>
+                        <div class="p-3 my-3 rounded bg-white border">
+                            <p class="small mb-1">Cross-sell is more than: “People who bought this also bought that.”</p>
+                            <p class="small mb-0 fw-bold">The more important question is: “Why do these products make sense together?”</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 10 CUSTOMER vs PRODUCT INTELLIGENCE ────────────────────── *@
+<section class="ph-section ph-section-alt">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="ph-eyebrow">@(tr ? "İKİ ZEKÂ KATMANI" : "TWO INTELLIGENCE LAYERS")</span>
+            <h2 class="pika-h2 fw-bold mb-3">
+                @(tr ? "Doğru müşteri + doğru ürün bağlamı." : "The right customer + the right product context.")
+            </h2>
+            <p class="ph-muted small" style="max-width:680px;margin-left:auto;margin-right:auto">
+                @(tr ? "Pika'da Customer Intelligence ve Product Intelligence aynı işi yapan iki farklı modül değildir. Customer Intelligence müşterinin zaman içindeki davranışını anlamlandırır. Product Intelligence ürünün müşteri ihtiyacı ve ticari ilişki içindeki anlamını oluşturur." : "Customer Intelligence and Product Intelligence are not two modules doing the same job. Customer Intelligence interprets how the customer behaves over time. Product Intelligence establishes what a product means within customer need and commercial relationships.")
+            </p>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            <div class="col-lg-5">
+                <div class="ph-module-card h-100 p-4" style="border-top:3px solid var(--pika-primary)">
+                    <div class="ph-module-icon mb-3"><i class="ri-user-heart-line"></i></div>
+                    <h3 class="fw-bold mb-2" style="font-size:1.05rem">Customer Intelligence</h3>
+                    <p class="ph-muted small mb-3">
+                        @(tr ? "Müşterinin zaman içindeki davranışını anlamlandırır." : "Interprets how the customer behaves over time.")
+                    </p>
+                    <div class="p-3 my-2 rounded bg-white border">
+                        <small class="text-muted d-block mb-1">Customer Intelligence:</small>
+                        <strong style="color:#23413b">@(tr ? "“Bu müşteride ne değişiyor?”" : "“What is changing for this customer?”")</strong>
+                    </div>
+                    <div class="mt-3">
+                        <a href="@(tr ? "/platform/customer-intelligence" : "/en/platform/customer-intelligence")" class="small fw-bold" style="color:var(--pika-primary)">
+                            @(tr ? "Customer Intelligence'ı Keşfedin →" : "Explore Customer Intelligence →")
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="ph-module-card h-100 p-4" style="border-top:3px solid #c8f542">
+                    <div class="ph-module-icon mb-3"><i class="ri-shopping-bag-line"></i></div>
+                    <h3 class="fw-bold mb-2" style="font-size:1.05rem">Product Intelligence</h3>
+                    <p class="ph-muted small mb-3">
+                        @(tr ? "Ürünün müşteri ihtiyacı ve ticari ilişki içindeki anlamını oluşturur." : "Establishes what a product means within customer need and commercial relationships.")
+                    </p>
+                    <div class="p-3 my-2 rounded bg-white border">
+                        <small class="text-muted d-block mb-1">Product Intelligence:</small>
+                        <strong style="color:#23413b">@(tr ? "“Bu ürün neyi temsil ediyor?”" : "“What does this product represent?”")</strong>
+                    </div>
+                    <span class="small fw-bold" style="color:#666">@(tr ? "Şu an burada" : "Current location")</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <div class="p-3 rounded d-inline-block text-start" style="background:#fff;border:1px solid #dce5d3;max-width:720px">
+                <p class="mb-1 fw-bold" style="color:#23413b">
+                    @(tr ? "Birlikte: “Bu müşteri için bu ürün veya ihtiyaç şu anda neden anlamlı olabilir?”" : "Together: “Why might this product or need be meaningful for this customer right now?”")
+                </p>
+                <p class="small ph-muted mb-0">
+                    @(tr ? "Bu kesişim Pika'nın fırsat yaklaşımının temelidir." : "That intersection is central to Pika's opportunity approach.")
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 11 WHERE PRODUCT INTELLIGENCE IS USED ───────────────────── *@
+<section class="ph-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="ph-eyebrow">@(tr ? "ÜRÜN ZEKÂSI NEREDE KULLANILIR?" : "WHERE IS PRODUCT INTELLIGENCE USED?")</span>
+            <h2 class="pika-h2 fw-bold mb-3">
+                @(tr ? "Product Intelligence, ürün kataloğunun son noktası değil; ticari kararın girdisidir." : "Product Intelligence is not the end of the catalog; it is input to commercial decisions.")
+            </h2>
+            <p class="ph-muted small" style="max-width:700px;margin-left:auto;margin-right:auto">
+                @(tr ? "Product Intelligence tarafından oluşturulan ürün bağlamı Pika'nın farklı analiz ve fırsat katmanlarında kullanılabilir." : "Product context created by Product Intelligence can be used across different analytical and opportunity layers in Pika.")
+            </p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-lg-6">
+                <div class="ph-module-card h-100 p-4">
+                    <div class="ph-module-icon mb-3"><i class="ri-user-heart-line"></i></div>
+                    <h3 class="fw-bold mb-2" style="font-size:1.1rem">Customer Intelligence</h3>
+                    <p class="small ph-muted mb-3">
+                        @(tr ? "Müşteri işlemlerindeki ürünlerin anlamı, müşteri davranışının yalnızca işlem sayısı veya tutarı üzerinden değil, satın alınan ihtiyaç ve ürün bağlamıyla birlikte yorumlanmasına yardımcı olur." : "The meaning of products within customer transactions helps customer behavior be interpreted through purchased need and product context rather than only transaction count or value.")
+                    </p>
+                    <a href="@(tr ? "/platform/customer-intelligence" : "/en/platform/customer-intelligence")" class="small fw-bold" style="color:var(--pika-primary)">
+                        @(tr ? "Customer Intelligence'ı Keşfedin →" : "Explore Customer Intelligence →")
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="ph-module-card h-100 p-4">
+                    <div class="ph-module-icon mb-3"><i class="ri-flashlight-line"></i></div>
+                    <h3 class="fw-bold mb-2" style="font-size:1.1rem">@(tr ? "Günün Fırsatları" : "Daily Opportunities")</h3>
+                    <p class="small ph-muted mb-3">
+                        @(tr ? "Müşteri ritmi ve ürün bağlamı birleşerek tekrar satın alma, cross-sell ve diğer değerlendirilebilir ticari fırsatların oluşmasına katkı sağlayabilir." : "Customer rhythm and product context can combine to contribute to evaluable commercial opportunities such as repeat purchase and cross-sell.")
+                    </p>
+                    <a href="@(tr ? "/platform/gunun-firsatlari" : "/en/platform/opportunities")" class="small fw-bold" style="color:var(--pika-primary)">
+                        @(tr ? "Günün Fırsatlarını Keşfedin →" : "Explore Daily Opportunities →")
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="ph-module-card h-100 p-4">
+                    <div class="ph-module-icon mb-3"><i class="ri-git-merge-line"></i></div>
+                    <h3 class="fw-bold mb-2" style="font-size:1.1rem">@(tr ? "Cross-sell bağlamı" : "Cross-sell context")</h3>
+                    <p class="small ph-muted mb-0">
+                        @(tr ? "Ürünlerin birlikte görülme davranışı Need Group ve Product Role gibi anlam katmanlarıyla birlikte değerlendirilebilir." : "Co-purchase behavior can be evaluated together with meaning layers such as Need Group and Product Role.")
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="ph-module-card h-100 p-4">
+                    <div class="ph-module-icon mb-3"><i class="ri-bar-chart-box-line"></i></div>
+                    <h3 class="fw-bold mb-2" style="font-size:1.1rem">Analytics &amp; Reporting</h3>
+                    <p class="small ph-muted mb-3">
+                        @(tr ? "Ürün, kategori, ihtiyaç ve ticari bağlamların satış ve müşteri davranışıyla ilişkisi analitik katmanda değerlendirilebilir." : "Relationships between product, category, need, commercial context, sales and customer behavior can be evaluated in the analytics layer.")
+                    </p>
+                    <a href="@(tr ? "/cozumler/analytics-reporting" : "/en/solutions/analytics-reporting")" class="small fw-bold" style="color:var(--pika-primary)">
+                        @(tr ? "Analytics & Reporting'i Keşfedin →" : "Explore Analytics & Reporting →")
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <div class="p-3 rounded d-inline-block text-start" style="background:#f8faf4;border:1px dashed #dce5d3;max-width:720px">
+                <p class="small mb-1" style="color:#62746d">
+                    @(tr ? "Product Intelligence'ın amacı ürün kataloğunu yeniden üretmek değildir." : "The purpose of Product Intelligence is not to recreate the product catalog.")
+                </p>
+                <p class="small mb-0" style="color:#62746d">
+                    @(tr ? "Amaç, ürün verisini Pika'nın müşteri ve fırsat kararlarının anlayabileceği bir dile çevirmektir." : "Its purpose is to translate product data into a language that Pika's customer and opportunity decisions can understand.")
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 12 WHAT PRODUCT INTELLIGENCE IS / IS NOT ───────────────── *@
+<section class="ph-section ph-section-alt">
+    <div class="container" style="max-width:860px">
+        <div class="text-center mb-5">
+            <span class="ph-eyebrow">@(tr ? "DOĞRU SINIRLAR" : "CLEAR BOUNDARIES")</span>
+            <h2 class="pika-h2 fw-bold mb-3">@(tr ? "Product Intelligence'ı doğru yere koyun." : "Put Product Intelligence in the right place.")</h2>
+        </div>
+
+        <div class="d-flex flex-column gap-3">
+            <div class="p-4 rounded bg-white border">
+                <h3 class="fw-bold mb-2" style="font-size:1.05rem;color:#23413b">
+                    @(tr ? "Product Intelligence bir PIM değildir." : "Product Intelligence is not a PIM.")
+                </h3>
+                <p class="small ph-muted mb-0">
+                    @(tr ? "PIM sistemleri ürün bilgisini toplamak, düzenlemek ve kanallara dağıtmak için kullanılabilir. Product Intelligence'ın görevi ise mevcut ürün verisine müşteri ihtiyacı ve ticari karar bağlamı eklemektir." : "PIM systems may be used to collect, organize and distribute product information across channels. Product Intelligence adds customer-need and commercial-decision context to existing product data.")
+                </p>
+            </div>
+
+            <div class="p-4 rounded bg-white border">
+                <h3 class="fw-bold mb-2" style="font-size:1.05rem;color:#23413b">
+                    @(tr ? "Product Intelligence bir stok veya ERP sistemi değildir." : "Product Intelligence is not an inventory or ERP system.")
+                </h3>
+                <p class="small ph-muted mb-0">
+                    @(tr ? "Stok miktarı, satın alma, tedarik ve operasyonel ürün yönetimi Product Intelligence'ın temel rolü değildir. Pika ürün zekâsı, ürünün analitik ve ticari anlamına odaklanır." : "Stock quantities, purchasing, supply and operational product management are not the primary role of Product Intelligence. Pika Product Intelligence focuses on analytical and commercial product meaning.")
+                </p>
+            </div>
+
+            <div class="p-4 rounded bg-white border">
+                <h3 class="fw-bold mb-2" style="font-size:1.05rem;color:#23413b">
+                    @(tr ? "Product Intelligence yalnızca kategori yönetimi değildir." : "Product Intelligence is more than category management.")
+                </h3>
+                <p class="small ph-muted mb-0">
+                    @(tr ? "Kategori ürünün katalog hiyerarşisindeki yerini açıklar. Product Intelligence buna Need Group, Product Role, tekrar davranışı ve ürün ilişkileri gibi ek anlam katmanları ekler." : "Category explains where the product sits within the catalog hierarchy. Product Intelligence adds additional meaning layers such as Need Group, Product Role, repeat behavior and product relationships.")
+                </p>
+            </div>
+
+            <div class="p-4 rounded bg-white border">
+                <h3 class="fw-bold mb-2" style="font-size:1.05rem;color:#23413b">
+                    @(tr ? "Product Intelligence, Customer Intelligence değildir." : "Product Intelligence is not Customer Intelligence.")
+                </h3>
+                <p class="small ph-muted mb-0">
+                    @(tr ? "Customer Intelligence müşterinin davranışını anlamlandırır. Product Intelligence ürünün anlamını oluşturur. Pika fırsat bağlamı bu iki katmanın birlikte kullanılmasından güç alır." : "Customer Intelligence interprets customer behavior. Product Intelligence establishes product meaning. Pika's opportunity context becomes stronger when these two layers are used together.")
+                </p>
+            </div>
+
+            <div class="p-4 rounded bg-white border">
+                <h3 class="fw-bold mb-2" style="font-size:1.05rem;color:#23413b">
+                    @(tr ? "Product Intelligence yalnızca AI sınıflandırması değildir." : "Product Intelligence is not merely AI classification.")
+                </h3>
+                <p class="small ph-muted mb-0">
+                    @(tr ? "Ürün bağlamı Playbook, sınıflandırma kuralları, ürün verisi ve gerektiğinde insan doğrulamasıyla yönetilir. Ürün gerçeği yalnızca üretken yapay zekânın oluşturduğu bir etikete bırakılmaz." : "Product context is governed through Playbooks, classification rules, product data and human verification where required. Product truth is not left solely to a label generated by generative AI.")
+                </p>
+            </div>
+        </div>
+
+        <div class="p-4 rounded mt-4 text-center" style="background:#fff;border:1px solid #dce5d3">
+            <small class="text-uppercase fw-bold d-block mb-1" style="font-size:11px;letter-spacing:1px;color:#7a9845">
+                @(tr ? "Product Intelligence'ın görevi:" : "The role of Product Intelligence is to:")
+            </small>
+            <div class="fw-bold" style="font-size:1.15rem;color:#23413b">
+                @(tr ? "Bir ürünü stok kodundan, ticari anlamı olan bir bağlama dönüştürmek." : "Turn a product from a stock code into commercially meaningful context.")
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 13 FAQ ─────────────────────────────────────────────────── *@
+<section class="ph-section">
+    <div class="container" style="max-width:860px">
+        <div class="text-center mb-5">
+            <span class="ph-eyebrow">@(tr ? "SIKÇA SORULAN SORULAR" : "FREQUENTLY ASKED QUESTIONS")</span>
+            <h2 class="pika-h2 fw-bold mb-3">@(tr ? "Merak Edilenler" : "Questions & Answers")</h2>
+        </div>
+
+        @if (tr)
+        {
+            <details class="pi-faq-details" open>
+                <summary class="pi-faq-summary">
+                    <span>Product Intelligence nedir?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="pi-faq-body">
+                    Product Intelligence, ürün kayıtlarını müşteri ihtiyacı ve ticari bağlam açısından anlamlandıran ürün zekâsı katmanıdır. Pika'da ürünün kategorisini, hizmet ettiği ihtiyacı, Product Role bağlamını, tekrar davranışını ve diğer ürünlerle ilişkisini birlikte değerlendirmeye yardımcı olur.
+                </div>
+            </details>
+
+            <details class="pi-faq-details">
+                <summary class="pi-faq-summary">
+                    <span>Need Group nedir?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="pi-faq-body">
+                    Need Group, ürünün katalogda nerede bulunduğunu değil, müşterinin hangi ihtiyacına hizmet ettiğini ifade eden anlam katmanıdır. Aynı ihtiyaca hizmet eden ürünler farklı katalog kategorilerinde bulunabilir.
+                </div>
+            </details>
+
+            <details class="pi-faq-details">
+                <summary class="pi-faq-summary">
+                    <span>Product Role nedir?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="pi-faq-body">
+                    Product Role, ürünün hizmet ettiği ihtiyaç ve ticari bağlam içinde nasıl bir fonksiyon taşıdığını değerlendirmeye yardımcı olur. Aynı Need Group içindeki ürünler aynı ihtiyaca hizmet etseler bile farklı roller taşıyabilir.
+                </div>
+            </details>
+
+            <details class="pi-faq-details">
+                <summary class="pi-faq-summary">
+                    <span>Product Intelligence ile kategori yönetimi arasındaki fark nedir?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="pi-faq-body">
+                    Kategori yönetimi ürünün katalog hiyerarşisindeki yerini belirler. Product Intelligence ise bunun üzerine müşteri ihtiyacı, Product Role, tekrar davranışı ve ürün ilişkileri gibi ticari anlam katmanları ekler.
+                </div>
+            </details>
+
+            <details class="pi-faq-details">
+                <summary class="pi-faq-summary">
+                    <span>Product Intelligence tekrar satın alma analizinde nasıl kullanılır?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="pi-faq-body">
+                    Ürünün tekrar satın alma davranışı, müşterinin geçmiş işlem ritmiyle birlikte değerlendirilebilir. Product Intelligence ürün bağlamını sağlar; Customer Intelligence müşterinin kişisel satın alma ritmini değerlendirir. Bu iki bağlam Günün Fırsatları katmanında tekrar satın alma fırsatlarına katkı sağlayabilir.
+                </div>
+            </details>
+
+            <details class="pi-faq-details">
+                <summary class="pi-faq-summary">
+                    <span>Product Intelligence cross-sell analizine nasıl yardımcı olur?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="pi-faq-body">
+                    İşlem geçmişindeki birlikte satın alma davranışı, ürünlerin Need Group ve Product Role bağlamıyla birlikte değerlendirilebilir. Böylece yalnızca hangi ürünlerin birlikte satıldığı değil, bu ilişkinin neden ticari olarak anlamlı olabileceği de analiz bağlamına eklenir.
+                </div>
+            </details>
+
+            <details class="pi-faq-details">
+                <summary class="pi-faq-summary">
+                    <span>Product Intelligence yapay zekâ ile mi sınıflandırma yapar?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="pi-faq-body">
+                    Product Intelligence yalnızca üretken yapay zekâ sınıflandırmasına dayanmaz. Ürün bağlamı Playbook, sınıflandırma kuralları, mevcut ürün verisi ve gerektiğinde insan incelemesiyle yönetilir. Yapay zekâ yardımcı olabilir; ürün gerçeğinin tek kaynağı değildir.
+                </div>
+            </details>
+
+            <details class="pi-faq-details">
+                <summary class="pi-faq-summary">
+                    <span>Product Intelligence ile Customer Intelligence arasındaki fark nedir?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="pi-faq-body">
+                    Customer Intelligence müşterinin zaman içindeki davranışını anlamlandırır. Product Intelligence ise satın alınan ürünün müşteri ihtiyacı ve ticari ilişki içindeki anlamını oluşturur. Pika bu iki bağlamı birlikte kullanarak daha güçlü fırsat ve karar bağlamı üretir.
+                </div>
+            </details>
+        }
+        else
+        {
+            <details class="pi-faq-details" open>
+                <summary class="pi-faq-summary">
+                    <span>What is Product Intelligence?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="pi-faq-body">
+                    Product Intelligence is the product-intelligence layer that gives product records meaning in terms of customer need and commercial context. In Pika, it helps evaluate product category, the need served, Product Role context, repeat behavior and relationships with other products.
+                </div>
+            </details>
+
+            <details class="pi-faq-details">
+                <summary class="pi-faq-summary">
+                    <span>What is a Need Group?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="pi-faq-body">
+                    A Need Group describes which customer need a product serves rather than where the product sits in the catalog. Products serving the same need can exist in different catalog categories.
+                </div>
+            </details>
+
+            <details class="pi-faq-details">
+                <summary class="pi-faq-summary">
+                    <span>What is Product Role?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="pi-faq-body">
+                    Product Role helps evaluate the function a product plays within the need and commercial context it serves. Products within the same Need Group can serve the same need while playing different roles.
+                </div>
+            </details>
+
+            <details class="pi-faq-details">
+                <summary class="pi-faq-summary">
+                    <span>What is the difference between Product Intelligence and category management?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="pi-faq-body">
+                    Category management establishes where the product sits in the catalog hierarchy. Product Intelligence adds commercial meaning layers such as customer need, Product Role, repeat behavior and product relationships.
+                </div>
+            </details>
+
+            <details class="pi-faq-details">
+                <summary class="pi-faq-summary">
+                    <span>How is Product Intelligence used in repeat-purchase analysis?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="pi-faq-body">
+                    Product repeat behavior can be evaluated together with the customer's historical transaction rhythm. Product Intelligence provides product context, while Customer Intelligence evaluates the customer's individual purchase rhythm. These two contexts can contribute to repeat-purchase opportunities in the Daily Opportunities layer.
+                </div>
+            </details>
+
+            <details class="pi-faq-details">
+                <summary class="pi-faq-summary">
+                    <span>How does Product Intelligence support cross-sell analysis?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="pi-faq-body">
+                    Co-purchase behavior in transaction history can be evaluated together with Need Group and Product Role context. This adds not only which products were purchased together, but why the relationship may be commercially meaningful.
+                </div>
+            </details>
+
+            <details class="pi-faq-details">
+                <summary class="pi-faq-summary">
+                    <span>Does Product Intelligence classify products with AI?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="pi-faq-body">
+                    Product Intelligence does not rely solely on generative-AI classification. Product context is governed through Playbooks, classification rules, existing product data and human review where required. AI may assist, but it is not the sole source of product truth.
+                </div>
+            </details>
+
+            <details class="pi-faq-details">
+                <summary class="pi-faq-summary">
+                    <span>What is the difference between Product Intelligence and Customer Intelligence?</span>
+                    <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                </summary>
+                <div class="pi-faq-body">
+                    Customer Intelligence interprets customer behavior over time. Product Intelligence establishes what the purchased product means within customer need and commercial relationships. Pika uses these contexts together to create stronger opportunity and decision context.
+                </div>
+            </details>
+        }
+    </div>
+</section>
+
+@* ── 14 FINAL CTA (Restored existing ph-section-dark visual) ── *@
+<section class="ph-section ph-section-dark">
+    <div class="container">
+        <div class="text-center">
+            <span class="ph-eyebrow" style="color:#b5ee19">
+                @(tr ? "ÜRÜNÜ ANLAMADAN FIRSATI ANLAYAMAZSINIZ" : "UNDERSTAND THE PRODUCT TO UNDERSTAND THE OPPORTUNITY")
+            </span>
             @if (tr)
             {
-                <h2 class="pika-pi-cta-title">
+                <h2 class="pika-h2 ph-cta-title fw-bold mb-3">
                     Kataloğunuz size<br />
                     ne sattığınızı söyler.<br /><br />
                     Product Intelligence,<br />
                     sattığınız ürünün müşteri açısından<br />
                     ne ifade ettiğini anlamanıza yardımcı olur.
                 </h2>
-                <p class="pika-pi-cta-body">
+                <p class="ph-muted ph-cta-desc mb-3" style="max-width:680px;margin-left:auto;margin-right:auto">
                     Pika'nın ürün verinizi Need Group, Product Role, tekrar davranışı ve ürün ilişkileri bağlamında nasıl anlamlandırabileceğini birlikte inceleyelim.
                 </p>
-                <p class="pika-pi-cta-commercial">
+                <p class="small fw-bold mb-4" style="color:#b5ee19">
                     İhtiyacınıza ve kullanım kapsamınıza göre özel teklif.
                 </p>
-                <div class="pika-pi-cta-actions">
-                    <button type="button" class="pika-pi-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal">
-                        <span>Demo Talep Et</span>
-                        <i class="ri-arrow-right-up-line" aria-hidden="true"></i>
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                    <button type="button" class="ph-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal">
+                        Demo Talep Et <i class="ri-arrow-right-up-line"></i>
                     </button>
-                    <a href="/demo-talebi" class="pika-pi-btn-outline">
-                        <span>Teklif Al</span>
-                        <i class="ri-file-list-3-line" aria-hidden="true"></i>
+                    <a href="/demo-talebi" class="ph-btn-outline">
+                        Teklif Al <i class="ri-file-list-3-line"></i>
                     </a>
                 </div>
             }
             else
             {
-                <h2 class="pika-pi-cta-title">
+                <h2 class="pika-h2 ph-cta-title fw-bold mb-3">
                     Your catalog tells you<br />
                     what you sell.<br /><br />
                     Product Intelligence helps you understand<br />
                     what those products mean<br />
                     from the customer's perspective.
                 </h2>
-                <p class="pika-pi-cta-body">
+                <p class="ph-muted ph-cta-desc mb-3" style="max-width:680px;margin-left:auto;margin-right:auto">
                     Let's explore how Pika can interpret your product data through Need Group, Product Role, repeat behavior and product relationships.
                 </p>
-                <p class="pika-pi-cta-commercial">
+                <p class="small fw-bold mb-4" style="color:#b5ee19">
                     Pricing is tailored to your requirements and scope of use.
                 </p>
-                <div class="pika-pi-cta-actions">
-                    <button type="button" class="pika-pi-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal">
-                        <span>Request a Demo</span>
-                        <i class="ri-arrow-right-up-line" aria-hidden="true"></i>
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                    <button type="button" class="ph-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal">
+                        Request a Demo <i class="ri-arrow-right-up-line"></i>
                     </button>
-                    <a href="/en/demo-request" class="pika-pi-btn-outline">
-                        <span>Request a Quote</span>
-                        <i class="ri-file-list-3-line" aria-hidden="true"></i>
+                    <a href="/en/demo-request" class="ph-btn-outline">
+                        Request a Quote <i class="ri-file-list-3-line"></i>
                     </a>
                 </div>
             }
         </div>
-    </section>
-</div>
+    </div>
+</section>
