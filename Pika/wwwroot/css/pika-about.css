@@ -1,14 +1,1611 @@
-/* About Pika: a brand narrative rather than a product template. */
-.pika-inner .about-pika{background:#f7f9f1;color:#254236}.pika-inner .about-pika .container{max-width:1260px;width:88%}.about-pika section{padding:100px 0}.about-pika .about-opening{background:#10292d;position:relative;overflow:hidden;isolation:isolate;padding:55px 0 0}.about-kicker{display:flex;justify-content:space-between;font-size:10px;letter-spacing:2px;color:#bdcf9e;margin-bottom:68px}.about-kicker>span{color:#839d88}.pika-inner .about-opening h1{font-size:clamp(64px,8.3vw,126px);line-height:1.01;letter-spacing:-6px;font-weight:450;color:#f1f6e7;margin:0 0 45px;position:relative}.about-opening h1 em{font-style:normal;color:#b6d087}.about-opening-bottom{display:grid;grid-template-columns:1.15fr .85fr;gap:80px;align-items:center;margin-bottom:65px}.about-opening-bottom>p{font-size:17px;line-height:1.9;color:#b1c2ac;max-width:640px;margin:0}.about-actions{display:flex;justify-content:flex-end;align-items:center;gap:26px;flex-wrap:wrap}.about-actions button,.about-closing-actions button{background:#b5ee19;color:#1f3824;border:1px solid #b5ee19;padding:15px 21px;border-radius:6px;min-height:53px;font-size:14px;font-weight:600}.about-actions a{color:#d9e6c6;text-decoration:none;font-size:14px}.about-opening-rule{display:flex;justify-content:space-between;gap:20px;border-top:1px solid #b3c78d25;padding:24px 0;font-size:9px;letter-spacing:1.5px;color:#8ea387}.about-orbits{position:absolute;right:-280px;top:-160px;width:1000px;height:1000px;z-index:-1;pointer-events:none}.about-orbits span{position:absolute;inset:0;border:1px solid #b9d18a18;border-radius:50%;transform:rotateX(55deg) rotate(-25deg);background:radial-gradient(ellipse,#789f2920,transparent 66%);animation:about-orbit 20s ease-in-out infinite alternate}.about-orbits span:nth-child(2){inset:90px;animation-delay:-7s}.about-orbits span:nth-child(3){inset:180px;animation-delay:-13s}
-.about-editorial{display:grid;grid-template-columns:.42fr 1fr;gap:65px}.about-side-label{font-size:10px;line-height:1.8;letter-spacing:1.5px;color:#7e9661;padding-top:9px}.about-statement{font-size:30px;color:#37533c;line-height:1.3;letter-spacing:-.7px;font-weight:450;margin:0 0 23px}.about-body{font-size:17px;line-height:1.95;color:#6b7f60;max-width:690px;margin:25px 0}.about-questions{margin:40px 0}.about-questions>div{display:flex;align-items:baseline;gap:22px;border-bottom:1px solid #dbe5ce;padding:22px 0}.about-questions span{font-size:11px;color:#9cb47a}.pika-inner .about-questions h2{font-size:clamp(25px,3vw,41px);font-weight:450;letter-spacing:-1.1px;color:#3b583b;margin:0;line-height:1.2}.about-conclusion{font-size:17px;color:#2f4e31;line-height:1.9;margin:0}.about-conclusion span{color:#849771}
-.about-pika .about-chain{background:#eaf1df;padding:90px 0}.about-chain-heading{display:grid;grid-template-columns:1.1fr .9fr;gap:75px;align-items:end;margin-bottom:55px}.about-chain-heading .about-side-label{margin-bottom:24px}.pika-inner .about-pika :is(.about-chain-heading h2,.about-editorial h2,.about-intelligence h2,.about-ai h2){font-size:clamp(33px,3.8vw,52px);font-weight:450;line-height:1.13;letter-spacing:-1.8px;color:#2e4c35;margin:0}.about-pika h2 em{font-style:normal;color:#819c52}.about-chain-heading>p{font-size:16px;line-height:1.9;color:#718760;margin:0;max-width:440px}.about-chain-steps{list-style:none;display:grid;grid-template-columns:repeat(6,1fr);padding:0;margin:0;border-top:1px solid #bdceaa;counter-reset:step}.about-chain-steps li{padding:30px 18px 10px 0;position:relative}.about-chain-steps li:before{content:'';height:7px;width:7px;border-radius:50%;background:#8fac61;position:absolute;top:-4px;left:0;box-shadow:0 0 0 5px #eaf1df}.about-chain-steps li>span{font-size:10px;color:#8ba469;letter-spacing:1px}.about-chain-steps h3{font-size:18px;letter-spacing:-.5px;color:#466437;font-weight:500;margin:20px 0 13px}.about-chain-steps p{font-size:13px;line-height:1.8;color:#819568;margin:0}.about-diagram-note{display:block;font-size:10px;color:#8ba275;margin-top:30px;letter-spacing:.5px}
-.about-intelligence>.container>.about-side-label{margin-bottom:45px}.about-intelligence-grid{display:grid;grid-template-columns:1fr 1fr;gap:75px}.about-intelligence-grid>article+article{border-left:1px solid #dce5cf;padding-left:65px}.about-large-number{font-size:76px;line-height:1;color:#c4d4b0;letter-spacing:-4px;font-weight:400;margin-bottom:35px;display:flex;align-items:center;gap:22px}.about-large-number>span{font-size:11px;letter-spacing:1px;color:#7f9963}.pika-inner .about-intelligence h2{font-size:39px!important;margin-bottom:25px!important}.about-intelligence article>p{font-size:16px;line-height:1.9;color:#758967}.about-intelligence ul{list-style:none;padding:0;margin:27px 0}.about-intelligence li{border-top:1px solid #e0e8d5;padding:13px 0;font-size:14px;line-height:1.7;color:#657f50}.about-intelligence a,.about-text-link{display:inline-block;color:#5f803c;font-size:14px;text-decoration:none;border-bottom:1px solid #b8ce99;padding-bottom:5px;margin-top:12px}
-.about-pika .about-opportunity{background:#f0f4e8}.about-opportunity-list{display:grid;grid-template-columns:1fr 1fr;gap:0 30px;margin:30px 0}.about-opportunity-list>span{font-size:15px;line-height:1.75;color:#6b8452;border-top:1px solid #d4e0c4;padding:17px 0}.pika-inner .about-perspective{margin-top:80px;background:#193733;border-radius:2px;padding:42px 50px;display:grid;grid-template-columns:1fr .65fr;gap:22px 60px;color:#e2ebd4}.about-perspective>span{grid-column:1/-1;font-size:11px;letter-spacing:2px;color:#aac880}.about-perspective blockquote{margin:0}.about-perspective del{font-size:17px;color:#7f9c7c;text-decoration-color:#9caf85;line-height:1.7}.about-perspective blockquote p{font-size:clamp(28px,3vw,40px);line-height:1.22;letter-spacing:-1px;color:#dbeac5;margin:24px 0 0}.about-perspective>div{align-self:end}.about-perspective>div p{font-size:14px;line-height:1.9;color:#a5bf98;margin:0 0 18px}.about-perspective a{color:#c5dc9e;font-size:13px}
-.about-managers{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #cbdcba;border-bottom:1px solid #cbdcba}.about-managers>a{display:block;position:relative;padding:25px 24px 40px 0;text-decoration:none;border-right:1px solid #dde7d1}.about-managers>a+a{padding-left:24px}.about-managers>a:last-child{border-right:0}.about-managers small{font-size:11px;color:#8ca573}.about-managers strong{display:block;font-size:25px;line-height:1.2;letter-spacing:-.7px;font-weight:450;color:#456b37;margin-top:24px;max-width:210px}.about-managers a>span{display:block;font-size:24px;color:#96b574;margin-top:30px;transition:translate .25s}.about-managers a:hover>span{translate:3px -3px}.about-channels{display:flex;align-items:center;justify-content:space-between;gap:25px;margin-top:35px}.about-channels>span{font-size:10px;letter-spacing:1.5px;color:#8ca477}.about-channels strong{font-size:24px;font-weight:450;letter-spacing:-.5px;color:#557743}.about-channels i{font-style:normal;color:#bfd0ad;margin:0 14px}
-.about-pika .about-ai{background:#eaf0df}.about-ai-flow{list-style:none;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:0 30px;margin:30px 0}.about-ai-flow li{display:flex;align-items:center;gap:14px;border-top:1px solid #cbdcba;padding:19px 0;color:#587747;font-size:14px}.about-ai-flow li>span{font-size:10px;color:#98ae80}.about-ai-note{font-size:16px;line-height:1.9;color:#70865d;border-left:2px solid #a2bc7c;padding-left:22px;margin-top:30px}
-.about-pika .about-belief{background:#102b2d;text-align:center;padding:95px 0}.about-belief-symbol{font-size:60px;color:#b5ee19;display:block;line-height:1;margin-bottom:25px}.about-belief .about-side-label{color:#8fac77;margin-bottom:30px}.pika-inner .about-belief h2{font-size:clamp(34px,4.1vw,61px);font-weight:450;line-height:1.15;letter-spacing:-2px;color:#eef4e4;margin:0}.about-belief h2 em{color:#b6d387}.about-belief>.container>p{font-size:18px;color:#a8c196;margin:30px 0 45px}.about-principles{display:flex;flex-wrap:wrap;justify-content:center;gap:17px 30px;max-width:850px;margin:auto}.about-principles span{font-size:13px;line-height:1.8;color:#aac198}.about-principles span:before{content:'·';color:#aac969;margin-right:13px}
-.about-closing>.container{display:grid;grid-template-columns:1fr .7fr;align-items:center;gap:80px}.about-closing .about-side-label{margin-bottom:25px}.pika-inner .about-closing h2{font-size:clamp(37px,4vw,54px);font-weight:450;line-height:1.1;letter-spacing:-1.7px;color:#365532;margin-bottom:25px}.about-closing p{font-size:16px;color:#7d946c;line-height:1.9;max-width:540px;margin:0}.about-closing-actions{display:flex;flex-wrap:wrap;gap:22px;align-items:center;justify-content:flex-end}.about-closing-actions>a{font-size:14px;color:#618346}.about-closing-actions small{font-size:12px;color:#8ba477;line-height:1.8;width:100%;text-align:right;max-width:310px}.about-pika :is(a,button):focus-visible{outline:3px solid #98b666;outline-offset:5px}
-@keyframes about-orbit{to{transform:rotateX(60deg) rotate(0deg);translate:-30px 30px}}
-@media(max-width:1100px){.about-opening-bottom{gap:30px}.about-editorial{grid-template-columns:.3fr 1fr;gap:35px}.about-intelligence-grid{gap:35px}.about-intelligence-grid>article+article{padding-left:35px}.pika-inner .about-intelligence h2{font-size:33px!important}.about-chain-heading{gap:40px}.about-chain-steps{grid-template-columns:repeat(3,1fr);gap:30px 0}.about-chain-steps li:nth-child(n+4){border-top:1px solid #bdceaa}.about-closing>.container{gap:35px}.about-actions{gap:20px}.about-managers strong{font-size:22px}}
-@media(max-width:767px){.about-pika section{padding:65px 0}.about-pika .about-opening{padding-top:35px}.about-kicker{margin-bottom:40px}.pika-inner .about-opening h1{font-size:clamp(48px,10.5vw,79px);letter-spacing:-2.8px;margin-bottom:30px}.about-opening-bottom{grid-template-columns:1fr;gap:30px;margin-bottom:40px}.about-opening-bottom>p{font-size:16px}.about-actions{justify-content:flex-start}.about-opening-rule{font-size:8px;line-height:1.7}.about-opening-rule>span:first-child{max-width:210px}.about-editorial,.about-chain-heading,.about-closing>.container{grid-template-columns:1fr;gap:28px}.about-statement{font-size:26px}.about-body{font-size:16px}.about-questions{margin:26px 0}.about-questions>div{padding:18px 0;gap:15px}.pika-inner .about-questions h2{font-size:27px!important}.about-chain-steps{grid-template-columns:1fr 1fr;gap:25px 0}.about-chain-steps li:nth-child(n+3){border-top:1px solid #bdceaa}.about-chain-steps h3{font-size:17px}.about-intelligence-grid{grid-template-columns:1fr;gap:45px}.about-intelligence-grid>article+article{border-left:0;border-top:1px solid #dce5cf;padding:35px 0 0}.about-large-number{font-size:62px;margin-bottom:25px}.about-opportunity-list{grid-template-columns:1fr}.pika-inner .about-perspective{width:88%;grid-template-columns:1fr;padding:28px;margin-top:45px;gap:26px}.about-managers{grid-template-columns:1fr 1fr}.about-managers>a{padding:22px 18px!important;border-bottom:1px solid #dde7d1}.about-managers>a:nth-child(2){border-right:0}.about-managers strong{font-size:23px;min-height:54px}.about-channels{align-items:flex-start;flex-direction:column;gap:17px}.about-channels strong{font-size:23px}.about-ai-flow{gap:0 17px}.about-ai-flow li{font-size:13px;gap:10px;align-items:baseline}.about-belief h2{letter-spacing:-1.2px!important}.about-principles{display:grid;gap:12px;text-align:left;max-width:420px}.about-belief>.container>p{font-size:16px;line-height:1.8}.about-closing-actions{justify-content:flex-start}.about-closing-actions small{text-align:left}.about-chain-heading>p{max-width:none}.about-kicker>span{font-size:9px}}
-@media(prefers-reduced-motion:reduce){.about-orbits span{animation:none}.about-pika *{scroll-behavior:auto;transition:none!important}}
+/* ══════════════════════════════════════════════════════════════════════════
+   PIKA CONTENT 360 — C01 /pika CANONICAL ENTITY PAGE STYLES
+   Visual Language: Deep Petrol, Warm Neutrals, White, Pika Lime Accents
+   Zero Product Screenshots · Pure Editorial & Conceptual Typography
+   WCAG AA Compliant · Responsive down to 320px
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.pika-entity-page {
+    --pika-petrol-deep: #082922;
+    --pika-petrol-solid: #0c3a30;
+    --pika-petrol-stage: #0e322a;
+    --pika-petrol-surface: #123d33;
+    --pika-lime: #84c225;
+    --pika-lime-bright: #9edd05;
+    --pika-lime-vivid: #b5ee19;
+    --pika-neutral-warm: #f7f9f1;
+    --pika-neutral-tint: #f4f9f1;
+    --pika-neutral-muted: #eaf1df;
+    --pika-neutral-subtle: #f8faf9;
+    --pika-text-dark: #0d2821;
+    --pika-text-secondary: #254236;
+    --pika-text-muted: #3d584d;
+    --pika-text-light: #ffffff;
+    --pika-text-light-muted: rgba(255, 255, 255, 0.78);
+    --pika-text-light-subtle: rgba(255, 255, 255, 0.56);
+    --pika-border-light: rgba(13, 40, 33, 0.12);
+    --pika-border-dark: rgba(255, 255, 255, 0.14);
+
+    font-family: 'Inter Tight', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--pika-text-dark);
+    background: #ffffff;
+    overflow-x: hidden;
+    position: relative;
+    word-break: normal;
+}
+
+/* Accessibility skip link */
+.pika-skip-anchor:focus {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 9999;
+    background: var(--pika-lime-bright);
+    color: var(--pika-petrol-deep);
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-weight: 700;
+    outline: 3px solid #000;
+}
+
+/* Common Section Wrapper */
+.pika-section {
+    padding: 110px 0;
+    position: relative;
+}
+
+@media (max-width: 991px) {
+    .pika-section {
+        padding: 75px 0;
+    }
+}
+
+@media (max-width: 575px) {
+    .pika-section {
+        padding: 55px 0;
+    }
+}
+
+/* Section Background Variants */
+.pika-section--light {
+    background: #ffffff;
+    color: var(--pika-text-dark);
+}
+
+.pika-section--warm {
+    background: var(--pika-neutral-warm);
+    color: var(--pika-text-dark);
+}
+
+.pika-section--tinted {
+    background: var(--pika-neutral-muted);
+    color: var(--pika-text-dark);
+}
+
+.pika-section--dark {
+    background: var(--pika-petrol-solid);
+    color: var(--pika-text-light);
+}
+
+/* Eyebrows */
+.pika-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.pika-eyebrow--dark {
+    color: var(--pika-lime-bright);
+}
+
+.pika-eyebrow--light {
+    color: #4a685e;
+}
+
+.pika-eyebrow__pulse {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--pika-lime-bright);
+    box-shadow: 0 0 10px var(--pika-lime-bright);
+}
+
+/* Badges */
+.pika-badge {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.pika-badge--hero {
+    background: rgba(158, 221, 5, 0.12);
+    color: var(--pika-lime-bright);
+    border: 1px solid rgba(158, 221, 5, 0.3);
+}
+
+/* Section Header */
+.pika-section-header {
+    max-width: 860px;
+    margin: 0 auto 60px;
+    text-align: center;
+}
+
+.pika-section-intro {
+    font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+    line-height: 1.7;
+    color: var(--pika-text-secondary);
+    margin-top: 20px;
+}
+
+/* Display Titles */
+.pika-display-h2 {
+    font-size: clamp(2rem, 3.8vw, 3.25rem);
+    line-height: 1.15;
+    letter-spacing: -0.035em;
+    font-weight: 500;
+    color: var(--pika-text-dark);
+    margin: 0;
+}
+
+.pika-display-h2--light {
+    color: var(--pika-text-light);
+}
+
+.pika-h2 {
+    font-size: clamp(2rem, 3.4vw, 2.75rem);
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+    font-weight: 500;
+    color: var(--pika-text-dark);
+    margin: 0 0 20px;
+}
+
+.pika-h2--left {
+    text-align: left;
+}
+
+/* Buttons */
+.pika-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 26px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    min-height: 48px;
+    transition: all 0.22s ease;
+    text-decoration: none;
+}
+
+.pika-btn--lime {
+    background: var(--pika-lime-bright);
+    color: var(--pika-petrol-deep);
+    border: 1px solid var(--pika-lime-bright);
+}
+
+.pika-btn--lime:hover,
+.pika-btn--lime:focus-visible {
+    background: #a9e809;
+    color: var(--pika-petrol-deep);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(158, 221, 5, 0.35);
+}
+
+.pika-btn--secondary-glass {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.pika-btn--secondary-glass:hover,
+.pika-btn--secondary-glass:focus-visible {
+    background: rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.45);
+    transform: translateY(-2px);
+}
+
+.pika-btn--ghost-light {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.pika-btn--ghost-light:hover,
+.pika-btn--ghost-light:focus-visible {
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Links */
+.pika-editorial-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--pika-petrol-solid);
+    text-decoration: none;
+    border-bottom: 2px solid var(--pika-lime);
+    padding-bottom: 4px;
+    transition: all 0.2s ease;
+}
+
+.pika-editorial-link:hover,
+.pika-editorial-link:focus-visible {
+    color: var(--pika-lime-bright);
+    border-bottom-color: var(--pika-lime-bright);
+    transform: translateX(4px);
+}
+
+.pika-editorial-link--light {
+    color: var(--pika-lime-bright);
+    border-bottom-color: rgba(158, 221, 5, 0.4);
+}
+
+.pika-editorial-link--light:hover,
+.pika-editorial-link--light:focus-visible {
+    color: #ffffff;
+    border-bottom-color: #ffffff;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   01 — HERO
+   ══════════════════════════════════════════════════════════════════════════ */
+.pika-hero {
+    background: var(--pika-petrol-solid);
+    color: var(--pika-text-light);
+    position: relative;
+    padding: 130px 0 110px;
+    overflow: hidden;
+}
+
+.pika-hero__backdrop {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.pika-hero__glow {
+    position: absolute;
+    top: -150px;
+    right: -100px;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(132, 194, 37, 0.15) 0%, rgba(12, 58, 48, 0) 70%);
+    filter: blur(40px);
+}
+
+.pika-hero__grid-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+}
+
+.pika-hero__container {
+    position: relative;
+    z-index: 1;
+}
+
+.pika-hero__layout {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 70px;
+    align-items: center;
+}
+
+.pika-hero__category {
+    margin-bottom: 24px;
+}
+
+.pika-hero__h1 {
+    font-size: clamp(2.4rem, 5.2vw, 4.25rem);
+    line-height: 1.08;
+    letter-spacing: -0.04em;
+    font-weight: 500;
+    color: #ffffff;
+    margin: 0 0 28px;
+}
+
+.pika-hero__lead {
+    font-size: clamp(1.05rem, 1.35vw, 1.25rem);
+    line-height: 1.75;
+    color: var(--pika-text-light-muted);
+    max-width: 620px;
+    margin: 0 0 36px;
+}
+
+.pika-hero__actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 28px;
+}
+
+.pika-hero__micro {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: var(--pika-lime-bright);
+    letter-spacing: 0.01em;
+}
+
+/* Hero Right Side: Branded Conceptual Relationship Diagram */
+.pika-relationship-visual {
+    background: var(--pika-petrol-deep);
+    border: 1px solid var(--pika-border-dark);
+    border-radius: 14px;
+    padding: 34px 28px;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.35);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+}
+
+.pika-rel-node {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 16px 20px;
+    transition: all 0.25s ease;
+}
+
+.pika-rel-node:hover {
+    border-color: rgba(158, 221, 5, 0.4);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.pika-rel-tag {
+    display: block;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--pika-lime-bright);
+    margin-bottom: 6px;
+}
+
+.pika-rel-pillars {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 0.04em;
+}
+
+.pika-pillar {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+
+.pika-pillar-divider {
+    color: var(--pika-lime-bright);
+}
+
+.pika-rel-label {
+    display: block;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: -0.01em;
+}
+
+.pika-rel-desc {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--pika-text-light-subtle);
+    margin-top: 4px;
+}
+
+.pika-rel-connector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--pika-lime-bright);
+    font-size: 1.1rem;
+    line-height: 1;
+    margin: -2px 0;
+}
+
+.pika-diagram-caption {
+    font-size: 0.75rem;
+    color: var(--pika-text-light-subtle);
+    text-align: center;
+    margin-top: 14px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   02 — DIRECT ENTITY ANSWER
+   ══════════════════════════════════════════════════════════════════════════ */
+.pika-entity-answer {
+    border-bottom: 1px solid var(--pika-border-light);
+}
+
+.pika-split-scene {
+    display: grid;
+    grid-template-columns: 0.4fr 0.6fr;
+    gap: 70px;
+    align-items: start;
+}
+
+.pika-lead-paragraph {
+    font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+    line-height: 1.6;
+    font-weight: 500;
+    color: var(--pika-text-dark);
+    margin-bottom: 24px;
+}
+
+.pika-lead-paragraph--light {
+    color: #ffffff;
+}
+
+.pika-body-paragraph {
+    font-size: clamp(1rem, 1.25vw, 1.125rem);
+    line-height: 1.85;
+    color: var(--pika-text-secondary);
+    margin-bottom: 20px;
+}
+
+.pika-body-paragraph:last-child {
+    margin-bottom: 0;
+}
+
+.pika-body-paragraph--light {
+    color: var(--pika-text-light-muted);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   03 — WHY PIKA EXISTS
+   ══════════════════════════════════════════════════════════════════════════ */
+.pika-manifesto__header {
+    margin-bottom: 60px;
+}
+
+.pika-manifesto__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+}
+
+.pika-manifesto__lead-line {
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: var(--pika-text-dark);
+    margin-bottom: 18px;
+}
+
+.pika-manifesto__channels-line {
+    font-size: 1.1rem;
+    line-height: 1.85;
+    color: var(--pika-text-secondary);
+    border-left: 2px solid #bdceaa;
+    padding-left: 18px;
+    margin-bottom: 30px;
+}
+
+.pika-manifesto__turning-point {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--pika-text-dark);
+    margin-bottom: 20px;
+}
+
+.pika-manifesto__emphasis-block {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 30px;
+}
+
+.pika-manifesto__emphasis-item {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    background: #ffffff;
+    border: 1px solid rgba(13, 40, 33, 0.08);
+    border-radius: 8px;
+    padding: 14px 18px;
+}
+
+.pika-manifesto__emphasis-item span {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--pika-lime);
+    letter-spacing: 0.1em;
+}
+
+.pika-manifesto__emphasis-item p {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--pika-text-dark);
+    margin: 0;
+}
+
+.pika-manifesto__pivot {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--pika-text-dark);
+    margin: 0;
+}
+
+.pika-manifesto__statement-wrap {
+    background: #ffffff;
+    border: 1px solid rgba(13, 40, 33, 0.08);
+    border-radius: 12px;
+    padding: 44px 40px;
+    box-shadow: 0 12px 32px rgba(13, 40, 33, 0.04);
+}
+
+.pika-manifesto__statement {
+    margin: 0 0 28px;
+    padding: 0;
+    border: 0;
+}
+
+.pika-manifesto__statement p {
+    font-size: clamp(1.5rem, 2.6vw, 2.25rem);
+    line-height: 1.25;
+    letter-spacing: -0.025em;
+    font-weight: 500;
+    color: var(--pika-text-dark);
+    margin: 0;
+}
+
+.pika-highlight {
+    color: #5c8c15;
+    text-decoration: underline;
+    text-decoration-color: var(--pika-lime-bright);
+    text-decoration-thickness: 3px;
+    text-underline-offset: 4px;
+}
+
+.pika-manifesto__conclusion {
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: var(--pika-text-secondary);
+    margin: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   04 — FROM DATA TO DECISION
+   ══════════════════════════════════════════════════════════════════════════ */
+.pika-flow-spine {
+    max-width: 820px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.pika-flow-step {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    background: var(--pika-neutral-subtle);
+    border: 1px solid var(--pika-border-light);
+    border-radius: 10px;
+    padding: 22px 28px;
+    transition: all 0.2s ease;
+}
+
+.pika-flow-step:hover {
+    background: #ffffff;
+    border-color: var(--pika-lime);
+    box-shadow: 0 8px 24px rgba(13, 40, 33, 0.06);
+    transform: translateX(4px);
+}
+
+.pika-flow-step__marker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--pika-neutral-muted);
+    color: var(--pika-petrol-solid);
+    font-weight: 700;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.pika-flow-step__content {
+    flex: 1;
+}
+
+.pika-flow-step__title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--pika-text-dark);
+    margin: 0 0 4px;
+}
+
+.pika-flow-step__text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--pika-text-secondary);
+    margin: 0;
+}
+
+.pika-flow-spine__down {
+    text-align: center;
+    font-size: 1.4rem;
+    color: var(--pika-lime);
+    line-height: 1;
+}
+
+.pika-flow-closing {
+    max-width: 820px;
+    margin: 40px auto 0;
+    text-align: center;
+}
+
+.pika-flow-closing p {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    font-weight: 500;
+    color: var(--pika-text-dark);
+    margin: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   05 — CUSTOMER + PRODUCT INTELLIGENCE
+   ══════════════════════════════════════════════════════════════════════════ */
+.pika-intelligence-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 50px;
+}
+
+.pika-intelligence-col {
+    background: #ffffff;
+    border: 1px solid var(--pika-border-light);
+    border-radius: 14px;
+    padding: 48px 42px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(13, 40, 33, 0.04);
+}
+
+.pika-intelligence-col__badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    background: var(--pika-neutral-warm);
+    color: var(--pika-petrol-solid);
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-bottom: 24px;
+}
+
+.pika-intelligence-col__title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--pika-text-dark);
+    margin: 0 0 12px;
+}
+
+.pika-intelligence-col__lead {
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: #5c8c15;
+    margin: 0 0 20px;
+}
+
+.pika-intelligence-col__body {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--pika-text-secondary);
+    margin: 0 0 24px;
+}
+
+.pika-intelligence-col__questions-intro {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--pika-text-dark);
+    margin-bottom: 14px;
+}
+
+.pika-intelligence-col__list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+}
+
+.pika-intelligence-col__list li {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--pika-text-secondary);
+    position: relative;
+    padding-left: 22px;
+}
+
+.pika-intelligence-col__list li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--pika-lime);
+    font-weight: 700;
+}
+
+.pika-intelligence-col__closing {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    font-style: italic;
+    color: var(--pika-text-muted);
+    border-top: 1px solid var(--pika-border-light);
+    padding-top: 18px;
+    margin: 0 0 24px;
+}
+
+.pika-intelligence-col__link-wrap {
+    margin-top: auto;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   06 — OPPORTUNITY / GÜNÜN FIRSATLARI
+   ══════════════════════════════════════════════════════════════════════════ */
+.pika-opportunity__lead-box {
+    max-width: 820px;
+    margin: 0 auto 50px;
+    text-align: center;
+}
+
+.pika-opportunity__lead-box p {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: var(--pika-text-secondary);
+    margin: 0 0 8px;
+}
+
+.pika-opportunity__prompt {
+    font-weight: 600;
+    color: var(--pika-text-dark);
+    margin-top: 24px !important;
+}
+
+.pika-opportunity__big-question {
+    font-size: clamp(2rem, 3.8vw, 3rem);
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+    font-weight: 500;
+    color: var(--pika-petrol-solid);
+    margin-top: 16px;
+    padding: 24px 30px;
+    background: var(--pika-neutral-warm);
+    border: 1px solid var(--pika-border-light);
+    border-radius: 12px;
+}
+
+.pika-opportunity__desc {
+    max-width: 820px;
+    margin: 0 auto 40px;
+    font-size: 1.15rem;
+    line-height: 1.75;
+    text-align: center;
+    color: var(--pika-text-dark);
+}
+
+.pika-opportunity__examples {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    max-width: 1080px;
+    margin: 0 auto 50px;
+}
+
+.pika-opportunity__example {
+    background: var(--pika-neutral-subtle);
+    border: 1px solid var(--pika-border-light);
+    border-radius: 10px;
+    padding: 28px 24px;
+    transition: all 0.2s ease;
+}
+
+.pika-opportunity__example:hover {
+    border-color: var(--pika-lime);
+    background: #ffffff;
+    box-shadow: 0 8px 24px rgba(13, 40, 33, 0.05);
+}
+
+.pika-opportunity__example-tag {
+    display: inline-block;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--pika-petrol-solid);
+    margin-bottom: 12px;
+    border-bottom: 2px solid var(--pika-lime-bright);
+    padding-bottom: 2px;
+}
+
+.pika-opportunity__example p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--pika-text-secondary);
+    margin: 0;
+}
+
+.pika-opportunity__conclusion {
+    max-width: 820px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.pika-opportunity__purpose {
+    font-size: 1.1rem;
+    color: var(--pika-text-secondary);
+    margin-bottom: 12px;
+}
+
+.pika-opportunity__meaningful-statement {
+    font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+    line-height: 1.25;
+    letter-spacing: -0.025em;
+    font-weight: 500;
+    color: var(--pika-petrol-solid);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   07 — PIKA 360
+   ══════════════════════════════════════════════════════════════════════════ */
+.pika-360-editorial__grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 70px;
+    align-items: center;
+}
+
+.pika-360-paragraph {
+    font-size: clamp(1.05rem, 1.3vw, 1.2rem);
+    line-height: 1.8;
+    color: var(--pika-text-light-muted);
+    margin-bottom: 24px;
+}
+
+.pika-360-paragraph--emphasis {
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: #ffffff;
+    margin-top: 24px;
+}
+
+.pika-360-question-shift {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--pika-border-dark);
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin: 30px 0;
+}
+
+.pika-360-question-shift__label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--pika-lime-bright);
+    margin-bottom: 14px;
+}
+
+.pika-360-old-question {
+    margin-bottom: 12px;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.pika-360-old-question del {
+    text-decoration-color: rgba(255, 255, 255, 0.35);
+}
+
+.pika-360-new-question {
+    font-size: 1.3rem;
+    line-height: 1.4;
+    color: #ffffff;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+}
+
+.pika-360-check {
+    color: var(--pika-lime-bright);
+    font-weight: 700;
+}
+
+/* Pika 360 Abstract Diagram */
+.pika-360-editorial__diagram {
+    position: relative;
+    width: 100%;
+    min-height: 380px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pika-orbit-center {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    background: var(--pika-petrol-deep);
+    border: 2px solid var(--pika-lime);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 16px;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 0 40px rgba(158, 221, 5, 0.15);
+}
+
+.pika-orbit-center__pulse {
+    position: absolute;
+    inset: -14px;
+    border-radius: 50%;
+    border: 1px dashed rgba(158, 221, 5, 0.3);
+    animation: pika-spin 35s linear infinite;
+}
+
+.pika-orbit-center__title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.08em;
+}
+
+.pika-orbit-center__subtitle {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--pika-lime-bright);
+    margin-top: 4px;
+}
+
+.pika-orbit-node {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 0.06em;
+    text-transform: lowercase;
+    backdrop-filter: blur(4px);
+    transition: all 0.25s ease;
+}
+
+.pika-orbit-node:hover {
+    border-color: var(--pika-lime-bright);
+    color: var(--pika-lime-bright);
+}
+
+.pika-orbit-node--1 { top: 15px; left: 20px; }
+.pika-orbit-node--2 { top: 25px; right: 25px; }
+.pika-orbit-node--3 { bottom: 35px; left: 15px; }
+.pika-orbit-node--4 { bottom: 25px; right: 20px; }
+.pika-orbit-node--5 { top: 50%; right: -5px; transform: translateY(-50%); }
+
+@keyframes pika-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   08 — DECISION TO ACTION
+   ══════════════════════════════════════════════════════════════════════════ */
+.pika-action-chain {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 12px;
+    max-width: 1140px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.pika-action-node {
+    flex: 1;
+    min-width: 180px;
+    background: var(--pika-neutral-warm);
+    border: 1px solid var(--pika-border-light);
+    border-radius: 10px;
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.2s ease;
+}
+
+.pika-action-node:hover {
+    border-color: var(--pika-lime);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(13, 40, 33, 0.05);
+}
+
+.pika-action-node--channels {
+    background: #ffffff;
+    border-color: var(--pika-petrol-solid);
+}
+
+.pika-action-node__question {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #5c8c15;
+    margin-bottom: 8px;
+}
+
+.pika-action-node__title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--pika-text-dark);
+    margin: 0 0 10px;
+    letter-spacing: -0.01em;
+}
+
+.pika-action-node__desc {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--pika-text-secondary);
+    margin: 0;
+}
+
+.pika-action-divider {
+    display: flex;
+    align-items: center;
+    color: var(--pika-lime);
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.pika-action-closing {
+    max-width: 860px;
+    margin: 40px auto 0;
+    text-align: center;
+}
+
+.pika-action-closing p {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: var(--pika-text-dark);
+    font-weight: 500;
+    margin: 0;
+}
+
+.pika-related-links-row {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 36px;
+}
+
+.pika-context-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--pika-petrol-solid);
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    background: var(--pika-neutral-warm);
+    border: 1px solid var(--pika-border-light);
+    transition: all 0.2s ease;
+}
+
+.pika-context-link:hover,
+.pika-context-link:focus-visible {
+    background: #ffffff;
+    border-color: var(--pika-lime);
+    color: #5c8c15;
+    transform: translateY(-2px);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   09 — AI BOUNDARY
+   ══════════════════════════════════════════════════════════════════════════ */
+.pika-ai-boundary__body {
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+.pika-ai-flow-diagram {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 36px 0;
+    background: #ffffff;
+    border: 1px solid var(--pika-border-light);
+    border-radius: 12px;
+    padding: 24px 28px;
+    flex-wrap: wrap;
+}
+
+.pika-ai-step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.pika-ai-step strong {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--pika-petrol-solid);
+}
+
+.pika-ai-step--exec strong {
+    color: #5c8c15;
+}
+
+.pika-ai-step__badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--pika-neutral-warm);
+    color: var(--pika-petrol-solid);
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.pika-ai-arrow {
+    color: var(--pika-lime);
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   10 — MEASUREMENT & LEARNING
+   ══════════════════════════════════════════════════════════════════════════ */
+.pika-measurement__copy {
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+.pika-loop-pathway {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 36px 0;
+    background: var(--pika-petrol-deep);
+    border: 1px solid var(--pika-border-dark);
+    border-radius: 10px;
+    padding: 22px 26px;
+    flex-wrap: wrap;
+}
+
+.pika-loop-pathway span {
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #ffffff;
+}
+
+.pika-loop-arrow {
+    color: var(--pika-lime-bright);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   11 — WHAT PIKA IS / IS NOT
+   ══════════════════════════════════════════════════════════════════════════ */
+.pika-disambiguation-list {
+    max-width: 900px;
+    margin: 0 auto 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.pika-disambiguation-item {
+    display: flex;
+    gap: 24px;
+    align-items: baseline;
+    background: var(--pika-neutral-subtle);
+    border: 1px solid var(--pika-border-light);
+    border-radius: 10px;
+    padding: 24px 30px;
+    transition: all 0.2s ease;
+}
+
+.pika-disambiguation-item:hover {
+    background: #ffffff;
+    border-color: rgba(13, 40, 33, 0.2);
+    box-shadow: 0 6px 20px rgba(13, 40, 33, 0.04);
+}
+
+.pika-disambiguation-item__num {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #5c8c15;
+    flex-shrink: 0;
+}
+
+.pika-disambiguation-item__title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--pika-text-dark);
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+}
+
+.pika-disambiguation-item__text {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: var(--pika-text-secondary);
+    margin: 0;
+}
+
+.pika-disambiguation-closing {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    background: var(--pika-petrol-solid);
+    color: #ffffff;
+    border-radius: 14px;
+    padding: 44px 36px;
+    box-shadow: 0 20px 40px rgba(12, 58, 48, 0.18);
+}
+
+.pika-disambiguation-closing__label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--pika-lime-bright);
+    margin-bottom: 12px;
+}
+
+.pika-disambiguation-closing__title {
+    font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   12 — PIKA PRINCIPLES
+   Manifesto wall. Large typography. Minimal dividers. NO cards.
+   ══════════════════════════════════════════════════════════════════════════ */
+.pika-principles-wall {
+    max-width: 920px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.pika-principle-entry {
+    display: flex;
+    gap: 30px;
+    align-items: baseline;
+    padding: 32px 0;
+    border-bottom: 1px solid #d8e4cb;
+}
+
+.pika-principle-entry:first-child {
+    border-top: 1px solid #d8e4cb;
+}
+
+.pika-principle-entry__badge {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #5c8c15;
+    letter-spacing: 0.1em;
+    flex-shrink: 0;
+}
+
+.pika-principle-entry__title {
+    font-size: clamp(1.2rem, 1.9vw, 1.55rem);
+    line-height: 1.3;
+    letter-spacing: -0.015em;
+    font-weight: 600;
+    color: var(--pika-text-dark);
+    margin: 0 0 10px;
+}
+
+.pika-principle-entry__text {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--pika-text-secondary);
+    margin: 0;
+}
+
+.pika-principles-closing {
+    max-width: 920px;
+    margin: 40px auto 0;
+    text-align: center;
+}
+
+.pika-principles-closing p {
+    font-size: 1.25rem;
+    line-height: 1.65;
+    font-weight: 500;
+    color: var(--pika-text-dark);
+    margin: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   13 — FAQ
+   ══════════════════════════════════════════════════════════════════════════ */
+.pika-accordion {
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+.pika-accordion-item {
+    background: #ffffff;
+    border: 1px solid var(--pika-border-light);
+    border-radius: 10px !important;
+    margin-bottom: 14px;
+    overflow: hidden;
+    transition: all 0.2s ease;
+}
+
+.pika-accordion-item:hover {
+    border-color: rgba(13, 40, 33, 0.25);
+}
+
+.pika-accordion .accordion-button {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--pika-text-dark);
+    background: #ffffff;
+    padding: 22px 26px;
+    box-shadow: none !important;
+    min-height: 52px;
+}
+
+.pika-accordion .accordion-button:not(.collapsed) {
+    color: #5c8c15;
+    background: var(--pika-neutral-warm);
+}
+
+.pika-accordion .accordion-button:focus-visible {
+    outline: 3px solid var(--pika-lime);
+    outline-offset: -3px;
+}
+
+.pika-accordion .accordion-body {
+    padding: 20px 26px 26px;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--pika-text-secondary);
+    background: var(--pika-neutral-warm);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   14 — FINAL CTA
+   ══════════════════════════════════════════════════════════════════════════ */
+.pika-final-cta {
+    background: var(--pika-petrol-deep);
+    border-top: 1px solid var(--pika-border-dark);
+    padding: 120px 0;
+}
+
+.pika-final-cta__box {
+    max-width: 820px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.pika-final-cta__body {
+    font-size: clamp(1.1rem, 1.4vw, 1.3rem);
+    line-height: 1.7;
+    color: var(--pika-text-light-muted);
+    margin: 24px auto 30px;
+    max-width: 680px;
+}
+
+.pika-final-cta__commercial {
+    margin-bottom: 36px;
+}
+
+.pika-commercial-badge {
+    display: inline-block;
+    padding: 8px 18px;
+    border-radius: 999px;
+    background: rgba(158, 221, 5, 0.12);
+    color: var(--pika-lime-bright);
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    border: 1px solid rgba(158, 221, 5, 0.3);
+}
+
+.pika-final-cta__actions {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   RESPONSIVE MEDIA QUERIES
+   ══════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 1199px) {
+    .pika-hero__layout {
+        gap: 40px;
+    }
+    .pika-split-scene {
+        gap: 40px;
+    }
+    .pika-manifesto__grid {
+        gap: 40px;
+    }
+}
+
+@media (max-width: 991px) {
+    .pika-hero__layout {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+    .pika-hero__visual-wrap {
+        max-width: 540px;
+        margin: 0 auto;
+    }
+    .pika-split-scene {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    .pika-manifesto__grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .pika-intelligence-split {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    .pika-opportunity__examples {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    .pika-360-editorial__grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+    .pika-action-chain {
+        flex-direction: column;
+    }
+    .pika-action-divider {
+        justify-content: center;
+        transform: rotate(90deg);
+        padding: 6px 0;
+    }
+    .pika-ai-flow-diagram {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+    }
+    .pika-ai-arrow {
+        align-self: center;
+    }
+    .pika-loop-pathway {
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+    }
+    .pika-loop-arrow {
+        transform: rotate(90deg);
+    }
+}
+
+@media (max-width: 767px) {
+    .pika-hero {
+        padding: 85px 0 65px;
+    }
+    .pika-hero__h1 {
+        font-size: clamp(2rem, 8vw, 2.75rem);
+    }
+    .pika-hero__actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .pika-hero__actions .btn {
+        width: 100%;
+    }
+    .pika-intelligence-col {
+        padding: 34px 24px;
+    }
+    .pika-manifesto__statement-wrap {
+        padding: 30px 24px;
+    }
+    .pika-disambiguation-item {
+        flex-direction: column;
+        gap: 10px;
+        padding: 20px 22px;
+    }
+    .pika-principle-entry {
+        flex-direction: column;
+        gap: 12px;
+        padding: 24px 0;
+    }
+    .pika-final-cta__actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .pika-final-cta__actions .btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .pika-relationship-visual {
+        padding: 24px 18px;
+    }
+    .pika-rel-pillars {
+        font-size: 0.8rem;
+    }
+    .pika-360-editorial__diagram {
+        min-height: 320px;
+    }
+    .pika-orbit-center {
+        width: 140px;
+        height: 140px;
+    }
+    .pika-orbit-node {
+        font-size: 0.75rem;
+        padding: 6px 12px;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    .pika-entity-page *,
+    .pika-orbit-center__pulse {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+

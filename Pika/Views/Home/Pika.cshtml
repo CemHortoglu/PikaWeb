@@ -2,37 +2,1326 @@
     var culture = (ViewData["culture"] as string ?? ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").ToLowerInvariant();
     var tr = culture == "tr";
     string L(string turkish, string english) => tr ? turkish : english;
-    ViewData["Title"] = L("Pika Hakkında | Önce Anlamak, Sonra Ulaşmak", "About Pika | Understand First, Then Connect");
-    ViewData["MetaDescription"] = L("Pika; müşteri, ürün ve satış verisini birlikte anlamlandırarak ticari fırsatları görünür kılan, kontrollü ve ölçülebilir iletişime dönüştüren müşteri zekâsı platformudur.", "Pika brings customer, product and sales data together to reveal commercial opportunities and turn them into controlled, measurable communication.");
-    ViewData["CanonicalUrl"] = tr ? "https://pika.tr/pika" : "https://pika.tr/en/pika";
 }
 @section Styles {
     <link href="~/css/pika-about.css" rel="stylesheet" asp-append-version="true" />
 }
-<div class="about-pika">
- <section class="about-opening">
-  <div class="about-orbits" aria-hidden="true"><span></span><span></span><span></span></div>
-  <div class="container"><div class="about-kicker">@L("PIKA HAKKINDA", "ABOUT PIKA") <span>01 — 06</span></div>
-   <h1>@L("Önce anlamak.", "Understand first.")<br/><em>@L("Sonra ulaşmak.", "Then connect.")</em></h1>
-   <div class="about-opening-bottom"><p>@L("Pika; müşteri, ürün ve satış verisini birlikte anlamlandıran müşteri zekâsı ve pazarlama platformudur. Hangi müşteride, hangi ticari fırsatın oluştuğunu görün; bu fırsatı kontrollü ve ölçülebilir çok kanallı aksiyona dönüştürün.", "Pika is a customer intelligence and marketing platform that brings customer, product and sales data together. See which commercial opportunity is emerging for each customer, then turn it into controlled, measurable action across channels.")</p><div class="about-actions"><button type="button" data-bs-toggle="modal" data-bs-target="#demoModal">@L("Demo talep et", "Request a demo") ↗</button><a href="#inner-content">@L("Pika’yı keşfedin", "Discover Pika") ↓</a></div></div>
-   <div class="about-opening-rule"><span>CUSTOMER INTELLIGENCE & MEANINGFUL CONNECTIONS</span><span>@L("BAKIŞ AÇIMIZ", "OUR PERSPECTIVE") ↓</span></div>
-  </div>
- </section>
- <section class="about-question" id="inner-content"><div class="container about-editorial"><div class="about-side-label">01 / @L("BAŞLANGIÇ NOKTAMIZ", "OUR STARTING POINT")</div><div><p class="about-statement">@L("Bir müşteriye ulaşmak bugün zor değil.", "Reaching a customer today isn’t difficult.")</p><p class="about-body">@L("E-posta gönderebilir, SMS ile ulaşabilir, WhatsApp üzerinden iletişim kurabilirsiniz. Asıl mesele, bu iletişimin arkasındaki nedeni bilmektir.", "You can send an email, reach out by SMS or start a conversation on WhatsApp. The real question is understanding the reason behind that communication.")</p><div class="about-questions"><div><span>01</span><h2>@L("Kime ulaşmalıyım?", "Who should I reach?")</h2></div><div><span>02</span><h2>@L("Neden şimdi?", "Why now?")</h2></div><div><span>03</span><h2>@L("Hangi ürün gerçekten anlamlı?", "Which product is truly relevant?")</h2></div></div><p class="about-conclusion">@L("Pika tam burada başlar.", "This is where Pika begins.") <span>@L("Müşteriyi ve ürünü anlamaktan.", "With understanding the customer and the product.")</span></p></div></div></section>
- <section class="about-chain"><div class="container"><div class="about-chain-heading"><div><div class="about-side-label">02 / @L("KARAR ZİNCİRİ", "THE DECISION CHAIN")</div><h2>@L("Bir adım geriye.", "One step back.")<br/><em>@L("Daha doğru bir adım ileriye.", "A more considered step forward.")</em></h2></div><p>@L("Pika önce davranışı anlar, ürünlerin ticari anlamını ortaya çıkarır ve iki bağlamın kesiştiği fırsatı bulur. Aksiyon, bu anlayışın devamıdır.", "Pika starts with behavior, reveals the commercial meaning of products and finds opportunities where the two contexts meet. Action follows understanding.")</p></div>
- <ol class="about-chain-steps">
- <li><span>01</span><h3>@L("Veri", "Data")</h3><p>@L("Müşteri, ürün ve işlem bağlamı", "Customer, product and transaction context")</p></li>
- <li><span>02</span><h3>@L("Zekâ", "Intelligence")</h3><p>@L("Davranış, ritim, değer ve ürün ilişkileri", "Behavior, rhythm, value and product relationships")</p></li>
- <li><span>03</span><h3>@L("Fırsat & karar", "Opportunity & decision")</h3><p>@L("Bugün nerede anlamlı bir fırsat var?", "Where is a relevant opportunity today?")</p></li>
- <li><span>04</span><h3>@L("Orkestrasyon", "Orchestration")</h3><p>Audience · Campaign · Journey</p></li>
- <li><span>05</span><h3>@L("İletişim", "Communication")</h3><p>Email · SMS · WhatsApp</p></li>
- <li><span>06</span><h3>@L("Ölçüm & öğrenme", "Measure & learn")</h3><p>@L("Sonuçlar ve ilişkilendirilen etki", "Results and attributed outcomes")</p></li>
- </ol><small class="about-diagram-note">@L("Örnek görünüm · Pika’nın çalışma yaklaşımı", "Illustration · How Pika works")</small></div></section>
- <section class="about-intelligence"><div class="container"><div class="about-side-label">03 / @L("İKİ BAĞLAM, BİR ANLAYIŞ", "TWO CONTEXTS, ONE UNDERSTANDING")</div><div class="about-intelligence-grid"><article><div class="about-large-number">01<span>Customer Intelligence</span></div><h2>@L("Bir kaydın ötesinde,", "Beyond a record,")<br/><em>@L("bir davranış hikâyesi.", "a story of behavior.")</em></h2><p>@L("Bir müşteriyi yalnızca adı, telefonu veya son siparişiyle tanımlamak yeterli değildir. Pika, müşteriyi davranış bağlamıyla ele alır.", "A name, a phone number or the latest order cannot tell the whole story. Pika considers the customer in the context of their behavior.")</p><ul><li>@L("Ne sıklıkla alışveriş yapıyor; ritmi değişiyor mu?", "How often do they shop, and is that rhythm changing?")</li><li>@L("Müşteri değeri nasıl gelişiyor?", "How is their customer value evolving?")</li><li>@L("Hangi ürünlerle ilişkisi güçlü?", "Which products matter most to them?")</li><li>@L("Pasifleşme riski veya açık bir fırsat var mı?", "Is there a risk of inactivity or an open opportunity?")</li></ul><a href="@(tr ? "/platform/customer-intelligence" : "/en/platform/customer-intelligence")">@L("Müşteri zekâsını keşfedin", "Explore customer intelligence") ↗</a></article><article><div class="about-large-number">02<span>Product Intelligence</span></div><h2>@L("Bir ürünün ötesinde,", "Beyond a product,")<br/><em>@L("bir ihtiyaç ilişkisi.", "a connection to a need.")</em></h2><p>@L("İki benzer ürün, pazarlama açısından aynı anlama gelmeyebilir. Pika ürünleri müşteri ihtiyacı ve ticari rol bağlamında değerlendirir.", "Two similar products may play very different commercial roles. Pika considers products in the context of customer needs and those roles.")</p><ul><li>@L("Müşteriyi mağazaya getiren ürün", "A product that brings a customer to the store")</li><li>@L("Sepeti büyüten veya başka bir ihtiyacı tamamlayan ürün", "A product that grows a basket or meets a complementary need")</li><li>@L("Belirli bir tüketim döngüsüne sahip ürün", "A product with a particular replenishment cycle")</li><li>@L("Birlikte satın alınan ürünler arasındaki ilişki", "Relationships between products purchased together")</li></ul><a href="@(tr ? "/platform/product-intelligence" : "/en/platform/product-intelligence")">@L("Ürün zekâsını keşfedin", "Explore product intelligence") ↗</a></article></div></div></section>
- <section class="about-opportunity"><div class="container about-editorial"><div class="about-side-label">04 / @L("ANLAYIŞTAN FIRSATA", "FROM INSIGHT TO OPPORTUNITY")</div><div><h2>@L("Bugün, hangi müşteri için", "For which customer")<br/><em>@L("anlamlı bir adım atabiliriz?", "can we make a meaningful move today?")</em></h2><p class="about-body">@L("Günün Fırsatları, müşteri ve ürün zekâsını günlük ticari kararlara taşır. Analizin değeri, değerlendirilebilecek bir fırsata dönüştüğünde görünür olur.", "Daily Opportunities brings customer and product intelligence into everyday commercial decisions. Insight becomes useful when it reveals an opportunity worth considering.")</p><div class="about-opportunity-list"><span>@L("Tekrar satın alma zamanı yaklaşan müşteri", "A customer approaching their next purchase")</span><span>@L("Birlikte alınan ürünlerden doğan çapraz satış fırsatı", "A cross-sell opportunity informed by co-purchases")</span><span>@L("Alışveriş ritmi değişen değerli müşteri", "A valuable customer with a changing purchase rhythm")</span><span>@L("Yeniden kazanılabilecek pasif müşteri", "An inactive customer who may be ready to reconnect")</span></div><a class="about-text-link" href="@(tr ? "/platform/gunun-firsatlari" : "/en/platform/opportunities")">@L("Günün Fırsatları’nı keşfedin", "Explore Daily Opportunities") ↗</a></div></div>
- <div class="container about-perspective"><span>PIKA 360</span><blockquote><del>@L("Bu müşteriye ne gönderebilirim?", "What can I send this customer?")</del><p>@L("Bu müşteriyle şu anda neden iletişim kurmalıyım?", "Why should I communicate with this customer right now?")</p></blockquote><div><p>@L("İşlem geçmişi, müşteri değeri, davranış, iletişim erişilebilirliği ve açık fırsatlar tek görünümde. Pika 360, bu sorunun bağlamını bir araya getirir.", "Transaction history, customer value, behavior, communication reachability and open opportunities in one view. Pika 360 brings the context for that question together.")</p><a href="@(tr ? "/platform/pika-360" : "/en/platform/pika-360")">@L("Pika 360’ı keşfedin", "Explore Pika 360") ↗</a></div></div></section>
- <section class="about-action"><div class="container"><div class="about-chain-heading"><div><div class="about-side-label">05 / @L("AYNI ZİNCİRDE DEVAM", "KEEP THE CHAIN CONNECTED")</div><h2>@L("Anlamadan aksiyona,", "From understanding to action,")<br/><em>@L("bağlamı kaybetmeden.", "without losing context.")</em></h2></div><p>@L("Fırsat bulunduktan sonra süreç aynı platformda devam eder. Kitle, kampanya, yolculuk ve içerik aynı karar zincirinin parçalarıdır.", "Once an opportunity is identified, the process continues on the same platform. Audience, campaign, journey and content are parts of one decision chain.")</p></div><div class="about-managers"><a href="@(tr ? "/cozumler/audience-manager" : "/en/solutions/audience-manager")"><small>Audience Manager</small><strong>@L("Kime?", "Who?")</strong><span>↗</span></a><a href="@(tr ? "/cozumler/campaign-manager" : "/en/solutions/campaign-manager")"><small>Campaign Manager</small><strong>@L("Hangi kampanya?", "Which campaign?")</strong><span>↗</span></a><a href="@(tr ? "/cozumler/journey-manager" : "/en/solutions/journey-manager")"><small>Journey Manager</small><strong>@L("Hangi sıra, hangi zaman?", "Which sequence, which timing?")</strong><span>↗</span></a><a href="@(tr ? "/cozumler/content-studio" : "/en/solutions/content-studio")"><small>Content Studio</small><strong>@L("Hangi içerik?", "Which content?")</strong><span>↗</span></a></div><div class="about-channels"><span>@L("KONTROLLÜ KANAL İCRASI", "CONTROLLED CHANNEL DELIVERY")</span><strong>Email <i>·</i> SMS <i>·</i> WhatsApp</strong></div></div></section>
- <section class="about-ai"><div class="container about-editorial"><div class="about-side-label">06 / @L("YAPAY ZEKÂYA BAKIŞIMIZ", "OUR APPROACH TO AI")</div><div><h2>@L("Gerçeğe dayanan üretim.", "Creation grounded in reality.")<br/><em>@L("İnsanda kalan kontrol.", "Control that stays with people.")</em></h2><p class="about-body">@L("Pika AI, hesaplanan müşteri, ürün ve fırsat bağlamını kullanarak kampanya hazırlığını ve içerik üretimini hızlandırır. Önerileri kullanıcı değerlendirir; son karar kullanıcıda kalır.", "Pika AI uses calculated customer, product and opportunity context to accelerate campaign preparation and content creation. The user reviews the suggestions and retains the final decision.")</p><ol class="about-ai-flow"><li><span>01</span>@L("Hesaplanan ticari bağlam", "Calculated business context")</li><li><span>02</span>@L("AI açıklaması ve üretimi", "AI explanation and creation")</li><li><span>03</span>@L("İnsan kontrolü", "Human control")</li><li><span>04</span>@L("Uygulama", "Execution")</li></ol><p class="about-ai-note">@L("Üretken yapay zekâ güçlü içerikler üretebilir. Ticari gerçeğin kaynağı ise müşteri, ürün ve işlem verisidir.", "Generative AI can create compelling content. The source of business truth remains customer, product and transaction data.")</p><a class="about-text-link" href="@(tr ? "/urunler/ai-kampanya-asistani" : "/en/products/ai-campaign-assistant")">@L("Pika Pilot ile tanışın", "Meet Pika Pilot") ↗</a></div></div></section>
- <section class="about-belief"><div class="container"><span class="about-belief-symbol" aria-hidden="true">✳</span><div class="about-side-label">@L("BİZİM İÇİN İYİ PAZARLAMA", "WHAT GOOD MARKETING MEANS TO US")</div><h2>@L("Doğru kişi. Doğru ihtiyaç.", "The right person. The right need.")<br/><em>@L("Doğru zaman. Doğru bağlam.", "The right time. The right context.")</em></h2><p>@L("Teknoloji, bu anlayışı ölçeklendirmeli.", "Technology should scale this understanding.")</p><div class="about-principles"><span>@L("Veri, mesajdan önce gelir.", "Data comes before the message.")</span><span>@L("Karar, kanaldan önce gelir.", "The decision comes before the channel.")</span><span>@L("Müşteri bağlamı, kampanya takviminden önce gelir.", "Customer context comes before the campaign calendar.")</span><span>@L("Yapay zekâ, gerçeğin yerine geçmez.", "AI does not replace reality.")</span><span>@L("Kontrol kullanıcıda kalır.", "Control stays with the user.")</span></div></div></section>
- <section class="about-closing"><div class="container"><div><div class="about-side-label">@L("MÜŞTERİ ZEKÂSI VE PAZARLAMA PLATFORMU", "CUSTOMER INTELLIGENCE & MARKETING PLATFORM")</div><h2>@L("Sizin hikâyenizde", "Where does Pika fit")<br/>@L("Pika nerede başlar?", "in your story?")</h2><p>@L("Müşterinizi, ürünlerinizi ve satış verinizi birlikte değerlendirelim. İşletmeniz için hangi fırsatları görünür hale getirebileceğimizi keşfedelim.", "Let’s look at your customers, products and sales data together, and explore the opportunities we could bring into focus for your business.")</p></div><div class="about-closing-actions"><button type="button" data-bs-toggle="modal" data-bs-target="#demoModal">@L("Demo talep et", "Request a demo") ↗</button><a href="@(tr ? "/demo-talebi" : "/en/demo-request")">@L("Teklif al", "Request a quote") ↗</a><small>@L("İhtiyacınıza ve kullanım kapsamınıza göre özel teklif.", "Custom quote based on your specific needs and usage scope.")</small></div></div></section>
+
+<div class="pika-entity-page">
+    @* Skip to content for accessibility and interior test anchor requirement *@
+    <a href="#inner-content" class="pika-skip-anchor visually-hidden-focusable">@L("İçeriğe atla", "Skip to content")</a>
+
+    @* ══════════════════════════════════════════════════════════════════════════
+       01 — HERO
+       Visual: Dark petrol. Large editorial type. Asymmetric composition.
+       Right side: Branded abstract relationship diagram.
+       ══════════════════════════════════════════════════════════════════════════ *@
+    <section class="pika-hero" id="hero">
+        <div class="pika-hero__backdrop" aria-hidden="true">
+            <div class="pika-hero__glow"></div>
+            <div class="pika-hero__grid-pattern"></div>
+        </div>
+        <div class="container pika-hero__container">
+            <div class="pika-hero__layout">
+                <div class="pika-hero__content">
+                    <div class="pika-eyebrow pika-eyebrow--dark">
+                        <span class="pika-eyebrow__pulse" aria-hidden="true"></span>
+                        <span>@L("PIKA NEDİR?", "WHAT IS PIKA?")</span>
+                    </div>
+
+                    <div class="pika-hero__category">
+                        <span class="pika-badge pika-badge--hero">@L("Müşteri Zekâsı ve Omnichannel Pazarlama Platformu", "Customer Intelligence & Omnichannel Marketing Platform")</span>
+                    </div>
+
+                    <h1 class="pika-hero__h1">
+                        @if (tr)
+                        {
+                            <text>Müşterinizi anlamadan<br class="d-none d-md-inline" /> pazarlamaya başlamayın.</text>
+                        }
+                        else
+                        {
+                            <text>Understand your customer<br class="d-none d-md-inline" /> before you start marketing.</text>
+                        }
+                    </h1>
+
+                    <p class="pika-hero__lead">
+                        @L("Pika; müşteri, ürün ve satış verisini birlikte anlamlandırarak işletmenin bugün hangi müşteride hangi ticari fırsatın oluştuğunu görmesini ve bu fırsatı kontrollü, ölçülebilir çok kanallı aksiyona dönüştürmesini sağlayan müşteri zekâsı ve pazarlama platformudur.",
+                           "Pika is a customer intelligence and marketing platform that brings customer, product and sales data together to identify commercial opportunities and turn them into controlled, measurable omnichannel actions.")
+                    </p>
+
+                    <div class="pika-hero__actions">
+                        <button type="button" class="btn pika-btn pika-btn--lime" data-bs-toggle="modal" data-bs-target="#demoModal">
+                            @L("Demo Talep Et", "Request a Demo")
+                            <i class="ri-arrow-right-up-line" aria-hidden="true"></i>
+                        </button>
+                        <a href="@(tr ? "/demo-talebi" : "/en/demo-request")" class="btn pika-btn pika-btn--secondary-glass">
+                            @L("Teklif Al", "Request a Quote")
+                        </a>
+                    </div>
+
+                    <div class="pika-hero__micro">
+                        <i class="ri-sparkling-fill" aria-hidden="true"></i>
+                        <span>@L("Daha çok mesaj değil, daha doğru ilişki.", "Not more messages. Better customer relationships.")</span>
+                    </div>
+                </div>
+
+                <div class="pika-hero__visual-wrap">
+                    <div class="pika-relationship-visual" role="img" aria-label="@L("Örnek görünüm · Veriden karara ilişki modeli", "Illustration · Data to decision relationship model")">
+                        <div class="pika-rel-node pika-rel-node--data">
+                            <span class="pika-rel-tag">01 / INPUT</span>
+                            <div class="pika-rel-pillars">
+                                <span class="pika-pillar">CUSTOMER</span>
+                                <span class="pika-pillar-divider" aria-hidden="true">·</span>
+                                <span class="pika-pillar">PRODUCT</span>
+                                <span class="pika-pillar-divider" aria-hidden="true">·</span>
+                                <span class="pika-pillar">TRANSACTION</span>
+                            </div>
+                        </div>
+
+                        <div class="pika-rel-connector" aria-hidden="true">
+                            <span class="pika-rel-line"></span>
+                            <span class="pika-rel-arrow">↓</span>
+                        </div>
+
+                        <div class="pika-rel-node pika-rel-node--understanding">
+                            <span class="pika-rel-tag">02 / CORE INTELLIGENCE</span>
+                            <strong class="pika-rel-label">UNDERSTANDING</strong>
+                            <span class="pika-rel-desc">@L("Müşteri ve Ürün Bağlamı", "Customer & Product Context")</span>
+                        </div>
+
+                        <div class="pika-rel-connector" aria-hidden="true">
+                            <span class="pika-rel-line"></span>
+                            <span class="pika-rel-arrow">↓</span>
+                        </div>
+
+                        <div class="pika-rel-node pika-rel-node--opportunity">
+                            <span class="pika-rel-tag">03 / DECISION CANDIDATE</span>
+                            <strong class="pika-rel-label">OPPORTUNITY</strong>
+                            <span class="pika-rel-desc">@L("Günün Fırsatları & Pika 360", "Daily Opportunities & Pika 360")</span>
+                        </div>
+
+                        <div class="pika-rel-connector" aria-hidden="true">
+                            <span class="pika-rel-line"></span>
+                            <span class="pika-rel-arrow">↓</span>
+                        </div>
+
+                        <div class="pika-rel-node pika-rel-node--action">
+                            <span class="pika-rel-tag">04 / EXECUTION</span>
+                            <strong class="pika-rel-label">ACTION</strong>
+                            <span class="pika-rel-desc">Email · SMS · WhatsApp</span>
+                        </div>
+
+                        <div class="pika-diagram-caption" aria-hidden="true">
+                            @L("Örnek görünüm · Pika karar ve aksiyon modeli", "Illustration · Pika decision and action model")
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @* ══════════════════════════════════════════════════════════════════════════
+       02 — DIRECT ENTITY ANSWER
+       Light scene. Visible HTML for search engines & LLMs.
+       ══════════════════════════════════════════════════════════════════════════ *@
+    <section class="pika-section pika-section--light pika-entity-answer" id="inner-content">
+        <div class="container">
+            <div class="pika-split-scene">
+                <div class="pika-split-scene__left">
+                    <div class="pika-eyebrow pika-eyebrow--light">
+                        <span>@L("KISA CEVAP", "THE SHORT ANSWER")</span>
+                    </div>
+                    <h2 class="pika-h2 pika-h2--left">
+                        @L("Pika nedir?", "What is Pika?")
+                    </h2>
+                </div>
+                <div class="pika-split-scene__right">
+                    <p class="pika-lead-paragraph">
+                        @if (tr)
+                        {
+                            <text>Pika, işletmelerin müşteri, ürün ve satış verisini tek bir ticari karar bağlamında değerlendirmesine yardımcı olan Müşteri Zekâsı ve Omnichannel Pazarlama Platformudur.</text>
+                        }
+                        else
+                        {
+                            <text>Pika is a Customer Intelligence &amp; Omnichannel Marketing Platform that helps businesses evaluate customer, product and sales data within a single commercial decision context.</text>
+                        }
+                    </p>
+                    <p class="pika-body-paragraph">
+                        @if (tr)
+                        {
+                            <text>Pika'nın amacı yalnızca veriyi raporlamak veya mesaj göndermek değildir. Platform; müşterinin davranışını, ürünlerin ticari rolünü ve işlem geçmişini birlikte değerlendirerek anlamlı fırsatları görünür hale getirir. Bu fırsatlar daha sonra hedef kitle, kampanya, journey ve içerik süreçlerine bağlanarak Email, SMS ve WhatsApp üzerinden kontrollü aksiyona dönüştürülebilir.</text>
+                        }
+                        else
+                        {
+                            <text>Pika is not designed merely to report data or send messages. The platform evaluates customer behavior, the commercial role of products and transaction history together to make meaningful opportunities visible. Those opportunities can then connect to audience, campaign, journey and content workflows and become controlled action through Email, SMS and WhatsApp.</text>
+                        }
+                    </p>
+                    <p class="pika-body-paragraph">
+                        @if (tr)
+                        {
+                            <text>Bu nedenle Pika'nın çalışma sırası kanalla başlamaz. Önce veri anlamlandırılır, sonra müşteri ve ürün bağlamı oluşturulur, ardından fırsat ve karar ortaya çıkar. Gönderim bu karar zincirinin son adımlarından biridir.</text>
+                        }
+                        else
+                        {
+                            <text>That is why Pika does not begin with the channel. Data is understood first, customer and product context comes next, and opportunity and decision follow. Delivery is one of the final steps in that decision chain.</text>
+                        }
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @* ══════════════════════════════════════════════════════════════════════════
+       03 — WHY PIKA EXISTS
+       Editorial manifesto scene. Oversized typography. No feature cards.
+       ══════════════════════════════════════════════════════════════════════════ *@
+    <section class="pika-section pika-section--warm pika-manifesto">
+        <div class="container">
+            <div class="pika-manifesto__header">
+                <div class="pika-eyebrow pika-eyebrow--light">
+                    <span>@L("NEDEN PIKA?", "WHY PIKA?")</span>
+                </div>
+                <h2 class="pika-display-h2">
+                    @if (tr)
+                    {
+                        <text>Pazarlamanın sorunu<br class="d-none d-md-inline" /> daha fazla mesaj göndermek değil.</text>
+                    }
+                    else
+                    {
+                        <text>The problem in marketing<br class="d-none d-md-inline" /> is not sending more messages.</text>
+                    }
+                </h2>
+            </div>
+
+            <div class="pika-manifesto__grid">
+                <div class="pika-manifesto__body-flow">
+                    <p class="pika-manifesto__lead-line">
+                        @L("Bir müşteriye ulaşmak bugün zor değil.", "Reaching a customer is not the difficult part anymore.")
+                    </p>
+
+                    <div class="pika-manifesto__channels-line">
+                        @if (tr)
+                        {
+                            <p>E-posta gönderebilirsiniz.<br />SMS gönderebilirsiniz.<br />WhatsApp üzerinden iletişim kurabilirsiniz.</p>
+                        }
+                        else
+                        {
+                            <p>You can send an email.<br />You can send an SMS.<br />You can communicate through WhatsApp.</p>
+                        }
+                    </div>
+
+                    <p class="pika-manifesto__turning-point">
+                        @L("Zor olan başka bir şeydir:", "The difficult questions are different:")
+                    </p>
+
+                    <div class="pika-manifesto__emphasis-block">
+                        @if (tr)
+                        {
+                            <div class="pika-manifesto__emphasis-item"><span>01</span><p>Kime ulaşmanız gerektiğini bilmek.</p></div>
+                            <div class="pika-manifesto__emphasis-item"><span>02</span><p>Neden şimdi ulaşmanız gerektiğini anlamak.</p></div>
+                            <div class="pika-manifesto__emphasis-item"><span>03</span><p>Hangi ürünün gerçekten anlamlı olduğunu görmek.</p></div>
+                        }
+                        else
+                        {
+                            <div class="pika-manifesto__emphasis-item"><span>01</span><p>Who should you reach?</p></div>
+                            <div class="pika-manifesto__emphasis-item"><span>02</span><p>Why should you reach them now?</p></div>
+                            <div class="pika-manifesto__emphasis-item"><span>03</span><p>Which product is actually relevant?</p></div>
+                        }
+                    </div>
+
+                    <p class="pika-manifesto__pivot">
+                        @L("Pika tam burada başlar.", "That is where Pika begins.")
+                    </p>
+                </div>
+
+                <div class="pika-manifesto__statement-wrap">
+                    <blockquote class="pika-manifesto__statement">
+                        @if (tr)
+                        {
+                            <p>Pika'nın başlangıç noktası<br />mesaj göndermek değil,<br /><span class="pika-highlight">anlamaktır.</span></p>
+                        }
+                        else
+                        {
+                            <p>Pika does not begin<br />with sending a message.<br /><span class="pika-highlight">It begins with understanding.</span></p>
+                        }
+                    </blockquote>
+
+                    <p class="pika-manifesto__conclusion">
+                        @if (tr)
+                        {
+                            <text>Çünkü müşterinin ihtiyacını, ürünün rolünü ve zamanlamayı anlamadan yapılan iletişim yalnızca gönderim hacmini artırır. Pika'nın amacı daha fazla temas yaratmak değil; daha anlamlı bir kararın ardından daha doğru bir temas yaratmaktır.</text>
+                        }
+                        else
+                        {
+                            <text>Communication without understanding customer need, product role and timing only increases message volume. Pika is designed not to create more contact, but to create a better decision before the contact happens.</text>
+                        }
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @* ══════════════════════════════════════════════════════════════════════════
+       04 — FROM DATA TO DECISION
+       Full-width typographic flow. NO cards. NO fake UI. Connected graphical path.
+       ══════════════════════════════════════════════════════════════════════════ *@
+    <section class="pika-section pika-section--light pika-data-decision">
+        <div class="container">
+            <div class="pika-section-header">
+                <div class="pika-eyebrow pika-eyebrow--light">
+                    <span>@L("PIKA'NIN ÇALIŞMA MODELİ", "HOW PIKA WORKS")</span>
+                </div>
+                <h2 class="pika-display-h2">
+                    @if (tr)
+                    {
+                        <text>Veriden kampanyaya değil.<br class="d-none d-md-inline" /> Veriden karara.</text>
+                    }
+                    else
+                    {
+                        <text>Not from data to campaign.<br class="d-none d-md-inline" /> From data to decision.</text>
+                    }
+                </h2>
+                <p class="pika-section-intro">
+                    @L("Pika, müşteri iletişimini kampanya ekranından başlatmaz. Kararın arkasındaki bağlamı oluşturmak için önce veriye, ardından müşteri ve ürün zekâsına bakar.",
+                       "Pika does not begin customer communication on the campaign screen. It looks first at data, then at customer and product intelligence to build the context behind the decision.")
+                </p>
+            </div>
+
+            <div class="pika-flow-spine">
+                <div class="pika-flow-step">
+                    <div class="pika-flow-step__marker"><span class="pika-flow-step__num">01</span></div>
+                    <div class="pika-flow-step__content">
+                        <h3 class="pika-flow-step__title">@L("VERİ", "DATA")</h3>
+                        <p class="pika-flow-step__text">@L("Müşteri, ürün ve satış bağlamı.", "Customer, product and sales context.")</p>
+                    </div>
+                </div>
+
+                <div class="pika-flow-spine__down" aria-hidden="true">↓</div>
+
+                <div class="pika-flow-step">
+                    <div class="pika-flow-step__marker"><span class="pika-flow-step__num">02</span></div>
+                    <div class="pika-flow-step__content">
+                        <h3 class="pika-flow-step__title">@L("MÜŞTERİ & ÜRÜN ZEKÂSI", "CUSTOMER & PRODUCT INTELLIGENCE")</h3>
+                        <p class="pika-flow-step__text">@L("Davranış, değer, ritim, ihtiyaç ve ürün ilişkileri.", "Behavior, value, rhythm, need and product relationships.")</p>
+                    </div>
+                </div>
+
+                <div class="pika-flow-spine__down" aria-hidden="true">↓</div>
+
+                <div class="pika-flow-step">
+                    <div class="pika-flow-step__marker"><span class="pika-flow-step__num">03</span></div>
+                    <div class="pika-flow-step__content">
+                        <h3 class="pika-flow-step__title">@L("FIRSAT / KARAR", "OPPORTUNITY / DECISION")</h3>
+                        <p class="pika-flow-step__text">@L("Bugün hangi müşteride hangi ticari fırsat var?", "Which customer has a meaningful commercial opportunity today?")</p>
+                    </div>
+                </div>
+
+                <div class="pika-flow-spine__down" aria-hidden="true">↓</div>
+
+                <div class="pika-flow-step">
+                    <div class="pika-flow-step__marker"><span class="pika-flow-step__num">04</span></div>
+                    <div class="pika-flow-step__content">
+                        <h3 class="pika-flow-step__title">AUDIENCE / CAMPAIGN / JOURNEY / CONTENT</h3>
+                        <p class="pika-flow-step__text">@L("Kime, ne zaman, hangi içerikle ve hangi akış içinde ulaşılmalı?", "Who should be reached, when, with what content and through which sequence?")</p>
+                    </div>
+                </div>
+
+                <div class="pika-flow-spine__down" aria-hidden="true">↓</div>
+
+                <div class="pika-flow-step">
+                    <div class="pika-flow-step__marker"><span class="pika-flow-step__num">05</span></div>
+                    <div class="pika-flow-step__content">
+                        <h3 class="pika-flow-step__title">EMAIL / SMS / WHATSAPP</h3>
+                        <p class="pika-flow-step__text">@L("Kontrollü çok kanallı icra.", "Controlled omnichannel execution.")</p>
+                    </div>
+                </div>
+
+                <div class="pika-flow-spine__down" aria-hidden="true">↓</div>
+
+                <div class="pika-flow-step">
+                    <div class="pika-flow-step__marker"><span class="pika-flow-step__num">06</span></div>
+                    <div class="pika-flow-step__content">
+                        <h3 class="pika-flow-step__title">@L("ÖLÇÜMLEME & ÖĞRENME", "MEASUREMENT & LEARNING")</h3>
+                        <p class="pika-flow-step__text">@L("Etkileşimleri ve ilişkilendirilen sonuçları izleyerek karar döngüsünü besleyin.", "Use engagement and attributed outcomes to inform the next decision.")</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pika-flow-closing">
+                <p>
+                    @L("Bu zincirin amacı kampanyayı otomatikleştirmekten önce, kampanyanın neden yapılması gerektiğini anlamaktır.",
+                       "The purpose of this chain is not simply to automate a campaign. It is to understand why the campaign should exist in the first place.")
+                </p>
+            </div>
+        </div>
+    </section>
+
+    @* ══════════════════════════════════════════════════════════════════════════
+       05 — CUSTOMER + PRODUCT INTELLIGENCE
+       Large asymmetric split. Customer Intelligence on one side, Product on other.
+       ══════════════════════════════════════════════════════════════════════════ *@
+    <section class="pika-section pika-section--tinted pika-dual-intelligence">
+        <div class="container">
+            <div class="pika-section-header">
+                <div class="pika-eyebrow pika-eyebrow--light">
+                    <span>@L("İKİ BAĞLAM, TEK KARAR", "TWO CONTEXTS, ONE DECISION")</span>
+                </div>
+                <h2 class="pika-display-h2">
+                    @if (tr)
+                    {
+                        <text>Müşteriyi anlamak yetmez.<br class="d-none d-md-inline" /> Ürünü de anlamak gerekir.</text>
+                    }
+                    else
+                    {
+                        <text>Understanding the customer is not enough.<br class="d-none d-md-inline" /> You need to understand the product too.</text>
+                    }
+                </h2>
+                <p class="pika-section-intro">
+                    @L("Bir ticari fırsat yalnızca müşterinin kim olduğuyla ortaya çıkmaz. Müşterinin davranışı ile ürünün ihtiyacı, rolü ve ilişkileri birlikte değerlendirildiğinde karar bağlamı oluşur.",
+                       "A commercial opportunity does not emerge from customer identity alone. Decision context appears when customer behavior is evaluated together with product need, role and relationships.")
+                </p>
+            </div>
+
+            <div class="pika-intelligence-split">
+                @* Subsection A: Customer Intelligence *@
+                <article class="pika-intelligence-col pika-intelligence-col--customer">
+                    <div class="pika-intelligence-col__badge">01</div>
+                    <h3 class="pika-intelligence-col__title">Customer Intelligence</h3>
+                    <p class="pika-intelligence-col__lead">
+                        @L("Müşteri kaydını davranış bağlamına dönüştürür.", "Turns a customer record into behavioral context.")
+                    </p>
+                    <p class="pika-intelligence-col__body">
+                        @L("Pika Customer Intelligence; müşterinin işlem geçmişini, alışveriş ritmini, hesaplanan değer göstergelerini ve davranış değişimlerini birlikte değerlendirir.",
+                           "Pika Customer Intelligence evaluates transaction history, purchase rhythm, calculated value indicators and behavioral change together.")
+                    </p>
+                    <div class="pika-intelligence-col__questions-intro">
+                        @L("Bu katman şu sorulara bağlam üretir:", "This layer creates context for questions such as:")
+                    </div>
+                    <ul class="pika-intelligence-col__list">
+                        @if (tr)
+                        {
+                            <li>Müşteri ne sıklıkla alışveriş yapıyor?</li>
+                            <li>Satın alma ritmi değişiyor mu?</li>
+                            <li>Müşterinin değeri nasıl gelişiyor?</li>
+                            <li>Pasifleşme veya kayıp riski oluşuyor mu?</li>
+                            <li>Yeniden satın alma zamanı yaklaşıyor mu?</li>
+                            <li>Şu anda değerlendirilebilecek bir fırsat var mı?</li>
+                        }
+                        else
+                        {
+                            <li>How frequently does this customer purchase?</li>
+                            <li>Is their purchase rhythm changing?</li>
+                            <li>How is customer value developing?</li>
+                            <li>Is inactivity or churn risk emerging?</li>
+                            <li>Is another purchase window approaching?</li>
+                            <li>Is there a meaningful opportunity right now?</li>
+                        }
+                    </ul>
+                    <p class="pika-intelligence-col__closing">
+                        @L("Amaç müşteriyi yalnızca bir profil olarak görmek değil, zaman içinde değişen ticari bağlamını anlamaktır.",
+                           "The goal is not to see the customer only as a profile, but to understand their changing commercial context over time.")
+                    </p>
+                    <div class="pika-intelligence-col__link-wrap">
+                        <a href="@(tr ? "/platform/customer-intelligence" : "/en/platform/customer-intelligence")" class="pika-editorial-link">
+                            @L("Müşteri Zekâsını Keşfedin →", "Explore Customer Intelligence →")
+                        </a>
+                    </div>
+                </article>
+
+                @* Subsection B: Product Intelligence *@
+                <article class="pika-intelligence-col pika-intelligence-col--product">
+                    <div class="pika-intelligence-col__badge">02</div>
+                    <h3 class="pika-intelligence-col__title">Product Intelligence</h3>
+                    <p class="pika-intelligence-col__lead">
+                        @L("Ürün kaydını ticari anlam bağlamına dönüştürür.", "Turns a product record into commercial meaning.")
+                    </p>
+                    <p class="pika-intelligence-col__body">
+                        @L("Pika Product Intelligence; ürünlerin yalnızca kategori veya stok kodunu değil, müşteri ihtiyacı içindeki rolünü ve diğer ürünlerle ilişkisini değerlendirmeye yardımcı olur.",
+                           "Pika Product Intelligence helps evaluate products not only by category or stock code, but by the role they play in customer need and their relationships with other products.")
+                    </p>
+                    <div class="pika-intelligence-col__questions-intro">
+                        @L("Bu katman şu sorulara bağlam üretir:", "This layer creates context for questions such as:")
+                    </div>
+                    <ul class="pika-intelligence-col__list">
+                        @if (tr)
+                        {
+                            <li>Bu ürün hangi ihtiyaca hizmet ediyor?</li>
+                            <li>Ürün portföy içinde hangi ticari rolü taşıyor?</li>
+                            <li>Hangi ürünlerle birlikte satın alınıyor?</li>
+                            <li>Tekrar satın alma davranışı gösteriyor mu?</li>
+                            <li>Hangi tamamlayıcı ihtiyaçlarla ilişkilendirilebilir?</li>
+                            <li>Farklı ürünler aynı müşteri ihtiyacını nasıl karşılıyor?</li>
+                        }
+                        else
+                        {
+                            <li>What customer need does this product serve?</li>
+                            <li>What commercial role does it play in the portfolio?</li>
+                            <li>Which products are commonly purchased with it?</li>
+                            <li>Does it exhibit repeat-purchase behavior?</li>
+                            <li>Which complementary needs can it relate to?</li>
+                            <li>How can different products satisfy the same customer need?</li>
+                        }
+                    </ul>
+                    <p class="pika-intelligence-col__closing">
+                        @L("Çünkü doğru müşteriyi bulmak kadar, o müşteriye hangi ürünün neden anlamlı olduğunu bilmek de önemlidir.",
+                           "Because finding the right customer is only half the decision. You also need to understand which product is relevant and why.")
+                    </p>
+                    <div class="pika-intelligence-col__link-wrap">
+                        <a href="@(tr ? "/platform/product-intelligence" : "/en/platform/product-intelligence")" class="pika-editorial-link">
+                            @L("Ürün Zekâsını Keşfedin →", "Explore Product Intelligence →")
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    @* ══════════════════════════════════════════════════════════════════════════
+       06 — OPPORTUNITY / GÜNÜN FIRSATLARI
+       Strong signature scene. Abstract opportunity field. NO fake metrics.
+       ══════════════════════════════════════════════════════════════════════════ *@
+    <section class="pika-section pika-section--light pika-opportunity">
+        <div class="container">
+            <div class="pika-section-header">
+                <div class="pika-eyebrow pika-eyebrow--light">
+                    <span>@L("FIRSAT VE KARAR", "OPPORTUNITY & DECISION")</span>
+                </div>
+                <h2 class="pika-display-h2">
+                    @if (tr)
+                    {
+                        <text>Verinin değeri,<br class="d-none d-md-inline" /> ne yapacağınızı söylediği anda ortaya çıkar.</text>
+                    }
+                    else
+                    {
+                        <text>Data becomes valuable<br class="d-none d-md-inline" /> when it helps you decide what to do next.</text>
+                    }
+                </h2>
+            </div>
+
+            <div class="pika-opportunity__lead-box">
+                <p>@L("Analiz tek başına yeterli değildir.", "Analysis alone is not enough.")</p>
+                <p>@L("Dashboard görmek de yeterli değildir.", "A dashboard alone is not enough.")</p>
+                <p class="pika-opportunity__prompt">@L("Pika'nın asıl sorusu şudur:", "Pika asks a more practical question:")</p>
+                <div class="pika-opportunity__big-question">
+                    @if (tr)
+                    {
+                        <text>Bugün hangi müşteride<br />hangi fırsat var?</text>
+                    }
+                    else
+                    {
+                        <text>Which customer has<br />which opportunity today?</text>
+                    }
+                </div>
+            </div>
+
+            <p class="pika-opportunity__desc">
+                @L("Günün Fırsatları, müşteri ve ürün bağlamını günlük ticari karar adaylarına dönüştüren Pika katmanıdır.",
+                   "Daily Opportunities is the Pika layer that turns customer and product context into daily commercial decision candidates.")
+            </p>
+
+            <div class="pika-opportunity__examples">
+                <div class="pika-opportunity__example">
+                    <span class="pika-opportunity__example-tag">@L("Tekrar Satın Alma", "Repeat Purchase")</span>
+                    <p>@L("Müşterinin geçmiş alışveriş ritmine göre yeniden ihtiyaç oluşabilecek zamanı değerlendirin.",
+                          "Evaluate when a customer may need a product again based on their previous purchase rhythm.")</p>
+                </div>
+                <div class="pika-opportunity__example">
+                    <span class="pika-opportunity__example-tag">Cross-sell</span>
+                    <p>@L("Ürün ve sepet ilişkilerinden doğan tamamlayıcı satın alma fırsatlarını görünür hale getirin.",
+                          "Make complementary purchase opportunities visible from product and basket relationships.")</p>
+                </div>
+                <div class="pika-opportunity__example">
+                    <span class="pika-opportunity__example-tag">Win-back</span>
+                    <p>@L("Alışveriş ritmi bozulan veya pasifleşme sinyali veren müşterileri yeniden değerlendirin.",
+                          "Re-evaluate customers whose purchase rhythm is weakening or showing signs of inactivity.")</p>
+                </div>
+            </div>
+
+            <div class="pika-opportunity__conclusion">
+                <p class="pika-opportunity__purpose">@L("Amaç daha fazla kampanya üretmek değildir.", "The purpose is not to produce more campaigns.")</p>
+                <div class="pika-opportunity__meaningful-statement">
+                    @if (tr)
+                    {
+                        <text>Gerçekten anlamlı<br />kampanyaları bulmaktır.</text>
+                    }
+                    else
+                    {
+                        <text>It is to identify<br />the campaigns that actually make sense.</text>
+                    }
+                </div>
+                <div class="mt-4">
+                    <a href="@(tr ? "/platform/gunun-firsatlari" : "/en/platform/opportunities")" class="pika-editorial-link">
+                        @L("Günün Fırsatlarını Keşfedin →", "Explore Daily Opportunities →")
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @* ══════════════════════════════════════════════════════════════════════════
+       07 — PIKA 360
+       Large editorial relationship model. One customer at the center.
+       ══════════════════════════════════════════════════════════════════════════ *@
+    <section class="pika-section pika-section--dark pika-360-editorial">
+        <div class="container">
+            <div class="pika-section-header">
+                <div class="pika-eyebrow pika-eyebrow--dark">
+                    <span>@L("TEK MÜŞTERİ, BÜTÜN BAĞLAM", "ONE CUSTOMER, COMPLETE CONTEXT")</span>
+                </div>
+                <h2 class="pika-display-h2 pika-display-h2--light">
+                    @if (tr)
+                    {
+                        <text>Bir profilin arkasındaki<br class="d-none d-md-inline" /> bütün hikâyeyi görün.</text>
+                    }
+                    else
+                    {
+                        <text>See the whole story<br class="d-none d-md-inline" /> behind the profile.</text>
+                    }
+                </h2>
+            </div>
+
+            <div class="pika-360-editorial__grid">
+                <div class="pika-360-editorial__copy">
+                    <p class="pika-360-paragraph">
+                        @if (tr)
+                        {
+                            <text>Bir müşteriye ait veriler farklı sistemlerde, farklı zamanlarda ve farklı işlemlerde oluşur. Pika 360 bu parçaları tek müşteri karar bağlamında bir araya getirmeyi amaçlar.</text>
+                        }
+                        else
+                        {
+                            <text>Customer data is created across different systems, transactions and moments. Pika 360 is designed to bring those pieces together within a single customer decision context.</text>
+                        }
+                    </p>
+                    <p class="pika-360-paragraph">
+                        @if (tr)
+                        {
+                            <text>Pika 360 içinde müşteriyi yalnızca iletişim bilgileriyle değil; işlem geçmişi, hesaplanan değer göstergeleri, davranış bağlamı, iletişim erişilebilirliği ve açık fırsatlarla birlikte değerlendirebilirsiniz.</text>
+                        }
+                        else
+                        {
+                            <text>Instead of evaluating a customer only through contact details, Pika 360 brings transaction history, calculated value indicators, behavioral context, communication reachability and open opportunities into the same perspective.</text>
+                        }
+                    </p>
+
+                    <div class="pika-360-question-shift">
+                        <span class="pika-360-question-shift__label">@L("Böylece soru değişir.", "The question changes.")</span>
+                        <div class="pika-360-old-question">
+                            <span class="pika-360-cross" aria-hidden="true">—</span>
+                            <del>@L("“Bu müşteriye ne gönderebilirim?”", "“What can I send this customer?”")</del>
+                        </div>
+                        <div class="pika-360-new-question">
+                            <span class="pika-360-check" aria-hidden="true">→</span>
+                            <strong>@L("“Bu müşteriyle şu anda neden iletişim kurmalıyım?”", "“Why should I communicate with this customer right now?”")</strong>
+                        </div>
+                    </div>
+
+                    <p class="pika-360-paragraph pika-360-paragraph--emphasis">
+                        @L("Bu küçük fark, Pika'nın ürün yaklaşımının merkezindedir.",
+                           "That small difference sits at the center of the Pika product philosophy.")
+                    </p>
+
+                    <div class="mt-4">
+                        <a href="@(tr ? "/platform/pika-360" : "/en/platform/pika-360")" class="pika-editorial-link pika-editorial-link--light">
+                            @L("Pika 360'ı Keşfedin →", "Explore Pika 360 →")
+                        </a>
+                    </div>
+                </div>
+
+                <div class="pika-360-editorial__diagram" role="img" aria-label="@L("Pika 360 bütünleşik müşteri karar bağlamı diyagramı", "Pika 360 unified customer decision context diagram")">
+                    <div class="pika-orbit-center">
+                        <div class="pika-orbit-center__pulse" aria-hidden="true"></div>
+                        <span class="pika-orbit-center__title">CUSTOMER</span>
+                        <small class="pika-orbit-center__subtitle">SINGLE DECISION CONTEXT</small>
+                    </div>
+                    <div class="pika-orbit-node pika-orbit-node--1"><span>history</span></div>
+                    <div class="pika-orbit-node pika-orbit-node--2"><span>value</span></div>
+                    <div class="pika-orbit-node pika-orbit-node--3"><span>behavior</span></div>
+                    <div class="pika-orbit-node pika-orbit-node--4"><span>permissions</span></div>
+                    <div class="pika-orbit-node pika-orbit-node--5"><span>opportunities</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @* ══════════════════════════════════════════════════════════════════════════
+       08 — DECISION TO ACTION
+       Connected editorial path. Sequence: WHO → WHAT → WHEN → CONTENT → CHANNEL
+       ══════════════════════════════════════════════════════════════════════════ *@
+    <section class="pika-section pika-section--light pika-decision-action">
+        <div class="container">
+            <div class="pika-section-header">
+                <div class="pika-eyebrow pika-eyebrow--light">
+                    <span>@L("KARARDAN AKSİYONA", "FROM DECISION TO ACTION")</span>
+                </div>
+                <h2 class="pika-display-h2">
+                    @if (tr)
+                    {
+                        <text>Zekâ, aksiyona dönüşmediği sürece eksiktir.</text>
+                    }
+                    else
+                    {
+                        <text>Intelligence is incomplete<br class="d-none d-md-inline" /> until it can become action.</text>
+                    }
+                </h2>
+                <p class="pika-section-intro">
+                    @L("Pika fırsatı görünür hale getirdikten sonra süreç aynı karar zinciri içinde devam eder.",
+                       "Once Pika makes an opportunity visible, the process continues within the same decision chain.")
+                </p>
+            </div>
+
+            <div class="pika-action-chain">
+                <div class="pika-action-node">
+                    <span class="pika-action-node__question">@L("KİME?", "WHO?")</span>
+                    <h3 class="pika-action-node__title">Audience Manager</h3>
+                    <p class="pika-action-node__desc">@L("Hedef kitleyi ve segmenti belirleyin.", "Define the audience and segment.")</p>
+                </div>
+
+                <div class="pika-action-divider" aria-hidden="true">→</div>
+
+                <div class="pika-action-node">
+                    <span class="pika-action-node__question">@L("HANGİ KAMPANYA?", "WHICH CAMPAIGN?")</span>
+                    <h3 class="pika-action-node__title">Campaign Manager</h3>
+                    <p class="pika-action-node__desc">@L("Kampanyayı, kapsamını ve kontrollü gönderim planını yönetin.", "Manage the campaign, its scope and controlled delivery plan.")</p>
+                </div>
+
+                <div class="pika-action-divider" aria-hidden="true">→</div>
+
+                <div class="pika-action-node">
+                    <span class="pika-action-node__question">@L("HANGİ SIRA VE ZAMANLAMA?", "WHICH SEQUENCE AND TIMING?")</span>
+                    <h3 class="pika-action-node__title">Journey Manager</h3>
+                    <p class="pika-action-node__desc">@L("Müşteri yolculuğunu, koşulları ve karar akışını yönetin.", "Manage customer journeys, conditions and decision flows.")</p>
+                </div>
+
+                <div class="pika-action-divider" aria-hidden="true">→</div>
+
+                <div class="pika-action-node">
+                    <span class="pika-action-node__question">@L("HANGİ İÇERİK?", "WHAT CONTENT?")</span>
+                    <h3 class="pika-action-node__title">Content Studio</h3>
+                    <p class="pika-action-node__desc">@L("İletişimde kullanılacak içeriği hazırlayın.", "Prepare the content used in communication.")</p>
+                </div>
+
+                <div class="pika-action-divider" aria-hidden="true">→</div>
+
+                <div class="pika-action-node pika-action-node--channels">
+                    <span class="pika-action-node__question">@L("HANGİ KANAL?", "WHICH CHANNEL?")</span>
+                    <h3 class="pika-action-node__title">Email · SMS · WhatsApp</h3>
+                    <p class="pika-action-node__desc">@L("Kararı doğrulanmış iletişim kanallarında aksiyona dönüştürün.", "Turn the decision into action through confirmed communication channels.")</p>
+                </div>
+            </div>
+
+            <div class="pika-action-closing">
+                <p>
+                    @L("Pika'nın amacı müşteriyi analiz edip sizi başka bir karar sürecine bırakmak değildir. Anlamadan aksiyona kadar aynı ticari bağlamı korumaktır.",
+                       "Pika is not designed to analyze the customer and then leave you with a disconnected decision process. Its purpose is to preserve the commercial context from understanding through action.")
+                </p>
+            </div>
+
+            <div class="pika-related-links-row">
+                <a href="@(tr ? "/cozumler/audience-manager" : "/en/solutions/audience-manager")" class="pika-context-link">
+                    Audience Manager <span>→</span>
+                </a>
+                <a href="@(tr ? "/cozumler/campaign-manager" : "/en/solutions/campaign-manager")" class="pika-context-link">
+                    Campaign Manager <span>→</span>
+                </a>
+                <a href="@(tr ? "/cozumler/journey-manager" : "/en/solutions/journey-manager")" class="pika-context-link">
+                    Journey Manager <span>→</span>
+                </a>
+                <a href="@(tr ? "/cozumler/content-studio" : "/en/solutions/content-studio")" class="pika-context-link">
+                    Content Studio <span>→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    @* ══════════════════════════════════════════════════════════════════════════
+       09 — AI BOUNDARY
+       Strong typographic sequence. No AI robot. No glowing AI sphere.
+       ══════════════════════════════════════════════════════════════════════════ *@
+    <section class="pika-section pika-section--warm pika-ai-boundary">
+        <div class="container">
+            <div class="pika-section-header">
+                <div class="pika-eyebrow pika-eyebrow--light">
+                    <span>PIKA PILOT</span>
+                </div>
+                <h2 class="pika-display-h2">
+                    @if (tr)
+                    {
+                        <text>Yapay zekâ kararın kaynağı değil,<br class="d-none d-md-inline" /> karar hazırlığının hızlandırıcısıdır.</text>
+                    }
+                    else
+                    {
+                        <text>AI is not the source of the decision.<br class="d-none d-md-inline" /> It accelerates decision preparation.</text>
+                    }
+                </h2>
+            </div>
+
+            <div class="pika-ai-boundary__grid">
+                <div class="pika-ai-boundary__body">
+                    <p class="pika-lead-paragraph">
+                        @if (tr)
+                        {
+                            <text>Pika AI, müşteriyi veya fırsatı hayal ederek oluşturmaz. Pika'nın hesapladığı müşteri, ürün ve fırsat bağlamını kullanarak kampanya hazırlığını ve içerik üretimini hızlandırır; son karar kullanıcıda kalır.</text>
+                        }
+                        else
+                        {
+                            <text>Pika AI does not invent the customer or the opportunity. It uses customer, product and opportunity context calculated by Pika to accelerate campaign preparation and content creation, while the final decision remains with the user.</text>
+                        }
+                    </p>
+
+                    <div class="pika-ai-flow-diagram">
+                        <div class="pika-ai-step">
+                            <span class="pika-ai-step__badge">01</span>
+                            <strong>DETERMINISTIC INTELLIGENCE</strong>
+                        </div>
+                        <div class="pika-ai-arrow" aria-hidden="true">↓</div>
+                        <div class="pika-ai-step">
+                            <span class="pika-ai-step__badge">02</span>
+                            <strong>AI EXPLANATION / CREATION</strong>
+                        </div>
+                        <div class="pika-ai-arrow" aria-hidden="true">↓</div>
+                        <div class="pika-ai-step">
+                            <span class="pika-ai-step__badge">03</span>
+                            <strong>HUMAN CONTROL</strong>
+                        </div>
+                        <div class="pika-ai-arrow" aria-hidden="true">↓</div>
+                        <div class="pika-ai-step pika-ai-step--exec">
+                            <span class="pika-ai-step__badge">04</span>
+                            <strong>EXECUTION</strong>
+                        </div>
+                    </div>
+
+                    <p class="pika-body-paragraph mt-4">
+                        @if (tr)
+                        {
+                            <text>Üretken yapay zekâ içerik üretiminde ve hazırlık sürecinde güçlü bir yardımcı olabilir. Ancak müşteri gerçeğinin, ürün gerçeğinin veya ticari fırsatın kaynağı olarak konumlandırılmaz.</text>
+                        }
+                        else
+                        {
+                            <text>Generative AI can be a powerful assistant for content creation and preparation. It is not positioned as the source of customer truth, product truth or commercial opportunity.</text>
+                        }
+                    </p>
+
+                    <p class="pika-body-paragraph">
+                        @if (tr)
+                        {
+                            <text>Pika Pilot'un rolü, mevcut Pika bağlamını kullanarak hazırlığı hızlandırmak ve kullanıcıya üzerinde karar verebileceği bir başlangıç noktası sunmaktır.</text>
+                        }
+                        else
+                        {
+                            <text>The role of Pika Pilot is to use existing Pika context to accelerate preparation and provide the user with a starting point on which they can make the final decision.</text>
+                        }
+                    </p>
+
+                    <div class="mt-4">
+                        <a href="@(tr ? "/urunler/ai-kampanya-asistani" : "/en/products/ai-campaign-assistant")" class="pika-editorial-link">
+                            @L("Pika Pilot'u Keşfedin →", "Explore Pika Pilot →")
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @* ══════════════════════════════════════════════════════════════════════════
+       10 — MEASUREMENT & LEARNING
+       Dark scene. Closed-loop graphic. No fabricated metrics.
+       ══════════════════════════════════════════════════════════════════════════ *@
+    <section class="pika-section pika-section--dark pika-measurement">
+        <div class="container">
+            <div class="pika-section-header">
+                <div class="pika-eyebrow pika-eyebrow--dark">
+                    <span>@L("DÖNGÜYÜ KAPATIN", "CLOSE THE LOOP")</span>
+                </div>
+                <h2 class="pika-display-h2 pika-display-h2--light">
+                    @if (tr)
+                    {
+                        <text>Aksiyonun ardından<br class="d-none d-md-inline" /> yeniden anlamaya dönün.</text>
+                    }
+                    else
+                    {
+                        <text>After action,<br class="d-none d-md-inline" /> return to understanding.</text>
+                    }
+                </h2>
+            </div>
+
+            <div class="pika-measurement__grid">
+                <div class="pika-measurement__copy">
+                    <p class="pika-lead-paragraph pika-lead-paragraph--light">
+                        @L("Pika'da karar zinciri gönderimle bitmez.", "In Pika, the decision chain does not end with delivery.")
+                    </p>
+                    <p class="pika-body-paragraph pika-body-paragraph--light">
+                        @if (tr)
+                        {
+                            <text>Kampanya, journey ve kanal etkileşimlerinden oluşan sonuçlar; performansı değerlendirmek ve sonraki kararları daha güçlü bir bağlamla ele almak için ölçüm katmanında izlenebilir.</text>
+                        }
+                        else
+                        {
+                            <text>Outcomes from campaigns, journeys and channel interactions can be observed in the measurement layer to evaluate performance and inform the next decision with stronger context.</text>
+                        }
+                    </p>
+                    <p class="pika-body-paragraph pika-body-paragraph--light">
+                        @if (tr)
+                        {
+                            <text>Amaç yalnızca kaç mesaj gönderildiğini görmek değildir. Hangi kitlenin, hangi içeriğin, hangi kanalın ve hangi ticari bağlamın nasıl sonuç verdiğini değerlendirebilmektir.</text>
+                        }
+                        else
+                        {
+                            <text>The purpose is not merely to count how many messages were sent. It is to evaluate how audience, content, channel and commercial context relate to the outcome.</text>
+                        }
+                    </p>
+
+                    <div class="pika-loop-pathway">
+                        @if (tr)
+                        {
+                            <span>ANLA</span>
+                            <i class="pika-loop-arrow" aria-hidden="true">→</i>
+                            <span>KARAR VER</span>
+                            <i class="pika-loop-arrow" aria-hidden="true">→</i>
+                            <span>AKSİYONA GEÇ</span>
+                            <i class="pika-loop-arrow" aria-hidden="true">→</i>
+                            <span>ÖLÇ</span>
+                            <i class="pika-loop-arrow" aria-hidden="true">→</i>
+                            <span>YENİDEN ANLA</span>
+                        }
+                        else
+                        {
+                            <span>UNDERSTAND</span>
+                            <i class="pika-loop-arrow" aria-hidden="true">→</i>
+                            <span>DECIDE</span>
+                            <i class="pika-loop-arrow" aria-hidden="true">→</i>
+                            <span>ACT</span>
+                            <i class="pika-loop-arrow" aria-hidden="true">→</i>
+                            <span>MEASURE</span>
+                            <i class="pika-loop-arrow" aria-hidden="true">→</i>
+                            <span>UNDERSTAND AGAIN</span>
+                        }
+                    </div>
+
+                    <p class="pika-body-paragraph pika-body-paragraph--light mt-4">
+                        @L("Pika'nın yaklaşımı tek seferlik kampanyalar değil, öğrenmeye devam eden bir karar döngüsüdür.",
+                           "Pika's approach is not a collection of one-off campaigns. It is a decision loop that continues to learn from outcomes.")
+                    </p>
+
+                    <div class="mt-4">
+                        <a href="@(tr ? "/cozumler/analytics-reporting" : "/en/solutions/analytics-reporting")" class="pika-editorial-link pika-editorial-link--light">
+                            @L("Analytics & Reporting'i Keşfedin →", "Explore Analytics & Reporting →")
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @* ══════════════════════════════════════════════════════════════════════════
+       11 — WHAT PIKA IS / IS NOT
+       Editorial disambiguation. No red X / green check grid.
+       ══════════════════════════════════════════════════════════════════════════ *@
+    <section class="pika-section pika-section--light pika-disambiguation">
+        <div class="container">
+            <div class="pika-section-header">
+                <div class="pika-eyebrow pika-eyebrow--light">
+                    <span>@L("DOĞRU KONUMLANDIRMA", "POSITIONING PIKA CORRECTLY")</span>
+                </div>
+                <h2 class="pika-display-h2">
+                    @L("Pika'yı doğru yere koymak önemlidir.", "It matters where Pika fits.")
+                </h2>
+                <p class="pika-section-intro">
+                    @L("Pika'nın bazı yetenekleri CRM, CDP, pazarlama otomasyonu, kampanya yönetimi veya kanal gönderim araçlarıyla kesişebilir. Ancak bu kategorilerin hiçbiri tek başına Pika'nın ürün kimliğini tanımlamaz.",
+                       "Some Pika capabilities overlap with CRM, CDP, marketing automation, campaign management or channel delivery tools. None of those categories alone defines the Pika product identity.")
+                </p>
+            </div>
+
+            <div class="pika-disambiguation-list">
+                <article class="pika-disambiguation-item">
+                    <span class="pika-disambiguation-item__num">01</span>
+                    <div class="pika-disambiguation-item__content">
+                        <h3 class="pika-disambiguation-item__title">
+                            @L("Pika yalnızca bir mesaj gönderim aracı değildir.", "Pika is not merely a messaging tool.")
+                        </h3>
+                        <p class="pika-disambiguation-item__text">
+                            @L("Email, SMS ve WhatsApp Pika'nın icra kanallarıdır. Platformun başlangıç noktası kanal değil, müşteri ve ürün bağlamıdır.",
+                               "Email, SMS and WhatsApp are execution channels in Pika. The platform begins with customer and product context, not with the channel.")
+                        </p>
+                    </div>
+                </article>
+
+                <article class="pika-disambiguation-item">
+                    <span class="pika-disambiguation-item__num">02</span>
+                    <div class="pika-disambiguation-item__content">
+                        <h3 class="pika-disambiguation-item__title">
+                            @L("Pika yalnızca bir BI veya raporlama ürünü değildir.", "Pika is not merely a BI or reporting product.")
+                        </h3>
+                        <p class="pika-disambiguation-item__text">
+                            @L("Analiz, Pika'nın karar zincirinin bir parçasıdır. Amaç yalnızca geçmişi göstermek değil, mevcut bağlamdan değerlendirilebilir ticari fırsatlar üretmektir.",
+                               "Analytics is part of the Pika decision chain. The objective is not only to explain the past, but to derive commercial opportunities that can be evaluated in the current context.")
+                        </p>
+                    </div>
+                </article>
+
+                <article class="pika-disambiguation-item">
+                    <span class="pika-disambiguation-item__num">03</span>
+                    <div class="pika-disambiguation-item__content">
+                        <h3 class="pika-disambiguation-item__title">
+                            @L("Pika bir CRM olarak konumlandırılmaz.", "Pika is not positioned as a CRM.")
+                        </h3>
+                        <p class="pika-disambiguation-item__text">
+                            @L("Pika'nın temel kimliği müşteri kaydı tutmak değil; müşteri, ürün ve işlem bağlamını ticari karar ve aksiyona dönüştürmektir.",
+                               "Pika's primary role is not customer-record storage. Its role is to turn customer, product and transaction context into commercial decisions and action.")
+                        </p>
+                    </div>
+                </article>
+
+                <article class="pika-disambiguation-item">
+                    <span class="pika-disambiguation-item__num">04</span>
+                    <div class="pika-disambiguation-item__content">
+                        <h3 class="pika-disambiguation-item__title">
+                            @L("Pika bir CDP olarak konumlandırılmaz.", "Pika is not positioned as a CDP.")
+                        </h3>
+                        <p class="pika-disambiguation-item__text">
+                            @L("Veriyi birleştirme ve anlamlandırma yetenekleri Pika'nın çalışma modelinin parçasıdır; ancak Pika'nın canonical ürün kategorisi Customer Intelligence & Omnichannel Marketing Platform'dur.",
+                               "Data unification and interpretation are part of how Pika works, but Pika's canonical category is Customer Intelligence & Omnichannel Marketing Platform.")
+                        </p>
+                    </div>
+                </article>
+
+                <article class="pika-disambiguation-item">
+                    <span class="pika-disambiguation-item__num">05</span>
+                    <div class="pika-disambiguation-item__content">
+                        <h3 class="pika-disambiguation-item__title">
+                            @L("Pika bir AI chatbot değildir.", "Pika is not an AI chatbot.")
+                        </h3>
+                        <p class="pika-disambiguation-item__text">
+                            @L("Pika Pilot üretken yapay zekâyı hazırlık, açıklama ve içerik üretiminde yardımcı olarak kullanır. Müşteri gerçeğini üretmez ve otonom karar verici olarak konumlandırılmaz.",
+                               "Pika Pilot uses generative AI as an assistant for preparation, explanation and content creation. It does not create customer truth and is not positioned as an autonomous decision maker.")
+                        </p>
+                    </div>
+                </article>
+            </div>
+
+            <div class="pika-disambiguation-closing">
+                <span class="pika-disambiguation-closing__label">
+                    @L("Pika'nın kimliği:", "Pika is a:")
+                </span>
+                <div class="pika-disambiguation-closing__title">
+                    @if (tr)
+                    {
+                        <text>Müşteri Zekâsı ve<br />Omnichannel Pazarlama Platformu.</text>
+                    }
+                    else
+                    {
+                        <text>Customer Intelligence &amp;<br />Omnichannel Marketing Platform.</text>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @* ══════════════════════════════════════════════════════════════════════════
+       12 — PIKA PRINCIPLES
+       Manifesto wall. Large typography. Minimal dividers. NO cards.
+       ══════════════════════════════════════════════════════════════════════════ *@
+    <section class="pika-section pika-section--warm pika-principles">
+        <div class="container">
+            <div class="pika-section-header">
+                <div class="pika-eyebrow pika-eyebrow--light">
+                    <span>@L("PIKA'NIN YAKLAŞIMI", "THE PIKA APPROACH")</span>
+                </div>
+                <h2 class="pika-display-h2">
+                    @if (tr)
+                    {
+                        <text>Daha çok mesaj değil,<br class="d-none d-md-inline" /> daha doğru ilişki.</text>
+                    }
+                    else
+                    {
+                        <text>Not more messages.<br class="d-none d-md-inline" /> Better customer relationships.</text>
+                    }
+                </h2>
+                <p class="pika-section-intro">
+                    @L("Pika'nın arkasındaki fikir basittir: Bir müşteriye daha fazla mesaj göndermek, o müşteriyle daha iyi bir ilişki kurduğunuz anlamına gelmez.",
+                       "The idea behind Pika is simple: sending more messages to a customer does not mean you have built a better relationship with that customer.")
+                </p>
+            </div>
+
+            <div class="pika-principles-wall">
+                <div class="pika-principle-entry">
+                    <span class="pika-principle-entry__badge">01</span>
+                    <div class="pika-principle-entry__content">
+                        <h3 class="pika-principle-entry__title">@L("VERİ, MESAJDAN ÖNCE GELİR.", "DATA COMES BEFORE THE MESSAGE.")</h3>
+                        <p class="pika-principle-entry__text">@L("Müşteriye ulaşmadan önce müşteri ve ürün bağlamını anlamaya çalışın.", "Understand customer and product context before deciding to communicate.")</p>
+                    </div>
+                </div>
+
+                <div class="pika-principle-entry">
+                    <span class="pika-principle-entry__badge">02</span>
+                    <div class="pika-principle-entry__content">
+                        <h3 class="pika-principle-entry__title">@L("KARAR, KANALDAN ÖNCE GELİR.", "THE DECISION COMES BEFORE THE CHANNEL.")</h3>
+                        <p class="pika-principle-entry__text">@L("Önce neden iletişim kurulması gerektiğini belirleyin; Email, SMS veya WhatsApp seçimi bunun ardından gelsin.", "First understand why communication should happen. Email, SMS or WhatsApp comes after that decision.")</p>
+                    </div>
+                </div>
+
+                <div class="pika-principle-entry">
+                    <span class="pika-principle-entry__badge">03</span>
+                    <div class="pika-principle-entry__content">
+                        <h3 class="pika-principle-entry__title">@L("MÜŞTERİ BAĞLAMI, KAMPANYA TAKVİMİNDEN ÖNCE GELİR.", "CUSTOMER CONTEXT COMES BEFORE THE CAMPAIGN CALENDAR.")</h3>
+                        <p class="pika-principle-entry__text">@L("Takvimde boşluk olduğu için değil, anlamlı bir fırsat oluştuğu için iletişim kurun.", "Communicate because a meaningful opportunity exists, not simply because there is an empty slot on the calendar.")</p>
+                    </div>
+                </div>
+
+                <div class="pika-principle-entry">
+                    <span class="pika-principle-entry__badge">04</span>
+                    <div class="pika-principle-entry__content">
+                        <h3 class="pika-principle-entry__title">@L("YAPAY ZEKÂ, GERÇEĞİN YERİNE GEÇMEZ.", "AI DOES NOT REPLACE REALITY.")</h3>
+                        <p class="pika-principle-entry__text">@L("AI hazırlığı hızlandırabilir; müşteri ve ürün gerçeğinin kaynağı değildir.", "AI can accelerate preparation, but it is not the source of customer or product truth.")</p>
+                    </div>
+                </div>
+
+                <div class="pika-principle-entry">
+                    <span class="pika-principle-entry__badge">05</span>
+                    <div class="pika-principle-entry__content">
+                        <h3 class="pika-principle-entry__title">@L("KONTROL KULLANICIDA KALIR.", "THE USER REMAINS IN CONTROL.")</h3>
+                        <p class="pika-principle-entry__text">@L("Pika karar hazırlığını ve aksiyon sürecini destekler; son karar kullanıcıya aittir.", "Pika supports decision preparation and action. The final decision belongs to the user.")</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pika-principles-closing">
+                <p>
+                    @L("Doğru ilişki daha fazla iletişimden değil, daha doğru bağlamdan doğar.",
+                       "A better relationship does not begin with more communication. It begins with better context.")
+                </p>
+            </div>
+        </div>
+    </section>
+
+    @* ══════════════════════════════════════════════════════════════════════════
+       13 — FAQ
+       8 exact questions and answers per language. Accessible accordion.
+       NO FAQPage JSON-LD.
+       ══════════════════════════════════════════════════════════════════════════ *@
+    <section class="pika-section pika-section--light pika-faq-section" id="faq">
+        <div class="container">
+            <div class="pika-section-header">
+                <div class="pika-eyebrow pika-eyebrow--light">
+                    <span>@L("SIKÇA SORULAN SORULAR", "FREQUENTLY ASKED QUESTIONS")</span>
+                </div>
+                <h2 class="pika-display-h2">
+                    @L("Pika Hakkında Merak Edilenler", "Frequently Asked Questions About Pika")
+                </h2>
+            </div>
+
+            <div class="accordion pika-accordion" id="pikaFaqAccordion">
+                @* FAQ 1 *@
+                <div class="accordion-item pika-accordion-item">
+                    <h3 class="accordion-header" id="faqHeading1">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse1" aria-expanded="true" aria-controls="faqCollapse1">
+                            @L("Pika nedir?", "What is Pika?")
+                        </button>
+                    </h3>
+                    <div id="faqCollapse1" class="accordion-collapse collapse show" aria-labelledby="faqHeading1" data-bs-parent="#pikaFaqAccordion">
+                        <div class="accordion-body">
+                            @if (tr)
+                            {
+                                <text>Pika; müşteri, ürün ve satış verisini birlikte anlamlandırarak ticari fırsatları görünür hale getiren ve bu fırsatları Audience, Campaign, Journey ve Content süreçleri üzerinden Email, SMS ve WhatsApp kanallarında kontrollü aksiyona dönüştürmeye yardımcı olan Müşteri Zekâsı ve Omnichannel Pazarlama Platformudur.</text>
+                            }
+                            else
+                            {
+                                <text>Pika is a Customer Intelligence &amp; Omnichannel Marketing Platform that brings customer, product and sales data together to make commercial opportunities visible and helps turn those opportunities into controlled action through Audience, Campaign, Journey and Content workflows across Email, SMS and WhatsApp.</text>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                @* FAQ 2 *@
+                <div class="accordion-item pika-accordion-item">
+                    <h3 class="accordion-header" id="faqHeading2">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2">
+                            @L("Pika nasıl çalışır?", "How does Pika work?")
+                        </button>
+                    </h3>
+                    <div id="faqCollapse2" class="accordion-collapse collapse" aria-labelledby="faqHeading2" data-bs-parent="#pikaFaqAccordion">
+                        <div class="accordion-body">
+                            @if (tr)
+                            {
+                                <text>Pika'nın çalışma modeli veriyle başlar. Müşteri, ürün ve satış bağlamı Customer Intelligence ve Product Intelligence katmanlarında anlamlandırılır. Bu bağlam Günün Fırsatları ve Pika 360 gibi karar katmanlarını besler. Ardından Audience Manager, Campaign Manager, Journey Manager ve Content Studio üzerinden kontrollü aksiyon hazırlanabilir ve sonuçlar ölçüm katmanında izlenebilir.</text>
+                            }
+                            else
+                            {
+                                <text>Pika begins with data. Customer, product and sales context is interpreted through Customer Intelligence and Product Intelligence. That context informs decision layers such as Daily Opportunities and Pika 360. Controlled action can then be prepared through Audience Manager, Campaign Manager, Journey Manager and Content Studio, with outcomes observed in the measurement layer.</text>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                @* FAQ 3 *@
+                <div class="accordion-item pika-accordion-item">
+                    <h3 class="accordion-header" id="faqHeading3">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse3" aria-expanded="false" aria-controls="faqCollapse3">
+                            @L("Pika hangi verileri kullanır?", "What data does Pika use?")
+                        </button>
+                    </h3>
+                    <div id="faqCollapse3" class="accordion-collapse collapse" aria-labelledby="faqHeading3" data-bs-parent="#pikaFaqAccordion">
+                        <div class="accordion-body">
+                            @if (tr)
+                            {
+                                <text>Pika'nın temel karar bağlamı müşteri, ürün ve satış/işlem verilerinden oluşur. Bu veriler müşterinin davranışını, ürünlerin ticari rolünü, satın alma ritmini ve olası fırsatları anlamlandırmak için birlikte değerlendirilir.</text>
+                            }
+                            else
+                            {
+                                <text>Pika's core decision context is built from customer, product and sales or transaction data. These data sets are evaluated together to understand customer behavior, the commercial role of products, purchase rhythm and potential opportunities.</text>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                @* FAQ 4 *@
+                <div class="accordion-item pika-accordion-item">
+                    <h3 class="accordion-header" id="faqHeading4">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse4" aria-expanded="false" aria-controls="faqCollapse4">
+                            @L("Pika hangi iletişim kanallarını destekler?", "Which communication channels does Pika support?")
+                        </button>
+                    </h3>
+                    <div id="faqCollapse4" class="accordion-collapse collapse" aria-labelledby="faqHeading4" data-bs-parent="#pikaFaqAccordion">
+                        <div class="accordion-body">
+                            @if (tr)
+                            {
+                                <text>Pika'nın doğrulanmış ve kamuya açık olarak pazarlanan iletişim kanalları Email, SMS ve WhatsApp'tır. Kanal icrası, müşteri ve fırsat bağlamının ardından gelen aksiyon katmanıdır.</text>
+                            }
+                            else
+                            {
+                                <text>Pika's confirmed and publicly marketed communication channels are Email, SMS and WhatsApp. Channel execution is the action layer that follows customer and opportunity context.</text>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                @* FAQ 5 *@
+                <div class="accordion-item pika-accordion-item">
+                    <h3 class="accordion-header" id="faqHeading5">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse5" aria-expanded="false" aria-controls="faqCollapse5">
+                            @L("Pika CRM veya CDP midir?", "Is Pika a CRM or CDP?")
+                        </button>
+                    </h3>
+                    <div id="faqCollapse5" class="accordion-collapse collapse" aria-labelledby="faqHeading5" data-bs-parent="#pikaFaqAccordion">
+                        <div class="accordion-body">
+                            @if (tr)
+                            {
+                                <text>Pika'nın canonical ürün kategorisi CRM veya CDP değildir. Pika, Müşteri Zekâsı ve Omnichannel Pazarlama Platformu olarak konumlandırılır. Veriyi birleştirme ve müşteri bağlamı oluşturma yetenekleri çalışma modelinin parçasıdır; ancak Pika'nın temel amacı müşteri, ürün ve işlem bağlamını ticari fırsat, karar ve aksiyona dönüştürmektir.</text>
+                            }
+                            else
+                            {
+                                <text>Pika's canonical product category is not CRM or CDP. Pika is positioned as a Customer Intelligence &amp; Omnichannel Marketing Platform. Data unification and customer context are part of how the platform works, but its primary purpose is to turn customer, product and transaction context into commercial opportunity, decision and action.</text>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                @* FAQ 6 *@
+                <div class="accordion-item pika-accordion-item">
+                    <h3 class="accordion-header" id="faqHeading6">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse6" aria-expanded="false" aria-controls="faqCollapse6">
+                            @L("Pika'da yapay zekâ ne yapar?", "What does AI do in Pika?")
+                        </button>
+                    </h3>
+                    <div id="faqCollapse6" class="accordion-collapse collapse" aria-labelledby="faqHeading6" data-bs-parent="#pikaFaqAccordion">
+                        <div class="accordion-body">
+                            @if (tr)
+                            {
+                                <text>Pika AI müşteriyi veya fırsatı hayal ederek oluşturmaz. Pika'nın hesapladığı müşteri, ürün ve fırsat bağlamını kullanarak kampanya hazırlığını, açıklamayı ve içerik üretimini hızlandırır. Son karar kullanıcıda kalır.</text>
+                            }
+                            else
+                            {
+                                <text>Pika AI does not invent the customer or the opportunity. It uses customer, product and opportunity context calculated by Pika to accelerate campaign preparation, explanation and content creation. The final decision remains with the user.</text>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                @* FAQ 7 *@
+                <div class="accordion-item pika-accordion-item">
+                    <h3 class="accordion-header" id="faqHeading7">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse7" aria-expanded="false" aria-controls="faqCollapse7">
+                            @L("Günün Fırsatları nedir?", "What are Daily Opportunities?")
+                        </button>
+                    </h3>
+                    <div id="faqCollapse7" class="accordion-collapse collapse" aria-labelledby="faqHeading7" data-bs-parent="#pikaFaqAccordion">
+                        <div class="accordion-body">
+                            @if (tr)
+                            {
+                                <text>Günün Fırsatları, müşteri ve ürün bağlamından tekrar satın alma, cross-sell ve win-back gibi değerlendirilebilir ticari fırsatları görünür hale getiren Pika karar katmanıdır.</text>
+                            }
+                            else
+                            {
+                                <text>Daily Opportunities is the Pika decision layer that makes evaluable commercial opportunities such as repeat purchase, cross-sell and win-back visible from customer and product context.</text>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                @* FAQ 8 *@
+                <div class="accordion-item pika-accordion-item">
+                    <h3 class="accordion-header" id="faqHeading8">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse8" aria-expanded="false" aria-controls="faqCollapse8">
+                            @L("Pika fiyatlandırması nasıl belirlenir?", "How is Pika priced?")
+                        </button>
+                    </h3>
+                    <div id="faqCollapse8" class="accordion-collapse collapse" aria-labelledby="faqHeading8" data-bs-parent="#pikaFaqAccordion">
+                        <div class="accordion-body">
+                            @L("İhtiyacınıza ve kullanım kapsamınıza göre özel teklif.",
+                               "Pricing is tailored to your requirements and scope of use.")
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @* ══════════════════════════════════════════════════════════════════════════
+       14 — FINAL CTA
+       Strong brand conclusion. Dark petrol or warm-neutral transition into footer.
+       ══════════════════════════════════════════════════════════════════════════ *@
+    <section class="pika-section pika-section--dark pika-final-cta" id="cta">
+        <div class="container">
+            <div class="pika-final-cta__box">
+                <div class="pika-eyebrow pika-eyebrow--dark">
+                    <span>@L("DOĞRU ANDA", "AT THE RIGHT MOMENT")</span>
+                </div>
+
+                <h2 class="pika-display-h2 pika-display-h2--light">
+                    @if (tr)
+                    {
+                        <text>Müşterinizi anlayın.<br />Fırsatı görün.<br />Doğru anda aksiyona geçin.</text>
+                    }
+                    else
+                    {
+                        <text>Understand your customer.<br />See the opportunity.<br />Act at the right moment.</text>
+                    }
+                </h2>
+
+                <p class="pika-final-cta__body">
+                    @L("Pika'nın müşteri, ürün ve satış verinizden hangi ticari fırsatları görünür hale getirebileceğini birlikte değerlendirelim.",
+                       "Let's explore which commercial opportunities Pika can make visible from your customer, product and sales data.")
+                </p>
+
+                <div class="pika-final-cta__commercial">
+                    <span class="pika-commercial-badge">
+                        @L("İhtiyacınıza ve kullanım kapsamınıza göre özel teklif.",
+                           "Pricing is tailored to your requirements and scope of use.")
+                    </span>
+                </div>
+
+                <div class="pika-final-cta__actions">
+                    <button type="button" class="btn pika-btn pika-btn--lime" data-bs-toggle="modal" data-bs-target="#demoModal">
+                        @L("Demo Talep Et", "Request a Demo")
+                        <i class="ri-arrow-right-up-line" aria-hidden="true"></i>
+                    </button>
+                    <a href="@(tr ? "/demo-talebi" : "/en/demo-request")" class="btn pika-btn pika-btn--secondary-glass">
+                        @L("Teklif Al", "Request a Quote")
+                    </a>
+                    <a href="@(tr ? "/iletisim" : "/en/contact")" class="btn pika-btn pika-btn--ghost-light">
+                        @L("Satış Ekibiyle Görüşün", "Talk to Sales")
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>

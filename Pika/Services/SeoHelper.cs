@@ -32,12 +32,12 @@ public static class SeoHelper
         ["Home.Pika"] = new(
             "/pika",
             "/en/pika",
+            "Pika Nedir? | Müşteri Zekâsı ve Omnichannel Pazarlama",
+            "What Is Pika? | Customer Intelligence & Omnichannel Marketing",
+            "Pika, müşteri, ürün ve satış verisini birlikte anlamlandırarak ticari fırsatları görünür kılan ve kontrollü omnichannel aksiyona dönüştüren platformdur.",
+            "Pika brings customer, product and sales data together to reveal commercial opportunities and turn them into controlled omnichannel action.",
             "Pika Nedir?",
-            "What is Pika?",
-            "Pika, müşteri ve ürün verisini anlayarak günün fırsatlarını tespit eden, yöneticiye karar sunan ve doğru anda aksiyona dönüştüren müşteri zekâsı ve omnichannel pazarlama platformudur.",
-            "Pika is a customer intelligence and omnichannel marketing platform that understands customer and product data, identifies daily opportunities, and converts decisions into timely action.",
-            "Pika Nedir?",
-            "What is Pika?"),
+            "What Is Pika?"),
 
         ["Home.Corporate"] = new(
             "/kurumsal",
