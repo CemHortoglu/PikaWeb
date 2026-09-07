@@ -143,10 +143,10 @@ public static class SeoHelper
         ["Solutions.ContentStudio"] = new(
             "/cozumler/content-studio",
             "/en/solutions/content-studio",
-            "Content Studio | İçerik ve Şablon Tasarımı",
-            "Content Studio | Content & Template Design",
-            "Sürükle-bırak görsel editör ve AI destekli metin üretimi ile çok kanallı kampanya içeriklerini dakikalar içinde tasarlayın.",
-            "Design multi-channel campaign content in minutes with a drag-and-drop editor and AI-assisted copywriting.",
+            "Content Studio | Email Şablonları ve Çok Kanallı İçerik | Pika",
+            "Content Studio | Email Templates & Multi-Channel Content | Pika",
+            "Pika Content Studio; sürükle-bırak email editörü, modüler bloklar, şablonlar, kişiselleştirme alanları ve önizleme ile kampanya içeriklerini hazırlamanıza yardımcı olur.",
+            "Pika Content Studio helps prepare campaign content with a drag-and-drop email editor, modular blocks, templates, personalization fields and preview.",
             "Content Studio",
             "Content Studio"),
 
