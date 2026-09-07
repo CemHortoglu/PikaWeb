@@ -34,7 +34,11 @@ Every asset is assigned exactly one primary safety status from the standardized 
 - **`DUPLICATE` (1 Asset):** Byte-for-byte identical file of an already registered canonical asset.
 - **`NEEDS_VISUAL_CONFIRMATION` (0 Assets):** 100% of the 30 assets have been visually audited and confirmed.
 
-*Note on Human Approval:* Administrative policy approval is tracked via the independent flag `humanApprovalRequired: true|false`.
+*Note on Human Approval & Deployment Readiness:*
+- **Public-Capable Assets (28 Assets):** 11 Hero + 15 Supporting + 2 With Crop.
+- **Immediately Approved for Public Deployment (27 Assets):** All public-capable assets where `humanApprovalRequired` is `false`.
+- **Requires Human Review Prior to Public Deployment (1 Asset):** `img_playbook-sektorel-anlam_10.png` displays Super Admin indicators and requires editorial/management review (or crop) before deployment.
+- **Non-Public / Excluded Assets (2 Assets):** 1 `INTERNAL_ONLY` (incomplete form state) and 1 `DUPLICATE` (byte-for-byte duplicate of canonical asset).
 
 ---
 
@@ -52,7 +56,7 @@ The repository contains **30 product visual assets** (29 under `wwwroot/wiki/ass
 | `img_email-template-editor_17.png` | .png | PNG | 1672 × 941 | 1.78 | **PUBLIC_HERO** | No | NONE | NONE | Content Studio / Email Channel |
 | `img_excel-csv-aktarimi_1.png` | .png | PNG | 1885 × 974 | 1.94 | **PUBLIC_WITH_CROP** | No | NONE (Cropped) | NONE | Integrations |
 | `img_gmail-kisi-aktarimi_23.png` | .png | PNG | 1024 × 503 | 2.04 | **PUBLIC_SUPPORTING** | No | ANONYMIZED | DEMO_SYNTHETIC | Integrations / Consent / Security |
-| `img_gonderim-operasyonu-izleme_28.png` | .png | PNG | 1672 × 941 | 1.78 | **PUBLIC_HERO** | No | NONE | DEMO_SYNTHETIC | Analytics & Reporting / Security |
+| `img_gonderim-operasyonu-izleme_28.png` | .png | PNG | 1672 × 941 | 1.78 | **PUBLIC_SUPPORTING** | No | NONE | DEMO_SYNTHETIC | Analytics & Reporting / Security |
 | `img_gunun-firsatlari.png` | .png | **JPEG** | 1024 × 832 | 1.23 | **PUBLIC_HERO** | No | ANONYMIZED | DEMO_SYNTHETIC | Günün Fırsatları |
 | `img_izin-kanal-zamanlama_25.png` | .png | PNG | 1672 × 941 | 1.78 | **PUBLIC_HERO** | No | ANONYMIZED | DEMO_SYNTHETIC | Consent Management / Channels |
 | `img_journey-karar-kurallari_19.png` | .png | PNG | 1672 × 941 | 1.78 | **PUBLIC_SUPPORTING** | No | NONE | DEMO_SYNTHETIC | Journey Manager |
@@ -85,9 +89,17 @@ The repository contains **30 product visual assets** (29 under `wwwroot/wiki/ass
 > An earlier source asset contained real personal identifiers and was replaced during P03 with a KVKK-safe anonymized marketing version.
 > The canonical file `img_tekrar-satin-alma-analizi_6.png` on disk now exclusively renders synthetic customer identifiers (`Müşteri #A1047`, `Müşteri #B3391`, `Mağaza A`, `Mağaza B`) and contains zero real personal names, zero personal email addresses, zero phone numbers, and zero commercial tenant links.
 
+### Git-History PII Security Follow-up:
+> [!CAUTION]
+> **Git-History Security Follow-up:**
+> - The current public working tree is completely sanitized; `img_tekrar-satin-alma-analizi_6.png` contains strictly anonymized synthetic demo data.
+> - Historical Git commits prior to P03 may still contain the superseded raw binary.
+> - If this repository or its commit history has been or will be made publicly accessible, a formal Git-history sanitization pass (e.g., `git-filter-repo` or BFG) must be evaluated separately.
+> - A historical Git rewrite is intentionally OUT OF SCOPE for P03.1 and must be coordinated with repository maintainers.
+
 ### Privacy Inspection Results Across Other Assets:
 1. **RFC 2606 Reserved Domains:** Files such as `img_ai-musteri-ozeti_8.png`, `img_izin-kanal-zamanlama_25.png`, and `img_review-resolution-readiness_14.png` exclusively use dummy emails on the reserved `@example.com` domain and sequential 555 dummy phones.
-2. **In-Software Automated Masking:** `img_gmail-kisi-aktarimi_23.png` demonstrates Pika's real-time privacy engine, visibly showing masked fields (`ayse.y****@gmail.com`, `+90 532 *** ** 45`).
+2. **Masked Contact Fields:** The screenshot `img_gmail-kisi-aktarimi_23.png` visibly shows masked contact fields (`ayse.y****@gmail.com`, `+90 532 *** ** 45`). The visual evidence confirms display masking in the software interface, but does not assert backend runtime masking architecture, real-time policy guarantees, or automated engine capabilities.
 3. **Internal Organization Data:** `img_kullanici-roller-yetkiler_24.png` contains internal user records in its left directory. To eliminate employee exposure, the mandatory crop recipe focuses exclusively on the right-hand **Role-Based Access Control (RBAC) Module Permission Matrix** (`x: 980, y: 215, w: 640, h: 680`).
 4. **Browser Chrome Exposure:** `img_excel-csv-aktarimi_1.png` contained desktop browser navigation chrome at the top. The mandatory crop starts at `y: 36`, stripping the browser toolbar and external Google avatar.
 
@@ -179,7 +191,7 @@ The following table audits current marketing views for synthetic CSS mockups and
 | `Views/Platform/ProductIntelligence.cshtml` | Hand-coded HTML tables for Need Groups & Product Roles | `img_need-group-product-role_11.png` & `img_urun-siniflandirma-workbench_13.png` | `EDITORIAL_SPLIT` | Future Platform Phase |
 | `Views/Platform/CustomerIntelligence.cshtml` | CSS card wrappers simulating customer scoring | `img_ai-musteri-ozeti_8.png` & `img_tekrar-satin-alma-analizi_6.png` | `FULL_STAGE` | Future Platform Phase |
 | `Views/Solutions/AudienceManager.cshtml` | Lines 34–56: `.pika-sol-scene-main` floating badges; Lines 93–107: grey CSS mock bars | `img_kisi-listesi-ve-segmentler_3.png` | `FULL_STAGE` | Future Solutions Phase |
-| `Views/Solutions/CampaignManager.cshtml` | Line 232: Broken 404 image link `img_kampanya-yonetimi_0.png`; ungrounded "ROAS 14.2x" badge | `img_yayinlama-sablon-ve-yonetim_27.png` | `FULL_STAGE` | Future Solutions Phase |
+| `Views/Solutions/CampaignManager.cshtml` | Line 232: Broken 404 image link `img_kampanya-yonetimi_0.png` (Status: OPEN — APPROVED REPLACEMENT IDENTIFIED); ungrounded "ROAS 14.2x" badge | Approved future replacement: `img_yayinlama-sablon-ve-yonetim_27.png`. The actual View replacement will occur during the Campaign Manager page implementation phase. | `FULL_STAGE` | Future Solutions Phase |
 | `Views/Solutions/JourneyManager.cshtml` | Lines 34–56: `.pika-sol-scene-main` and abstract flowchart icons | `img_journey-tasarim-tuvali_18.png` | `FULL_STAGE` | Future Solutions Phase |
 | `Views/Solutions/ContentStudio.cshtml` | Lines 34–56: `.pika-sol-scene-main` and grey CSS mock preview bars | `img_email-template-editor_17.png` | `FULL_STAGE` | Future Solutions Phase |
 | `Views/Solutions/Reporting.cshtml` | Lines 34–56: `.pika-sol-scene-main` and CSS dashboard placeholders | `img_bi-kokpit_5.png` | `FULL_STAGE` | Future Solutions Phase |
@@ -205,7 +217,7 @@ To prevent ad-hoc styling and maintain strict visual consistency, future pages m
 ### Pixel Integrity Rules:
 - Original source files must **never** be destructively edited, resized, or overwritten on disk during design specification.
 - Crop rectangles reference exact integer pixel coordinates against the uncompressed source image:
-  $$	ext{Bounds Check: } 0 le x, quad 0 le y, quad x + 	ext{width} le 	ext{Source Width}, quad y + 	ext{height} le 	ext{Source Height}$$
+  $$\text{Bounds Check: } 0 \le x, \quad 0 \le y, \quad x + \text{width} \le \text{Source Width}, \quad y + \text{height} \le \text{Source Height}$$
 - Approximate or guessed coordinate values are strictly prohibited.
 
 ---
@@ -214,22 +226,22 @@ To prevent ad-hoc styling and maintain strict visual consistency, future pages m
 
 | Asset Filename | Source Dims | Recipe Purpose | Mode | $x$ | $y$ | Width | Height | Mathematical Verification |
 | :--- | :--- | :--- | :--- | :---: | :---: | :---: | :---: | :--- |
-| `img_excel-csv-aktarimi_1.png` | 1885 × 974 | Clean App Stage (Strip Browser Bar) | `FULL_STAGE` | 0 | 36 | 1885 | 938 | $0+1885 le 1885$, $36+938=974 le 974$ |
-| `img_excel-csv-aktarimi_1.png` | 1885 × 974 | Excel Ingestion Modal Focal Crop | `FOCAL_CROP` | 778 | 36 | 1107 | 938 | $778+1107=1885 le 1885$, $36+938=974 le 974$ |
-| `img_kullanici-roller-yetkiler_24.png` | 1672 × 941 | RBAC Permission Matrix (Zero User PII) | `FOCAL_CROP` | 980 | 215 | 640 | 680 | $980+640=1620 le 1672$, $215+680=895 le 941$ |
-| `img_pika-360_7.png` | 1672 × 941 | Decision Summary & Opportunities | `FOCAL_CROP` | 230 | 80 | 1400 | 820 | $230+1400=1630 le 1672$, $80+820=900 le 941$ |
-| `img_pika-360_7.png` | 1672 × 941 | Customer Metric Strip | `DETAIL_ZOOM` | 230 | 415 | 1380 | 260 | $230+1380=1610 le 1672$, $415+260=675 le 941$ |
-| `img_gunun-firsatlari.png` | 1024 × 832 | Opportunities Cockpit (No Sidebar) | `FOCAL_CROP` | 135 | 65 | 880 | 720 | $135+880=1015 le 1024$, $65+720=785 le 832$ |
-| `img_gunun-firsatlari.png` | 1024 × 832 | Top Actionable Opportunity Rows | `DETAIL_ZOOM` | 140 | 390 | 870 | 260 | $140+870=1010 le 1024$, $390+260=650 le 832$ |
-| `img_journey-tasarim-tuvali_18.png` | 1672 × 941 | Workflow Canvas Workspace | `FOCAL_CROP` | 200 | 120 | 1430 | 780 | $200+1430=1630 le 1672$, $120+780=900 le 941$ |
-| `img_journey-tasarim-tuvali_18.png` | 1672 × 941 | Decision & Branching Node Detail | `DETAIL_ZOOM` | 440 | 350 | 750 | 420 | $440+750=1190 le 1672$, $350+420=770 le 941$ |
-| `img_bi-kokpit_5.png` | 1672 × 941 | BI Dashboard Canvas (No Sidebar) | `FOCAL_CROP` | 230 | 70 | 1410 | 840 | $230+1410=1640 le 1672$, $70+840=910 le 941$ |
-| `img_bi-kokpit_5.png` | 1672 × 941 | Executive KPI Header Strip | `DETAIL_ZOOM` | 230 | 140 | 1400 | 160 | $230+1400=1630 le 1672$, $140+160=300 le 941$ |
-| `img_tekrar-satin-alma-analizi_6.png` | 1774 × 887 | Timing Distribution & Potential Customers | `FOCAL_CROP` | 200 | 90 | 1540 | 760 | $200+1540=1740 le 1774$, $90+760=850 le 887$ |
-| `img_urun-siniflandirma-workbench_13.png`| 1672 × 941 | Catalog Workbench (No Sidebar) | `FOCAL_CROP` | 230 | 80 | 1410 | 820 | $230+1410=1640 le 1672$, $80+820=900 le 941$ |
-| `img_urun-siniflandirma-workbench_13.png`| 1672 × 941 | AI Recommendation Drawer (Cappuccino) | `DETAIL_ZOOM` | 1040 | 280 | 590 | 580 | $1040+590=1630 le 1672$, $280+580=860 le 941$ |
-| `img_email-template-editor_17.png` | 1672 × 941 | Email Canvas & Block Drawer | `FOCAL_CROP` | 230 | 70 | 1410 | 840 | $230+1410=1640 le 1672$, $70+840=910 le 941$ |
-| `img_yayinlama-sablon-ve-yonetim_27.png` | 1672 × 941 | Operations Management Grid | `FOCAL_CROP` | 230 | 80 | 1410 | 820 | $230+1410=1640 le 1672$, $80+820=900 le 941$ |
+| `img_excel-csv-aktarimi_1.png` | 1885 × 974 | Clean App Stage (Strip Browser Bar) | `FULL_STAGE` | 0 | 36 | 1885 | 938 | $0+1885 \le 1885$, $36+938=974 \le 974$ |
+| `img_excel-csv-aktarimi_1.png` | 1885 × 974 | Excel Ingestion Modal Focal Crop | `FOCAL_CROP` | 778 | 36 | 1107 | 938 | $778+1107=1885 \le 1885$, $36+938=974 \le 974$ |
+| `img_kullanici-roller-yetkiler_24.png` | 1672 × 941 | RBAC Permission Matrix (Zero User PII) | `FOCAL_CROP` | 980 | 215 | 640 | 680 | $980+640=1620 \le 1672$, $215+680=895 \le 941$ |
+| `img_pika-360_7.png` | 1672 × 941 | Decision Summary & Opportunities | `FOCAL_CROP` | 230 | 80 | 1400 | 820 | $230+1400=1630 \le 1672$, $80+820=900 \le 941$ |
+| `img_pika-360_7.png` | 1672 × 941 | Customer Metric Strip | `DETAIL_ZOOM` | 230 | 415 | 1380 | 260 | $230+1380=1610 \le 1672$, $415+260=675 \le 941$ |
+| `img_gunun-firsatlari.png` | 1024 × 832 | Opportunities Cockpit (No Sidebar) | `FOCAL_CROP` | 135 | 65 | 880 | 720 | $135+880=1015 \le 1024$, $65+720=785 \le 832$ |
+| `img_gunun-firsatlari.png` | 1024 × 832 | Top Actionable Opportunity Rows | `DETAIL_ZOOM` | 140 | 390 | 870 | 260 | $140+870=1010 \le 1024$, $390+260=650 \le 832$ |
+| `img_journey-tasarim-tuvali_18.png` | 1672 × 941 | Workflow Canvas Workspace | `FOCAL_CROP` | 200 | 120 | 1430 | 780 | $200+1430=1630 \le 1672$, $120+780=900 \le 941$ |
+| `img_journey-tasarim-tuvali_18.png` | 1672 × 941 | Decision & Branching Node Detail | `DETAIL_ZOOM` | 440 | 350 | 750 | 420 | $440+750=1190 \le 1672$, $350+420=770 \le 941$ |
+| `img_bi-kokpit_5.png` | 1672 × 941 | BI Dashboard Canvas (No Sidebar) | `FOCAL_CROP` | 230 | 70 | 1410 | 840 | $230+1410=1640 \le 1672$, $70+840=910 \le 941$ |
+| `img_bi-kokpit_5.png` | 1672 × 941 | Executive KPI Header Strip | `DETAIL_ZOOM` | 230 | 140 | 1400 | 160 | $230+1400=1630 \le 1672$, $140+160=300 \le 941$ |
+| `img_tekrar-satin-alma-analizi_6.png` | 1774 × 887 | Timing Distribution & Potential Customers | `FOCAL_CROP` | 200 | 90 | 1540 | 760 | $200+1540=1740 \le 1774$, $90+760=850 \le 887$ |
+| `img_urun-siniflandirma-workbench_13.png`| 1672 × 941 | Catalog Workbench (No Sidebar) | `FOCAL_CROP` | 230 | 80 | 1410 | 820 | $230+1410=1640 \le 1672$, $80+820=900 \le 941$ |
+| `img_urun-siniflandirma-workbench_13.png`| 1672 × 941 | AI Recommendation Drawer (Cappuccino) | `DETAIL_ZOOM` | 1040 | 280 | 590 | 580 | $1040+590=1630 \le 1672$, $280+580=860 \le 941$ |
+| `img_email-template-editor_17.png` | 1672 × 941 | Email Canvas & Block Drawer | `FOCAL_CROP` | 230 | 70 | 1410 | 840 | $230+1410=1640 \le 1672$, $70+840=910 \le 941$ |
+| `img_yayinlama-sablon-ve-yonetim_27.png` | 1672 × 941 | Operations Management Grid | `FOCAL_CROP` | 230 | 80 | 1410 | 820 | $230+1410=1640 \le 1672$, $80+820=900 \le 941$ |
 
 ---
 
@@ -289,7 +301,7 @@ Complex desktop enterprise software interfaces must not simply be shrunk to unre
 Every subsequent marketing page implementation phase must comply with these binding rules:
 
 1. **Zero Fake UI:** Hand-crafted HTML/CSS mockups, fake stats, and grey wireframe bars must be replaced with approved authentic screenshots according to the **Fake UI Replacement Matrix** (Section 9).
-2. **Canonical Mapping Fidelity:** Pages must utilize the designated primary hero and stage assets assigned in the **Canonical Product $ightarrow$ Visual Map** (Section 7). Do not invent ad-hoc asset assignments.
+2. **Canonical Mapping Fidelity:** Pages must utilize the designated primary hero and stage assets assigned in the **Canonical Product $\rightarrow$ Visual Map** (Section 7). Do not invent ad-hoc asset assignments.
 3. **Mandatory Metric Disclosures:** Any displayed screenshot containing aggregate numbers or currency values must include the `Örnek Gösterim` / `Illustrative Sample` disclosure.
 4. **Coordinate-Exact CSS Crops:** Cropped implementations must strictly use the verified coordinates documented in **Priority Crop Recipes** (Section 12) via `.pw2-product-crop`.
 5. **Restrained Annotations:** Annotations are capped at 3 markers per screen, strictly using `.pw2-product-callout` primitives with zero animations or glows.
