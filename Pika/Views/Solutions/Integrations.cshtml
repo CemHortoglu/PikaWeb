@@ -1048,7 +1048,10 @@
                             ? "Her sisteme bağlı olduğumuzu iddia etmek değil,"
                             : "To claim connection to every system.")
                     </p>
-                    <h5 class="fw-bold mb-2">@(tr ? "görevi:" : "It is:")</h5>
+                    @if (!tr)
+                    {
+                        <h5 class="fw-bold mb-2">It is:</h5>
+                    }
                     <p class="fw-bold text-success mb-0">
                         @(tr
                             ? "Pika'nın ihtiyaç duyduğu veriyi doğrulanmış API ve dosya yollarıyla karar zincirine taşımaktır."
