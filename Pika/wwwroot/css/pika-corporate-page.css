@@ -2,7 +2,7 @@
 .corp-hero-diagram { display: flex; flex-direction: column; gap: 8px; padding: 24px; background: rgba(255,255,255,0.04); border: 1px solid rgba(176,203,116,0.2); border-radius: 12px; }
 .corp-hero-step { padding: 10px 16px; border: 1px solid #dce7cc; border-radius: 7px; font-size: 11px; font-weight: 600; letter-spacing: 1.2px; color: #48673b; background: #f4f8eb; display: flex; align-items: center; justify-content: space-between; }
 .corp-hero-arrow { text-align: center; color: #8aa948; font-size: 12px; line-height: 1; }
-.corp-callout { background: #f4f8eb; border-left: 4px solid #8aa948; border-radius: 0 8px 8px 0; padding: 20px 24px; margin: 20px 0; }
+.corp-callout { background: #f4f8eb; border: 1px solid rgba(128, 148, 139, .24); border-radius: 8px; padding: 20px 24px; margin: 20px 0; }
 .corp-flow-chain { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding: 20px; background: #fff; border: 1px solid #dce5d3; border-radius: 10px; margin: 20px 0; font-size: 0.85rem; font-weight: 600; color: #23413b; }
 .corp-flow-arrow { color: #8aa948; font-weight: bold; }
 .corp-faq-details { border: 1px solid #dfe6d6; border-radius: 10px; margin-bottom: 12px; background: #fff; transition: border-color 0.2s ease, box-shadow 0.2s ease; }

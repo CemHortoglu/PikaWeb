@@ -1,0 +1,183 @@
+/* Shared homepage identity, loaded after each interior's content styles.
+   Preserve page-specific diagrams, document order and disclosure behavior. */
+.pika-inner {
+    --inner-ink: var(--ink);
+    --inner-lime: var(--lime);
+    --inner-muted: #536864;
+    --inner-border: #dce4d6;
+    --pw2-bg-dark: #0a1c20;
+    --pw2-bg-dark-deep: #0a1c20;
+    --pw2-brand-primary: var(--lime);
+    --pw2-brand-secondary: var(--ink);
+    background: #f3f5ef;
+}
+.pika-inner .pika-ci-page {
+    --ci-petrol-dark: #0a1c20;
+    --ci-petrol: #10292e;
+    --ci-petrol-light: #173035;
+    --ci-lime: #568600;
+    --ci-lime-bright: var(--lime);
+    --ci-sand: #f3f5ef;
+    --ci-sand-alt: #eef2e8;
+    --ci-ink: var(--ink);
+    --ci-ink-heading: var(--ink);
+}
+.pika-inner .pika-entity-page {
+    --pika-petrol-deep: #0a1c20;
+    --pika-petrol-solid: #10292e;
+    --pika-petrol-stage: #10292e;
+    --pika-petrol-surface: #173035;
+    --pika-lime: #568600;
+    --pika-lime-bright: var(--lime);
+    --pika-neutral-warm: #f3f5ef;
+    --pika-neutral-tint: #f3f5ef;
+    font-family: inherit;
+}
+
+/* The same atmospheric canvas and editorial scale as the homepage. */
+.pika-inner :is(.inner-hero, .pika-ci-hero, .pika-hero, .pika-sol-hero,
+    .pika-corp-hero, .pika-page-hero, .faq-pro-hero, .contact-opening) {
+    background: radial-gradient(ellipse at 82% 40%, #5c891325, transparent 55%), #0a1c20;
+    color: #f7faf0;
+    padding-block: clamp(124px, 10vw, 152px) clamp(64px, 7vw, 104px);
+    border-bottom: 1px solid #d6e5c826;
+    isolation: isolate;
+}
+.pika-inner :is(.inner-hero-grid, .pika-ci-hero-grid, .pika-sol-hero-grid) {
+    gap: clamp(32px, 5vw, 76px);
+}
+.pika-inner :is(.inner-intro, .pika-ci-hero, .pika-hero, .pika-sol-hero,
+    .pika-corp-hero, .pika-page-hero, .contact-intro) h1 {
+    color: #f7faf0;
+    font-family: inherit;
+    font-size: clamp(36px, 4.2vw, 64px);
+    font-weight: 500;
+    line-height: 1.12;
+    letter-spacing: -.045em;
+    text-wrap: balance;
+    overflow-wrap: break-word;
+}
+.pika-inner :is(.inner-intro > p, .pika-ci-hero-lead, .pika-hero__lead,
+    .pika-sol-hero-desc, .pika-corp-lead, .contact-intro > p) {
+    color: #b1c0be;
+    font-size: 17px;
+    line-height: 1.85;
+    max-width: 65ch;
+}
+.pika-inner :is(.inner-eyebrow, .pika-sol-hero .pika-sol-eyebrow,
+    .pika-ci-eyebrow, .contact-eyebrow) { color: #c7d3c4; letter-spacing: .16em; }
+.pika-inner :is(.inner-eyebrow > span, .contact-eyebrow > span) {
+    background: var(--lime);
+    box-shadow: 0 0 16px #b5ee1950;
+}
+.pika-inner .inner-breadcrumb { color: #b1c0be; }
+.pika-inner .inner-breadcrumb a { color: #e0e9d8; }
+.pika-inner .inner-intro { min-width: 0; }
+.pika-inner :is(.inner-intro, .pika-sol-hero, .pika-ci-hero, .pika-hero, .contact-intro)
+    :is(.text-muted, .ph-muted) { color: #b1c0be !important; }
+
+/* Retain each page's meaningful illustration, within a common product frame. */
+.pika-inner :is(.inner-scene-window, .growth-uc-hero-visual, .pika-sol-hero-visual,
+    .pika-sol-showcase-panel, .corp-hero-diagram) {
+    border-radius: 16px;
+    border: 1px solid #a9c87455;
+    box-shadow: 0 28px 70px #0003;
+}
+.pika-inner .inner-scene-window { animation: none; transform: none; }
+.pika-inner .inner-window-bar { background: #eaf0e1; color: #52654a; }
+.pika-inner .inner-scene-window :is(p, small) { color: #53674a; }
+.pika-inner .inner-scene-caption { color: #b1c0be; line-height: 1.8; }
+.pika-inner .inner-scene-orbit { border-color: #a9c87430; }
+
+/* Long-form content stays fully available and follows a consistent rhythm. */
+.pika-inner :is(.ph-section, .pika-sol-section, .pk-section, .uc-section,
+    .sec-section, .faq-section, .pika-section, .pika-ci-section) {
+    padding-block: clamp(56px, 6.5vw, 96px);
+    background-color: #fbfcf8;
+}
+.pika-inner :is(.ph-section-alt, .pika-sol-section-alt, .pk-section-alt,
+    .pika-ci-section--light, .pika-ci-section--alt) { background-color: #f3f5ef; }
+.pika-inner main h2 { text-wrap: balance; scroll-margin-top: 120px; }
+.pika-inner :is(.pika-sol-section-title, .pika-ci-section-title) {
+    color: var(--ink);
+    font-weight: 500;
+    letter-spacing: -.035em;
+}
+.pika-inner :is(.pika-sol-section-desc, .ph-muted, .pk-section-lead, .sec-card-desc) {
+    color: #536864;
+    line-height: 1.85;
+}
+.pika-inner :is(.growth-uc-direct-answer, .corp-callout) {
+    border: 1px solid #dce3dd;
+    background: #f3f5ef;
+    box-shadow: none;
+}
+/* Editorial emphasis comes from spacing and typography, never a colored side rail. */
+.pika-inner :is(.pika-ci-direct-answer-card, .growth-uc-direct-answer,
+    .corp-callout, .demo-req-callout, .email-callout, .sms-callout, .wa-callout,
+    .sec-callout, .sec-callout-lg, .pika-ci-closing-manifesto,
+    .pika-ci-boundary-card, .pika-ci-quote-question) {
+    border: 1px solid #dce3dd;
+    border-radius: 12px;
+    box-shadow: none;
+}
+.pika-inner :is(.corp-callout, .demo-req-callout, .email-callout,
+    .sms-callout, .wa-callout, .sec-callout, .sec-callout-lg,
+    .pika-ci-quote-question) {
+    padding: clamp(20px, 3vw, 32px);
+    background: #f7f9f5;
+    line-height: 1.85;
+}
+.pika-inner :is(.ph-trust-card, .ph-module-card, .pika-sol-card,
+    .pika-sol-value-card, .pika-sol-related-card, .growth-uc-step-card,
+    .growth-uc-card-link, .corp-boundary-card, .pk-card) {
+    border-color: #dce4d6;
+    border-radius: 14px;
+    box-shadow: 0 12px 32px #10292e08;
+}
+.pika-inner :is(.inner-primary, .pika-ci-btn-primary, .pika-sol-btn-primary,
+    .ph-btn-primary, .pk-btn-primary, .pika-btn-primary) {
+    background: var(--lime);
+    color: #10292e;
+    border: 1px solid var(--lime);
+    border-radius: 7px;
+    min-height: 52px;
+    padding: 14px 23px;
+    font-size: 14px;
+    font-weight: 650;
+    box-shadow: none;
+}
+.pika-inner :is(.inner-primary, .pika-ci-btn-primary, .pika-sol-btn-primary,
+    .ph-btn-primary, .pk-btn-primary, .pika-btn-primary):hover { background: #c6f34f; color: #10292e; }
+/* Legacy button rules use !important, so override them within interiors only. */
+.pika-inner main .pika-btn-primary { color: #10292e !important; height: auto; }
+.pika-inner :is(.inner-hero, .pika-sol-hero, .pika-corp-hero, .pika-page-hero,
+    .ph-section-dark, .ph-cta-section, .pika-sol-cta-section, .pk-cta-section)
+    .pika-btn-outline { color: #edf4e8 !important; border-color: #b1c0be80; }
+.pika-inner :is(.inner-hero, .pika-sol-hero, .pika-corp-hero, .pika-page-hero,
+    .ph-section-dark, .ph-cta-section, .pika-sol-cta-section, .pk-cta-section)
+    .pika-btn-outline:hover { background: #ffffff14; }
+.pika-inner :is(.ph-section-dark, .ph-cta-section, .pika-sol-cta-section,
+    .pk-cta-section, .uc-cta-section, .pika-ci-cta, .corp-large-closing) {
+    background: radial-gradient(ellipse at right bottom, #5c891325, transparent 60%), #10292e;
+    color: #f7faf0;
+}
+.pika-inner :is(a, button, summary, input, select, textarea):focus-visible {
+    outline: 3px solid #568600;
+    outline-offset: 4px;
+}
+.pika-inner :is(.inner-hero, .pika-sol-hero, .pika-ci-hero, .pika-hero,
+    .contact-opening, .pika-sol-cta-section) :is(a, button):focus-visible { outline-color: var(--lime); }
+@media (max-width: 991px) {
+    .pika-inner :is(.inner-hero-grid, .pika-ci-hero-grid) { grid-template-columns: 1fr; }
+    .pika-inner .inner-scene { max-width: 620px; }
+}
+@media (max-width: 600px) {
+    .pika-inner .inner-intro h1 { font-size: 36px !important; letter-spacing: -.035em !important; }
+    .pika-inner :is(.inner-actions, .pika-ci-hero-actions) { gap: 16px; }
+    .pika-inner .inner-window-bar { flex-wrap: wrap; }
+    .pika-inner .inner-window-bar small { white-space: normal; }
+}
+@media (prefers-reduced-motion: reduce) {
+    html:has(.pika-inner) { scroll-behavior: auto; }
+}

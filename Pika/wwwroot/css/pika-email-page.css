@@ -8,6 +8,6 @@
 .email-faq-body { padding: 0 22px 22px 22px; color: #4a5d55; font-size: 0.95rem; line-height: 1.75; }
 .email-hero-pills { display: flex; flex-direction: column; gap: 10px; padding: 24px; }
 .email-hero-pill { padding: 11px 16px; border: 1px solid #dce7cc; border-radius: 7px; font-size: 11px; font-weight: 600; letter-spacing: 1.2px; color: #48673b; background: #f4f8eb; display: flex; align-items: center; justify-content: space-between; }
-.email-callout { background: #f4f8eb; border-left: 4px solid #8aa948; border-radius: 0 8px 8px 0; padding: 20px 24px; margin: 20px 0; }
+.email-callout { background: #f4f8eb; border: 1px solid rgba(128, 148, 139, .24); border-radius: 8px; padding: 20px 24px; margin: 20px 0; }
 .email-flow-chain { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding: 20px; background: #fff; border: 1px solid #dce5d3; border-radius: 10px; margin: 20px 0; font-size: 0.85rem; font-weight: 600; color: #23413b; }
 .email-flow-arrow { color: #8aa948; font-weight: bold; }

@@ -1,7 +1,7 @@
 /* Pika Demo Request Page Local Styles - C20 */
 .demo-req-flow-chain { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding: 20px; background: #fff; border: 1px solid #dce5d3; border-radius: 10px; margin: 20px 0; font-size: 0.85rem; font-weight: 600; color: #23413b; }
 .demo-req-flow-arrow { color: #8aa948; font-weight: bold; }
-.demo-req-callout { background: #f4f8eb; border-left: 4px solid #8aa948; border-radius: 0 8px 8px 0; padding: 20px 24px; margin: 20px 0; }
+.demo-req-callout { background: #f4f8eb; border: 1px solid rgba(128, 148, 139, .24); border-radius: 8px; padding: 20px 24px; margin: 20px 0; }
 .demo-req-faq-details { border: 1px solid #dfe6d6; border-radius: 10px; margin-bottom: 12px; background: #fff; transition: border-color 0.2s ease, box-shadow 0.2s ease; }
 .demo-req-faq-details[open] { border-color: #23413b; box-shadow: 0 4px 12px rgba(35, 65, 59, 0.05); }
 .demo-req-faq-summary { padding: 20px 22px; font-weight: 500; color: #23413b; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; font-size: 1.05rem; }

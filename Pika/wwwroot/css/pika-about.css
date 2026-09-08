@@ -505,7 +505,7 @@
     font-size: 1.1rem;
     line-height: 1.85;
     color: var(--pika-text-secondary);
-    border-left: 2px solid #bdceaa;
+    border: 1px solid rgba(128, 148, 139, .24);
     padding-left: 18px;
     margin-bottom: 30px;
 }

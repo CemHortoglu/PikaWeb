@@ -106,11 +106,28 @@
     {
         <link href="~/css/pika-orbit.css" rel="stylesheet" asp-append-version="true" />
         <link href="~/css/pika-inner.css" rel="stylesheet" asp-append-version="true" />
+        <link href="~/css/pika-interior-brand.css" rel="stylesheet" asp-append-version="true" />
     }
 
     <link rel="icon" href="~/web/assets/images/favicon.ico" />
 
     <!-- Organization JSON-LD -->
+    @if (isMarketingInner && !isNoIndex && !string.IsNullOrWhiteSpace(canonicalUrl))
+    {
+        var pageSchema = new Dictionary<string, object?>
+        {
+            ["@context"] = "https://schema.org",
+            ["@type"] = "WebPage",
+            ["@id"] = canonicalUrl + "#webpage",
+            ["url"] = canonicalUrl,
+            ["name"] = fullTitle,
+            ["description"] = metaDescription,
+            ["inLanguage"] = culture,
+            ["isPartOf"] = new Dictionary<string, string> { ["@id"] = "https://pika.tr/#website" },
+            ["publisher"] = new Dictionary<string, string> { ["@id"] = "https://pika.tr/#organization" }
+        };
+        <script type="@Html.Raw("application/ld+json")">@Html.Raw(System.Text.Json.JsonSerializer.Serialize(pageSchema))</script>
+    }
     <script type="@Html.Raw("application/ld+json")">
     {
       "@@context": "https://schema.org",

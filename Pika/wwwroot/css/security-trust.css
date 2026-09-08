@@ -138,10 +138,10 @@
     height: 100%;
 }
 .sec-resp-pika {
-    border-left: 4px solid #10b981;
+    border: 1px solid rgba(128, 148, 139, .24);
 }
 .sec-resp-client {
-    border-left: 4px solid #0284c7;
+    border: 1px solid rgba(128, 148, 139, .24);
 }
 .sec-docs-panel {
     border: 1px solid #e2e8f0;
@@ -187,8 +187,8 @@
 .sec-callout {
     background: #ffffff;
     border: 1px solid #e2e8f0;
-    border-left: 4px solid #059669;
-    border-radius: 0 12px 12px 0;
+    border: 1px solid rgba(128, 148, 139, .24);
+    border-radius: 12px;
     padding: 1.5rem 2rem;
     margin: 1.5rem 0;
 }
@@ -202,8 +202,8 @@
 .sec-callout-lg {
     background: #f8fafc;
     border: 1px solid #cbd5e1;
-    border-left: 4px solid #047857;
-    border-radius: 0 12px 12px 0;
+    border: 1px solid rgba(128, 148, 139, .24);
+    border-radius: 12px;
     padding: 1.75rem 2.25rem;
     margin: 2rem 0;
 }

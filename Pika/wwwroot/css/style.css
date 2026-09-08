@@ -15035,7 +15035,7 @@ img {
     background-color: #fff;
     transition: all .2s ease-in-out;
     box-shadow: 0 .275rem 1.25rem rgba(11, 15, 25, .05), 0 .25rem .5625rem rgba(11, 15, 25, .03);
-    border-left: 2px solid #9edd05;
+    border: 1px solid rgba(128, 148, 139, .24);
     transform: translateY(-10%)
 }
 

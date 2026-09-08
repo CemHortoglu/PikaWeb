@@ -78,44 +78,29 @@
                 </div>
 
                 <div class="pika-ci-hero-diagram-wrap" aria-hidden="true">
-                    <div class="pika-ci-concept-spine">
-                        <div class="pika-ci-spine-node pika-ci-spine-node--start">
-                            <span class="pika-ci-spine-tag">01</span>
-                            <strong>CUSTOMER</strong>
+                    <div class="ci-observatory">
+                        <div class="ci-observatory-head"><span class="ci-wordmark">pika<span>.</span></span><span>CUSTOMER INTELLIGENCE</span><span class="ci-status-dot"></span></div>
+                        <div class="ci-profile"><div class="ci-profile-avatar"><i class="ri-user-3-line"></i></div><div><small>01 / CUSTOMER</small><strong>@(tr ? "Her müşterinin kendine özgü ritmi." : "A distinct rhythm for every customer.")</strong></div></div>
+                        <div class="ci-timeline">
+                            <div class="ci-chart-label"><small>02 / TRANSACTIONS OVER TIME</small><span>@(tr ? "İşlem geçmişi" : "Purchase history")</span></div>
+                            <svg viewBox="0 0 440 140" fill="none" aria-hidden="true">
+                                <defs><linearGradient id="ci-area" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#b5ee19" stop-opacity=".19"/><stop offset="1" stop-color="#b5ee19" stop-opacity="0"/></linearGradient></defs>
+                                <path d="M0 30H440M0 75H440M0 120H440" stroke="#dce8d5" stroke-opacity=".1"/>
+                                <path d="M10 110C40 110 44 66 76 66S116 100 144 92S173 39 208 44S246 89 276 69S320 19 349 30S390 57 430 15V140H10Z" fill="url(#ci-area)"/>
+                                <path d="M10 110C40 110 44 66 76 66S116 100 144 92S173 39 208 44S246 89 276 69S320 19 349 30S390 57 430 15" stroke="#b5ee19" stroke-width="2.5"/>
+                                <g fill="#0f292e" stroke="#c7ee74" stroke-width="2"><circle cx="76" cy="66" r="4"/><circle cx="208" cy="44" r="4"/><circle cx="349" cy="30" r="4"/><circle cx="430" cy="15" r="4"/></g>
+                            </svg>
+                            <div class="ci-chart-axis"><span>@(tr ? "Geçmiş" : "Past")</span><span>@(tr ? "Zaman içindeki değişim" : "Change over time")</span><span>@(tr ? "Bugün" : "Today")</span></div>
                         </div>
-                        <div class="pika-ci-spine-connector">
-                            <i class="ri-arrow-down-line"></i>
+                        <div class="ci-context-label"><span>03 / BEHAVIORAL CONTEXT</span><span>04 / VALUE · RHYTHM · CHANGE</span></div>
+                        <div class="ci-context-grid">
+                            <div><i class="ri-vip-diamond-line"></i><strong>@(tr ? "Müşteri değeri" : "Customer value")</strong><span>@(tr ? "Ticari katkı" : "Commercial contribution")</span></div>
+                            <div><i class="ri-pulse-line"></i><strong>@(tr ? "Alışveriş ritmi" : "Purchase rhythm")</strong><span>@(tr ? "Kişisel düzen" : "Individual pattern")</span></div>
+                            <div><i class="ri-line-chart-line"></i><strong>@(tr ? "Davranış değişimi" : "Behavioral change")</strong><span>@(tr ? "Yeni sinyaller" : "Emerging signals")</span></div>
                         </div>
-                        <div class="pika-ci-spine-node">
-                            <span class="pika-ci-spine-tag">02</span>
-                            <strong>TRANSACTIONS OVER TIME</strong>
-                        </div>
-                        <div class="pika-ci-spine-connector">
-                            <i class="ri-arrow-down-line"></i>
-                        </div>
-                        <div class="pika-ci-spine-node">
-                            <span class="pika-ci-spine-tag">03</span>
-                            <strong>BEHAVIORAL CONTEXT</strong>
-                        </div>
-                        <div class="pika-ci-spine-connector">
-                            <i class="ri-arrow-down-line"></i>
-                        </div>
-                        <div class="pika-ci-spine-node">
-                            <span class="pika-ci-spine-tag">04</span>
-                            <strong>VALUE / RHYTHM / CHANGE</strong>
-                        </div>
-                        <div class="pika-ci-spine-connector">
-                            <i class="ri-arrow-down-line"></i>
-                        </div>
-                        <div class="pika-ci-spine-node pika-ci-spine-node--accent">
-                            <span class="pika-ci-spine-tag">05</span>
-                            <strong>OPPORTUNITY SIGNAL</strong>
-                        </div>
-                        <div class="pika-ci-diagram-caption">
-                            @(tr ? "Örnek görünüm · Müşteri verisinden ticari sinyale akış" : "Illustration · Flow from customer data to commercial signal")
-                        </div>
-                    </div>
-                </div>
+                        <div class="ci-signal"><span class="ci-signal-icon">✳</span><div><small>05 / OPPORTUNITY SIGNAL</small><strong>@(tr ? "Veriden, anlamlı bir sonraki adıma." : "From data to a meaningful next step.")</strong></div><i class="ri-arrow-right-up-line"></i></div>
+                        <div class="ci-observatory-caption">@(tr ? "Örnek görünüm · Müşteri verisinden ticari sinyale akış" : "Illustration · Flow from customer data to commercial signal")</div>
+                    </div>                </div>
             </div>
         </div>
     </section>

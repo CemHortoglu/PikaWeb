@@ -4,7 +4,7 @@
     var privacyUrl = Url.Action("PrivacyPolicy", "Home", new { culture });
 }
 
-<div id="cookieConsentContainer" role="region" aria-label="@(isTr ? "Çerez Kullanımı ve KVKK Aydınlatması" : "Cookie Usage and Privacy Notice")" class="cookie-consent-banner d-none p-4 rounded shadow bg-white border" style="position: fixed; bottom: 20px; left: 20px; right: 20px; z-index: 1060; max-width: 900px; margin: 0 auto; flex-direction: column; gap: 15px; border-left: 5px solid #0c3a30 !important;">
+<div id="cookieConsentContainer" role="region" aria-label="@(isTr ? "Çerez Kullanımı ve KVKK Aydınlatması" : "Cookie Usage and Privacy Notice")" class="cookie-consent-banner d-none p-4 rounded shadow bg-white border" style="position: fixed; bottom: 20px; left: 20px; right: 20px; z-index: 1060; max-width: 900px; margin: 0 auto; flex-direction: column; gap: 15px; border:1px solid rgba(128,148,139,.24);">
     <div class="d-flex align-items-start justify-content-between gap-3">
         <div class="mb-0">
             <h5 class="mb-2 fw-bold" style="color: #0c3a30;" data-i18n="cookie.title">@(isTr ? "Çerez (Cookie) Kullanımı ve KVKK Aydınlatması" : "Cookie Usage & Privacy Notice")</h5>

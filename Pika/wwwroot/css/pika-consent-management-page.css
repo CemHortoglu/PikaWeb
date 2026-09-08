@@ -64,8 +64,8 @@
 .consent-question-box {
     background: #ffffff;
     border: 1px solid #dce5d2;
-    border-left: 4px solid var(--pika-primary, #7c984c);
-    border-radius: 0 12px 12px 0;
+    border: 1px solid rgba(128, 148, 139, .24);
+    border-radius: 12px;
     padding: 1.5rem 2rem;
     margin: 1.5rem 0;
 }

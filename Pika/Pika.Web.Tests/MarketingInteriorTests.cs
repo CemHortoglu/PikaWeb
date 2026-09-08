@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -50,6 +52,17 @@ public class MarketingInteriorTests : IClassFixture<WebApplicationFactory<Progra
         Assert.Contains("id=\"inner-content\"", html);
         Assert.Contains("href=\"#inner-content\"", html);
         Assert.Contains("/css/pika-inner.css", html);
+        Assert.Contains("/css/pika-interior-brand.css", html);
+        var schemas = Regex.Matches(html, "<script type=\"application/ld(?:\\+|&#x2B;)json\">(.*?)</script>", RegexOptions.Singleline)
+            .Select(match => JsonDocument.Parse(match.Groups[1].Value)).ToList();
+        try
+        {
+            var page = Assert.Single(schemas.Where(schema => schema.RootElement.TryGetProperty("@type", out var type) && type.GetString() == "WebPage")).RootElement;
+            Assert.Equal(language, page.GetProperty("inLanguage").GetString());
+            Assert.Equal(Regex.Match(html, "<link rel=\"canonical\" href=\"([^\"]+)\"").Groups[1].Value, page.GetProperty("url").GetString());
+            Assert.False(string.IsNullOrWhiteSpace(page.GetProperty("description").GetString()));
+        }
+        finally { schemas.ForEach(schema => schema.Dispose()); }
         Assert.Contains("/js/pika-inner.js", html);
         Assert.Contains("rel=\"canonical\"", html);
         if (!path.Contains("consent-management"))
@@ -66,6 +79,9 @@ public class MarketingInteriorTests : IClassFixture<WebApplicationFactory<Progra
         using var client = factory.CreateClient();
         var html = await client.GetStringAsync(path);
         Assert.DoesNotContain("/css/pika-inner.css", html);
+        // The shared layout may evolve for interiors; homepage output stays isolated.
+        Assert.DoesNotContain("/css/pika-interior-brand.css", html);
+        Assert.DoesNotContain("#webpage", html);
         Assert.DoesNotContain("/js/pika-inner.js", html);
         Assert.DoesNotContain("class=\"inner-hero", html);
     }

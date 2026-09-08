@@ -200,7 +200,19 @@
     gap: 18px;
 }
 
-/* Conceptual Visual Spine in Hero */
+/* Customer context observatory: illustrative data, not a live product screen. */
+.ci-observatory{position:relative;background:linear-gradient(145deg,#173237,#0d2227);border:1px solid #d6e5c82a;border-radius:20px;padding:26px;box-shadow:0 32px 80px #0003;color:#edf4e8}
+.ci-observatory-head{display:flex;align-items:center;gap:18px;padding-bottom:22px;border-bottom:1px solid #d6e5c81a}
+.ci-wordmark{font-size:31px;font-weight:700;letter-spacing:-2px;line-height:1}.ci-wordmark>span{color:#b5ee19}
+.ci-observatory-head>span:nth-child(2){font-size:9px;letter-spacing:1.5px;color:#b1c0be}.ci-status-dot{width:6px;height:6px;border-radius:50%;background:#b5ee19;margin-left:auto;box-shadow:0 0 12px #b5ee1955}
+.ci-profile{display:flex;align-items:center;gap:14px;padding:25px 0}.ci-profile-avatar{display:grid;place-items:center;flex-shrink:0;width:44px;height:48px;border:1px solid #b5ee1940;border-radius:12px;background:#b5ee1910;color:#cee998;font-size:23px}
+.ci-profile small,.ci-chart-label small,.ci-signal small{display:block;font-size:9px;letter-spacing:1.1px;color:#b3c1b5}.ci-profile strong{display:block;font-size:16px;line-height:1.5;font-weight:500;margin-top:5px}
+.ci-timeline{background:#081c2040;border:1px solid #d6e5c818;border-radius:12px;padding:17px 16px 12px}.ci-chart-label{display:flex;justify-content:space-between;gap:12px;align-items:center}.ci-chart-label>span{font-size:10px;color:#b1c0be}.ci-timeline svg{display:block;width:100%;height:auto;margin:18px 0 4px}.ci-chart-axis{display:flex;justify-content:space-between;font-size:9px;color:#a9bbb4;gap:8px}
+.ci-context-label{display:flex;justify-content:space-between;gap:12px;padding:22px 0 12px;font-size:8px;letter-spacing:.7px;color:#b1c0be}.ci-context-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.ci-context-grid>div{padding:14px 10px;background:#dce8d507;border:1px solid #dce8d51a;border-radius:10px}.ci-context-grid i{display:block;font-size:21px;color:#c1dd9e;margin-bottom:12px}.ci-context-grid strong{display:block;font-size:11px;font-weight:500;line-height:1.5}.ci-context-grid span{display:block;font-size:9px;line-height:1.5;color:#b1c0be;margin-top:5px}
+.ci-signal{display:flex;align-items:center;gap:13px;background:#e8f0dc;border:1px solid #c7dda6;border-radius:12px;padding:18px 15px;margin-top:22px;color:#173337}.ci-signal-icon{font-size:31px;color:#527b21}.ci-signal small{color:#536748;font-size:8px}.ci-signal strong{display:block;font-weight:550;font-size:13px;line-height:1.5;margin-top:6px}.ci-signal>i{margin-left:auto;color:#527b21;font-size:20px}.ci-observatory-caption{text-align:center;font-size:9px;color:#afc0b8;line-height:1.7;margin-top:17px}
+@media(max-width:600px){.ci-observatory{padding:18px;border-radius:16px}.ci-observatory-head{gap:12px}.ci-observatory-head>span:nth-child(2){font-size:8px;letter-spacing:1px}.ci-context-label{flex-wrap:wrap;gap:5px}.ci-chart-label{align-items:start;flex-direction:column;gap:4px}.ci-profile strong{font-size:14px}.ci-context-grid{gap:6px}.ci-context-grid>div{padding:12px 8px}.ci-context-grid strong{font-size:10px}.ci-signal{padding:15px 12px}.ci-signal strong{font-size:12px}}
+
+/* Legacy spine primitives retained for any supporting content. */
 .pika-ci-page .pika-ci-concept-spine {
     background: rgba(8, 41, 34, 0.6);
     border: 1px solid rgba(132, 194, 37, 0.25);
@@ -354,7 +366,7 @@
 .pika-ci-page .pika-ci-direct-answer-card {
     background: #ffffff;
     border: 1px solid var(--ci-border);
-    border-left: 4px solid var(--ci-lime);
+    border: 1px solid rgba(128, 148, 139, .24);
     border-radius: 12px;
     padding: clamp(32px, 5vw, 56px);
     box-shadow: 0 12px 35px rgba(23, 51, 55, 0.04);
@@ -574,7 +586,7 @@
     color: var(--ci-petrol);
     background: #ffffff;
     border: 1px solid var(--ci-border);
-    border-left: 4px solid var(--ci-lime);
+    border: 1px solid rgba(128, 148, 139, .24);
     border-radius: 8px;
     padding: 24px 28px;
     margin-top: 34px;
@@ -617,7 +629,7 @@
 .pika-ci-page .pika-ci-boundary-card {
     background: #ffffff;
     border: 1px solid var(--ci-border);
-    border-left: 4px solid #5a7b6e;
+    border: 1px solid rgba(128, 148, 139, .24);
     border-radius: 8px;
     padding: 22px 26px;
     font-size: 16px;
@@ -632,9 +644,9 @@
     font-style: italic;
     color: var(--ci-petrol);
     padding: 10px 18px;
-    border-left: 3px solid var(--ci-lime);
+    border: 1px solid rgba(128, 148, 139, .24);
     background: rgba(255, 255, 255, 0.6);
-    border-radius: 0 6px 6px 0;
+    border-radius: 6px;
     margin: 10px 0 20px;
 }
 
