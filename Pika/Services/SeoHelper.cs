@@ -42,10 +42,10 @@ public static class SeoHelper
         ["Home.Corporate"] = new(
             "/kurumsal",
             "/en/corporate",
-            "Kurumsal",
-            "Corporate",
-            "Pika kurumsal çözümleri, rol bazlı erişim denetimi, entegrasyon altyapısı ve KVKK/İYS izin yönetimi süreçleriyle işletmenizin iletişim operasyonlarını destekler.",
-            "Pika enterprise solutions support your commercial communication operations with role-based access control, integration infrastructure, and consent management workflows.",
+            "Kurumsal | Pika Müşteri Zekâsı ve Omnichannel Pazarlama",
+            "Corporate | Pika Customer Intelligence & Omnichannel Marketing",
+            "Pika'nın müşteri zekâsı ve omnichannel pazarlama platformu yaklaşımını; veri, entegrasyon, güvenlik, izin yönetimi, kontrollü aksiyon, AI ve kurumsal değerlendirme başlıklarıyla inceleyin.",
+            "Explore Pika's Customer Intelligence & Omnichannel Marketing Platform approach across data, integrations, security, consent, controlled action, AI and organizational evaluation.",
             "Kurumsal",
             "Corporate"),
 

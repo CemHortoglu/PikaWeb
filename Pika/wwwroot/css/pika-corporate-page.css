@@ -1,0 +1,20 @@
+/* Pika Corporate Page Local Styles - C19 */
+.corp-hero-diagram { display: flex; flex-direction: column; gap: 8px; padding: 24px; background: rgba(255,255,255,0.04); border: 1px solid rgba(176,203,116,0.2); border-radius: 12px; }
+.corp-hero-step { padding: 10px 16px; border: 1px solid #dce7cc; border-radius: 7px; font-size: 11px; font-weight: 600; letter-spacing: 1.2px; color: #48673b; background: #f4f8eb; display: flex; align-items: center; justify-content: space-between; }
+.corp-hero-arrow { text-align: center; color: #8aa948; font-size: 12px; line-height: 1; }
+.corp-callout { background: #f4f8eb; border-left: 4px solid #8aa948; border-radius: 0 8px 8px 0; padding: 20px 24px; margin: 20px 0; }
+.corp-flow-chain { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding: 20px; background: #fff; border: 1px solid #dce5d3; border-radius: 10px; margin: 20px 0; font-size: 0.85rem; font-weight: 600; color: #23413b; }
+.corp-flow-arrow { color: #8aa948; font-weight: bold; }
+.corp-faq-details { border: 1px solid #dfe6d6; border-radius: 10px; margin-bottom: 12px; background: #fff; transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+.corp-faq-details[open] { border-color: #23413b; box-shadow: 0 4px 12px rgba(35, 65, 59, 0.05); }
+.corp-faq-summary { padding: 20px 22px; font-weight: 500; color: #23413b; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; font-size: 1.05rem; }
+.corp-faq-summary::-webkit-details-marker { display: none; }
+.corp-faq-summary i { transition: transform 0.2s ease; font-size: 1.2rem; color: #687d70; }
+.corp-faq-details[open] .corp-faq-summary i { transform: rotate(180deg); color: #23413b; }
+.corp-faq-body { padding: 0 22px 22px 22px; color: #4a5d55; font-size: 0.95rem; line-height: 1.75; }
+.corp-boundary-card { background: #fff; border: 1px solid #e1e8dc; border-radius: 10px; padding: 24px; height: 100%; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.corp-boundary-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(35, 65, 59, 0.06); }
+.corp-boundary-icon { font-size: 20px; color: #e55353; margin-bottom: 12px; }
+.corp-large-closing { background: #102b2f; color: #f0f5e7; border-radius: 12px; padding: 36px 32px; text-align: center; margin-top: 32px; }
+.corp-large-closing p { color: #b2c3af; margin-bottom: 0; font-size: 1.1rem; line-height: 1.8; }
+.corp-large-closing strong { color: #cfe3a2; }

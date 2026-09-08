@@ -1,10 +1,942 @@
 @{
     var culture = (ViewData["culture"] as string ?? ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").ToLowerInvariant();
-    var isTr = culture == "tr";
-    ViewData["Title"] = isTr ? "Kurumsal | Pika" : "Corporate | Pika";
-    ViewData["MetaDescription"] = isTr
-        ? "Pika kurumsal çözümleri, yüksek güvenlik standartları, ölçeklenebilir mimari ve KVKK/IYS uyumlu süreçlerle işletmenizin büyümesini destekler."
-        : "Pika enterprise solutions support your business growth with high security standards, scalable architecture, and compliance.";
+    var tr = culture == "tr";
+    ViewData["BodyClass"] = "pika-solutions-page";
 }
-<section class="pika-page-hero"><div class="container"><div class="row g-4 align-items-center"><div class="col-lg-7"><h1 class="pika-h1" data-i18n="corp.h1"></h1><p class="pika-lead" data-i18n="corp.lead"></p><div class="d-flex gap-2"><button class="btn pika-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal" data-i18n="corp.demo"></button><a class="btn pika-btn-outline" href="@(isTr ? "/iletisim" : "/en/contact")" data-i18n="corp.contact"></a></div></div><div class="col-lg-5"><img class="img-fluid rounded-4" src="~/web/images/service/service-image-7.jpg" alt="Corporate demo" /><p class="small text-white-50 mt-2">Demo image placeholder / Demo görsel alanı</p></div></div></div></section>
-<section class="pika-section"><div class="container"><div class="row g-4"><div class="col-lg-4"><div class="pika-card h-100"><h3 class="pika-h3" data-i18n="corp.m1t"></h3><p class="text-white-50" data-i18n="corp.m1d"></p></div></div><div class="col-lg-4"><div class="pika-card h-100"><h3 class="pika-h3" data-i18n="corp.m2t"></h3><p class="text-white-50" data-i18n="corp.m2d"></p></div></div><div class="col-lg-4"><div class="pika-card h-100"><h3 class="pika-h3" data-i18n="corp.m3t"></h3><p class="text-white-50" data-i18n="corp.m3d"></p></div></div></div><div class="pika-cta-card mt-5"><h3 data-i18n="corp.ctaT"></h3><p class="text-white-50" data-i18n="corp.ctaD"></p><button class="btn pika-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal" data-i18n="corp.ctaB"></button></div></div></section>
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/pika-corporate-page.css" asp-append-version="true" />
+}
+
+@* ── 01 HERO ─────────────────────────────────────────────────────── *@
+<section class="pika-sol-hero">
+    <div class="container" data-aos="fade-up">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-7">
+                <span class="pika-sol-eyebrow">@(tr ? "KURUMSAL" : "CORPORATE")</span>
+                <span class="badge bg-light text-dark border px-2 py-1 mb-3 ms-2 fs-6">Pika</span>
+                <h1 class="pika-sol-hero-title">
+                    @(tr
+                        ? "Müşteri zekâsını, açık ürün sınırları ve kontrollü aksiyon yaklaşımıyla değerlendirin."
+                        : "Evaluate customer intelligence through clear product boundaries and controlled action.")
+                </h1>
+                <p class="lead pika-sol-lead mb-4">
+                    @(tr
+                        ? "Pika; müşteri, ürün ve satış verisini birlikte anlamlandırarak işletmenin bugün hangi müşteride hangi ticari fırsatın oluştuğunu görmesini ve bu fırsatı kontrollü, ölçülebilir çok kanallı aksiyona dönüştürmesini sağlayan müşteri zekâsı ve pazarlama platformudur."
+                        : "Pika is a customer intelligence and marketing platform that brings customer, product and sales data together to identify commercial opportunities and turn them into controlled, measurable omnichannel actions.")
+                </p>
+                <p class="text-muted mb-4">
+                    @(tr
+                        ? "Kurumsal değerlendirmede yalnızca özellik listesine değil; verinin platforma nasıl girdiğine, kararın nasıl oluştuğuna, aksiyonun hangi kontrollerle yürütüldüğüne ve sonuçların nasıl ölçüldüğüne birlikte bakın."
+                        : "For organizational evaluation, look beyond a feature list and consider how data enters the platform, how decisions are created, which controls govern action and how outcomes are measured.")
+                </p>
+                <div class="d-flex flex-wrap gap-3">
+                    <button type="button" class="btn pika-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal">
+                        @(tr ? "Demo Talep Et" : "Request a Demo")
+                    </button>
+                    <a href="@(tr ? "/pika" : "/en/pika")" class="btn pika-btn-outline">
+                        @(tr ? "Pika'yı Keşfedin" : "Explore Pika")
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="corp-hero-diagram" aria-hidden="true">
+                    <div class="corp-hero-step">
+                        <span>@(tr ? "VERİ" : "DATA")</span>
+                        <i class="ri-database-2-line" aria-hidden="true"></i>
+                    </div>
+                    <div class="corp-hero-arrow">↓</div>
+                    <div class="corp-hero-step">
+                        <span>@(tr ? "MÜŞTERİ & ÜRÜN ZEKÂSI" : "CUSTOMER & PRODUCT INTELLIGENCE")</span>
+                        <i class="ri-brain-line" aria-hidden="true"></i>
+                    </div>
+                    <div class="corp-hero-arrow">↓</div>
+                    <div class="corp-hero-step">
+                        <span>@(tr ? "KARAR" : "DECISION")</span>
+                        <i class="ri-lightbulb-line" aria-hidden="true"></i>
+                    </div>
+                    <div class="corp-hero-arrow">↓</div>
+                    <div class="corp-hero-step">
+                        <span>@(tr ? "KONTROL" : "CONTROL")</span>
+                        <i class="ri-shield-check-line" aria-hidden="true"></i>
+                    </div>
+                    <div class="corp-hero-arrow">↓</div>
+                    <div class="corp-hero-step">
+                        <span>@(tr ? "AKSİYON" : "ACTION")</span>
+                        <i class="ri-send-plane-line" aria-hidden="true"></i>
+                    </div>
+                    <div class="corp-hero-arrow">↓</div>
+                    <div class="corp-hero-step">
+                        <span>@(tr ? "ÖLÇÜM" : "MEASUREMENT")</span>
+                        <i class="ri-line-chart-line" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="inner-content" class="inner-anchor"></div>
+
+@* ── 02 DIRECT ANSWER ─────────────────────────────────────────────── *@
+<section class="pika-sol-section">
+    <div class="container" data-aos="fade-up">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <span class="pika-sol-eyebrow">@(tr ? "KISA CEVAP" : "THE SHORT ANSWER")</span>
+                <h2 class="pika-sol-section-title text-start mb-4">
+                    @(tr ? "Pika'yı kurumsal olarak nasıl değerlendirmelisiniz?" : "How should an organization evaluate Pika?")
+                </h2>
+                <p class="lead">
+                    @(tr
+                        ? "Pika, müşteri zekâsı ile pazarlama aksiyonunu aynı karar zincirinde birleştiren B2B SaaS platformudur."
+                        : "Pika is a B2B SaaS platform that connects customer intelligence and marketing action within the same decision chain.")
+                </p>
+                <p>
+                    @(tr
+                        ? "Platformun rolü yalnızca veri göstermek veya mesaj göndermek değildir."
+                        : "The role of the platform is not merely to display data or send messages.")
+                </p>
+                <p>
+                    @(tr
+                        ? "Müşteri, ürün ve işlem bağlamı önce intelligence katmanlarında anlamlandırılır; ticari fırsat ve kullanıcı kararı daha sonra audience, campaign veya journey aksiyonlarına bağlanabilir."
+                        : "Customer, product and transaction context is understood first in intelligence layers; commercial opportunity and user decision can then connect to audience, campaign or journey action.")
+                </p>
+                <p>
+                    @(tr
+                        ? "Kurumsal değerlendirmede temel soru şudur:"
+                        : "The central evaluation question is:")
+                </p>
+                <div class="corp-callout my-4 text-center">
+                    <p class="fs-4 fw-bold mb-0 text-dark">
+                        @if (tr)
+                        {
+                            <text>“Veri, karar, kontrol ve aksiyon birbirine nasıl bağlanıyor?”</text>
+                        }
+                        else
+                        {
+                            <text>“How do data, decision, control and action connect?”</text>
+                        }
+                    </p>
+                </div>
+                <p>
+                    @(tr
+                        ? "Pika'nın ürün yaklaşımı bu dört alanı tek bir özellik altında eritmek yerine ayrı sorumluluk katmanlarıyla yönetir."
+                        : "Pika's product approach keeps those responsibilities in explicit layers rather than collapsing every capability into one feature.")
+                </p>
+                <div class="p-3 bg-white rounded border border-light-subtle">
+                    <p class="mb-0 fw-semibold text-center">
+                        @if (tr)
+                        {
+                            <text>Doğru değerlendirme, yalnızca “hangi özellikler var?” sorusuyla değil, “hangi ürün katmanı hangi karardan sorumlu?” sorusuyla başlar.</text>
+                        }
+                        else
+                        {
+                            <text>A useful evaluation does not begin only with: “Which features exist?” It also asks: “Which product layer owns which decision?”</text>
+                        }
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 03 PIKA AS A B2B PLATFORM ────────────────────────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt">
+    <div class="container" data-aos="fade-up">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <span class="pika-sol-eyebrow">@(tr ? "PLATFORM KİMLİĞİ" : "PLATFORM IDENTITY")</span>
+                <h2 class="pika-sol-section-title text-start mb-4">
+                    @(tr ? "Pika'nın merkezi, kanal değil müşteri ve ürün bağlamıdır." : "Pika is centered not on the channel, but on customer and product context.")
+                </h2>
+                <p class="lead">
+                    @(tr
+                        ? "Pika'nın başlangıç noktası mesaj göndermek değil, anlamaktır."
+                        : "Pika does not begin with sending a message. It begins with understanding.")
+                </p>
+                <p>
+                    @if (tr)
+                    {
+                        <text><a href="/platform/customer-intelligence">Customer Intelligence</a> müşteri davranışı, değer ve satın alma bağlamını; <a href="/platform/product-intelligence">Product Intelligence</a> ise ürünlerin ticari anlamı ve ilişkilerini görünür hale getiren ayrı platform katmanlarıdır.</text>
+                    }
+                    else
+                    {
+                        <text><a href="/en/platform/customer-intelligence">Customer Intelligence</a> establishes customer behavior, value and purchase context, while <a href="/en/platform/product-intelligence">Product Intelligence</a> establishes the commercial meaning and relationships of products.</text>
+                    }
+                </p>
+                <p>
+                    @if (tr)
+                    {
+                        <text>Bu bağlam <a href="/platform/pika-360">Pika 360</a> ve <a href="/platform/gunun-firsatlari">Günün Fırsatları</a> gibi karar görünümlerinde kullanılabilir; ardından kontrollü pazarlama aksiyonuna bağlanabilir.</text>
+                    }
+                    else
+                    {
+                        <text>That context can be used in decision views such as <a href="/en/platform/pika-360">Pika 360</a> and <a href="/en/platform/opportunities">Daily Opportunities</a> and can later connect to controlled marketing action.</text>
+                    }
+                </p>
+
+                <div class="corp-callout my-4">
+                    @if (tr)
+                    {
+                        <p class="mb-1"><strong>ÖNCE:</strong> ANLAMA</p>
+                        <p class="mb-1"><strong>SONRA:</strong> FIRSAT / KARAR</p>
+                        <p class="mb-0"><strong>ARDINDAN:</strong> KONTROLLÜ AKSİYON</p>
+                    }
+                    else
+                    {
+                        <p class="mb-1"><strong>FIRST:</strong> UNDERSTANDING</p>
+                        <p class="mb-1"><strong>THEN:</strong> OPPORTUNITY / DECISION</p>
+                        <p class="mb-0"><strong>THEN:</strong> CONTROLLED ACTION</p>
+                    }
+                </div>
+
+                <div class="p-3 bg-white rounded border border-light-subtle mb-4">
+                    <p class="mb-0 fw-semibold text-center">
+                        @(tr ? "Daha çok mesaj değil, daha doğru ilişki." : "Not more messages. Better customer relationships.")
+                    </p>
+                </div>
+
+                <div>
+                    <a href="@(tr ? "/pika" : "/en/pika")" class="btn pika-btn-outline">
+                        @(tr ? "Pika'yı Keşfedin →" : "Explore Pika →")
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 04 WHAT PIKA OPTIMIZES FOR ───────────────────────────────────── *@
+<section class="pika-sol-section">
+    <div class="container" data-aos="fade-up">
+        <span class="pika-sol-eyebrow">@(tr ? "ÜRÜN YAKLAŞIMI" : "PRODUCT APPROACH")</span>
+        <h2 class="pika-sol-section-title">
+            @(tr ? "Daha fazla otomasyon değil. Daha açık karar bağlamı." : "Not more automation. Clearer decision context.")
+        </h2>
+
+        <div class="row justify-content-center mb-4">
+            <div class="col-lg-10">
+                <p class="lead">
+                    @(tr
+                        ? "Pika'nın amacı mümkün olan her aksiyonu otomatikleştirmek değildir."
+                        : "Pika is not designed to automate every possible action.")
+                </p>
+                <p>
+                    @(tr
+                        ? "Platform müşteri ve ürün bağlamını görünür hale getirir, gerçek audience tanımını ayrı yönetir, içerik hazırlığını aksiyon kararından ayırır ve gönderim öncesi kontrolleri execution sürecinin parçası haline getirir."
+                        : "The platform makes customer and product context visible, manages actual audience definition separately, separates content preparation from the action decision and makes pre-delivery controls part of execution.")
+                </p>
+            </div>
+        </div>
+
+        <div class="pika-sol-value-grid">
+            <div class="pika-sol-value-card" data-aos="fade-up" data-aos-duration="500">
+                <div class="pika-sol-value-icon"><i class="ri-compass-3-line" aria-hidden="true"></i></div>
+                <h4>@(tr ? "Anlama" : "Understanding")</h4>
+                <p>@(tr ? "Müşteri ve ürün bağlamı veriden hesaplanır." : "Customer and product context is calculated from data.")</p>
+            </div>
+            <div class="pika-sol-value-card" data-aos="fade-up" data-aos-duration="500" data-aos-delay="100">
+                <div class="pika-sol-value-icon"><i class="ri-focus-3-line" aria-hidden="true"></i></div>
+                <h4>@(tr ? "Açık Karar" : "Explicit Decision")</h4>
+                <p>@(tr ? "Fırsat, audience, campaign ve journey sorumlulukları birbirinden ayrılır." : "Opportunity, audience, campaign and journey responsibilities remain distinct.")</p>
+            </div>
+            <div class="pika-sol-value-card" data-aos="fade-up" data-aos-duration="500" data-aos-delay="200">
+                <div class="pika-sol-value-icon"><i class="ri-shield-check-line" aria-hidden="true"></i></div>
+                <h4>@(tr ? "Kontrollü Aksiyon" : "Controlled Action")</h4>
+                <p>@(tr ? "İzin ve gönderim kontrolleri iletişim icrasından önce değerlendirilir." : "Permission and delivery controls are evaluated before communication execution.")</p>
+            </div>
+            <div class="pika-sol-value-card" data-aos="fade-up" data-aos-duration="500" data-aos-delay="300">
+                <div class="pika-sol-value-icon"><i class="ri-line-chart-line" aria-hidden="true"></i></div>
+                <h4>@(tr ? "Ölçüm" : "Measurement")</h4>
+                <p>@(tr ? "Gönderim ve etkileşim sonuçları Analytics & Reporting bağlamına taşınır." : "Delivery and engagement outcomes can feed Analytics & Reporting context.")</p>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mt-4">
+            <div class="col-lg-10">
+                <div class="p-3 bg-white rounded border border-light-subtle text-center">
+                    <p class="mb-0 fw-semibold">
+                        @(tr
+                            ? "Pika'nın hedefi aksiyonu bağlamdan koparmak değil, aksiyonu bağlamın sonucu haline getirmektir."
+                            : "Pika's objective is not to separate action from context, but to make action the result of context.")
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 05 PLATFORM EVALUATION MAP ──────────────────────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt">
+    <div class="container" data-aos="fade-up">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <span class="pika-sol-eyebrow">@(tr ? "UÇTAN UCA DEĞERLENDİRME" : "END-TO-END EVALUATION")</span>
+                <h2 class="pika-sol-section-title text-start mb-4">
+                    @(tr ? "Pika'yı tek bir özellik üzerinden değil, karar zinciri üzerinden değerlendirin." : "Evaluate Pika through the decision chain, not through one feature.")
+                </h2>
+
+                <div class="corp-flow-chain my-4" aria-label="@(tr ? "Uçtan uca değerlendirme akışı" : "End-to-end evaluation flow")">
+                    <span>DATA &amp; INGESTION</span>
+                    <span class="corp-flow-arrow">→</span>
+                    <span>CUSTOMER &amp; PRODUCT INTELLIGENCE</span>
+                    <span class="corp-flow-arrow">→</span>
+                    <span>OPPORTUNITY / DECISION</span>
+                    <span class="corp-flow-arrow">→</span>
+                    <span>AUDIENCE / CONTENT</span>
+                    <span class="corp-flow-arrow">→</span>
+                    <span>CAMPAIGN / JOURNEY</span>
+                    <span class="corp-flow-arrow">→</span>
+                    <span>CONSENT / SECURITY CONTROLS</span>
+                    <span class="corp-flow-arrow">→</span>
+                    <span>EMAIL / SMS / WHATSAPP</span>
+                    <span class="corp-flow-arrow">→</span>
+                    <span>ANALYTICS &amp; REPORTING</span>
+                </div>
+
+                <p class="lead">
+                    @(tr
+                        ? "Bu zincirde her katmanın görevi farklıdır."
+                        : "Each layer has a different responsibility.")
+                </p>
+
+                <p>
+                    @(tr
+                        ? "Integrations veriyi platforma taşır. Customer Intelligence ve Product Intelligence anlam üretir. Audience Manager hedef kitleyi tanımlar. Content Studio içeriği hazırlar. Campaign Manager ve Journey Manager aksiyonu yönetir. Consent Management ve Security & Privacy ilgili kontrol sınırlarını sağlar. Email, SMS ve WhatsApp iletişim kanallarıdır. Analytics & Reporting sonuçları ölçüm bağlamında değerlendirir."
+                        : "Integrations brings data into the platform. Customer Intelligence and Product Intelligence create meaning. Audience Manager defines the audience. Content Studio prepares content. Campaign Manager and Journey Manager manage action. Consent Management and Security & Privacy provide relevant control boundaries. Email, SMS and WhatsApp are communication channels. Analytics & Reporting evaluates outcomes in measurement context.")
+                </p>
+
+                <div class="p-3 bg-white rounded border border-light-subtle text-center mt-4">
+                    <p class="mb-0 fw-semibold">
+                        @(tr
+                            ? "Kurumsal ürün mimarisi, her şeyi tek modüle yüklemek yerine sorumluluğu doğru katmana koyar."
+                            : "A clear product architecture puts responsibility in the correct layer instead of assigning everything to one module.")
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 06 DATA & INTEGRATION APPROACH ──────────────────────────────── *@
+<section class="pika-sol-section">
+    <div class="container" data-aos="fade-up">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <span class="pika-sol-eyebrow">@(tr ? "VERİ TEMELİ" : "DATA FOUNDATION")</span>
+                <h2 class="pika-sol-section-title text-start mb-4">
+                    @(tr ? "Kurumsal değerlendirmeye, verinin Pika'ya nasıl girdiğinden başlayın." : "Begin organizational evaluation with how data enters Pika.")
+                </h2>
+
+                <p class="lead">
+                    @(tr
+                        ? "Pika'nın doğrulanmış veri giriş yolları müşteri, ürün ve işlem verisinin REST Ingestion API veya Excel/CSV import akışlarıyla platforma taşınmasını kapsar."
+                        : "Pika's verified data-intake paths include customer, product and transaction data through the REST Ingestion API or Excel/CSV import flows.")
+                </p>
+
+                <p>
+                    @(tr
+                        ? "Bu veri daha sonra ilgili validation, normalization veya resolution süreçlerinden geçerek intelligence katmanlarının kullanabileceği bağlama dönüşebilir."
+                        : "That data can later pass through relevant validation, normalization or resolution processes before becoming context used by intelligence layers.")
+                </p>
+
+                <p>
+                    @(tr
+                        ? "C19 her CRM, ERP veya e-ticaret ürünü için hazır native connector bulunduğu iddiasını yapmaz."
+                        : "C19 does not claim that a ready-made native connector exists for every CRM, ERP or e-commerce product.")
+                </p>
+
+                <div class="corp-callout my-4">
+                    @if (tr)
+                    {
+                        <p class="mb-1"><strong>Integrations:</strong> “Veri Pika'ya nasıl girer?”</p>
+                        <p class="mb-1"><strong>Intelligence:</strong> “Bu veriden hangi ticari bağlam hesaplanır?”</p>
+                        <p class="mb-0"><strong>Bunlar:</strong> aynı ürün görevi değildir.</p>
+                    }
+                    else
+                    {
+                        <p class="mb-1"><strong>Integrations asks:</strong> “How does data enter Pika?”</p>
+                        <p class="mb-1"><strong>Intelligence asks:</strong> “Which commercial context is calculated from that data?”</p>
+                        <p class="mb-0"><strong>These are:</strong> different product responsibilities.</p>
+                    }
+                </div>
+
+                <div class="p-3 bg-white rounded border border-light-subtle mb-4">
+                    <p class="mb-0 fw-semibold text-center">
+                        @(tr ? "Entegrasyonun kapsamını, gerçek veri akışı üzerinden değerlendirin." : "Evaluate integration scope through the real data path.")
+                    </p>
+                </div>
+
+                <div>
+                    <a href="@(tr ? "/entegrasyonlar" : "/en/integrations")" class="btn pika-btn-outline">
+                        @(tr ? "Entegrasyonları Keşfedin →" : "Explore Integrations →")
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 07 SECURITY & ACCESS APPROACH ───────────────────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt">
+    <div class="container" data-aos="fade-up">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <span class="pika-sol-eyebrow">@(tr ? "ERİŞİM VE GİZLİLİK" : "ACCESS & PRIVACY")</span>
+                <h2 class="pika-sol-section-title text-start mb-4">
+                    @(tr ? "Güvenlik değerlendirmesini, genel sıfatlar yerine doğrulanmış kontrollerle yapın." : "Evaluate security through verified controls, not generic adjectives.")
+                </h2>
+
+                <p class="lead">
+                    @(tr
+                        ? "Pika'nın doğrulanmış güvenlik bağlamında rol bazlı erişim denetimi (RBAC), ilgili arayüzlerde maskelenmiş iletişim verisi görünümü ve dokümante edilmiş API akışlarında API-key erişim kontrolü bulunur."
+                        : "Pika's verified security context includes role-based access control (RBAC), masked communication-data presentation in relevant interfaces and API-key access control in documented API flows.")
+                </p>
+
+                <p>
+                    @(tr
+                        ? "Bu kontroller kullanıcı erişimi ve veri görünürlüğünü yönetmeye yardımcı olur."
+                        : "Those controls help manage user access and data exposure.")
+                </p>
+
+                <p>
+                    @(tr
+                        ? "C19 doğrulanmamış SOC 2, ISO 27001, SAML / SSO, belirli encryption standardı veya fiziksel tenant-isolation iddiası yapmaz."
+                        : "C19 makes no unverified claim for SOC 2, ISO 27001, SAML / SSO, a specific encryption standard or physical tenant isolation.")
+                </p>
+
+                <div class="corp-callout my-4">
+                    @if (tr)
+                    {
+                        <p class="mb-1"><strong>Doğrulanmış mekanizma:</strong> değerlendirilebilir.</p>
+                        <p class="mb-0"><strong>Doğrulanmamış sertifika:</strong> ürün yeteneği gibi sunulmaz.</p>
+                    }
+                    else
+                    {
+                        <p class="mb-1"><strong>A verified mechanism:</strong> can be evaluated.</p>
+                        <p class="mb-0"><strong>An unverified certification:</strong> is not presented as product capability.</p>
+                    }
+                </div>
+
+                <div class="p-3 bg-white rounded border border-light-subtle mb-4">
+                    <p class="mb-0 fw-semibold text-center">
+                        @(tr ? "Güveni, kanıtlanabilir kontrol üzerinden değerlendirin." : "Evaluate trust through controls that can be verified.")
+                    </p>
+                </div>
+
+                <div>
+                    <a href="@(tr ? "/guvenlik-ve-gizlilik" : "/en/security-and-privacy")" class="btn pika-btn-outline">
+                        @(tr ? "Security & Privacy'yi Keşfedin →" : "Explore Security & Privacy →")
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 08 CONSENT & COMMUNICATION GOVERNANCE ───────────────────────── *@
+<section class="pika-sol-section">
+    <div class="container" data-aos="fade-up">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <span class="pika-sol-eyebrow">@(tr ? "İZİNLİ İLETİŞİM" : "PERMISSIONED COMMUNICATION")</span>
+                <h2 class="pika-sol-section-title text-start mb-4">
+                    @(tr ? "Hedef kitle, iletişim izninin yerine geçmez." : "Audience membership does not replace communication permission.")
+                </h2>
+
+                <p class="lead">
+                    @(tr
+                        ? "Pika'da audience veya ticari fırsat bağlamı, müşteriye iletişim uygulanabilmesi için tek başına yeterli kabul edilmez."
+                        : "In Pika, audience membership or commercial opportunity context is not treated as sufficient by itself for customer communication.")
+                </p>
+
+                <p>
+                    @(tr
+                        ? "Consent Management mevcut IYS, opt-out ve ilgili kanal izin bağlamını iletişim uygunluğu değerlendirmesine taşır."
+                        : "Consent Management brings available IYS, opt-out and relevant channel-permission context into communication-eligibility evaluation.")
+                </p>
+
+                <p>
+                    @(tr
+                        ? "Email ve SMS public preference-update akışı ile WhatsApp opt-in bağlamı aynı consent acquisition mekanizması değildir."
+                        : "The public Email/SMS preference-update flow and WhatsApp opt-in context do not use the same consent-acquisition mechanism.")
+                </p>
+
+                <div class="corp-callout my-4">
+                    @if (tr)
+                    {
+                        <p class="mb-1"><strong>Audience:</strong> “Kiminle iletişim kurmak istiyoruz?”</p>
+                        <p class="mb-1"><strong>Consent:</strong> “Bu iletişim mevcut izin bağlamında uygun mu?”</p>
+                        <p class="mb-0"><strong>Channel:</strong> “Uygun iletişimi hangi kanalda icra ediyoruz?”</p>
+                    }
+                    else
+                    {
+                        <p class="mb-1"><strong>Audience asks:</strong> “Who do we want to communicate with?”</p>
+                        <p class="mb-1"><strong>Consent asks:</strong> “Is this communication eligible under available permission context?”</p>
+                        <p class="mb-0"><strong>Channel asks:</strong> “Through which channel do we execute eligible communication?”</p>
+                    }
+                </div>
+
+                <div class="p-3 bg-white rounded border border-light-subtle mb-4">
+                    <p class="mb-0 fw-semibold text-center">
+                        @(tr ? "Kurumsal iletişim yönetişimi, audience ve izin kararlarını birbirinden ayırır." : "Clear communication governance keeps audience and permission decisions separate.")
+                    </p>
+                </div>
+
+                <div>
+                    <a href="@(tr ? "/cozumler/consent-management" : "/en/solutions/consent-management")" class="btn pika-btn-outline">
+                        @(tr ? "Consent Management'i Keşfedin →" : "Explore Consent Management →")
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 09 AI & HUMAN CONTROL ───────────────────────────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt">
+    <div class="container" data-aos="fade-up">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <span class="pika-sol-eyebrow">@(tr ? "AI YARDIMCI KATMANI" : "AI ASSISTANCE LAYER")</span>
+                <h2 class="pika-sol-section-title text-start mb-4">
+                    @(tr ? "AI'ı, müşteri gerçeğinin veya nihai kararın yerine koymayın." : "Do not replace customer truth or the final decision with AI.")
+                </h2>
+
+                <p class="lead">
+                    @(tr
+                        ? "Pika Pilot, Pika'nın hesapladığı müşteri, ürün ve fırsat bağlamını kullanarak kampanya hazırlığını ve içerik üretimini hızlandırmaya yardımcı olan AI destekli yardımcı katmandır."
+                        : "Pika Pilot is Pika's AI-assisted layer that uses customer, product and opportunity context calculated by Pika to help accelerate campaign preparation and content creation.")
+                </p>
+
+                <p>
+                    @(tr
+                        ? "Pika Pilot müşteriyi veya ticari fırsatı hayal ederek oluşturmaz."
+                        : "Pika Pilot does not invent the customer or commercial opportunity.")
+                </p>
+
+                <p>
+                    @(tr
+                        ? "AI tarafından üretilen taslak ve öneriler kullanıcı değerlendirmesi ve kontrolü altında aksiyon sürecine alınır."
+                        : "AI-generated drafts and suggestions enter the action process under user review and control.")
+                </p>
+
+                <div class="corp-callout my-4">
+                    @if (tr)
+                    {
+                        <p class="mb-1"><strong>Pika context:</strong> gerçeği ve karar bağlamını sağlar.</p>
+                        <p class="mb-1"><strong>AI:</strong> taslak ve üretim desteği sağlar.</p>
+                        <p class="mb-0"><strong>Kullanıcı:</strong> son kararı verir.</p>
+                    }
+                    else
+                    {
+                        <p class="mb-1"><strong>Pika context:</strong> provides factual and decision context.</p>
+                        <p class="mb-1"><strong>AI:</strong> provides drafting and creation assistance.</p>
+                        <p class="mb-0"><strong>The user:</strong> makes the final decision.</p>
+                    }
+                </div>
+
+                <div class="p-3 bg-white rounded border border-light-subtle mb-4">
+                    <p class="mb-0 fw-semibold text-center">
+                        @(tr ? "AI yardımı, otonom gönderim yetkisi değildir." : "AI assistance is not autonomous delivery authority.")
+                    </p>
+                </div>
+
+                <div>
+                    <a href="@(tr ? "/urunler/ai-kampanya-asistani" : "/en/products/ai-campaign-assistant")" class="btn pika-btn-outline">
+                        @(tr ? "Pika Pilot'ı Keşfedin →" : "Explore Pika Pilot →")
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 10 CHANNELS, ACTION & MEASUREMENT ───────────────────────────── *@
+<section class="pika-sol-section">
+    <div class="container" data-aos="fade-up">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <span class="pika-sol-eyebrow">@(tr ? "KARARDAN SONUCA" : "FROM DECISION TO OUTCOME")</span>
+                <h2 class="pika-sol-section-title text-start mb-4">
+                    @(tr ? "Aksiyonu yönetin. Kanalı seçin. Sonucu ölçün." : "Manage the action. Choose the channel. Measure the outcome.")
+                </h2>
+
+                <p class="lead">
+                    @(tr
+                        ? "Campaign Manager kontrollü kampanya bağlamını; Journey Manager ise koşul, dallanma, bekleme ve aksiyon adımlarından oluşan çok adımlı müşteri akışını yönetir."
+                        : "Campaign Manager manages controlled campaign context, while Journey Manager manages multi-step customer flow with conditions, branching, waits and action steps.")
+                </p>
+
+                <p>
+                    @(tr
+                        ? "Pika'nın doğrulanmış public iletişim kanalları Email, SMS ve WhatsApp'tır."
+                        : "Pika's confirmed public communication channels are Email, SMS and WhatsApp.")
+                </p>
+
+                <p>
+                    @(tr
+                        ? "Kanal aksiyonundan sonra kullanılabilir delivery ve engagement sonuçları Analytics & Reporting bağlamında değerlendirilebilir."
+                        : "After channel execution, available delivery and engagement outcomes can be evaluated within Analytics & Reporting context.")
+                </p>
+
+                <div class="corp-callout my-4">
+                    @if (tr)
+                    {
+                        <p class="mb-1"><strong>Campaign / Journey:</strong> aksiyonu yönetir.</p>
+                        <p class="mb-1"><strong>Email / SMS / WhatsApp:</strong> iletişimi icra eder.</p>
+                        <p class="mb-0"><strong>Analytics & Reporting:</strong> sonucu değerlendirir.</p>
+                    }
+                    else
+                    {
+                        <p class="mb-1"><strong>Campaign / Journey:</strong> manages the action.</p>
+                        <p class="mb-1"><strong>Email / SMS / WhatsApp:</strong> executes communication.</p>
+                        <p class="mb-0"><strong>Analytics & Reporting:</strong> evaluates the outcome.</p>
+                    }
+                </div>
+
+                <div class="p-3 bg-white rounded border border-light-subtle mb-4">
+                    <p class="mb-0 fw-semibold text-center">
+                        @if (tr)
+                        {
+                            <text>Kanal, platformun tamamı değildir. Ölçüm de gönderimin ardından karar döngüsünü besler.</text>
+                        }
+                        else
+                        {
+                            <text>The channel is not the whole platform. Measurement feeds the decision loop after delivery.</text>
+                        }
+                    </p>
+                </div>
+
+                <div class="d-flex flex-wrap gap-3">
+                    <a href="@(tr ? "/cozumler/campaign-manager" : "/en/solutions/campaign-manager")" class="btn pika-btn-outline">
+                        @(tr ? "Campaign Manager'ı Keşfedin →" : "Explore Campaign Manager →")
+                    </a>
+                    <a href="@(tr ? "/cozumler/journey-manager" : "/en/solutions/journey-manager")" class="btn pika-btn-outline">
+                        @(tr ? "Journey Manager'ı Keşfedin →" : "Explore Journey Manager →")
+                    </a>
+                    <a href="@(tr ? "/cozumler/analytics-reporting" : "/en/solutions/analytics-reporting")" class="btn pika-btn-outline">
+                        @(tr ? "Analytics & Reporting'i Keşfedin →" : "Explore Analytics & Reporting →")
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 11 COMMERCIAL EVALUATION ────────────────────────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt">
+    <div class="container" data-aos="fade-up">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <span class="pika-sol-eyebrow">@(tr ? "TİCARİ DEĞERLENDİRME" : "COMMERCIAL EVALUATION")</span>
+                <h2 class="pika-sol-section-title text-start mb-4">
+                    @(tr ? "Önce kullanım kapsamını belirleyin. Sonra çözüm ve teklifi netleştirin." : "Define the usage scope first. Then clarify the solution and quote.")
+                </h2>
+
+                <p class="lead">
+                    @(tr
+                        ? "Pika'nın ticari değerlendirmesi tek bir public paket fiyatı üzerinden yapılmaz."
+                        : "Pika's commercial evaluation is not based on one fixed public package price.")
+                </p>
+
+                <p>
+                    @(tr
+                        ? "Değerlendirme; kullanılacak platform yetenekleri, veri ve entegrasyon kapsamı, communication-channel ihtiyacı ve operasyonel kullanım bağlamı üzerinden yapılabilir."
+                        : "Evaluation can consider the platform capabilities in scope, data and integration requirements, communication-channel needs and operational usage context.")
+                </p>
+
+                <p>
+                    @(tr
+                        ? "Demo görüşmesi ürün kapsamının, veri akışının ve gerçek kullanım senaryosunun birlikte değerlendirilmesi için kullanılır."
+                        : "The demo conversation is used to evaluate product scope, data flow and the actual usage scenario together.")
+                </p>
+
+                <div class="p-3 bg-white rounded border border-light-subtle my-3 text-center">
+                    <p class="mb-0 fs-5 fw-semibold text-primary">
+                        @(tr ? "İhtiyacınıza ve kullanım kapsamınıza göre özel teklif." : "Pricing is tailored to your requirements and scope of use.")
+                    </p>
+                </div>
+
+                <div class="corp-callout my-4">
+                    @if (tr)
+                    {
+                        <p class="mb-1"><strong>Demo:</strong> ürün ve kullanım bağlamını değerlendirir.</p>
+                        <p class="mb-0"><strong>Teklif:</strong> belirlenen kapsamın ticari karşılığını oluşturur.</p>
+                    }
+                    else
+                    {
+                        <p class="mb-1"><strong>Demo:</strong> evaluates product and usage context.</p>
+                        <p class="mb-0"><strong>Quote:</strong> reflects the defined scope.</p>
+                    }
+                </div>
+
+                <div class="p-3 bg-white rounded border border-light-subtle mb-4">
+                    <p class="mb-0 fw-semibold text-center">
+                        @if (tr)
+                        {
+                            <text>Public sabit fiyat yerine kapsama dayalı ticari değerlendirme.</text>
+                        }
+                        else
+                        {
+                            <text>Instead of a fixed public price, commercial evaluation is based on scope.</text>
+                        }
+                    </p>
+                </div>
+
+                <div class="d-flex flex-wrap gap-3">
+                    <a href="@(tr ? "/demo-talebi" : "/en/demo-request")" class="btn pika-btn-primary">
+                        @(tr ? "Demo Talep Edin →" : "Request a Demo →")
+                    </a>
+                    <a href="@(tr ? "/iletisim" : "/en/contact")" class="btn pika-btn-outline">
+                        @(tr ? "İletişime Geçin →" : "Contact Us →")
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 12 CLEAR CORPORATE BOUNDARIES ───────────────────────────────── *@
+<section class="pika-sol-section">
+    <div class="container" data-aos="fade-up">
+        <span class="pika-sol-eyebrow">@(tr ? "KANIT VE KAPSAM" : "EVIDENCE & SCOPE")</span>
+        <h2 class="pika-sol-section-title">
+            @(tr ? "Kurumsal güveni, kanıtlanmamış büyüklük iddialarıyla kurmayın." : "Do not build corporate trust through unverified scale claims.")
+        </h2>
+
+        <div class="row g-4 mt-2">
+            <div class="col-md-6 col-lg-3">
+                <div class="corp-boundary-card">
+                    <div class="corp-boundary-icon"><i class="ri-close-circle-line" aria-hidden="true"></i></div>
+                    <h4 class="h6 fw-bold">@(tr ? "Pika, yalnızca bir kanal gönderim aracı değildir." : "Pika is not merely a channel-delivery tool.")</h4>
+                    <p class="small text-muted mb-0">@(tr ? "Platform müşteri ve ürün intelligence bağlamından kontrollü omnichannel aksiyona uzanan daha geniş bir karar zinciridir." : "The platform represents a broader decision chain from customer and product intelligence context to controlled omnichannel action.")</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="corp-boundary-card">
+                    <div class="corp-boundary-icon"><i class="ri-close-circle-line" aria-hidden="true"></i></div>
+                    <h4 class="h6 fw-bold">@(tr ? "Kurumsal sayfa, Security & Privacy'nin yerine geçmez." : "The Corporate page does not replace Security & Privacy.")</h4>
+                    <p class="small text-muted mb-0">@(tr ? "Detaylı erişim, RBAC, masked-data ve güvenlik sınırlarının authoritative sayfası Security & Privacy'dir." : "Security & Privacy is the authoritative page for detailed access, RBAC, masked-data and security boundaries.")</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="corp-boundary-card">
+                    <div class="corp-boundary-icon"><i class="ri-close-circle-line" aria-hidden="true"></i></div>
+                    <h4 class="h6 fw-bold">@(tr ? "Kurumsal sayfa, Consent Management'in yerine geçmez." : "The Corporate page does not replace Consent Management.")</h4>
+                    <p class="small text-muted mb-0">@(tr ? "Detaylı IYS, opt-out ve kanal izin bağlamının authoritative sayfası Consent Management'tir." : "Consent Management is the authoritative page for detailed IYS, opt-out and channel-permission context.")</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="corp-boundary-card">
+                    <div class="corp-boundary-icon"><i class="ri-close-circle-line" aria-hidden="true"></i></div>
+                    <h4 class="h6 fw-bold">@(tr ? "Kurumsal sayfa, Integrations dokümantasyonu değildir." : "The Corporate page is not Integrations documentation.")</h4>
+                    <p class="small text-muted mb-0">@(tr ? "REST API, Excel/CSV ve veri-ingestion sınırlarının authoritative marketing sayfası Entegrasyonlar'dır." : "Integrations is the authoritative marketing page for REST API, Excel/CSV and data-ingestion boundaries.")</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="corp-boundary-card">
+                    <div class="corp-boundary-icon"><i class="ri-close-circle-line" aria-hidden="true"></i></div>
+                    <h4 class="h6 fw-bold">@(tr ? "Pika sabit public fiyat iddiası yapmaz." : "Pika makes no fixed public pricing claim.")</h4>
+                    <p class="small text-muted mb-0">@(tr ? "Ticari teklif ihtiyaç ve kullanım kapsamına göre belirlenir." : "Commercial pricing is determined according to requirements and scope of use.")</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="corp-boundary-card">
+                    <div class="corp-boundary-icon"><i class="ri-close-circle-line" aria-hidden="true"></i></div>
+                    <h4 class="h6 fw-bold">@(tr ? "Doğrulanmamış sertifikasyon iddiası yapılmaz." : "No unverified certification claim.")</h4>
+                    <p class="small text-muted mb-0">@(tr ? "C19 kanıt bulunmadan SOC 2, ISO 27001, SAML / SSO veya başka enterprise sertifikasyon ve capability iddiaları üretmez." : "C19 does not invent SOC 2, ISO 27001, SAML / SSO or other enterprise certification and capability claims without evidence.")</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="corp-boundary-card">
+                    <div class="corp-boundary-icon"><i class="ri-close-circle-line" aria-hidden="true"></i></div>
+                    <h4 class="h6 fw-bold">@(tr ? "Doğrulanmamış kurumsal büyüklük iddiası yapılmaz." : "No unverified corporate-scale claim.")</h4>
+                    <p class="small text-muted mb-0">@(tr ? "C19 müşteri sayısı, ülke sayısı, global kullanım, ekip büyüklüğü veya pazar liderliği gibi doğrulanmamış corporate-proof ifadeleri kullanmaz." : "C19 does not use unverified customer counts, country counts, global-usage, team-size or market-leadership statements as corporate proof.")</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="corp-boundary-card">
+                    <div class="corp-boundary-icon"><i class="ri-close-circle-line" aria-hidden="true"></i></div>
+                    <h4 class="h6 fw-bold">@(tr ? "Teknik kontrol, sonuç garantisi değildir." : "Technical control is not an outcome guarantee.")</h4>
+                    <p class="small text-muted mb-0">@(tr ? "Platform kontrolleri belirli bir ROI, dönüşüm, satış, revenue, hukuki sonuç veya sıfır risk garantisi olarak sunulmaz." : "Platform controls are not presented as guarantees of ROI, conversion, sales, revenue, legal outcome or zero risk.")</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="corp-large-closing">
+            <p>
+                @if (tr)
+                {
+                    <text><strong>Kurumsal güvenin temeli:</strong> daha büyük görünmek değil, ürünün ne yaptığını, ne yapmadığını ve hangi kontrollerle çalıştığını açık biçimde anlatmaktır.</text>
+                }
+                else
+                {
+                    <text><strong>Corporate trust is built</strong> not by appearing larger, but by explaining clearly what the product does, what it does not do and which controls govern it.</text>
+                }
+            </p>
+        </div>
+    </div>
+</section>
+
+@* ── 13 FAQ ───────────────────────────────────────────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt" id="sss">
+    <div class="container" data-aos="fade-up">
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+                <span class="pika-sol-eyebrow">@(tr ? "SSS" : "FAQ")</span>
+                <h2 class="pika-sol-section-title text-start mb-4">
+                    @(tr ? "Sıkça Sorulan Sorular" : "Frequently Asked Questions")
+                </h2>
+
+                <div class="corp-faq-list mt-4">
+                    <details class="corp-faq-details">
+                        <summary class="corp-faq-summary">
+                            <span>@(tr ? "Pika nasıl bir platformdur?" : "What kind of platform is Pika?")</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="corp-faq-body">
+                            @(tr
+                                ? "Pika, müşteri, ürün ve satış verisini birlikte anlamlandırarak ticari fırsatları görünür hale getiren ve bu fırsatların kontrollü, ölçülebilir omnichannel aksiyona bağlanmasına yardımcı olan Müşteri Zekâsı ve Omnichannel Pazarlama Platformudur."
+                                : "Pika is a Customer Intelligence & Omnichannel Marketing Platform that brings customer, product and sales data together to identify commercial opportunities and connect them to controlled, measurable omnichannel action.")
+                        </div>
+                    </details>
+
+                    <details class="corp-faq-details">
+                        <summary class="corp-faq-summary">
+                            <span>@(tr ? "Pika yalnızca kampanya veya mesaj gönderim ürünü mü?" : "Is Pika only a campaign or messaging product?")</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="corp-faq-body">
+                            @(tr
+                                ? "Hayır. Email, SMS ve WhatsApp Pika'nın execution kanallarıdır. Platformun başlangıç noktası müşteri ve ürün verisini anlamlandırmak, fırsat ve karar bağlamı oluşturmak ve ardından kontrollü aksiyona geçmektir."
+                                : "No. Email, SMS and WhatsApp are Pika's execution channels. The platform begins with understanding customer and product data, creating opportunity and decision context and then moving into controlled action.")
+                        </div>
+                    </details>
+
+                    <details class="corp-faq-details">
+                        <summary class="corp-faq-summary">
+                            <span>@(tr ? "Pika'ya veri nasıl aktarılır?" : "How does data enter Pika?")</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="corp-faq-body">
+                            @if (tr)
+                            {
+                                <text>Doğrulanmış veri giriş yolları müşteri, ürün ve işlem verisinin REST Ingestion API veya Excel/CSV import akışlarıyla Pika'ya aktarılmasını kapsar. Ayrıntılı kapsam <a href="/entegrasyonlar">Entegrasyonlar</a> sayfasında açıklanır.</text>
+                            }
+                            else
+                            {
+                                <text>Verified intake paths include customer, product and transaction data through the REST Ingestion API or Excel/CSV import flows. Detailed scope is explained on the <a href="/en/integrations">Integrations</a> page.</text>
+                            }
+                        </div>
+                    </details>
+
+                    <details class="corp-faq-details">
+                        <summary class="corp-faq-summary">
+                            <span>@(tr ? "Pika güvenlik ve erişim kontrolünü nasıl ele alır?" : "How does Pika approach security and access control?")</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="corp-faq-body">
+                            @if (tr)
+                            {
+                                <text>Doğrulanmış güvenlik bağlamı RBAC, ilgili arayüzlerde maskelenmiş iletişim verisi görünümü ve dokümante edilmiş API akışlarında API-key erişimi gibi teknik kontrolleri içerir. Ayrıntılar <a href="/guvenlik-ve-gizlilik">Security & Privacy</a> sayfasında açıklanır.</text>
+                            }
+                            else
+                            {
+                                <text>Verified security context includes technical controls such as RBAC, masked communication-data presentation in relevant interfaces and API-key access in documented API flows. Details are explained on the <a href="/en/security-and-privacy">Security & Privacy</a> page.</text>
+                            }
+                        </div>
+                    </details>
+
+                    <details class="corp-faq-details">
+                        <summary class="corp-faq-summary">
+                            <span>@(tr ? "Pika iletişim iznini nasıl değerlendirir?" : "How does Pika evaluate communication permission?")</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="corp-faq-body">
+                            @(tr
+                                ? "Consent Management mevcut IYS, opt-out ve ilgili kanal izin bağlamını iletişim uygunluğu değerlendirmesine taşır. Audience üyeliği tek başına iletişim izni anlamına gelmez."
+                                : "Consent Management brings available IYS, opt-out and relevant channel-permission context into communication-eligibility evaluation. Audience membership alone does not mean communication permission.")
+                        </div>
+                    </details>
+
+                    <details class="corp-faq-details">
+                        <summary class="corp-faq-summary">
+                            <span>@(tr ? "Pika AI kampanyaları kendi başına gönderir mi?" : "Does Pika AI send campaigns by itself?")</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="corp-faq-body">
+                            @(tr
+                                ? "Hayır. Pika Pilot müşteri, ürün ve fırsat bağlamını kullanarak taslak ve hazırlık desteği sağlar. Nihai karar ve kontrollü aksiyon kullanıcı ve ilgili Pika ürün katmanlarında kalır."
+                                : "No. Pika Pilot uses customer, product and opportunity context to provide drafting and preparation assistance. Final decision and controlled action remain with the user and relevant Pika product layers.")
+                        </div>
+                    </details>
+
+                    <details class="corp-faq-details">
+                        <summary class="corp-faq-summary">
+                            <span>@(tr ? "Pika'nın fiyatlandırması nasıl belirlenir?" : "How is Pika pricing determined?")</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="corp-faq-body">
+                            @(tr
+                                ? "Pika sabit public paket fiyatı yayınlamaz. İhtiyacınıza ve kullanım kapsamınıza göre özel teklif hazırlanır."
+                                : "Pika does not publish a fixed public package price. Pricing is tailored to your requirements and scope of use.")
+                        </div>
+                    </details>
+
+                    <details class="corp-faq-details">
+                        <summary class="corp-faq-summary">
+                            <span>@(tr ? "Pika'yı değerlendirmek için nasıl demo veya teklif alabilirim?" : "How can I request a demo or quote for Pika?")</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="corp-faq-body">
+                            @if (tr)
+                            {
+                                <text><a href="/demo-talebi">Demo Talebi</a> üzerinden kullanım senaryonuzu paylaşabilir veya <a href="/iletisim">İletişim</a> sayfasından Pika ekibine ulaşabilirsiniz. Ürün ve kullanım kapsamı birlikte değerlendirildikten sonra ihtiyaca göre teklif hazırlanabilir.</text>
+                            }
+                            else
+                            {
+                                <text>You can share your usage scenario through <a href="/en/demo-request">Demo Request</a> or contact the Pika team through the <a href="/en/contact">Contact</a> page. Product and usage scope can be evaluated together before a tailored quote is prepared.</text>
+                            }
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 14 FINAL CTA ─────────────────────────────────────────────────── *@
+<section class="pika-sol-cta-section text-center">
+    <div class="container" data-aos="fade-up">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <span class="pika-sol-eyebrow">@(tr ? "KURUMSAL DEĞERLENDİRME" : "CORPORATE EVALUATION")</span>
+                <h2 class="pika-sol-cta-title">
+                    @(tr
+                        ? "Veri akışını anlayın. Ürün sınırlarını netleştirin. Pika'yı gerçek kullanım bağlamınızda değerlendirin."
+                        : "Understand the data flow. Clarify product boundaries. Evaluate Pika in your actual usage context.")
+                </h2>
+                <p class="pika-sol-cta-desc mx-auto" style="max-width:680px">
+                    @(tr
+                        ? "Müşteri ve ürün verinizin Pika'ya nasıl gireceğini, hangi intelligence ve aksiyon katmanlarının kullanılacağını, güvenlik ve izin kontrollerini ve ölçüm kapsamını birlikte değerlendirelim."
+                        : "Let's evaluate how your customer and product data can enter Pika, which intelligence and action layers are relevant, which security and permission controls apply and how measurement fits your scope.")
+                </p>
+                <div class="p-3 bg-white rounded border border-light-subtle d-inline-block mx-auto mb-4">
+                    <p class="mb-0 fw-semibold text-primary">
+                        @(tr ? "İhtiyacınıza ve kullanım kapsamınıza göre özel teklif." : "Pricing is tailored to your requirements and scope of use.")
+                    </p>
+                </div>
+                <div class="d-flex flex-wrap justify-content-center gap-3">
+                    <button type="button" class="btn pika-btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal">
+                        @(tr ? "Demo Talep Et" : "Request a Demo")
+                    </button>
+                    <a href="@(tr ? "/demo-talebi" : "/en/demo-request")" class="btn pika-btn-outline">
+                        @(tr ? "Teklif Al" : "Request a Quote")
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
