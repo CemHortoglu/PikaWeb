@@ -1,0 +1,19 @@
+/* Pika Demo Request Page Local Styles - C20 */
+.demo-req-flow-chain { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding: 20px; background: #fff; border: 1px solid #dce5d3; border-radius: 10px; margin: 20px 0; font-size: 0.85rem; font-weight: 600; color: #23413b; }
+.demo-req-flow-arrow { color: #8aa948; font-weight: bold; }
+.demo-req-callout { background: #f4f8eb; border-left: 4px solid #8aa948; border-radius: 0 8px 8px 0; padding: 20px 24px; margin: 20px 0; }
+.demo-req-faq-details { border: 1px solid #dfe6d6; border-radius: 10px; margin-bottom: 12px; background: #fff; transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+.demo-req-faq-details[open] { border-color: #23413b; box-shadow: 0 4px 12px rgba(35, 65, 59, 0.05); }
+.demo-req-faq-summary { padding: 20px 22px; font-weight: 500; color: #23413b; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; font-size: 1.05rem; }
+.demo-req-faq-summary::-webkit-details-marker { display: none; }
+.demo-req-faq-summary i { transition: transform 0.2s ease; font-size: 1.2rem; color: #687d70; }
+.demo-req-faq-details[open] .demo-req-faq-summary i { transform: rotate(180deg); color: #23413b; }
+.demo-req-faq-body { padding: 0 22px 22px 22px; color: #4a5d55; font-size: 0.95rem; line-height: 1.75; }
+.demo-req-step { display: flex; gap: 16px; margin-bottom: 20px; align-items: flex-start; }
+.demo-req-step-num { width: 36px; height: 36px; border-radius: 50%; background: #23413b; color: #cfe3a2; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.9rem; }
+.demo-req-step-content h4 { font-size: 1.05rem; font-weight: 600; color: #23413b; margin-bottom: 4px; }
+.demo-req-step-content p { font-size: 0.95rem; color: #4a5d55; margin-bottom: 0; line-height: 1.6; }
+.demo-req-aside-list { list-style: none; padding-left: 0; margin-bottom: 0; }
+.demo-req-aside-list li { padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; align-items: flex-start; gap: 10px; color: #b2c3af; font-size: 0.92rem; }
+.demo-req-aside-list li:last-child { border-bottom: none; }
+.demo-req-aside-list i { color: #8aa948; font-size: 1.1rem; flex-shrink: 0; margin-top: 2px; }

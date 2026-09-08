@@ -52,10 +52,10 @@ public static class SeoHelper
         ["Home.DemoRequest"] = new(
             "/demo-talebi",
             "/en/demo-request",
-            "Demo Talebi",
-            "Request a Demo",
-            "Pika müşteri zekâsı ve omnichannel pazarlama platformunu detaylı keşfedin. İhtiyacınıza ve kullanım kapsamınıza göre özel teklif alın.",
-            "Discover the Pika customer intelligence and omnichannel marketing platform in detail. Get a tailored quote based on your requirements and scope of use.",
+            "Pika Demo Talebi | Müşteri Zekâsı ve Omnichannel Pazarlama",
+            "Request a Pika Demo | Customer Intelligence & Omnichannel Marketing",
+            "Pika demosunda müşteri, ürün ve işlem verinizin nasıl anlamlandırıldığını; fırsat, audience, campaign, journey ve Email/SMS/WhatsApp aksiyonlarına nasıl bağlandığını değerlendirin.",
+            "Request a Pika demo to evaluate how customer, product and transaction data connects to intelligence, opportunities, audiences, campaigns, journeys and Email/SMS/WhatsApp action.",
             "Demo Talebi",
             "Demo Request"),
 

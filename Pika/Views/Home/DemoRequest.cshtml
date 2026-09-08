@@ -3,30 +3,71 @@
 @inject IOptions<SiteSettings> SiteOptions
 @{
     var culture = (ViewData["culture"] as string ?? ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").ToLowerInvariant();
-    var isTr = culture == "tr";
-    ViewData["Title"] = isTr ? "Demo Talebi | Pika" : "Request a Demo | Pika";
-    ViewData["MetaDescription"] = isTr
-        ? "Pika omnichannel pazarlama platformunu canlı keşfedin. 15 dakikalık demo ile ihtiyacınıza özel akışları birlikte kuralım."
-        : "Discover the Pika omnichannel marketing platform live. Schedule a 15-minute tailored demo with our team.";
+    var tr = culture == "tr";
+    ViewData["BodyClass"] = "pika-solutions-page";
 }
 
-<section class="pika-page-hero">
-    <div class="container">
-        <div class="row g-4 align-items-center">
+@section Styles {
+    <link rel="stylesheet" href="~/css/pika-demo-request-page.css" asp-append-version="true" />
+}
+
+@* ── 01 HERO ─────────────────────────────────────────────────────── *@
+<section class="pika-sol-hero">
+    <div class="container" data-aos="fade-up">
+        <div class="row align-items-center g-5">
             <div class="col-lg-7">
-                <h1 class="pika-h1" data-i18n="demoPage.heroTitle">Demo Talebi</h1>
-                <p class="pika-lead" data-i18n="demoPage.heroDesc">
-                    Ekibinize özel bir oturum planlayalım. İhtiyaçlarınıza göre senaryoları birlikte çalışalım ve Pika'nın kurumunuza nasıl değer katacağını canlı olarak gösterelim.
+                <span class="pika-sol-eyebrow">PIKA DEMO</span>
+                <span class="badge bg-light text-dark border px-2 py-1 mb-3 ms-2 fs-6">@(tr ? "Demo Talebi" : "Demo Request")</span>
+                <h1 class="pika-sol-hero-title">
+                    @(tr
+                        ? "Pika'yı, kendi veri ve aksiyon bağlamınız üzerinden değerlendirin."
+                        : "Evaluate Pika through your own data and action context.")
+                </h1>
+                <p class="lead pika-sol-lead mb-4">
+                    @(tr
+                        ? "Demo görüşmesinde müşteri, ürün ve işlem verinizin Pika'ya nasıl bağlanabileceğini; hangi intelligence, audience, campaign veya journey katmanlarının kullanım senaryonuzla ilişkili olduğunu birlikte değerlendirin."
+                        : "Use the demo conversation to evaluate how your customer, product and transaction data can connect to Pika and which intelligence, audience, campaign or journey layers are relevant to your usage scenario.")
                 </p>
+                <p class="text-muted mb-4">
+                    @(tr
+                        ? "Amaç bütün özellikleri sırayla göstermek değil; ihtiyacınızla ilişkili veri, karar, kontrol, kanal ve ölçüm katmanlarını doğru kapsamda ele almaktır."
+                        : "The objective is not to walk through every feature in sequence, but to evaluate the relevant data, decision, control, channel and measurement layers within the right scope.")
+                </p>
+                <div class="d-flex flex-wrap gap-3">
+                    <a href="#demo-request-form" class="btn pika-btn-primary">
+                        @(tr ? "Demo Talebini Gönder" : "Submit Demo Request")
+                    </a>
+                    <a href="@(tr ? "/pika" : "/en/pika")" class="btn pika-btn-outline">
+                        @(tr ? "Önce Pika'yı İnceleyin" : "Explore Pika First")
+                    </a>
+                </div>
             </div>
             <div class="col-lg-5">
-                <div class="pika-card">
-                    <h3 class="pika-h3 mb-3" data-i18n="demoPage.whatsIncluded">Neler Dahil?</h3>
-                    <ul class="text-white-50 mb-0">
-                        <li data-i18n="demoPage.item1">45 dakikalık canlı ürün sunumu</li>
-                        <li data-i18n="demoPage.item2">Sektörünüze özel kullanım senaryoları</li>
-                        <li data-i18n="demoPage.item3">Teknik entegrasyon yaklaşımı</li>
-                        <li data-i18n="demoPage.item4">Soru-cevap ve yol haritası önerisi</li>
+                <div class="p-4 bg-white rounded border border-light-subtle shadow-sm">
+                    <h3 class="h5 fw-bold text-dark mb-3">
+                        @(tr ? "Demo görüşmesinde neyi değerlendirebiliriz?" : "What can we evaluate in the demo?")
+                    </h3>
+                    <ul class="list-unstyled mb-0">
+                        <li class="py-2 border-bottom d-flex gap-2">
+                            <i class="ri-check-line text-success fs-5 flex-shrink-0" aria-hidden="true"></i>
+                            <span class="text-secondary">@(tr ? "Kullanım senaryonuz ve ticari hedefiniz" : "Your usage scenario and commercial objective")</span>
+                        </li>
+                        <li class="py-2 border-bottom d-flex gap-2">
+                            <i class="ri-check-line text-success fs-5 flex-shrink-0" aria-hidden="true"></i>
+                            <span class="text-secondary">@(tr ? "Müşteri, ürün ve işlem veri bağlamınız" : "Your customer, product and transaction-data context")</span>
+                        </li>
+                        <li class="py-2 border-bottom d-flex gap-2">
+                            <i class="ri-check-line text-success fs-5 flex-shrink-0" aria-hidden="true"></i>
+                            <span class="text-secondary">@(tr ? "Veri aktarımı ve entegrasyon yaklaşımı" : "Data intake and integration approach")</span>
+                        </li>
+                        <li class="py-2 border-bottom d-flex gap-2">
+                            <i class="ri-check-line text-success fs-5 flex-shrink-0" aria-hidden="true"></i>
+                            <span class="text-secondary">@(tr ? "İlgili intelligence, audience, campaign ve journey katmanları" : "Relevant intelligence, audience, campaign and journey layers")</span>
+                        </li>
+                        <li class="py-2 d-flex gap-2">
+                            <i class="ri-check-line text-success fs-5 flex-shrink-0" aria-hidden="true"></i>
+                            <span class="text-secondary">@(tr ? "Email, SMS, WhatsApp, izin ve ölçüm kapsamı" : "Email, SMS, WhatsApp, permission and measurement scope")</span>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -34,52 +75,518 @@
     </div>
 </section>
 
-<section class="pika-section pt-0">
-    <div class="container">
+<div id="inner-content" class="inner-anchor"></div>
+
+@* ── 02 DEMO REQUEST FORM ─────────────────────────────────────────── *@
+<section class="pika-sol-section" id="demo-request-form">
+    <div class="container" data-aos="fade-up">
         <div class="row justify-content-center">
             <div class="col-lg-8">
-                <div class="pika-card">
-                    <h2 class="pika-h3 mb-4" data-i18n="demoPage.formTitle">Talep Formu</h2>
+                <div class="p-4 p-md-5 bg-white rounded border border-light-subtle shadow-sm">
+                    <span class="pika-sol-eyebrow">@(tr ? "DEMO TALEBİ" : "DEMO REQUEST")</span>
+                    <h2 class="pika-sol-section-title text-start mb-3">
+                        @(tr ? "Kullanım bağlamınızı kısaca paylaşın." : "Briefly share your usage context.")
+                    </h2>
+                    <p class="text-muted mb-4">
+                        @(tr
+                            ? "Temel iletişim bilgilerinizi ve değerlendirmek istediğiniz ihtiyacı paylaşın. Bu bilgiler demo görüşmesinin hangi ürün ve veri bağlamına odaklanması gerektiğini anlamaya yardımcı olur."
+                            : "Share your basic contact information and the requirement you want to evaluate. This helps clarify which product and data context should be the focus of the demo conversation.")
+                    </p>
+
                     <form id="pageDemoRequestForm" class="row g-3">
                         <div class="col-md-6">
-                            <label class="form-label text-white" data-i18n="demoPage.fullName">Ad Soyad</label>
-                            <input type="text" class="form-control" name="firstName" data-i18n-placeholder="form.fullNamePh" placeholder="Ad Soyad" required>
+                            <label for="demo-first-name" class="form-label text-dark fw-semibold">@(tr ? "Ad Soyad" : "Full Name")</label>
+                            <input type="text" class="form-control" id="demo-first-name" name="firstName" placeholder="@(tr ? "Ad Soyad" : "Full Name")" required>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label text-white" data-i18n="demoPage.email">E-posta</label>
-                            <input type="email" class="form-control" name="email" data-i18n-placeholder="form.emailPh" placeholder="ornek@firma.com" required>
+                            <label for="demo-email" class="form-label text-dark fw-semibold">@(tr ? "E-posta" : "Email")</label>
+                            <input type="email" class="form-control" id="demo-email" name="email" placeholder="@(tr ? "ornek@firma.com" : "name@company.com")" required>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label text-white" data-i18n="demoPage.company">Şirket</label>
-                            <input type="text" class="form-control" name="companyName" data-i18n-placeholder="demoPage.companyPh" placeholder="Şirket Adı" required>
+                            <label for="demo-company" class="form-label text-dark fw-semibold">@(tr ? "Şirket" : "Company")</label>
+                            <input type="text" class="form-control" id="demo-company" name="companyName" placeholder="@(tr ? "Şirket Adı" : "Company Name")" required>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label text-white" data-i18n="demoPage.phone">Telefon</label>
+                            <label for="demo-phone" class="form-label text-dark fw-semibold">@(tr ? "Telefon" : "Phone")</label>
                             <div class="input-group">
                                 <span class="input-group-text">+90</span>
-                                <input type="tel" class="form-control" name="phone" data-i18n-placeholder="form.phonePh" placeholder="5XX XXX XX XX" required>
+                                <input type="tel" class="form-control" id="demo-phone" name="phone" placeholder="5XX XXX XX XX" required>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label text-white" data-i18n="demoPage.city">Şehir</label>
-                            <input type="text" class="form-control" name="city" data-i18n-placeholder="demoPage.cityPh" placeholder="Şehir" required>
+                            <label for="demo-city" class="form-label text-dark fw-semibold">@(tr ? "Şehir" : "City")</label>
+                            <input type="text" class="form-control" id="demo-city" name="city" placeholder="@(tr ? "Şehir" : "City")" required>
                         </div>
                         <div class="col-12">
-                            <label class="form-label text-white" data-i18n="demoPage.note">Kısa İhtiyaç Notu</label>
-                            <textarea class="form-control" rows="4" name="message" data-i18n-placeholder="demoPage.notePh" placeholder="Hangi modüllerle ilgileniyorsunuz?"></textarea>
+                            <label for="demo-message" class="form-label text-dark fw-semibold">@(tr ? "Kısa İhtiyaç Notu" : "Short Requirement Note")</label>
+                            <textarea class="form-control" id="demo-message" rows="4" name="message" placeholder="@(tr ? "Hangi problemi çözmek, hangi veri veya iletişim akışını değerlendirmek istiyorsunuz?" : "Which problem, data flow or communication workflow would you like to evaluate?")"></textarea>
                         </div>
                         @if (!string.IsNullOrEmpty(SiteOptions.Value.CloudflareTurnstile.SiteKey))
                         {
                             <div class="col-12">
-                                <div class="cf-turnstile" data-sitekey="@SiteOptions.Value.CloudflareTurnstile.SiteKey" data-theme="dark"></div>
+                                <div class="cf-turnstile" data-sitekey="@SiteOptions.Value.CloudflareTurnstile.SiteKey" data-theme="light"></div>
                             </div>
                         }
                         <div id="pageDemoResult" class="pika-alert d-none"></div>
-                        <div class="col-12 d-flex gap-2 flex-wrap">
-                            <button type="submit" class="btn pika-btn-primary" data-i18n="demoPage.submit">Demo Talebini Gönder</button>
-                            <a class="btn pika-btn-outline" href="@(isTr ? "/pika" : "/en/pika")" data-i18n="demoPage.explorePika">Önce Pika'yı İnceleyin</a>
+                        <div class="col-12 d-flex gap-3 flex-wrap align-items-center mt-4">
+                            <button type="submit" class="btn pika-btn-primary">
+                                @(tr ? "Demo Talebini Gönder" : "Submit Demo Request")
+                            </button>
+                            <a class="btn pika-btn-outline" href="@(tr ? "/pika" : "/en/pika")">
+                                @(tr ? "Önce Pika'yı İnceleyin" : "Explore Pika First")
+                            </a>
+                        </div>
+                        <div class="col-12">
+                            <p class="small text-muted mt-2 mb-0">
+                                @if (tr)
+                                {
+                                    <text>Gönderdiğiniz bilgiler demo talebinizi değerlendirmek ve sizinle iletişim kurmak amacıyla kullanılır. Detaylar için <a href="/gizlilik-politikasi">Gizlilik Politikası</a>'nı inceleyin.</text>
+                                }
+                                else
+                                {
+                                    <text>The information you submit is used to evaluate your demo request and communicate with you about it. See the <a href="/en/privacy-policy">Privacy Policy</a> for details.</text>
+                                }
+                            </p>
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 03 WHAT WE EVALUATE ─────────────────────────────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt">
+    <div class="container" data-aos="fade-up">
+        <span class="pika-sol-eyebrow">@(tr ? "DEMO KAPSAMI" : "DEMO SCOPE")</span>
+        <h2 class="pika-sol-section-title">
+            @(tr ? "Ürün listesinden önce, gerçek kullanım bağlamını değerlendirin." : "Evaluate the real usage context before the feature list.")
+        </h2>
+
+        <div class="row justify-content-center mb-4">
+            <div class="col-lg-10 text-center">
+                <p class="lead">
+                    @(tr
+                        ? "Pika'nın hangi katmanlarının anlamlı olduğu işletmenin verisine, karar sürecine ve iletişim ihtiyacına göre değişebilir."
+                        : "The relevant Pika layers can vary according to the organization's data, decision process and communication requirements.")
+                </p>
+            </div>
+        </div>
+
+        <div class="pika-sol-value-grid">
+            <div class="pika-sol-value-card" data-aos="fade-up" data-aos-duration="500">
+                <div class="pika-sol-value-icon"><i class="ri-database-2-line" aria-hidden="true"></i></div>
+                <h4>@(tr ? "Veri & Entegrasyon" : "Data & Integrations")</h4>
+                <p>@(tr ? "Müşteri, ürün ve işlem verisinin REST API veya Excel/CSV gibi doğrulanmış veri giriş yollarıyla Pika'ya nasıl taşınabileceğini değerlendirin." : "Evaluate how customer, product and transaction data can enter Pika through verified intake paths such as REST API or Excel/CSV.")</p>
+            </div>
+            <div class="pika-sol-value-card" data-aos="fade-up" data-aos-duration="500" data-aos-delay="100">
+                <div class="pika-sol-value-icon"><i class="ri-brain-line" aria-hidden="true"></i></div>
+                <h4>@(tr ? "Intelligence & Fırsat" : "Intelligence & Opportunity")</h4>
+                <p>@(tr ? "Customer Intelligence, Product Intelligence, Pika 360 ve Günün Fırsatları katmanlarından hangilerinin kullanım senaryonuzla ilişkili olduğunu değerlendirin." : "Evaluate which of Customer Intelligence, Product Intelligence, Pika 360 and Daily Opportunities are relevant to your usage scenario.")</p>
+            </div>
+            <div class="pika-sol-value-card" data-aos="fade-up" data-aos-duration="500" data-aos-delay="200">
+                <div class="pika-sol-value-icon"><i class="ri-user-settings-line" aria-hidden="true"></i></div>
+                <h4>@(tr ? "Audience & Aksiyon" : "Audience & Action")</h4>
+                <p>@(tr ? "Audience Manager, Content Studio, Campaign Manager ve Journey Manager'ın hedef kitle, içerik ve aksiyon sürecinizdeki rolünü değerlendirin." : "Evaluate the role of Audience Manager, Content Studio, Campaign Manager and Journey Manager in your audience, content and action process.")</p>
+            </div>
+            <div class="pika-sol-value-card" data-aos="fade-up" data-aos-duration="500" data-aos-delay="300">
+                <div class="pika-sol-value-icon"><i class="ri-shield-check-line" aria-hidden="true"></i></div>
+                <h4>@(tr ? "Kanal, İzin & Ölçüm" : "Channels, Consent & Measurement")</h4>
+                <p>@(tr ? "Email, SMS ve WhatsApp iletişim kapsamını; Consent Management kontrollerini ve Analytics & Reporting ölçüm bağlamını birlikte değerlendirin." : "Evaluate Email, SMS and WhatsApp communication scope together with Consent Management controls and Analytics & Reporting measurement context.")</p>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mt-4">
+            <div class="col-lg-10">
+                <div class="p-3 bg-white rounded border border-light-subtle text-center">
+                    <p class="mb-0 fw-semibold">
+                        @(tr
+                            ? "Demo kapsamı, her modülü göstermek değil, ihtiyaçla ilişkili ürün zincirini netleştirmektir."
+                            : "The purpose of the demo is not to show every module. It is to clarify the product chain relevant to the requirement.")
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 04 FROM DATA TO DEMO SCOPE ──────────────────────────────────── *@
+<section class="pika-sol-section">
+    <div class="container" data-aos="fade-up">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <span class="pika-sol-eyebrow">@(tr ? "DEĞERLENDİRME AKIŞI" : "EVALUATION FLOW")</span>
+                <h2 class="pika-sol-section-title text-start mb-4">
+                    @(tr ? "Demo görüşmesini, veriden aksiyona doğru sırayla ele alın." : "Evaluate the demo in the right order from data to action.")
+                </h2>
+
+                <div class="demo-req-flow-chain my-4" aria-label="@(tr ? "Veriden ölçüme değerlendirme zinciri" : "Evaluation chain from data to measurement")">
+                    <span>@(tr ? "VERİ" : "DATA")</span>
+                    <span class="demo-req-flow-arrow">→</span>
+                    <span>INTELLIGENCE</span>
+                    <span class="demo-req-flow-arrow">→</span>
+                    <span>@(tr ? "FIRSAT / KARAR" : "OPPORTUNITY / DECISION")</span>
+                    <span class="demo-req-flow-arrow">→</span>
+                    <span>AUDIENCE / CONTENT</span>
+                    <span class="demo-req-flow-arrow">→</span>
+                    <span>CAMPAIGN / JOURNEY</span>
+                    <span class="demo-req-flow-arrow">→</span>
+                    <span>CONSENT / SECURITY</span>
+                    <span class="demo-req-flow-arrow">→</span>
+                    <span>EMAIL / SMS / WHATSAPP</span>
+                    <span class="demo-req-flow-arrow">→</span>
+                    <span>@(tr ? "ÖLÇÜM" : "MEASUREMENT")</span>
+                </div>
+
+                <p class="lead">
+                    @(tr
+                        ? "Bir veri kaynağının bulunması tek başına hangi Pika ürünlerinin gerekli olduğunu belirlemez."
+                        : "The existence of a data source does not by itself determine which Pika products are required.")
+                </p>
+
+                <p>
+                    @(tr
+                        ? "Önce verinin nasıl alınacağı ve hangi customer / product context'in üretilebileceği değerlendirilir."
+                        : "First evaluate how data can enter and which customer / product context can be created.")
+                </p>
+
+                <p>
+                    @(tr
+                        ? "Daha sonra gerçek audience, campaign veya journey ihtiyacı ile iletişim ve ölçüm kapsamı netleştirilebilir."
+                        : "Then clarify actual audience, campaign or journey needs together with communication and measurement scope.")
+                </p>
+
+                <div class="p-3 bg-white rounded border border-light-subtle text-center mt-4">
+                    <p class="mb-0 fw-semibold">
+                        @(tr
+                            ? "Demo, kanaldan başlamaz. Kullanım bağlamının karar zincirindeki yerinden başlar."
+                            : "The demo does not begin with the channel. It begins with the usage context's place in the decision chain.")
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 05 PRODUCT & CONTROL BOUNDARIES ─────────────────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt">
+    <div class="container" data-aos="fade-up">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <span class="pika-sol-eyebrow">@(tr ? "KAPSAMI DOĞRU KURALIM" : "DEFINE THE SCOPE CLEARLY")</span>
+                <h2 class="pika-sol-section-title text-start mb-4">
+                    @(tr ? "Demo sırasında, ürün sınırlarını da açık biçimde değerlendirin." : "Evaluate product boundaries explicitly during the demo.")
+                </h2>
+
+                <div class="row g-4 mt-2">
+                    <div class="col-md-6">
+                        <div class="p-4 bg-white rounded border border-light-subtle h-100">
+                            <h4 class="h6 fw-bold text-dark mb-2">
+                                @(tr ? "Her veri kaynağı hazır native connector anlamına gelmez." : "A data source does not automatically mean a ready-made native connector.")
+                            </h4>
+                            <p class="small text-muted mb-0">
+                                @(tr ? "Gerçek entegrasyon kapsamı veri kaynağı, veri kontratı ve kullanılacak API veya dosya akışına göre değerlendirilir." : "Actual integration scope depends on the data source, data contract and the API or file path being used.")
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-4 bg-white rounded border border-light-subtle h-100">
+                            <h4 class="h6 fw-bold text-dark mb-2">
+                                @(tr ? "Audience, iletişim izni değildir." : "Audience is not communication permission.")
+                            </h4>
+                            <p class="small text-muted mb-0">
+                                @(tr ? "Hedef kitle tanımı ile Consent Management'ın izin ve opt-out bağlamı ayrı kontrol alanlarıdır." : "Audience definition and Consent Management's permission and opt-out context are separate control areas.")
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-4 bg-white rounded border border-light-subtle h-100">
+                            <h4 class="h6 fw-bold text-dark mb-2">
+                                @(tr ? "AI, nihai kararın yerine geçmez." : "AI does not replace the final decision.")
+                            </h4>
+                            <p class="small text-muted mb-0">
+                                @(tr ? "Pika Pilot taslak ve hazırlık desteği sağlayabilir; nihai karar ve kontrollü aksiyon kullanıcıda ve ilgili Pika ürün katmanlarında kalır." : "Pika Pilot can provide drafting and preparation assistance; final decision and controlled action remain with the user and relevant Pika product layers.")
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-4 bg-white rounded border border-light-subtle h-100">
+                            <h4 class="h6 fw-bold text-dark mb-2">
+                                @(tr ? "Kanal, platformun tamamı değildir." : "A channel is not the whole platform.")
+                            </h4>
+                            <p class="small text-muted mb-0">
+                                @(tr ? "Email, SMS ve WhatsApp execution kanallarıdır; intelligence, audience, campaign, journey ve measurement ayrı platform sorumluluklarıdır." : "Email, SMS and WhatsApp are execution channels; intelligence, audience, campaign, journey and measurement remain separate platform responsibilities.")
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-3 bg-white rounded border border-light-subtle text-center mt-4">
+                    <p class="mb-0 fw-semibold">
+                        @(tr
+                            ? "İyi bir demo, yalnızca ne yapılabildiğini değil, hangi ürün katmanının hangi sorumluluğu taşıdığını da netleştirir."
+                            : "A useful demo clarifies not only what can be done, but also which product layer owns which responsibility.")
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 06 COMMERCIAL EVALUATION ────────────────────────────────────── *@
+<section class="pika-sol-section">
+    <div class="container" data-aos="fade-up">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <span class="pika-sol-eyebrow">@(tr ? "TİCARİ KAPSAM" : "COMMERCIAL SCOPE")</span>
+                <h2 class="pika-sol-section-title text-start mb-4">
+                    @(tr ? "Önce ihtiyaç ve kullanım kapsamı. Sonra teklif." : "Requirements and usage scope first. Quote second.")
+                </h2>
+
+                <p class="lead">
+                    @(tr
+                        ? "Pika sabit public paket fiyatı üzerinden değerlendirilmez."
+                        : "Pika is not evaluated through a fixed public package price.")
+                </p>
+
+                <p>
+                    @(tr
+                        ? "Ticari kapsam; ilgili platform yetenekleri, veri ve entegrasyon ihtiyacı, communication-channel kullanımı ve operasyonel kullanım bağlamı üzerinden belirlenebilir."
+                        : "Commercial scope can consider relevant platform capabilities, data and integration needs, communication-channel usage and operational usage context.")
+                </p>
+
+                <p>
+                    @(tr
+                        ? "Demo talebi kendi başına sabit fiyat veya otomatik teklif oluşturmaz."
+                        : "Submitting a demo request does not itself create a fixed price or automatic quote.")
+                </p>
+
+                <div class="p-3 bg-white rounded border border-light-subtle my-3 text-center">
+                    <p class="mb-0 fs-5 fw-semibold text-primary">
+                        @(tr ? "İhtiyacınıza ve kullanım kapsamınıza göre özel teklif." : "Pricing is tailored to your requirements and scope of use.")
+                    </p>
+                </div>
+
+                <div class="demo-req-callout my-4">
+                    @if (tr)
+                    {
+                        <p class="mb-1"><strong>Demo:</strong> kapsamı anlamaya yardımcı olur.</p>
+                        <p class="mb-0"><strong>Teklif:</strong> netleşen kullanım kapsamının ticari karşılığıdır.</p>
+                    }
+                    else
+                    {
+                        <p class="mb-1"><strong>The demo:</strong> helps clarify scope.</p>
+                        <p class="mb-0"><strong>The quote:</strong> reflects the defined usage scope.</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 07 WHAT HAPPENS AFTER THE REQUEST ───────────────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt">
+    <div class="container" data-aos="fade-up">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <span class="pika-sol-eyebrow">@(tr ? "TALEPTEN GÖRÜŞMEYE" : "FROM REQUEST TO CONVERSATION")</span>
+                <h2 class="pika-sol-section-title text-start mb-4">
+                    @(tr ? "Talep, değerlendirme bağlamını başlatır." : "The request starts the evaluation context.")
+                </h2>
+
+                <div class="mt-4">
+                    <div class="demo-req-step">
+                        <div class="demo-req-step-num">1</div>
+                        <div class="demo-req-step-content">
+                            <h4>@(tr ? "Talep" : "Request")</h4>
+                            <p>@(tr ? "Formdaki iletişim ve ihtiyaç bilgileri demo talebi kapsamında değerlendirilir." : "Contact and requirement information from the form is evaluated as part of the demo request.")</p>
+                        </div>
+                    </div>
+                    <div class="demo-req-step">
+                        <div class="demo-req-step-num">2</div>
+                        <div class="demo-req-step-content">
+                            <h4>@(tr ? "Kapsam" : "Scope")</h4>
+                            <p>@(tr ? "Paylaşılan kullanım bağlamı görüşmede hangi veri, ürün ve aksiyon alanlarının değerlendirilmesinin anlamlı olabileceğini belirlemeye yardımcı olur." : "The shared usage context helps identify which data, product and action areas may be relevant to evaluate in the conversation.")</p>
+                        </div>
+                    </div>
+                    <div class="demo-req-step">
+                        <div class="demo-req-step-num">3</div>
+                        <div class="demo-req-step-content">
+                            <h4>@(tr ? "Görüşme" : "Conversation")</h4>
+                            <p>@(tr ? "Demo görüşmesinde ilgili Pika katmanları, veri akışı, kontrol sınırları ve kullanım senaryosu birlikte ele alınabilir." : "The demo conversation can evaluate relevant Pika layers, data flow, control boundaries and the usage scenario together.")</p>
+                        </div>
+                    </div>
+                    <div class="demo-req-step">
+                        <div class="demo-req-step-num">4</div>
+                        <div class="demo-req-step-content">
+                            <h4>@(tr ? "Ticari Değerlendirme" : "Commercial Evaluation")</h4>
+                            <p>@(tr ? "Uygun çözüm kapsamı netleştiğinde ihtiyaca ve kullanım kapsamına göre teklif değerlendirilebilir." : "When an appropriate solution scope is clarified, a quote can be evaluated according to requirements and scope of use.")</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-3 bg-white rounded border border-light-subtle text-center mt-4">
+                    <p class="mb-0 fw-semibold">
+                        @(tr
+                            ? "Talep formu, satın alma kararı değil, ürün ve kullanım kapsamını birlikte değerlendirmek için başlangıç noktasıdır."
+                            : "The request form is not a purchase decision. It is the starting point for evaluating product and usage scope together.")
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 08 FAQ ───────────────────────────────────────────────────────── *@
+<section class="pika-sol-section" id="sss">
+    <div class="container" data-aos="fade-up">
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+                <span class="pika-sol-eyebrow">@(tr ? "SSS" : "FAQ")</span>
+                <h2 class="pika-sol-section-title text-start mb-4">
+                    @(tr ? "Sıkça Sorulan Sorular" : "Frequently Asked Questions")
+                </h2>
+
+                <div class="mt-4">
+                    <details class="demo-req-faq-details">
+                        <summary class="demo-req-faq-summary">
+                            <span>@(tr ? "Pika demosunda ne değerlendirilir?" : "What is evaluated in a Pika demo?")</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="demo-req-faq-body">
+                            @(tr
+                                ? "Demo görüşmesi; müşteri, ürün ve işlem verinizin Pika'ya nasıl bağlanabileceğini, hangi intelligence ve aksiyon katmanlarının kullanım senaryonuzla ilişkili olduğunu ve kanal, izin, güvenlik ve ölçüm kapsamını değerlendirmek için kullanılabilir."
+                                : "The demo conversation can evaluate how your customer, product and transaction data can connect to Pika, which intelligence and action layers are relevant to your usage scenario and the related channel, consent, security and measurement scope.")
+                        </div>
+                    </details>
+
+                    <details class="demo-req-faq-details">
+                        <summary class="demo-req-faq-summary">
+                            <span>@(tr ? "Demo için bütün Pika modüllerini kullanmam gerekir mi?" : "Do I need every Pika module for the demo?")</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="demo-req-faq-body">
+                            @(tr
+                                ? "Hayır. Demo amacı bütün modüllerin gerekli olduğunu varsaymak değil, gerçek kullanım senaryonuzla ilişkili ürün katmanlarını belirlemektir."
+                                : "No. The purpose of the demo is not to assume that every module is required, but to identify the product layers relevant to your actual usage scenario.")
+                        </div>
+                    </details>
+
+                    <details class="demo-req-faq-details">
+                        <summary class="demo-req-faq-summary">
+                            <span>@(tr ? "Kendi veri ve entegrasyon yapımızı konuşabilir miyiz?" : "Can we discuss our own data and integration environment?")</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="demo-req-faq-body">
+                            @if (tr)
+                            {
+                                <text>Evet. Müşteri, ürün ve işlem verinizin kaynağı ile REST API veya Excel/CSV gibi doğrulanmış veri giriş yollarının kullanım bağlamınızla ilişkisi değerlendirilebilir. Her kaynak sistem için hazır native connector bulunduğu varsayılmaz. Ayrıntılı kapsam için <a href="/entegrasyonlar">Entegrasyonlar</a> sayfasını inceleyebilirsiniz.</text>
+                            }
+                            else
+                            {
+                                <text>Yes. The source of your customer, product and transaction data and the relevance of verified intake paths such as REST API or Excel/CSV can be evaluated. A ready-made native connector is not assumed for every source system. See the <a href="/en/integrations">Integrations</a> page for detailed scope.</text>
+                            }
+                        </div>
+                    </details>
+
+                    <details class="demo-req-faq-details">
+                        <summary class="demo-req-faq-summary">
+                            <span>@(tr ? "Demo sırasında Email, SMS ve WhatsApp kapsamı değerlendirilebilir mi?" : "Can Email, SMS and WhatsApp scope be evaluated during the demo?")</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="demo-req-faq-body">
+                            @if (tr)
+                            {
+                                <text>Evet. İlgili kullanım senaryosuna göre <a href="/cozumler/campaign-manager">Campaign Manager</a> veya <a href="/cozumler/journey-manager">Journey Manager</a> ile Email, SMS ve WhatsApp aksiyonlarının rolü; <a href="/cozumler/consent-management">Consent Management</a>, <a href="/guvenlik-ve-gizlilik">Security & Privacy</a> ve <a href="/cozumler/analytics-reporting">Analytics & Reporting</a> ölçüm bağlamıyla birlikte değerlendirilebilir.</text>
+                            }
+                            else
+                            {
+                                <text>Yes. Depending on the usage scenario, the role of Email, SMS and WhatsApp actions through <a href="/en/solutions/campaign-manager">Campaign Manager</a> or <a href="/en/solutions/journey-manager">Journey Manager</a> can be evaluated together with <a href="/en/solutions/consent-management">Consent Management</a>, <a href="/en/security-and-privacy">Security & Privacy</a> and <a href="/en/solutions/analytics-reporting">Analytics & Reporting</a> measurement context.</text>
+                            }
+                        </div>
+                    </details>
+
+                    <details class="demo-req-faq-details">
+                        <summary class="demo-req-faq-summary">
+                            <span>@(tr ? "Pika Pilot kampanyaları kendi başına gönderir mi?" : "Does Pika Pilot send campaigns by itself?")</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="demo-req-faq-body">
+                            @(tr
+                                ? "Hayır. Pika Pilot kampanya hazırlığı ve içerik taslağı için yardımcı olabilir; nihai karar ve kontrollü aksiyon kullanıcıda ve ilgili Pika ürün katmanlarında kalır."
+                                : "No. Pika Pilot can assist with campaign preparation and content drafts; final decision and controlled action remain with the user and relevant Pika product layers.")
+                        </div>
+                    </details>
+
+                    <details class="demo-req-faq-details">
+                        <summary class="demo-req-faq-summary">
+                            <span>@(tr ? "Demo görüşmesinin sabit bir süresi var mı?" : "Does the demo have a fixed duration?")</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="demo-req-faq-body">
+                            @(tr
+                                ? "C20 kamuya açık sayfası sabit bir demo süresi taahhüdü vermez. Görüşme kapsamı değerlendirilecek kullanım senaryosuna göre ele alınır."
+                                : "The C20 public page does not promise a fixed demo duration. Conversation scope is considered according to the usage scenario being evaluated.")
+                        </div>
+                    </details>
+
+                    <details class="demo-req-faq-details">
+                        <summary class="demo-req-faq-summary">
+                            <span>@(tr ? "Demo talebi gönderdiğimde otomatik fiyat teklifi oluşur mu?" : "Does submitting a demo request automatically create a quote?")</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="demo-req-faq-body">
+                            @if (tr)
+                            {
+                                <text>Hayır. Önce ürün ve kullanım kapsamı değerlendirilir. Ticari teklif ihtiyaca ve kullanım kapsamına göre ayrıca belirlenir. Kurumsal yaklaşımımız hakkında daha fazla bilgi için <a href="/kurumsal">Kurumsal</a> sayfamızı inceleyebilirsiniz.</text>
+                            }
+                            else
+                            {
+                                <text>No. Product and usage scope are evaluated first. Commercial pricing is then determined separately according to requirements and scope of use. You can also review our <a href="/en/corporate">Corporate</a> page for our enterprise approach.</text>
+                            }
+                        </div>
+                    </details>
+
+                    <details class="demo-req-faq-details">
+                        <summary class="demo-req-faq-summary">
+                            <span>@(tr ? "Demo talebini gönderdikten sonra ne olur?" : "What happens after I submit a demo request?")</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="demo-req-faq-body">
+                            @(tr
+                                ? "Talep, paylaştığınız iletişim ve kullanım bağlamıyla değerlendirmeye alınır. Demo görüşmesini planlamak için verdiğiniz iletişim bilgileri üzerinden sizinle iletişim kurulabilir."
+                                : "The request is evaluated using the contact and usage context you provide. Your contact information may be used to arrange the demo conversation.")
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 09 FINAL CTA ─────────────────────────────────────────────────── *@
+<section class="pika-sol-cta-section text-center">
+    <div class="container" data-aos="fade-up">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <span class="pika-sol-eyebrow">@(tr ? "KULLANIM BAĞLAMINIZI DEĞERLENDİRELİM" : "EVALUATE YOUR USAGE CONTEXT")</span>
+                <h2 class="pika-sol-cta-title">
+                    @(tr
+                        ? "Veriden karara, karardan kontrollü aksiyona hangi Pika kapsamının size uygun olduğunu birlikte değerlendirin."
+                        : "From data to decision and decision to controlled action, evaluate which Pika scope fits your needs.")
+                </h2>
+                <p class="pika-sol-cta-desc mx-auto" style="max-width:680px">
+                    @(tr
+                        ? "Müşteri, ürün ve işlem verinizin nasıl kullanılabileceğini ve ilgili intelligence, audience, campaign, journey, kanal, izin ve ölçüm katmanlarını gerçek kullanım senaryonuz üzerinden ele alın."
+                        : "Evaluate how customer, product and transaction data can be used and which intelligence, audience, campaign, journey, channel, permission and measurement layers are relevant to your actual usage scenario.")
+                </p>
+                <div class="d-flex flex-wrap justify-content-center gap-3">
+                    <a href="#demo-request-form" class="btn pika-btn-primary">
+                        @(tr ? "Demo Talep Et" : "Request a Demo")
+                    </a>
+                    <a href="@(tr ? "/pika" : "/en/pika")" class="btn pika-btn-outline">
+                        @(tr ? "Pika'yı Keşfedin" : "Explore Pika")
+                    </a>
                 </div>
             </div>
         </div>
