@@ -37,15 +37,12 @@
                     <span>@(isTr ? "Pika'da Kariyer" : "Careers at Pika")</span>
                     <small>@(isTr ? "Örnek görünüm" : "Illustration")</small>
                 </div>
-                <div class="inner-knowledge">
-                    <span>PIKA / @(isTr ? "BİRLİKTE ÜRETİYORUZ" : "BUILDING TOGETHER")</span>
-                    <h3>@(isTr ? "Merakla başlar." : "It starts with curiosity.")</h3>
-                    <div><i class="ri-lightbulb-line" aria-hidden="true"></i>@(isTr ? "Yeni fikirler" : "New ideas")<b>01</b></div>
-                    <div><i class="ri-code-s-slash-line" aria-hidden="true"></i>@(isTr ? "Anlamlı ürünler" : "Meaningful products")<b>02</b></div>
-                    <div><i class="ri-team-line" aria-hidden="true"></i>@(isTr ? "Birlikte gelişim" : "Shared growth")<b>03</b></div>
+                <div class="inner-knowledge" aria-hidden="true" style="padding:48px 29px;min-height:220px;display:flex;align-items:center;justify-content:center;gap:28px;">
+                    <i class="ri-lightbulb-line" style="font-size:32px;color:#78955b;" aria-hidden="true"></i>
+                    <i class="ri-code-s-slash-line" style="font-size:32px;color:#78955b;" aria-hidden="true"></i>
+                    <i class="ri-team-line" style="font-size:32px;color:#78955b;" aria-hidden="true"></i>
                 </div>
             </div>
-            <div class="inner-scene-caption">CUSTOMER INTELLIGENCE. MEANINGFUL CONNECTIONS.</div>
         </div>
     </div>
 </section>
@@ -100,8 +97,7 @@
         <div class="row g-4 justify-content-center mb-5">
             <div class="col-lg-6">
                 <div class="pika-career-card h-100">
-                    <div class="pika-career-card__icon"><i class="ri-brain-line"></i></div>
-                    <h3 class="h5 fw-bold mb-2">@(isTr ? "Intelligence & Karar Sorumluluğu" : "Intelligence & Decision Ownership")</h3>
+                    <div class="pika-career-card__icon mb-3"><i class="ri-brain-line"></i></div>
                     <p class="text-secondary mb-0">
                         @(isTr
                             ? "Platform müşteri, ürün ve işlem verisini intelligence katmanlarında anlamlandırır; fırsat, audience, içerik, campaign ve journey kararlarını ayrı ürün sorumluluklarıyla yönetir."
@@ -111,8 +107,7 @@
             </div>
             <div class="col-lg-6">
                 <div class="pika-career-card h-100">
-                    <div class="pika-career-card__icon" style="background:#e8f5e9;color:#2e7d32;"><i class="ri-shield-check-line"></i></div>
-                    <h3 class="h5 fw-bold mb-2">@(isTr ? "Kontrollü Execution & Ölçüm" : "Controlled Execution & Measurement")</h3>
+                    <div class="pika-career-card__icon mb-3" style="background:#e8f5e9;color:#2e7d32;"><i class="ri-shield-check-line"></i></div>
                     <p class="text-secondary mb-0">
                         @(isTr
                             ? "Email, SMS ve WhatsApp kontrollü iletişimin execution kanallarıdır; consent, security ve measurement ise ayrı kontrol ve değerlendirme katmanlarıdır."
@@ -123,11 +118,6 @@
         </div>
 
         <div class="p-4 p-md-5 rounded border" style="background:#f9fbf6;border-color:#dce5d3!important;">
-            <div class="text-center mb-3">
-                <span class="text-uppercase fw-bold text-muted" style="font-size:12px;letter-spacing:1.5px;">
-                    @(isTr ? "ÜRÜN VE MİMARİ AKIŞI" : "PRODUCT & ARCHITECTURAL FLOW")
-                </span>
-            </div>
             <div class="d-flex flex-wrap justify-content-center align-items-center gap-2 text-center font-monospace" style="font-size:13px;font-weight:600;color:#253e20;">
                 <span class="px-3 py-2 bg-white rounded border border-light-subtle shadow-sm">DATA</span>
                 <span>→</span>
@@ -228,7 +218,6 @@
             </div>
             <div class="col-lg-6">
                 <div class="p-4 rounded border" style="background:#f4f7ed;border-color:#dce5d3!important;">
-                    <h3 class="h5 fw-bold mb-3">@(isTr ? "Başvuru Bilgileri" : "Application Guidance")</h3>
                     <ul class="list-unstyled mb-0">
                         <li class="py-2 border-bottom d-flex gap-2">
                             <i class="ri-check-line text-success fs-5 flex-shrink-0" aria-hidden="true"></i>
@@ -314,8 +303,7 @@
 <section class="pika-section" style="background:#f8faf4;">
     <div class="container">
         <div class="text-center mb-5">
-            <span class="pika-eyebrow">@(isTr ? "SIKÇA SORULAN SORULAR" : "FREQUENTLY ASKED QUESTIONS")</span>
-            <h2 class="pika-h2">@(isTr ? "Kariyer hakkında merak edilenler" : "Questions about careers at Pika")</h2>
+            <h2 class="pika-h2">@(isTr ? "Sıkça Sorulan Sorular" : "Frequently Asked Questions")</h2>
         </div>
         <div class="row justify-content-center">
             <div class="col-lg-8">
