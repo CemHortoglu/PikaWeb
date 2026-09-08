@@ -141,5 +141,13 @@ namespace Pika.Controllers
         [HttpGet("/kullanim-senaryolari/perakende-e-ticaret", Name = "RetailEcommerceUseCase")]
         [HttpGet("/en/use-cases/retail-ecommerce", Name = "RetailEcommerceUseCaseEn")]
         public IActionResult RetailEcommerceUseCase() => View();
+
+        [HttpGet("/kullanim-senaryolari/veri-aktarimi", Name = "DataOnboardingUseCase")]
+        [HttpGet("/en/use-cases/data-onboarding", Name = "DataOnboardingUseCaseEn")]
+        public IActionResult DataOnboardingUseCase() => View();
+
+        [HttpGet("/kullanim-senaryolari/pazarlama-ai-yonetisimi", Name = "MarketingAiGovernanceUseCase")]
+        [HttpGet("/en/use-cases/marketing-ai-governance", Name = "MarketingAiGovernanceUseCaseEn")]
+        public IActionResult MarketingAiGovernanceUseCase() => View();
     }
 }

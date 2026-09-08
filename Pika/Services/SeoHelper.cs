@@ -395,6 +395,26 @@ public static class SeoHelper
             "Use Pika to connect retail and e-commerce customer, product and transaction data to repeat purchase, cross-sell, win-back, segmentation and controlled omnichannel action.",
             "Perakende ve E-ticaret",
             "Retail & E-commerce");
+
+        RouteMetadata["Solutions.DataOnboardingUseCase"] = new(
+            "/kullanim-senaryolari/veri-aktarimi",
+            "/en/use-cases/data-onboarding",
+            "Veri Aktarımı ve Onboarding | REST API, Excel ve CSV | Pika",
+            "Data Onboarding | REST API, Excel & CSV | Pika",
+            "Müşteri, ürün ve işlem verisini Pika'ya Excel, CSV veya asenkron REST Ingestion API ile taşıyın; veri girişini sonraki Customer Intelligence ve Product Intelligence katmanlarına hazırlayın.",
+            "Bring customer, product and transaction data into Pika through Excel, CSV or the asynchronous REST Ingestion API and prepare it for downstream Customer Intelligence and Product Intelligence.",
+            "Veri Aktarımı",
+            "Data Onboarding");
+
+        RouteMetadata["Solutions.MarketingAiGovernanceUseCase"] = new(
+            "/kullanim-senaryolari/pazarlama-ai-yonetisimi",
+            "/en/use-cases/marketing-ai-governance",
+            "Pazarlamada AI Yönetişimi | İnsan Kontrollü Pika Pilot | Pika",
+            "Marketing AI Governance | Human-Controlled Pika Pilot | Pika",
+            "Pika Pilot'ın hesaplanmış müşteri, ürün ve fırsat bağlamını AI destekli kampanya taslaklarında nasıl kullandığını; kaynak gerçek, insan kararı ve kontrollü execution sınırlarıyla değerlendirin.",
+            "Evaluate how Pika Pilot uses calculated customer, product and opportunity context for AI-assisted campaign drafts while preserving source truth, human decision and controlled execution boundaries.",
+            "Pazarlamada AI Yönetişimi",
+            "Marketing AI Governance");
     }
 
     public static PageSeoMetadata? GetMetadata(string? controller, string? action)

@@ -12,19 +12,19 @@ Data & Ingestion
 
 ## Overview
 
-Pika is engineered for marketing teams, e-commerce brands, and omnichannel retailers that need to extract commercial meaning from customer and catalog data, identify high-intent revenue opportunities, and orchestrate targeted, compliant marketing communications.
+Pika is engineered for marketing teams, e-commerce brands, and omnichannel retailers that need to extract commercial meaning from customer and catalog data, identify high-intent commercial opportunities, and orchestrate targeted, controlled marketing communications.
 
-Pika does not position itself as a generic bulk message broadcaster or standalone dispatcher. Instead, it unifies customer transaction histories, detects timely purchase rhythms, and executes controlled campaigns across supported channels.
+Pika does not position itself as a generic bulk message broadcaster or standalone dispatcher. Instead, it unifies customer transaction histories, detects timely purchase rhythms, and executes controlled campaigns across confirmed channels.
 
 ### Key Capabilities
 
-- **Customer & Product Intelligence**: Unifies customer purchase histories into Pika 360 profiles, computes RFM-based Customer Value Scores, and categorizes products by commercial intent (Need Groups, Product Roles).
+- **Customer & Product Intelligence**: Unifies customer purchase histories into Pika 360 profiles, computes deterministic Customer Value Scores, and categorizes products by commercial intent (Need Groups, Product Roles).
 - **Opportunity Detection (Günün Fırsatları)**: The Customer Context Engine (CCE) detects actionable commercial opportunities including replenishment rhythms, churn win-back, and cross-sell affinities.
 - **Audience Segmentation**: Audience Manager enables dynamic rule-based segmentation using purchase recency, order frequency, monetary value, and category engagement.
 - **Campaign Orchestration**: Campaign Manager coordinates multi-channel messaging schedules across Email, SMS, and WhatsApp.
 - **Customer Journey Automation**: Journey Manager provides visual workflow automation for event-driven lifecycle triggers, delays, and conditional branching.
 - **Content Studio**: Drag-and-drop template designer for responsive email templates and multi-channel message formatting.
-- **AI Campaign Assistant (Pika Pilot)**: Assistive AI co-pilot that suggests campaign ideas, audience criteria, and draft copy from natural language prompts, with mandatory human approval. Internal product documentation describes an anonymized-parameter AI boundary in which direct personal identifiers are intended to be excluded from LLM prompt context.
+- **AI Campaign Assistant (Pika Pilot)**: Assistive AI co-pilot that uses calculated customer, product and opportunity context to help prepare draft audience criteria, channel approach and campaign content. The final decision remains with the user and Pika Pilot does not independently dispatch campaigns. Internal product documentation describes an anonymized-parameter AI boundary where direct personal identifiers are intended to be excluded from LLM prompt context; this is not presented as an absolute Zero-PII guarantee.
 - **Governed Channel Execution**: Outbound delivery across Email, SMS, and official Meta WhatsApp Business API integration with IYS status verification and opt-out workflows supporting KVKK/IYS governance context.
 - **Analytics & Attribution**: Unified reporting dashboard for tracking delivery metrics, engagement rates, and store-level attribution.
 - **Data Security & Privacy**: Role-based access control (RBAC) and privacy-focused operational safeguards.
@@ -45,7 +45,7 @@ Pika does not position itself as a generic bulk message broadcaster or standalon
 ### Customer Intelligence
 **URL**: https://pika.tr/en/platform/customer-intelligence
 
-Analytical intelligence layer that unifies transaction data to calculate Customer Value Scores (RFM), identify individual consumption rhythms, and detect churn and dormancy risks.
+Analytical intelligence layer that unifies transaction data to calculate deterministic Customer Value Scores, identify individual consumption rhythms, and detect dormancy risks.
 
 ### Product Intelligence
 **URL**: https://pika.tr/en/platform/product-intelligence
@@ -110,7 +110,7 @@ Consent and preference management with IYS status verification and opt-out workf
 ### Integrations
 **URL**: https://pika.tr/en/integrations
 
-Connect customer profiles, product catalogs, and transactional order data via CSV/Excel imports, REST Ingestion APIs (`/api/v1/ingest/`), and webhooks.
+Connect customer profiles, product catalogs, and transactional order data via CSV/Excel imports and asynchronous REST Ingestion APIs (`/api/v1/ingest/`).
 
 ### Security & Privacy
 **URL**: https://pika.tr/en/security-and-privacy
@@ -120,12 +120,56 @@ Data security architecture featuring role-based access control (RBAC), tokenized
 ### AI Campaign Assistant
 **URL**: https://pika.tr/en/products/ai-campaign-assistant
 
-AI-assisted co-pilot (Pika Pilot) for drafting campaign concepts, audience rule suggestions, and message copy from natural language prompts. Internal product documentation describes an anonymized-parameter AI boundary where direct personal identifiers are intended to be excluded from LLM prompt context, and all dispatches require explicit human review.
+Assistive AI co-pilot (Pika Pilot) that uses calculated customer, product and opportunity context to help prepare draft audience criteria, channel approach and campaign content. The final decision remains with the user and Pika Pilot does not independently dispatch campaigns. Internal product documentation describes an anonymized-parameter AI boundary where direct personal identifiers are intended to be excluded from LLM prompt context; this is not presented as an absolute Zero-PII guarantee.
 
-### Use Cases
-**URL**: https://pika.tr/en/use-cases
+---
 
-Practical implementation scenarios illustrating customer retention, replenishment reminders, win-back flows, and VIP rewards.
+## Growth Use Cases
+
+### Repeat Purchase
+**URL**: https://pika.tr/en/use-cases/repeat-purchase
+
+Rhythm-based replenishment opportunity using historical customer purchase intervals and product consumption context. The documented opportunity window uses 80%-120% of the calculated consumption cycle and does not guarantee a purchase.
+
+### Cross-sell
+**URL**: https://pika.tr/en/use-cases/cross-sell
+
+Statistical basket-association use case grounded in historical transaction lines. The documented Basket Association Engine uses Support ≥ 0.01, Confidence ≥ 0.15 and Lift > 1.2; it is not positioned as black-box generative-AI recommendation.
+
+### Win-back
+**URL**: https://pika.tr/en/use-cases/win-back
+
+Dormancy and win-back evaluation based on customer inactivity relative to the individual customer's historical purchase rhythm. A risk signal is not definitive churn.
+
+### Customer Segmentation
+**URL**: https://pika.tr/en/use-cases/customer-segmentation
+
+Rule-based audience-definition use case combining customer attributes, transaction history, behavioral context and calculated Customer Intelligence signals through explicit rules.
+
+### Customer Value
+**URL**: https://pika.tr/en/use-cases/customer-value
+
+Deterministic 0-100 Customer Value Score based on Monetary × 0.40 + Frequency × 0.25 + Recency × 0.20 + Loyalty × 0.15. It is not positioned as AI customer scoring or future CLV prediction.
+
+### Omnichannel Orchestration
+**URL**: https://pika.tr/en/use-cases/omnichannel-orchestration
+
+Controlled coordination of Audience, Campaign or Journey context across Pika's confirmed Email, SMS and WhatsApp execution channels within permission and measurement boundaries.
+
+### Retail & E-commerce
+**URL**: https://pika.tr/en/use-cases/retail-ecommerce
+
+Application context for using customer, product and transaction data with Pika intelligence, opportunity, audience and controlled omnichannel-action layers. Pika is not positioned as an e-commerce platform, POS, ERP or order-management system.
+
+### Data Onboarding
+**URL**: https://pika.tr/en/use-cases/data-onboarding
+
+Customer, product and transaction data onboarding through confirmed Excel, CSV and asynchronous REST Ingestion API paths. Data ingestion remains separate from downstream intelligence and campaign decisions.
+
+### Marketing AI Governance
+**URL**: https://pika.tr/en/use-cases/marketing-ai-governance
+
+Controlled AI-assistance model in which calculated Pika context precedes Pika Pilot draft generation, the final decision remains with the user, and AI-assisted drafts remain separate from actual audience, campaign, consent and channel execution.
 
 ---
 
@@ -133,19 +177,19 @@ Practical implementation scenarios illustrating customer retention, replenishmen
 
 ### Corporate
 **URL**: https://pika.tr/en/corporate
-About Pika, company history, mission, vision, and team information.
+Corporate evaluation page covering Pika's product architecture, integrations, security, consent, AI and commercial-evaluation approach.
 
 ### Careers
 **URL**: https://pika.tr/en/careers
-Career opportunities and engineering culture at Pika.
+General career-application page explaining Pika's product and problem context without publishing an unverified list of open positions.
 
 ### Contact
 **URL**: https://pika.tr/en/contact
-Contact information and inquiry form for sales, support, and partnerships.
+General contact page for product, data, integration, commercial and collaboration inquiries. Structured product evaluation is handled through Demo Request.
 
 ### Demo Request
 **URL**: https://pika.tr/en/demo-request
-Request a personalized consultation and custom commercial quotation for the Pika platform.
+Structured product and usage-scope evaluation request for organizations evaluating Pika.
 
 ### FAQ
 **URL**: https://pika.tr/en/resources/faq

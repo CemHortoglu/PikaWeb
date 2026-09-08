@@ -167,6 +167,16 @@
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
+	<url>
+		<loc>https://pika.tr/kullanim-senaryolari/veri-aktarimi</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://pika.tr/kullanim-senaryolari/pazarlama-ai-yonetisimi</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+	</url>
 
 	<!-- İngilizce Pazarlama ve Çözüm Sayfaları -->
 	<url>
@@ -331,6 +341,16 @@
 	</url>
 	<url>
 		<loc>https://pika.tr/en/use-cases/retail-ecommerce</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.7</priority>
+	</url>
+	<url>
+		<loc>https://pika.tr/en/use-cases/data-onboarding</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.7</priority>
+	</url>
+	<url>
+		<loc>https://pika.tr/en/use-cases/marketing-ai-governance</loc>
 		<changefreq>weekly</changefreq>
 		<priority>0.7</priority>
 	</url>

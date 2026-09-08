@@ -1,0 +1,475 @@
+@{
+    var culture = (ViewData["culture"] as string ?? ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").ToLowerInvariant();
+    var isTr = culture == "tr";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/pika-growth-usecases.css" asp-append-version="true" />
+}
+
+<!-- ═══════════════════════════ 01 HERO ═══════════════════════════ -->
+<section class="inner-hero">
+    <div class="inner-atmosphere" aria-hidden="true"><span></span><span></span></div>
+    <div class="container inner-hero-grid">
+        <div class="inner-intro">
+            <nav class="inner-breadcrumb" aria-label="@(isTr ? "Sayfa yolu" : "Breadcrumb")">
+                <a href="@(isTr ? "/" : "/en/")">Pika</a>
+                <span>/</span>
+                <a href="@(isTr ? "/kullanim-senaryolari" : "/en/use-cases")">@(isTr ? "Kullanım Senaryoları" : "Use Cases")</a>
+                <span>/</span>
+                <span>@(isTr ? "Pazarlamada AI Yönetişimi" : "Marketing AI Governance")</span>
+            </nav>
+            <div class="inner-eyebrow">
+                <span></span>
+                @(isTr ? "KULLANIM SENARYOSU" : "USE CASE")
+            </div>
+            <h1>
+                @(isTr
+                    ? "AI'ı kaynak gerçeğin ve insan kararının yerine koymadan kullanın."
+                    : "Use AI without replacing source truth or human decision.")
+            </h1>
+            <p>
+                @(isTr
+                    ? "Pika Pilot, Pika'nın hesapladığı müşteri, ürün ve fırsat bağlamını kullanarak hedef kitle kriterleri, kanal yaklaşımı ve kampanya içeriği taslaklarının hazırlanmasına yardımcı olan AI kampanya asistanıdır."
+                    : "Pika Pilot is an AI campaign assistant that uses customer, product and opportunity context calculated by Pika to help prepare draft audience criteria, channel approach and campaign content.")
+            </p>
+            <p class="text-secondary" style="font-size:15px;line-height:1.75;margin-top:-10px;margin-bottom:28px;">
+                @(isTr
+                    ? "Pika'daki AI yaklaşımının temel sınırı açıktır: intelligence ve opportunity bağlamı Pika'nın hesaplama katmanlarından gelir; AI hazırlık için taslak üretir; son karar kullanıcıda kalır."
+                    : "The core AI boundary in Pika is explicit: intelligence and opportunity context comes from Pika's calculation layers; AI produces preparation drafts; the final decision remains with the user.")
+            </p>
+            <div class="inner-actions">
+                <a class="inner-primary" href="@(isTr ? "/demo-talebi" : "/en/demo-request")">
+                    @(isTr ? "Demo Talep Et" : "Request a Demo") ↗
+                </a>
+                <a class="inner-secondary" href="@(isTr ? "/urunler/ai-kampanya-asistani" : "/en/products/ai-campaign-assistant")">
+                    @(isTr ? "Pika Pilot'ı Keşfedin" : "Explore Pika Pilot") →
+                </a>
+            </div>
+        </div>
+
+        <div class="inner-scene" aria-hidden="true">
+            <div class="growth-uc-hero-visual">
+                <div class="growth-uc-pipeline">
+                    <div class="growth-uc-node">
+                        <span>@(isTr ? "HESAPLANMIŞ BAĞLAM" : "CALCULATED CONTEXT")</span>
+                        <i class="ri-brain-line"></i>
+                    </div>
+                    <div class="growth-uc-arrow">↓</div>
+                    <div class="growth-uc-node growth-uc-node--accent">
+                        <span>@(isTr ? "AI DESTEKLİ TASLAK" : "AI-ASSISTED DRAFT")</span>
+                        <i class="ri-magic-line"></i>
+                    </div>
+                    <div class="growth-uc-arrow">↓</div>
+                    <div class="growth-uc-node">
+                        <span>@(isTr ? "İNSAN KARARI" : "HUMAN DECISION")</span>
+                        <i class="ri-user-follow-line"></i>
+                    </div>
+                    <div class="growth-uc-arrow">↓</div>
+                    <div class="growth-uc-node">
+                        <span>CAMPAIGN / JOURNEY</span>
+                        <i class="ri-route-line"></i>
+                    </div>
+                    <div class="growth-uc-arrow">↓</div>
+                    <div class="growth-uc-node">
+                        <span>CONSENT</span>
+                        <i class="ri-shield-check-line"></i>
+                    </div>
+                    <div class="growth-uc-arrow">↓</div>
+                    <div class="growth-uc-node">
+                        <span>CONTROLLED EXECUTION</span>
+                        <i class="ri-checkbox-circle-line"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 02 DIRECT ANSWER ═══════════════════════════ -->
+<section class="pika-section" style="background:#f4f7ed;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="growth-uc-direct-answer">
+                    <span class="pika-eyebrow">@(isTr ? "KISA CEVAP" : "THE SHORT ANSWER")</span>
+                    <h2 class="pika-h2 mt-2 mb-3">
+                        @(isTr ? "Pika'da pazarlama AI yönetişimi ne anlama gelir?" : "What does marketing AI governance mean in Pika?")
+                    </h2>
+                    <p class="text-secondary mb-3" style="font-size:16px;line-height:1.8;">
+                        @(isTr
+                            ? "C33 bağlamında AI yönetişimi, Pika Pilot'ın hangi bilgiyi kaynak gerçek olarak kabul ettiğini, hangi çıktıları taslak olarak ürettiğini ve nihai pazarlama kararının hangi noktada kullanıcı kontrolünde kaldığını açık biçimde ayırmaktır."
+                            : "In C33, AI governance means making an explicit distinction between which information Pika Pilot treats as source context, which outputs AI produces as drafts and where the final marketing decision remains under user control.")
+                    </p>
+                    <p class="text-secondary mb-3" style="font-size:16px;line-height:1.8;">
+                        @(isTr
+                            ? "Pika Pilot müşteri davranışını hesaplayan analitik motor, ticari fırsatın kaynağı veya kampanyayı bağımsız biçimde gönderen autonomous agent değildir."
+                            : "Pika Pilot is not the analytical engine that calculates customer behavior, the source of the commercial opportunity or an autonomous agent that independently dispatches campaigns.")
+                    </p>
+                    <div class="p-3 mb-3" style="background:#edf4e0;border-left:4px solid #7a9845;border-radius:4px;">
+                        <strong class="d-block text-dark" style="font-size:14px;">
+                            @(isTr
+                                ? "Hesaplanmış bağlam önce gelir. AI taslağı sonra gelir. Nihai karar kullanıcıda kalır."
+                                : "Calculated context comes first. The AI draft comes next. The final decision remains with the user.")
+                        </strong>
+                    </div>
+                    <p class="small text-muted mb-0 font-monospace">
+                        Calculated context → AI-assisted draft → human decision → controlled action.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 03 HOW CONTEXT WORKS ═══════════════════════════ -->
+<section class="pika-section" style="background:#fff;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="pika-eyebrow">@(isTr ? "ÖNCE BAĞLAM" : "CONTEXT FIRST")</span>
+            <h2 class="pika-h2 mx-auto" style="max-width:820px;">
+                @(isTr
+                    ? "AI'ın ne ürettiği kadar, hangi gerçeğe dayandığını da ayırın."
+                    : "Separate not only what AI produces, but what factual context grounds it.")
+            </h2>
+        </div>
+
+        <div class="growth-uc-step-grid mb-5">
+            <div class="growth-uc-step-card">
+                <span class="growth-uc-step-badge">01</span>
+                <h3 class="h5 fw-bold mb-2">@(isTr ? "Hesaplanmış Bağlam" : "Calculated Context")</h3>
+                <p class="text-secondary mb-0" style="font-size:14px;line-height:1.75;">
+                    @(isTr
+                        ? "Customer Intelligence, Product Intelligence ve opportunity katmanları müşteri, ürün ve ticari fırsat bağlamını Pika'nın analitik ve deterministic süreçlerinde oluşturur."
+                        : "Customer Intelligence, Product Intelligence and opportunity layers create customer, product and commercial-opportunity context through Pika's analytical and deterministic processes.")
+                </p>
+            </div>
+            <div class="growth-uc-step-card">
+                <span class="growth-uc-step-badge">02</span>
+                <h3 class="h5 fw-bold mb-2">@(isTr ? "Kampanya Brifi" : "Campaign Brief")</h3>
+                <p class="text-secondary mb-0" style="font-size:14px;line-height:1.75;">
+                    @(isTr
+                        ? "Kullanıcının doğal dilde verdiği kampanya amacı mevcut hesaplanmış bağlamla birlikte Pika Pilot tarafından değerlendirilebilir."
+                        : "A campaign objective written by the user in natural language can be evaluated by Pika Pilot together with available calculated context.")
+                </p>
+            </div>
+            <div class="growth-uc-step-card">
+                <span class="growth-uc-step-badge">03</span>
+                <h3 class="h5 fw-bold mb-2">@(isTr ? "AI Destekli Taslak" : "AI-Assisted Draft")</h3>
+                <p class="text-secondary mb-0" style="font-size:14px;line-height:1.75;">
+                    @(isTr
+                        ? "Pika Pilot hedef kitle kriteri taslağı, kanal yaklaşımı, mesaj varyantları veya kampanya içeriği gibi hazırlık çıktıları oluşturmaya yardımcı olabilir."
+                        : "Pika Pilot can help prepare draft audience criteria, channel approach, message variants or campaign content.")
+                </p>
+            </div>
+            <div class="growth-uc-step-card">
+                <span class="growth-uc-step-badge">04</span>
+                <h3 class="h5 fw-bold mb-2">@(isTr ? "İnsan Kararı" : "Human Decision")</h3>
+                <p class="text-secondary mb-0" style="font-size:14px;line-height:1.75;">
+                    @(isTr
+                        ? "Taslak, gerçek audience, campaign veya journey aksiyonunun kendisi değildir; nihai kullanım kararı kullanıcı kontrolünde kalır."
+                        : "A draft is not the actual audience, campaign or journey action; the final usage decision remains under user control.")
+                </p>
+            </div>
+        </div>
+
+        <div class="text-center mx-auto" style="max-width:700px;">
+            <p class="text-muted fst-italic mb-0" style="font-size:15px;line-height:1.8;">
+                @(isTr
+                    ? "AI'ın görevi müşteriyi veya fırsatı hayal etmek değil, mevcut Pika bağlamını hazırlıkta kullanılabilir taslağa dönüştürmeye yardımcı olmaktır."
+                    : "AI's role is not to invent the customer or opportunity. Its role is to help turn existing Pika context into a usable preparation draft.")
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 04 DRAFT TO CONTROLLED ACTION ═══════════════════════════ -->
+<section class="pika-section" style="background:#f9fbf6;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="pika-eyebrow">@(isTr ? "TASLAKTAN AKSİYONA" : "FROM DRAFT TO ACTION")</span>
+            <h2 class="pika-h2 mx-auto" style="max-width:820px;">
+                @(isTr
+                    ? "AI taslağını, gerçek execution kararından ayrı tutun."
+                    : "Keep the AI draft separate from the actual execution decision.")
+            </h2>
+        </div>
+
+        <div class="growth-uc-flow-wrap mb-4">
+            <div class="growth-uc-flow">
+                <span class="growth-uc-flow-node">CUSTOMER / PRODUCT / OPPORTUNITY CONTEXT</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">PIKA PILOT</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">DRAFT</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">HUMAN DECISION</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">AUDIENCE</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">CAMPAIGN / JOURNEY</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">CONSENT</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">EMAIL / SMS / WHATSAPP</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">MEASUREMENT</span>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <p class="text-secondary text-center mb-3" style="font-size:15px;line-height:1.8;">
+                    @(isTr
+                        ? "Pika Pilot hazırlık ve taslak üretimine yardımcı olur. Gerçek audience Audience Manager'da, campaign veya journey aksiyonu ilgili yönetim katmanında, iletişim uygunluğu Consent Management bağlamında ve kanal execution'ı Email, SMS veya WhatsApp katmanında yönetilir."
+                        : "Pika Pilot assists with preparation and draft generation. The actual audience is managed in Audience Manager, campaign or journey action in its relevant management layer, communication eligibility in Consent Management context and channel execution through Email, SMS or WhatsApp.")
+                </p>
+                <p class="text-center text-muted small mb-0">
+                    @(isTr
+                        ? "AI taslağı, gönderim yetkisi değildir. AI önerisi, kaynak gerçek değildir."
+                        : "An AI draft is not delivery authority. An AI suggestion is not source truth.")
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 05 WHAT THIS USE CASE IS / IS NOT ═══════════════════════════ -->
+<section class="pika-section" style="background:#fff;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="pika-eyebrow">@(isTr ? "AI SINIRI" : "AI BOUNDARY")</span>
+            <h2 class="pika-h2 mx-auto" style="max-width:820px;">
+                @(isTr
+                    ? "Pika Pilot'ı, yardımcı co-pilot sınırında değerlendirin."
+                    : "Evaluate Pika Pilot within its assistive co-pilot boundary.")
+            </h2>
+        </div>
+
+        <div class="growth-uc-boundary-grid mb-5">
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Pika Pilot ≠ müşteri intelligence motoru" : "Pika Pilot ≠ customer-intelligence engine")</span>
+            </div>
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Pika Pilot ≠ ticari fırsatın kaynak gerçeği" : "Pika Pilot ≠ source truth for the commercial opportunity")</span>
+            </div>
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Pika Pilot ≠ autonomous marketing agent" : "Pika Pilot ≠ autonomous marketing agent")</span>
+            </div>
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Pika Pilot ≠ bağımsız campaign sender" : "Pika Pilot ≠ independent campaign sender")</span>
+            </div>
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Pika Pilot ≠ genel amaçlı enterprise AI governance platformu" : "Pika Pilot ≠ general-purpose enterprise AI-governance platform")</span>
+            </div>
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Pika Pilot ≠ kampanya sonucu garantisi" : "Pika Pilot ≠ campaign-outcome guarantee")</span>
+            </div>
+        </div>
+
+        <div class="text-center mx-auto" style="max-width:700px;">
+            <p class="text-muted fst-italic mb-0" style="font-size:15px;line-height:1.8;">
+                @(isTr
+                    ? "Pika Pilot'ın değeri, kararı insandan almak değil, hesaplanmış bağlamla kampanya hazırlığını desteklemektir."
+                    : "Pika Pilot's value is not taking the decision away from the human. It is supporting campaign preparation with calculated context.")
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ AI PRIVACY QUALIFIER ═══════════════════════════ -->
+<section class="pika-section" style="background:#f4f7ed;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <span class="pika-eyebrow">@(isTr ? "AI & VERİ SINIRI" : "AI & DATA BOUNDARY")</span>
+                <p class="mt-3 mb-3 text-secondary" style="font-size:15px;line-height:1.8;">
+                    @(isTr
+                        ? "Dahili ürün dokümantasyonu, doğrudan kişisel tanımlayıcıların LLM prompt bağlamından hariç tutulmasının hedeflendiği anonymized-parameter AI sınırını tarif eder; C33 bunu mutlak bir Zero-PII garantisi olarak sunmaz."
+                        : "Internal product documentation describes an anonymized-parameter AI boundary where direct personal identifiers are intended to be excluded from LLM prompt context; C33 does not present this as an absolute Zero-PII guarantee.")
+                </p>
+                <p class="text-muted small fst-italic mb-0">
+                    @(isTr
+                        ? "Bu konu, AI kullanım sınırı ve veri mimarisi bağlamında ayrıca değerlendirilmelidir."
+                        : "This area should be evaluated separately within AI-usage and data-architecture context.")
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 06 RELATED PIKA LAYERS & USE CASES ═══════════════════════════ -->
+<section class="pika-section" style="background:#fff;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="pika-h2 mx-auto" style="max-width:820px;">
+                @(isTr
+                    ? "İlgili Pika Katmanları ve Kullanım Senaryoları"
+                    : "Related Pika Layers & Use Cases")
+            </h2>
+        </div>
+
+        <div class="growth-uc-related-pills justify-content-center mb-5">
+            <a href="@(isTr ? "/urunler/ai-kampanya-asistani" : "/en/products/ai-campaign-assistant")" class="growth-uc-pill">
+                <i class="ri-magic-line"></i> Pika Pilot
+            </a>
+            <a href="@(isTr ? "/platform/customer-intelligence" : "/en/platform/customer-intelligence")" class="growth-uc-pill">
+                <i class="ri-parent-line"></i> Customer Intelligence
+            </a>
+            <a href="@(isTr ? "/platform/product-intelligence" : "/en/platform/product-intelligence")" class="growth-uc-pill">
+                <i class="ri-price-tag-3-line"></i> Product Intelligence
+            </a>
+            <a href="@(isTr ? "/platform/gunun-firsatlari" : "/en/platform/opportunities")" class="growth-uc-pill">
+                <i class="ri-lightbulb-line"></i> @(isTr ? "Günün Fırsatları" : "Daily Opportunities")
+            </a>
+            <a href="@(isTr ? "/cozumler/audience-manager" : "/en/solutions/audience-manager")" class="growth-uc-pill">
+                <i class="ri-group-line"></i> Audience Manager
+            </a>
+            <a href="@(isTr ? "/cozumler/campaign-manager" : "/en/solutions/campaign-manager")" class="growth-uc-pill">
+                <i class="ri-megaphone-line"></i> Campaign Manager
+            </a>
+            <a href="@(isTr ? "/cozumler/journey-manager" : "/en/solutions/journey-manager")" class="growth-uc-pill">
+                <i class="ri-route-line"></i> Journey Manager
+            </a>
+            <a href="@(isTr ? "/cozumler/consent-management" : "/en/solutions/consent-management")" class="growth-uc-pill">
+                <i class="ri-shield-check-line"></i> Consent Management
+            </a>
+            <a href="@(isTr ? "/guvenlik-ve-gizlilik" : "/en/security-and-privacy")" class="growth-uc-pill">
+                <i class="ri-lock-line"></i> @(isTr ? "Güvenlik ve Gizlilik" : "Security & Privacy")
+            </a>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-4">
+                <a href="@(isTr ? "/kullanim-senaryolari/omnichannel-orkestrasyon" : "/en/use-cases/omnichannel-orchestration")" class="growth-uc-card-link">
+                    <h3 class="h5 fw-bold mb-0">@(isTr ? "Omnichannel Orkestrasyon" : "Omnichannel Orchestration")</h3>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="@(isTr ? "/kullanim-senaryolari" : "/en/use-cases")" class="growth-uc-card-link">
+                    <h3 class="h5 fw-bold mb-0">@(isTr ? "Tüm Kullanım Senaryoları" : "All Use Cases")</h3>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 07 FAQ ═══════════════════════════ -->
+<section class="pika-section" style="background:#f4f7ed;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="pika-h2">@(isTr ? "Sıkça Sorulan Sorular" : "Frequently Asked Questions")</h2>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="growth-uc-faq-list">
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Pika Pilot müşterinin kim olduğunu ve ticari fırsatı AI ile mi belirler?" : "Does Pika Pilot use AI to determine who the customer is or whether a commercial opportunity exists?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "Hayır. Müşteri, ürün ve opportunity bağlamı Pika'nın ilgili intelligence ve karar katmanlarından gelir. Pika Pilot bu mevcut bağlamı kampanya hazırlığında kullanmaya yardımcı olur."
+                                : "No. Customer, product and opportunity context comes from Pika's relevant intelligence and decision layers. Pika Pilot helps use that existing context during campaign preparation.")
+                        </p>
+                    </details>
+
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Pika Pilot kampanyayı kendi başına gönderir mi?" : "Does Pika Pilot send campaigns independently?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "Hayır. Pika Pilot autonomous campaign sender değildir. AI destekli çıktı taslaktır ve gerçek aksiyon ilgili audience, Campaign/Journey, consent ve channel katmanlarında kullanıcı kontrolüyle yönetilir."
+                                : "No. Pika Pilot is not an autonomous campaign sender. AI-assisted output is a draft, while actual action is managed under user control through the relevant audience, Campaign/Journey, consent and channel layers.")
+                        </p>
+                    </details>
+
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Pika Pilot hangi çıktılara yardımcı olabilir?" : "Which outputs can Pika Pilot help prepare?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "Mevcut ürün bağlamında hedef kitle kriteri taslağı, kanal yaklaşımı, mesaj varyantları ve kampanya veya Email içeriği taslağı gibi hazırlık çıktılarında yardımcı olabilir."
+                                : "Within current product context it can help with draft audience criteria, channel approach, message variants and campaign or Email content drafts.")
+                        </p>
+                    </details>
+
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Customer Value Score veya satın alma ritmini generative AI mı hesaplar?" : "Does generative AI calculate Customer Value Score or purchase rhythm?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "C33 böyle bir iddia yapmaz. Customer Value Score gibi deterministic skorlar ve ilgili intelligence bağlamları Pika'nın hesaplama katmanlarında oluşturulur; Pika Pilot bunları kaynak bağlam olarak kullanabilir."
+                                : "C33 makes no such claim. Deterministic scores such as Customer Value Score and relevant intelligence context are produced by Pika's calculation layers; Pika Pilot can use them as source context.")
+                        </p>
+                    </details>
+
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Pika Pilot için Zero-PII garantisi var mı?" : "Does Pika Pilot provide a Zero-PII guarantee?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "C33 mutlak Zero-PII garantisi vermez. Dahili ürün dokümantasyonu doğrudan kişisel tanımlayıcıların LLM prompt bağlamından hariç tutulmasının hedeflendiği anonymized-parameter sınırı tarif eder."
+                                : "C33 does not provide an absolute Zero-PII guarantee. Internal product documentation describes an anonymized-parameter boundary where direct personal identifiers are intended to be excluded from LLM prompt context.")
+                        </p>
+                    </details>
+
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "AI kullanmak kampanya sonucunu garanti eder mi?" : "Does using AI guarantee campaign results?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "Hayır. AI destekli taslak conversion, satış, revenue veya kampanya sonucu garantisi değildir."
+                                : "No. An AI-assisted draft does not guarantee conversion, sales, revenue or campaign outcomes.")
+                        </p>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 08 FINAL CTA ═══════════════════════════ -->
+<section class="pika-section" style="background:#fff;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="growth-uc-cta-card">
+                    <span class="badge mb-3" style="background:#b0cb7430;color:#cee1ab;border:1px solid #b1ca6c40;font-size:12px;letter-spacing:1px;">
+                        @(isTr ? "PAZARLAMADA AI YÖNETİŞİMİ" : "MARKETING AI GOVERNANCE")
+                    </span>
+                    <h2 class="h1 fw-bold text-white mb-3">
+                        @(isTr
+                            ? "Kaynak gerçeği koruyun. AI'ı taslak üretiminde kullanın. Nihai kararı insan kontrolünde tutun."
+                            : "Preserve source truth. Use AI for draft preparation. Keep the final decision under human control.")
+                    </h2>
+                    <p class="text-white-50 mx-auto mb-4" style="max-width:720px;font-size:16px;line-height:1.8;">
+                        @(isTr
+                            ? "Pika Pilot'ın hesaplanmış müşteri, ürün ve fırsat bağlamını kampanya hazırlığında nasıl kullandığını ve AI destekli taslağı kontrollü aksiyondan nasıl ayırdığını kendi kullanım bağlamınız üzerinden değerlendirin."
+                            : "Evaluate how Pika Pilot uses calculated customer, product and opportunity context during campaign preparation and keeps AI-assisted drafts separate from controlled execution within your own usage context.")
+                    </p>
+                    <div class="d-flex flex-wrap justify-content-center gap-3">
+                        <a href="@(isTr ? "/demo-talebi" : "/en/demo-request")" class="btn pika-btn-primary">
+                            @(isTr ? "Demo Talep Et" : "Request a Demo") ↗
+                        </a>
+                        <a href="@(isTr ? "/urunler/ai-kampanya-asistani" : "/en/products/ai-campaign-assistant")" class="btn pika-btn-outline" style="border-color:#cee1ab;color:#cee1ab;">
+                            @(isTr ? "Pika Pilot'ı Keşfedin" : "Explore Pika Pilot") →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,455 @@
+@{
+    var culture = (ViewData["culture"] as string ?? ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").ToLowerInvariant();
+    var isTr = culture == "tr";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/pika-growth-usecases.css" asp-append-version="true" />
+}
+
+<!-- ═══════════════════════════ 01 HERO ═══════════════════════════ -->
+<section class="inner-hero">
+    <div class="inner-atmosphere" aria-hidden="true"><span></span><span></span></div>
+    <div class="container inner-hero-grid">
+        <div class="inner-intro">
+            <nav class="inner-breadcrumb" aria-label="@(isTr ? "Sayfa yolu" : "Breadcrumb")">
+                <a href="@(isTr ? "/" : "/en/")">Pika</a>
+                <span>/</span>
+                <a href="@(isTr ? "/kullanim-senaryolari" : "/en/use-cases")">@(isTr ? "Kullanım Senaryoları" : "Use Cases")</a>
+                <span>/</span>
+                <span>@(isTr ? "Veri Aktarımı" : "Data Onboarding")</span>
+            </nav>
+            <div class="inner-eyebrow">
+                <span></span>
+                @(isTr ? "KULLANIM SENARYOSU" : "USE CASE")
+            </div>
+            <h1>
+                @(isTr
+                    ? "Müşteri, ürün ve işlem verisini Pika'nın karar zincirine kontrollü biçimde taşıyın."
+                    : "Bring customer, product and transaction data into Pika's decision chain under control.")
+            </h1>
+            <p>
+                @(isTr
+                    ? "Pika, müşteri, ürün ve işlem verisinin Excel, CSV veya asenkron REST Ingestion API üzerinden platforma alınmasını destekleyerek sonraki intelligence ve karar katmanları için veri temelinin oluşturulmasına yardımcı olur."
+                    : "Pika supports bringing customer, product and transaction data into the platform through Excel, CSV or the asynchronous REST Ingestion API to help establish the data foundation for downstream intelligence and decision layers.")
+            </p>
+            <p class="text-secondary" style="font-size:15px;line-height:1.75;margin-top:-10px;margin-bottom:28px;">
+                @(isTr
+                    ? "Amaç her kaynak sistem için hazır bir connector varmış gibi davranmak değil; kullanılacak veriyi doğrulanmış Pika aktarım yolları ve veri kontratı üzerinden platforma taşımaktır."
+                    : "The objective is not to imply a ready-made connector for every source system, but to bring usable data into the platform through Pika's confirmed ingestion paths and data contract.")
+            </p>
+            <div class="inner-actions">
+                <a class="inner-primary" href="@(isTr ? "/demo-talebi" : "/en/demo-request")">
+                    @(isTr ? "Demo Talep Et" : "Request a Demo") ↗
+                </a>
+                <a class="inner-secondary" href="@(isTr ? "/entegrasyonlar" : "/en/integrations")">
+                    @(isTr ? "Entegrasyonları İnceleyin" : "Explore Integrations") →
+                </a>
+            </div>
+        </div>
+
+        <div class="inner-scene" aria-hidden="true">
+            <div class="growth-uc-hero-visual">
+                <div class="growth-uc-pipeline">
+                    <div class="growth-uc-node">
+                        <span>@(isTr ? "KAYNAK VERİ" : "SOURCE DATA")</span>
+                        <i class="ri-database-2-line"></i>
+                    </div>
+                    <div class="growth-uc-arrow">↓</div>
+                    <div class="growth-uc-node">
+                        <span>EXCEL / CSV</span>
+                        <i class="ri-file-excel-2-line"></i>
+                    </div>
+                    <div class="growth-uc-arrow">↓</div>
+                    <div class="growth-uc-node">
+                        <span>REST API</span>
+                        <i class="ri-code-s-slash-line"></i>
+                    </div>
+                    <div class="growth-uc-arrow">↓</div>
+                    <div class="growth-uc-node growth-uc-node--accent">
+                        <span>@(isTr ? "MÜŞTERİ" : "CUSTOMER")</span>
+                        <i class="ri-user-settings-line"></i>
+                    </div>
+                    <div class="growth-uc-arrow">↓</div>
+                    <div class="growth-uc-node">
+                        <span>@(isTr ? "ÜRÜN" : "PRODUCT")</span>
+                        <i class="ri-price-tag-3-line"></i>
+                    </div>
+                    <div class="growth-uc-arrow">↓</div>
+                    <div class="growth-uc-node">
+                        <span>@(isTr ? "İŞLEM" : "TRANSACTION")</span>
+                        <i class="ri-shopping-cart-2-line"></i>
+                    </div>
+                    <div class="growth-uc-arrow">↓</div>
+                    <div class="growth-uc-node">
+                        <span>PIKA</span>
+                        <i class="ri-dashboard-line"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 02 DIRECT ANSWER ═══════════════════════════ -->
+<section class="pika-section" style="background:#f4f7ed;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="growth-uc-direct-answer">
+                    <span class="pika-eyebrow">@(isTr ? "KISA CEVAP" : "THE SHORT ANSWER")</span>
+                    <h2 class="pika-h2 mt-2 mb-3">
+                        @(isTr ? "Pika'ya veri nasıl aktarılır?" : "How does data enter Pika?")
+                    </h2>
+                    <p class="text-secondary mb-3" style="font-size:16px;line-height:1.8;">
+                        @(isTr
+                            ? "Pika'nın doğrulanmış veri giriş yolları Excel/CSV batch import akışları ve /api/v1/ingest/ altında çalışan asenkron REST Ingestion API'dir."
+                            : "Pika's confirmed ingestion paths are Excel/CSV batch-import flows and the asynchronous REST Ingestion API under /api/v1/ingest/.")
+                    </p>
+                    <p class="text-secondary mb-3" style="font-size:16px;line-height:1.8;">
+                        @(isTr
+                            ? "Bu aktarım yolları müşteri, ürün ve işlem verisini sonraki Customer Intelligence, Product Intelligence ve karar katmanlarının kullanabileceği veri bağlamına taşımak için kullanılır."
+                            : "These ingestion paths bring customer, product and transaction data into a context that downstream Customer Intelligence, Product Intelligence and decision layers can use.")
+                    </p>
+                    <div class="p-3 mb-3" style="background:#edf4e0;border-left:4px solid #7a9845;border-radius:4px;">
+                        <strong class="d-block text-dark" style="font-size:14px;">
+                            @(isTr
+                                ? "Entegrasyon katmanı müşteriyi analiz etmez, ticari fırsatı üretmez ve kampanyayı göndermez."
+                                : "The integration layer does not analyze the customer, create the commercial opportunity or send the campaign.")
+                        </strong>
+                    </div>
+                    <p class="small text-muted mb-0 font-monospace">
+                        @(isTr
+                            ? "Veri → ingestion → intelligence → fırsat / karar → kontrollü aksiyon."
+                            : "Data → ingestion → intelligence → opportunity / decision → controlled action.")
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 03 HOW CONTEXT WORKS ═══════════════════════════ -->
+<section class="pika-section" style="background:#fff;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="pika-eyebrow">@(isTr ? "VERİ GİRİŞİ" : "DATA INTAKE")</span>
+            <h2 class="pika-h2 mx-auto" style="max-width:820px;">
+                @(isTr
+                    ? "Aktarım yolunu, kaynak sistem ve veri kapsamına göre değerlendirin."
+                    : "Evaluate the ingestion path against source-system and data scope.")
+            </h2>
+        </div>
+
+        <div class="growth-uc-step-grid mb-5">
+            <div class="growth-uc-step-card">
+                <span class="growth-uc-step-badge">01</span>
+                <h3 class="h5 fw-bold mb-2">@(isTr ? "Veri Alanı" : "Data Domain")</h3>
+                <p class="text-secondary mb-0" style="font-size:14px;line-height:1.75;">
+                    @(isTr
+                        ? "Onboarding kapsamı müşteri, ürün ve işlem verisinin hangi alanlarla ve hangi kaynak sistemden geleceğinin belirlenmesiyle başlar."
+                        : "Onboarding begins by defining which customer, product and transaction fields are required and which source system provides them.")
+                </p>
+            </div>
+            <div class="growth-uc-step-card">
+                <span class="growth-uc-step-badge">02</span>
+                <h3 class="h5 fw-bold mb-2">Excel / CSV</h3>
+                <p class="text-secondary mb-0" style="font-size:14px;line-height:1.75;">
+                    @(isTr
+                        ? "Batch aktarım senaryolarında Excel (.xlsx) veya CSV dosyaları ve mevcut column-mapping akışı kullanılabilir."
+                        : "Batch scenarios can use Excel (.xlsx) or CSV files with the available column-mapping flow.")
+                </p>
+            </div>
+            <div class="growth-uc-step-card">
+                <span class="growth-uc-step-badge">03</span>
+                <h3 class="h5 fw-bold mb-2">REST Ingestion API</h3>
+                <p class="text-secondary mb-0" style="font-size:14px;line-height:1.75;">
+                    @(isTr
+                        ? "Sistemsel veri aktarımında /api/v1/ingest/ asenkron ingestion endpoint'i kullanılabilir ve kabul edilen istek 202 Accepted yanıtıyla işleme alınır."
+                        : "System-to-system transfer can use the asynchronous /api/v1/ingest/ endpoint, where an accepted request enters processing with a 202 Accepted response.")
+                </p>
+            </div>
+            <div class="growth-uc-step-card">
+                <span class="growth-uc-step-badge">04</span>
+                <h3 class="h5 fw-bold mb-2">Idempotency</h3>
+                <p class="text-secondary mb-0" style="font-size:14px;line-height:1.75;">
+                    @(isTr
+                        ? "REST ingestion kontratındaki X-Idempotency-Key, aynı isteğin yinelenmesi durumunda duplicate ingestion riskini kontrol etmeye yardımcı olan kontrat korumasıdır."
+                        : "The X-Idempotency-Key in the REST ingestion contract helps control duplicate-ingestion risk when the same request is repeated.")
+                </p>
+            </div>
+        </div>
+
+        <div class="text-center mx-auto" style="max-width:700px;">
+            <p class="text-muted fst-italic mb-0" style="font-size:15px;line-height:1.8;">
+                @(isTr
+                    ? "Data onboarding, tek bir dosya yükleme ekranından ibaret değildir. Kaynak, veri kontratı ve ingestion yöntemi birlikte değerlendirilir."
+                    : "Data onboarding is more than one file-upload screen. Source, data contract and ingestion method are evaluated together.")
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 04 DATA TO DOWNSTREAM ═══════════════════════════ -->
+<section class="pika-section" style="background:#f9fbf6;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="pika-eyebrow">@(isTr ? "VERİDEN KARARA" : "FROM DATA TO DECISION")</span>
+            <h2 class="pika-h2 mx-auto" style="max-width:820px;">
+                @(isTr
+                    ? "Veriyi platforma alın. Analitik sorumluluğu doğru katmana bırakın."
+                    : "Bring data into the platform. Keep analytical responsibility in the correct layer.")
+            </h2>
+        </div>
+
+        <div class="growth-uc-flow-wrap mb-4">
+            <div class="growth-uc-flow">
+                <span class="growth-uc-flow-node">CUSTOMER / PRODUCT / TRANSACTION</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">EXCEL / CSV / REST API</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">INGESTION</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">CUSTOMER INTELLIGENCE / PRODUCT INTELLIGENCE</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">OPPORTUNITY / AUDIENCE</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">CAMPAIGN / JOURNEY</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">CONTROLLED ACTION</span>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <p class="text-secondary text-center mb-3" style="font-size:15px;line-height:1.8;">
+                    @(isTr
+                        ? "Data onboarding yalnızca Pika'nın veri giriş temelini oluşturur. Müşteri değerlendirmesi Customer Intelligence, ürün anlamlandırma Product Intelligence, opportunity ve audience kararları ise ilgili sonraki ürün katmanlarında yönetilir."
+                        : "Data onboarding establishes Pika's data-entry foundation. Customer evaluation remains in Customer Intelligence, product meaning in Product Intelligence, while opportunity and audience decisions remain in their relevant downstream product layers.")
+                </p>
+                <p class="text-center text-muted small mb-0">
+                    @(isTr
+                        ? "Veri ingestion, intelligence sonucunun ve pazarlama kararının yerine geçmez."
+                        : "Data ingestion does not replace intelligence results or marketing decisions.")
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 05 WHAT THIS USE CASE IS / IS NOT ═══════════════════════════ -->
+<section class="pika-section" style="background:#fff;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="pika-eyebrow">@(isTr ? "ÜRÜN SINIRI" : "PRODUCT BOUNDARY")</span>
+            <h2 class="pika-h2 mx-auto" style="max-width:820px;">
+                @(isTr
+                    ? "Data onboarding'i, doğru entegrasyon sınırında değerlendirin."
+                    : "Evaluate data onboarding within the correct integration boundary.")
+            </h2>
+        </div>
+
+        <div class="growth-uc-boundary-grid mb-5">
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Data Onboarding ≠ her sistem için hazır native connector" : "Data Onboarding ≠ ready-made native connector for every system")</span>
+            </div>
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Data Onboarding ≠ real-time streaming garantisi" : "Data Onboarding ≠ real-time streaming guarantee")</span>
+            </div>
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Data Onboarding ≠ ERP veya CRM yerine geçen ürün" : "Data Onboarding ≠ replacement ERP or CRM")</span>
+            </div>
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Data Onboarding ≠ otomatik intelligence sonucu" : "Data Onboarding ≠ automatic intelligence result")</span>
+            </div>
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Data Onboarding ≠ otomatik campaign kararı" : "Data Onboarding ≠ automatic campaign decision")</span>
+            </div>
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Data Onboarding ≠ her veri modelinin otomatik temizlenmesi ve dönüştürülmesi garantisi" : "Data Onboarding ≠ guaranteed automatic cleansing and transformation of every data model")</span>
+            </div>
+        </div>
+
+        <div class="text-center mx-auto" style="max-width:700px;">
+            <p class="text-muted fst-italic mb-0" style="font-size:15px;line-height:1.8;">
+                @(isTr
+                    ? "C32'nin görevi, veriyi Pika'nın karar zincirine hangi doğrulanmış yollarla taşıyabileceğinizi açıklamaktır."
+                    : "C32 explains which confirmed ingestion paths can bring data into Pika's decision chain.")
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 06 RELATED PIKA LAYERS & USE CASES ═══════════════════════════ -->
+<section class="pika-section" style="background:#f4f7ed;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="pika-h2 mx-auto" style="max-width:820px;">
+                @(isTr
+                    ? "İlgili Pika Katmanları ve Kullanım Senaryoları"
+                    : "Related Pika Layers & Use Cases")
+            </h2>
+        </div>
+
+        <div class="growth-uc-related-pills justify-content-center mb-5">
+            <a href="@(isTr ? "/entegrasyonlar" : "/en/integrations")" class="growth-uc-pill">
+                <i class="ri-links-line"></i> @(isTr ? "Entegrasyonlar" : "Integrations")
+            </a>
+            <a href="@(isTr ? "/platform/customer-intelligence" : "/en/platform/customer-intelligence")" class="growth-uc-pill">
+                <i class="ri-parent-line"></i> Customer Intelligence
+            </a>
+            <a href="@(isTr ? "/platform/product-intelligence" : "/en/platform/product-intelligence")" class="growth-uc-pill">
+                <i class="ri-price-tag-3-line"></i> Product Intelligence
+            </a>
+            <a href="@(isTr ? "/platform/pika-360" : "/en/platform/pika-360")" class="growth-uc-pill">
+                <i class="ri-user-search-line"></i> Pika 360
+            </a>
+            <a href="@(isTr ? "/platform/gunun-firsatlari" : "/en/platform/opportunities")" class="growth-uc-pill">
+                <i class="ri-lightbulb-line"></i> @(isTr ? "Günün Fırsatları" : "Daily Opportunities")
+            </a>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-3">
+                <a href="@(isTr ? "/kullanim-senaryolari/musteri-segmentasyonu" : "/en/use-cases/customer-segmentation")" class="growth-uc-card-link">
+                    <h3 class="h5 fw-bold mb-0">@(isTr ? "Müşteri Segmentasyonu" : "Customer Segmentation")</h3>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="@(isTr ? "/kullanim-senaryolari/musteri-degeri" : "/en/use-cases/customer-value")" class="growth-uc-card-link">
+                    <h3 class="h5 fw-bold mb-0">@(isTr ? "Müşteri Değeri" : "Customer Value")</h3>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="@(isTr ? "/kullanim-senaryolari/perakende-e-ticaret" : "/en/use-cases/retail-ecommerce")" class="growth-uc-card-link">
+                    <h3 class="h5 fw-bold mb-0">@(isTr ? "Perakende ve E-ticaret" : "Retail & E-commerce")</h3>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="@(isTr ? "/kullanim-senaryolari" : "/en/use-cases")" class="growth-uc-card-link">
+                    <h3 class="h5 fw-bold mb-0">@(isTr ? "Tüm Kullanım Senaryoları" : "All Use Cases")</h3>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 07 FAQ ═══════════════════════════ -->
+<section class="pika-section" style="background:#fff;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="pika-h2">@(isTr ? "Sıkça Sorulan Sorular" : "Frequently Asked Questions")</h2>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="growth-uc-faq-list">
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Pika'ya hangi temel veri alanları aktarılabilir?" : "Which core data domains can be brought into Pika?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "C32'nin doğrulanmış temel veri bağlamı müşteri, ürün ve işlem verisidir. Gerçek alan seti kullanım senaryosu ve kaynak sistem kontratına göre değerlendirilir."
+                                : "C32's confirmed core data context is customer, product and transaction data. The actual field set depends on the usage scenario and source-system contract.")
+                        </p>
+                    </details>
+
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Pika Excel ve CSV ile veri aktarımını destekler mi?" : "Does Pika support Excel and CSV data onboarding?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "Evet. Dokümante edilmiş batch import akışları Excel (.xlsx) ve CSV dosyalarını ve column-mapping yaklaşımını kapsar."
+                                : "Yes. Documented batch-import flows cover Excel (.xlsx) and CSV files with a column-mapping approach.")
+                        </p>
+                    </details>
+
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Pika'nın REST ingestion yöntemi nasıl çalışır?" : "How does Pika's REST ingestion work?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "Dokümante edilmiş /api/v1/ingest/ endpoint'i asenkron çalışır ve kabul edilen isteği 202 Accepted yanıtıyla işleme alır."
+                                : "The documented /api/v1/ingest/ endpoint operates asynchronously and accepts a request for processing with a 202 Accepted response.")
+                        </p>
+                    </details>
+
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "X-Idempotency-Key ne için kullanılır?" : "What is X-Idempotency-Key used for?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "REST ingestion kontratında yinelenen aynı isteğin duplicate ingestion riskini kontrol etmeye yardımcı olan idempotency korumasıdır."
+                                : "In the REST ingestion contract it provides idempotency protection that helps control duplicate-ingestion risk when the same request is repeated.")
+                        </p>
+                    </details>
+
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Pika her ERP, CRM veya e-ticaret sistemi için hazır native connector sunar mı?" : "Does Pika provide a ready-made native connector for every ERP, CRM or e-commerce system?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "C32 böyle bir garanti vermez. Gerçek source-system bağlantısı mevcut veri kontratı, REST API veya dosya aktarım yöntemi üzerinden ayrıca değerlendirilir."
+                                : "C32 makes no such guarantee. Actual source-system connectivity is evaluated against the data contract, REST API or file-import path.")
+                        </p>
+                    </details>
+
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Veri Pika'ya geldiğinde kampanya otomatik başlar mı?" : "Does a campaign automatically start when data enters Pika?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "Hayır. Data ingestion, intelligence, opportunity, audience ve Campaign/Journey kararları ayrı ürün sorumluluklarıdır."
+                                : "No. Data ingestion, intelligence, opportunity, audience and Campaign/Journey decisions remain separate product responsibilities.")
+                        </p>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 08 FINAL CTA ═══════════════════════════ -->
+<section class="pika-section" style="background:#f4f7ed;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="growth-uc-cta-card">
+                    <span class="badge mb-3" style="background:#b0cb7430;color:#cee1ab;border:1px solid #b1ca6c40;font-size:12px;letter-spacing:1px;">
+                        @(isTr ? "VERİ AKTARIMI" : "DATA ONBOARDING")
+                    </span>
+                    <h2 class="h1 fw-bold text-white mb-3">
+                        @(isTr
+                            ? "Veri kapsamını belirleyin. Doğru ingestion yolunu seçin. Pika'nın intelligence temelini kurun."
+                            : "Define the data scope. Choose the right ingestion path. Establish Pika's intelligence foundation.")
+                    </h2>
+                    <p class="text-white-50 mx-auto mb-4" style="max-width:720px;font-size:16px;line-height:1.8;">
+                        @(isTr
+                            ? "Müşteri, ürün ve işlem verinizin Excel, CSV veya REST API üzerinden Pika'ya nasıl aktarılabileceğini kendi kaynak sisteminiz ve kullanım senaryonuz üzerinden değerlendirin."
+                            : "Evaluate how your customer, product and transaction data can enter Pika through Excel, CSV or REST API using your own source system and usage scenario.")
+                    </p>
+                    <div class="d-flex flex-wrap justify-content-center gap-3">
+                        <a href="@(isTr ? "/demo-talebi" : "/en/demo-request")" class="btn pika-btn-primary">
+                            @(isTr ? "Demo Talep Et" : "Request a Demo") ↗
+                        </a>
+                        <a href="@(isTr ? "/entegrasyonlar" : "/en/integrations")" class="btn pika-btn-outline" style="border-color:#cee1ab;color:#cee1ab;">
+                            @(isTr ? "Entegrasyonları İnceleyin" : "Explore Integrations") →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -7,12 +7,26 @@
 Pika'nın başlangıç noktası mesaj göndermek değil, anlamaktır.
 Doğru Anda (Right Moment) ilkesiyle veriden ölçüme uzanan 6 adımlı karar zincirini işletir:
 
-1. **Veri ve Entegrasyon**: Müşteri, ürün ve satış hareketlerinin Excel, CSV ve Ingestion API ile alınması ve doğrulanması.
-2. **Müşteri ve Ürün Zekâsı**: Pika 360 müşteri profili ve Product Intelligence ile ürün rollerinin (Need Group, Product Role) anlamlandırılması.
-3. **Fırsat ve Karar**: Günün Fırsatları, tekrar satın alma ritmi, cross-sell/sepet birlikteliği ve Next Best Action sinyalleri.
-4. **Aksiyon ve Otomasyon**: Audience Manager, Campaign Manager, Journey Manager ve Content Studio ile hedeflenen iletişimler.
-5. **Kanallar**: E-posta, SMS ve WhatsApp üzerinden izin/IYS uyumlu gönderimler.
-6. **Ölçümleme ve BI**: Kampanya sonuçları, mağaza/kanal performansı ve öğrenme döngüsü.
+1. **Veri ve Entegrasyon**: Müşteri, ürün ve işlem verisinin Excel, CSV veya asenkron REST Ingestion API üzerinden Pika'ya alınması.
+2. **Müşteri ve Ürün Zekâsı**: Customer Intelligence, Pika 360 ve Product Intelligence ile müşteri ve ürün bağlamının anlamlandırılması.
+3. **Fırsat ve Karar**: Günün Fırsatları ile tekrar satın alma, cross-sell ve win-back fırsatlarının; Customer Value Score gibi hesaplanmış müşteri bağlamlarının değerlendirilmesi.
+4. **Audience, Campaign ve Journey**: Açık audience kuralları ile hedef kitlenin tanımlanması; campaign veya çok adımlı journey aksiyonlarının yönetilmesi.
+5. **Kontrollü Kanal Execution**: İlgili consent ve kanal uygunluğu bağlamında Email, SMS ve WhatsApp iletişiminin yürütülmesi.
+6. **Ölçüm ve Öğrenme**: Campaign, channel, delivery ve ilişkilendirilebilir sonuçların Analytics & Reporting bağlamında değerlendirilmesi.
+
+**AI Sınırı**: Pika Pilot, Pika'nın hesapladığı müşteri, ürün ve fırsat bağlamını kampanya hazırlığında AI destekli taslak üretimi için kullanır. Kaynak gerçek Pika'nın intelligence ve decision katmanlarından gelir; nihai karar kullanıcıda kalır ve Pika Pilot kampanyayı bağımsız biçimde göndermez.
+
+## Kullanım Senaryoları
+
+- Tekrar Satın Alma: https://pika.tr/kullanim-senaryolari/tekrar-satin-alma
+- Çapraz Satış: https://pika.tr/kullanim-senaryolari/capraz-satis
+- Geri Kazanım: https://pika.tr/kullanim-senaryolari/geri-kazanim
+- Müşteri Segmentasyonu: https://pika.tr/kullanim-senaryolari/musteri-segmentasyonu
+- Müşteri Değeri: https://pika.tr/kullanim-senaryolari/musteri-degeri
+- Omnichannel Orkestrasyon: https://pika.tr/kullanim-senaryolari/omnichannel-orkestrasyon
+- Perakende ve E-ticaret: https://pika.tr/kullanim-senaryolari/perakende-e-ticaret
+- Veri Aktarımı: https://pika.tr/kullanim-senaryolari/veri-aktarimi
+- Pazarlamada AI Yönetişimi: https://pika.tr/kullanim-senaryolari/pazarlama-ai-yonetisimi
 
 ## Temel Bilgi Kaynakları ve Dokümantasyon
 
