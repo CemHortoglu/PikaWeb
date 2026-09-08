@@ -324,6 +324,39 @@ public static class SeoHelper
             "Daily Opportunities"),
     };
 
+    static SeoHelper()
+    {
+        RouteMetadata["Solutions.RepeatPurchaseUseCase"] = new(
+            "/kullanim-senaryolari/tekrar-satin-alma",
+            "/en/use-cases/repeat-purchase",
+            "Tekrar Satın Alma Analizi | Replenishment Fırsatları | Pika",
+            "Repeat Purchase Analysis | Replenishment Opportunities | Pika",
+            "Pika ile müşteri işlem geçmişi ve ürün tüketim ritmini birlikte değerlendirerek tekrar satın alma fırsatlarını görünür hale getirin ve kontrollü pazarlama aksiyonuna bağlayın.",
+            "Use Pika to evaluate customer transaction history and product consumption rhythm, surface repeat-purchase opportunities and connect them to controlled marketing action.",
+            "Tekrar Satın Alma",
+            "Repeat Purchase");
+
+        RouteMetadata["Solutions.CrossSellUseCase"] = new(
+            "/kullanim-senaryolari/capraz-satis",
+            "/en/use-cases/cross-sell",
+            "Çapraz Satış Analizi | Sepet Birlikteliği ve Cross-sell | Pika",
+            "Cross-sell Analysis | Basket Affinity Opportunities | Pika",
+            "Pika ile geçmiş sepet birlikteliklerinden anlamlı ürün ilişkilerini belirleyin, cross-sell fırsatlarını görünür hale getirin ve kontrollü pazarlama aksiyonuna bağlayın.",
+            "Use Pika to identify meaningful product associations from historical baskets, surface cross-sell opportunities and connect them to controlled marketing action.",
+            "Çapraz Satış",
+            "Cross-sell");
+
+        RouteMetadata["Solutions.WinBackUseCase"] = new(
+            "/kullanim-senaryolari/geri-kazanim",
+            "/en/use-cases/win-back",
+            "Geri Kazanım Analizi | Win-back ve Pasifleşme Fırsatları | Pika",
+            "Win-back Analysis | Dormancy & Reactivation Opportunities | Pika",
+            "Pika ile müşterinin hareketsizlik süresini kendi satın alma ritmiyle karşılaştırın, geri kazanım fırsatlarını görünür hale getirin ve kontrollü aksiyon bağlamında değerlendirin.",
+            "Use Pika to compare customer inactivity with individual purchase rhythm, surface win-back opportunities and evaluate them within controlled action context.",
+            "Geri Kazanım",
+            "Win-back");
+    }
+
     public static PageSeoMetadata? GetMetadata(string? controller, string? action)
     {
         if (string.IsNullOrWhiteSpace(controller) || string.IsNullOrWhiteSpace(action))

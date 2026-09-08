@@ -113,5 +113,17 @@ namespace Pika.Controllers
         [HttpGet("/kullanim-senaryolari", Name = "UseCases")]
         [HttpGet("/en/use-cases", Name = "UseCasesEn")]
         public IActionResult UseCases() => View();
+
+        [HttpGet("/kullanim-senaryolari/tekrar-satin-alma", Name = "RepeatPurchaseUseCase")]
+        [HttpGet("/en/use-cases/repeat-purchase", Name = "RepeatPurchaseUseCaseEn")]
+        public IActionResult RepeatPurchaseUseCase() => View();
+
+        [HttpGet("/kullanim-senaryolari/capraz-satis", Name = "CrossSellUseCase")]
+        [HttpGet("/en/use-cases/cross-sell", Name = "CrossSellUseCaseEn")]
+        public IActionResult CrossSellUseCase() => View();
+
+        [HttpGet("/kullanim-senaryolari/geri-kazanim", Name = "WinBackUseCase")]
+        [HttpGet("/en/use-cases/win-back", Name = "WinBackUseCaseEn")]
+        public IActionResult WinBackUseCase() => View();
     }
 }

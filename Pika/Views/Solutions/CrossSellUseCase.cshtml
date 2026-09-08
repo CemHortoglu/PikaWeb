@@ -1,0 +1,466 @@
+@{
+    var culture = (ViewData["culture"] as string ?? ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").ToLowerInvariant();
+    var isTr = culture == "tr";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/pika-growth-usecases.css" asp-append-version="true" />
+}
+
+<!-- ═══════════════════════════ 01 HERO ═══════════════════════════ -->
+<section class="inner-hero">
+    <div class="inner-atmosphere" aria-hidden="true"><span></span><span></span></div>
+    <div class="container inner-hero-grid">
+        <div class="inner-intro">
+            <nav class="inner-breadcrumb" aria-label="@(isTr ? "Sayfa yolu" : "Breadcrumb")">
+                <a href="@(isTr ? "/" : "/en/")">Pika</a>
+                <span>/</span>
+                <a href="@(isTr ? "/kullanim-senaryolari" : "/en/use-cases")">@(isTr ? "Kullanım Senaryoları" : "Use Cases")</a>
+                <span>/</span>
+                <span>@(isTr ? "Çapraz Satış" : "Cross-sell")</span>
+            </nav>
+            <div class="inner-eyebrow">
+                <span></span>
+                @(isTr ? "KULLANIM SENARYOSU — ÇAPRAZ SATIŞ" : "USE CASE — CROSS-SELL")
+            </div>
+            <h1>
+                @(isTr
+                    ? "Geçmiş sepetlerden, birlikte anlamlı olan ürün ilişkilerini görün."
+                    : "Find meaningful product relationships inside historical baskets.")
+            </h1>
+            <p>
+                @(isTr
+                    ? "Pika, geçmiş işlem satırlarındaki ürün birlikteliklerini istatistiksel association mining ile değerlendirerek cross-sell fırsatlarını görünür hale getirebilir."
+                    : "Pika can evaluate product co-purchases in historical transaction lines through statistical association mining to surface cross-sell opportunities.")
+            </p>
+            <p class="text-secondary" style="font-size:15px;line-height:1.75;margin-top:-10px;margin-bottom:28px;">
+                @(isTr
+                    ? "Amaç AI'ın ürün uydurması değil; gerçek satın alma geçmişinde birlikte oluşan anlamlı ürün ilişkilerini ticari fırsat bağlamına taşımaktır."
+                    : "The objective is not for AI to invent products, but to turn meaningful product relationships observed in real purchase history into commercial-opportunity context.")
+            </p>
+            <div class="inner-actions">
+                <a class="inner-primary" href="@(isTr ? "/demo-talebi" : "/en/demo-request")">
+                    @(isTr ? "Demo Talep Et" : "Request a Demo") ↗
+                </a>
+                <a class="inner-secondary" href="@(isTr ? "/platform/product-intelligence" : "/en/platform/product-intelligence")">
+                    @(isTr ? "Product Intelligence'ı Keşfedin" : "Explore Product Intelligence") →
+                </a>
+            </div>
+        </div>
+
+        <div class="inner-scene" aria-hidden="true">
+            <div class="growth-uc-hero-visual">
+                <div class="growth-uc-pipeline">
+                    <div class="growth-uc-node">
+                        <span>@(isTr ? "GEÇMİŞ SEPETLER" : "HISTORICAL BASKETS")</span>
+                        <i class="ri-shopping-basket-line"></i>
+                    </div>
+                    <div class="growth-uc-arrow">↓</div>
+                    <div class="growth-uc-node">
+                        <span>@(isTr ? "ÜRÜN BİRLİKTELİĞİ" : "PRODUCT CO-PURCHASE")</span>
+                        <i class="ri-links-line"></i>
+                    </div>
+                    <div class="growth-uc-arrow">↓</div>
+                    <div class="growth-uc-node growth-uc-node--accent">
+                        <span>@(isTr ? "ASSOCIATION SİNYALİ" : "ASSOCIATION SIGNAL")</span>
+                        <i class="ri-bubble-chart-line"></i>
+                    </div>
+                    <div class="growth-uc-arrow">↓</div>
+                    <div class="growth-uc-node">
+                        <span>@(isTr ? "CROSS-SELL FIRSATI" : "CROSS-SELL OPPORTUNITY")</span>
+                        <i class="ri-lightbulb-line"></i>
+                    </div>
+                    <div class="growth-uc-arrow">↓</div>
+                    <div class="growth-uc-node">
+                        <span>@(isTr ? "KONTROLLÜ AKSİYON" : "CONTROLLED ACTION")</span>
+                        <i class="ri-shield-check-line"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 02 DIRECT ANSWER ═══════════════════════════ -->
+<section class="pika-section" style="background:#f4f7ed;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="growth-uc-direct-answer">
+                    <span class="pika-eyebrow">@(isTr ? "KISA CEVAP" : "THE SHORT ANSWER")</span>
+                    <h2 class="pika-h2 mt-2 mb-3">
+                        @(isTr ? "Pika'da cross-sell analizi nedir?" : "What is cross-sell analysis in Pika?")
+                    </h2>
+                    <p class="text-secondary mb-3" style="font-size:16px;line-height:1.8;">
+                        @(isTr
+                            ? "Cross-sell analizi, geçmiş işlem satırlarında hangi ürünlerin birlikte satın alındığını istatistiksel olarak değerlendirerek anlamlı ürün ilişkilerini görünür hale getiren fırsat yaklaşımıdır."
+                            : "Cross-sell analysis statistically evaluates which products were purchased together in historical transaction lines to make meaningful product relationships visible as opportunity context.")
+                    </p>
+                    <p class="text-secondary mb-3" style="font-size:16px;line-height:1.8;">
+                        @(isTr
+                            ? "Pika'nın dokümante edilmiş Basket Association Engine'i Support ≥ 0.01, Confidence ≥ 0.15 ve Lift > 1.2 eşiklerini kullanır."
+                            : "Pika's documented Basket Association Engine uses Support ≥ 0.01, Confidence ≥ 0.15 and Lift > 1.2 thresholds.")
+                    </p>
+                    <div class="p-3 mb-3" style="background:#edf4e0;border-left:4px solid #7a9845;border-radius:4px;">
+                        <strong class="d-block text-dark" style="font-size:14px;">
+                            @(isTr
+                                ? "Bu yaklaşım black-box AI önerisi değil, geçmiş satın alma verisine dayalı istatistiksel association mining'dir."
+                                : "This is not a black-box AI recommendation. It is statistical association mining grounded in historical purchase data.")
+                        </strong>
+                    </div>
+                    <p class="small text-muted mb-0 font-monospace">
+                        @(isTr
+                            ? "Sepet geçmişi → association sinyali → ticari fırsat → kontrollü aksiyon."
+                            : "Basket history → association signal → commercial opportunity → controlled action.")
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 03 HOW PIKA IDENTIFIES THE OPPORTUNITY ═══════════════════════════ -->
+<section class="pika-section" style="background:#fff;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="pika-eyebrow">@(isTr ? "İLİŞKİ NASIL BULUNUR?" : "HOW THE RELATIONSHIP IS FOUND")</span>
+            <h2 class="pika-h2 mx-auto" style="max-width:820px;">
+                @(isTr
+                    ? "Ürün benzerliğine değil, gerçek sepet birlikteliğine bakın."
+                    : "Look at real basket affinity, not simple product similarity.")
+            </h2>
+        </div>
+
+        <div class="growth-uc-step-grid mb-5">
+            <div class="growth-uc-step-card">
+                <span class="growth-uc-step-badge">01</span>
+                <h3 class="h5 fw-bold mb-2">@(isTr ? "İşlem Satırları" : "Transaction Lines")</h3>
+                <p class="text-secondary mb-0" style="font-size:14px;line-height:1.75;">
+                    @(isTr
+                        ? "Geçmiş siparişlerde aynı sepet içinde oluşan ürün birliktelikleri değerlendirilir."
+                        : "Product co-purchases that occurred inside historical orders are evaluated.")
+                </p>
+            </div>
+            <div class="growth-uc-step-card">
+                <span class="growth-uc-step-badge">02</span>
+                <h3 class="h5 fw-bold mb-2">@(isTr ? "Association Mining" : "Association Mining")</h3>
+                <p class="text-secondary mb-0" style="font-size:14px;line-height:1.75;">
+                    @(isTr
+                        ? "Support, Confidence ve Lift eşikleri kullanılarak istatistiksel olarak anlamlı ilişkiler ayrıştırılır."
+                        : "Support, Confidence and Lift thresholds are used to identify statistically meaningful relationships.")
+                </p>
+            </div>
+            <div class="growth-uc-step-card">
+                <span class="growth-uc-step-badge">03</span>
+                <h3 class="h5 fw-bold mb-2">@(isTr ? "Product Intelligence" : "Product Intelligence")</h3>
+                <p class="text-secondary mb-0" style="font-size:14px;line-height:1.75;">
+                    @(isTr
+                        ? "Ürün ilişkisi Product Intelligence'ın ticari ürün bağlamıyla birlikte değerlendirilebilir."
+                        : "The product relationship can be evaluated together with Product Intelligence commercial-product context.")
+                </p>
+            </div>
+            <div class="growth-uc-step-card">
+                <span class="growth-uc-step-badge">04</span>
+                <h3 class="h5 fw-bold mb-2">@(isTr ? "Cross-sell Fırsatı" : "Cross-sell Opportunity")</h3>
+                <p class="text-secondary mb-0" style="font-size:14px;line-height:1.75;">
+                    @(isTr
+                        ? "Anlamlı association sinyali, ilgili müşteri ve ürün bağlamında değerlendirilebilir cross-sell fırsatına dönüşebilir."
+                        : "A meaningful association signal can become an evaluable cross-sell opportunity within relevant customer and product context.")
+                </p>
+            </div>
+        </div>
+
+        <div class="text-center mx-auto" style="max-width:700px;">
+            <p class="text-muted fst-italic mb-0" style="font-size:15px;line-height:1.8;">
+                @(isTr
+                    ? "Pika, “bu ürünler birbirine benziyor” demekten çok, “bu ürünler gerçek satın alma davranışında anlamlı biçimde birlikte oluşuyor” sorusuna odaklanır."
+                    : "Rather than asking only “are these products similar?” Pika focuses on whether they occur together meaningfully in real purchase behavior.")
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 04 FROM RELATIONSHIP TO ACTION ═══════════════════════════ -->
+<section class="pika-section" style="background:#f9fbf6;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="pika-eyebrow">@(isTr ? "İLİŞKİDEN AKSİYONA" : "FROM RELATIONSHIP TO ACTION")</span>
+            <h2 class="pika-h2 mx-auto" style="max-width:820px;">
+                @(isTr ? "Ürün ilişkisi, müşteri seçimi değildir." : "A product relationship is not customer selection.")
+            </h2>
+        </div>
+
+        <div class="growth-uc-flow-wrap mb-4">
+            <div class="growth-uc-flow">
+                <span class="growth-uc-flow-node">BASKET ASSOCIATION</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">@(isTr ? "ÜRÜN FIRSATI" : "PRODUCT OPPORTUNITY")</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">AUDIENCE</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">@(isTr ? "KULLANICI KARARI" : "USER DECISION")</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">CAMPAIGN / JOURNEY</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">CONSENT</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">EMAIL / SMS / WHATSAPP</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">@(isTr ? "ÖLÇÜM" : "MEASUREMENT")</span>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <p class="text-secondary text-center mb-3" style="font-size:15px;line-height:1.8;">
+                    @(isTr
+                        ? "Basket association hangi ürün ilişkilerinin anlamlı olduğunu gösterir. Gerçek hedef müşteri bağlamı Audience Manager veya ilgili opportunity context ile değerlendirilir; Campaign Manager veya Journey Manager aksiyonu yönetir."
+                        : "Basket association shows which product relationships are meaningful. Actual customer context is evaluated through Audience Manager or relevant opportunity context, while Campaign Manager or Journey Manager manages the action.")
+                </p>
+                <p class="text-center text-muted small mb-0">
+                    @(isTr
+                        ? "Ürün ilişkisi, otomatik olarak her müşteriye öneri yapılacağı anlamına gelmez."
+                        : "A product relationship does not automatically mean every customer should receive a recommendation.")
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 05 WHAT THIS USE CASE IS / IS NOT ═══════════════════════════ -->
+<section class="pika-section" style="background:#fff;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="pika-eyebrow">@(isTr ? "ÜRÜN SINIRI" : "PRODUCT BOUNDARY")</span>
+            <h2 class="pika-h2 mx-auto" style="max-width:820px;">
+                @(isTr
+                    ? "Cross-sell'i, istatistiksel ilişki bağlamında değerlendirin."
+                    : "Evaluate cross-sell as statistical product association.")
+            </h2>
+        </div>
+
+        <div class="growth-uc-boundary-grid mb-5">
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Cross-sell ≠ generative AI ürün önerisi" : "Cross-sell ≠ generative-AI product recommendation")</span>
+            </div>
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Cross-sell ≠ yalnızca katalog benzerliği" : "Cross-sell ≠ catalog similarity alone")</span>
+            </div>
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Cross-sell ≠ otomatik bundle veya fiyatlandırma" : "Cross-sell ≠ automatic bundling or pricing")</span>
+            </div>
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Cross-sell ≠ otomatik hedef kitle seçimi" : "Cross-sell ≠ automatic audience selection")</span>
+            </div>
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Cross-sell ≠ iletişim izni" : "Cross-sell ≠ communication permission")</span>
+            </div>
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Cross-sell ≠ sepet büyümesi veya dönüşüm garantisi" : "Cross-sell ≠ basket-growth or conversion guarantee")</span>
+            </div>
+        </div>
+
+        <div class="text-center mx-auto" style="max-width:700px;">
+            <p class="text-muted fst-italic mb-0" style="font-size:15px;line-height:1.8;">
+                @(isTr
+                    ? "Bu kullanım senaryosunun temeli, gerçek geçmiş işlemlerde ölçülen ürün birlikteliğidir."
+                    : "This use case is grounded in product relationships measured from real historical transactions.")
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 06 RELATED PIKA LAYERS & USE CASES ═══════════════════════════ -->
+<section class="pika-section" style="background:#f4f7ed;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="pika-eyebrow">@(isTr ? "İLGİLİ PIKA KATMANLARI" : "RELATED PIKA LAYERS")</span>
+            <h2 class="pika-h2 mx-auto" style="max-width:820px;">
+                @(isTr
+                    ? "Çapraz satış fırsatı tek bir modülün işi değildir."
+                    : "A cross-sell opportunity is not the work of a single module.")
+            </h2>
+        </div>
+
+        <div class="growth-uc-related-pills justify-content-center mb-5">
+            <a href="@(isTr ? "/platform/product-intelligence" : "/en/platform/product-intelligence")" class="growth-uc-pill">
+                <i class="ri-database-2-line"></i> Product Intelligence
+            </a>
+            <a href="@(isTr ? "/platform/gunun-firsatlari" : "/en/platform/opportunities")" class="growth-uc-pill">
+                <i class="ri-flashlight-line"></i> @(isTr ? "Günün Fırsatları" : "Daily Opportunities")
+            </a>
+            <a href="@(isTr ? "/cozumler/audience-manager" : "/en/solutions/audience-manager")" class="growth-uc-pill">
+                <i class="ri-group-line"></i> Audience Manager
+            </a>
+            <a href="@(isTr ? "/cozumler/campaign-manager" : "/en/solutions/campaign-manager")" class="growth-uc-pill">
+                <i class="ri-megaphone-line"></i> Campaign Manager
+            </a>
+            <a href="@(isTr ? "/cozumler/journey-manager" : "/en/solutions/journey-manager")" class="growth-uc-pill">
+                <i class="ri-route-line"></i> Journey Manager
+            </a>
+            <a href="@(isTr ? "/cozumler/consent-management" : "/en/solutions/consent-management")" class="growth-uc-pill">
+                <i class="ri-shield-check-line"></i> Consent Management
+            </a>
+            <a href="@(isTr ? "/cozumler/analytics-reporting" : "/en/solutions/analytics-reporting")" class="growth-uc-pill">
+                <i class="ri-bar-chart-2-line"></i> Analytics &amp; Reporting
+            </a>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-4">
+                <a href="@(isTr ? "/kullanim-senaryolari/tekrar-satin-alma" : "/en/use-cases/repeat-purchase")" class="growth-uc-card-link">
+                    <span class="badge mb-2" style="background:#edf4e2;color:#64863e;border:1px solid #dce8cb;">@(isTr ? "KULLANIM SENARYOSU" : "USE CASE")</span>
+                    <h3 class="h5 fw-bold mb-2">@(isTr ? "Tekrar Satın Alma" : "Repeat Purchase")</h3>
+                    <p class="text-secondary small mb-0">
+                        @(isTr
+                            ? "Müşteri işlem geçmişi ve ürün tüketim ritmini değerlendirerek tekrar satın alma fırsatlarını görünür hale getirin."
+                            : "Evaluate customer transaction history and product consumption rhythm to surface repeat-purchase opportunities.")
+                    </p>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="@(isTr ? "/kullanim-senaryolari/geri-kazanim" : "/en/use-cases/win-back")" class="growth-uc-card-link">
+                    <span class="badge mb-2" style="background:#edf4e2;color:#64863e;border:1px solid #dce8cb;">@(isTr ? "KULLANIM SENARYOSU" : "USE CASE")</span>
+                    <h3 class="h5 fw-bold mb-2">@(isTr ? "Geri Kazanım" : "Win-back")</h3>
+                    <p class="text-secondary small mb-0">
+                        @(isTr
+                            ? "Müşterinin hareketsizlik süresini kendi geçmiş satın alma ritmiyle karşılaştırarak pasifleşme fırsatlarını görünür kılın."
+                            : "Compare inactivity with individual purchase rhythm to surface dormancy and win-back opportunities.")
+                    </p>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="@(isTr ? "/kullanim-senaryolari" : "/en/use-cases")" class="growth-uc-card-link">
+                    <span class="badge mb-2" style="background:#edf4e2;color:#64863e;border:1px solid #dce8cb;">@(isTr ? "TÜM SENARYOLAR" : "ALL USE CASES")</span>
+                    <h3 class="h5 fw-bold mb-2">@(isTr ? "Tüm Kullanım Senaryoları" : "All Use Cases")</h3>
+                    <p class="text-secondary small mb-0">
+                        @(isTr
+                            ? "Müşteri zekâsı ve kontrollü omnichannel pazarlama için tüm kullanım senaryolarını keşfedin."
+                            : "Explore all use cases for customer intelligence and controlled omnichannel marketing.")
+                    </p>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 07 FAQ ═══════════════════════════ -->
+<section class="pika-section" style="background:#fff;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="pika-eyebrow">@(isTr ? "SIKÇA SORULAN SORULAR" : "FREQUENTLY ASKED QUESTIONS")</span>
+            <h2 class="pika-h2">@(isTr ? "Çapraz Satış Hakkında Sorular" : "Questions About Cross-sell")</h2>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="growth-uc-faq-list">
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Pika cross-sell fırsatlarını nasıl belirler?" : "How does Pika identify cross-sell opportunities?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "Pika geçmiş işlem satırlarındaki ürün birlikteliklerini statistical association mining ile değerlendirir ve anlamlı ilişkileri fırsat bağlamına taşır."
+                                : "Pika evaluates product co-purchases in historical transaction lines through statistical association mining and turns meaningful relationships into opportunity context.")
+                        </p>
+                    </details>
+
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Support, Confidence ve Lift ne için kullanılır?" : "What are Support, Confidence and Lift used for?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "Pika'nın dokümante edilmiş Basket Association Engine'i ilişkilerin istatistiksel anlamını değerlendirmek için Support ≥ 0.01, Confidence ≥ 0.15 ve Lift > 1.2 eşiklerini kullanır."
+                                : "Pika's documented Basket Association Engine uses Support ≥ 0.01, Confidence ≥ 0.15 and Lift > 1.2 thresholds to evaluate the statistical significance of relationships.")
+                        </p>
+                    </details>
+
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Cross-sell önerilerini generative AI mı oluşturur?" : "Are cross-sell recommendations generated by generative AI?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "Hayır. Bu kullanım senaryosunun çekirdeği black-box generative AI değil, geçmiş satın alma verisine dayalı statistical association mining'dir."
+                                : "No. The core of this use case is not black-box generative AI; it is statistical association mining based on historical purchase data.")
+                        </p>
+                    </details>
+
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Bir ürün ilişkisi bulunduğunda bütün müşteriler hedeflenir mi?" : "Does a product relationship mean every customer is targeted?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "Hayır. Ürün association sinyali ile gerçek müşteri veya audience bağlamı ayrı değerlendirilir."
+                                : "No. Product-association signal and actual customer or audience context are evaluated separately.")
+                        </p>
+                    </details>
+
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Cross-sell fırsatı otomatik kampanya başlatır mı?" : "Does a cross-sell opportunity automatically start a campaign?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "Hayır. Campaign Manager veya Journey Manager aksiyonu yönetir ve nihai karar kullanıcı kontrolünde kalır."
+                                : "No. Campaign Manager or Journey Manager manages the action and final decision remains under user control.")
+                        </p>
+                    </details>
+
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Cross-sell analizi sepet büyümesini garanti eder mi?" : "Does cross-sell analysis guarantee basket growth?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "Hayır. İstatistiksel ürün ilişkisi satış, conversion, average-order-value veya revenue garantisi değildir."
+                                : "No. Statistical product association is not a guarantee of sales, conversion, average order value or revenue.")
+                        </p>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 08 FINAL CTA ═══════════════════════════ -->
+<section class="pika-section" style="background:#f4f7ed;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="growth-uc-cta-card">
+                    <span class="badge mb-3" style="background:#b0cb7430;color:#cee1ab;border:1px solid #b1ca6c40;font-size:12px;letter-spacing:1px;">
+                        @(isTr ? "ÇAPRAZ SATIŞ" : "CROSS-SELL")
+                    </span>
+                    <h2 class="h1 fw-bold text-white mb-3">
+                        @(isTr
+                            ? "Gerçek sepet ilişkilerini görün. Fırsatı doğru müşteri bağlamında değerlendirin. Aksiyonu kontrollü yönetin."
+                            : "See real basket relationships. Evaluate the opportunity in customer context. Manage action under control.")
+                    </h2>
+                    <p class="text-white-50 mx-auto mb-4" style="max-width:720px;font-size:16px;line-height:1.8;">
+                        @(isTr
+                            ? "Pika'nın geçmiş işlem satırlarından anlamlı ürün birlikteliklerini nasıl belirlediğini ve cross-sell fırsatına dönüştürdüğünü kendi veri bağlamınız üzerinden değerlendirin."
+                            : "Evaluate how Pika identifies meaningful product associations from historical transaction lines and turns them into cross-sell opportunity context using your own data.")
+                    </p>
+                    <div class="d-flex flex-wrap justify-content-center gap-3">
+                        <a href="@(isTr ? "/demo-talebi" : "/en/demo-request")" class="btn pika-btn-primary">
+                            @(isTr ? "Demo Talep Et" : "Request a Demo") ↗
+                        </a>
+                        <a href="@(isTr ? "/platform/product-intelligence" : "/en/platform/product-intelligence")" class="btn pika-btn-outline" style="border-color:#cee1ab;color:#cee1ab;">
+                            @(isTr ? "Product Intelligence'ı Keşfedin" : "Explore Product Intelligence") →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,467 @@
+@{
+    var culture = (ViewData["culture"] as string ?? ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").ToLowerInvariant();
+    var isTr = culture == "tr";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/pika-growth-usecases.css" asp-append-version="true" />
+}
+
+<!-- ═══════════════════════════ 01 HERO ═══════════════════════════ -->
+<section class="inner-hero">
+    <div class="inner-atmosphere" aria-hidden="true"><span></span><span></span></div>
+    <div class="container inner-hero-grid">
+        <div class="inner-intro">
+            <nav class="inner-breadcrumb" aria-label="@(isTr ? "Sayfa yolu" : "Breadcrumb")">
+                <a href="@(isTr ? "/" : "/en/")">Pika</a>
+                <span>/</span>
+                <a href="@(isTr ? "/kullanim-senaryolari" : "/en/use-cases")">@(isTr ? "Kullanım Senaryoları" : "Use Cases")</a>
+                <span>/</span>
+                <span>@(isTr ? "Tekrar Satın Alma" : "Repeat Purchase")</span>
+            </nav>
+            <div class="inner-eyebrow">
+                <span></span>
+                @(isTr ? "KULLANIM SENARYOSU — TEKRAR SATIN ALMA" : "USE CASE — REPEAT PURCHASE")
+            </div>
+            <h1>
+                @(isTr
+                    ? "Tekrar satın alma ritmini, müşterinin gerçek işlem bağlamından görünür hale getirin."
+                    : "Make repeat-purchase rhythm visible from real customer transaction context.")
+            </h1>
+            <p>
+                @(isTr
+                    ? "Pika, müşteri işlem geçmişi ile ürün tüketim bağlamını birlikte değerlendirerek tekrar satın alma / replenishment fırsatlarını Günün Fırsatları içinde görünür hale getirebilir."
+                    : "Pika can evaluate customer transaction history together with product consumption context to surface repeat-purchase and replenishment opportunities inside Daily Opportunities.")
+            </p>
+            <p class="text-secondary" style="font-size:15px;line-height:1.75;margin-top:-10px;margin-bottom:28px;">
+                @(isTr
+                    ? "Amaç sabit bir takvim kuralıyla herkese aynı gün mesaj göndermek değil; müşterinin ve ürünün geçmiş ritmini değerlendirilebilir fırsat bağlamına taşımaktır."
+                    : "The objective is not to send the same reminder to everyone on a fixed calendar rule, but to turn historical customer and product rhythm into evaluable opportunity context.")
+            </p>
+            <div class="inner-actions">
+                <a class="inner-primary" href="@(isTr ? "/demo-talebi" : "/en/demo-request")">
+                    @(isTr ? "Demo Talep Et" : "Request a Demo") ↗
+                </a>
+                <a class="inner-secondary" href="@(isTr ? "/platform/gunun-firsatlari" : "/en/platform/opportunities")">
+                    @(isTr ? "Günün Fırsatları'nı Keşfedin" : "Explore Daily Opportunities") →
+                </a>
+            </div>
+        </div>
+
+        <div class="inner-scene" aria-hidden="true">
+            <div class="growth-uc-hero-visual">
+                <div class="growth-uc-pipeline">
+                    <div class="growth-uc-node">
+                        <span>@(isTr ? "İŞLEM GEÇMİŞİ" : "TRANSACTION HISTORY")</span>
+                        <i class="ri-history-line"></i>
+                    </div>
+                    <div class="growth-uc-arrow">↓</div>
+                    <div class="growth-uc-node">
+                        <span>@(isTr ? "ÜRÜN RİTMİ" : "PRODUCT RHYTHM")</span>
+                        <i class="ri-timer-line"></i>
+                    </div>
+                    <div class="growth-uc-arrow">↓</div>
+                    <div class="growth-uc-node growth-uc-node--accent">
+                        <span>@(isTr ? "TÜKETİM PENCERESİ" : "CONSUMPTION WINDOW")</span>
+                        <i class="ri-focus-3-line"></i>
+                    </div>
+                    <div class="growth-uc-arrow">↓</div>
+                    <div class="growth-uc-node">
+                        <span>@(isTr ? "FIRSAT" : "OPPORTUNITY")</span>
+                        <i class="ri-lightbulb-line"></i>
+                    </div>
+                    <div class="growth-uc-arrow">↓</div>
+                    <div class="growth-uc-node">
+                        <span>@(isTr ? "KONTROLLÜ AKSİYON" : "CONTROLLED ACTION")</span>
+                        <i class="ri-shield-check-line"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 02 DIRECT ANSWER ═══════════════════════════ -->
+<section class="pika-section" style="background:#f4f7ed;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="growth-uc-direct-answer">
+                    <span class="pika-eyebrow">@(isTr ? "KISA CEVAP" : "THE SHORT ANSWER")</span>
+                    <h2 class="pika-h2 mt-2 mb-3">
+                        @(isTr ? "Pika'da tekrar satın alma analizi nedir?" : "What is repeat-purchase analysis in Pika?")
+                    </h2>
+                    <p class="text-secondary mb-3" style="font-size:16px;line-height:1.8;">
+                        @(isTr
+                            ? "Tekrar satın alma analizi, müşterinin geçmiş satın alma aralıkları ile ürün tüketim bağlamını birlikte değerlendirerek yeniden satın alma ihtiyacının anlamlı hale geldiği dönemi fırsat bağlamında görünür kılmaya yardımcı olur."
+                            : "Repeat-purchase analysis evaluates historical customer purchase intervals together with product consumption context to help make the period in which replenishment becomes commercially relevant visible as opportunity context.")
+                    </p>
+                    <p class="text-secondary mb-3" style="font-size:16px;line-height:1.8;">
+                        @(isTr
+                            ? "Pika'nın dokümante edilmiş Replenishment Rhythm Engine'i, hesaplanan tüketim döngüsünün %80-%120 aralığını fırsat penceresi bağlamında kullanır."
+                            : "Pika's documented Replenishment Rhythm Engine uses the 80%-120% range of the calculated consumption cycle as an opportunity window.")
+                    </p>
+                    <div class="p-3 mb-3" style="background:#edf4e0;border-left:4px solid #7a9845;border-radius:4px;">
+                        <strong class="d-block text-dark" style="font-size:14px;">
+                            @(isTr
+                                ? "Bu pencere bir satın alma garantisi değildir; değerlendirilebilir ticari fırsat sinyalidir."
+                                : "This window is not a purchase guarantee; it is an evaluable commercial-opportunity signal.")
+                        </strong>
+                    </div>
+                    <p class="small text-muted mb-0 font-monospace">
+                        @(isTr
+                            ? "Ritim → fırsat → kullanıcı kararı → kontrollü aksiyon."
+                            : "Rhythm → opportunity → user decision → controlled action.")
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 03 HOW PIKA IDENTIFIES THE OPPORTUNITY ═══════════════════════════ -->
+<section class="pika-section" style="background:#fff;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="pika-eyebrow">@(isTr ? "FIRSAT NASIL OLUŞUR?" : "HOW THE OPPORTUNITY EMERGES")</span>
+            <h2 class="pika-h2 mx-auto" style="max-width:820px;">
+                @(isTr
+                    ? "Sabit bir güne değil, satın alma ritmine bakın."
+                    : "Look at purchase rhythm, not a fixed calendar day.")
+            </h2>
+        </div>
+
+        <div class="growth-uc-step-grid mb-5">
+            <div class="growth-uc-step-card">
+                <span class="growth-uc-step-badge">01</span>
+                <h3 class="h5 fw-bold mb-2">@(isTr ? "İşlem Geçmişi" : "Transaction History")</h3>
+                <p class="text-secondary mb-0" style="font-size:14px;line-height:1.75;">
+                    @(isTr
+                        ? "Müşterinin geçmiş satın alma zamanlaması ve tekrar eden işlem aralıkları değerlendirme bağlamına alınır."
+                        : "Historical customer purchase timing and repeated transaction intervals become part of the evaluation context.")
+                </p>
+            </div>
+            <div class="growth-uc-step-card">
+                <span class="growth-uc-step-badge">02</span>
+                <h3 class="h5 fw-bold mb-2">@(isTr ? "Ürün Bağlamı" : "Product Context")</h3>
+                <p class="text-secondary mb-0" style="font-size:14px;line-height:1.75;">
+                    @(isTr
+                        ? "Product Intelligence, ürünün ticari ve tüketim bağlamını fırsat değerlendirmesine taşır."
+                        : "Product Intelligence brings the product's commercial and consumption context into opportunity evaluation.")
+                </p>
+            </div>
+            <div class="growth-uc-step-card">
+                <span class="growth-uc-step-badge">03</span>
+                <h3 class="h5 fw-bold mb-2">@(isTr ? "Tüketim Penceresi" : "Consumption Window")</h3>
+                <p class="text-secondary mb-0" style="font-size:14px;line-height:1.75;">
+                    @(isTr
+                        ? "Hesaplanan rhythm context içindeki %80-%120 pencere, replenishment fırsatının değerlendirilmesinde kullanılır."
+                        : "The documented 80%-120% window inside the calculated rhythm context participates in replenishment-opportunity evaluation.")
+                </p>
+            </div>
+            <div class="growth-uc-step-card">
+                <span class="growth-uc-step-badge">04</span>
+                <h3 class="h5 fw-bold mb-2">@(isTr ? "Günün Fırsatları" : "Daily Opportunities")</h3>
+                <p class="text-secondary mb-0" style="font-size:14px;line-height:1.75;">
+                    @(isTr
+                        ? "Uygun tekrar satın alma sinyali, kullanıcı tarafından değerlendirilebilecek ticari fırsat olarak görünür hale gelir."
+                        : "An eligible repeat-purchase signal becomes visible as a commercial opportunity that can be evaluated by the user.")
+                </p>
+            </div>
+        </div>
+
+        <div class="text-center mx-auto" style="max-width:700px;">
+            <p class="text-muted fst-italic mb-0" style="font-size:15px;line-height:1.8;">
+                @(isTr
+                    ? "Pika'nın görevi “müşteri kesin satın alacak” demek değil, doğru zamanda değerlendirilmeye değer bir fırsatı görünür kılmaktır."
+                    : "Pika's role is not to say “this customer will definitely buy,” but to surface an opportunity worth evaluating at the relevant time.")
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 04 FROM OPPORTUNITY TO CONTROLLED ACTION ═══════════════════════════ -->
+<section class="pika-section" style="background:#f9fbf6;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="pika-eyebrow">@(isTr ? "FIRSATTAN AKSİYONA" : "FROM OPPORTUNITY TO ACTION")</span>
+            <h2 class="pika-h2 mx-auto" style="max-width:820px;">
+                @(isTr ? "Fırsat, gönderim kararı değildir." : "An opportunity is not a delivery decision.")
+            </h2>
+        </div>
+
+        <div class="growth-uc-flow-wrap mb-4">
+            <div class="growth-uc-flow">
+                <span class="growth-uc-flow-node">@(isTr ? "TEKRAR SATIN ALMA SİNYALİ" : "REPEAT-PURCHASE SIGNAL")</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">@(isTr ? "KULLANICI DEĞERLENDİRMESİ" : "USER EVALUATION")</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">AUDIENCE</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">CAMPAIGN / JOURNEY</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">@(isTr ? "CONSENT KONTROLÜ" : "CONSENT CONTROL")</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">EMAIL / SMS / WHATSAPP</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">@(isTr ? "ÖLÇÜM" : "MEASUREMENT")</span>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <p class="text-secondary text-center mb-3" style="font-size:15px;line-height:1.8;">
+                    @(isTr
+                        ? "Günün Fırsatları tekrar satın alma fırsatını görünür hale getirir. Gerçek hedef kitle Audience Manager bağlamında tanımlanabilir; Campaign Manager veya Journey Manager aksiyonu yönetir; ilgili izin kontrollerinin ardından Email, SMS veya WhatsApp execution kanalı olarak kullanılabilir."
+                        : "Daily Opportunities surfaces the repeat-purchase opportunity. The actual audience can be defined in Audience Manager; Campaign Manager or Journey Manager manages the action; and after relevant permission controls, Email, SMS or WhatsApp can be used as execution channels.")
+                </p>
+                <p class="text-center text-muted small mb-0">
+                    @(isTr
+                        ? "Opportunity engine, iletişim izninin ve kullanıcı kararının yerine geçmez."
+                        : "The opportunity engine does not replace communication permission or user decision.")
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 05 WHAT THIS USE CASE IS / IS NOT ═══════════════════════════ -->
+<section class="pika-section" style="background:#fff;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="pika-eyebrow">@(isTr ? "ÜRÜN SINIRI" : "PRODUCT BOUNDARY")</span>
+            <h2 class="pika-h2 mx-auto" style="max-width:820px;">
+                @(isTr
+                    ? "Tekrar satın alma fırsatını doğru ürün sınırında değerlendirin."
+                    : "Evaluate repeat purchase within the correct product boundary.")
+            </h2>
+        </div>
+
+        <div class="growth-uc-boundary-grid mb-5">
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Tekrar Satın Alma ≠ sabit gün hatırlatıcısı" : "Repeat Purchase ≠ fixed-day reminder")</span>
+            </div>
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Tekrar Satın Alma ≠ stok seviyesi sensörü" : "Repeat Purchase ≠ stock-level sensor")</span>
+            </div>
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Tekrar Satın Alma ≠ talep veya envanter tahmini" : "Repeat Purchase ≠ demand or inventory forecast")</span>
+            </div>
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Tekrar Satın Alma ≠ otomatik kampanya gönderimi" : "Repeat Purchase ≠ automatic campaign delivery")</span>
+            </div>
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Tekrar Satın Alma ≠ iletişim izni" : "Repeat Purchase ≠ communication permission")</span>
+            </div>
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Tekrar Satın Alma ≠ satış veya dönüşüm garantisi" : "Repeat Purchase ≠ sales or conversion guarantee")</span>
+            </div>
+        </div>
+
+        <div class="text-center mx-auto" style="max-width:700px;">
+            <p class="text-muted fst-italic mb-0" style="font-size:15px;line-height:1.8;">
+                @(isTr
+                    ? "Bu kullanım senaryosu, geçmiş ritimden değerlendirilebilir ticari bağlam üretir."
+                    : "This use case turns historical rhythm into evaluable commercial context.")
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 06 RELATED PIKA LAYERS & USE CASES ═══════════════════════════ -->
+<section class="pika-section" style="background:#f4f7ed;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="pika-eyebrow">@(isTr ? "İLGİLİ PIKA KATMANLARI" : "RELATED PIKA LAYERS")</span>
+            <h2 class="pika-h2 mx-auto" style="max-width:820px;">
+                @(isTr
+                    ? "Tekrar satın alma fırsatı tek bir modülün işi değildir."
+                    : "A repeat-purchase opportunity is not the work of a single module.")
+            </h2>
+        </div>
+
+        <div class="growth-uc-related-pills justify-content-center mb-5">
+            <a href="@(isTr ? "/platform/customer-intelligence" : "/en/platform/customer-intelligence")" class="growth-uc-pill">
+                <i class="ri-parent-line"></i> Customer Intelligence
+            </a>
+            <a href="@(isTr ? "/platform/product-intelligence" : "/en/platform/product-intelligence")" class="growth-uc-pill">
+                <i class="ri-database-2-line"></i> Product Intelligence
+            </a>
+            <a href="@(isTr ? "/platform/gunun-firsatlari" : "/en/platform/opportunities")" class="growth-uc-pill">
+                <i class="ri-flashlight-line"></i> @(isTr ? "Günün Fırsatları" : "Daily Opportunities")
+            </a>
+            <a href="@(isTr ? "/cozumler/audience-manager" : "/en/solutions/audience-manager")" class="growth-uc-pill">
+                <i class="ri-group-line"></i> Audience Manager
+            </a>
+            <a href="@(isTr ? "/cozumler/campaign-manager" : "/en/solutions/campaign-manager")" class="growth-uc-pill">
+                <i class="ri-megaphone-line"></i> Campaign Manager
+            </a>
+            <a href="@(isTr ? "/cozumler/journey-manager" : "/en/solutions/journey-manager")" class="growth-uc-pill">
+                <i class="ri-route-line"></i> Journey Manager
+            </a>
+            <a href="@(isTr ? "/cozumler/consent-management" : "/en/solutions/consent-management")" class="growth-uc-pill">
+                <i class="ri-shield-check-line"></i> Consent Management
+            </a>
+            <a href="@(isTr ? "/cozumler/analytics-reporting" : "/en/solutions/analytics-reporting")" class="growth-uc-pill">
+                <i class="ri-bar-chart-2-line"></i> Analytics &amp; Reporting
+            </a>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-4">
+                <a href="@(isTr ? "/kullanim-senaryolari/capraz-satis" : "/en/use-cases/cross-sell")" class="growth-uc-card-link">
+                    <span class="badge mb-2" style="background:#edf4e2;color:#64863e;border:1px solid #dce8cb;">@(isTr ? "KULLANIM SENARYOSU" : "USE CASE")</span>
+                    <h3 class="h5 fw-bold mb-2">@(isTr ? "Çapraz Satış" : "Cross-sell")</h3>
+                    <p class="text-secondary small mb-0">
+                        @(isTr
+                            ? "Geçmiş sepet birlikteliklerinden anlamlı ürün ilişkilerini istatistiksel association mining ile belirleyin."
+                            : "Identify meaningful product relationships from historical baskets with statistical association mining.")
+                    </p>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="@(isTr ? "/kullanim-senaryolari/geri-kazanim" : "/en/use-cases/win-back")" class="growth-uc-card-link">
+                    <span class="badge mb-2" style="background:#edf4e2;color:#64863e;border:1px solid #dce8cb;">@(isTr ? "KULLANIM SENARYOSU" : "USE CASE")</span>
+                    <h3 class="h5 fw-bold mb-2">@(isTr ? "Geri Kazanım" : "Win-back")</h3>
+                    <p class="text-secondary small mb-0">
+                        @(isTr
+                            ? "Müşterinin hareketsizlik süresini kendi geçmiş satın alma ritmiyle karşılaştırarak pasifleşme fırsatlarını görünür kılın."
+                            : "Compare inactivity with individual purchase rhythm to surface dormancy and win-back opportunities.")
+                    </p>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="@(isTr ? "/kullanim-senaryolari" : "/en/use-cases")" class="growth-uc-card-link">
+                    <span class="badge mb-2" style="background:#edf4e2;color:#64863e;border:1px solid #dce8cb;">@(isTr ? "TÜM SENARYOLAR" : "ALL USE CASES")</span>
+                    <h3 class="h5 fw-bold mb-2">@(isTr ? "Tüm Kullanım Senaryoları" : "All Use Cases")</h3>
+                    <p class="text-secondary small mb-0">
+                        @(isTr
+                            ? "Müşteri zekâsı ve kontrollü omnichannel pazarlama için tüm kullanım senaryolarını keşfedin."
+                            : "Explore all use cases for customer intelligence and controlled omnichannel marketing.")
+                    </p>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 07 FAQ ═══════════════════════════ -->
+<section class="pika-section" style="background:#fff;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="pika-eyebrow">@(isTr ? "SIKÇA SORULAN SORULAR" : "FREQUENTLY ASKED QUESTIONS")</span>
+            <h2 class="pika-h2">@(isTr ? "Tekrar Satın Alma Hakkında Sorular" : "Questions About Repeat Purchase")</h2>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="growth-uc-faq-list">
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Tekrar satın alma analizi neyi değerlendirir?" : "What does repeat-purchase analysis evaluate?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "Müşterinin geçmiş satın alma aralıkları ile ürün tüketim bağlamını birlikte değerlendirerek replenishment fırsatının anlamlı hale geldiği dönemi görünür kılmaya yardımcı olur."
+                                : "It evaluates historical customer purchase intervals together with product consumption context to help make the period in which replenishment becomes relevant visible.")
+                        </p>
+                    </details>
+
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "%80-%120 tüketim penceresi ne anlama gelir?" : "What does the 80%-120% consumption window mean?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "Pika'nın dokümante edilmiş Replenishment Rhythm Engine'i, hesaplanan tüketim döngüsünün %80-%120 aralığını fırsat değerlendirme penceresi olarak kullanır. Bu aralık müşterinin kesin satın alma yapacağı anlamına gelmez."
+                                : "Pika's documented Replenishment Rhythm Engine uses the 80%-120% range of the calculated consumption cycle as an opportunity-evaluation window. It does not mean the customer will definitely purchase.")
+                        </p>
+                    </details>
+
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Pika herkese aynı gün tekrar satın alma mesajı mı gönderir?" : "Does Pika send every customer a repeat-purchase message on the same day?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "Hayır. Kullanım senaryosu sabit bir evrensel gün kuralına dayanmaz; müşteri ve ürün ritmi değerlendirme bağlamının parçasıdır."
+                                : "No. The use case does not rely on one universal fixed-day rule; customer and product rhythm are part of the evaluation context.")
+                        </p>
+                    </details>
+
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Fırsat oluştuğunda Pika mesajı otomatik gönderir mi?" : "Does Pika automatically send a message when an opportunity appears?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "Hayır. Fırsat kullanıcı değerlendirmesine sunulur. Audience, Campaign veya Journey ve ilgili consent kontrolleri ayrı ürün katmanlarında yönetilir."
+                                : "No. The opportunity is presented for user evaluation. Audience, Campaign or Journey and relevant consent controls are managed in separate product layers.")
+                        </p>
+                    </details>
+
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Tekrar satın alma fırsatı iletişim izni anlamına gelir mi?" : "Does a repeat-purchase opportunity mean communication permission?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "Hayır. Ticari fırsat ile müşteriye iletişim uygulanabilirliği ayrı değerlendirme alanlarıdır."
+                                : "No. Commercial opportunity and communication eligibility are separate evaluation areas.")
+                        </p>
+                    </details>
+
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Tekrar satın alma analizi satış garantisi verir mi?" : "Does repeat-purchase analysis guarantee a sale?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "Hayır. Fırsat sinyali satın alma, dönüşüm veya ciro sonucu garantisi değildir."
+                                : "No. An opportunity signal is not a guarantee of purchase, conversion or revenue.")
+                        </p>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 08 FINAL CTA ═══════════════════════════ -->
+<section class="pika-section" style="background:#f4f7ed;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="growth-uc-cta-card">
+                    <span class="badge mb-3" style="background:#b0cb7430;color:#cee1ab;border:1px solid #b1ca6c40;font-size:12px;letter-spacing:1px;">
+                        @(isTr ? "TEKRAR SATIN ALMA" : "REPEAT PURCHASE")
+                    </span>
+                    <h2 class="h1 fw-bold text-white mb-3">
+                        @(isTr
+                            ? "Müşteri ritmini görün. Fırsatı değerlendirin. Aksiyonu kontrollü yönetin."
+                            : "See the customer rhythm. Evaluate the opportunity. Manage action under control.")
+                    </h2>
+                    <p class="text-white-50 mx-auto mb-4" style="max-width:720px;font-size:16px;line-height:1.8;">
+                        @(isTr
+                            ? "Pika'nın müşteri işlem geçmişi ve ürün tüketim bağlamından tekrar satın alma fırsatını nasıl görünür hale getirdiğini kendi veri bağlamınız üzerinden değerlendirin."
+                            : "Evaluate how Pika can make repeat-purchase opportunities visible from customer transaction history and product consumption context using your own data context.")
+                    </p>
+                    <div class="d-flex flex-wrap justify-content-center gap-3">
+                        <a href="@(isTr ? "/demo-talebi" : "/en/demo-request")" class="btn pika-btn-primary">
+                            @(isTr ? "Demo Talep Et" : "Request a Demo") ↗
+                        </a>
+                        <a href="@(isTr ? "/platform/gunun-firsatlari" : "/en/platform/opportunities")" class="btn pika-btn-outline" style="border-color:#cee1ab;color:#cee1ab;">
+                            @(isTr ? "Günün Fırsatları'nı Keşfedin" : "Explore Daily Opportunities") →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

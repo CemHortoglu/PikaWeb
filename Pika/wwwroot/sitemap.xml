@@ -132,6 +132,21 @@
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
+	<url>
+		<loc>https://pika.tr/kullanim-senaryolari/tekrar-satin-alma</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://pika.tr/kullanim-senaryolari/capraz-satis</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://pika.tr/kullanim-senaryolari/geri-kazanim</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+	</url>
 
 	<!-- İngilizce Pazarlama ve Çözüm Sayfaları -->
 	<url>
@@ -261,6 +276,21 @@
 	</url>
 	<url>
 		<loc>https://pika.tr/en/use-cases</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.7</priority>
+	</url>
+	<url>
+		<loc>https://pika.tr/en/use-cases/repeat-purchase</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.7</priority>
+	</url>
+	<url>
+		<loc>https://pika.tr/en/use-cases/cross-sell</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.7</priority>
+	</url>
+	<url>
+		<loc>https://pika.tr/en/use-cases/win-back</loc>
 		<changefreq>weekly</changefreq>
 		<priority>0.7</priority>
 	</url>
