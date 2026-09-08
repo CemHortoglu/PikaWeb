@@ -13,10 +13,12 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
+using Pika.Controllers;
 using Pika.Models;
 using Pika.Services;
 using Xunit;
@@ -40,7 +42,7 @@ namespace Pika.Web.Tests
             });
         }
 
-        private HttpClient CreateAuthenticatedClient(string role = "Admin")
+        private HttpClient CreateAuthenticatedClient(string role)
         {
             var client = _factory.WithWebHostBuilder(builder =>
             {
@@ -283,27 +285,100 @@ namespace Pika.Web.Tests
         }
 
         [Theory]
-        [InlineData("/internal/wiki/")]
-        [InlineData("/internal/wiki/internal-mimari-genel-bakis")]
-        [InlineData("/internal/wiki/search?q=test")]
-        public async Task InternalWiki_PrivilegedAdmin_Returns200OK(string route)
+        [InlineData("Admin", "/internal/wiki/")]
+        [InlineData("Admin", "/internal/wiki/internal-mimari-genel-bakis")]
+        [InlineData("Admin", "/internal/wiki/search?q=test")]
+        [InlineData("Teknik / Admin", "/internal/wiki/")]
+        [InlineData("Teknik / Admin", "/internal/wiki/internal-mimari-genel-bakis")]
+        [InlineData("Teknik / Admin", "/internal/wiki/search?q=test")]
+        [InlineData("Yönetici", "/internal/wiki/")]
+        [InlineData("Yönetici", "/internal/wiki/internal-mimari-genel-bakis")]
+        [InlineData("Yönetici", "/internal/wiki/search?q=test")]
+        public async Task InternalWiki_TenantAdmin_CannotAccessInternalDocumentation(string role, string route)
         {
-            var client = CreateAuthenticatedClient("Admin");
+            var client = CreateAuthenticatedClient(role);
+            var response = await client.GetAsync(route);
+
+            Assert.Equal(HttpStatusCode.Forbidden, response.StatusCode);
+        }
+
+        [Theory]
+        [InlineData("SuperAdmin", "/internal/wiki/")]
+        [InlineData("SuperAdmin", "/internal/wiki/internal-mimari-genel-bakis")]
+        [InlineData("SuperAdmin", "/internal/wiki/search?q=test")]
+        [InlineData("Super Admin", "/internal/wiki/")]
+        [InlineData("Super Admin", "/internal/wiki/internal-mimari-genel-bakis")]
+        [InlineData("Super Admin", "/internal/wiki/search?q=test")]
+        public async Task InternalWiki_PrivilegedSuperAdmin_Returns200OK(string role, string route)
+        {
+            var client = CreateAuthenticatedClient(role);
             var response = await client.GetAsync(route);
 
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         }
 
-        [Fact]
-        public async Task InternalWiki_PrivilegedStaffAndInternalEngineer_Return200OK()
+        [Theory]
+        [InlineData("InternalEngineer", "/internal/wiki/")]
+        [InlineData("InternalEngineer", "/internal/wiki/internal-mimari-genel-bakis")]
+        [InlineData("InternalEngineer", "/internal/wiki/search?q=test")]
+        [InlineData("Staff", "/internal/wiki/")]
+        [InlineData("Staff", "/internal/wiki/internal-mimari-genel-bakis")]
+        [InlineData("Staff", "/internal/wiki/search?q=test")]
+        public async Task InternalWiki_UnprovenInventedRoles_Return403Forbidden(string role, string route)
         {
-            var engineerClient = CreateAuthenticatedClient("InternalEngineer");
-            var engResponse = await engineerClient.GetAsync("/internal/wiki/");
-            Assert.Equal(HttpStatusCode.OK, engResponse.StatusCode);
+            var client = CreateAuthenticatedClient(role);
+            var response = await client.GetAsync(route);
 
-            var staffClient = CreateAuthenticatedClient("Staff");
-            var staffResponse = await staffClient.GetAsync("/internal/wiki/");
-            Assert.Equal(HttpStatusCode.OK, staffResponse.StatusCode);
+            Assert.Equal(HttpStatusCode.Forbidden, response.StatusCode);
+        }
+
+        [Theory]
+        [InlineData("role", "SuperAdmin", true)]
+        [InlineData("role", "Super Admin", true)]
+        [InlineData("RoleName", "SuperAdmin", true)]
+        [InlineData("RoleName", "Super Admin", true)]
+        [InlineData(ClaimTypes.Role, "SuperAdmin", true)]
+        [InlineData(ClaimTypes.Role, "Super Admin", true)]
+        [InlineData("role", "Admin", false)]
+        [InlineData("role", "Teknik / Admin", false)]
+        [InlineData("role", "Yönetici", false)]
+        [InlineData("role", "User", false)]
+        [InlineData("role", "Operator", false)]
+        [InlineData("role", "Staff", false)]
+        [InlineData("role", "InternalEngineer", false)]
+        public async Task AccountJwt_ContractMapsToInternalDocsAccess(string claimType, string roleValue, bool shouldSucceed)
+        {
+            // 1. Generate standard upstream JWT access token with specified role claim
+            var tokenHandler = new System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler();
+            var jwt = tokenHandler.WriteToken(new System.IdentityModel.Tokens.Jwt.JwtSecurityToken(
+                claims: new[]
+                {
+                    new Claim("Username", "test.user@pika.tr"),
+                    new Claim("UserId", "user-uuid-1234"),
+                    new Claim(claimType, roleValue)
+                }
+            ));
+
+            // 2. Invoke AccountController.BuildClaimsFromJwt via reflection (verifying production JWT claim extraction logic)
+            var buildClaimsMethod = typeof(AccountController).GetMethod("BuildClaimsFromJwt", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
+            Assert.NotNull(buildClaimsMethod);
+            var extractedClaims = (List<Claim>)buildClaimsMethod.Invoke(null, new object[] { jwt })!;
+
+            // Verify AccountController mapped the claim to ClaimTypes.Role
+            var mappedRoleClaim = extractedClaims.FirstOrDefault(c => c.Type == ClaimTypes.Role);
+            Assert.NotNull(mappedRoleClaim);
+            Assert.Equal(roleValue, mappedRoleClaim.Value);
+
+            // 3. Construct ClaimsPrincipal identical to AccountController.Login
+            var identity = new ClaimsIdentity(extractedClaims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var principal = new ClaimsPrincipal(identity);
+
+            // 4. Evaluate principal against production InternalDocsAccess policy
+            using var scope = _factory.Services.CreateScope();
+            var authService = scope.ServiceProvider.GetRequiredService<IAuthorizationService>();
+            var authResult = await authService.AuthorizeAsync(principal, null, "InternalDocsAccess");
+
+            Assert.Equal(shouldSucceed, authResult.Succeeded);
         }
 
         [Fact]
@@ -855,6 +930,63 @@ namespace Pika.Web.Tests
                 Assert.Equal(kvp.Value.Indexable, p1.Indexable);
                 Assert.Equal(kvp.Value.Html, p1.Html);
             }
+
+            // Setup two isolated temporary directories to verify deterministic output of all generated artifacts without mutating tracked repository files
+            var tempDir1 = Path.Combine(Path.GetTempPath(), "pika_idempotency_" + Guid.NewGuid());
+            var tempDir2 = Path.Combine(Path.GetTempPath(), "pika_idempotency_" + Guid.NewGuid());
+
+            try
+            {
+                // Setup directory structure and baseline files for tempDir1
+                Directory.CreateDirectory(Path.Combine(tempDir1, "wwwroot", "wiki", "assets"));
+                Directory.CreateDirectory(Path.Combine(tempDir1, "docs", "marketing"));
+                File.WriteAllText(Path.Combine(tempDir1, "wwwroot", "wiki", "assets", "app.js"), "");
+                File.Copy(Path.Combine(baseDir, "wwwroot", "sitemap.xml"), Path.Combine(tempDir1, "wwwroot", "sitemap.xml"), true);
+
+                // Setup directory structure and baseline files for tempDir2
+                Directory.CreateDirectory(Path.Combine(tempDir2, "wwwroot", "wiki", "assets"));
+                Directory.CreateDirectory(Path.Combine(tempDir2, "docs", "marketing"));
+                File.WriteAllText(Path.Combine(tempDir2, "wwwroot", "wiki", "assets", "app.js"), "");
+                File.Copy(Path.Combine(baseDir, "wwwroot", "sitemap.xml"), Path.Combine(tempDir2, "wwwroot", "sitemap.xml"), true);
+
+                // Run 1 in tempDir1 using pass1Public, pass1Internal
+                WikiSplitGenerator.CleanStaticAppJs(tempDir1, pass1Public);
+                WikiSplitGenerator.UpdateSitemap(tempDir1, pass1Public);
+                WikiSplitGenerator.UpdateGovernanceMarkdown(tempDir1, pass1Public, pass1Internal);
+
+                // Run 2 in tempDir2 using pass2Public, pass2Internal
+                WikiSplitGenerator.CleanStaticAppJs(tempDir2, pass2Public);
+                WikiSplitGenerator.UpdateSitemap(tempDir2, pass2Public);
+                WikiSplitGenerator.UpdateGovernanceMarkdown(tempDir2, pass2Public, pass2Internal);
+
+                // Assert zero drift between Pass 1 and Pass 2 for all generated files
+                var pass1AppJs = File.ReadAllText(Path.Combine(tempDir1, "wwwroot", "wiki", "assets", "app.js"));
+                var pass2AppJs = File.ReadAllText(Path.Combine(tempDir2, "wwwroot", "wiki", "assets", "app.js"));
+                Assert.Equal(pass1AppJs, pass2AppJs);
+
+                var pass1Sitemap = File.ReadAllText(Path.Combine(tempDir1, "wwwroot", "sitemap.xml"));
+                var pass2Sitemap = File.ReadAllText(Path.Combine(tempDir2, "wwwroot", "sitemap.xml"));
+                Assert.Equal(pass1Sitemap, pass2Sitemap);
+
+                var pass1Gov = File.ReadAllText(Path.Combine(tempDir1, "docs", "marketing", "WIKI_PUBLIC_GOVERNANCE.md"));
+                var pass2Gov = File.ReadAllText(Path.Combine(tempDir2, "docs", "marketing", "WIKI_PUBLIC_GOVERNANCE.md"));
+                Assert.Equal(pass1Gov, pass2Gov);
+
+                // Assert generated files match committed disk files
+                var diskAppJs = File.ReadAllText(Path.Combine(baseDir, "wwwroot", "wiki", "assets", "app.js"));
+                Assert.Equal(diskAppJs, pass1AppJs);
+
+                var diskSitemap = File.ReadAllText(Path.Combine(baseDir, "wwwroot", "sitemap.xml"));
+                Assert.Equal(diskSitemap, pass1Sitemap);
+
+                var diskGov = File.ReadAllText(Path.Combine(baseDir, "docs", "marketing", "WIKI_PUBLIC_GOVERNANCE.md"));
+                Assert.Equal(diskGov, pass1Gov);
+            }
+            finally
+            {
+                if (Directory.Exists(tempDir1)) Directory.Delete(tempDir1, true);
+                if (Directory.Exists(tempDir2)) Directory.Delete(tempDir2, true);
+            }
         }
 
         [Fact]
@@ -914,7 +1046,7 @@ namespace Pika.Web.Tests
         {
             var role = Request.Headers.TryGetValue("X-Test-Role", out var r) && !string.IsNullOrWhiteSpace(r)
                 ? r.ToString()
-                : "Admin";
+                : "User";
 
             var claims = new[]
             {

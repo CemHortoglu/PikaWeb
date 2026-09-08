@@ -69,7 +69,7 @@ builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("InternalDocsAccess", policy =>
         policy.RequireAuthenticatedUser()
-              .RequireRole("Admin", "InternalEngineer", "Staff"));
+              .RequireRole("SuperAdmin", "Super Admin"));
 });
 
 builder.Services.AddCors(options =>

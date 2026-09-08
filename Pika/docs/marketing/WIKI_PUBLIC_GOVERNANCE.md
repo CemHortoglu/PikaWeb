@@ -1,4 +1,4 @@
-﻿# PIKA PUBLIC WIKI GOVERNANCE & TAXONOMY SPECIFICATION
+# PIKA PUBLIC WIKI GOVERNANCE & TAXONOMY SPECIFICATION
 
 > **Document Status:** Active Canonical Standard  
 > **Last Updated:** September 2026  
@@ -24,8 +24,9 @@ Pika's Public Knowledge Base (`/wiki/`) serves two distinct operational audience
 
 3. **Dahili Mühendislik Dokümantasyonu (Quarantined Internal Knowledge Base):**
    - 15 internal architectural, algorithm implementation, database schema, Hangfire worker, and deployment pipeline specifications quarantined under `/internal/wiki/`.
-   - Protected by `[Authorize(Policy = "InternalDocsAccess")]` requiring `Admin`, `InternalEngineer`, or `Staff` roles.
-   - Anonymous requests redirect (302) to `/Account/Login`. Authenticated tenant users without internal policy receive **403 Forbidden**.
+   - Protected by `[Authorize(Policy = "InternalDocsAccess")]` requiring platform-level global administration privileges (`SuperAdmin` or `Super Admin` role).
+   - Normal tenant accounts—including tenant administrators (`Admin`, `Teknik / Admin`, `Yönetici`), operators, and users—are strictly denied access (**403 Forbidden**).
+   - Anonymous requests redirect (302) to `/Account/Login`.
    - Completely absent from public JSON, public navigation, public search, and `sitemap.xml`.
 
 ---
@@ -182,7 +183,7 @@ Every public Wiki article must adhere to the following product truth guardrails:
 
 ## 4. Quarantined Internal Engineering Wiki (15 Articles)
 
-The following articles contain proprietary engineering designs, database entity relationships, worker architectures, and deployment pipelines. They are quarantined under `/internal/wiki/` and served via `InternalWikiController` requiring authenticated employee access with policy `InternalDocsAccess` (`[Authorize(Policy = "InternalDocsAccess")]`):
+The following articles contain proprietary engineering designs, database entity relationships, worker architectures, and deployment pipelines. They are quarantined under `/internal/wiki/` and served via `InternalWikiController` requiring platform global administration privileges with policy `InternalDocsAccess` (`[Authorize(Policy = "InternalDocsAccess")]`):
 
 1. `internal-ai-mimarisi-ve-prompt-yonetimi`: LLM Provider Routing, Prompt Şablonları ve Fallback Mekanizmaları - AI Kampanya Asistanı ve AI Müşteri Özeti için model yönlendirme (OpenAI / Anthropic / Gemini), prompt versiyonlama, token limitleri ve güvenlik filtreleri.
 2. `internal-api-mimarisi-ve-veri-kontratlari`: Ingestion API Mimarisi, Rate Limiting ve Idempotency Kontratları - API veri alım uç noktaları, batch ingestion formatları, HMAC imzalama, rate limiting algoritmaları ve idempotency key yönetimini açıklar.
@@ -208,8 +209,10 @@ To prevent regression or accidental drift, the following automated tests in `Pik
 
 - `AllSitemapWikiUrls_Return200OK`: Asserts exactly 59 Wiki URLs in `sitemap.xml` (root + 58 INDEX articles) and verifies all 59 return 200 OK without truncation.
 - `InternalWikiSecurity_AnonymousUser_RedirectsToLogin`: Asserts anonymous access to `/internal/wiki/` and internal articles redirects to `/Account/Login`.
-- `InternalWikiSecurity_TenantUser_Returns403Forbidden`: Asserts authenticated tenant users without internal policy receive 403 Forbidden on internal wiki routes.
-- `InternalWikiSecurity_PrivilegedStaff_Returns200OK`: Asserts privileged staff with `InternalDocsAccess` receive 200 OK on internal wiki routes.
+- `InternalWikiSecurity_TenantUser_Returns403Forbidden`: Asserts authenticated tenant users (`User`, `Operator`) receive 403 Forbidden on internal wiki routes.
+- `InternalWiki_TenantAdmin_CannotAccessInternalDocumentation`: Asserts tenant administrators carrying `Admin`, `Teknik / Admin`, or `Yönetici` roles are strictly forbidden (403 Forbidden) from accessing internal routes.
+- `InternalWikiSecurity_PrivilegedSuperAdmin_Returns200OK`: Asserts platform global administrators (`SuperAdmin`, `Super Admin`) with `InternalDocsAccess` receive 200 OK on internal wiki routes.
+- `AccountJwt_ContractMapsToInternalDocsAccess`: Proves upstream JWT role claims mapped by `AccountController` are evaluated by `InternalDocsAccess` policy.
 - `GovernanceDocument_MatchesGeneratedWikiData`: Programmatically parses `WIKI_PUBLIC_GOVERNANCE.md` and validates 1-to-1 slug, title, and indexability parity against `wiki.json`.
 - `Generator_IsIdempotent_SecondRunProducesZeroDrift`: Proves in-memory second-run generation produces identical serialized data with zero drift.
 - `ClaimSafety_PublicWikiContainsNoProhibitedTerms`: Verifies complete absence of compliance absolutes, guarantees, unauthorized streaming claims, or fake predictions across all public articles.
