@@ -52,6 +52,16 @@ namespace Pika.Controllers
         [HttpGet("/en/privacy-policy")]
         public IActionResult PrivacyPolicy() => View();
 
+        [HttpGet("/error/403")]
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult AccessDenied403()
+        {
+            Response.StatusCode = StatusCodes.Status403Forbidden;
+            ViewData["RobotsMeta"] = "noindex, nofollow";
+            ViewData["Title"] = "403 - Yetkisiz Erişim";
+            return View("Error");
+        }
+
         [HttpGet("/error/404")]
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult NotFound404()

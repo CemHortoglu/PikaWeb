@@ -7,10 +7,13 @@ using System.Net.Http;
 using System.Security.Claims;
 using System.Text.Encodings.Web;
 using System.Text.Json;
+using System.Text.RegularExpressions;
+using System.Text.Unicode;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
@@ -37,9 +40,9 @@ namespace Pika.Web.Tests
             });
         }
 
-        private HttpClient CreateAuthenticatedClient()
+        private HttpClient CreateAuthenticatedClient(string role = "Admin")
         {
-            return _factory.WithWebHostBuilder(builder =>
+            var client = _factory.WithWebHostBuilder(builder =>
             {
                 builder.ConfigureTestServices(services =>
                 {
@@ -50,6 +53,9 @@ namespace Pika.Web.Tests
             {
                 AllowAutoRedirect = false
             });
+
+            client.DefaultRequestHeaders.Add("X-Test-Role", role);
+            return client;
         }
 
         // ==========================================
@@ -183,8 +189,22 @@ namespace Pika.Web.Tests
             Assert.DoesNotContain("https://pika.tr/wiki/teslimat-konsolu", wikiUrls);
             Assert.DoesNotContain("https://pika.tr/wiki/gonderim-son-katman", wikiUrls);
 
-            // Test a batch of wiki URLs from sitemap
-            foreach (var url in wikiUrls.Take(15))
+            // Assert exact set equality between sitemap Wiki URLs and (58 Indexable public articles + /wiki/ root)
+            using (var scope = _factory.Services.CreateScope())
+            {
+                var wikiService = scope.ServiceProvider.GetRequiredService<IWikiService>();
+                var expectedUrls = wikiService.GetAllPages()
+                    .Where(p => p.Indexable)
+                    .Select(p => $"https://pika.tr/wiki/{p.Slug}")
+                    .Append("https://pika.tr/wiki/")
+                    .ToHashSet(StringComparer.OrdinalIgnoreCase);
+
+                Assert.Equal(expectedUrls.Count, wikiUrls.Count);
+                Assert.True(expectedUrls.SetEquals(wikiUrls), "Sitemap wiki URLs must exactly match 58 indexable pages + /wiki/ root");
+            }
+
+            // Test ALL 59 wiki URLs from sitemap return 200 OK
+            foreach (var url in wikiUrls)
             {
                 var uri = new Uri(url);
                 var articleResponse = await client.GetAsync(uri.PathAndQuery);
@@ -225,15 +245,86 @@ namespace Pika.Web.Tests
         // 2. SECURE INTERNAL WIKI TESTS (Section 41)
         // ==========================================
 
-        [Fact]
-        public async Task UnauthenticatedInternalWikiRoot_RedirectsToLogin()
+        [Theory]
+        [InlineData("/internal/wiki/")]
+        [InlineData("/internal/wiki/internal-mimari-genel-bakis")]
+        [InlineData("/internal/wiki/search?q=test")]
+        public async Task InternalWiki_AnonymousUser_RedirectsToLogin(string route)
         {
             var client = CreateNoRedirectClient();
-            var response = await client.GetAsync("/internal/wiki/");
+            var response = await client.GetAsync(route);
 
-            // Must redirect to Account/Login or return 401/302
-            Assert.True(response.StatusCode == HttpStatusCode.Redirect || response.StatusCode == HttpStatusCode.Unauthorized);
+            Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
             Assert.Contains("/Account/Login", response.Headers.Location?.OriginalString ?? string.Empty);
+        }
+
+        [Theory]
+        [InlineData("/internal/wiki/")]
+        [InlineData("/internal/wiki/internal-mimari-genel-bakis")]
+        [InlineData("/internal/wiki/search?q=test")]
+        public async Task InternalWiki_OrdinaryAuthenticatedTenantUser_Returns403Forbidden(string route)
+        {
+            var client = CreateAuthenticatedClient("User");
+            var response = await client.GetAsync(route);
+
+            Assert.Equal(HttpStatusCode.Forbidden, response.StatusCode);
+        }
+
+        [Theory]
+        [InlineData("/internal/wiki/")]
+        [InlineData("/internal/wiki/internal-mimari-genel-bakis")]
+        [InlineData("/internal/wiki/search?q=test")]
+        public async Task InternalWiki_OperatorRoleUser_Returns403Forbidden(string route)
+        {
+            var client = CreateAuthenticatedClient("Operator");
+            var response = await client.GetAsync(route);
+
+            Assert.Equal(HttpStatusCode.Forbidden, response.StatusCode);
+        }
+
+        [Theory]
+        [InlineData("/internal/wiki/")]
+        [InlineData("/internal/wiki/internal-mimari-genel-bakis")]
+        [InlineData("/internal/wiki/search?q=test")]
+        public async Task InternalWiki_PrivilegedAdmin_Returns200OK(string route)
+        {
+            var client = CreateAuthenticatedClient("Admin");
+            var response = await client.GetAsync(route);
+
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        }
+
+        [Fact]
+        public async Task InternalWiki_PrivilegedStaffAndInternalEngineer_Return200OK()
+        {
+            var engineerClient = CreateAuthenticatedClient("InternalEngineer");
+            var engResponse = await engineerClient.GetAsync("/internal/wiki/");
+            Assert.Equal(HttpStatusCode.OK, engResponse.StatusCode);
+
+            var staffClient = CreateAuthenticatedClient("Staff");
+            var staffResponse = await staffClient.GetAsync("/internal/wiki/");
+            Assert.Equal(HttpStatusCode.OK, staffResponse.StatusCode);
+        }
+
+        [Fact]
+        public async Task CookieAuthentication_OnRedirectToAccessDenied_Returns403ForInternalRoutes()
+        {
+            var httpContext = new DefaultHttpContext();
+            httpContext.Request.Path = "/internal/wiki";
+            var context = new RedirectContext<CookieAuthenticationOptions>(
+                httpContext,
+                new AuthenticationScheme(CookieAuthenticationDefaults.AuthenticationScheme, null, typeof(CookieAuthenticationHandler)),
+                new CookieAuthenticationOptions(),
+                new AuthenticationProperties(),
+                "/Account/AccessDenied");
+
+            using var scope = _factory.Services.CreateScope();
+            var optionsMonitor = scope.ServiceProvider.GetRequiredService<Microsoft.Extensions.Options.IOptionsMonitor<CookieAuthenticationOptions>>();
+            var cookieOptions = optionsMonitor.Get(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            await cookieOptions.Events.OnRedirectToAccessDenied(context);
+
+            Assert.Equal(StatusCodes.Status403Forbidden, httpContext.Response.StatusCode);
         }
 
         [Theory]
@@ -658,6 +749,155 @@ namespace Pika.Web.Tests
             Assert.Equal(58, indexableCount);
             Assert.Equal(30, noindexCount);
         }
+
+        [Fact]
+        public void GovernanceDocument_MatchesGeneratedWikiData()
+        {
+            var baseDir = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", ".."));
+            var docPath = Path.Combine(baseDir, "docs", "marketing", "WIKI_PUBLIC_GOVERNANCE.md");
+            Assert.True(File.Exists(docPath), $"Governance markdown file not found at {docPath}");
+
+            var docContent = File.ReadAllText(docPath);
+
+            // 1. Prohibited claims must be completely absent from governance doc itself
+            Assert.DoesNotContain("real-time REST API streaming", docContent, StringComparison.OrdinalIgnoreCase);
+            Assert.DoesNotContain("immediate revenue actions", docContent, StringComparison.OrdinalIgnoreCase);
+            Assert.DoesNotContain("customer retention ROI", docContent, StringComparison.OrdinalIgnoreCase);
+            Assert.DoesNotContain("0 violations", docContent, StringComparison.OrdinalIgnoreCase);
+
+            // 2. Parse all article rows in tables: | `slug` | Title | Audience | Classification | Rationale |
+            var rowRegex = new Regex(@"^\|\s*`([a-z0-9-]+)`\s*\|\s*([^|]+)\|\s*([^|]+)\|\s*\*\*([A-Z]+)\*\*\s*\|\s*([^|]+)\|", RegexOptions.Multiline);
+            var matches = rowRegex.Matches(docContent);
+
+            using var scope = _factory.Services.CreateScope();
+            var wikiService = scope.ServiceProvider.GetRequiredService<IWikiService>();
+            var allPublicPages = wikiService.GetAllPages().ToDictionary(p => p.Slug, StringComparer.OrdinalIgnoreCase);
+
+            var docSlugs = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
+            foreach (Match m in matches)
+            {
+                var slug = m.Groups[1].Value.Trim();
+                var classification = m.Groups[4].Value.Trim();
+                var isIndex = string.Equals(classification, "INDEX", StringComparison.OrdinalIgnoreCase);
+                docSlugs[slug] = isIndex;
+            }
+
+            // Exactly 88 articles must be in the inventory
+            Assert.Equal(88, docSlugs.Count);
+            Assert.Equal(allPublicPages.Count, docSlugs.Count);
+
+            // Every slug must match 1-to-1 with wiki.json
+            foreach (var kvp in allPublicPages)
+            {
+                Assert.True(docSlugs.ContainsKey(kvp.Key), $"Public article '{kvp.Key}' is missing from WIKI_PUBLIC_GOVERNANCE.md inventory");
+                Assert.Equal(kvp.Value.Indexable, docSlugs[kvp.Key]);
+            }
+
+            // Exactly 58 INDEX and 30 NOINDEX in governance doc
+            Assert.Equal(58, docSlugs.Values.Count(x => x));
+            Assert.Equal(30, docSlugs.Values.Count(x => !x));
+
+            // Verify off-nav slug is documented
+            Assert.True(docSlugs.ContainsKey("gonderim-son-katman"));
+            Assert.False(docSlugs["gonderim-son-katman"]);
+        }
+
+        [Fact]
+        public void Generator_IsIdempotent_SecondRunProducesZeroDrift()
+        {
+            var baseDir = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", ".."));
+            var publicJsonPath = Path.Combine(baseDir, "App_Data", "wiki.json");
+            var internalJsonPath = Path.Combine(baseDir, "App_Data", "internal_wiki.json");
+
+            var jsonOptions = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+                WriteIndented = true,
+                Encoder = JavaScriptEncoder.Create(UnicodeRanges.All)
+            };
+
+            var originalJson = File.ReadAllText(publicJsonPath);
+            var originalWiki = JsonSerializer.Deserialize<WikiData>(originalJson, jsonOptions)!;
+
+            // Run 1: in-memory generation
+            var pass1Internal = WikiSplitGenerator.BuildInternalWiki(originalWiki);
+            var pass1Public = WikiSplitGenerator.BuildPublicWiki(originalWiki);
+
+            var pass1InternalJson = JsonSerializer.Serialize(pass1Internal, jsonOptions);
+            var pass1PublicJson = JsonSerializer.Serialize(pass1Public, jsonOptions);
+
+            // Run 2: in-memory generation using output of Run 1
+            var pass2Internal = WikiSplitGenerator.BuildInternalWiki(pass1Public);
+            var pass2Public = WikiSplitGenerator.BuildPublicWiki(pass1Public);
+
+            var pass2InternalJson = JsonSerializer.Serialize(pass2Internal, jsonOptions);
+            var pass2PublicJson = JsonSerializer.Serialize(pass2Public, jsonOptions);
+
+            // Assert Run 1 == Run 2 (Zero drift)
+            Assert.Equal(pass1PublicJson, pass2PublicJson);
+            Assert.Equal(pass1InternalJson, pass2InternalJson);
+
+            // Assert Run 1 equals committed files on disk
+            var committedPublic = File.ReadAllText(publicJsonPath);
+            var committedInternal = File.ReadAllText(internalJsonPath);
+
+            var diskPublic = JsonSerializer.Deserialize<WikiData>(committedPublic, jsonOptions)!;
+            var diskInternal = JsonSerializer.Deserialize<WikiData>(committedInternal, jsonOptions)!;
+
+            Assert.Equal(diskPublic.Pages.Count, pass1Public.Pages.Count);
+            Assert.Equal(diskInternal.Pages.Count, pass1Internal.Pages.Count);
+
+            foreach (var kvp in diskPublic.Pages)
+            {
+                Assert.True(pass1Public.Pages.TryGetValue(kvp.Key, out var p1));
+                Assert.Equal(kvp.Value.Title, p1!.Title);
+                Assert.Equal(kvp.Value.Summary, p1.Summary);
+                Assert.Equal(kvp.Value.Indexable, p1.Indexable);
+                Assert.Equal(kvp.Value.Html, p1.Html);
+            }
+        }
+
+        [Fact]
+        public void ClaimSafety_PublicWikiContainsNoProhibitedTerms()
+        {
+            using var scope = _factory.Services.CreateScope();
+            var wikiService = scope.ServiceProvider.GetRequiredService<IWikiService>();
+            var allPages = wikiService.GetAllPages();
+
+            var prohibitedTerms = new[]
+            {
+                "tam uyum", "tam uyumlu", "yüzde yüz uyum",
+                "maksimize eder", "kesin satış garantisi", "kesin ciro artışı", "garantili ciro",
+                "real-time REST API streaming",
+                "SOC 2", "SOC2", "ISO 27001", "ISO27001", "SAML SSO", "99.99%",
+                "otonom gönderim", "otonom karar verici"
+            };
+
+            foreach (var summary in allPages)
+            {
+                var full = wikiService.GetPage(summary.Slug)!;
+                foreach (var term in prohibitedTerms)
+                {
+                    Assert.DoesNotContain(term, full.Html, StringComparison.OrdinalIgnoreCase);
+                    Assert.DoesNotContain(term, full.Summary, StringComparison.OrdinalIgnoreCase);
+                    Assert.DoesNotContain(term, full.Title, StringComparison.OrdinalIgnoreCase);
+                }
+            }
+
+            // Specific validation for iletisim-listeleri-ve-opt-out
+            var optoutPage = wikiService.GetPage("iletisim-listeleri-ve-opt-out");
+            Assert.NotNull(optoutPage);
+            Assert.Contains("Pika, iletişim tercihlerini, opt-out durumunu ve kanal uygunluğunu yönetmek için teknik altyapı sağlar; tercih değişiklikleri sonraki uygunluk değerlendirmelerinde dikkate alınır.", optoutPage.Html);
+            Assert.DoesNotContain("tam uyum", optoutPage.Html, StringComparison.OrdinalIgnoreCase);
+            Assert.DoesNotContain("otomatik yönetir", optoutPage.Html, StringComparison.OrdinalIgnoreCase);
+            Assert.DoesNotContain("anında", optoutPage.Html, StringComparison.OrdinalIgnoreCase);
+
+            // Specific validation for basarisiz-yeniden-deneme
+            var retryPage = wikiService.GetPage("basarisiz-yeniden-deneme");
+            Assert.NotNull(retryPage);
+            Assert.Contains("teslimat oranını korumaya yardımcı olur", retryPage.Html);
+            Assert.DoesNotContain("maksimize eder", retryPage.Html, StringComparison.OrdinalIgnoreCase);
+        }
     }
 
     public class TestAuthHandler : Microsoft.AspNetCore.Authentication.AuthenticationHandler<AuthenticationSchemeOptions>
@@ -672,10 +912,14 @@ namespace Pika.Web.Tests
 
         protected override Task<AuthenticateResult> HandleAuthenticateAsync()
         {
+            var role = Request.Headers.TryGetValue("X-Test-Role", out var r) && !string.IsNullOrWhiteSpace(r)
+                ? r.ToString()
+                : "Admin";
+
             var claims = new[]
             {
-                new Claim(ClaimTypes.Name, "test.engineer@pika.tr"),
-                new Claim(ClaimTypes.Role, "Admin"),
+                new Claim(ClaimTypes.Name, "test.user@pika.tr"),
+                new Claim(ClaimTypes.Role, role),
                 new Claim("TenantId", "tenant-1")
             };
             var identity = new ClaimsIdentity(claims, "TestScheme");
@@ -683,6 +927,12 @@ namespace Pika.Web.Tests
             var ticket = new AuthenticationTicket(principal, "TestScheme");
 
             return Task.FromResult(AuthenticateResult.Success(ticket));
+        }
+
+        protected override Task HandleForbiddenAsync(AuthenticationProperties properties)
+        {
+            Response.StatusCode = StatusCodes.Status403Forbidden;
+            return Task.CompletedTask;
         }
     }
 }

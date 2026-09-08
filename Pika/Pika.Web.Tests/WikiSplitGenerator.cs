@@ -49,6 +49,7 @@ namespace Pika.Web.Tests
 
                 CleanStaticAppJs(baseDir, publicWiki);
                 UpdateSitemap(baseDir, publicWiki);
+                UpdateGovernanceMarkdown(baseDir, publicWiki, internalWiki);
             }
 
             // 4. TEST VALIDATION: Validate semantic structure without mutating tracked files
@@ -79,7 +80,7 @@ namespace Pika.Web.Tests
             Assert.NotEmpty(publicWiki.Nav);
         }
 
-        private static WikiData BuildInternalWiki(WikiData original)
+        internal static WikiData BuildInternalWiki(WikiData original)
         {
             var internalWiki = new WikiData();
 
@@ -559,7 +560,7 @@ namespace Pika.Web.Tests
             return internalWiki;
         }
 
-        private static WikiData BuildPublicWiki(WikiData original)
+        internal static WikiData BuildPublicWiki(WikiData original)
         {
             var publicWiki = new WikiData();
 
@@ -829,7 +830,7 @@ namespace Pika.Web.Tests
 <div class=""feature-grid"">
 <article class=""feature-card"">
 <h3>Geçici Durumlar</h3>
-<p>Alıcı sunucusunun anlık meşgul olması veya geçici şebeke kesintileridir. Pika bu durumları güvenli aralıklarla yeniden deneyerek teslimat oranını maksimize eder.</p>
+<p>Alıcı sunucusunun anlık meşgul olması veya geçici şebeke kesintileridir. Pika bu durumları güvenli aralıklarla yeniden deneyerek teslimat oranını korumaya yardımcı olur.</p>
 </article>
 <article class=""feature-card"">
 <h3>Kalıcı Engeller</h3>
@@ -1215,12 +1216,12 @@ namespace Pika.Web.Tests
 <div class=""hero-copy"">
 <div class=""hero-kicker"">Kanallar ve İzinler</div>
 <h1>İletişim Listeleri ve Tercih Yönetimi</h1>
-<p class=""hero-lead"">Pika, müşteri tercihlerine ve yasal izinlere tam uyum sağlayacak şekilde iletişim listelerini ve abonelikten ayrılma süreçlerini otomatik yönetir.</p>
+<p class=""hero-lead"">Pika, iletişim tercihlerini, opt-out durumunu ve kanal uygunluğunu yönetmek için teknik altyapı sağlar; tercih değişiklikleri sonraki uygunluk değerlendirmelerinde dikkate alınır.</p>
 </div>
 </section>
 
 <h2>Abonelikten Çıkma ve Tercih Yönetimi</h2>
-<p>Gönderilen e-postalarda yer alan tek tıkla abonelikten çıkma bağlantıları, müşterinin tercihini anında iletişim listesine işler ve gelecekteki gönderimlerde ilgili kanal otomatik olarak pasife alınır.</p>
+<p>Gönderilen e-postalarda yer alan tek tıkla abonelikten çıkma bağlantıları üzerinden iletilen tercihler iletişim listesine kaydedilir; ilgili kanal sonraki uygunluk değerlendirmelerinde dikkate alınır.</p>
 "
             };
 
@@ -1328,6 +1329,142 @@ function searchPublicDocs(q) {
             sb.AppendLine("</urlset>");
 
             File.WriteAllText(sitemapPath, sb.ToString());
+        }
+
+        internal static void UpdateGovernanceMarkdown(string baseDir, WikiData publicWiki, WikiData internalWiki)
+        {
+            var docPath = Path.Combine(baseDir, "docs", "marketing", "WIKI_PUBLIC_GOVERNANCE.md");
+            var sb = new StringBuilder();
+
+            sb.AppendLine("# PIKA PUBLIC WIKI GOVERNANCE & TAXONOMY SPECIFICATION");
+            sb.AppendLine();
+            sb.AppendLine("> **Document Status:** Active Canonical Standard  ");
+            sb.AppendLine("> **Last Updated:** September 2026  ");
+            sb.AppendLine("> **Version:** 1.1 (Security Boundary & Taxonomy Convergence)  ");
+            sb.AppendLine("> **Scope:** Public Knowledge Base (`/wiki/`), Internal Engineering Docs (`/internal/wiki/`), Robots Meta, Sitemap Governance, Canonical Product Truth Reconciliation");
+            sb.AppendLine();
+            sb.AppendLine("---");
+            sb.AppendLine();
+            sb.AppendLine("## 1. Executive Summary & Principles");
+            sb.AppendLine();
+            sb.AppendLine("Pika's Public Knowledge Base (`/wiki/`) serves two distinct operational audiences while safeguarding technical intellectual property and adhering to search engine / LLM indexability best practices:");
+            sb.AppendLine();
+            sb.AppendLine("1. **Strategic & High-Level Evaluation (Prospects, Executive Buyers, Evaluators):**");
+            sb.AppendLine("   - Articles that explain platform value, the 6-step customer value chain, deterministic intelligence models, omnichannel orchestration, and governance.");
+            sb.AppendLine("   - **Classification:** `INDEX` (Emits `<meta name=\"robots\" content=\"index, follow\">`, included in `sitemap.xml`).");
+            sb.AppendLine("   - **Count:** 58 articles (+ 1 wiki root `/wiki/` = 59 wiki URLs in sitemap).");
+            sb.AppendLine();
+            sb.AppendLine("2. **Detailed Operational & System Administration (Active Operators, Catalog Admins, Setup Teams):**");
+            sb.AppendLine("   - Step-by-step UI guides, field-level data mapping instructions, canvas workflows, delivery console error diagnosis, and operational settings.");
+            sb.AppendLine("   - While public and discoverable via in-app search, these documents do not represent entry points for organic search or LLM citations and contain low-entropy procedural copy.");
+            sb.AppendLine("   - **Classification:** `NOINDEX` (Emits `<meta name=\"robots\" content=\"noindex, follow\">`, excluded from `sitemap.xml`).");
+            sb.AppendLine("   - **Count:** 30 articles.");
+            sb.AppendLine();
+            sb.AppendLine("3. **Dahili Mühendislik Dokümantasyonu (Quarantined Internal Knowledge Base):**");
+            sb.AppendLine("   - 15 internal architectural, algorithm implementation, database schema, Hangfire worker, and deployment pipeline specifications quarantined under `/internal/wiki/`.");
+            sb.AppendLine("   - Protected by `[Authorize(Policy = \"InternalDocsAccess\")]` requiring `Admin`, `InternalEngineer`, or `Staff` roles.");
+            sb.AppendLine("   - Anonymous requests redirect (302) to `/Account/Login`. Authenticated tenant users without internal policy receive **403 Forbidden**.");
+            sb.AppendLine("   - Completely absent from public JSON, public navigation, public search, and `sitemap.xml`.");
+            sb.AppendLine();
+            sb.AppendLine("---");
+            sb.AppendLine();
+            sb.AppendLine("## 2. Canonical Product Truth Reconciliation Rules");
+            sb.AppendLine();
+            sb.AppendLine("Every public Wiki article must adhere to the following product truth guardrails:");
+            sb.AppendLine();
+            sb.AppendLine("| Area | Canonical Truth Standard | Prohibited / Deprecated Framing | Corrected Articles |");
+            sb.AppendLine("| :--- | :--- | :--- | :--- |");
+            sb.AppendLine("| **Platform Category** | Customer Intelligence & Omnichannel Marketing Platform | Standalone CRM, pure CDP, basic email blast tool | All 88 articles aligned |");
+            sb.AppendLine("| **Customer Value Score (CVS)** | `(0.40 × Monetary) + (0.25 × Frequency) + (0.20 × Recency) + (0.15 × Loyalty)` | `%60 ciro + %40 sıklık`, or treating Rhythm as a 5th score component | `musteri-deger-skoru`, `musteri-degeri-sadakat`, `sadakat-hedefe-yakinlik`, `sss`, `sozluk` |");
+            sb.AppendLine("| **Shopping Rhythm** | Independent behavioral context signal comparing customer recency against their historical median repurchase interval | 5th score factor, weighted multiplier | `musteri-deger-skoru`, `musteri-degeri-sadakat` |");
+            sb.AppendLine("| **Active Marketing Channels** | **E-posta, SMS, WhatsApp** | Push notifications marketed as active channel | `kampanya-yoneticisi-ve-kurgular`, `kampanya-kanallari-ve-rol-dagilimi` |");
+            sb.AppendLine("| **Repeat Purchase Timing** | Historical cycle window (80%–120% median repurchase interval). Statuses: Zamanı Yaklaşan, Geciken, Döngü Dışında | Fake purchase probability % (`%87 olasılık`), forecast order amounts (`1.450 TL`), forward revenue predictions | `tekrar-satin-alma-analizi` |");
+            sb.AppendLine("| **AI Role & Autonomy** | Explainer, synthesizer, creative copy assistant with Human-in-the-loop approval. Decision logic is deterministic system rules. | Autonomous decision-maker, autonomous sending agent, black-box predictor | `ai-rolu-guven-siniri`, `next-best-action`, `sss` |");
+            sb.AppendLine("| **Opportunity Confidence** | Evidence quality & data sufficiency (`Kanıt Yeterliliği`: Sınırlı, Gelişen, Güçlü Kanıt) | Algorithmic \"Güven Skoru Motoru\" or purchase probability predictor | `firsat-guveni-kanit`, `firsattan-aksiyona-gecis` |");
+            sb.AppendLine("| **High-Risk Claims** | Enterprise-grade TLS, tenant isolation, KVKK / İYS consent checks | SOC 2, ISO 27001, SAML SSO guarantees, 99.99% uptime SLA, guaranteed revenue increases | All 88 articles verified clean |");
+            sb.AppendLine("| **Engineering Leakage** | Customer-safe terms (`kuyruk durumu ve başarısız iş inceleme havuzu`) | Internal code symbols, Hangfire, MediatR, DbContext, dead-letter queues | `gonderim-operasyonu-izleme`, `sss`, `sozluk` |");
+            sb.AppendLine();
+            sb.AppendLine("---");
+            sb.AppendLine();
+            sb.AppendLine("## 3. Public Wiki Complete Inventory (88 Articles)");
+            sb.AppendLine();
+
+            int catIndex = 1;
+            foreach (var group in publicWiki.Nav)
+            {
+                var catName = group[0]?.ToString() ?? "";
+                var slugs = group[1] as List<string> ?? new List<string>();
+
+                sb.AppendLine($"### Category {catIndex}: {catName} ({slugs.Count} Articles)");
+                sb.AppendLine("| Slug | Title | Audience | Classification | Rationale |");
+                sb.AppendLine("| :--- | :--- | :--- | :--- | :--- |");
+
+                foreach (var slug in slugs)
+                {
+                    if (publicWiki.Pages.TryGetValue(slug, out var page))
+                    {
+                        var classification = page.Indexable ? "**INDEX**" : "**NOINDEX**";
+                        var audience = page.Indexable ? "Prospect / Customer" : "Operator / Admin";
+                        var rationale = page.Summary?.Replace("|", "-").Trim() ?? "";
+                        sb.AppendLine($"| `{slug}` | {page.Title} | {audience} | {classification} | {rationale} |");
+                    }
+                }
+
+                sb.AppendLine();
+                catIndex++;
+            }
+
+            if (publicWiki.Pages.TryGetValue("gonderim-son-katman", out var offNavPage))
+            {
+                sb.AppendLine("### Off-Navigation Technical Page (1 Article)");
+                sb.AppendLine("| Slug | Title | Audience | Classification | Rationale |");
+                sb.AppendLine("| :--- | :--- | :--- | :--- | :--- |");
+                sb.AppendLine($"| `gonderim-son-katman` | {offNavPage.Title} | Operator / Technical | **NOINDEX** | {offNavPage.Summary?.Replace("|", "-").Trim()} |");
+                sb.AppendLine();
+            }
+
+            sb.AppendLine("---");
+            sb.AppendLine();
+            sb.AppendLine("## 4. Quarantined Internal Engineering Wiki (15 Articles)");
+            sb.AppendLine();
+            sb.AppendLine("The following articles contain proprietary engineering designs, database entity relationships, worker architectures, and deployment pipelines. They are quarantined under `/internal/wiki/` and served via `InternalWikiController` requiring authenticated employee access with policy `InternalDocsAccess` (`[Authorize(Policy = \"InternalDocsAccess\")]`):");
+            sb.AppendLine();
+
+            int internalIndex = 1;
+            foreach (var kvp in internalWiki.Pages.OrderBy(x => x.Key))
+            {
+                sb.AppendLine($"{internalIndex}. `{kvp.Key}`: {kvp.Value.Title} - {kvp.Value.Summary?.Replace("|", "-").Trim()}");
+                internalIndex++;
+            }
+
+            sb.AppendLine();
+            sb.AppendLine("---");
+            sb.AppendLine();
+            sb.AppendLine("## 5. Governance Enforcement & Automated Regression Testing");
+            sb.AppendLine();
+            sb.AppendLine("To prevent regression or accidental drift, the following automated tests in `Pika.Web.Tests/WikiTests.cs` and `Pika.Web.Tests/WikiSplitGenerator.cs` enforce this specification:");
+            sb.AppendLine();
+            sb.AppendLine("- `AllSitemapWikiUrls_Return200OK`: Asserts exactly 59 Wiki URLs in `sitemap.xml` (root + 58 INDEX articles) and verifies all 59 return 200 OK without truncation.");
+            sb.AppendLine("- `InternalWikiSecurity_AnonymousUser_RedirectsToLogin`: Asserts anonymous access to `/internal/wiki/` and internal articles redirects to `/Account/Login`.");
+            sb.AppendLine("- `InternalWikiSecurity_TenantUser_Returns403Forbidden`: Asserts authenticated tenant users without internal policy receive 403 Forbidden on internal wiki routes.");
+            sb.AppendLine("- `InternalWikiSecurity_PrivilegedStaff_Returns200OK`: Asserts privileged staff with `InternalDocsAccess` receive 200 OK on internal wiki routes.");
+            sb.AppendLine("- `GovernanceDocument_MatchesGeneratedWikiData`: Programmatically parses `WIKI_PUBLIC_GOVERNANCE.md` and validates 1-to-1 slug, title, and indexability parity against `wiki.json`.");
+            sb.AppendLine("- `Generator_IsIdempotent_SecondRunProducesZeroDrift`: Proves in-memory second-run generation produces identical serialized data with zero drift.");
+            sb.AppendLine("- `ClaimSafety_PublicWikiContainsNoProhibitedTerms`: Verifies complete absence of compliance absolutes, guarantees, unauthorized streaming claims, or fake predictions across all public articles.");
+            sb.AppendLine("- `PublicInternalBoundary_ContainsNoInternalArticlesOrNav`: Asserts 0 internal articles in public wiki JSON, public nav, or public views.");
+            sb.AppendLine("- `NavIntegrity_AllSlugsResolve_NoBrokenRelated`: Asserts all 87 nav slugs and 88 public pages resolve with 0 broken `related` links.");
+            sb.AppendLine("- `CustomerValueScore_ReflectsCanonicalFourFactorFormula_OmitsRhythmFromScore`: Asserts CVS has factors 0.40, 0.25, 0.20, 0.15, Rhythm is independent context, and `%60 ciro + %40 sıklık` is 100% absent.");
+            sb.AppendLine("- `Channels_DoNotMarketPushAsActiveChannel_EmailSmsWhatsAppOnly`: Asserts Push is completely removed from public channels.");
+            sb.AppendLine("- `RepeatPurchase_ExcludesUnsupportedForecastsAndProbabilities_UsesCycleWindow`: Asserts canonical 80%–120% cycle window and 0 fake forecast/probability claims.");
+            sb.AppendLine("- `AiRole_AssertsHumanInTheLoop_NoAutonomousSending`: Asserts Human-in-the-loop and absence of autonomous sending claims.");
+            sb.AppendLine("- `OpportunityConfidence_FramesAsEvidenceQuality_NotStandaloneScoreEngine`: Asserts confidence is framed as evidence quality (`Kanıt Yeterliliği`).");
+            sb.AppendLine("- `HighRiskClaims_AbsenceOfSoc2Iso27001SamlSsoAndGuarantees`: Asserts absence of SOC 2, ISO 27001, SAML SSO, 99.99% SLA, or revenue guarantees.");
+            sb.AppendLine("- `RobotsMeta_EmitsSingleTag_IndexFollowOrNoindexFollow`: Asserts INDEX pages emit `index, follow`, NOINDEX emit `noindex, follow`, with 0 duplicate or conflicting tags.");
+            sb.AppendLine("- `AssetIntegrity_AllReferencedImagesExistOnDisk`: Asserts all 29 referenced screenshots exist in `wwwroot/wiki/assets/images/`.");
+            sb.AppendLine("- `WikiGovernance_GovernanceCountsMatch58Index30Noindex`: Asserts exactly 88 public pages, 58 indexable, and 30 noindex.");
+            sb.AppendLine();
+
+            File.WriteAllText(docPath, sb.ToString(), Encoding.UTF8);
         }
     }
 }

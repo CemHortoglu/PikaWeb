@@ -1,8 +1,8 @@
-# PIKA PUBLIC WIKI GOVERNANCE & TAXONOMY SPECIFICATION
+﻿# PIKA PUBLIC WIKI GOVERNANCE & TAXONOMY SPECIFICATION
 
 > **Document Status:** Active Canonical Standard  
 > **Last Updated:** September 2026  
-> **Version:** 1.0 (Convergence Release)  
+> **Version:** 1.1 (Security Boundary & Taxonomy Convergence)  
 > **Scope:** Public Knowledge Base (`/wiki/`), Internal Engineering Docs (`/internal/wiki/`), Robots Meta, Sitemap Governance, Canonical Product Truth Reconciliation
 
 ---
@@ -24,7 +24,9 @@ Pika's Public Knowledge Base (`/wiki/`) serves two distinct operational audience
 
 3. **Dahili Mühendislik Dokümantasyonu (Quarantined Internal Knowledge Base):**
    - 15 internal architectural, algorithm implementation, database schema, Hangfire worker, and deployment pipeline specifications quarantined under `/internal/wiki/`.
-   - Protected by `[Authorize]` attributes; unauthenticated access redirects to `/Account/Login`. Completely absent from public JSON, public navigation, public search, and `sitemap.xml`.
+   - Protected by `[Authorize(Policy = "InternalDocsAccess")]` requiring `Admin`, `InternalEngineer`, or `Staff` roles.
+   - Anonymous requests redirect (302) to `/Account/Login`. Authenticated tenant users without internal policy receive **403 Forbidden**.
+   - Completely absent from public JSON, public navigation, public search, and `sitemap.xml`.
 
 ---
 
@@ -41,180 +43,162 @@ Every public Wiki article must adhere to the following product truth guardrails:
 | **Repeat Purchase Timing** | Historical cycle window (80%–120% median repurchase interval). Statuses: Zamanı Yaklaşan, Geciken, Döngü Dışında | Fake purchase probability % (`%87 olasılık`), forecast order amounts (`1.450 TL`), forward revenue predictions | `tekrar-satin-alma-analizi` |
 | **AI Role & Autonomy** | Explainer, synthesizer, creative copy assistant with Human-in-the-loop approval. Decision logic is deterministic system rules. | Autonomous decision-maker, autonomous sending agent, black-box predictor | `ai-rolu-guven-siniri`, `next-best-action`, `sss` |
 | **Opportunity Confidence** | Evidence quality & data sufficiency (`Kanıt Yeterliliği`: Sınırlı, Gelişen, Güçlü Kanıt) | Algorithmic "Güven Skoru Motoru" or purchase probability predictor | `firsat-guveni-kanit`, `firsattan-aksiyona-gecis` |
-| **High-Risk Claims** | Enterprise-grade TLS, tenant isolation, KVKK / İYS consent checks | SOC 2, ISO 27001, SAML SSO guarantees, 99.99% uptime SLA, guaranteed revenue increases | All 88 articles verified clean (0 violations) |
+| **High-Risk Claims** | Enterprise-grade TLS, tenant isolation, KVKK / İYS consent checks | SOC 2, ISO 27001, SAML SSO guarantees, 99.99% uptime SLA, guaranteed revenue increases | All 88 articles verified clean |
 | **Engineering Leakage** | Customer-safe terms (`kuyruk durumu ve başarısız iş inceleme havuzu`) | Internal code symbols, Hangfire, MediatR, DbContext, dead-letter queues | `gonderim-operasyonu-izleme`, `sss`, `sozluk` |
 
 ---
 
 ## 3. Public Wiki Complete Inventory (88 Articles)
 
-### Category 1: Başlarken (Getting Started) — 6 Articles
+### Category 1: Pika'yı Tanıyın (7 Articles)
 | Slug | Title | Audience | Classification | Rationale |
 | :--- | :--- | :--- | :--- | :--- |
-| `pika-nedir` | Pika Nedir? | Prospect / Customer | **INDEX** | Core platform definition, value proposition, 6-step value chain overview. |
-| `pika-ne-degildir` | Pika Ne Değildir? | Prospect / Customer | **INDEX** | Boundary definition distinguishing Pika from standalone CRM, pure CDP, and mass-blast tools. |
-| `deger-onerisi-ve-is-modeli` | Değer Önerisi ve İş Modeli | Prospect / Customer | **INDEX** | Strategic commercial positioning, unit economics, and customer retention ROI. |
-| `kurulum-ve-ilk-adimlar` | Kurulum ve İlk Adımlar | Customer / Operator | **INDEX** | High-level onboarding flow from initial data load to first actionable campaign. |
-| `pika-hangi-verileri-kullanir` | Pika Hangi Verileri Kullanır? | Prospect / Customer | **INDEX** | Data footprint transparency: sales transactions, customer identity, catalog data, and consent records. |
-| `bilgi-bankasi-haritasi` | Bilgi Bankası Haritası | All Audiences | **INDEX** | Knowledge base site index and navigation hub for users and search crawlers. |
+| `pika-nedir` | Pika Nedir? | Prospect / Customer | **INDEX** | Pika’nın ürün olarak ne olduğunu, hangi problemi çözdüğünü ve müşteriye hangi temel değeri sunduğunu açıklar. |
+| `pika-ne-degildir` | Pika Ne Değildir? | Prospect / Customer | **INDEX** | Pika’nın yanlış kategorilenmesini önlemek için CRM, BI, AI ve gönderim araçlarından farkını açıklar. |
+| `pika-konumu` | Pika’nın Konumu | Prospect / Customer | **INDEX** | Pika’nın CRM, BI, kampanya aracı ve AI asistanı gibi kategorilerle ilişkisini; fakat neden bunların hiçbirine tek başına indirgenemeyeceğini açıklar. |
+| `pika-nasil-calisir` | Pika Nasıl Çalışır? | Prospect / Customer | **INDEX** | Pika’nın veriden aksiyona ve ölçüme uzanan uçtan uca çalışma modelini açıklar. |
+| `kimler-icin` | Pika Kimler İçin? | Prospect / Customer | **INDEX** | Pika’dan hangi tür işletmelerin ve hangi ekiplerin daha fazla değer elde edebileceğini açıklar. |
+| `urun-haritasi` | Pika Ürün Haritası | Prospect / Customer | **INDEX** | Pika Knowledge Base’in tamamında kullanılacak ana ürün haritasını ve modüllerin birbirleriyle ilişkisini açıklar. |
+| `bilgi-bankasi-haritasi` | Bilgi Bankası Haritası | Prospect / Customer | **INDEX** | Bu bilgi bankasının Pika’yı hangi sırayla anlattığını ve her bölümün ürün hikâyesindeki yerini gösterir. |
 
----
-
-### Category 2: Müşteriyi ve Ürünü Anlayın (Customer & Product Intelligence) — 17 Articles
+### Category 2: Müşteriyi ve Ürünü Anlayın (17 Articles)
 | Slug | Title | Audience | Classification | Rationale |
 | :--- | :--- | :--- | :--- | :--- |
-| `pika-360` | Pika 360 | Prospect / Customer | **INDEX** | Flagship customer 360 cockpit overview unifying value, risk, and reachability. |
-| `customer-intelligence-nedir` | Customer Intelligence ve Müşteri Analitiği | Prospect / Customer | **INDEX** | Foundational conceptual guide to behavioral customer intelligence. |
-| `musteri-degeri-sadakat` | Müşteri Değeri ve Sadakat | Prospect / Customer | **INDEX** | Conceptual separation of commercial value, loyalty status, and risk signals. |
-| `musteri-deger-skoru` | Müşteri Değer Skoru | Prospect / Customer | **INDEX** | Canonical 4-factor CVS formula definition and business interpretation. |
-| `sadakat-hedefe-yakinlik` | Sadakat ve Hedefe Yakınlık | Prospect / Customer | **INDEX** | Loyalty milestones, tier progression, and goal proximity mechanics. |
-| `deger-risk-birlikte-okuma` | Değer ve Risk Göstergelerini Birlikte Okumak | Prospect / Customer | **INDEX** | Strategic matrix combining customer value tiers with churn/passivity risk. |
-| `tekrar-satin-alma-analizi` | Tekrar Satın Alma Analizi | Prospect / Customer | **INDEX** | 80%–120% historical cycle window analysis for timely repurchase opportunities. |
-| `product-intelligence-nedir` | Product Intelligence Nedir? | Prospect / Customer | **INDEX** | Foundational guide to semantic product intelligence and catalog taxonomy. |
-| `playbook-sektorel-anlam` | Playbook: Sektörel Ürün Anlamlandırması | Prospect / Customer | **INDEX** | Vertical playbook framework translating raw SKUs into commercial meaning. |
-| `need-group-product-role` | Need Group ve Product Role Mimarisi | Prospect / Customer | **INDEX** | Product taxonomy roles: consumable, cross-sell anchor, upgrade target. |
-| `dinamik-siniflandirma-alanlari` | Dinamik Sınıflandırma Alanları | Operator / Catalog Admin | **NOINDEX** | Detailed field configuration workbench for custom product attributes. |
-| `kategori-playbook-baglantisi` | Kategori Playbook Bağlantısı | Operator / Catalog Admin | **NOINDEX** | Procedural manual mapping categories to sector playbooks. |
-| `urun-siniflandirma-workbench` | Ürün Sınıflandırma Workbench | Operator | **NOINDEX** | Operational UI instructions for bulk batch classification. |
-| `master-urun-anlamlandirmalari` | Master Ürün Anlamlandırmaları | Operator / Data Admin | **NOINDEX** | Technical entity deduplication and product master record setup. |
-| `review-resolution-readiness` | Review, Resolution ve Readiness İş Akışları | Operator | **NOINDEX** | Step-by-step exception resolution queue workflow for unmatched items. |
-| `product-intelligence-musteri-firsati` | Product Intelligence ile Müşteri Fırsatı Üretimi | Prospect / Customer | **INDEX** | Strategic bridge connecting catalog intelligence to commercial opportunity generation. |
-| `ai-musteri-ozeti` | AI Müşteri Özeti | Prospect / Customer | **INDEX** | AI-generated narrative customer insights backed by deterministic system metrics. |
+| `pika-360` | Pika 360 | Prospect / Customer | **INDEX** | Tek bir müşterinin değer, risk, iletişim erişimi ve açık fırsat bilgilerini bir araya getiren müşteri karar özetini açıklar. |
+| `customer-intelligence-nedir` | Customer Intelligence ve Müşteri Analitiği | Prospect / Customer | **INDEX** | Müşteri alışveriş ritmi, değer segmentleri ve davranış eğilimlerinin nasıl analiz edildiğini açıklar. |
+| `musteri-degeri-sadakat` | Müşteri Değeri ve Sadakat | Prospect / Customer | **INDEX** | Müşteri değer skoru (CVS), sadakat, risk ve davranış sinyallerinin birbirinden ayrı ama birlikte nasıl okunacağını açıklar. |
+| `musteri-deger-skoru` | Müşteri Değer Skoru | Prospect / Customer | **INDEX** | Müşteri Değer Skoru'nun (CVS) 4 temel faktörünü (Monetary, Frequency, Recency, Loyalty), ağırlıklı hesaplama mantığını ve nasıl yorumlanacağını açıklar. |
+| `sadakat-hedefe-yakinlik` | Sadakat ve Hedefe Yakınlık | Prospect / Customer | **INDEX** | Loyalty point/tier bilgisi ile müşterinin bir üst sadakat eşiğine yakınlığının nasıl daha akıllı aksiyonlara dönüştürülebileceğini açıklar. |
+| `deger-risk-birlikte-okuma` | Değer ve Riski Birlikte Okumak | Prospect / Customer | **INDEX** | Müşteri değeri ile pasifleşme/kayıp riskini tek eksende değil birlikte değerlendirerek farklı aksiyon öncelikleri oluşturmayı açıklar. |
+| `tekrar-satin-alma-analizi` | Tekrar Satın Alma Analizi | Prospect / Customer | **INDEX** | Müşterinin geçmiş alışveriş döngüsü penceresine (%80–%120 aralığı) göre zamanı yaklaşan ve geciken tekrar satın alma ihtiyaçlarının nasıl görünür hale getirildiğini açıklar. |
+| `product-intelligence-nedir` | Product Intelligence Nedir? | Prospect / Customer | **INDEX** | Pika’nın ürünleri yalnız katalog kaydı değil, müşteri ihtiyacı ve ticari rol bağlamında nasıl anlamlandırdığını açıklar. |
+| `playbook-sektorel-anlam` | Playbook: Sektöre Göre Ürün Dili | Prospect / Customer | **INDEX** | Playbook yöneticisinin sektör bazlı ürün dilini, versiyonlamayı ve tanım katmanını nasıl yönettiğini gösterir. |
+| `need-group-product-role` | Need Group ve Product Role | Prospect / Customer | **INDEX** | Ürünün hangi müşteri ihtiyacını temsil ettiğini ve ticari/öneri sistemindeki görevini birbirinden ayırır. |
+| `dinamik-siniflandirma-alanlari` | Dinamik Sınıflandırma Alanları | Operator / Admin | **NOINDEX** | Playbook’a özel alan ve seçeneklerin ürünleri daha ayrıntılı fakat kontrollü biçimde anlamlandırmak için nasıl kullanıldığını açıklar. |
+| `kategori-playbook-baglantisi` | Kategori ve Playbook Bağlantısı | Operator / Admin | **NOINDEX** | Kategori binding’in Product Intelligence’da doğru alan, Need Group ve Product Role bağlamını ürünlere nasıl taşıdığını açıklar. |
+| `urun-siniflandirma-workbench` | Ürün Sınıflandırma Çalışma Alanı | Operator / Admin | **NOINDEX** | Tenant Product Classification Workbench’in ürünleri filtreleme, sınıflandırma, uyarı ve onay süreçlerinde nasıl konumlandığını açıklar. |
+| `master-urun-anlamlandirmalari` | Master Ürün Anlamlandırmaları | Operator / Admin | **NOINDEX** | Playbook kapsamında master ürünlere varsayılan ihtiyaç grubu, ürün rolü ve alan değerlerinin nasıl bağlandığını gösterir. |
+| `review-resolution-readiness` | Review, Resolution ve Hazırlık | Operator / Admin | **NOINDEX** | Ürün sınıflandırma review akışı ile ham satış satırlarının gerçek ürünle eşleştirilmesi arasındaki farkı açıklar. |
+| `product-intelligence-musteri-firsati` | Ürün Zekâsından Müşteri Fırsatına | Prospect / Customer | **INDEX** | Product Intelligence çıktılarının Pika 360, tekrar satın alma, cross-sell ve aksiyon kararlarını nasıl beslediğini açıklar. |
+| `ai-musteri-ozeti` | AI Müşteri Özeti | Prospect / Customer | **INDEX** | Pika’nın ürettiği müşteri verisini daha okunur ve yorumlanabilir hale getiren AI açıklama katmanını anlatır. |
 
----
-
-### Category 3: Fırsat ve Karar (Opportunity & Decision Engine) — 7 Articles
+### Category 3: Fırsat ve Karar (8 Articles)
 | Slug | Title | Audience | Classification | Rationale |
 | :--- | :--- | :--- | :--- | :--- |
-| `gunun-firsatlari-ve-karar-motoru` | Günün Fırsatları ve Karar Motoru | Prospect / Customer | **INDEX** | Daily algorithmic opportunity board ranking immediate revenue actions. |
-| `segmentasyon-ve-firsatlar` | Segmentasyon ve Fırsatlar | Prospect / Customer | **INDEX** | Concept linking static/dynamic audience segments to actionable commercial triggers. |
-| `firsat-turleri` | Fırsat Türleri | Prospect / Customer | **INDEX** | Taxonomy of opportunity categories: repurchase, cross-sell, upsell, win-back, loyalty. |
-| `cross-sell-firsatlari` | Cross-sell / Çapraz Satış Analizi | Prospect / Customer | **INDEX** | Basket affinity, support, confidence, and lift methodology for complementary offerings. |
-| `upsell-firsatlari` | Upsell / Yükseltme Analizi | Prospect / Customer | **INDEX** | Premium upgrade candidate identification based on usage maturation. |
-| `next-best-action` | Next Best Action, Kanal ve Zaman | Prospect / Customer | **INDEX** | Deterministic multi-dimensional evaluation of action, channel, and send window. |
-| `firsat-guveni-kanit` | Fırsat Güveni ve Kanıt | Prospect / Customer | **INDEX** | Evidence sufficiency levels (Sınırlı, Gelişen, Güçlü) ensuring explainable recommendations. |
+| `gunun-firsatlari-ve-karar-motoru` | Günün Fırsatları ve Karar Motoru | Prospect / Customer | **INDEX** | Günlük olarak hesaplanan tekrar satın alma, geri kazanım ve çapraz satış fırsatlarının tek ekranda nasıl yönetildiğini açıklar. |
+| `segmentasyon-ve-firsatlar` | Segmentasyon ve Fırsatlar | Prospect / Customer | **INDEX** | Segmentlerin yalnız hedef kitle listesi değil, davranış ve fırsat sinyallerini yönetmenin temel katmanı olduğunu açıklar. |
+| `firsat-turleri` | Fırsat Türleri | Prospect / Customer | **INDEX** | Pika’nın müşteri ve ürün verisinden çıkarabileceği temel ticari fırsat türlerini tek çerçevede açıklar. |
+| `cross-sell-firsatlari` | Cross-sell / Çapraz Satış Analizi | Prospect / Customer | **INDEX** | Sepet birliktelikleri üzerinden müşterilere en uygun tamamlayıcı ürün önerilerinin nasıl tespit edildiğini açıklar. |
+| `upsell-firsatlari` | Upsell / Yükseltme Bağlamı | Prospect / Customer | **INDEX** | Güncel Pika’da upsell’in Product Intelligence ürün rolleriyle nasıl tanımlandığını ve dedicated başarı-olasılığı motorundan nasıl ayrıldığını açıklar. |
+| `next-best-action` | Next Best Action, Kanal ve Zaman | Prospect / Customer | **INDEX** | Müşteri için en doğru aksiyonun, iletişim kanalının ve zamanlama bağlamının deterministik kurallarla nasıl belirlendiğini açıklar. |
+| `firsat-guveni-kanit` | Fırsat Güveni ve Kanıt | Prospect / Customer | **INDEX** | Pika’nın önerileri kesin gerçek gibi sunmak yerine, kanıtın gücü ve veri yeterliliğiyle birlikte değerlendirme yaklaşımını açıklar. |
+| `firsattan-aksiyona-gecis` | Fırsattan Aksiyona Geçiş | Prospect / Customer | **INDEX** | Analitik sinyalin neden doğrudan mesaj anlamına gelmediğini; iş kuralı, izin, kanal, zamanlama ve insan kontrolüyle aksiyona nasıl dönüştüğünü açıklar. |
 
----
-
-### Category 4: Aksiyon ve Otomasyon (Action & Automation) — 13 Articles
+### Category 4: Aksiyon ve Otomasyon (12 Articles)
 | Slug | Title | Audience | Classification | Rationale |
 | :--- | :--- | :--- | :--- | :--- |
-| `firsattan-aksiyona-gecis` | Fırsattan Aksiyona Geçiş | Customer / Operator | **INDEX** | 4-step governance bridge from analytical signal to approved campaign delivery. |
-| `kampanya-journey-orkestrasyonu` | Journey, Kampanya ve Orkestrasyon Katmanı | Prospect / Customer | **INDEX** | Strategic distinction between broadcast campaigns and multi-stage lifecycle journeys. |
-| `kampanya-yoneticisi-ve-kurgular` | Campaign Manager ve Kampanya Kurguları | Customer / Operator | **INDEX** | Omnichannel campaign builder workflow across Email, SMS, and WhatsApp. |
-| `journey-tasarim-tuvali` | Journey Tasarım Tuvali | Operator | **NOINDEX** | Step-by-step canvas node configuration, triggers, delays, and splits. |
-| `journey-karar-kurallari` | Journey Karar Kuralları | Operator | **NOINDEX** | Detailed conditional logic and branch rule setup within automated journeys. |
-| `journey-store` | Journey Store | Operator | **NOINDEX** | Catalog of pre-configured journey templates and deployment instructions. |
-| `icerik-studyosu-ve-gorsel-yonetimi` | Content Studio ve İçerik Tasarımı | Customer / Operator | **INDEX** | Centralized marketing asset, template, and responsive layout management. |
-| `email-template-editor` | E-posta Şablon Editörü | Operator | **NOINDEX** | Procedural visual editor guide: drag-and-drop blocks, styling, and merge tags. |
-| `email-store` | E-posta Şablon Mağazası | Operator | **NOINDEX** | In-app template store browsing, previewing, and cloning procedures. |
-| `pika-pilot-ai-kampanya-asistani` | Pika Pilot: AI Kampanya Asistanı | Prospect / Customer | **INDEX** | Generative assistant for creative subject line, email copy, and message drafting. |
-| `segment-sablonlari` | Segment Şablonları | Operator | **NOINDEX** | Library of standard industry segmentation queries and filter presets. |
-| `aksiyon-calisma-alani` | Aksiyon Çalışma Alanı | Operator | **NOINDEX** | Operator dashboard for queuing, reviewing, and triggering individual customer actions. |
-| `yayinlama-sablon-ve-yonetim` | Yayınlama, Şablon ve Yönetim | Operator | **NOINDEX** | Template versioning, governance approvals, and release management procedures. |
+| `kampanya-journey-orkestrasyonu` | Journey, Kampanya ve Orkestrasyon Katmanı | Prospect / Customer | **INDEX** | Pika’nın içgörüden aksiyona geçiş katmanını; AI kampanya asistanı, e-posta tasarımı, Journey, mağazalar ve segment şablonlarıyla birlikte açıklar. |
+| `kampanya-yoneticisi-ve-kurgular` | Campaign Manager ve Kampanya Kurguları | Prospect / Customer | **INDEX** | Hedef kitle seçimi, kanal belirleme, şablon eşleme ve zamanlanmış kampanya yönetimini açıklar. |
+| `journey-tasarim-tuvali` | Journey Tasarım Tuvali | Operator / Admin | **NOINDEX** | Tetikleyici, karar, bekleme, gönderim ve güncelleme adımlarının bir araya getirildiği otomasyon tasarım ekranını açıklar. |
+| `journey-karar-kurallari` | Journey İçinde Karar ve Dallanma Kuralları | Operator / Admin | **NOINDEX** | Journey akışında kişilerin davranışına göre evet/hayır veya zaman aşımı üzerinden nasıl dallandırıldığını açıklar. |
+| `journey-store` | Journey Store | Operator / Admin | **NOINDEX** | Hazır otomasyon Journey’lerinin kategori ve amaç bazında yeniden kullanılabildiği Journey şablon mağazasını açıklar. |
+| `email-template-editor` | Email Template Editor | Operator / Admin | **NOINDEX** | Kurumsal e-posta şablonlarının bileşen bazlı olarak hazırlanabildiği tasarım ekranını açıklar. |
+| `email-store` | Email Store | Operator / Admin | **NOINDEX** | Hazır e-posta şablonlarının kategori, popülerlik ve kullanım senaryolarına göre sunulduğu şablon mağazasını açıklar. |
+| `pika-pilot-ai-kampanya-asistani` | Pika Pilot AI Kampanya Asistanı | Prospect / Customer | **INDEX** | Doğal dille kampanya fikri, içerik taslağı ve kanal bazlı ilk kurgunun nasıl oluşturulabildiğini gösterir. |
+| `icerik-studyosu-ve-gorsel-yonetimi` | Content Studio ve İçerik Tasarımı | Prospect / Customer | **INDEX** | E-posta, SMS ve WhatsApp için kurumsal içerik şablonlarının, görsel varlıkların ve metin taslaklarının yönetimini açıklar. |
+| `segment-sablonlari` | Segment Şablonları | Operator / Admin | **NOINDEX** | Tekrar kullanılan hedefleme mantıklarının parametreli ve yayınlanabilir segment şablonlarına dönüştürülebilmesini açıklar. |
+| `aksiyon-calisma-alani` | Aksiyon Çalışma Alanı | Operator / Admin | **NOINDEX** | Müşteri için oluşturulan aksiyonların, kanal bilgisinin ve sonuç kayıtlarının tek alanda nasıl yönetildiğini açıklar. |
+| `yayinlama-sablon-ve-yonetim` | Yayınlama, Şablonlaştırma ve Operasyonel Yönetim | Operator / Admin | **NOINDEX** | Taslak oluşturma, kontrol, yayınlama, versiyon ve tekrar kullanım mantığını ürün operasyonu açısından açıklar. |
 
----
-
-### Category 5: Kanallar ve İzinler (Channels & Permissions) — 6 Articles
+### Category 5: Kanallar ve İzinler (5 Articles)
 | Slug | Title | Audience | Classification | Rationale |
 | :--- | :--- | :--- | :--- | :--- |
-| `kampanya-kanallari-ve-rol-dagilimi` | Kampanya Kanalları ve Rol Dağılımı | Prospect / Customer | **INDEX** | Strategic comparative guide on channel roles: Email, SMS, WhatsApp. |
-| `kanal-operasyonlari` | Kanal Operasyonları | Operator | **NOINDEX** | Gateway credentials, sender ID setup, webhook configuration, and dispatch ops. |
-| `iletisim-listeleri-ve-opt-out` | İletişim Listeleri ve Tercih Yönetimi | Operator / Compliance | **NOINDEX** | Procedural contact list hygiene, unsubscribe link embedding, and suppression rules. |
-| `izin-optout-iys` | İzin, Opt-out ve İYS Uyumu | Prospect / Customer / Compliance | **INDEX** | Legal compliance architecture: KVKK consent, İYS sync, and opt-out priority. |
-| `izin-kanal-zamanlama` | İzin, Kanal ve Zamanlama Uyumu | Customer / Operator | **INDEX** | Eligibility matrix combining active consent, reachable address, and frequency capping. |
-| `iletisim-kanallarini-birlikte-okumak` | İletişim Kanallarını Birlikte Okumak | Prospect / Customer | **INDEX** | Cross-channel engagement signals and deduplication to prevent communication fatigue. |
+| `kampanya-kanallari-ve-rol-dagilimi` | Kampanya Kanalları ve Rol Dağılımı | Prospect / Customer | **INDEX** | E-posta, SMS, WhatsApp ve Journey katmanlarının ürün içinde hangi role hizmet ettiğini açıklar. |
+| `kanal-operasyonlari` | E-posta, SMS ve WhatsApp Operasyonları | Operator / Admin | **NOINDEX** | Pika’nın aksiyon katmanındaki e-posta, SMS ve WhatsApp kanallarını operasyonel ama ikincil bir uygulama katmanı olarak açıklar. |
+| `izin-kanal-zamanlama` | İzin, Kanal Uygunluğu ve Zamanlama | Prospect / Customer | **INDEX** | Bir müşteriye aksiyon üretmeden önce iletişim izni, erişilebilir kanal ve doğru zamanın neden birlikte değerlendirilmesi gerektiğini açıklar. |
+| `izin-optout-iys` | İzinler, Opt-out ve İYS | Prospect / Customer | **INDEX** | Kanal uygunluğu, opt-out, WhatsApp opt-in ve İYS entegrasyonunun Pika’daki rolünü; teknik uygunluk ile hukuki sorumluluk arasındaki sınırı açıklar. |
+| `iletisim-listeleri-ve-opt-out` | İletişim Listeleri ve Tercih Yönetimi | Operator / Admin | **NOINDEX** | İletişim listeleri, müşteri izinleri, e-posta abonelikten çıkma (opt-out) ve engelleme listelerinin yönetimini açıklar. |
 
----
-
-### Category 6: Veri ve Entegrasyon (Data & Integration) — 9 Articles
+### Category 6: Veri ve Entegrasyon (12 Articles)
 | Slug | Title | Audience | Classification | Rationale |
 | :--- | :--- | :--- | :--- | :--- |
-| `veri-entegrasyon-genel` | Veri Entegrasyonu Genel Bakış | Prospect / Technical Buyer | **INDEX** | High-level data architecture: batch Excel ingestion vs real-time REST API streaming. |
-| `excel-csv-aktarimi` | Mevcut Verinizden Başlayın | Operator | **NOINDEX** | Detailed step-by-step file upload tutorial for Excel and CSV spreadsheets. |
-| `kolon-eslestirme` | Kolon Eşleştirme ve Şema Kurulumu | Operator | **NOINDEX** | Field mapping workbench: mapping source columns to Pika schema entities. |
-| `veri-dogrulama-kalite` | Veri Doğrulama ve Kalite Kontrolü | Operator | **NOINDEX** | Procedural error handling for format mismatches, duplicate rows, and null fields. |
-| `ice-aktarma-sonuclari` | İçe Aktarma Sonuçları ve Hata Yönetimi | Operator | **NOINDEX** | Import report inspection: success row counts, rejected rows, and error downloads. |
-| `satis-veri-operasyonlari` | Satış Veri Operasyonları | Operator | **NOINDEX** | Daily sales batch processing screens, sync history, and order reconciliation. |
-| `veri-hazirligi-guvenilirlik` | Veri Hazırlığı ve Analitik Güvenilirlik | Operator | **NOINDEX** | Minimum sample size criteria and data readiness checks before enabling analytics. |
-| `api-entegrasyonu` | API Entegrasyonu ve Veri Sözleşmeleri | Technical Buyer / Developer | **INDEX** | REST ingestion contracts, payload specifications, API key authentication, and payloads. |
-| `veri-sonrasi` | Veri Yüklendikten Sonra Ne Olur? | Prospect / Customer | **INDEX** | End-to-end data processing pipeline from raw ingestion to model snapshots and alerts. |
+| `veri-entegrasyon-genel` | Veri ve Entegrasyona Genel Bakış | Prospect / Customer | **INDEX** | Pika’nın müşteri ve ticari veriyi neden karar zincirinin başlangıcı olarak gördüğünü açıklar. |
+| `pika-hangi-verileri-kullanir` | Pika Hangi Verileri Kullanır? | Prospect / Customer | **INDEX** | Excel aktarım ekranında görülen müşteri, ürün, belge ve satış alanlarını iş anlamıyla açıklar. |
+| `excel-csv-aktarimi` | Excel / CSV ile Veri Aktarımı | Operator / Admin | **NOINDEX** | Mevcut satış verisinin dosya üzerinden Pika’ya alınabildiği kontrollü aktarım akışını açıklar. |
+| `kolon-eslestirme` | Kolon Eşleştirme | Operator / Admin | **NOINDEX** | Firmanın kendi kolonlarının Pika’daki müşteri, ürün, belge ve satış alanlarıyla nasıl eşleştirildiğini açıklar. |
+| `veri-dogrulama-kalite` | Veri Doğrulama ve Kalite Kontrolü | Operator / Admin | **NOINDEX** | Pika’nın Excel satırlarını yalnız yüklemek yerine veri geçerliliği ve işlem üretilebilirliği açısından ayrı ayrı kontrol ettiğini gösterir. |
+| `ice-aktarma-sonuclari` | İçe Aktarma Sonuçları ve Satır İnceleme | Operator / Admin | **NOINDEX** | Satır bazlı durumların neden kullanıcıya açık biçimde gösterildiğini ve veri alma ile işlem üretme arasındaki farkı açıklar. |
+| `fatura-siparis-neden-onemli` | Fatura ve Sipariş Verisi Neden Önemli? | Prospect / Customer | **INDEX** | Pika’nın yalnız ürün listesinden değil gerçek satın alma satırlarından neden daha fazla anlam çıkarabildiğini açıklar. |
+| `satis-veri-operasyonlari` | Satış Veri Operasyonları | Operator / Admin | **NOINDEX** | Satış verisinin Pika’ya nasıl alındığını, işlendiğini ve veri kalitesi görünürlüğüyle nasıl yönetildiğini gösterir. |
+| `veri-sonrasi` | Veri Pika’ya Geldikten Sonra Ne Olur? | Prospect / Customer | **INDEX** | Doğrulanmış ticari verinin müşteri ve ürün zekâsı katmanlarına nasıl bağlandığını kavramsal olarak açıklar. |
+| `veri-hazirligi-guvenilirlik` | Veri Kalitesi ve Analitik Güvenilirlik | Operator / Admin | **NOINDEX** | Pika Data Quality katmanındaki gerçek issue kodlarını, severity/status, etkilenen oran, freshness, samples ve remediation yaklaşımını açıklar. |
+| `ozellik-veri-gereksinimleri` | Özellik → Veri Gereksinimi Matrisi | Prospect / Customer | **INDEX** | Pika’daki ana analitik ve aksiyon kabiliyetlerinin çalışması için gereken minimum veri bağlamını ve eksik veri olduğunda ne olacağını özetler. |
+| `api-entegrasyonu` | API Entegrasyonu | Prospect / Customer | **INDEX** | Düzenli veri akışı gerektiğinde Pika’nın mevcut iş sistemleriyle API üzerinden nasıl konumlandığını açıklar. |
 
----
-
-### Category 7: Kullanım Rehberleri (Usage Guides & Administration) — 8 Articles
+### Category 7: Kullanım Rehberleri (8 Articles)
 | Slug | Title | Audience | Classification | Rationale |
 | :--- | :--- | :--- | :--- | :--- |
-| `gmail-kisi-aktarimi` | Gmail / Outlook Kişi Aktarımı | Operator | **NOINDEX** | Step-by-step CSV export and import instructions for webmail contact address books. |
-| `kisi-listesi-ve-segmentler` | Kişi Listesi ve Segmentler | Operator | **NOINDEX** | Operator contact management screen: table filters, contact tagging, and profile edits. |
-| `segment-yonetimi-ve-filtreler` | Dinamik Segment Oluşturma ve Kural Filtreleri | Operator | **NOINDEX** | Procedural rule builder instructions: combining AND/OR conditions and previewing sizes. |
-| `kategori-yonetimi` | Kategori Yönetimi | Operator | **NOINDEX** | Catalog category tree builder: parent/child nesting and ERP integration code sync. |
-| `kullanici-roller-yetkiler` | Kullanıcı Rolleri ve Yetkilendirme | Admin | **NOINDEX** | RBAC administration screen: assigning Admin, Operator, and Viewer permissions. |
-| `guvenlik-ve-veri-izolasyonu` | Güvenlik ve Veri İzolasyonu | Prospect / Technical Buyer | **INDEX** | Multi-tenant logical data isolation, encryption in transit/rest, and access safeguards. |
-| `audit-ve-uyumluluk` | Denetim İzi ve Uyumluluk | Prospect / Compliance | **INDEX** | Audit trail logging, operational traceability, KVKK subject rights compliance. |
-| `hata-yonetimi-ve-guvenli-mod` | Hata Yönetimi ve Güvenli Mod | Customer / Technical | **INDEX** | System resilience principles: graceful degradation, schema fallback, and circuit breakers. |
+| `gmail-kisi-aktarimi` | Kişi Aktarımı: Gmail ve Outlook | Operator / Admin | **NOINDEX** | Gmail üzerindeki hazır kişilerin seçilerek Pika rehberine aktarılabildiği kişi kazanım ekranını açıklar. |
+| `kisi-listesi-ve-segmentler` | Kişi Listesi ve Segmentler | Operator / Admin | **NOINDEX** | Müşteri verisinin yalnızca kayıt değil, segment, grup ve iletişim uygunluğu bağlamıyla nasıl yönetildiğini açıklar. |
+| `segment-yonetimi-ve-filtreler` | Dinamik Segment Oluşturma ve Kural Filtreleri | Operator / Admin | **NOINDEX** | Audience Manager üzerinde davranışsal, demografik ve işlem bazlı dinamik segmentlerin nasıl oluşturulacağını adım adım anlatır. |
+| `kategori-yonetimi` | Kategori Yönetimi | Operator / Admin | **NOINDEX** | Ürün zekâsının temeli olan kategori yapısının ve ürün hiyerarşisinin Pika içinde nasıl yönetildiğini gösterir. |
+| `kurulum-baslangic-modeli` | Kurulum ve Başlangıç Modeli | Prospect / Customer | **INDEX** | Pika’nın müşteride nasıl kademeli kurulduğunu; veri keşfinden ilk analitiklere, pilot kullanımdan düzenli entegrasyona uzanan başlangıç modelini açıklar. |
+| `kullanici-roller-yetkiler` | Kullanıcılar, Roller ve Yetkiler | Operator / Admin | **NOINDEX** | Pika kullanımının farklı ekipler arasında nasıl ayrıştırılabileceğini ve yetki modelinin neden önemli olduğunu açıklar. |
+| `sektorel-kullanim-ornekleri` | Sektörel Kullanım Örnekleri | Prospect / Customer | **INDEX** | Pika’nın aynı analitik ve karar zincirini farklı sektörlerde nasıl farklı problem ve ürün diliyle kullandığını açıklar. |
+| `ornek-kullanim-senaryolari` | Örnek Kullanım Senaryoları | Prospect / Customer | **INDEX** | Journey, kampanya ve AI katmanlarının birlikte nasıl çalıştığını üç kısa örnek üzerinden gösterir. |
 
----
-
-### Category 8: Ölçüm ve Analitik (Measurement & Analytics) — 10 Articles
+### Category 8: Ölçüm ve Analitik (13 Articles)
 | Slug | Title | Audience | Classification | Rationale |
 | :--- | :--- | :--- | :--- | :--- |
-| `bi-kokpit` | BI Kokpit | Prospect / Customer | **INDEX** | Executive dashboard summarizing revenue, active customers, retention, and campaign impact. |
-| `urun-haritasi` | Ürün Haritası | Prospect / Customer | **INDEX** | Visual product matrix mapping SKU performance by customer volume and repeat frequency. |
-| `urun-kategori-performansi` | Ürün ve Kategori Performansı | Prospect / Customer | **INDEX** | Comparative revenue, quantity, and classification coverage metrics across catalog categories. |
-| `magaza-performans-skoru` | Mağaza Karşılaştırması ve Sıralamalar | Prospect / Customer | **INDEX** | Multi-axial store benchmarking across revenue, growth rank, and customer repeat rates. |
-| `kanal-performansi` | Satış Kanalı Performansı | Prospect / Customer | **INDEX** | Commercial sales channel analysis (Store vs Web vs App) and omnichannel customer overlap. |
-| `kampanya-performansi-ve-olcumleme` | Kampanya Performansı ve Ölçümleme Mantığı | Prospect / Customer | **INDEX** | 3-tier measurement framework: delivery, engagement, and windowed attribution. |
-| `teslimat-konsolu` | Teslimat Konsolu ve Gönderim Takibi | Operator | **NOINDEX** | Operator log screen for tracking individual message dispatches and delivery statuses. |
-| `basarisiz-yeniden-deneme` | Başarısız Gönderimler ve İletişim Güvenliği | Operator | **NOINDEX** | Retry queue operations: separating transient provider errors from permanent opt-outs. |
-| `gonderim-hizlandirma` | Gönderim Yönetimi ve İletişim Güvenliği | Customer / Operator | **INDEX** | Throughput optimization, rate limiting, and ISP reputation preservation policies. |
-| `gonderim-operasyonu-izleme` | Gönderim Operasyonu ve İzleme | Operator | **NOINDEX** | Low-level dispatch monitor: worker health, queue status, and failed job review pools. |
+| `bi-kokpit` | BI Kokpit | Prospect / Customer | **INDEX** | Yönetim seviyesinde karar vermeye hazır temel müşteri ve satış özetlerinin nasıl sunulduğunu açıklar. |
+| `satis-kanali-performansi` | Satış Kanalı Performansı | Prospect / Customer | **INDEX** | Pika BI’ın mağaza, web, e-ticaret gibi satış kanallarını revenue, basket, customer, repeat rate ve overlap metrikleriyle nasıl karşılaştırdığını açıklar. |
+| `magaza-performansi` | Mağaza Performansı | Prospect / Customer | **INDEX** | Pika BI mağaza performansında ciro, müşteri, sepet, tekrar oranı, dönem karşılaştırması ve veri kapsama metriklerini açıklar. |
+| `magaza-performans-skoru` | Mağaza Karşılaştırması ve Sıralamalar | Prospect / Customer | **INDEX** | Mağazaların ciro, büyüme, sepet büyüklüğü ve müşteri sadakati açısından nasıl karşılaştırıldığını açıklar. |
+| `magaza-musteri-davranisi` | Mağaza Bazlı Müşteri Davranışı | Prospect / Customer | **INDEX** | Mağazaların yalnız satış rakamlarıyla değil, müşteri sıklığı, sepet, tekrar satın alma ve segment yapısıyla nasıl okunabileceğini açıklar. |
+| `magaza-firsat-alanlari` | Mağaza Bazlı Fırsat Alanları | Prospect / Customer | **INDEX** | Mağaza performansındaki zayıf veya güçlü sinyallerin aksiyon fırsatlarına nasıl dönüştürülebileceğini açıklar. |
+| `urun-kategori-performansi` | Ürün ve Kategori Performansı | Prospect / Customer | **INDEX** | Pika BI’daki ürün/kategori performansının doğrulanmış metriklerini, dönem karşılaştırmasını ve veri kalitesi göstergelerini açıklar. |
+| `kampanya-performansi-ve-olcumleme` | Kampanya Performansı ve Ölçümleme Mantığı | Prospect / Customer | **INDEX** | Gönderim ve etkileşim sonuçlarını, kampanya sonrası satış ilişkilendirmesini ve attribution ile nedensellik arasındaki sınırı açıklar. |
+| `omnichannel-performansi` | İletişim Kanallarını Birlikte Okumak | Prospect / Customer | **INDEX** | E-posta, SMS ve WhatsApp iletişim operasyonlarının tek bir satış-kanalı BI ekranıyla karıştırılmadan nasıl birlikte değerlendirileceğini açıklar. |
+| `teslimat-konsolu` | Görevler ve Teslimat Takibi | Operator / Admin | **NOINDEX** | Gönderim operasyonlarının durumunu, kampanya teslimat süreçlerini ve operasyonel görünürlüğü müşteri odaklı olarak açıklar. |
+| `basarisiz-yeniden-deneme` | Başarısız Gönderimler ve İletişim Güvenliği | Operator / Admin | **NOINDEX** | Geçici ve kalıcı gönderim engellerinin nasıl ayrıldığını, izin ve opt-out güvenliğini açıklar. |
+| `gonderim-operasyonu-izleme` | Gönderim Operasyonu ve İzleme | Operator / Admin | **NOINDEX** | Gönderimlerin durumunu, kanala iletilme sürecini, bekleyen veya tamamlanan işlerin operasyonel görünürlüğünü açıklar. |
+| `olcum-ogrenme-dongusu` | Ölçüm ve Öğrenme Döngüsü | Prospect / Customer | **INDEX** | Pika’nın veri → karar → aksiyon → sonuç zincirini nasıl kapattığını ve sonuçların sonraki kararları neden beslemesi gerektiğini açıklar. |
 
----
-
-### Category 9: SSS ve Kaynaklar (FAQ & Resources) — 11 Articles
+### Category 9: SSS ve Kaynaklar (5 Articles)
 | Slug | Title | Audience | Classification | Rationale |
 | :--- | :--- | :--- | :--- | :--- |
-| `ai-rolu-guven-siniri` | AI'ın Rolü ve Güven Sınırı | Prospect / Customer | **INDEX** | Clarification of AI boundaries: deterministic calculations vs creative text assistance. |
-| `en-iyi-uygulamalar` | En İyi Uygulamalar ve Tavsiyeler | Prospect / Customer | **INDEX** | Strategic guidance on data quality, progressive segmentation, and sustainable cadence. |
-| `hizli-baslangic-senaryolari` | Hızlı Başlangıç Senaryoları | Customer / Operator | **INDEX** | Concrete 7-day, 14-day, and 30-day operational milestone blueprints for new deployments. |
-| `ornek-kampanya-kurgulari` | Örnek Kampanya Kurguları | Customer / Operator | **INDEX** | Industry campaign recipes for win-back, repeat purchase, VIP appreciation, and cross-sell. |
-| `ozellik-veri-gereksinimleri` | Özellik → Veri Gereksinimi Matrisi | Prospect / Customer | **INDEX** | Complete capability-to-data mapping defining minimum evidence required for each feature. |
-| `pika-pilot-ipuclari` | Pika Pilot Kullanım İpuçları | Customer / Operator | **INDEX** | Practical prompting tips and context best practices for AI campaign generation. |
-| `sik-yapilan-hatalar` | Sık Yapılan Hatalar ve Kaçınma Yolları | Customer / Operator | **INDEX** | Critical operational pitfalls: over-messaging, unsegmented blasts, ignoring opt-outs. |
-| `sss` | Sık Sorulan Sorular | Prospect / Customer | **INDEX** | Authoritative FAQ answering product, data, AI, attribution, and channel questions. |
-| `sozluk` | Pika Sözlüğü | Prospect / Customer | **INDEX** | Comprehensive glossary defining all commercial, analytical, and marketing terminology. |
-| `teknik-altyapi-ve-guvenlik` | Teknik Altyapı ve Güvenlik | Prospect / Technical Buyer | **INDEX** | Architecture overview, data sovereignty, encryption standards, and hosting model. |
-| `veri-hazirlama-rehberi` | Veri Hazırlama Rehberi | Customer / Operator | **INDEX** | Formatting standards, date/currency conventions, and identifier hygiene for initial data. |
+| `ihtiyac-haritasi` | Hangi İhtiyacım Varsa Pika’da Nereye Bakmalıyım? | Prospect / Customer | **INDEX** | İş sorusundan doğru Pika özelliğine hızlı geçiş sağlayan karar haritasıdır. |
+| `sss` | Sık Sorulan Sorular | Prospect / Customer | **INDEX** | Müşteri, satış, kurulum ve operasyon ekiplerinin Pika hakkında en sık soracağı ürün, veri, AI, BI, kanal ve ölçüm sorularını yanıtlar. |
+| `sozluk` | Pika Sözlüğü | Prospect / Customer | **INDEX** | Knowledge Base boyunca kullanılan ürün, veri, BI, Product Intelligence, kampanya ve delivery terimlerini ortak bir dille açıklar. |
+| `en-iyi-uygulamalar` | En İyi Uygulamalar | Prospect / Customer | **INDEX** | Pika’yı yüksek veri kalitesi, müşteri saygısı ve ölçülebilir sonuçlarla kullanmak için temel çalışma ilkelerini toplar. |
+| `ai-rolu-guven-siniri` | AI'ın Rolü ve Güven Sınırı | Prospect / Customer | **INDEX** | Pika'da yapay zekânın karar verici değil, analitik hesaplamaları açıklayan ve içerik üreten güvenilir bir yardımcı olduğunu açıklar. |
 
----
-
-### Off-Navigation Technical Page — 1 Article
+### Off-Navigation Technical Page (1 Article)
 | Slug | Title | Audience | Classification | Rationale |
 | :--- | :--- | :--- | :--- | :--- |
-| `gonderim-son-katman` | Gönderim Karar Zincirinin Son Katmanıdır | Operator / Technical | **NOINDEX** | Deep operational principle note on delivery mechanics; omitted from primary nav bar. |
+| `gonderim-son-katman` | Gönderim: Karar Zincirinin Son Katmanı | Operator / Technical | **NOINDEX** | Pika’da e-posta, SMS ve WhatsApp gönderiminin müşteri zekâsından sonra gelen uygulama katmanı olduğunu ve gönderim ön koşullarını açıklar. |
 
 ---
 
 ## 4. Quarantined Internal Engineering Wiki (15 Articles)
 
-The following articles contain proprietary engineering designs, database entity relationships, worker architectures, and deployment pipelines. They are quarantined under `/internal/wiki/` and served via `InternalWikiController` requiring authenticated employee access (`[Authorize]`):
+The following articles contain proprietary engineering designs, database entity relationships, worker architectures, and deployment pipelines. They are quarantined under `/internal/wiki/` and served via `InternalWikiController` requiring authenticated employee access with policy `InternalDocsAccess` (`[Authorize(Policy = "InternalDocsAccess")]`):
 
-1. `internal-mimari-genel-bakis`: Platform monolith, ASP.NET Core MVC/API gateway, Angular SPA host, and Hangfire worker boundaries.
-2. `internal-api-mimarisi-ve-veri-kontratlari`: Ingestion endpoint contracts, DTO schemas, bearer JWT tokens, and rate limits.
-3. `internal-teslimat-konsolu-ve-worker-mimarisi`: Multi-threaded delivery pipeline, channel provider adapter architecture, and worker pools.
-4. `internal-retry-politikasi-ve-hata-yonetimi`: Exponential backoff algorithm, transient HTTP status handling, and dead-letter review quarantine.
-5. `internal-gonderim-izleme-ve-telemetri`: Distributed OpenTelemetry tracing, Serilog structured sink configuration, and Prometheus metrics.
-6. `internal-veri-kalitesi-ve-anomali-denetimi`: Statistical outlier detection, schema type validation pipelines, and null-ratio thresholding.
-7. `internal-musteri-deger-skoru-algoritmasi`: Mathematical normalization formulas, quantile scoring, percentile weighting, and DB materialized views.
-8. `internal-magaza-metrik-hesaplama-mimarisi`: Nightly batch rollup jobs, store rank caching, and partition-level aggregation queries.
-9. `internal-cross-sell-sepet-analizi-motoru`: Apriori association rule mining, support/confidence/lift matrix generation, and cache invalidation.
-10. `internal-product-intelligence-resolution-mimarisi`: Fuzzy string matching, tokenization, Levenshtein distances, and category mapping tables.
-11. `internal-cce-karar-motoru-mimarisi`: Customer Context Engine snapshot store, state machine transitions, and daily opportunity generator.
-12. `internal-ai-mimarisi-ve-prompt-yonetimi`: LLM provider client abstractions, system prompt templates, context token budgeting, and guardrail filters.
-13. `internal-guvenlik-ve-yetkilendirme-mimarisi`: ASP.NET Core Identity claims, tenant boundary filters, cryptographic secret rotation, and anti-forgery.
-14. `internal-hangfire-ve-arka-plan-is-yonetimi`: Cron job definitions, Hangfire SQL storage, recurring queue priorities, and concurrency semaphores.
-15. `internal-surum-yonetimi-ve-deployment-pipeline`: Git branch release strategy, Docker container build pipelines, DB migrations, and health checks.
+1. `internal-ai-mimarisi-ve-prompt-yonetimi`: LLM Provider Routing, Prompt Şablonları ve Fallback Mekanizmaları - AI Kampanya Asistanı ve AI Müşteri Özeti için model yönlendirme (OpenAI / Anthropic / Gemini), prompt versiyonlama, token limitleri ve güvenlik filtreleri.
+2. `internal-api-mimarisi-ve-veri-kontratlari`: Ingestion API Mimarisi, Rate Limiting ve Idempotency Kontratları - API veri alım uç noktaları, batch ingestion formatları, HMAC imzalama, rate limiting algoritmaları ve idempotency key yönetimini açıklar.
+3. `internal-cce-karar-motoru-mimarisi`: Customer Context Engine (CCE) Kural Ağaçları ve Arbitrasyon Ağırlıkları - Next Best Action, Next Best Channel ve Next Best Time sinyallerinin deterministik arbitrasyon kuralları, çakışma çözümleri ve öncelik sıralaması.
+4. `internal-cross-sell-sepet-analizi-motoru`: Cross-Sell Birliktelik Analizi Algoritması (Support, Confidence, Lift) - Sepet birliktelik kural motoru, Apriori tabanlı hesaplama parametreleri, transaction windowing ve minimum eşik değerleri.
+5. `internal-gonderim-izleme-ve-telemetri`: Dağıtık Gönderim Telemetrisi ve Sağlık Kontrolleri - Kuyruk gecikme metrikleri, Hangfire worker havuzu izleme, Prometheus/OpenTelemetry sayaçları ve alarm eşikleri.
+6. `internal-guvenlik-ve-yetkilendirme-mimarisi`: Kimlik Doğrulama, Cookie Güvenliği, Tenant İzolasyonu ve RBAC Yetki Ağacı - ASP.NET Core Cookie kimlik doğrulaması, JWT claim dönüşümleri, cross-tenant veri izolasyonu ve rol/yetki matrisi.
+7. `internal-magaza-metrik-hesaplama-mimarisi`: BI Snapshot Aggregation ve Mağaza Metrik Hesaplama Mimarisi - Mağaza ciro, büyüme, sepet, repeat rate ve kapsama hesaplamalarının snapshot pipeline'ı ve aggregate tabloları.
+8. `internal-mimari-genel-bakis`: Pika Platform Mimarisi ve Servis Sınırları - Pika'nın monolitik web katmanı, arka plan işleyicileri (Hangfire/Worker), veri tabanı modelleri ve servis sınırlarını açıklar.
+9. `internal-musteri-deger-skoru-algoritmasi`: Customer Value Score Katsayı Matrisi ve Normalizasyon Formülleri - Customer Value Score'un 0-100 ölçeğindeki deterministik ağırlık katsayıları, percentile normalizasyonu ve logaritmik harcama skoru formülü.
+10. `internal-operasyon-ve-runbook`: Dağıtım Prosedürleri, Ortam Konfigürasyonları ve Hata Çözüm Runbook'ları - CI/CD pipeline'ları, veritabanı migration adımları, Cloudflare önbellek yönetimi ve sık karşılaşılan üretim ortamı hata senaryoları.
+11. `internal-product-intelligence-resolution-mimarisi`: Product Intelligence Resolution Engine ve Master Product Eşleştirme Pipeline'ı - Ham ürün isimlerinin temizlenmesi, alias eşleme, fuzzy matching, playbook bağlama ve readiness kontrol aşamaları.
+12. `internal-retry-politikasi-ve-hata-yonetimi`: Retry Politikası, Exponential Backoff ve Hata Normalizasyonu - Geçici ve kalıcı sağlayıcı hata kodlarının sınıflandırılması, exponential backoff katsayıları, jitter hesaplaması ve devre kesici (circuit breaker) politikası.
+13. `internal-surum-ve-gecis-notlari`: Sürüm Geçiş Notları, Veritabanı Migrasyonları ve Mühendislik Backlog Durumu - Faz geçişleri, veritabanı şema değişiklik geçmişi ve teknik borç / mimari backlog durum özeti.
+14. `internal-teslimat-konsolu-ve-worker-mimarisi`: Delivery Workers, Job/Attempt/Event Modeli ve Dispatcher Mimarisi - Gönderim işlerinin arka plan worker havuzları, Job, Attempt ve Event durum makineleri, Dead-letter kuyruğu ve Dispatcher orkestrasyonunu detaylandırır.
+15. `internal-veri-kalitesi-ve-anomali-denetimi`: Data Quality Kural Motoru, Severity Hesaplamaları ve Freshness Scheduler - DQ Engine'in 24 kural kodu, severity ağırlıkları, freshness kontrol periyotları ve anomali tespiti.
 
 ---
 
@@ -222,7 +206,13 @@ The following articles contain proprietary engineering designs, database entity 
 
 To prevent regression or accidental drift, the following automated tests in `Pika.Web.Tests/WikiTests.cs` and `Pika.Web.Tests/WikiSplitGenerator.cs` enforce this specification:
 
-- `AllSitemapWikiUrls_Return200OK`: Asserts exactly 59 Wiki URLs in `sitemap.xml` (root + 58 INDEX articles) and verifies sample NOINDEX URLs are excluded.
+- `AllSitemapWikiUrls_Return200OK`: Asserts exactly 59 Wiki URLs in `sitemap.xml` (root + 58 INDEX articles) and verifies all 59 return 200 OK without truncation.
+- `InternalWikiSecurity_AnonymousUser_RedirectsToLogin`: Asserts anonymous access to `/internal/wiki/` and internal articles redirects to `/Account/Login`.
+- `InternalWikiSecurity_TenantUser_Returns403Forbidden`: Asserts authenticated tenant users without internal policy receive 403 Forbidden on internal wiki routes.
+- `InternalWikiSecurity_PrivilegedStaff_Returns200OK`: Asserts privileged staff with `InternalDocsAccess` receive 200 OK on internal wiki routes.
+- `GovernanceDocument_MatchesGeneratedWikiData`: Programmatically parses `WIKI_PUBLIC_GOVERNANCE.md` and validates 1-to-1 slug, title, and indexability parity against `wiki.json`.
+- `Generator_IsIdempotent_SecondRunProducesZeroDrift`: Proves in-memory second-run generation produces identical serialized data with zero drift.
+- `ClaimSafety_PublicWikiContainsNoProhibitedTerms`: Verifies complete absence of compliance absolutes, guarantees, unauthorized streaming claims, or fake predictions across all public articles.
 - `PublicInternalBoundary_ContainsNoInternalArticlesOrNav`: Asserts 0 internal articles in public wiki JSON, public nav, or public views.
 - `NavIntegrity_AllSlugsResolve_NoBrokenRelated`: Asserts all 87 nav slugs and 88 public pages resolve with 0 broken `related` links.
 - `CustomerValueScore_ReflectsCanonicalFourFactorFormula_OmitsRhythmFromScore`: Asserts CVS has factors 0.40, 0.25, 0.20, 0.15, Rhythm is independent context, and `%60 ciro + %40 sıklık` is 100% absent.
@@ -234,4 +224,4 @@ To prevent regression or accidental drift, the following automated tests in `Pik
 - `RobotsMeta_EmitsSingleTag_IndexFollowOrNoindexFollow`: Asserts INDEX pages emit `index, follow`, NOINDEX emit `noindex, follow`, with 0 duplicate or conflicting tags.
 - `AssetIntegrity_AllReferencedImagesExistOnDisk`: Asserts all 29 referenced screenshots exist in `wwwroot/wiki/assets/images/`.
 - `WikiGovernance_GovernanceCountsMatch58Index30Noindex`: Asserts exactly 88 public pages, 58 indexable, and 30 noindex.
-- `GenerateWikis`: Asserts idempotent wiki generation without drift when `REGENERATE_WIKI=1` is executed.
+

@@ -6,7 +6,7 @@ using Pika.Services;
 
 namespace Pika.Controllers
 {
-    [Authorize]
+    [Authorize(Policy = "InternalDocsAccess")]
     [Route("internal/wiki")]
     [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
     public class InternalWikiController : Controller
