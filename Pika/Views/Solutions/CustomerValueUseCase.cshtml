@@ -1,0 +1,449 @@
+@{
+    var culture = (ViewData["culture"] as string ?? ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").ToLowerInvariant();
+    var isTr = culture == "tr";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/pika-growth-usecases.css" asp-append-version="true" />
+}
+
+<!-- ═══════════════════════════ 01 HERO ═══════════════════════════ -->
+<section class="inner-hero">
+    <div class="inner-atmosphere" aria-hidden="true"><span></span><span></span></div>
+    <div class="container inner-hero-grid">
+        <div class="inner-intro">
+            <nav class="inner-breadcrumb" aria-label="@(isTr ? "Sayfa yolu" : "Breadcrumb")">
+                <a href="@(isTr ? "/" : "/en/")">Pika</a>
+                <span>/</span>
+                <a href="@(isTr ? "/kullanim-senaryolari" : "/en/use-cases")">@(isTr ? "Kullanım Senaryoları" : "Use Cases")</a>
+                <span>/</span>
+                <span>@(isTr ? "Müşteri Değeri" : "Customer Value")</span>
+            </nav>
+            <div class="inner-eyebrow">
+                <span></span>
+                @(isTr ? "KULLANIM SENARYOSU" : "USE CASE")
+            </div>
+            <h1>
+                @(isTr
+                    ? "Müşteri değerini, tek bir harcama tutarından daha geniş bağlamda değerlendirin."
+                    : "Evaluate customer value through more than a single spend amount.")
+            </h1>
+            <p>
+                @(isTr
+                    ? "Pika Customer Intelligence, Monetary, Frequency, Recency ve Loyalty bileşenlerini deterministic Customer Value Score içinde bir araya getirerek müşteri değerini 0–100 aralığında görünür hale getirir."
+                    : "Pika Customer Intelligence combines Monetary, Frequency, Recency and Loyalty components inside a deterministic Customer Value Score to make customer value visible on a 0–100 scale.")
+            </p>
+            <p class="text-secondary" style="font-size:15px;line-height:1.75;margin-top:-10px;margin-bottom:28px;">
+                @(isTr
+                    ? "Amaç AI'ın gelecekteki müşteri değerini tahmin etmesi değil; mevcut davranış ve işlem bağlamını açıklanabilir ağırlıklarla ortak bir değer metriğine dönüştürmektir."
+                    : "The objective is not for AI to predict future customer value, but to turn current behavioral and transaction context into a common value metric through explainable weights.")
+            </p>
+            <div class="inner-actions">
+                <a class="inner-primary" href="@(isTr ? "/demo-talebi" : "/en/demo-request")">
+                    @(isTr ? "Demo Talep Et" : "Request a Demo") ↗
+                </a>
+                <a class="inner-secondary" href="@(isTr ? "/platform/customer-intelligence" : "/en/platform/customer-intelligence")">
+                    @(isTr ? "Customer Intelligence'ı Keşfedin" : "Explore Customer Intelligence") →
+                </a>
+            </div>
+        </div>
+
+        <div class="inner-scene" aria-hidden="true">
+            <div class="growth-uc-hero-visual">
+                <div class="growth-uc-pipeline">
+                    <div class="growth-uc-node">
+                        <span>MONETARY</span>
+                        <i class="ri-money-dollar-circle-line"></i>
+                    </div>
+                    <div class="growth-uc-arrow">↓</div>
+                    <div class="growth-uc-node">
+                        <span>FREQUENCY</span>
+                        <i class="ri-repeat-2-line"></i>
+                    </div>
+                    <div class="growth-uc-arrow">↓</div>
+                    <div class="growth-uc-node">
+                        <span>RECENCY</span>
+                        <i class="ri-time-line"></i>
+                    </div>
+                    <div class="growth-uc-arrow">↓</div>
+                    <div class="growth-uc-node">
+                        <span>LOYALTY</span>
+                        <i class="ri-medal-line"></i>
+                    </div>
+                    <div class="growth-uc-arrow">↓</div>
+                    <div class="growth-uc-node growth-uc-node--accent">
+                        <span>CUSTOMER VALUE SCORE</span>
+                        <i class="ri-dashboard-3-line"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 02 DIRECT ANSWER ═══════════════════════════ -->
+<section class="pika-section" style="background:#f4f7ed;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="growth-uc-direct-answer">
+                    <span class="pika-eyebrow">@(isTr ? "KISA CEVAP" : "THE SHORT ANSWER")</span>
+                    <h2 class="pika-h2 mt-2 mb-3">
+                        @(isTr ? "Pika Customer Value Score nedir?" : "What is Pika Customer Value Score?")
+                    </h2>
+                    <p class="text-secondary mb-3" style="font-size:16px;line-height:1.8;">
+                        @(isTr
+                            ? "Customer Value Score, müşteri değerini farklı davranış ve işlem boyutlarını birlikte değerlendirerek 0–100 aralığında görünür hale getiren deterministic skordur."
+                            : "Customer Value Score is a deterministic 0–100 score that makes customer value visible by evaluating multiple behavioral and transaction dimensions together.")
+                    </p>
+                    <p class="text-secondary mb-3" style="font-size:16px;line-height:1.8;">
+                        @(isTr
+                            ? "Dokümante edilmiş formül Monetary %40, Frequency %25, Recency %20 ve Loyalty %15 ağırlıklarını kullanır."
+                            : "The documented formula uses weights of 40% Monetary, 25% Frequency, 20% Recency and 15% Loyalty.")
+                    </p>
+                    <div class="p-3 mb-3" style="background:#edf4e0;border-left:4px solid #7a9845;border-radius:4px;">
+                        <strong class="d-block text-dark font-monospace mb-2" style="font-size:14px;">
+                            CVS = Monetary × 0.40 + Frequency × 0.25 + Recency × 0.20 + Loyalty × 0.15
+                        </strong>
+                        <span class="d-block text-secondary small">
+                            @(isTr
+                                ? "Customer Value Score bir generative AI veya black-box müşteri skoru değildir."
+                                : "Customer Value Score is not a generative-AI or black-box customer score.")
+                        </span>
+                    </div>
+                    <p class="small text-muted mb-0 font-monospace">
+                        @(isTr
+                            ? "Davranış bileşenleri → ağırlıklı skor → müşteri bağlamı → kullanıcı değerlendirmesi."
+                            : "Behavioral components → weighted score → customer context → user evaluation.")
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 03 HOW THE SCORE IS CREATED ═══════════════════════════ -->
+<section class="pika-section" style="background:#fff;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="pika-eyebrow">@(isTr ? "SKOR NASIL OLUŞUR?" : "HOW THE SCORE IS CREATED")</span>
+            <h2 class="pika-h2 mx-auto" style="max-width:820px;">
+                @(isTr
+                    ? "Müşteri değerini, birden fazla davranış boyutuyla değerlendirin."
+                    : "Evaluate customer value through multiple behavioral dimensions.")
+            </h2>
+        </div>
+
+        <div class="growth-uc-step-grid mb-5">
+            <div class="growth-uc-step-card">
+                <span class="growth-uc-step-badge">01</span>
+                <h3 class="h5 fw-bold mb-2">Monetary</h3>
+                <p class="text-secondary mb-0" style="font-size:14px;line-height:1.75;">
+                    @(isTr
+                        ? "Müşterinin parasal katkısı skor bağlamının %40 ağırlıklı bileşenidir."
+                        : "Customer monetary contribution is the 40%-weighted component of score context.")
+                </p>
+            </div>
+            <div class="growth-uc-step-card">
+                <span class="growth-uc-step-badge">02</span>
+                <h3 class="h5 fw-bold mb-2">Frequency</h3>
+                <p class="text-secondary mb-0" style="font-size:14px;line-height:1.75;">
+                    @(isTr
+                        ? "Satın alma sıklığı skorun %25 ağırlıklı bileşenidir."
+                        : "Purchase frequency is the 25%-weighted component of the score.")
+                </p>
+            </div>
+            <div class="growth-uc-step-card">
+                <span class="growth-uc-step-badge">03</span>
+                <h3 class="h5 fw-bold mb-2">Recency</h3>
+                <p class="text-secondary mb-0" style="font-size:14px;line-height:1.75;">
+                    @(isTr
+                        ? "Yakın dönem işlem bağlamı skorun %20 ağırlıklı bileşenidir."
+                        : "Recent transaction context is the 20%-weighted component of the score.")
+                </p>
+            </div>
+            <div class="growth-uc-step-card">
+                <span class="growth-uc-step-badge">04</span>
+                <h3 class="h5 fw-bold mb-2">Loyalty</h3>
+                <p class="text-secondary mb-0" style="font-size:14px;line-height:1.75;">
+                    @(isTr
+                        ? "Loyalty bağlamı skorun %15 ağırlıklı bileşenidir."
+                        : "Loyalty context is the 15%-weighted component of the score.")
+                </p>
+            </div>
+        </div>
+
+        <div class="text-center mx-auto" style="max-width:700px;">
+            <p class="text-muted fst-italic mb-0" style="font-size:15px;line-height:1.8;">
+                @(isTr
+                    ? "Customer Value Score, tek bir alışveriş tutarı değil, birden fazla müşteri boyutunun ağırlıklı birleşimidir."
+                    : "Customer Value Score is not a single purchase amount. It is a weighted combination of multiple customer dimensions.")
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 04 VALUE TO ACTION ═══════════════════════════ -->
+<section class="pika-section" style="background:#f9fbf6;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="pika-eyebrow">@(isTr ? "SKORDAN KARARA" : "FROM SCORE TO DECISION")</span>
+            <h2 class="pika-h2 mx-auto" style="max-width:820px;">
+                @(isTr ? "Müşteri değeri, tek başına kampanya kararı değildir." : "Customer value is not a campaign decision by itself.")
+            </h2>
+        </div>
+
+        <div class="growth-uc-flow-wrap mb-4">
+            <div class="growth-uc-flow">
+                <span class="growth-uc-flow-node">CUSTOMER VALUE SCORE</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">CUSTOMER CONTEXT</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">PIKA 360</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">@(isTr ? "AUDIENCE KURALI" : "AUDIENCE RULE")</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">@(isTr ? "KULLANICI KARARI" : "USER DECISION")</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">CAMPAIGN / JOURNEY</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">CONSENT</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">@(isTr ? "ÖLÇÜM" : "MEASUREMENT")</span>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <p class="text-secondary text-center mb-3" style="font-size:15px;line-height:1.8;">
+                    @(isTr
+                        ? "Customer Value Score Customer Intelligence bağlamının bir parçasıdır ve Pika 360 görünümünde veya Audience Manager kurallarında kullanılabilir. Kampanya veya journey kararı ilgili aksiyon katmanlarında yönetilir."
+                        : "Customer Value Score is part of Customer Intelligence context and can be used in Pika 360 or inside Audience Manager rules. Campaign or journey decisions remain managed by the relevant action layers.")
+                </p>
+                <p class="text-center text-muted small mb-0">
+                    @(isTr
+                        ? "Değer skoru, müşteriye ne gönderileceğini veya gönderim yapılacağını kendi başına belirlemez."
+                        : "The value score does not independently decide what should be sent or whether communication should occur.")
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 05 WHAT THIS USE CASE IS / IS NOT ═══════════════════════════ -->
+<section class="pika-section" style="background:#fff;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="pika-eyebrow">@(isTr ? "ÜRÜN SINIRI" : "PRODUCT BOUNDARY")</span>
+            <h2 class="pika-h2 mx-auto" style="max-width:820px;">
+                @(isTr
+                    ? "Customer Value Score'u doğru analitik bağlamda değerlendirin."
+                    : "Evaluate Customer Value Score within the correct analytical context.")
+            </h2>
+        </div>
+
+        <div class="growth-uc-boundary-grid mb-5">
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Customer Value Score ≠ AI müşteri puanlama" : "Customer Value Score ≠ AI customer scoring")</span>
+            </div>
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Customer Value Score ≠ gelecekteki CLV tahmini" : "Customer Value Score ≠ future CLV prediction")</span>
+            </div>
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Customer Value Score ≠ gelecekteki revenue tahmini" : "Customer Value Score ≠ future revenue prediction")</span>
+            </div>
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Customer Value Score ≠ müşteri kârlılığı garantisi" : "Customer Value Score ≠ customer-profitability guarantee")</span>
+            </div>
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Customer Value Score ≠ otomatik audience seçimi" : "Customer Value Score ≠ automatic audience selection")</span>
+            </div>
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Customer Value Score ≠ kampanya sonucu garantisi" : "Customer Value Score ≠ campaign-outcome guarantee")</span>
+            </div>
+        </div>
+
+        <div class="text-center mx-auto" style="max-width:700px;">
+            <p class="text-muted fst-italic mb-0" style="font-size:15px;line-height:1.8;">
+                @(isTr
+                    ? "CVS, mevcut müşteri davranışını açıklanabilir deterministic ağırlıklarla ortak skor bağlamına taşır."
+                    : "CVS turns current customer behavior into a common score context through explainable deterministic weights.")
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 06 RELATED PIKA LAYERS & USE CASES ═══════════════════════════ -->
+<section class="pika-section" style="background:#f4f7ed;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="pika-eyebrow">@(isTr ? "İLGİLİ PIKA KATMANLARI" : "RELATED PIKA LAYERS")</span>
+            <h2 class="pika-h2 mx-auto" style="max-width:820px;">
+                @(isTr
+                    ? "İlgili Pika Katmanları ve Kullanım Senaryoları"
+                    : "Related Pika Layers & Use Cases")
+            </h2>
+        </div>
+
+        <div class="growth-uc-related-pills justify-content-center mb-5">
+            <a href="@(isTr ? "/platform/customer-intelligence" : "/en/platform/customer-intelligence")" class="growth-uc-pill">
+                <i class="ri-parent-line"></i> Customer Intelligence
+            </a>
+            <a href="@(isTr ? "/platform/pika-360" : "/en/platform/pika-360")" class="growth-uc-pill">
+                <i class="ri-user-star-line"></i> Pika 360
+            </a>
+            <a href="@(isTr ? "/cozumler/audience-manager" : "/en/solutions/audience-manager")" class="growth-uc-pill">
+                <i class="ri-group-line"></i> Audience Manager
+            </a>
+            <a href="@(isTr ? "/platform/gunun-firsatlari" : "/en/platform/opportunities")" class="growth-uc-pill">
+                <i class="ri-flashlight-line"></i> @(isTr ? "Günün Fırsatları" : "Daily Opportunities")
+            </a>
+            <a href="@(isTr ? "/cozumler/analytics-reporting" : "/en/solutions/analytics-reporting")" class="growth-uc-pill">
+                <i class="ri-bar-chart-2-line"></i> Analytics &amp; Reporting
+            </a>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-3">
+                <a href="@(isTr ? "/kullanim-senaryolari/musteri-segmentasyonu" : "/en/use-cases/customer-segmentation")" class="growth-uc-card-link">
+                    <h3 class="h5 fw-bold mb-0">@(isTr ? "Müşteri Segmentasyonu" : "Customer Segmentation")</h3>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="@(isTr ? "/kullanim-senaryolari/tekrar-satin-alma" : "/en/use-cases/repeat-purchase")" class="growth-uc-card-link">
+                    <h3 class="h5 fw-bold mb-0">@(isTr ? "Tekrar Satın Alma" : "Repeat Purchase")</h3>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="@(isTr ? "/kullanim-senaryolari/geri-kazanim" : "/en/use-cases/win-back")" class="growth-uc-card-link">
+                    <h3 class="h5 fw-bold mb-0">@(isTr ? "Geri Kazanım" : "Win-back")</h3>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="@(isTr ? "/kullanim-senaryolari" : "/en/use-cases")" class="growth-uc-card-link">
+                    <h3 class="h5 fw-bold mb-0">@(isTr ? "Tüm Kullanım Senaryoları" : "All Use Cases")</h3>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 07 FAQ ═══════════════════════════ -->
+<section class="pika-section" style="background:#fff;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="pika-h2">@(isTr ? "Sıkça Sorulan Sorular" : "Frequently Asked Questions")</h2>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="growth-uc-faq-list">
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Customer Value Score neyi ölçer?" : "What does Customer Value Score measure?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "Customer Value Score Monetary, Frequency, Recency ve Loyalty bileşenlerini ağırlıklı deterministic formülde birleştirerek müşteri değerini 0–100 aralığında ortak bir skor bağlamında görünür hale getirir."
+                                : "Customer Value Score combines Monetary, Frequency, Recency and Loyalty components in a weighted deterministic formula to make customer value visible on a common 0–100 score context.")
+                        </p>
+                    </details>
+
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Customer Value Score formülü nedir?" : "What is the Customer Value Score formula?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "Dokümante edilmiş formül Monetary × 0.40 + Frequency × 0.25 + Recency × 0.20 + Loyalty × 0.15 şeklindedir."
+                                : "The documented formula is Monetary × 0.40 + Frequency × 0.25 + Recency × 0.20 + Loyalty × 0.15.")
+                        </p>
+                    </details>
+
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Customer Value Score AI tarafından mı hesaplanır?" : "Is Customer Value Score calculated by AI?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "C29 bunu AI müşteri skoru olarak konumlandırmaz. Customer Value Score dokümante edilmiş ağırlıklı deterministic algoritmadır."
+                                : "C29 does not position it as AI customer scoring. Customer Value Score is a documented weighted deterministic algorithm.")
+                        </p>
+                    </details>
+
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Customer Value Score müşteri yaşam boyu değerini tahmin eder mi?" : "Does Customer Value Score predict customer lifetime value?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "C29 gelecekteki CLV veya lifetime-value prediction iddiası yapmaz. CVS mevcut müşteri davranış ve işlem bağlamını skorlar."
+                                : "C29 makes no future CLV or lifetime-value prediction claim. CVS scores current customer behavioral and transaction context.")
+                        </p>
+                    </details>
+
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Yüksek Customer Value Score müşteriyi otomatik audience'a ekler mi?" : "Does a high Customer Value Score automatically add a customer to an audience?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "Hayır. CVS Audience Manager'daki açık kuralların girdilerinden biri olabilir; gerçek audience tanımı ayrı ürün sorumluluğudur."
+                                : "No. CVS can become one input to explicit Audience Manager rules; actual audience definition is a separate product responsibility.")
+                        </p>
+                    </details>
+
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Yüksek müşteri değeri kampanya başarısını garanti eder mi?" : "Does high customer value guarantee campaign success?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "Hayır. Customer Value Score conversion, satış, revenue veya kampanya sonucu garantisi değildir."
+                                : "No. Customer Value Score does not guarantee conversion, sales, revenue or campaign outcomes.")
+                        </p>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 08 FINAL CTA ═══════════════════════════ -->
+<section class="pika-section" style="background:#f4f7ed;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="growth-uc-cta-card">
+                    <span class="badge mb-3" style="background:#b0cb7430;color:#cee1ab;border:1px solid #b1ca6c40;font-size:12px;letter-spacing:1px;">
+                        @(isTr ? "MÜŞTERİ DEĞERİ" : "CUSTOMER VALUE")
+                    </span>
+                    <h2 class="h1 fw-bold text-white mb-3">
+                        @(isTr
+                            ? "Müşteri davranışını ölçün. Değer bağlamını görün. Kararı kontrollü aksiyona bağlayın."
+                            : "Measure customer behavior. See value context. Connect the decision to controlled action.")
+                    </h2>
+                    <p class="text-white-50 mx-auto mb-4" style="max-width:720px;font-size:16px;line-height:1.8;">
+                        @(isTr
+                            ? "Pika Customer Intelligence'ın Monetary, Frequency, Recency ve Loyalty bağlamını Customer Value Score içinde nasıl değerlendirdiğini kendi müşteri veriniz üzerinden inceleyin."
+                            : "Evaluate how Pika Customer Intelligence combines Monetary, Frequency, Recency and Loyalty context inside Customer Value Score using your own customer data.")
+                    </p>
+                    <div class="d-flex flex-wrap justify-content-center gap-3">
+                        <a href="@(isTr ? "/demo-talebi" : "/en/demo-request")" class="btn pika-btn-primary">
+                            @(isTr ? "Demo Talep Et" : "Request a Demo") ↗
+                        </a>
+                        <a href="@(isTr ? "/platform/customer-intelligence" : "/en/platform/customer-intelligence")" class="btn pika-btn-outline" style="border-color:#cee1ab;color:#cee1ab;">
+                            @(isTr ? "Customer Intelligence'ı Keşfedin" : "Explore Customer Intelligence") →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

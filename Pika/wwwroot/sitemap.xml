@@ -147,6 +147,16 @@
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
+	<url>
+		<loc>https://pika.tr/kullanim-senaryolari/musteri-segmentasyonu</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://pika.tr/kullanim-senaryolari/musteri-degeri</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+	</url>
 
 	<!-- İngilizce Pazarlama ve Çözüm Sayfaları -->
 	<url>
@@ -291,6 +301,16 @@
 	</url>
 	<url>
 		<loc>https://pika.tr/en/use-cases/win-back</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.7</priority>
+	</url>
+	<url>
+		<loc>https://pika.tr/en/use-cases/customer-segmentation</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.7</priority>
+	</url>
+	<url>
+		<loc>https://pika.tr/en/use-cases/customer-value</loc>
 		<changefreq>weekly</changefreq>
 		<priority>0.7</priority>
 	</url>

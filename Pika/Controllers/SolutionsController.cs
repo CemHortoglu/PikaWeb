@@ -125,5 +125,13 @@ namespace Pika.Controllers
         [HttpGet("/kullanim-senaryolari/geri-kazanim", Name = "WinBackUseCase")]
         [HttpGet("/en/use-cases/win-back", Name = "WinBackUseCaseEn")]
         public IActionResult WinBackUseCase() => View();
+
+        [HttpGet("/kullanim-senaryolari/musteri-segmentasyonu", Name = "CustomerSegmentationUseCase")]
+        [HttpGet("/en/use-cases/customer-segmentation", Name = "CustomerSegmentationUseCaseEn")]
+        public IActionResult CustomerSegmentationUseCase() => View();
+
+        [HttpGet("/kullanim-senaryolari/musteri-degeri", Name = "CustomerValueUseCase")]
+        [HttpGet("/en/use-cases/customer-value", Name = "CustomerValueUseCaseEn")]
+        public IActionResult CustomerValueUseCase() => View();
     }
 }

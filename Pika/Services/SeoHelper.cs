@@ -355,6 +355,26 @@ public static class SeoHelper
             "Use Pika to compare customer inactivity with individual purchase rhythm, surface win-back opportunities and evaluate them within controlled action context.",
             "Geri Kazanım",
             "Win-back");
+
+        RouteMetadata["Solutions.CustomerSegmentationUseCase"] = new(
+            "/kullanim-senaryolari/musteri-segmentasyonu",
+            "/en/use-cases/customer-segmentation",
+            "Müşteri Segmentasyonu | Kural Tabanlı Hedef Kitle | Pika",
+            "Customer Segmentation | Rule-Based Audiences | Pika",
+            "Pika ile müşteri özellikleri, işlem geçmişi ve davranış bağlamını açık kurallarla birleştirerek yeniden değerlendirilebilir müşteri segmentleri oluşturun ve kontrollü aksiyona bağlayın.",
+            "Use Pika to combine customer attributes, transaction history and behavioral context through explicit rules to create reusable customer segments for controlled action.",
+            "Müşteri Segmentasyonu",
+            "Customer Segmentation");
+
+        RouteMetadata["Solutions.CustomerValueUseCase"] = new(
+            "/kullanim-senaryolari/musteri-degeri",
+            "/en/use-cases/customer-value",
+            "Müşteri Değeri Analizi | Customer Value Score | Pika",
+            "Customer Value Analysis | Customer Value Score | Pika",
+            "Pika Customer Intelligence ile Monetary, Frequency, Recency ve Loyalty bağlamını deterministic Customer Value Score içinde değerlendirerek müşteri değerini görünür hale getirin.",
+            "Use Pika Customer Intelligence to evaluate Monetary, Frequency, Recency and Loyalty context through a deterministic Customer Value Score and make customer value visible.",
+            "Müşteri Değeri",
+            "Customer Value");
     }
 
     public static PageSeoMetadata? GetMetadata(string? controller, string? action)

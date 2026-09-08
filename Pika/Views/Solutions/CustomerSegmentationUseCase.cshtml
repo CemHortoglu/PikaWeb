@@ -1,0 +1,449 @@
+@{
+    var culture = (ViewData["culture"] as string ?? ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").ToLowerInvariant();
+    var isTr = culture == "tr";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/pika-growth-usecases.css" asp-append-version="true" />
+}
+
+<!-- ═══════════════════════════ 01 HERO ═══════════════════════════ -->
+<section class="inner-hero">
+    <div class="inner-atmosphere" aria-hidden="true"><span></span><span></span></div>
+    <div class="container inner-hero-grid">
+        <div class="inner-intro">
+            <nav class="inner-breadcrumb" aria-label="@(isTr ? "Sayfa yolu" : "Breadcrumb")">
+                <a href="@(isTr ? "/" : "/en/")">Pika</a>
+                <span>/</span>
+                <a href="@(isTr ? "/kullanim-senaryolari" : "/en/use-cases")">@(isTr ? "Kullanım Senaryoları" : "Use Cases")</a>
+                <span>/</span>
+                <span>@(isTr ? "Müşteri Segmentasyonu" : "Customer Segmentation")</span>
+            </nav>
+            <div class="inner-eyebrow">
+                <span></span>
+                @(isTr ? "KULLANIM SENARYOSU" : "USE CASE")
+            </div>
+            <h1>
+                @(isTr
+                    ? "Müşterileri yalnızca listelemeyin. Hangi bağlamda hedef kitleye dahil olduklarını tanımlayın."
+                    : "Do not only list customers. Define why they belong in an audience.")
+            </h1>
+            <p>
+                @(isTr
+                    ? "Pika, müşteri özelliklerini, işlem geçmişini, davranış bağlamını ve Customer Intelligence sinyallerini açık kural mantığıyla bir araya getirerek yeniden değerlendirilebilir müşteri segmentleri oluşturmanıza yardımcı olur."
+                    : "Pika helps combine customer attributes, transaction history, behavioral context and Customer Intelligence signals through explicit rule logic to create customer segments that can be evaluated again.")
+            </p>
+            <p class="text-secondary" style="font-size:15px;line-height:1.75;margin-top:-10px;margin-bottom:28px;">
+                @(isTr
+                    ? "Segmentasyonun amacı yalnızca “listede kim var?” sorusuna cevap vermek değil; müşteriyi hedef kitleye dahil eden koşulları açık biçimde tanımlamaktır."
+                    : "The purpose of segmentation is not only to answer “who is on the list?” but to define clearly which conditions make a customer belong in the audience.")
+            </p>
+            <div class="inner-actions">
+                <a class="inner-primary" href="@(isTr ? "/demo-talebi" : "/en/demo-request")">
+                    @(isTr ? "Demo Talep Et" : "Request a Demo") ↗
+                </a>
+                <a class="inner-secondary" href="@(isTr ? "/cozumler/audience-manager" : "/en/solutions/audience-manager")">
+                    @(isTr ? "Audience Manager'ı Keşfedin" : "Explore Audience Manager") →
+                </a>
+            </div>
+        </div>
+
+        <div class="inner-scene" aria-hidden="true">
+            <div class="growth-uc-hero-visual">
+                <div class="growth-uc-pipeline">
+                    <div class="growth-uc-node">
+                        <span>@(isTr ? "MÜŞTERİ BAĞLAMI" : "CUSTOMER CONTEXT")</span>
+                        <i class="ri-user-settings-line"></i>
+                    </div>
+                    <div class="growth-uc-arrow">↓</div>
+                    <div class="growth-uc-node">
+                        <span>@(isTr ? "İŞLEM GEÇMİŞİ" : "TRANSACTION HISTORY")</span>
+                        <i class="ri-history-line"></i>
+                    </div>
+                    <div class="growth-uc-arrow">↓</div>
+                    <div class="growth-uc-node">
+                        <span>@(isTr ? "DAVRANIŞ" : "BEHAVIOR")</span>
+                        <i class="ri-pulse-line"></i>
+                    </div>
+                    <div class="growth-uc-arrow">↓</div>
+                    <div class="growth-uc-node growth-uc-node--accent">
+                        <span>@(isTr ? "KURAL MANTIĞI" : "RULE LOGIC")</span>
+                        <i class="ri-node-tree"></i>
+                    </div>
+                    <div class="growth-uc-arrow">↓</div>
+                    <div class="growth-uc-node">
+                        <span>@(isTr ? "HEDEF KİTLE" : "AUDIENCE")</span>
+                        <i class="ri-group-line"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 02 DIRECT ANSWER ═══════════════════════════ -->
+<section class="pika-section" style="background:#f4f7ed;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="growth-uc-direct-answer">
+                    <span class="pika-eyebrow">@(isTr ? "KISA CEVAP" : "THE SHORT ANSWER")</span>
+                    <h2 class="pika-h2 mt-2 mb-3">
+                        @(isTr ? "Pika'da müşteri segmentasyonu nedir?" : "What is customer segmentation in Pika?")
+                    </h2>
+                    <p class="text-secondary mb-3" style="font-size:16px;line-height:1.8;">
+                        @(isTr
+                            ? "Müşteri segmentasyonu, belirli bir pazarlama kararı veya kontrollü aksiyon için hangi müşterilerin hedef kitleye dahil olması gerektiğini açık kurallarla tanımlama yaklaşımıdır."
+                            : "Customer segmentation is the practice of defining, through explicit rules, which customers should belong in the audience for a specific marketing decision or controlled action.")
+                    </p>
+                    <p class="text-secondary mb-3" style="font-size:16px;line-height:1.8;">
+                        @(isTr
+                            ? "Audience Manager müşteri özelliklerini, transaction ve behavioral context'i, Customer Intelligence tarafından üretilen sinyalleri ve kullanılabilir diğer müşteri kurallarını birlikte değerlendirebilir."
+                            : "Audience Manager can evaluate customer attributes, transaction and behavioral context, signals produced by Customer Intelligence and other available customer rules together.")
+                    </p>
+                    <div class="p-3 mb-3" style="background:#edf4e0;border-left:4px solid #7a9845;border-radius:4px;">
+                        <strong class="d-block text-dark" style="font-size:14px;">
+                            @(isTr
+                                ? "Audience Manager müşteri davranışını hesaplayan intelligence motoru değildir; hesaplanmış bağlamı açık audience kurallarına dönüştüren katmandır."
+                                : "Audience Manager is not the intelligence engine that calculates customer behavior; it is the layer that turns calculated context into explicit audience rules.")
+                        </strong>
+                    </div>
+                    <p class="small text-muted mb-0 font-monospace">
+                        @(isTr
+                            ? "Müşteri bağlamı → kural → audience → kontrollü aksiyon."
+                            : "Customer context → rule → audience → controlled action.")
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 03 HOW CONTEXT IS CREATED ═══════════════════════════ -->
+<section class="pika-section" style="background:#fff;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="pika-eyebrow">@(isTr ? "LİSTEDEN KURALA" : "FROM LIST TO RULE")</span>
+            <h2 class="pika-h2 mx-auto" style="max-width:820px;">
+                @(isTr
+                    ? "Statik bir sonuç yerine, hedef kitleyi oluşturan koşulları tanımlayın."
+                    : "Define the conditions that create the audience, not only a static result.")
+            </h2>
+        </div>
+
+        <div class="growth-uc-step-grid mb-5">
+            <div class="growth-uc-step-card">
+                <span class="growth-uc-step-badge">01</span>
+                <h3 class="h5 fw-bold mb-2">@(isTr ? "Müşteri Bağlamı" : "Customer Context")</h3>
+                <p class="text-secondary mb-0" style="font-size:14px;line-height:1.75;">
+                    @(isTr
+                        ? "Müşteriye ait kullanılabilir özellikler ve Customer Intelligence bağlamı segmentasyon girdisi olabilir."
+                        : "Available customer attributes and Customer Intelligence context can become segmentation inputs.")
+                </p>
+            </div>
+            <div class="growth-uc-step-card">
+                <span class="growth-uc-step-badge">02</span>
+                <h3 class="h5 fw-bold mb-2">@(isTr ? "İşlem & Davranış" : "Transaction & Behavior")</h3>
+                <p class="text-secondary mb-0" style="font-size:14px;line-height:1.75;">
+                    @(isTr
+                        ? "İşlem geçmişi ve kullanılabilir davranış sinyalleri audience kuralının bağlamına dahil edilebilir."
+                        : "Transaction history and available behavioral signals can participate in audience-rule context.")
+                </p>
+            </div>
+            <div class="growth-uc-step-card">
+                <span class="growth-uc-step-badge">03</span>
+                <h3 class="h5 fw-bold mb-2">@(isTr ? "Kural Mantığı" : "Rule Logic")</h3>
+                <p class="text-secondary mb-0" style="font-size:14px;line-height:1.75;">
+                    @(isTr
+                        ? "Koşullar açık AND / OR mantığıyla bir araya getirilerek audience tanımı oluşturulabilir."
+                        : "Conditions can be combined through explicit AND / OR logic to define an audience.")
+                </p>
+            </div>
+            <div class="growth-uc-step-card">
+                <span class="growth-uc-step-badge">04</span>
+                <h3 class="h5 fw-bold mb-2">@(isTr ? "Yeniden Değerlendirme" : "Re-evaluation")</h3>
+                <p class="text-secondary mb-0" style="font-size:14px;line-height:1.75;">
+                    @(isTr
+                        ? "Kaynak müşteri bağlamı değiştiğinde kural tanımı yeniden değerlendirilerek hangi müşterilerin koşulları karşıladığı tekrar belirlenebilir."
+                        : "When source customer context changes, the rule definition can be evaluated again to determine which customers satisfy the conditions.")
+                </p>
+            </div>
+        </div>
+
+        <div class="text-center mx-auto" style="max-width:700px;">
+            <p class="text-muted fst-italic mb-0" style="font-size:15px;line-height:1.8;">
+                @(isTr
+                    ? "Statik liste sonucu saklar. Kural tabanlı audience, sonucun hangi koşullarla oluştuğunu tanımlar."
+                    : "A static list stores the result. A rule-based audience defines the conditions that create that result.")
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 04 CONTEXT TO ACTION ═══════════════════════════ -->
+<section class="pika-section" style="background:#f9fbf6;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="pika-eyebrow">@(isTr ? "KİTLEDEN AKSİYONA" : "FROM AUDIENCE TO ACTION")</span>
+            <h2 class="pika-h2 mx-auto" style="max-width:820px;">
+                @(isTr ? "Audience tanımı, kampanya gönderimi değildir." : "Audience definition is not campaign delivery.")
+            </h2>
+        </div>
+
+        <div class="growth-uc-flow-wrap mb-4">
+            <div class="growth-uc-flow">
+                <span class="growth-uc-flow-node">CUSTOMER INTELLIGENCE</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">@(isTr ? "AUDIENCE KURALLARI" : "AUDIENCE RULES")</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">@(isTr ? "HEDEF KİTLE" : "AUDIENCE")</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">@(isTr ? "KULLANICI KARARI" : "USER DECISION")</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">CAMPAIGN / JOURNEY</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">CONSENT</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">EMAIL / SMS / WHATSAPP</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">@(isTr ? "ÖLÇÜM" : "MEASUREMENT")</span>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <p class="text-secondary text-center mb-3" style="font-size:15px;line-height:1.8;">
+                    @(isTr
+                        ? "Audience Manager “kim?” sorusunu yanıtlar. Campaign Manager veya Journey Manager aksiyonu yönetir; Consent Management mevcut iletişim uygunluğu bağlamını değerlendirir; Email, SMS veya WhatsApp ise uygun durumda execution kanalı olarak kullanılabilir."
+                        : "Audience Manager answers “who?” Campaign Manager or Journey Manager manages the action; Consent Management evaluates available communication-eligibility context; and Email, SMS or WhatsApp can be used as execution channels when eligible.")
+                </p>
+                <p class="text-center text-muted small mb-0">
+                    @(isTr
+                        ? "Audience üyeliği, iletişim izninin ve gönderim kararının yerine geçmez."
+                        : "Audience membership does not replace communication permission or the delivery decision.")
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 05 WHAT THIS USE CASE IS / IS NOT ═══════════════════════════ -->
+<section class="pika-section" style="background:#fff;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="pika-eyebrow">@(isTr ? "ÜRÜN SINIRI" : "PRODUCT BOUNDARY")</span>
+            <h2 class="pika-h2 mx-auto" style="max-width:820px;">
+                @(isTr
+                    ? "Segmentasyonu, doğru ürün sorumluluğunda değerlendirin."
+                    : "Evaluate segmentation within the correct product responsibility.")
+            </h2>
+        </div>
+
+        <div class="growth-uc-boundary-grid mb-5">
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Müşteri Segmentasyonu ≠ Customer Intelligence hesaplaması" : "Customer Segmentation ≠ Customer Intelligence calculation")</span>
+            </div>
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Müşteri Segmentasyonu ≠ sabit Excel listesi" : "Customer Segmentation ≠ fixed Excel list")</span>
+            </div>
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Müşteri Segmentasyonu ≠ generative AI müşteri seçimi" : "Customer Segmentation ≠ generative-AI customer selection")</span>
+            </div>
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Müşteri Segmentasyonu ≠ otonom kampanya kararı" : "Customer Segmentation ≠ autonomous campaign decision")</span>
+            </div>
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Müşteri Segmentasyonu ≠ iletişim izni" : "Customer Segmentation ≠ communication permission")</span>
+            </div>
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Müşteri Segmentasyonu ≠ dönüşüm veya revenue garantisi" : "Customer Segmentation ≠ conversion or revenue guarantee")</span>
+            </div>
+        </div>
+
+        <div class="text-center mx-auto" style="max-width:700px;">
+            <p class="text-muted fst-italic mb-0" style="font-size:15px;line-height:1.8;">
+                @(isTr
+                    ? "Audience Manager'ın görevi, müşteriyi anlamak yerine anlaşılmış müşteri bağlamını açık hedef-kitle kurallarına dönüştürmektir."
+                    : "Audience Manager's role is not to understand the customer itself, but to turn understood customer context into explicit audience rules.")
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 06 RELATED PIKA LAYERS & USE CASES ═══════════════════════════ -->
+<section class="pika-section" style="background:#f4f7ed;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="pika-eyebrow">@(isTr ? "İLGİLİ PIKA KATMANLARI" : "RELATED PIKA LAYERS")</span>
+            <h2 class="pika-h2 mx-auto" style="max-width:820px;">
+                @(isTr
+                    ? "İlgili Pika Katmanları ve Kullanım Senaryoları"
+                    : "Related Pika Layers & Use Cases")
+            </h2>
+        </div>
+
+        <div class="growth-uc-related-pills justify-content-center mb-5">
+            <a href="@(isTr ? "/platform/customer-intelligence" : "/en/platform/customer-intelligence")" class="growth-uc-pill">
+                <i class="ri-parent-line"></i> Customer Intelligence
+            </a>
+            <a href="@(isTr ? "/cozumler/audience-manager" : "/en/solutions/audience-manager")" class="growth-uc-pill">
+                <i class="ri-group-line"></i> Audience Manager
+            </a>
+            <a href="@(isTr ? "/cozumler/campaign-manager" : "/en/solutions/campaign-manager")" class="growth-uc-pill">
+                <i class="ri-megaphone-line"></i> Campaign Manager
+            </a>
+            <a href="@(isTr ? "/cozumler/journey-manager" : "/en/solutions/journey-manager")" class="growth-uc-pill">
+                <i class="ri-route-line"></i> Journey Manager
+            </a>
+            <a href="@(isTr ? "/cozumler/consent-management" : "/en/solutions/consent-management")" class="growth-uc-pill">
+                <i class="ri-shield-check-line"></i> Consent Management
+            </a>
+            <a href="@(isTr ? "/cozumler/analytics-reporting" : "/en/solutions/analytics-reporting")" class="growth-uc-pill">
+                <i class="ri-bar-chart-2-line"></i> Analytics &amp; Reporting
+            </a>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-3">
+                <a href="@(isTr ? "/kullanim-senaryolari/musteri-degeri" : "/en/use-cases/customer-value")" class="growth-uc-card-link">
+                    <h3 class="h5 fw-bold mb-0">@(isTr ? "Müşteri Değeri" : "Customer Value")</h3>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="@(isTr ? "/kullanim-senaryolari/tekrar-satin-alma" : "/en/use-cases/repeat-purchase")" class="growth-uc-card-link">
+                    <h3 class="h5 fw-bold mb-0">@(isTr ? "Tekrar Satın Alma" : "Repeat Purchase")</h3>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="@(isTr ? "/kullanim-senaryolari/geri-kazanim" : "/en/use-cases/win-back")" class="growth-uc-card-link">
+                    <h3 class="h5 fw-bold mb-0">@(isTr ? "Geri Kazanım" : "Win-back")</h3>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="@(isTr ? "/kullanim-senaryolari" : "/en/use-cases")" class="growth-uc-card-link">
+                    <h3 class="h5 fw-bold mb-0">@(isTr ? "Tüm Kullanım Senaryoları" : "All Use Cases")</h3>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 07 FAQ ═══════════════════════════ -->
+<section class="pika-section" style="background:#fff;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="pika-h2">@(isTr ? "Sıkça Sorulan Sorular" : "Frequently Asked Questions")</h2>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="growth-uc-faq-list">
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Pika'da müşteri segmentasyonu nasıl çalışır?" : "How does customer segmentation work in Pika?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "Customer Intelligence ve kullanılabilir müşteri, işlem ve davranış bağlamı Audience Manager'daki açık kurallarda değerlendirilerek hangi müşterilerin belirli bir hedef kitleye dahil olması gerektiği tanımlanabilir."
+                                : "Customer Intelligence and available customer, transaction and behavioral context can be evaluated through explicit Audience Manager rules to define which customers should belong in a particular audience.")
+                        </p>
+                    </details>
+
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Audience Manager ile Customer Intelligence aynı şey midir?" : "Are Audience Manager and Customer Intelligence the same thing?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "Hayır. Customer Intelligence müşteri bağlamını hesaplayan analitik katmandır. Audience Manager bu ve diğer kullanılabilir bağlamları açık hedef-kitle kurallarında kullanır."
+                                : "No. Customer Intelligence is the analytical layer that calculates customer context. Audience Manager uses this and other available context inside explicit audience rules.")
+                        </p>
+                    </details>
+
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Statik liste ile kural tabanlı audience arasındaki fark nedir?" : "What is the difference between a static list and a rule-based audience?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "Statik liste belirli bir andaki sonucu saklar. Kural tabanlı audience ise müşteriyi hedef kitleye dahil eden koşulları tanımlar ve kaynak bağlam değiştiğinde yeniden değerlendirilebilir."
+                                : "A static list stores the result at a point in time. A rule-based audience defines the conditions that make a customer belong and can be evaluated again when source context changes.")
+                        </p>
+                    </details>
+
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Pika müşteri segmentlerini generative AI ile mi seçer?" : "Does Pika select customer segments with generative AI?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "C28 böyle bir iddia yapmaz. Audience Manager'ın doğrulanmış public modeli açık kurallara ve kullanılabilir müşteri bağlamına dayanır."
+                                : "C28 makes no such claim. Audience Manager's verified public model is based on explicit rules and available customer context.")
+                        </p>
+                    </details>
+
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Bir audience'a dahil olmak iletişim izni anlamına gelir mi?" : "Does audience membership mean communication permission?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "Hayır. Audience üyeliği ile Consent Management'ın iletişim uygunluğu bağlamı ayrı ürün sorumluluklarıdır."
+                                : "No. Audience membership and Consent Management communication-eligibility context are separate product responsibilities.")
+                        </p>
+                    </details>
+
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Segmentasyon kampanyanın başarılı olacağını garanti eder mi?" : "Does segmentation guarantee campaign success?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "Hayır. Audience tanımı conversion, satış veya revenue sonucu garantisi değildir."
+                                : "No. Audience definition does not guarantee conversion, sales or revenue outcomes.")
+                        </p>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 08 FINAL CTA ═══════════════════════════ -->
+<section class="pika-section" style="background:#f4f7ed;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="growth-uc-cta-card">
+                    <span class="badge mb-3" style="background:#b0cb7430;color:#cee1ab;border:1px solid #b1ca6c40;font-size:12px;letter-spacing:1px;">
+                        @(isTr ? "MÜŞTERİ SEGMENTASYONU" : "CUSTOMER SEGMENTATION")
+                    </span>
+                    <h2 class="h1 fw-bold text-white mb-3">
+                        @(isTr
+                            ? "Müşteri bağlamını tanımlayın. Kuralları açık kurun. Doğru audience'ı kontrollü aksiyona bağlayın."
+                            : "Define customer context. Build explicit rules. Connect the right audience to controlled action.")
+                    </h2>
+                    <p class="text-white-50 mx-auto mb-4" style="max-width:720px;font-size:16px;line-height:1.8;">
+                        @(isTr
+                            ? "Pika'nın müşteri, işlem ve davranış bağlamını açık audience kurallarında nasıl değerlendirdiğini kendi veri yapınız üzerinden inceleyin."
+                            : "Evaluate how Pika can use customer, transaction and behavioral context inside explicit audience rules using your own data structure.")
+                    </p>
+                    <div class="d-flex flex-wrap justify-content-center gap-3">
+                        <a href="@(isTr ? "/demo-talebi" : "/en/demo-request")" class="btn pika-btn-primary">
+                            @(isTr ? "Demo Talep Et" : "Request a Demo") ↗
+                        </a>
+                        <a href="@(isTr ? "/cozumler/audience-manager" : "/en/solutions/audience-manager")" class="btn pika-btn-outline" style="border-color:#cee1ab;color:#cee1ab;">
+                            @(isTr ? "Audience Manager'ı Keşfedin" : "Explore Audience Manager") →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
