@@ -375,6 +375,26 @@ public static class SeoHelper
             "Use Pika Customer Intelligence to evaluate Monetary, Frequency, Recency and Loyalty context through a deterministic Customer Value Score and make customer value visible.",
             "Müşteri Değeri",
             "Customer Value");
+
+        RouteMetadata["Solutions.OmnichannelOrchestrationUseCase"] = new(
+            "/kullanim-senaryolari/omnichannel-orkestrasyon",
+            "/en/use-cases/omnichannel-orchestration",
+            "Omnichannel Orkestrasyon | Email, SMS ve WhatsApp | Pika",
+            "Omnichannel Orchestration | Email, SMS & WhatsApp | Pika",
+            "Pika ile Audience, Campaign ve Journey bağlamını Email, SMS ve WhatsApp kanallarıyla; izin, gönderim kontrolü ve ölçüm katmanları içinde kontrollü biçimde yönetin.",
+            "Use Pika to coordinate Audience, Campaign and Journey context across Email, SMS and WhatsApp within controlled permission, delivery and measurement layers.",
+            "Omnichannel Orkestrasyon",
+            "Omnichannel Orchestration");
+
+        RouteMetadata["Solutions.RetailEcommerceUseCase"] = new(
+            "/kullanim-senaryolari/perakende-e-ticaret",
+            "/en/use-cases/retail-ecommerce",
+            "Perakende ve E-ticaret Müşteri Zekâsı | Pika",
+            "Retail & E-commerce Customer Intelligence | Pika",
+            "Pika ile perakende ve e-ticaret müşteri, ürün ve işlem verisini anlamlandırın; tekrar satın alma, çapraz satış, geri kazanım, segmentasyon ve kontrollü omnichannel aksiyon fırsatlarını değerlendirin.",
+            "Use Pika to connect retail and e-commerce customer, product and transaction data to repeat purchase, cross-sell, win-back, segmentation and controlled omnichannel action.",
+            "Perakende ve E-ticaret",
+            "Retail & E-commerce");
     }
 
     public static PageSeoMetadata? GetMetadata(string? controller, string? action)

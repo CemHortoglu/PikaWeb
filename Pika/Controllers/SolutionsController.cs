@@ -133,5 +133,13 @@ namespace Pika.Controllers
         [HttpGet("/kullanim-senaryolari/musteri-degeri", Name = "CustomerValueUseCase")]
         [HttpGet("/en/use-cases/customer-value", Name = "CustomerValueUseCaseEn")]
         public IActionResult CustomerValueUseCase() => View();
+
+        [HttpGet("/kullanim-senaryolari/omnichannel-orkestrasyon", Name = "OmnichannelOrchestrationUseCase")]
+        [HttpGet("/en/use-cases/omnichannel-orchestration", Name = "OmnichannelOrchestrationUseCaseEn")]
+        public IActionResult OmnichannelOrchestrationUseCase() => View();
+
+        [HttpGet("/kullanim-senaryolari/perakende-e-ticaret", Name = "RetailEcommerceUseCase")]
+        [HttpGet("/en/use-cases/retail-ecommerce", Name = "RetailEcommerceUseCaseEn")]
+        public IActionResult RetailEcommerceUseCase() => View();
     }
 }

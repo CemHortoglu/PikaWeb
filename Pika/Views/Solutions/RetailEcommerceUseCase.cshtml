@@ -1,0 +1,459 @@
+@{
+    var culture = (ViewData["culture"] as string ?? ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").ToLowerInvariant();
+    var isTr = culture == "tr";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/pika-growth-usecases.css" asp-append-version="true" />
+}
+
+<!-- ═══════════════════════════ 01 HERO ═══════════════════════════ -->
+<section class="inner-hero">
+    <div class="inner-atmosphere" aria-hidden="true"><span></span><span></span></div>
+    <div class="container inner-hero-grid">
+        <div class="inner-intro">
+            <nav class="inner-breadcrumb" aria-label="@(isTr ? "Sayfa yolu" : "Breadcrumb")">
+                <a href="@(isTr ? "/" : "/en/")">Pika</a>
+                <span>/</span>
+                <a href="@(isTr ? "/kullanim-senaryolari" : "/en/use-cases")">@(isTr ? "Kullanım Senaryoları" : "Use Cases")</a>
+                <span>/</span>
+                <span>@(isTr ? "Perakende ve E-ticaret" : "Retail & E-commerce")</span>
+            </nav>
+            <div class="inner-eyebrow">
+                <span></span>
+                @(isTr ? "SEKTÖR BAĞLAMI" : "INDUSTRY CONTEXT")
+            </div>
+            <h1>
+                @(isTr
+                    ? "Müşteri, ürün ve işlem verisini aynı ticari karar bağlamında bir araya getirin."
+                    : "Bring customer, product and transaction data into one commercial decision context.")
+            </h1>
+            <p>
+                @(isTr
+                    ? "Pika, perakende ve e-ticaret işletmelerinin müşteri, ürün ve işlem verisini birlikte değerlendirerek müşteri değeri, tekrar satın alma, cross-sell, win-back ve segmentasyon gibi ticari bağlamları görünür hale getirmesine yardımcı olabilir."
+                    : "Pika can help retail and e-commerce organizations evaluate customer, product and transaction data together to make customer value, repeat purchase, cross-sell, win-back and segmentation context visible.")
+            </p>
+            <p class="text-secondary" style="font-size:15px;line-height:1.75;margin-top:-10px;margin-bottom:28px;">
+                @(isTr
+                    ? "Amaç yeni bir commerce sistemi oluşturmak değil; mevcut ticari veriden daha anlamlı müşteri ve ürün bağlamı üretmek ve bunu kontrollü pazarlama aksiyonuna bağlamaktır."
+                    : "The objective is not to create another commerce system, but to produce more meaningful customer and product context from existing commercial data and connect it to controlled marketing action.")
+            </p>
+            <div class="inner-actions">
+                <a class="inner-primary" href="@(isTr ? "/demo-talebi" : "/en/demo-request")">
+                    @(isTr ? "Demo Talep Et" : "Request a Demo") ↗
+                </a>
+                <a class="inner-secondary" href="@(isTr ? "/pika" : "/en/pika")">
+                    @(isTr ? "Pika'yı Keşfedin" : "Explore Pika") →
+                </a>
+            </div>
+        </div>
+
+        <div class="inner-scene" aria-hidden="true">
+            <div class="growth-uc-hero-visual">
+                <div class="growth-uc-pipeline">
+                    <div class="growth-uc-node">
+                        <span>@(isTr ? "MÜŞTERİ" : "CUSTOMER")</span>
+                        <i class="ri-user-settings-line"></i>
+                    </div>
+                    <div class="growth-uc-arrow">↓</div>
+                    <div class="growth-uc-node">
+                        <span>@(isTr ? "ÜRÜN" : "PRODUCT")</span>
+                        <i class="ri-price-tag-3-line"></i>
+                    </div>
+                    <div class="growth-uc-arrow">↓</div>
+                    <div class="growth-uc-node">
+                        <span>@(isTr ? "İŞLEM" : "TRANSACTION")</span>
+                        <i class="ri-shopping-cart-2-line"></i>
+                    </div>
+                    <div class="growth-uc-arrow">↓</div>
+                    <div class="growth-uc-node growth-uc-node--accent">
+                        <span>INTELLIGENCE</span>
+                        <i class="ri-brain-line"></i>
+                    </div>
+                    <div class="growth-uc-arrow">↓</div>
+                    <div class="growth-uc-node">
+                        <span>@(isTr ? "FIRSAT" : "OPPORTUNITY")</span>
+                        <i class="ri-lightbulb-line"></i>
+                    </div>
+                    <div class="growth-uc-arrow">↓</div>
+                    <div class="growth-uc-node">
+                        <span>@(isTr ? "KONTROLLÜ AKSİYON" : "CONTROLLED ACTION")</span>
+                        <i class="ri-checkbox-circle-line"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 02 DIRECT ANSWER ═══════════════════════════ -->
+<section class="pika-section" style="background:#f4f7ed;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="growth-uc-direct-answer">
+                    <span class="pika-eyebrow">@(isTr ? "KISA CEVAP" : "THE SHORT ANSWER")</span>
+                    <h2 class="pika-h2 mt-2 mb-3">
+                        @(isTr ? "Pika perakende ve e-ticarette nasıl değerlendirilebilir?" : "How can Pika be evaluated in retail and e-commerce?")
+                    </h2>
+                    <p class="text-secondary mb-3" style="font-size:16px;line-height:1.8;">
+                        @(isTr
+                            ? "Pika müşteri, ürün ve işlem verisini Customer Intelligence ve Product Intelligence bağlamında anlamlandırarak ticari müşteri ve ürün sinyallerini değerlendirmeye yardımcı olur."
+                            : "Pika helps interpret customer, product and transaction data through Customer Intelligence and Product Intelligence so commercial customer and product signals can be evaluated.")
+                    </p>
+                    <p class="text-secondary mb-3" style="font-size:16px;line-height:1.8;">
+                        @(isTr
+                            ? "Bu bağlam Customer Value Score, repeat purchase, cross-sell, win-back veya açık audience kuralları gibi mevcut Pika yeteneklerinde kullanılabilir ve daha sonra kontrollü campaign veya journey aksiyonuna bağlanabilir."
+                            : "This context can participate in existing Pika capabilities such as Customer Value Score, repeat purchase, cross-sell, win-back or explicit audience rules and can later connect to controlled campaign or journey action.")
+                    </p>
+                    <div class="p-3 mb-3" style="background:#edf4e0;border-left:4px solid #7a9845;border-radius:4px;">
+                        <strong class="d-block text-dark" style="font-size:14px;">
+                            @(isTr
+                                ? "Pika bir e-ticaret platformu, POS, ERP veya sipariş yönetim sistemi değildir."
+                                : "Pika is not an e-commerce platform, POS, ERP or order-management system.")
+                        </strong>
+                    </div>
+                    <p class="small text-muted mb-0 font-monospace">
+                        @(isTr
+                            ? "Ticari veri → intelligence → fırsat / audience → kontrollü aksiyon."
+                            : "Commercial data → intelligence → opportunity / audience → controlled action.")
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 03 HOW CONTEXT WORKS ═══════════════════════════ -->
+<section class="pika-section" style="background:#fff;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="pika-eyebrow">@(isTr ? "VERİDEN TİCARİ BAĞLAMA" : "FROM DATA TO COMMERCIAL CONTEXT")</span>
+            <h2 class="pika-h2 mx-auto" style="max-width:820px;">
+                @(isTr
+                    ? "Müşteri ile ürünü, işlem geçmişinin ortak bağlamında değerlendirin."
+                    : "Evaluate customer and product through their shared transaction history.")
+            </h2>
+        </div>
+
+        <div class="growth-uc-step-grid mb-5">
+            <div class="growth-uc-step-card">
+                <span class="growth-uc-step-badge">01</span>
+                <h3 class="h5 fw-bold mb-2">@(isTr ? "Müşteri" : "Customer")</h3>
+                <p class="text-secondary mb-0" style="font-size:14px;line-height:1.75;">
+                    @(isTr
+                        ? "Customer Intelligence recency, frequency, monetary contribution, loyalty ve bireysel satın alma ritmi gibi doğrulanmış müşteri bağlamlarını değerlendirebilir."
+                        : "Customer Intelligence can evaluate verified customer context such as recency, frequency, monetary contribution, loyalty and individual purchase rhythm.")
+                </p>
+            </div>
+            <div class="growth-uc-step-card">
+                <span class="growth-uc-step-badge">02</span>
+                <h3 class="h5 fw-bold mb-2">@(isTr ? "Ürün" : "Product")</h3>
+                <p class="text-secondary mb-0" style="font-size:14px;line-height:1.75;">
+                    @(isTr
+                        ? "Product Intelligence ürünün ticari anlamını ve geçmiş işlem ilişkilerini değerlendirme bağlamına taşır."
+                        : "Product Intelligence brings product commercial meaning and historical transaction relationships into evaluation context.")
+                </p>
+            </div>
+            <div class="growth-uc-step-card">
+                <span class="growth-uc-step-badge">03</span>
+                <h3 class="h5 fw-bold mb-2">@(isTr ? "İşlem" : "Transaction")</h3>
+                <p class="text-secondary mb-0" style="font-size:14px;line-height:1.75;">
+                    @(isTr
+                        ? "Geçmiş müşteri-ürün işlemleri customer ve product context'in ortak veri temelini oluşturur."
+                        : "Historical customer-product transactions provide the shared data foundation for customer and product context.")
+                </p>
+            </div>
+            <div class="growth-uc-step-card">
+                <span class="growth-uc-step-badge">04</span>
+                <h3 class="h5 fw-bold mb-2">@(isTr ? "Ticari Sinyal" : "Commercial Signal")</h3>
+                <p class="text-secondary mb-0" style="font-size:14px;line-height:1.75;">
+                    @(isTr
+                        ? "Bu bağlam repeat purchase, cross-sell, win-back, customer value veya audience değerlendirmelerine bağlanabilir."
+                        : "This context can connect to repeat purchase, cross-sell, win-back, customer value or audience evaluation.")
+                </p>
+            </div>
+        </div>
+
+        <div class="text-center mx-auto" style="max-width:700px;">
+            <p class="text-muted fst-italic mb-0" style="font-size:15px;line-height:1.8;">
+                @(isTr
+                    ? "Perakende ve e-ticaret bağlamında değer, yalnızca sipariş sayısını görmek değil, müşteri, ürün ve işlemi birlikte anlamlandırabilmektir."
+                    : "In retail and e-commerce, value is not only seeing order counts. It is being able to understand customer, product and transaction together.")
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 04 CONTEXT TO ACTION ═══════════════════════════ -->
+<section class="pika-section" style="background:#f9fbf6;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="pika-eyebrow">@(isTr ? "ANLAMADAN AKSİYONA" : "FROM UNDERSTANDING TO ACTION")</span>
+            <h2 class="pika-h2 mx-auto" style="max-width:820px;">
+                @(isTr
+                    ? "Fırsatı görün. Audience'ı tanımlayın. İletişimi kontrollü yönetin."
+                    : "See the opportunity. Define the audience. Manage communication under control.")
+            </h2>
+        </div>
+
+        <div class="growth-uc-flow-wrap mb-4">
+            <div class="growth-uc-flow">
+                <span class="growth-uc-flow-node">CUSTOMER + PRODUCT + TRANSACTION</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">INTELLIGENCE</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">OPPORTUNITY / VALUE</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">AUDIENCE</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">CAMPAIGN / JOURNEY</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">CONSENT</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">EMAIL / SMS / WHATSAPP</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">MEASUREMENT</span>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <p class="text-secondary text-center mb-3" style="font-size:15px;line-height:1.8;">
+                    @(isTr
+                        ? "Customer Intelligence ve Product Intelligence ticari bağlamı üretir. Günün Fırsatları ilgili opportunity sinyallerini görünür hale getirebilir. Audience Manager hedef kitleyi tanımlar; Campaign Manager veya Journey Manager aksiyonu yönetir ve uygun iletişim Email, SMS veya WhatsApp üzerinden yürütülebilir."
+                        : "Customer Intelligence and Product Intelligence create commercial context. Daily Opportunities can make relevant opportunity signals visible. Audience Manager defines the audience; Campaign Manager or Journey Manager manages the action; and eligible communication can execute through Email, SMS or WhatsApp.")
+                </p>
+                <p class="text-center text-muted small mb-0">
+                    @(isTr
+                        ? "Commerce verisi, otomatik kampanya kararı değildir. Karar, ayrı Pika ürün katmanlarında kontrollü biçimde yönetilir."
+                        : "Commerce data is not an automatic campaign decision. The decision is managed under control through separate Pika product layers.")
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 05 WHAT THIS USE CASE IS / IS NOT ═══════════════════════════ -->
+<section class="pika-section" style="background:#fff;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="pika-eyebrow">@(isTr ? "ÜRÜN SINIRI" : "PRODUCT BOUNDARY")</span>
+            <h2 class="pika-h2 mx-auto" style="max-width:820px;">
+                @(isTr
+                    ? "Pika'yı, commerce sisteminin yerine değil intelligence ve aksiyon katmanı olarak değerlendirin."
+                    : "Evaluate Pika as an intelligence and action layer, not a replacement commerce system.")
+            </h2>
+        </div>
+
+        <div class="growth-uc-boundary-grid mb-5">
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Pika ≠ e-ticaret altyapısı" : "Pika ≠ e-commerce platform")</span>
+            </div>
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Pika ≠ POS veya ERP" : "Pika ≠ POS or ERP")</span>
+            </div>
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Pika ≠ sipariş yönetim sistemi" : "Pika ≠ order-management system")</span>
+            </div>
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Pika ≠ stok veya fiyat optimizasyon motoru" : "Pika ≠ inventory or price-optimization engine")</span>
+            </div>
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Pika ≠ her commerce sistemi için hazır native connector garantisi" : "Pika ≠ guaranteed native connector for every commerce system")</span>
+            </div>
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Pika ≠ satış, conversion veya revenue garantisi" : "Pika ≠ sales, conversion or revenue guarantee")</span>
+            </div>
+        </div>
+
+        <div class="text-center mx-auto" style="max-width:700px;">
+            <p class="text-muted fst-italic mb-0" style="font-size:15px;line-height:1.8;">
+                @(isTr
+                    ? "Pika'nın rolü, mevcut müşteri, ürün ve işlem verisini ticari anlayış ve kontrollü pazarlama aksiyonu bağlamına taşımaktır."
+                    : "Pika's role is to turn existing customer, product and transaction data into commercial understanding and controlled marketing-action context.")
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 06 RELATED PIKA LAYERS & USE CASES ═══════════════════════════ -->
+<section class="pika-section" style="background:#f4f7ed;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="pika-h2 mx-auto" style="max-width:820px;">
+                @(isTr
+                    ? "İlgili Pika Katmanları ve Kullanım Senaryoları"
+                    : "Related Pika Layers & Use Cases")
+            </h2>
+        </div>
+
+        <div class="growth-uc-related-pills justify-content-center mb-5">
+            <a href="@(isTr ? "/platform/customer-intelligence" : "/en/platform/customer-intelligence")" class="growth-uc-pill">
+                <i class="ri-parent-line"></i> Customer Intelligence
+            </a>
+            <a href="@(isTr ? "/platform/product-intelligence" : "/en/platform/product-intelligence")" class="growth-uc-pill">
+                <i class="ri-price-tag-3-line"></i> Product Intelligence
+            </a>
+            <a href="@(isTr ? "/platform/gunun-firsatlari" : "/en/platform/opportunities")" class="growth-uc-pill">
+                <i class="ri-lightbulb-line"></i> @(isTr ? "Günün Fırsatları" : "Opportunities")
+            </a>
+            <a href="@(isTr ? "/entegrasyonlar" : "/en/integrations")" class="growth-uc-pill">
+                <i class="ri-links-line"></i> Integrations
+            </a>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-4">
+                <a href="@(isTr ? "/kullanim-senaryolari/musteri-degeri" : "/en/use-cases/customer-value")" class="growth-uc-card-link">
+                    <h3 class="h5 fw-bold mb-0">@(isTr ? "Müşteri Değeri" : "Customer Value")</h3>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="@(isTr ? "/kullanim-senaryolari/musteri-segmentasyonu" : "/en/use-cases/customer-segmentation")" class="growth-uc-card-link">
+                    <h3 class="h5 fw-bold mb-0">@(isTr ? "Müşteri Segmentasyonu" : "Customer Segmentation")</h3>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="@(isTr ? "/kullanim-senaryolari/tekrar-satin-alma" : "/en/use-cases/repeat-purchase")" class="growth-uc-card-link">
+                    <h3 class="h5 fw-bold mb-0">@(isTr ? "Tekrar Satın Alma" : "Repeat Purchase")</h3>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="@(isTr ? "/kullanim-senaryolari/capraz-satis" : "/en/use-cases/cross-sell")" class="growth-uc-card-link">
+                    <h3 class="h5 fw-bold mb-0">@(isTr ? "Çapraz Satış" : "Cross-sell")</h3>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="@(isTr ? "/kullanim-senaryolari/geri-kazanim" : "/en/use-cases/win-back")" class="growth-uc-card-link">
+                    <h3 class="h5 fw-bold mb-0">@(isTr ? "Geri Kazanım" : "Win-back")</h3>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="@(isTr ? "/kullanim-senaryolari/omnichannel-orkestrasyon" : "/en/use-cases/omnichannel-orchestration")" class="growth-uc-card-link">
+                    <h3 class="h5 fw-bold mb-0">@(isTr ? "Omnichannel Orkestrasyon" : "Omnichannel Orchestration")</h3>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 07 FAQ ═══════════════════════════ -->
+<section class="pika-section" style="background:#fff;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="pika-h2">@(isTr ? "Sıkça Sorulan Sorular" : "Frequently Asked Questions")</h2>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="growth-uc-faq-list">
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Pika perakende ve e-ticarette hangi verilerle çalışabilir?" : "What data can Pika use in retail and e-commerce context?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "Pika'nın temel doğrulanmış veri bağlamı müşteri, ürün ve işlem verisidir. Gerçek gerekli alanlar ve entegrasyon kapsamı kullanım senaryosuna göre değerlendirilir."
+                                : "Pika's core verified data context is customer, product and transaction data. Actual required fields and integration scope depend on the usage scenario.")
+                        </p>
+                    </details>
+
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Pika e-ticaret veya sipariş yönetim sistemi midir?" : "Is Pika an e-commerce or order-management system?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "Hayır. Pika e-ticaret altyapısı, POS, ERP veya order-management system yerine geçen bir ürün olarak konumlandırılmaz."
+                                : "No. Pika is not positioned as a replacement for an e-commerce platform, POS, ERP or order-management system.")
+                        </p>
+                    </details>
+
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Pika retail kullanımında hangi ticari bağlamları değerlendirebilir?" : "Which commercial contexts can Pika evaluate for retail use?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "Mevcut doğrulanmış Pika yetenekleri müşteri değeri, repeat purchase, cross-sell, win-back, müşteri segmentasyonu ve ilgili opportunity context gibi alanları kapsar."
+                                : "Current verified Pika capabilities include customer value, repeat purchase, cross-sell, win-back, customer segmentation and related opportunity context.")
+                        </p>
+                    </details>
+
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Pika her e-ticaret veya POS sistemiyle hazır native entegrasyon sunuyor mu?" : "Does Pika offer a ready-made native integration for every e-commerce or POS system?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "C31 böyle bir iddia yapmaz. Veri aktarımı doğrulanmış REST API veya Excel/CSV gibi yollar ve gerçek source-system kontratı üzerinden değerlendirilir."
+                                : "C31 makes no such claim. Data intake is evaluated through verified paths such as REST API or Excel/CSV and the actual source-system contract.")
+                        </p>
+                    </details>
+
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Pika retail kampanyalarını tamamen otomatik gönderir mi?" : "Does Pika send retail campaigns completely automatically?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "Hayır. Audience, Campaign veya Journey, consent ve channel execution ayrı ürün sorumluluklarıdır ve nihai aksiyon kontrollü süreç içinde yönetilir."
+                                : "No. Audience, Campaign or Journey, consent and channel execution remain separate product responsibilities, with final action managed within a controlled process.")
+                        </p>
+                    </details>
+
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Pika satış veya sepet büyümesini garanti eder mi?" : "Does Pika guarantee sales or basket growth?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "Hayır. Intelligence, opportunity veya campaign context satış, conversion, basket growth veya revenue garantisi değildir."
+                                : "No. Intelligence, opportunity or campaign context does not guarantee sales, conversion, basket growth or revenue.")
+                        </p>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 08 FINAL CTA ═══════════════════════════ -->
+<section class="pika-section" style="background:#f4f7ed;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="growth-uc-cta-card">
+                    <span class="badge mb-3" style="background:#b0cb7430;color:#cee1ab;border:1px solid #b1ca6c40;font-size:12px;letter-spacing:1px;">
+                        @(isTr ? "PERAKENDE VE E-TİCARET" : "RETAIL & E-COMMERCE")
+                    </span>
+                    <h2 class="h1 fw-bold text-white mb-3">
+                        @(isTr
+                            ? "Müşteri ve ürünü birlikte anlayın. Ticari fırsatı görün. Aksiyonu kontrollü yönetin."
+                            : "Understand customer and product together. See the commercial opportunity. Manage action under control.")
+                    </h2>
+                    <p class="text-white-50 mx-auto mb-4" style="max-width:720px;font-size:16px;line-height:1.8;">
+                        @(isTr
+                            ? "Pika'nın müşteri, ürün ve işlem verisini retail ve e-ticaret ticari bağlamına nasıl taşıdığını kendi veri yapınız ve kullanım senaryonuz üzerinden değerlendirin."
+                            : "Evaluate how Pika can bring customer, product and transaction data into retail and e-commerce commercial context using your own data structure and usage scenario.")
+                    </p>
+                    <div class="d-flex flex-wrap justify-content-center gap-3">
+                        <a href="@(isTr ? "/demo-talebi" : "/en/demo-request")" class="btn pika-btn-primary">
+                            @(isTr ? "Demo Talep Et" : "Request a Demo") ↗
+                        </a>
+                        <a href="@(isTr ? "/platform/customer-intelligence" : "/en/platform/customer-intelligence")" class="btn pika-btn-outline" style="border-color:#cee1ab;color:#cee1ab;">
+                            @(isTr ? "Customer Intelligence'ı Keşfedin" : "Explore Customer Intelligence") →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

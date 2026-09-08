@@ -1,0 +1,452 @@
+@{
+    var culture = (ViewData["culture"] as string ?? ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").ToLowerInvariant();
+    var isTr = culture == "tr";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/pika-growth-usecases.css" asp-append-version="true" />
+}
+
+<!-- ═══════════════════════════ 01 HERO ═══════════════════════════ -->
+<section class="inner-hero">
+    <div class="inner-atmosphere" aria-hidden="true"><span></span><span></span></div>
+    <div class="container inner-hero-grid">
+        <div class="inner-intro">
+            <nav class="inner-breadcrumb" aria-label="@(isTr ? "Sayfa yolu" : "Breadcrumb")">
+                <a href="@(isTr ? "/" : "/en/")">Pika</a>
+                <span>/</span>
+                <a href="@(isTr ? "/kullanim-senaryolari" : "/en/use-cases")">@(isTr ? "Kullanım Senaryoları" : "Use Cases")</a>
+                <span>/</span>
+                <span>@(isTr ? "Omnichannel Orkestrasyon" : "Omnichannel Orchestration")</span>
+            </nav>
+            <div class="inner-eyebrow">
+                <span></span>
+                @(isTr ? "KULLANIM SENARYOSU" : "USE CASE")
+            </div>
+            <h1>
+                @(isTr
+                    ? "Email, SMS ve WhatsApp'ı tek bir karar zincirinin kontrollü aksiyon kanalları olarak yönetin."
+                    : "Manage Email, SMS and WhatsApp as controlled action channels inside one decision chain.")
+            </h1>
+            <p>
+                @(isTr
+                    ? "Pika, Audience Manager hedef kitle bağlamını Campaign Manager veya Journey Manager içindeki aksiyonlarla birleştirerek Email, SMS ve WhatsApp iletişimini kontrollü omnichannel süreç içinde yönetmenize yardımcı olur."
+                    : "Pika helps connect Audience Manager context with actions managed through Campaign Manager or Journey Manager so Email, SMS and WhatsApp can operate inside a controlled omnichannel process.")
+            </p>
+            <p class="text-secondary" style="font-size:15px;line-height:1.75;margin-top:-10px;margin-bottom:28px;">
+                @(isTr
+                    ? "Omnichannel yaklaşımın amacı her müşteriye her kanaldan ulaşmak değil; doğru aksiyon bağlamında uygun kanalı, izin ve ölçüm sınırlarıyla birlikte yönetmektir."
+                    : "The objective of omnichannel is not to reach every customer through every channel, but to manage an appropriate channel within the right action, permission and measurement context.")
+            </p>
+            <div class="inner-actions">
+                <a class="inner-primary" href="@(isTr ? "/demo-talebi" : "/en/demo-request")">
+                    @(isTr ? "Demo Talep Et" : "Request a Demo") ↗
+                </a>
+                <a class="inner-secondary" href="@(isTr ? "/cozumler/campaign-manager" : "/en/solutions/campaign-manager")">
+                    @(isTr ? "Campaign Manager'ı Keşfedin" : "Explore Campaign Manager") →
+                </a>
+            </div>
+        </div>
+
+        <div class="inner-scene" aria-hidden="true">
+            <div class="growth-uc-hero-visual">
+                <div class="growth-uc-pipeline">
+                    <div class="growth-uc-node">
+                        <span>AUDIENCE</span>
+                        <i class="ri-group-line"></i>
+                    </div>
+                    <div class="growth-uc-arrow">↓</div>
+                    <div class="growth-uc-node growth-uc-node--accent">
+                        <span>CAMPAIGN / JOURNEY</span>
+                        <i class="ri-route-line"></i>
+                    </div>
+                    <div class="growth-uc-arrow">↓</div>
+                    <div class="growth-uc-node">
+                        <span>CONSENT</span>
+                        <i class="ri-shield-check-line"></i>
+                    </div>
+                    <div class="growth-uc-arrow">↓</div>
+                    <div class="growth-uc-node">
+                        <span>EMAIL</span>
+                        <i class="ri-mail-line"></i>
+                    </div>
+                    <div class="growth-uc-arrow">↓</div>
+                    <div class="growth-uc-node">
+                        <span>SMS</span>
+                        <i class="ri-message-2-line"></i>
+                    </div>
+                    <div class="growth-uc-arrow">↓</div>
+                    <div class="growth-uc-node">
+                        <span>WHATSAPP</span>
+                        <i class="ri-whatsapp-line"></i>
+                    </div>
+                    <div class="growth-uc-arrow">↓</div>
+                    <div class="growth-uc-node">
+                        <span>MEASUREMENT</span>
+                        <i class="ri-bar-chart-2-line"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 02 DIRECT ANSWER ═══════════════════════════ -->
+<section class="pika-section" style="background:#f4f7ed;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="growth-uc-direct-answer">
+                    <span class="pika-eyebrow">@(isTr ? "KISA CEVAP" : "THE SHORT ANSWER")</span>
+                    <h2 class="pika-h2 mt-2 mb-3">
+                        @(isTr ? "Pika'da omnichannel orkestrasyon nedir?" : "What is omnichannel orchestration in Pika?")
+                    </h2>
+                    <p class="text-secondary mb-3" style="font-size:16px;line-height:1.8;">
+                        @(isTr
+                            ? "Omnichannel orkestrasyon, tanımlı hedef kitle ve pazarlama aksiyonu bağlamının birden fazla doğrulanmış iletişim kanalıyla kontrollü biçimde yürütülmesidir."
+                            : "Omnichannel orchestration is the controlled execution of defined audience and marketing-action context across multiple confirmed communication channels.")
+                    </p>
+                    <p class="text-secondary mb-3" style="font-size:16px;line-height:1.8;">
+                        @(isTr
+                            ? "Pika'nın doğrulanmış public iletişim kanalları Email, SMS ve WhatsApp'tır. Campaign Manager kampanya bağlamını, Journey Manager ise çok adımlı koşul, dallanma, bekleme ve aksiyon akışını yönetir."
+                            : "Pika's confirmed public communication channels are Email, SMS and WhatsApp. Campaign Manager manages campaign context, while Journey Manager manages multi-step conditions, branching, waits and actions.")
+                    </p>
+                    <div class="p-3 mb-3" style="background:#edf4e0;border-left:4px solid #7a9845;border-radius:4px;">
+                        <strong class="d-block text-dark" style="font-size:14px;">
+                            @(isTr
+                                ? "Kanal orchestration, hedef kitleyi veya iletişim iznini kendi başına belirlemez."
+                                : "Channel orchestration does not independently determine the audience or communication permission.")
+                        </strong>
+                    </div>
+                    <p class="small text-muted mb-0 font-monospace">
+                        Audience → Campaign / Journey → Consent → Channel → Measurement.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 03 HOW CONTEXT WORKS ═══════════════════════════ -->
+<section class="pika-section" style="background:#fff;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="pika-eyebrow">@(isTr ? "KANALDAN ÖNCE KARAR" : "DECISION BEFORE CHANNEL")</span>
+            <h2 class="pika-h2 mx-auto" style="max-width:820px;">
+                @(isTr
+                    ? "Önce aksiyon bağlamını kurun. Sonra kanalı yönetin."
+                    : "Build the action context first. Then manage the channel.")
+            </h2>
+        </div>
+
+        <div class="growth-uc-step-grid mb-5">
+            <div class="growth-uc-step-card">
+                <span class="growth-uc-step-badge">01</span>
+                <h3 class="h5 fw-bold mb-2">Audience</h3>
+                <p class="text-secondary mb-0" style="font-size:14px;line-height:1.75;">
+                    @(isTr
+                        ? "Audience Manager hangi müşterilerin belirli karar bağlamında hedef kitleye dahil olduğunu açık kurallarla tanımlar."
+                        : "Audience Manager defines through explicit rules which customers belong in the audience for a particular decision context.")
+                </p>
+            </div>
+            <div class="growth-uc-step-card">
+                <span class="growth-uc-step-badge">02</span>
+                <h3 class="h5 fw-bold mb-2">Campaign / Journey</h3>
+                <p class="text-secondary mb-0" style="font-size:14px;line-height:1.75;">
+                    @(isTr
+                        ? "Campaign Manager tek kampanya bağlamını; Journey Manager ise çok adımlı müşteri akışındaki koşul, dallanma, bekleme ve aksiyonları yönetir."
+                        : "Campaign Manager manages one campaign context, while Journey Manager manages conditions, branching, waits and actions inside a multi-step customer flow.")
+                </p>
+            </div>
+            <div class="growth-uc-step-card">
+                <span class="growth-uc-step-badge">03</span>
+                <h3 class="h5 fw-bold mb-2">Consent</h3>
+                <p class="text-secondary mb-0" style="font-size:14px;line-height:1.75;">
+                    @(isTr
+                        ? "İletişim aksiyonu ilgili mevcut izin, opt-out ve kanal uygunluğu bağlamından bağımsız değildir."
+                        : "Communication action is not independent from available permission, opt-out and channel-eligibility context.")
+                </p>
+            </div>
+            <div class="growth-uc-step-card">
+                <span class="growth-uc-step-badge">04</span>
+                <h3 class="h5 fw-bold mb-2">Channel</h3>
+                <p class="text-secondary mb-0" style="font-size:14px;line-height:1.75;">
+                    @(isTr
+                        ? "Uygun aksiyon bağlamında Email, SMS veya WhatsApp execution kanalı olarak kullanılabilir."
+                        : "Email, SMS or WhatsApp can be used as execution channels within eligible action context.")
+                </p>
+            </div>
+        </div>
+
+        <div class="text-center mx-auto" style="max-width:700px;">
+            <p class="text-muted fst-italic mb-0" style="font-size:15px;line-height:1.8;">
+                @(isTr
+                    ? "Omnichannel, kanalları üst üste eklemek değil, karar ve kontrol katmanlarını kanal execution'ından ayırabilmektir."
+                    : "Omnichannel is not about stacking channels. It is about keeping decision and control layers separate from channel execution.")
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 04 CONTEXT TO ACTION ═══════════════════════════ -->
+<section class="pika-section" style="background:#f9fbf6;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="pika-eyebrow">@(isTr ? "UÇTAN UCA AKIŞ" : "END-TO-END FLOW")</span>
+            <h2 class="pika-h2 mx-auto" style="max-width:820px;">
+                @(isTr
+                    ? "Kanalı, müşteri ve karar bağlamının sonraki adımı haline getirin."
+                    : "Make the channel the next step after customer and decision context.")
+            </h2>
+        </div>
+
+        <div class="growth-uc-flow-wrap mb-4">
+            <div class="growth-uc-flow">
+                <span class="growth-uc-flow-node">CUSTOMER INTELLIGENCE</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">OPPORTUNITY / DECISION</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">AUDIENCE</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">CAMPAIGN / JOURNEY</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">CONSENT</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">EMAIL / SMS / WHATSAPP</span>
+                <span class="growth-uc-flow-arrow">→</span>
+                <span class="growth-uc-flow-node">ANALYTICS &amp; REPORTING</span>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <p class="text-secondary text-center mb-3" style="font-size:15px;line-height:1.8;">
+                    @(isTr
+                        ? "Customer Intelligence ve opportunity katmanları upstream müşteri bağlamını sağlar. Audience Manager hedef kitleyi tanımlar. Campaign Manager veya Journey Manager aksiyonu yönetir. Consent Management iletişim uygunluğu bağlamını değerlendirir ve ilgili kanal execution sonrasında Analytics & Reporting ölçüm bağlamını taşır."
+                        : "Customer Intelligence and opportunity layers provide upstream customer context. Audience Manager defines the audience. Campaign Manager or Journey Manager manages the action. Consent Management evaluates communication eligibility, while Analytics & Reporting receives relevant measurement context after channel execution.")
+                </p>
+                <p class="text-center text-muted small mb-0">
+                    @(isTr
+                        ? "Kanal, müşteri gerçeğinin, audience kararının ve consent kontrolünün yerine geçmez."
+                        : "The channel does not replace customer truth, audience decisions or consent control.")
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 05 WHAT THIS USE CASE IS / IS NOT ═══════════════════════════ -->
+<section class="pika-section" style="background:#fff;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="pika-eyebrow">@(isTr ? "ÜRÜN SINIRI" : "PRODUCT BOUNDARY")</span>
+            <h2 class="pika-h2 mx-auto" style="max-width:820px;">
+                @(isTr
+                    ? "Omnichannel'ı, kanal sayısıyla değil kontrollü karar zinciriyle değerlendirin."
+                    : "Evaluate omnichannel through the controlled decision chain, not the number of channels.")
+            </h2>
+        </div>
+
+        <div class="growth-uc-boundary-grid mb-5">
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Omnichannel ≠ herkese her kanaldan mesaj" : "Omnichannel ≠ messaging everyone on every channel")</span>
+            </div>
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Omnichannel ≠ AI'ın otomatik kanal seçmesi" : "Omnichannel ≠ automatic AI channel selection")</span>
+            </div>
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Omnichannel ≠ otonom audience seçimi" : "Omnichannel ≠ autonomous audience selection")</span>
+            </div>
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Omnichannel ≠ consent bypass" : "Omnichannel ≠ consent bypass")</span>
+            </div>
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Omnichannel ≠ Push capability" : "Omnichannel ≠ Push capability")</span>
+            </div>
+            <div class="growth-uc-boundary-card">
+                <i class="ri-close-circle-line"></i>
+                <span>@(isTr ? "Omnichannel ≠ delivery, conversion veya revenue garantisi" : "Omnichannel ≠ delivery, conversion or revenue guarantee")</span>
+            </div>
+        </div>
+
+        <div class="text-center mx-auto" style="max-width:700px;">
+            <p class="text-muted fst-italic mb-0" style="font-size:15px;line-height:1.8;">
+                @(isTr
+                    ? "Pika'da omnichannel yaklaşım, Email, SMS ve WhatsApp'ı aynı müşteri ve aksiyon bağlamı içinde kontrollü execution kanalları olarak konumlandırır."
+                    : "Pika's omnichannel approach positions Email, SMS and WhatsApp as controlled execution channels inside shared customer and action context.")
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 06 RELATED PIKA LAYERS & USE CASES ═══════════════════════════ -->
+<section class="pika-section" style="background:#f4f7ed;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="pika-h2 mx-auto" style="max-width:820px;">
+                @(isTr
+                    ? "İlgili Pika Katmanları ve Kullanım Senaryoları"
+                    : "Related Pika Layers & Use Cases")
+            </h2>
+        </div>
+
+        <div class="growth-uc-related-pills justify-content-center mb-5">
+            <a href="@(isTr ? "/cozumler/audience-manager" : "/en/solutions/audience-manager")" class="growth-uc-pill">
+                <i class="ri-group-line"></i> Audience Manager
+            </a>
+            <a href="@(isTr ? "/cozumler/campaign-manager" : "/en/solutions/campaign-manager")" class="growth-uc-pill">
+                <i class="ri-megaphone-line"></i> Campaign Manager
+            </a>
+            <a href="@(isTr ? "/cozumler/journey-manager" : "/en/solutions/journey-manager")" class="growth-uc-pill">
+                <i class="ri-route-line"></i> Journey Manager
+            </a>
+            <a href="@(isTr ? "/cozumler/consent-management" : "/en/solutions/consent-management")" class="growth-uc-pill">
+                <i class="ri-shield-check-line"></i> Consent Management
+            </a>
+            <a href="@(isTr ? "/cozumler/analytics-reporting" : "/en/solutions/analytics-reporting")" class="growth-uc-pill">
+                <i class="ri-bar-chart-2-line"></i> Analytics &amp; Reporting
+            </a>
+            <a href="@(isTr ? "/kanallar/email" : "/en/channels/email")" class="growth-uc-pill">
+                <i class="ri-mail-line"></i> Email
+            </a>
+            <a href="@(isTr ? "/kanallar/sms" : "/en/channels/sms")" class="growth-uc-pill">
+                <i class="ri-message-2-line"></i> SMS
+            </a>
+            <a href="@(isTr ? "/kanallar/whatsapp" : "/en/channels/whatsapp")" class="growth-uc-pill">
+                <i class="ri-whatsapp-line"></i> WhatsApp
+            </a>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-4">
+                <a href="@(isTr ? "/kullanim-senaryolari/musteri-segmentasyonu" : "/en/use-cases/customer-segmentation")" class="growth-uc-card-link">
+                    <h3 class="h5 fw-bold mb-0">@(isTr ? "Müşteri Segmentasyonu" : "Customer Segmentation")</h3>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="@(isTr ? "/kullanim-senaryolari" : "/en/use-cases")" class="growth-uc-card-link">
+                    <h3 class="h5 fw-bold mb-0">@(isTr ? "Tüm Kullanım Senaryoları" : "All Use Cases")</h3>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 07 FAQ ═══════════════════════════ -->
+<section class="pika-section" style="background:#fff;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="pika-h2">@(isTr ? "Sıkça Sorulan Sorular" : "Frequently Asked Questions")</h2>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="growth-uc-faq-list">
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Pika'da omnichannel orkestrasyon ne anlama gelir?" : "What does omnichannel orchestration mean in Pika?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "Tanımlı audience ve aksiyon bağlamının Campaign Manager veya Journey Manager üzerinden Email, SMS ve WhatsApp gibi doğrulanmış kanallarla kontrollü biçimde yürütülmesi anlamına gelir."
+                                : "It means executing defined audience and action context through confirmed channels such as Email, SMS and WhatsApp under Campaign Manager or Journey Manager control.")
+                        </p>
+                    </details>
+
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Pika'nın doğrulanmış iletişim kanalları hangileridir?" : "Which communication channels are confirmed in Pika?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "Pika'nın doğrulanmış public iletişim kanalları Email, SMS ve WhatsApp'tır."
+                                : "Pika's confirmed public communication channels are Email, SMS and WhatsApp.")
+                        </p>
+                    </details>
+
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Pika en iyi kanalı AI ile otomatik seçer mi?" : "Does Pika automatically choose the best channel with AI?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "C30 böyle bir autonomous AI channel-selection iddiası yapmaz. Kanal kullanımı campaign veya journey bağlamındaki kontrollü aksiyonun parçasıdır."
+                                : "C30 makes no autonomous AI channel-selection claim. Channel use is part of controlled action inside campaign or journey context.")
+                        </p>
+                    </details>
+
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Omnichannel orchestration audience'ı kendisi belirler mi?" : "Does omnichannel orchestration define the audience itself?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "Hayır. Gerçek hedef kitle Audience Manager'ın açık kurallarında tanımlanır."
+                                : "No. The actual audience is defined through explicit Audience Manager rules.")
+                        </p>
+                    </details>
+
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Audience'a dahil olmak mesaj göndermek için yeterli midir?" : "Is audience membership enough to send communication?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "Hayır. Audience üyeliği iletişim izninin yerine geçmez; mevcut consent ve kanal uygunluğu bağlamı ayrı değerlendirilir."
+                                : "No. Audience membership does not replace communication permission; available consent and channel-eligibility context is evaluated separately.")
+                        </p>
+                    </details>
+
+                    <details class="growth-uc-faq-details">
+                        <summary class="growth-uc-faq-summary">
+                            @(isTr ? "Birden fazla kanal kullanmak kampanya sonucunu garanti eder mi?" : "Does using multiple channels guarantee campaign results?")
+                        </summary>
+                        <p class="growth-uc-faq-content">
+                            @(isTr
+                                ? "Hayır. Email, SMS veya WhatsApp kullanımı delivery, conversion, satış veya revenue sonucu garantisi değildir."
+                                : "No. Using Email, SMS or WhatsApp does not guarantee delivery, conversion, sales or revenue outcomes.")
+                        </p>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ 08 FINAL CTA ═══════════════════════════ -->
+<section class="pika-section" style="background:#f4f7ed;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="growth-uc-cta-card">
+                    <span class="badge mb-3" style="background:#b0cb7430;color:#cee1ab;border:1px solid #b1ca6c40;font-size:12px;letter-spacing:1px;">
+                        @(isTr ? "OMNICHANNEL ORKESTRASYON" : "OMNICHANNEL ORCHESTRATION")
+                    </span>
+                    <h2 class="h1 fw-bold text-white mb-3">
+                        @(isTr
+                            ? "Audience'ı tanımlayın. Aksiyonu Campaign veya Journey'de yönetin. Kanal execution'ını kontrollü bağlayın."
+                            : "Define the audience. Manage action in Campaign or Journey. Connect channel execution under control.")
+                    </h2>
+                    <p class="text-white-50 mx-auto mb-4" style="max-width:720px;font-size:16px;line-height:1.8;">
+                        @(isTr
+                            ? "Pika'nın Email, SMS ve WhatsApp kanallarını audience, campaign, journey, consent ve measurement bağlamında nasıl bir araya getirdiğini kendi kullanım senaryonuz üzerinden değerlendirin."
+                            : "Evaluate how Pika brings Email, SMS and WhatsApp together within audience, campaign, journey, consent and measurement context using your own usage scenario.")
+                    </p>
+                    <div class="d-flex flex-wrap justify-content-center gap-3">
+                        <a href="@(isTr ? "/demo-talebi" : "/en/demo-request")" class="btn pika-btn-primary">
+                            @(isTr ? "Demo Talep Et" : "Request a Demo") ↗
+                        </a>
+                        <a href="@(isTr ? "/cozumler/journey-manager" : "/en/solutions/journey-manager")" class="btn pika-btn-outline" style="border-color:#cee1ab;color:#cee1ab;">
+                            @(isTr ? "Journey Manager'ı Keşfedin" : "Explore Journey Manager") →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
