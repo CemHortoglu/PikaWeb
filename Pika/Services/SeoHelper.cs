@@ -183,12 +183,12 @@ public static class SeoHelper
         ["Solutions.WhatsAppMessaging"] = new(
             "/kanallar/whatsapp",
             "/en/channels/whatsapp",
-            "WhatsApp Messaging | WhatsApp Kampanya ve Mesajlaşma",
-            "WhatsApp Messaging | WhatsApp Marketing & Messaging",
-            "WhatsApp Business API ile onaylı şablonlar, zengin medya ve etkileşimli mesajlaşma kampanyaları yönetin.",
-            "Manage verified WhatsApp Business campaigns with rich media, interactive buttons, and template approvals.",
-            "WhatsApp Messaging",
-            "WhatsApp Messaging"),
+            "WhatsApp Marketing | Onaylı Şablonlar ve Kontrollü Mesajlaşma | Pika",
+            "WhatsApp Marketing | Approved Templates & Controlled Messaging | Pika",
+            "Pika WhatsApp; onaylı WhatsApp Business API şablonlarını, tanımlı hedef kitle ve Campaign Manager veya Journey Manager bağlamında, mevcut opt-in kontrolleriyle kontrollü iletişimde kullanmanıza yardımcı olur.",
+            "Pika WhatsApp helps use approved WhatsApp Business API templates for defined audiences through Campaign Manager or Journey Manager within controlled communication and available opt-in context.",
+            "WhatsApp",
+            "WhatsApp"),
 
         ["Solutions.PushNotifications"] = new(
             "/kanallar/push",

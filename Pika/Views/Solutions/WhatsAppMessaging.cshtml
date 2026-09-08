@@ -1,167 +1,1084 @@
 @{
     var tr = (ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").Equals("tr", StringComparison.OrdinalIgnoreCase);
-    ViewData["Title"] = tr ? "WhatsApp Business Messaging Platformu ile Kampanya ve Otomasyon - Pika" : "WhatsApp Business Messaging Platform for Campaigns & Automation - Pika";
-    ViewData["MetaDescription"] = tr ? "Pika WhatsApp Messaging ile şablon yönetimi, segment bazlı kampanyalar, kişiselleştirme ve operasyonel kontrolü tek platformda yönetin." : "Manage template governance, segmented campaigns, personalization, and operational control in one place with Pika WhatsApp Messaging.";
-    ViewData["MetaKeywords"] = "whatsapp messaging, whatsapp business, whatsapp kampanya, şablon yönetimi, segmentasyon, otomasyon";
+    ViewData["BodyClass"] = "pika-solutions-page";
 }
 
-<!-- Hero -->
-@await Html.PartialAsync("_MarketingHero")
+@section Styles {
+    <link rel="stylesheet" href="~/css/pika-whatsapp-page.css" asp-append-version="true" />
+}
 
-<!-- Değer Kutuları -->
-<section class="pika-sol-section">
+@* ── 01 HERO ─────────────────────────────────────────────────── *@
+<section class="inner-hero inner-hero-solution">
+    <div class="inner-atmosphere"></div>
+    <div class="container position-relative">
+        <div class="inner-hero-grid">
+            <div class="inner-intro">
+                <nav class="inner-breadcrumb" aria-label="@(tr ? "Sayfa yolu" : "Breadcrumb")">
+                    <a href="@(tr ? "/" : "/en/")">Pika</a>
+                    <span>/</span>
+                    <a href="@(tr ? "/pika" : "/en/pika")">@(tr ? "Pika Nedir?" : "What Is Pika?")</a>
+                    <span>/</span>
+                    <span>WhatsApp</span>
+                </nav>
+                <div class="inner-eyebrow" aria-label="WhatsApp Messaging"><span></span>WHATSAPP · WhatsApp Marketing</div>
+                @if (tr)
+                {
+                    <h1>
+                        Onaylı WhatsApp iletişimini,<br />
+                        Pika'nın kontrollü aksiyon zincirinde<br />
+                        doğru müşteri bağlamına taşıyın.
+                    </h1>
+                    <p>
+                        Pika WhatsApp; onaylı WhatsApp Business API şablonlarının Audience Manager'da tanımlanan hedef kitle bağlamında, Campaign Manager veya Journey Manager içindeki kontrollü iletişim aksiyonlarında kullanılmasını sağlayan doğrulanmış Pika iletişim kanallarından biridir.
+                    </p>
+                    <p class="text-muted small">
+                        WhatsApp iletişimi mevcut opt-in bağlamı ve onaylı template gereksiniminden bağımsız değildir; kanal bu kontrolleri bypass eden serbest mesaj veya chatbot katmanı olarak çalışmaz.
+                    </p>
+                    <div class="inner-actions">
+                        <button class="inner-primary" type="button" data-bs-toggle="modal" data-bs-target="#demoModal">Demo Talep Et ↗</button>
+                        <a class="inner-secondary" href="/cozumler/campaign-manager">Campaign Manager'ı Keşfedin →</a>
+                        <a class="inner-hero-anchor" href="#inner-content" aria-label="İçeriğe atla"><i class="ri-arrow-down-line" aria-hidden="true"></i></a>
+                    </div>
+                }
+                else
+                {
+                    <h1>
+                        Bring approved WhatsApp communication<br />
+                        to the right customer context<br />
+                        inside Pika's controlled action chain.
+                    </h1>
+                    <p>
+                        Pika WhatsApp is one of Pika's confirmed communication channels for using approved WhatsApp Business API templates with audience context defined in Audience Manager inside controlled actions managed through Campaign Manager or Journey Manager.
+                    </p>
+                    <p class="text-muted small">
+                        WhatsApp communication is not independent from available opt-in context and approved-template requirements; the channel is not a free-form messaging or chatbot layer that bypasses those controls.
+                    </p>
+                    <div class="inner-actions">
+                        <button class="inner-primary" type="button" data-bs-toggle="modal" data-bs-target="#demoModal">Request a Demo ↗</button>
+                        <a class="inner-secondary" href="/en/solutions/campaign-manager">Explore Campaign Manager →</a>
+                        <a class="inner-hero-anchor" href="#inner-content" aria-label="Skip to content"><i class="ri-arrow-down-line" aria-hidden="true"></i></a>
+                    </div>
+                }
+            </div>
+
+            <div class="inner-scene" aria-hidden="true">
+                <div class="inner-scene-orbit"></div>
+                <div class="inner-scene-window">
+                    <div class="inner-window-bar">
+                        <strong>pika<span>✳</span></strong>
+                        <span>WhatsApp</span>
+                        <small>@(tr ? "Örnek görünüm" : "Illustration")</small>
+                    </div>
+                    <div class="wa-hero-pills">
+                        @if (tr)
+                        {
+                            <span class="wa-hero-pill">HEDEF KİTLE <span>01</span></span>
+                            <span class="wa-hero-pill">OPT-IN <span>02</span></span>
+                            <span class="wa-hero-pill">ONAYLI ŞABLON <span>03</span></span>
+                            <span class="wa-hero-pill">KAMPANYA / JOURNEY <span>04</span></span>
+                            <span class="wa-hero-pill">WHATSAPP <span>05</span></span>
+                            <span class="wa-hero-pill">TESLİMAT <span>06</span></span>
+                        }
+                        else
+                        {
+                            <span class="wa-hero-pill">AUDIENCE <span>01</span></span>
+                            <span class="wa-hero-pill">OPT-IN <span>02</span></span>
+                            <span class="wa-hero-pill">APPROVED TEMPLATE <span>03</span></span>
+                            <span class="wa-hero-pill">CAMPAIGN / JOURNEY <span>04</span></span>
+                            <span class="wa-hero-pill">WHATSAPP <span>05</span></span>
+                            <span class="wa-hero-pill">DELIVERY <span>06</span></span>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="inner-content" class="inner-anchor"></div>
+
+@* ── STICKY SUBNAV ─────────────────────────────────────────────── *@
+<nav class="pika-sol-subnav d-none d-md-block" aria-label="@(tr ? "Sayfa içi menü" : "In-page menu")">
     <div class="container">
+        <ul class="nav">
+            <li class="nav-item"><a class="nav-link" href="#genel-bakis">@(tr ? "Genel Bakış" : "Overview")</a></li>
+            <li class="nav-item"><a class="nav-link" href="#business-api">@(tr ? "Business API" : "Business API")</a></li>
+            <li class="nav-item"><a class="nav-link" href="#sablonlar">@(tr ? "Şablonlar" : "Templates")</a></li>
+            <li class="nav-item"><a class="nav-link" href="#hedef-kitle">@(tr ? "Hedef Kitle" : "Audience")</a></li>
+            <li class="nav-item"><a class="nav-link" href="#kampanya">@(tr ? "Kampanya" : "Campaign")</a></li>
+            <li class="nav-item"><a class="nav-link" href="#izin-olcum">@(tr ? "İzin & Ölçüm" : "Consent & Measurement")</a></li>
+            <li class="nav-item"><a class="nav-link" href="#sss">@(tr ? "SSS" : "FAQ")</a></li>
+        </ul>
+    </div>
+</nav>
+
+@* ── TRUST / VALUE STRIP ───────────────────────────────────────── *@
+<section class="border-bottom py-3 bg-white">
+    <div class="container">
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 text-muted small fw-semibold">
+            @if (tr)
+            {
+                <span><i class="ri-checkbox-circle-fill text-success me-1"></i> WhatsApp Business API</span>
+                <span><i class="ri-checkbox-circle-fill text-success me-1"></i> Onaylı Şablon</span>
+                <span><i class="ri-checkbox-circle-fill text-success me-1"></i> Audience Bağlamı</span>
+                <span><i class="ri-checkbox-circle-fill text-success me-1"></i> Campaign / Journey</span>
+                <span><i class="ri-checkbox-circle-fill text-success me-1"></i> Opt-In Kontrolü</span>
+            }
+            else
+            {
+                <span><i class="ri-checkbox-circle-fill text-success me-1"></i> WhatsApp Business API</span>
+                <span><i class="ri-checkbox-circle-fill text-success me-1"></i> Approved Template</span>
+                <span><i class="ri-checkbox-circle-fill text-success me-1"></i> Audience Context</span>
+                <span><i class="ri-checkbox-circle-fill text-success me-1"></i> Campaign / Journey</span>
+                <span><i class="ri-checkbox-circle-fill text-success me-1"></i> Opt-In Control</span>
+            }
+        </div>
+    </div>
+</section>
+
+@* ── 02 DIRECT ANSWER ──────────────────────────────────────────── *@
+<section class="pika-sol-section" id="genel-bakis">
+    <div class="container" data-aos="fade-up">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <span class="pika-sol-eyebrow">@(tr ? "KISA CEVAP" : "THE SHORT ANSWER")</span>
+                <h2 class="pika-sol-section-title text-start mb-4">@(tr ? "Pika WhatsApp nedir?" : "What is Pika WhatsApp?")</h2>
+
+                <p class="lead">
+                    @(tr
+                        ? "Pika WhatsApp, onaylı WhatsApp Business API template iletişiminin kontrollü kampanya veya journey bağlamında kullanılabildiği Pika iletişim kanallarından biridir."
+                        : "Pika WhatsApp is one of Pika's communication channels for using approved WhatsApp Business API template communication within controlled campaign or journey context.")
+                </p>
+
+                <p>
+                    @(tr
+                        ? "WhatsApp kanalının görevi hedef kitleyi kendi başına seçmek, müşteriyle serbest iki yönlü konuşma yürütmek veya AI chatbot olarak yanıt üretmek değildir."
+                        : "The role of the WhatsApp channel is not to independently select the audience, conduct unrestricted two-way customer conversations or generate replies as an AI chatbot.")
+                </p>
+                <p class="fw-semibold">
+                    @(tr ? "Bu görevler Pika WhatsApp ürün rolünün parçası değildir." : "Those capabilities are not part of the Pika WhatsApp product role.")
+                </p>
+
+                <p>
+                    @(tr ? "WhatsApp'ın temel sorusu şudur:" : "WhatsApp answers one central question:")
+                </p>
+
+                <div class="wa-callout my-4">
+                    <p class="h4 mb-0 fw-bold" style="color:var(--pika-primary)">
+                        @(tr
+                            ? "“Onaylı bu WhatsApp iletişimi, mevcut opt-in ve aksiyon bağlamında nasıl yürütülecek?”"
+                            : "“How is this approved WhatsApp communication executed under available opt-in and action context?”")
+                    </p>
+                </div>
+
+                <p>
+                    @(tr
+                        ? "Audience, Campaign ve Journey kararları Pika'nın ilgili ürün katmanlarında oluşturulur; WhatsApp uygun iletişimin execution kanalıdır."
+                        : "Audience, Campaign and Journey decisions are created in Pika's relevant product layers; WhatsApp is the execution channel for eligible communication.")
+                </p>
+
+                <div class="p-3 bg-white rounded border border-light-subtle mt-4">
+                    @if (tr)
+                    {
+                        <p class="mb-1"><strong>WhatsApp:</strong> onaylı template tabanlı iletişim kanalıdır.</p>
+                        <p class="mb-0"><strong>Pika:</strong> kanalın etrafındaki anlama, karar, izin ve ölçüm zinciridir.</p>
+                    }
+                    else
+                    {
+                        <p class="mb-1"><strong>WhatsApp:</strong> is an approved-template communication channel.</p>
+                        <p class="mb-0"><strong>Pika:</strong> is the surrounding chain of understanding, decision, permission and measurement.</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 03 WHATSAPP'S PLACE IN PIKA ───────────────────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt">
+    <div class="container" data-aos="fade-up">
+        <span class="pika-sol-eyebrow">@(tr ? "KANAL, PLATFORMUN TAMAMI DEĞİL" : "A CHANNEL, NOT THE WHOLE PLATFORM")</span>
+        <h2 class="pika-sol-section-title">@(tr ? "WhatsApp'ı, Pika'nın karar zincirindeki doğru yere koyun." : "Put WhatsApp in the right place inside Pika's decision chain.")</h2>
+
+        <div class="row justify-content-center mb-4">
+            <div class="col-lg-10">
+                <p>
+                    @(tr
+                        ? "Pika bir WhatsApp Marketing veya chatbot ürününden ibaret değildir. WhatsApp, platformun müşteri zekâsı ve omnichannel aksiyon zincirindeki doğrulanmış iletişim kanallarından biridir."
+                        : "Pika is more than a WhatsApp Marketing or chatbot product. WhatsApp is one of the confirmed communication channels inside the platform's customer-intelligence and omnichannel-action chain.")
+                </p>
+                <p>
+                    @if (tr)
+                    {
+                        <text><a href="/platform/customer-intelligence">Customer Intelligence</a> müşteri davranışı ve değer bağlamını, <a href="/platform/product-intelligence">Product Intelligence</a> ürün bağlamını, <a href="/platform/gunun-firsatlari">Günün Fırsatları</a> ise değerlendirilebilir ticari fırsat bağlamını görünür hale getirir.</text>
+                    }
+                    else
+                    {
+                        <text><a href="/en/platform/customer-intelligence">Customer Intelligence</a> calculates customer behavior and value context, <a href="/en/platform/product-intelligence">Product Intelligence</a> establishes product context and <a href="/en/platform/opportunities">Daily Opportunities</a> makes evaluable commercial opportunity context visible.</text>
+                    }
+                </p>
+                <p>
+                    @(tr
+                        ? "Audience Manager kimin dahil olduğunu, Campaign Manager veya Journey Manager ise iletişim aksiyonunun nasıl yürütüleceğini yönetir. WhatsApp bu kontrollü aksiyonun execution kanallarından biridir."
+                        : "Audience Manager manages who belongs, while Campaign Manager or Journey Manager manage how communication action is executed. WhatsApp is one execution channel for that controlled action.")
+                </p>
+
+                <div class="wa-flow-chain my-4" aria-label="@(tr ? "Karar ve icra zinciri" : "Decision and execution chain")">
+                    <span>DATA</span>
+                    <span class="wa-flow-arrow">→</span>
+                    <span>CUSTOMER &amp; PRODUCT INTELLIGENCE</span>
+                    <span class="wa-flow-arrow">→</span>
+                    <span>OPPORTUNITY / DECISION</span>
+                    <span class="wa-flow-arrow">→</span>
+                    <span>AUDIENCE</span>
+                    <span class="wa-flow-arrow">→</span>
+                    <span>CAMPAIGN / JOURNEY</span>
+                    <span class="wa-flow-arrow">→</span>
+                    <span>OPT-IN / TEMPLATE ELIGIBILITY</span>
+                    <span class="wa-flow-arrow">→</span>
+                    <span>WHATSAPP</span>
+                    <span class="wa-flow-arrow">→</span>
+                    <span>MEASUREMENT</span>
+                </div>
+            </div>
+        </div>
+
+        @* Current four-card area *@
         <div class="pika-sol-value-grid">
             <div class="pika-sol-value-card" data-aos="fade-up" data-aos-duration="500">
-                <div class="pika-sol-value-icon"><i class="ri-file-list-3-line"></i></div>
-                <h4>@(tr ? "Şablon Yönetimi" : "Template Management")</h4>
-                <p>@(tr ? "Onaylı mesaj yapılarınızı güvenli şekilde yönetin." : "Manage approved message structures with control.")</p>
+                <div class="pika-sol-value-icon"><i class="ri-file-list-3-line" aria-hidden="true"></i></div>
+                <h4>@(tr ? "Onaylı Template İletişimi" : "Approved Template Communication")</h4>
+                <p>@(tr ? "Uygun WhatsApp Business template yapısını kontrollü kampanya veya journey aksiyonunda kullanın." : "Use eligible WhatsApp Business template structures within controlled campaign or journey actions.")</p>
             </div>
             <div class="pika-sol-value-card" data-aos="fade-up" data-aos-duration="500" data-aos-delay="100">
-                <div class="pika-sol-value-icon"><i class="ri-focus-3-line"></i></div>
-                <h4>@(tr ? "Segment Bazlı Kullanım" : "Segment-Based Usage")</h4>
-                <p>@(tr ? "Doğru kullanıcıya doğru içerikle ulaşın." : "Reach the right user with the right content.")</p>
+                <div class="pika-sol-value-icon"><i class="ri-focus-3-line" aria-hidden="true"></i></div>
+                <h4>@(tr ? "Audience Bağlamı" : "Audience Context")</h4>
+                <p>@(tr ? "Audience Manager'da tanımlanan gerçek hedef kitleyi WhatsApp aksiyonunun upstream müşteri bağlamı olarak kullanın." : "Use the actual audience defined in Audience Manager as upstream customer context for WhatsApp action.")</p>
             </div>
             <div class="pika-sol-value-card" data-aos="fade-up" data-aos-duration="500" data-aos-delay="200">
-                <div class="pika-sol-value-icon"><i class="ri-dashboard-line"></i></div>
-                <h4>@(tr ? "Operasyonel Görünürlük" : "Operational Visibility")</h4>
-                <p>@(tr ? "Gönderim akışlarını ve süreçleri merkezi yönetin." : "Manage delivery flows and processes centrally.")</p>
+                <div class="pika-sol-value-icon"><i class="ri-shield-check-line" aria-hidden="true"></i></div>
+                <h4>@(tr ? "Opt-In Kontrolü" : "Opt-In Control")</h4>
+                <p>@(tr ? "WhatsApp iletişimini mevcut explicit opt-in bağlamından bağımsız yürütmeyin." : "Do not execute WhatsApp communication independently from available explicit opt-in context.")</p>
             </div>
             <div class="pika-sol-value-card" data-aos="fade-up" data-aos-duration="500" data-aos-delay="300">
-                <div class="pika-sol-value-icon"><i class="ri-links-line"></i></div>
-                <h4>@(tr ? "Çok Kanallı Entegrasyon" : "Multi-Channel Integration")</h4>
-                <p>@(tr ? "WhatsApp'i daha büyük müşteri yolculuğunun parçası yapın." : "Make WhatsApp part of a larger customer journey.")</p>
+                <div class="pika-sol-value-icon"><i class="ri-dashboard-line" aria-hidden="true"></i></div>
+                <h4>@(tr ? "Ölçülebilir Delivery Sonucu" : "Measurable Delivery Outcome")</h4>
+                <p>@(tr ? "Kullanılabilir WhatsApp delivery outcome veya status bağlamını Analytics & Reporting içinde değerlendirin." : "Evaluate available WhatsApp delivery-outcome or status context within Analytics & Reporting.")</p>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mt-4">
+            <div class="col-lg-10">
+                <div class="p-3 bg-white rounded border border-light-subtle text-center">
+                    @if (tr)
+                    {
+                        <p class="mb-0"><strong>WhatsApp kararı üretmez.</strong> Tanımlanmış kararın iletişim kanalıdır.</p>
+                    }
+                    else
+                    {
+                        <p class="mb-0"><strong>WhatsApp does not create the decision.</strong> It is the communication channel for a defined decision.</p>
+                    }
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Ne Yapabilirsiniz? -->
-<section class="pika-sol-section pika-sol-section-alt">
-    <div class="container">
-        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "WhatsApp'i daha planlı ve ölçülebilir kullanın" : "Use WhatsApp in a more planned and measurable way")</h2>
-        <p class="pika-sol-section-desc" data-aos="fade-up" data-aos-delay="100">@(tr ? "Pika ile WhatsApp mesajlaşmasını kampanya, akış ve segment bazlı iletişimlerde merkezi olarak yönetin." : "Centrally manage WhatsApp messaging for campaigns, flows, and segment-based communications with Pika.")</p>
+@* ── 04 OFFICIAL WHATSAPP BUSINESS API CONTEXT ─────────────────── *@
+<section class="pika-sol-section" id="business-api">
+    <div class="container" data-aos="fade-up">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <span class="pika-sol-eyebrow">WHATSAPP BUSINESS API</span>
+                <h2 class="pika-sol-section-title text-start mb-4">
+                    @(tr ? "WhatsApp iletişimini, resmî Business API bağlamında yürütün." : "Execute WhatsApp communication within official Business API context.")
+                </h2>
+
+                <p class="lead">
+                    @(tr
+                        ? "Pika'nın WhatsApp iletişim kanalı WhatsApp Business API üzerinden template tabanlı outbound iletişim bağlamında kullanılır."
+                        : "Pika's WhatsApp communication channel is used for template-based outbound communication through WhatsApp Business API context.")
+                </p>
+
+                <p>
+                    @(tr
+                        ? "Bu yapı WhatsApp'ı kontrolsüz serbest mesaj gönderim kanalı veya bağımsız canlı destek inbox'ı haline getirmez."
+                        : "This does not turn WhatsApp into an unrestricted free-form messaging channel or an independent live-support inbox.")
+                </p>
+
+                <p>
+                    @(tr
+                        ? "Pika, WhatsApp Business platformunun dış politika, hesap uygunluğu veya template onay kararlarını kendi başına belirlemez."
+                        : "Pika does not independently control external WhatsApp Business platform policies, account eligibility or template-approval decisions.")
+                </p>
+
+                <div class="wa-callout my-4">
+                    @if (tr)
+                    {
+                        <p class="mb-1"><strong>Pika:</strong> onaylı template iletişimini kampanya veya journey aksiyonunda kullanır.</p>
+                        <p class="mb-0"><strong>WhatsApp Business platformu:</strong> template ve hesap uygunluğu için dış platform bağlamını belirler.</p>
+                    }
+                    else
+                    {
+                        <p class="mb-1"><strong>Pika:</strong> uses approved template communication inside campaign or journey actions.</p>
+                        <p class="mb-0"><strong>The WhatsApp Business platform:</strong> defines external platform context for template and account eligibility.</p>
+                    }
+                </div>
+
+                <div class="p-3 bg-white rounded border border-light-subtle">
+                    <p class="mb-0 fw-semibold text-center">
+                        @(tr ? "API bağlantısı, platform yönetişimini ortadan kaldırmaz." : "API connectivity does not remove platform governance.")
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 05 APPROVED TEMPLATE COMMUNICATION ────────────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt" id="sablonlar">
+    <div class="container" data-aos="fade-up">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <span class="pika-sol-eyebrow">@(tr ? "ONAYLI ŞABLON" : "APPROVED TEMPLATE")</span>
+                <h2 class="pika-sol-section-title text-start mb-4">
+                    @(tr ? "WhatsApp kampanya iletişimini, uygun template bağlamıyla hazırlayın." : "Prepare WhatsApp campaign communication within eligible template context.")
+                </h2>
+
+                <p class="lead">
+                    @(tr
+                        ? "Pika WhatsApp outbound iletişiminde onaylı WhatsApp Business template yapısını kullanır."
+                        : "Pika WhatsApp uses approved WhatsApp Business template structures for outbound communication.")
+                </p>
+
+                <p>
+                    @(tr
+                        ? "Template içeriği kampanya veya journey aksiyonunda kullanılmadan önce ilgili WhatsApp Business approval bağlamına uygun olmalıdır."
+                        : "Before template content is used inside a campaign or journey action, it must be eligible within the relevant WhatsApp Business approval context.")
+                </p>
+
+                <p>
+                    @(tr
+                        ? "Pika'nın kampanya katmanında bir mesaj hazırlamak, template'in dış platform tarafından otomatik olarak onaylanacağı anlamına gelmez."
+                        : "Preparing a message inside Pika's campaign layer does not mean the template will automatically be approved by the external platform.")
+                </p>
+
+                <div class="wa-callout my-4">
+                    @if (tr)
+                    {
+                        <p class="mb-1"><strong>Pika:</strong> onaylı template'i kontrollü aksiyonda kullanır.</p>
+                        <p class="mb-0"><strong>Pika şunu garanti etmez:</strong> “Hazırlanan her template otomatik olarak onaylanır.”</p>
+                    }
+                    else
+                    {
+                        <p class="mb-1"><strong>Pika:</strong> uses an approved template inside controlled action.</p>
+                        <p class="mb-0"><strong>Pika does not guarantee:</strong> “Every prepared template will be approved automatically.”</p>
+                    }
+                </div>
+
+                <div class="p-3 bg-white rounded border border-light-subtle text-center">
+                    <p class="mb-0 fw-semibold">
+                        @(tr ? "Template hazırlığı ve template approval aynı karar değildir." : "Template preparation and template approval are different decisions.")
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 06 AUDIENCE → WHATSAPP ────────────────────────────────────── *@
+<section class="pika-sol-section" id="hedef-kitle">
+    <div class="container" data-aos="fade-up">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <span class="pika-sol-eyebrow">@(tr ? "“KİM?”DEN WHATSAPP'A" : "FROM “WHO?” TO WHATSAPP")</span>
+                <h2 class="pika-sol-section-title text-start mb-4">
+                    @(tr ? "WhatsApp hedef kitleyi seçmez. Audience bağlamını kullanır." : "WhatsApp does not choose the audience. It uses audience context.")
+                </h2>
+
+                <p class="lead">
+                    @(tr
+                        ? "Audience Manager gerçek hedef kitleyi müşteri verisi ve açık kurallar üzerinden tanımlar."
+                        : "Audience Manager defines the actual target audience through customer data and explicit rules.")
+                </p>
+
+                <p>
+                    @(tr
+                        ? "WhatsApp kanalının görevi müşterileri kendi başına segmente etmek veya “en uygun” kullanıcıları seçmek değildir."
+                        : "The role of the WhatsApp channel is not to independently segment customers or select the “best” users.")
+                </p>
+
+                <p>
+                    @(tr
+                        ? "Campaign Manager veya Journey Manager içindeki WhatsApp aksiyonu ilgili audience bağlamını kontrollü iletişim sürecinde kullanabilir."
+                        : "A WhatsApp action inside Campaign Manager or Journey Manager can use the relevant audience context within controlled communication.")
+                </p>
+
+                <div class="wa-callout my-4">
+                    @if (tr)
+                    {
+                        <p class="mb-2"><strong>Audience Manager:</strong> “Kim bu hedef kitleye dahil?”</p>
+                        <p class="mb-0"><strong>WhatsApp:</strong> “Bu tanımlı kitleye uygun WhatsApp iletişimi hangi aksiyon bağlamında yürütülecek?”</p>
+                    }
+                    else
+                    {
+                        <p class="mb-2"><strong>Audience Manager:</strong> “Who belongs in this audience?”</p>
+                        <p class="mb-0"><strong>WhatsApp:</strong> “Within which action context will eligible WhatsApp communication reach this defined audience?”</p>
+                    }
+                </div>
+
+                <div class="p-3 bg-white rounded border border-light-subtle mb-4">
+                    <p class="mb-0 fw-semibold text-center">
+                        @(tr ? "Audience gerçeği, WhatsApp kanalı tarafından üretilmez." : "Audience truth is not created by the WhatsApp channel.")
+                    </p>
+                </div>
+
+                <div class="mb-5">
+                    <a href="@(tr ? "/cozumler/audience-manager" : "/en/solutions/audience-manager")" class="btn pika-btn-outline">
+                        @(tr ? "Audience Manager'ı Keşfedin →" : "Explore Audience Manager →")
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        @* Current three-card area *@
         <div class="pika-sol-card-grid">
             <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="pika-sol-card-icon"><i class="ri-megaphone-line"></i></div>
-                <h4>@(tr ? "Kampanya Gönderimleri" : "Campaign Sends")</h4>
-                <p>@(tr ? "Belirli segmentlere kişiselleştirilmiş WhatsApp kampanyaları." : "Personalized WhatsApp campaigns to specific segments.")</p>
+                <div class="pika-sol-card-icon"><i class="ri-megaphone-line" aria-hidden="true"></i></div>
+                <h4>Campaign WhatsApp</h4>
+                <p>
+                    @(tr
+                        ? "Tanımlı audience ve uygun onaylı template içeriğinin Campaign Manager üzerinden kontrollü WhatsApp aksiyonunda kullanılabileceği kampanya bağlamı."
+                        : "A campaign context where a defined audience and eligible approved-template content can be used in a controlled WhatsApp action through Campaign Manager.")
+                </p>
             </div>
             <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="pika-sol-card-icon"><i class="ri-route-line"></i></div>
-                <h4>@(tr ? "Journey İçi Kullanım" : "In-Journey Usage")</h4>
-                <p>@(tr ? "Belirli olaylara göre tetiklenen WhatsApp adımları." : "WhatsApp steps triggered by specific events.")</p>
+                <div class="pika-sol-card-icon"><i class="ri-route-line" aria-hidden="true"></i></div>
+                <h4>@(tr ? "Journey WhatsApp Adımı" : "Journey WhatsApp Step")</h4>
+                <p>
+                    @(tr
+                        ? "WhatsApp'ın Journey Manager içindeki tanımlı koşul, sıra ve bekleme mantığında uygun template iletişimiyle bir kanal aksiyonu olarak kullanılabileceği journey bağlamı."
+                        : "A journey context where WhatsApp can be used with eligible template communication as a channel action inside conditions, sequence and wait logic managed by Journey Manager.")
+                </p>
             </div>
             <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="pika-sol-card-icon"><i class="ri-settings-3-line"></i></div>
-                <h4>@(tr ? "Operasyonel Yönetim" : "Operational Management")</h4>
-                <p>@(tr ? "Şablon, süreç ve gönderim kontrollerini merkezi görün." : "Centrally view template, process, and delivery controls.")</p>
+                <div class="pika-sol-card-icon"><i class="ri-flashlight-line" aria-hidden="true"></i></div>
+                <h4>@(tr ? "Fırsattan WhatsApp Aksiyonuna" : "From Opportunity to WhatsApp Action")</h4>
+                <p>
+                    @(tr
+                        ? "Günün Fırsatları'nda değerlendirilen ticari fırsatın kullanıcı kararı, gerçek audience tanımı, uygun opt-in ve template kontrollerinden sonra WhatsApp kanalında uygulanabileceği aksiyon bağlamı."
+                        : "An action context where a commercial opportunity evaluated in Daily Opportunities can reach the WhatsApp channel after user decision, actual audience definition and relevant opt-in and template controls.")
+                </p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Özellikler / Capability Grid -->
-<section class="pika-sol-section" id="features">
-    <div class="container">
-        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "WhatsApp iletişimini yüzeysel değil, ürünleşmiş şekilde yönetin" : "Manage WhatsApp communication as a productized solution")</h2>
-        <div class="pika-sol-card-grid">
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="pika-sol-card-icon"><i class="ri-file-list-3-line"></i></div>
-                <h4>@(tr ? "Şablon Yönetimi" : "Template Management")</h4>
-                <p>@(tr ? "Hazır mesaj şablonlarını yönetin." : "Manage ready-made message templates.")</p>
-            </div>
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="pika-sol-card-icon"><i class="ri-user-settings-line"></i></div>
-                <h4>@(tr ? "Kişiselleştirilmiş Mesaj İçeriği" : "Personalized Message Content")</h4>
-                <p>@(tr ? "Kullanıcı bazlı verilerle daha ilgili iletişim kurun." : "Communicate more relevantly with user-based data.")</p>
-            </div>
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="pika-sol-card-icon"><i class="ri-focus-3-line"></i></div>
-                <h4>@(tr ? "Segment Bazlı Kampanyalar" : "Segment-Based Campaigns")</h4>
-                <p>@(tr ? "Transaction ve davranış verilerini WhatsApp kampanyalarında kullanın." : "Use transaction and behavior data in WhatsApp campaigns.")</p>
-            </div>
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="pika-sol-card-icon"><i class="ri-time-line"></i></div>
-                <h4>@(tr ? "Zamanlı ve Tetiklenmiş Gönderim" : "Scheduled & Triggered Delivery")</h4>
-                <p>@(tr ? "Planlı ya da olay bazlı süreçler oluşturun." : "Create scheduled or event-based processes.")</p>
-            </div>
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="pika-sol-card-icon"><i class="ri-route-line"></i></div>
-                <h4>@(tr ? "Journey Entegrasyonu" : "Journey Integration")</h4>
-                <p>@(tr ? "WhatsApp'i email, SMS ve Push ile aynı yolculuk içinde kullanın." : "Use WhatsApp within the same journey as email, SMS, and Push.")</p>
-            </div>
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="pika-sol-card-icon"><i class="ri-line-chart-line"></i></div>
-                <h4>@(tr ? "Raporlama ve Süreç Kontrolü" : "Reporting & Process Control")</h4>
-                <p>@(tr ? "Kampanya ve gönderim yönetimini görünür hale getirin." : "Make campaign and delivery management visible.")</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Kullanım Senaryoları -->
-<section class="pika-sol-section pika-sol-section-alt">
-    <div class="container">
-        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "Pika WhatsApp Messaging ile örnek kullanım senaryoları" : "Example use cases with Pika WhatsApp Messaging")</h2>
-        <div class="pika-sol-usecase-grid">
-            <div class="pika-sol-usecase" data-aos="fade-up" data-aos-delay="50"><i class="ri-check-line"></i> @(tr ? "Dönemsel kampanyalar" : "Seasonal campaigns")</div>
-            <div class="pika-sol-usecase" data-aos="fade-up" data-aos-delay="100"><i class="ri-check-line"></i> @(tr ? "Özel gün teklifleri" : "Special occasion offers")</div>
-            <div class="pika-sol-usecase" data-aos="fade-up" data-aos-delay="150"><i class="ri-check-line"></i> @(tr ? "Davranış bazlı hatırlatmalar" : "Behavior-based reminders")</div>
-            <div class="pika-sol-usecase" data-aos="fade-up" data-aos-delay="200"><i class="ri-check-line"></i> @(tr ? "Segment bazlı kişiselleştirilmiş kampanyalar" : "Segment-based personalized campaigns")</div>
-            <div class="pika-sol-usecase" data-aos="fade-up" data-aos-delay="250"><i class="ri-check-line"></i> @(tr ? "Müşteri yolculuğundaki önemli temas anları" : "Key touchpoints in the customer journey")</div>
-            <div class="pika-sol-usecase" data-aos="fade-up" data-aos-delay="300"><i class="ri-check-line"></i> @(tr ? "Sadakat / tekrar satın alma iletişimleri" : "Loyalty / repeat purchase communications")</div>
-        </div>
-    </div>
-</section>
-
-<!-- Nasıl Çalışır? -->
-<section class="pika-sol-section">
-    <div class="container">
-        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "WhatsApp iletişim sürecini tek panelden yönetin" : "Manage the WhatsApp communication process from one panel")</h2>
-        <div class="pika-sol-steps">
-            <div class="pika-sol-step" data-aos="fade-up" data-aos-delay="100"><div class="pika-sol-step-num"></div><p>@(tr ? "Şablon veya içerik yapısını belirleyin" : "Define the template or content structure")</p></div>
-            <div class="pika-sol-step" data-aos="fade-up" data-aos-delay="200"><div class="pika-sol-step-num"></div><p>@(tr ? "Segment seçin" : "Select a segment")</p></div>
-            <div class="pika-sol-step" data-aos="fade-up" data-aos-delay="300"><div class="pika-sol-step-num"></div><p>@(tr ? "Kampanyayı planlayın ya da akışa bağlayın" : "Plan the campaign or link to a flow")</p></div>
-            <div class="pika-sol-step" data-aos="fade-up" data-aos-delay="400"><div class="pika-sol-step-num"></div><p>@(tr ? "Sonuçları ve operasyonu izleyin" : "Monitor results and operations")</p></div>
-        </div>
-    </div>
-</section>
-
-<!-- Neden Pika WhatsApp Messaging? -->
-<section class="pika-sol-section pika-sol-section-alt">
+@* ── 07 CAMPAIGN MANAGER → WHATSAPP ────────────────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt" id="kampanya">
     <div class="container" data-aos="fade-up">
-        <div class="pika-sol-highlight">
-            <h3>@(tr ? "Sadece gönderim değil, süreç yönetimi de sağlayın" : "Provide process management, not just delivery")</h3>
-            <p>@(tr ? "Pika, WhatsApp kullanımını basit kanal desteğinden çıkarır; kontrol, hedefleme ve otomasyonla ürünleşmiş hale getirir." : "Pika takes WhatsApp usage beyond simple channel support, making it a productized solution with control, targeting, and automation.")</p>
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <span class="pika-sol-eyebrow">@(tr ? "KAMPANYADAN WHATSAPP'A" : "FROM CAMPAIGN TO WHATSAPP")</span>
+                <h2 class="pika-sol-section-title text-start mb-4">
+                    @(tr ? "Campaign Manager kampanyayı yönetir. WhatsApp iletişimi taşır." : "Campaign Manager manages the campaign. WhatsApp carries the communication.")
+                </h2>
+
+                <p class="lead">
+                    @(tr
+                        ? "Campaign Manager tanımlı hedef kitle, içerik, kanal, zamanlama ve gönderim öncesi kontrolleri aynı kampanya bağlamında yönetir."
+                        : "Campaign Manager manages defined audience, content, channel, timing and pre-send controls within the same campaign context.")
+                </p>
+
+                <p>
+                    @(tr
+                        ? "WhatsApp seçilen kanal olduğunda uygun ve onaylı template içeriği kontrollü campaign-execution sürecinde kullanılabilir."
+                        : "When WhatsApp is selected, eligible approved-template content can be used within controlled campaign execution.")
+                </p>
+
+                <p>
+                    @(tr
+                        ? "WhatsApp kanalının bulunması kampanyanın otomatik olarak başladığı veya template kontrollerinin atlandığı anlamına gelmez."
+                        : "The availability of the WhatsApp channel does not mean the campaign starts automatically or template controls are bypassed.")
+                </p>
+
+                <div class="wa-callout my-4">
+                    @if (tr)
+                    {
+                        <p class="mb-1"><strong>Campaign Manager:</strong> kampanya bağlamını ve kontrollü gönderimi yönetir.</p>
+                        <p class="mb-0"><strong>WhatsApp:</strong> onaylı template communication execution kanalıdır.</p>
+                    }
+                    else
+                    {
+                        <p class="mb-1"><strong>Campaign Manager:</strong> manages campaign context and controlled delivery.</p>
+                        <p class="mb-0"><strong>WhatsApp:</strong> is the approved-template communication execution channel.</p>
+                    }
+                </div>
+
+                <div class="p-3 bg-white rounded border border-light-subtle mb-4">
+                    <p class="mb-0 fw-semibold text-center">
+                        @(tr ? "Kampanya kararı ve WhatsApp icrası aynı ürün rolü değildir." : "The campaign decision and WhatsApp execution do not perform the same product role.")
+                    </p>
+                </div>
+
+                <div>
+                    <a href="@(tr ? "/cozumler/campaign-manager" : "/en/solutions/campaign-manager")" class="btn pika-btn-outline">
+                        @(tr ? "Campaign Manager'ı Keşfedin →" : "Explore Campaign Manager →")
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- Omnichannel -->
+@* ── 08 JOURNEY MANAGER → WHATSAPP ────────────────────────────── *@
 <section class="pika-sol-section">
     <div class="container" data-aos="fade-up">
-        <div class="pika-sol-omni">
-            <h2 class="pika-sol-section-title">@(tr ? "WhatsApp'i diğer kanallarla birlikte yönetin" : "Manage WhatsApp alongside other channels")</h2>
-            <p class="pika-sol-section-desc" style="margin-left:auto;margin-right:auto">@(tr ? "Tek bir müşteri deneyimini SMS, Email, Push ve WhatsApp boyunca tutarlı şekilde kurgulayın." : "Build a consistent customer experience across SMS, Email, Push, and WhatsApp.")</p>
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <span class="pika-sol-eyebrow">@(tr ? "JOURNEY İÇİNDE WHATSAPP" : "WHATSAPP INSIDE A JOURNEY")</span>
+                <h2 class="pika-sol-section-title text-start mb-4">
+                    @(tr ? "WhatsApp, çok adımlı journey'nin bir kanal aksiyonu olabilir." : "WhatsApp can be one channel action inside a multi-step journey.")
+                </h2>
+
+                <p class="lead">
+                    @(tr
+                        ? "Journey Manager başlangıç koşulları, dallanma, bekleme ve aksiyon adımlarından oluşan çok adımlı müşteri akışını yönetir."
+                        : "Journey Manager manages a multi-step customer flow consisting of entry conditions, branching, waits and action steps.")
+                </p>
+
+                <p>
+                    @(tr
+                        ? "WhatsApp bu akış içinde uygun onaylı template iletişiminin kullanılabildiği tanımlı kanal aksiyonlarından biri olabilir."
+                        : "WhatsApp can be one configured channel action where eligible approved-template communication is used inside that flow.")
+                </p>
+
+                <p>
+                    @(tr
+                        ? "Koşulu, sırayı, beklemeyi veya sonraki adımı WhatsApp kanalının kendisi belirlemez."
+                        : "The WhatsApp channel itself does not determine conditions, sequence, waits or the next step.")
+                </p>
+
+                <div class="wa-callout my-4">
+                    @if (tr)
+                    {
+                        <p class="mb-1"><strong>Journey Manager:</strong> “Sonraki adım ne ve hangi koşulda ilerlemeli?”</p>
+                        <p class="mb-0"><strong>WhatsApp:</strong> “Bu adımda kullanılacak onaylı iletişim kanalı WhatsApp mı?”</p>
+                    }
+                    else
+                    {
+                        <p class="mb-1"><strong>Journey Manager asks:</strong> “What is the next step and under which condition should it progress?”</p>
+                        <p class="mb-0"><strong>WhatsApp asks:</strong> “Is WhatsApp the approved communication channel used at this step?”</p>
+                    }
+                </div>
+
+                <div class="p-3 bg-white rounded border border-light-subtle mb-4">
+                    @if (tr)
+                    {
+                        <p class="mb-1"><strong>WhatsApp</strong> journey'yi yöneten otonom motor değildir.</p>
+                        <p class="mb-0">Journey içinde kullanılabilen bir kanal aksiyonudur.</p>
+                    }
+                    else
+                    {
+                        <p class="mb-1"><strong>WhatsApp</strong> is not an autonomous journey engine.</p>
+                        <p class="mb-0">It is a channel action that can be used inside a journey.</p>
+                    }
+                </div>
+
+                <div class="mb-4">
+                    <a href="@(tr ? "/cozumler/journey-manager" : "/en/solutions/journey-manager")" class="btn pika-btn-outline">
+                        @(tr ? "Journey Manager'ı Keşfedin →" : "Explore Journey Manager →")
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        @* Omnichannel visual footprint: ONLY Email, SMS, WhatsApp *@
+        <div class="pika-sol-omni mt-5">
+            <h3 class="h4 pika-sol-section-title">
+                @(tr ? "Omnichannel İletişim Kanalları" : "Omnichannel Communication Channels")
+            </h3>
+            <p class="pika-sol-section-desc mx-auto" style="max-width:640px">
+                @if (tr)
+                {
+                    <text>Journey Manager ve Campaign Manager, WhatsApp iletişimini <a href="/kanallar/email">Email</a> ve <a href="/kanallar/sms">SMS</a> gibi doğrulanmış kanallarla koordine biçimde kullanabilir. WhatsApp diğer kanalları kendi başına orkestre etmez.</text>
+                }
+                else
+                {
+                    <text>Journey Manager and Campaign Manager can coordinate WhatsApp communication alongside confirmed channels such as <a href="/en/channels/email">Email</a> and <a href="/en/channels/sms">SMS</a>. WhatsApp does not orchestrate other channels on its own.</text>
+                }
+            </p>
             <div class="pika-sol-omni-icons">
-                <div class="pika-sol-omni-icon" style="background:#dcf8c6;color:#25d366"><i class="ri-whatsapp-line"></i></div>
-                <div class="pika-sol-omni-icon" style="background:#fff3e0;color:#f57c00"><i class="ri-mail-line"></i></div>
-                <div class="pika-sol-omni-icon" style="background:#e3f2fd;color:#1976d2"><i class="ri-message-2-line"></i></div>
-                <div class="pika-sol-omni-icon" style="background:#fce4ec;color:#e91e63"><i class="ri-notification-3-line"></i></div>
+                <div class="pika-sol-omni-icon" style="background:#dcf8c6;color:#25d366" title="WhatsApp"><i class="ri-whatsapp-line" aria-hidden="true"></i></div>
+                <div class="pika-sol-omni-icon" style="background:#fff3e0;color:#f57c00" title="Email"><i class="ri-mail-line" aria-hidden="true"></i></div>
+                <div class="pika-sol-omni-icon" style="background:#e3f2fd;color:#1976d2" title="SMS"><i class="ri-message-2-line" aria-hidden="true"></i></div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Kapanış CTA -->
+@* ── 09 OPT-IN & CONSENT BOUNDARY ──────────────────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt" id="izin-olcum">
+    <div class="container" data-aos="fade-up">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <span class="pika-sol-eyebrow">OPT-IN</span>
+                <h2 class="pika-sol-section-title text-start mb-4">
+                    @(tr ? "WhatsApp iletişimini, müşteri opt-in bağlamından bağımsız yürütmeyin." : "Do not execute WhatsApp communication independently from customer opt-in context.")
+                </h2>
+
+                <p class="lead">
+                    @(tr
+                        ? "WhatsApp iletişimi explicit customer opt-in bağlamı gerektirir."
+                        : "WhatsApp communication requires explicit customer opt-in context.")
+                </p>
+
+                <p>
+                    @(tr
+                        ? "Mevcut Pika public preference-update formu Email ve SMS tercihlerini kapsar; WhatsApp consent aynı public checkbox akışından yönetilmez."
+                        : "Pika's current public preference-update form covers Email and SMS preferences; WhatsApp consent is not managed through that same public checkbox flow.")
+                </p>
+
+                <p>
+                    @(tr
+                        ? "WhatsApp opt-in bağlamı ayrı incoming webhook veya import akışlarından gelebilir ve ilgili iletişim aksiyonunda ayrıca değerlendirilir."
+                        : "WhatsApp opt-in context can come through separate incoming webhook or import flows and is evaluated separately within the relevant communication action.")
+                </p>
+
+                <div class="wa-callout my-4">
+                    @if (tr)
+                    {
+                        <p class="mb-1"><strong>Public preference form:</strong> EMAIL + SMS</p>
+                        <p class="mb-1"><strong>WhatsApp:</strong> ayrı opt-in bağlamı kullanır.</p>
+                        <p class="mb-0"><strong>Campaign / Journey membership:</strong> opt-in'in yerine geçmez.</p>
+                    }
+                    else
+                    {
+                        <p class="mb-1"><strong>Public preference form:</strong> EMAIL + SMS</p>
+                        <p class="mb-1"><strong>WhatsApp:</strong> uses separate opt-in context.</p>
+                        <p class="mb-0"><strong>Campaign / Journey membership:</strong> does not replace opt-in.</p>
+                    }
+                </div>
+
+                <div class="p-3 bg-white rounded border border-light-subtle mb-4">
+                    <p class="mb-0 fw-semibold text-center">
+                        @(tr ? "Audience'a dahil olmak, WhatsApp izni anlamına gelmez." : "Belonging to an audience does not mean permission for WhatsApp communication.")
+                    </p>
+                </div>
+
+                <div>
+                    <a href="@(tr ? "/cozumler/consent-management" : "/en/solutions/consent-management")" class="btn pika-btn-outline">
+                        @(tr ? "Consent Management'i Keşfedin →" : "Explore Consent Management →")
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 10 TEMPLATE CONTENT & MESSAGE PREPARATION ─────────────────── *@
+<section class="pika-sol-section">
+    <div class="container" data-aos="fade-up">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <span class="pika-sol-eyebrow">@(tr ? "MESAJ İÇERİĞİ" : "MESSAGE CONTENT")</span>
+                <h2 class="pika-sol-section-title text-start mb-4">
+                    @(tr ? "İçeriği hazırlayın. Template yönetişimini koruyun." : "Prepare the content. Preserve template governance.")
+                </h2>
+
+                <p class="lead">
+                    @(tr
+                        ? "WhatsApp iletişim içeriği kampanya veya journey amacı için hazırlanabilir ve uygun template yapısına yerleştirilebilir."
+                        : "WhatsApp communication content can be prepared for campaign or journey purpose and placed within an eligible template structure.")
+                </p>
+
+                <p>
+                    @(tr
+                        ? "Mevcut müşteri bağlamından kullanılabilen kişiselleştirme alanları template içeriğinde değerlendirilebilir."
+                        : "Available personalization fields based on existing customer context can be considered inside template content.")
+                </p>
+
+                <p>
+                    @(tr
+                        ? "Kişiselleştirme, WhatsApp kanalının müşteri hakkında yeni bilgiler üretmesi veya template approval gereksinimini kaldırması anlamına gelmez."
+                        : "Personalization does not mean the WhatsApp channel invents new customer information or removes template-approval requirements.")
+                </p>
+
+                <div class="wa-callout my-4">
+                    @if (tr)
+                    {
+                        <p class="mb-1"><strong>Message preparation:</strong> içeriği hazırlar.</p>
+                        <p class="mb-1"><strong>Approved template context:</strong> WhatsApp Business iletişim sınırını belirler.</p>
+                        <p class="mb-0"><strong>User / campaign control:</strong> hangi hazırlanmış içeriğin aksiyonda kullanılacağını belirler.</p>
+                    }
+                    else
+                    {
+                        <p class="mb-1"><strong>Message preparation:</strong> prepares the content.</p>
+                        <p class="mb-1"><strong>Approved-template context:</strong> defines the WhatsApp Business communication boundary.</p>
+                        <p class="mb-0"><strong>User / campaign control:</strong> determines which prepared content is used in the action.</p>
+                    }
+                </div>
+
+                <div class="p-3 bg-white rounded border border-light-subtle text-center">
+                    <p class="mb-0 fw-semibold">
+                        @(tr ? "Hazırlanmış içerik, onaysız serbest mesaj anlamına gelmez." : "Prepared content does not mean unapproved free-form messaging.")
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 11 DELIVERY OUTCOME & MEASUREMENT ─────────────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt">
+    <div class="container" data-aos="fade-up">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <span class="pika-sol-eyebrow">@(tr ? "GÖNDERİMDEN ÖLÇÜME" : "FROM DELIVERY TO MEASUREMENT")</span>
+                <h2 class="pika-sol-section-title text-start mb-4">
+                    @(tr ? "WhatsApp aksiyonundan sonra, mevcut delivery sonucunu ölçüm bağlamında değerlendirin." : "After WhatsApp action, evaluate available delivery outcomes within measurement context.")
+                </h2>
+
+                <p class="lead">
+                    @(tr
+                        ? "WhatsApp iletişimi dispatch aksiyonuyla bitmez. Kullanılabilir delivery outcome veya status bağlamı kampanya değerlendirmesinin parçası olabilir."
+                        : "WhatsApp communication does not end with dispatch. Available delivery-outcome or status context can become part of campaign evaluation.")
+                </p>
+
+                <p>
+                    @(tr
+                        ? "Bu sonuç iletişimin teknik gönderim sürecinde ne olduğunu anlamaya yardımcı olur."
+                        : "That outcome helps explain what happened in the technical communication-delivery process.")
+                </p>
+
+                <p>
+                    @(tr
+                        ? "Delivery status müşterinin mesajı okuduğunu, cevap verdiğini veya ticari dönüşüm oluşturduğunu tek başına kanıtlamaz."
+                        : "Delivery status does not by itself prove that the customer read the message, replied or produced a commercial conversion.")
+                </p>
+
+                <div class="wa-callout my-4">
+                    @if (tr)
+                    {
+                        <p class="mb-1"><strong>WhatsApp:</strong> kullanılabilir delivery sonuç bağlamını üretir.</p>
+                        <p class="mb-0"><strong>Analytics & Reporting:</strong> bu sonucu kampanya, audience ve diğer ölçüm bağlamlarıyla birlikte değerlendirir.</p>
+                    }
+                    else
+                    {
+                        <p class="mb-1"><strong>WhatsApp:</strong> produces available delivery-outcome context.</p>
+                        <p class="mb-0"><strong>Analytics & Reporting:</strong> evaluates that outcome together with campaign, audience and other measurement context.</p>
+                    }
+                </div>
+
+                <div class="p-3 bg-white rounded border border-light-subtle mb-4">
+                    <p class="mb-0 fw-semibold text-center">
+                        @(tr ? "Delivery sonucu, müşteri davranışının tamamı değildir." : "Delivery outcome is not the entirety of customer behavior.")
+                    </p>
+                </div>
+
+                <div>
+                    <a href="@(tr ? "/cozumler/analytics-reporting" : "/en/solutions/analytics-reporting")" class="btn pika-btn-outline">
+                        @(tr ? "Analytics & Reporting'i Keşfedin →" : "Explore Analytics & Reporting →")
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 12 WHAT WHATSAPP IS / IS NOT ─────────────────────────────── *@
+<section class="pika-sol-section">
+    <div class="container" data-aos="fade-up">
+        <span class="pika-sol-eyebrow">@(tr ? "DOĞRU SINIRLAR" : "CLEAR BOUNDARIES")</span>
+        <h2 class="pika-sol-section-title">@(tr ? "WhatsApp'ı doğru yere koyun." : "Put WhatsApp in the right place.")</h2>
+
+        <div class="row g-4 mt-2">
+            <div class="col-md-6 col-lg-3">
+                <div class="pika-sol-card h-100">
+                    <div class="pika-sol-card-icon"><i class="ri-close-circle-line text-danger" aria-hidden="true"></i></div>
+                    <h4>@(tr ? "WhatsApp, Customer Intelligence değildir." : "WhatsApp is not Customer Intelligence.")</h4>
+                    <p>@(tr ? "Customer Intelligence müşteri davranışı ve değer bağlamını hesaplar. WhatsApp bu bağlamdan doğan kontrollü iletişimin kanallarından biridir." : "Customer Intelligence calculates customer behavior and value context. WhatsApp is one channel through which controlled communication based on that context can be executed.")</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="pika-sol-card h-100">
+                    <div class="pika-sol-card-icon"><i class="ri-close-circle-line text-danger" aria-hidden="true"></i></div>
+                    <h4>@(tr ? "WhatsApp, Audience Manager değildir." : "WhatsApp is not Audience Manager.")</h4>
+                    <p>@(tr ? "Audience Manager gerçek hedef kitleyi açık kurallarla tanımlar. WhatsApp hedef kitleyi kendi başına seçmez." : "Audience Manager defines the actual audience through explicit rules. WhatsApp does not independently choose the audience.")</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="pika-sol-card h-100">
+                    <div class="pika-sol-card-icon"><i class="ri-close-circle-line text-danger" aria-hidden="true"></i></div>
+                    <h4>@(tr ? "WhatsApp, Campaign Manager değildir." : "WhatsApp is not Campaign Manager.")</h4>
+                    <p>@(tr ? "Campaign Manager kampanya ve kontrollü gönderim bağlamını yönetir. WhatsApp seçilen execution kanallarından biridir." : "Campaign Manager manages campaign and controlled-delivery context. WhatsApp is one selected execution channel.")</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="pika-sol-card h-100">
+                    <div class="pika-sol-card-icon"><i class="ri-close-circle-line text-danger" aria-hidden="true"></i></div>
+                    <h4>@(tr ? "WhatsApp, Journey Manager değildir." : "WhatsApp is not Journey Manager.")</h4>
+                    <p>@(tr ? "Journey Manager koşul, sıra, bekleme ve aksiyon akışını yönetir. WhatsApp journey içinde kullanılabilen bir kanal aksiyonudur." : "Journey Manager manages conditions, sequence, waits and action flow. WhatsApp is a channel action that can be used inside a journey.")</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="pika-sol-card h-100">
+                    <div class="pika-sol-card-icon"><i class="ri-close-circle-line text-danger" aria-hidden="true"></i></div>
+                    <h4>@(tr ? "WhatsApp, Consent Management değildir." : "WhatsApp is not Consent Management.")</h4>
+                    <p>@(tr ? "Consent Management iletişim uygunluğu ve opt-in bağlamını değerlendirir. WhatsApp uygun iletişimin execution kanalıdır." : "Consent Management evaluates communication eligibility and opt-in context. WhatsApp is the execution channel for eligible communication.")</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="pika-sol-card h-100">
+                    <div class="pika-sol-card-icon"><i class="ri-close-circle-line text-danger" aria-hidden="true"></i></div>
+                    <h4>@(tr ? "WhatsApp, chatbot değildir." : "WhatsApp is not a chatbot.")</h4>
+                    <p>@(tr ? "C17 Pika'yı conversational AI chatbot, canlı iki yönlü müşteri hizmeti veya agent inbox ürünü olarak konumlandırmaz." : "C17 does not position Pika as a conversational AI chatbot, live two-way customer-service or agent-inbox product.")</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="pika-sol-card h-100">
+                    <div class="pika-sol-card-icon"><i class="ri-close-circle-line text-danger" aria-hidden="true"></i></div>
+                    <h4>@(tr ? "WhatsApp, onaysız serbest mesaj kanalı değildir." : "WhatsApp is not an unapproved free-form messaging channel.")</h4>
+                    <p>@(tr ? "Pika WhatsApp outbound iletişimi uygun onaylı template bağlamında yürütür ve template approval gereksinimini bypass eden capability iddiası yapmaz." : "Pika WhatsApp outbound communication operates in eligible approved-template context and makes no capability claim that bypasses template-approval requirements.")</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="pika-sol-card h-100">
+                    <div class="pika-sol-card-icon"><i class="ri-close-circle-line text-danger" aria-hidden="true"></i></div>
+                    <h4>@(tr ? "WhatsApp sonuç garantisi değildir." : "WhatsApp is not an outcome guarantee.")</h4>
+                    <p>@(tr ? "WhatsApp dispatch belirli bir delivery, read, response, conversion, satış veya ciro sonucu garanti etmez." : "WhatsApp dispatch does not guarantee a particular delivery, read, response, conversion, sales or revenue result.")</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="pika-sol-highlight mt-5" style="border-left: 4px solid var(--pika-primary); background: #f4f8eb; padding: 28px 32px; border-radius: 0 12px 12px 0;">
+            <h3 class="h4" style="color:var(--pika-primary)">
+                @(tr ? "WhatsApp'ın görevi:" : "The role of WhatsApp is:")
+            </h3>
+            <p class="mb-3 lead">
+                @(tr
+                    ? "Tanımlı audience ve aksiyon bağlamındaki onaylı template iletişimini, mevcut opt-in kontrolleri sonrasında WhatsApp Business API kanalı üzerinden kontrollü biçimde yürütmektir."
+                    : "To execute approved-template communication for a defined audience and action context through WhatsApp Business API after relevant opt-in controls.")
+            </p>
+            <p class="mb-0 fw-semibold" style="color:#687d70">
+                @(tr ? "Chatbot veya otonom konuşma motoru olmak değildir." : "It is not: A chatbot or autonomous conversation engine.")
+            </p>
+        </div>
+    </div>
+</section>
+
+@* ── 13 FAQ ───────────────────────────────────────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt" id="sss">
+    <div class="container" data-aos="fade-up">
+        <div class="text-center mb-5">
+            <span class="pika-sol-eyebrow">FAQ</span>
+            <h2 class="pika-sol-section-title">
+                @(tr ? "Sıkça Sorulan Sorular" : "Frequently Asked Questions")
+            </h2>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+                @if (tr)
+                {
+                    <details class="wa-faq-details">
+                        <summary class="wa-faq-summary">
+                            <span>Pika WhatsApp nedir?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="wa-faq-body">
+                            Pika WhatsApp, onaylı WhatsApp Business API template iletişiminin Campaign Manager veya Journey Manager içindeki kontrollü aksiyonlarda kullanılabildiği doğrulanmış Pika iletişim kanallarından biridir.
+                        </div>
+                    </details>
+
+                    <details class="wa-faq-details">
+                        <summary class="wa-faq-summary">
+                            <span>Pika WhatsApp chatbot veya canlı müşteri hizmeti sunuyor mu?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="wa-faq-body">
+                            C17 böyle bir capability iddiası yapmaz. Pika WhatsApp kontrollü outbound template iletişim kanalı olarak konumlandırılır; conversational AI chatbot, canlı iki yönlü müşteri hizmeti veya agent inbox Pika WhatsApp'ın doğrulanmış ürün rolü değildir.
+                        </div>
+                    </details>
+
+                    <details class="wa-faq-details">
+                        <summary class="wa-faq-summary">
+                            <span>WhatsApp mesajları onaylı template kullanmak zorunda mı?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="wa-faq-body">
+                            Pika WhatsApp outbound iletişimi uygun onaylı WhatsApp Business template bağlamında yürütür. Pika template approval gereksinimini bypass eden veya her hazırlanan mesajın otomatik onaylanacağını garanti eden capability iddiası yapmaz.
+                        </div>
+                    </details>
+
+                    <details class="wa-faq-details">
+                        <summary class="wa-faq-summary">
+                            <span>Pika WhatsApp hedef kitleyi otomatik olarak seçer mi?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="wa-faq-body">
+                            Hayır. Gerçek hedef kitle Audience Manager'da müşteri verisi ve açık kurallarla tanımlanır. WhatsApp tanımlı audience bağlamını kullanan execution kanalıdır.
+                        </div>
+                    </details>
+
+                    <details class="wa-faq-details">
+                        <summary class="wa-faq-summary">
+                            <span>WhatsApp Campaign Manager ve Journey Manager ile nasıl çalışır?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="wa-faq-body">
+                            Campaign Manager tanımlı kampanyanın kontrollü gönderim bağlamını, Journey Manager ise çok adımlı akışı yönetir. WhatsApp uygun onaylı template iletişiminin her iki ürün bağlamında da kullanılabildiği execution kanallarından biridir.
+                        </div>
+                    </details>
+
+                    <details class="wa-faq-details">
+                        <summary class="wa-faq-summary">
+                            <span>WhatsApp opt-in aynı Email/SMS preference ekranından mı yönetilir?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="wa-faq-body">
+                            Hayır. Mevcut public preference-update formu Email ve SMS tercihlerini kapsar. WhatsApp opt-in bağlamı ayrı incoming webhook veya import kaynaklarından gelir ve ilgili iletişim aksiyonunda ayrıca değerlendirilir.
+                        </div>
+                    </details>
+
+                    <details class="wa-faq-details">
+                        <summary class="wa-faq-summary">
+                            <span>Pika WhatsApp template onayını garanti eder mi?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="wa-faq-body">
+                            Hayır. Pika onaylı template'i kampanya veya journey aksiyonunda kullanabilir; WhatsApp Business platformunun dış template approval kararını Pika garanti etmez.
+                        </div>
+                    </details>
+
+                    <details class="wa-faq-details">
+                        <summary class="wa-faq-summary">
+                            <span>WhatsApp gönderimi müşterinin mesajı okuyacağını veya dönüşüm sağlayacağını garanti eder mi?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="wa-faq-body">
+                            Hayır. Mevcut delivery sonucu müşterinin mesajı okuduğunu, cevap verdiğini veya belirli bir dönüşüm, satış ya da ciro sonucu oluşturduğunu tek başına kanıtlamaz veya garanti etmez.
+                        </div>
+                    </details>
+                }
+                else
+                {
+                    <details class="wa-faq-details">
+                        <summary class="wa-faq-summary">
+                            <span>What is Pika WhatsApp?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="wa-faq-body">
+                            Pika WhatsApp is one of Pika's confirmed communication channels for using approved WhatsApp Business API template communication within controlled actions managed through Campaign Manager or Journey Manager.
+                        </div>
+                    </details>
+
+                    <details class="wa-faq-details">
+                        <summary class="wa-faq-summary">
+                            <span>Does Pika WhatsApp provide a chatbot or live customer service?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="wa-faq-body">
+                            C17 makes no such capability claim. Pika WhatsApp is positioned as a controlled outbound template-communication channel; conversational AI chatbot, live two-way customer service and agent inbox are not verified Pika WhatsApp product roles.
+                        </div>
+                    </details>
+
+                    <details class="wa-faq-details">
+                        <summary class="wa-faq-summary">
+                            <span>Does WhatsApp communication require approved templates?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="wa-faq-body">
+                            Pika WhatsApp outbound communication operates within eligible approved WhatsApp Business template context. Pika does not claim to bypass template-approval requirements or guarantee automatic approval of every prepared message.
+                        </div>
+                    </details>
+
+                    <details class="wa-faq-details">
+                        <summary class="wa-faq-summary">
+                            <span>Does Pika WhatsApp automatically choose the audience?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="wa-faq-body">
+                            No. The actual audience is defined in Audience Manager through customer data and explicit rules. WhatsApp is the execution channel that uses that defined audience context.
+                        </div>
+                    </details>
+
+                    <details class="wa-faq-details">
+                        <summary class="wa-faq-summary">
+                            <span>How does WhatsApp work with Campaign Manager and Journey Manager?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="wa-faq-body">
+                            Campaign Manager manages controlled delivery for a defined campaign, while Journey Manager manages multi-step flow. WhatsApp is an execution channel where eligible approved-template communication can be used within both product contexts.
+                        </div>
+                    </details>
+
+                    <details class="wa-faq-details">
+                        <summary class="wa-faq-summary">
+                            <span>Is WhatsApp opt-in managed through the same Email/SMS preference screen?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="wa-faq-body">
+                            No. The current public preference-update form covers Email and SMS preferences. WhatsApp opt-in context comes from separate incoming webhook or import sources and is evaluated within the relevant communication action.
+                        </div>
+                    </details>
+
+                    <details class="wa-faq-details">
+                        <summary class="wa-faq-summary">
+                            <span>Does Pika guarantee WhatsApp template approval?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="wa-faq-body">
+                            No. Pika can use an approved template inside campaign or journey action; Pika does not guarantee the external WhatsApp Business platform's template-approval decision.
+                        </div>
+                    </details>
+
+                    <details class="wa-faq-details">
+                        <summary class="wa-faq-summary">
+                            <span>Does WhatsApp delivery guarantee that the customer reads the message or converts?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="wa-faq-body">
+                            No. Available delivery outcome does not by itself prove or guarantee that the customer read the message, replied or produced a particular conversion, sales or revenue result.
+                        </div>
+                    </details>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 14 FINAL CTA ─────────────────────────────────────────────── *@
 <section class="pika-sol-cta-section">
     <div class="container" data-aos="fade-up">
-        <h2>@(tr ? "WhatsApp iletişimini daha kontrollü, daha hedefli ve daha güçlü hale getirin" : "Make WhatsApp communication more controlled, more targeted, and more powerful")</h2>
-        <p>@(tr ? "Pika WhatsApp Messaging ile kampanya ve süreç bazlı iletişimi tek merkezden yönetin." : "Manage campaign and process-based communication from one center with Pika WhatsApp Messaging.")</p>
+        <span class="pika-sol-eyebrow" style="color:var(--pika-primary);display:block;margin-bottom:12px;font-weight:700">
+            @(tr ? "WHATSAPP KANALI" : "WHATSAPP CHANNEL")
+        </span>
+        <h2>
+            @if (tr)
+            {
+                <text>Hedef kitleyi tanımlayın.<br />Opt-in ve template bağlamını kontrol edin.<br />WhatsApp iletişimini kontrollü biçimde yürütün.</text>
+            }
+            else
+            {
+                <text>Define the audience.<br />Check opt-in and template context.<br />Execute WhatsApp communication under control.</text>
+            }
+        </h2>
+        <p class="mx-auto" style="max-width:720px">
+            @(tr
+                ? "Pika WhatsApp'ın Audience Manager hedef kitle bağlamını, Campaign Manager veya Journey Manager aksiyonlarını, WhatsApp Business approved-template gereksinimini ve mevcut opt-in kontrollerini kontrollü WhatsApp iletişiminde nasıl bir araya getirdiğini birlikte inceleyelim."
+                : "Let's explore how Pika WhatsApp brings together Audience Manager context, Campaign Manager or Journey Manager actions, WhatsApp Business approved-template requirements and available opt-in controls within controlled WhatsApp communication.")
+        </p>
+        <p class="small fw-semibold mt-2 mb-4" style="color:#dce5d2">
+            @(tr ? "İhtiyacınıza ve kullanım kapsamınıza göre özel teklif." : "Pricing is tailored to your requirements and scope of use.")
+        </p>
         <div class="pika-sol-cta-actions">
-            <button type="button" class="btn pika-btn-primary px-4 py-2" data-bs-toggle="modal" data-bs-target="#demoModal">@(tr ? "Demo Talep Et" : "Request a Demo") <i class="ri-arrow-right-up-line"></i></button>
-            <a href="@Url.Action("Contact", "Home")" class="btn pika-btn-ghost px-4 py-2">@(tr ? "Bizimle İletişime Geçin" : "Contact Us")</a>
+            <button type="button" class="btn pika-btn-primary px-4 py-2" data-bs-toggle="modal" data-bs-target="#demoModal">
+                @(tr ? "Demo Talep Et" : "Request a Demo") <i class="ri-arrow-right-up-line" aria-hidden="true"></i>
+            </button>
+            <a href="@(tr ? "/iletisim" : "/en/contact")" class="btn pika-btn-ghost px-4 py-2">
+                @(tr ? "Teklif Al" : "Request a Quote")
+            </a>
         </div>
     </div>
 </section>

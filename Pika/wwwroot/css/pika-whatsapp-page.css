@@ -1,0 +1,13 @@
+/* Pika WhatsApp Page Local Styles - C17 */
+.wa-faq-details { border: 1px solid #dfe6d6; border-radius: 10px; margin-bottom: 12px; background: #fff; transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+.wa-faq-details[open] { border-color: #23413b; box-shadow: 0 4px 12px rgba(35, 65, 59, 0.05); }
+.wa-faq-summary { padding: 20px 22px; font-weight: 500; color: #23413b; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; font-size: 1.05rem; }
+.wa-faq-summary::-webkit-details-marker { display: none; }
+.wa-faq-summary i { transition: transform 0.2s ease; font-size: 1.2rem; color: #687d70; }
+.wa-faq-details[open] .wa-faq-summary i { transform: rotate(180deg); color: #23413b; }
+.wa-faq-body { padding: 0 22px 22px 22px; color: #4a5d55; font-size: 0.95rem; line-height: 1.75; }
+.wa-hero-pills { display: flex; flex-direction: column; gap: 10px; padding: 24px; }
+.wa-hero-pill { padding: 11px 16px; border: 1px solid #dce7cc; border-radius: 7px; font-size: 11px; font-weight: 600; letter-spacing: 1.2px; color: #48673b; background: #f4f8eb; display: flex; align-items: center; justify-content: space-between; }
+.wa-callout { background: #f4f8eb; border-left: 4px solid #8aa948; border-radius: 0 8px 8px 0; padding: 20px 24px; margin: 20px 0; }
+.wa-flow-chain { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding: 20px; background: #fff; border: 1px solid #dce5d3; border-radius: 10px; margin: 20px 0; font-size: 0.85rem; font-weight: 600; color: #23413b; }
+.wa-flow-arrow { color: #8aa948; font-weight: bold; }
