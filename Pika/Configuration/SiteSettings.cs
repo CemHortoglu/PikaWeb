@@ -12,6 +12,14 @@ public sealed class SiteSettings
     public MailSettings Mail { get; set; } = new();
     public CloudflareTurnstileSettings CloudflareTurnstile { get; set; } = new();
     public GoogleRecaptchaSettings GoogleRecaptcha { get; set; } = new();
+    public SocialSettings Social { get; set; } = new();
+}
+
+public sealed class SocialSettings
+{
+    public string InstagramUrl { get; set; } = "https://www.instagram.com/pika_tr/";
+    public string LinkedinUrl { get; set; } = "https://www.linkedin.com/company/pika-tr/";
+    public string YoutubeUrl { get; set; } = "https://www.youtube.com/@Pika-tr";
 }
 
 public sealed class GoogleRecaptchaSettings

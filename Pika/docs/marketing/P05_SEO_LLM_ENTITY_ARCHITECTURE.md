@@ -174,7 +174,9 @@ Emitted globally on all pages within `Views/Shared/_Layout.cshtml`:
     }
   ],
   "sameAs": [
-    "https://www.linkedin.com/company/pikatr"
+    "https://www.linkedin.com/company/pika-tr/",
+    "https://www.instagram.com/pika_tr/",
+    "https://www.youtube.com/@Pika-tr"
   ]
 }
 ```
@@ -470,7 +472,9 @@ Canonical entity names may be used directly as anchor text. Proposed semantic va
 ## 17. Knowledge Graph & External Citation Strategy
 
 ### 17.1 Authoritative External Footprint
-- **LinkedIn:** `https://www.linkedin.com/company/pikatr`
+- **LinkedIn:** `https://www.linkedin.com/company/pika-tr/`
+- **Instagram:** `https://www.instagram.com/pika_tr/`
+- **YouTube:** `https://www.youtube.com/@Pika-tr`
 - **Official Domain:** `https://pika.tr`
 - **Application Portal:** `https://app.pika.tr`
 
