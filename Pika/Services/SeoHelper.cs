@@ -62,10 +62,10 @@ public static class SeoHelper
         ["Home.Contact"] = new(
             "/iletisim",
             "/en/contact",
-            "İletişim",
-            "Contact",
-            "Pika ekibiyle iletişime geçin. Satış, destek ve iş birliği talepleriniz için bize ulaşın.",
-            "Get in touch with the Pika team for sales, support, and partnership inquiries.",
+            "İletişim | Pika Ürün, Demo ve Ticari Değerlendirme",
+            "Contact Pika | Product, Demo & Commercial Evaluation",
+            "Pika ekibine ürün, veri, entegrasyon ve ticari değerlendirme sorularınız için ulaşın. Yapılandırılmış ürün değerlendirmesi için Demo Talebi sayfasını kullanın.",
+            "Contact Pika with product, data, integration and commercial-evaluation questions. Use Demo Request for a structured product and usage-scope evaluation.",
             "İletişim",
             "Contact"),
 
