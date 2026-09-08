@@ -1,167 +1,949 @@
 @{
-    var tr = (ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").Equals("tr", StringComparison.OrdinalIgnoreCase);
-    ViewData["Title"] = tr ? "SMS Kampanya Yönetimi ve Otomasyon - Pika" : "SMS Campaign Management & Automation - Pika";
-    ViewData["MetaDescription"] = tr ? "Pika SMS kampanya platformu ile segment bazlı hedefleme, kişiselleştirme ve zamanlı gönderim yaparak dönüşümü artırın." : "Increase conversions with segmented targeting, personalization, and scheduled delivery using the Pika SMS campaign platform.";
-    ViewData["MetaKeywords"] = "sms kampanya, sms pazarlama, segmentasyon, otomasyon, kişiselleştirme, sms gönderim";
+    var culture = ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr";
+    var tr = culture.Equals("tr", StringComparison.OrdinalIgnoreCase);
+    ViewData["BodyClass"] = "pika-solutions-page";
 }
 
-<!-- Hero -->
-@await Html.PartialAsync("_MarketingHero")
+@section Styles {
+    <link rel="stylesheet" href="~/css/pika-sms-page.css" asp-append-version="true" />
+}
 
-<!-- Değer Kutuları -->
+@* ── 01 HERO ─────────────────────────────────────────────────── *@
+<section class="inner-hero inner-hero--content">
+    <div class="inner-atmosphere" aria-hidden="true"><span></span><span></span></div>
+    <div class="container inner-hero-grid">
+        <div class="inner-intro">
+            <nav class="inner-breadcrumb" aria-label="@(tr ? "Sayfa yolu" : "Breadcrumb")">
+                <a href="@(tr ? "/" : "/en/")">Pika</a>
+                <span>/</span>
+                <a href="@(tr ? "/pika" : "/en/pika")">@(tr ? "Pika Nedir?" : "What Is Pika?")</a>
+                <span>/</span>
+                <span>SMS</span>
+            </nav>
+            <div class="inner-eyebrow" aria-label="SMS Campaigns"><span></span>SMS · SMS Marketing</div>
+            @if (tr)
+            {
+                <h1>
+                    Kısa ve zaman hassasiyetli iletişimi,<br />
+                    Pika'nın kontrollü aksiyon zincirinde<br />
+                    SMS kanalına taşıyın.
+                </h1>
+                <p>
+                    Pika SMS; Audience Manager'da tanımlanan hedef kitle bağlamının Campaign Manager veya Journey Manager içindeki kontrollü aksiyonlarda SMS iletişim kanalı üzerinden kullanılmasını sağlar.
+                </p>
+                <p class="text-muted small">
+                    Gönderim öncesi IYS durumu, opt-out ve uygulanabilir iletişim zamanı kontrolleri SMS aksiyonunun izin ve gönderim uygunluğu bağlamında ayrıca değerlendirilir.
+                </p>
+                <div class="inner-actions">
+                    <button class="inner-primary" type="button" data-bs-toggle="modal" data-bs-target="#demoModal">Demo Talep Et ↗</button>
+                    <a class="inner-secondary" href="/cozumler/campaign-manager">Campaign Manager'ı Keşfedin →</a>
+                    <a class="inner-hero-anchor" href="#inner-content" aria-label="İçeriğe atla"><i class="ri-arrow-down-line" aria-hidden="true"></i></a>
+                </div>
+            }
+            else
+            {
+                <h1>
+                    Bring concise, time-sensitive communication<br />
+                    to the SMS channel<br />
+                    inside Pika's controlled action chain.
+                </h1>
+                <p>
+                    Pika SMS is the communication channel through which audience context defined in Audience Manager can be used within controlled actions managed by Campaign Manager or Journey Manager.
+                </p>
+                <p class="text-muted small">
+                    Before delivery, IYS status, opt-out state and applicable communication-time controls are evaluated separately within SMS permission and delivery-eligibility context.
+                </p>
+                <div class="inner-actions">
+                    <button class="inner-primary" type="button" data-bs-toggle="modal" data-bs-target="#demoModal">Request a Demo ↗</button>
+                    <a class="inner-secondary" href="/en/solutions/campaign-manager">Explore Campaign Manager →</a>
+                    <a class="inner-hero-anchor" href="#inner-content" aria-label="Skip to content"><i class="ri-arrow-down-line" aria-hidden="true"></i></a>
+                </div>
+            }
+        </div>
+
+        <div class="inner-scene" aria-hidden="true">
+            <div class="inner-scene-orbit"></div>
+            <div class="inner-scene-window">
+                <div class="inner-window-bar">
+                    <strong>pika<span>✳</span></strong>
+                    <span>SMS</span>
+                    <small>@(tr ? "Örnek görünüm" : "Illustration")</small>
+                </div>
+                <div class="sms-hero-pills">
+                    @if (tr)
+                    {
+                        <span class="sms-hero-pill">HEDEF KİTLE <span>01</span></span>
+                        <span class="sms-hero-pill">KAMPANYA / JOURNEY <span>02</span></span>
+                        <span class="sms-hero-pill">İYS <span>03</span></span>
+                        <span class="sms-hero-pill">OPT-OUT <span>04</span></span>
+                        <span class="sms-hero-pill">SMS <span>05</span></span>
+                        <span class="sms-hero-pill">TESLİMAT <span>06</span></span>
+                    }
+                    else
+                    {
+                        <span class="sms-hero-pill">AUDIENCE <span>01</span></span>
+                        <span class="sms-hero-pill">CAMPAIGN / JOURNEY <span>02</span></span>
+                        <span class="sms-hero-pill">IYS <span>03</span></span>
+                        <span class="sms-hero-pill">OPT-OUT <span>04</span></span>
+                        <span class="sms-hero-pill">SMS <span>05</span></span>
+                        <span class="sms-hero-pill">DELIVERY <span>06</span></span>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div id="inner-content" class="inner-anchor"></div>
+
+@* ── STICKY SUBNAV ────────────────────────────────────────────── *@
+<div class="pika-sol-subnav-wrap">
+    <div class="container">
+        <nav class="pika-sol-subnav" aria-label="@(tr ? "Sayfa içi gezinti" : "In-page navigation")">
+            <a href="#overview">@(tr ? "Genel Bakış" : "Overview")</a>
+            <a href="#context">@(tr ? "Kullanım Bağlamı" : "Use Context")</a>
+            <a href="#audience">@(tr ? "Hedef Kitle" : "Audience")</a>
+            <a href="#campaign">@(tr ? "Kampanya" : "Campaign")</a>
+            <a href="#journey">Journey</a>
+            <a href="#governance">@(tr ? "İzin & Ölçüm" : "Consent & Measurement")</a>
+            <a href="#faq">@(tr ? "SSS" : "FAQ")</a>
+        </nav>
+    </div>
+</div>
+
+@* ── TRUST / VALUE STRIP ──────────────────────────────────────── *@
+<section class="pika-sol-section py-4">
+    <div class="container">
+        <div class="pika-sol-highlight-items justify-content-center">
+            <span class="pika-sol-highlight-item"><i class="ri-check-line" aria-hidden="true"></i> @(tr ? "Kısa Mesaj İletişimi" : "Concise Messaging")</span>
+            <span class="pika-sol-highlight-item"><i class="ri-check-line" aria-hidden="true"></i> @(tr ? "Zaman Hassasiyetli Bağlam" : "Time-Sensitive Context")</span>
+            <span class="pika-sol-highlight-item"><i class="ri-check-line" aria-hidden="true"></i> @(tr ? "Kontrollü Kampanya" : "Controlled Campaign")</span>
+            <span class="pika-sol-highlight-item"><i class="ri-check-line" aria-hidden="true"></i> @(tr ? "Journey Kanal Aksiyonu" : "Journey Channel Action")</span>
+            <span class="pika-sol-highlight-item"><i class="ri-check-line" aria-hidden="true"></i> @(tr ? "IYS & Opt-Out Kontrolü" : "IYS & Opt-Out Control")</span>
+        </div>
+    </div>
+</section>
+
+@* ── 02 DIRECT ANSWER ─────────────────────────────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt" id="overview">
+    <div class="container">
+        <div class="max-w-800">
+            <span class="pika-sol-eyebrow">@(tr ? "KISA CEVAP" : "THE SHORT ANSWER")</span>
+            <h2 class="pika-sol-section-title">@(tr ? "Pika SMS nedir?" : "What is Pika SMS?")</h2>
+            <p class="pika-sol-section-desc">
+                @(tr ? "Pika SMS, kısa ve zaman hassasiyetli metin iletişiminin kontrollü kampanya veya journey bağlamında kullanılabildiği doğrulanmış Pika iletişim kanallarından biridir." : "Pika SMS is one of Pika's confirmed communication channels for using concise, time-sensitive text communication within controlled campaign or journey context.")
+            </p>
+            <p class="mt-3">
+                @(tr ? "SMS'in görevi müşteriyi analiz etmek, hedef kitleyi kendi başına seçmek veya journey akışını yönetmek değildir. Bu bağlamlar Pika'nın ilgili intelligence, Audience Manager, Campaign Manager ve Journey Manager katmanlarında oluşturulur." : "The role of SMS is not to analyze customers, independently select the audience or manage journey flow. Those contexts are created through Pika's relevant intelligence, Audience Manager, Campaign Manager and Journey Manager layers.")
+            </p>
+            <p class="mt-4 fw-medium text-dark">
+                @(tr ? "SMS'in temel sorusu şudur:" : "SMS answers one central question:")
+            </p>
+            <div class="sms-callout">
+                <h3 class="h4 mb-0 text-dark">
+                    @(tr ? "“Tanımlanmış bu iletişim, izin ve aksiyon kontrollerinden sonra SMS kanalı üzerinden nasıl yürütülecek?”" : "“How is this defined communication executed through the SMS channel after permission and action controls?”")
+                </h3>
+            </div>
+            <p class="mt-3">
+                @(tr ? "İlgili ticari SMS iletişiminde gönderim öncesi IYS durumu, opt-out ve uygulanabilir iletişim zamanı kontrolleri gönderim uygunluğu değerlendirmesinin parçasıdır." : "For relevant commercial SMS communication, pre-dispatch IYS status, opt-out state and applicable communication-time controls form part of delivery-eligibility evaluation.")
+            </p>
+            <div class="p-3 bg-white rounded border border-light-subtle mt-4">
+                <p class="mb-1"><strong>SMS:</strong> @(tr ? "iletişim kanalıdır." : "is the communication channel.")</p>
+                <p class="mb-0"><strong>Pika:</strong> @(tr ? "kanalın etrafındaki anlama, karar, izin ve ölçüm zinciridir." : "is the surrounding chain of understanding, decision, permission and measurement.")</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 03 SMS'S PLACE IN PIKA ───────────────────────────────────── *@
 <section class="pika-sol-section">
     <div class="container">
-        <div class="pika-sol-value-grid">
-            <div class="pika-sol-value-card" data-aos="fade-up" data-aos-duration="500">
-                <div class="pika-sol-value-icon"><i class="ri-flashlight-line"></i></div>
-                <h4>@(tr ? "Hızlı Teslim" : "Fast Delivery")</h4>
-                <p>@(tr ? "Zaman hassasiyeti olan iletişimlerde etkili kanal." : "Effective channel for time-sensitive communications.")</p>
+        <div class="max-w-800">
+            <span class="pika-sol-eyebrow">@(tr ? "KANAL, KARAR MOTORU DEĞİL" : "A CHANNEL, NOT THE DECISION ENGINE")</span>
+            <h2 class="pika-sol-section-title">@(tr ? "SMS'i, Pika'nın karar zincirindeki doğru yere koyun." : "Put SMS in the right place inside Pika's decision chain.")</h2>
+            <p class="pika-sol-section-desc">
+                @if (tr)
+                {
+                    <text><a href="/pika">Pika</a> bir toplu SMS yazılımından ibaret değildir. SMS, platformun müşteri zekâsı ve omnichannel aksiyon zincirindeki doğrulanmış iletişim kanallarından biridir.</text>
+                }
+                else
+                {
+                    <text><a href="/en/pika">Pika</a> is more than bulk SMS software. SMS is one of the confirmed communication channels inside the platform's customer-intelligence and omnichannel-action chain.</text>
+                }
+            </p>
+            <p class="mt-3">
+                @if (tr)
+                {
+                    <text><a href="/platform/customer-intelligence">Customer Intelligence</a> müşteri davranışı ve değer bağlamını, <a href="/platform/product-intelligence">Product Intelligence</a> ürün bağlamını, <a href="/platform/gunun-firsatlari">Günün Fırsatları</a> ise değerlendirilebilir ticari fırsat bağlamını görünür hale getirir.</text>
+                }
+                else
+                {
+                    <text><a href="/en/platform/customer-intelligence">Customer Intelligence</a> calculates customer behavior and value context, <a href="/en/platform/product-intelligence">Product Intelligence</a> establishes product context and <a href="/en/platform/opportunities">Daily Opportunities</a> makes evaluable commercial opportunity context visible.</text>
+                }
+            </p>
+            <p class="mt-3">
+                @(tr ? "Audience Manager kimin dahil olduğunu, Campaign Manager veya Journey Manager aksiyonun nasıl yürütüleceğini yönetir. SMS ise uygun aksiyonun teknik iletişim kanallarından biridir." : "Audience Manager manages who belongs, while Campaign Manager or Journey Manager manage how the action is executed. SMS is one technical communication channel for that eligible action.")
+            </p>
+
+            <div class="sms-flow-chain" aria-label="Pika Decision Chain">
+                <span>DATA</span>
+                <span class="sms-flow-arrow">→</span>
+                <span>@(tr ? "CUSTOMER & PRODUCT INTELLIGENCE" : "CUSTOMER & PRODUCT INTELLIGENCE")</span>
+                <span class="sms-flow-arrow">→</span>
+                <span>@(tr ? "OPPORTUNITY / DECISION" : "OPPORTUNITY / DECISION")</span>
+                <span class="sms-flow-arrow">→</span>
+                <span>AUDIENCE</span>
+                <span class="sms-flow-arrow">→</span>
+                <span>CAMPAIGN / JOURNEY</span>
+                <span class="sms-flow-arrow">→</span>
+                <span>CONSENT &amp; TIME CONTROLS</span>
+                <span class="sms-flow-arrow">→</span>
+                <span>SMS</span>
+                <span class="sms-flow-arrow">→</span>
+                <span>MEASUREMENT</span>
             </div>
-            <div class="pika-sol-value-card" data-aos="fade-up" data-aos-duration="500" data-aos-delay="100">
-                <div class="pika-sol-value-icon"><i class="ri-eye-line"></i></div>
-                <h4>@(tr ? "Yüksek Görünürlük" : "High Visibility")</h4>
-                <p>@(tr ? "Kullanıcıya doğrudan ulaşan net iletişim yapısı." : "Clear communication structure reaching users directly.")</p>
+
+            <div class="p-3 bg-white rounded border border-light-subtle mt-4">
+                @if (tr)
+                {
+                    <p class="mb-1"><strong>SMS,</strong> kararı üretmez.</p>
+                    <p class="mb-0">Tanımlanmış kararın iletişim kanalıdır.</p>
+                }
+                else
+                {
+                    <p class="mb-1"><strong>SMS</strong> does not create the decision.</p>
+                    <p class="mb-0">It is the communication channel for a defined decision.</p>
+                }
             </div>
-            <div class="pika-sol-value-card" data-aos="fade-up" data-aos-duration="500" data-aos-delay="200">
-                <div class="pika-sol-value-icon"><i class="ri-focus-3-line"></i></div>
-                <h4>@(tr ? "Segmentli Kullanım" : "Segmented Usage")</h4>
-                <p>@(tr ? "Genel toplu gönderim yerine hedefli kullanım." : "Targeted usage instead of generic mass sends.")</p>
+        </div>
+
+        <div class="pika-sol-value-grid mt-5">
+            <div class="pika-sol-value-card">
+                <div class="pika-sol-value-icon"><i class="ri-message-2-line" aria-hidden="true"></i></div>
+                <h4>@(tr ? "Kısa Mesaj Kanalı" : "Concise Messaging Channel")</h4>
+                <p>@(tr ? "Kısa ve doğrudan metin iletişimini kontrollü kampanya veya journey bağlamında SMS kanalı üzerinden yürütün." : "Execute concise, direct text communication through SMS within controlled campaign or journey context.")</p>
             </div>
-            <div class="pika-sol-value-card" data-aos="fade-up" data-aos-duration="500" data-aos-delay="300">
-                <div class="pika-sol-value-icon"><i class="ri-loop-right-line"></i></div>
-                <h4>@(tr ? "Otomasyonla Birlikte Çalışma" : "Works with Automation")</h4>
-                <p>@(tr ? "SMS'i journey akışlarının parçası haline getirin." : "Make SMS part of journey flows.")</p>
+            <div class="pika-sol-value-card">
+                <div class="pika-sol-value-icon"><i class="ri-focus-3-line" aria-hidden="true"></i></div>
+                <h4>@(tr ? "Audience Bağlamı" : "Audience Context")</h4>
+                <p>@(tr ? "Audience Manager'da tanımlanan hedef kitleyi SMS aksiyonunun upstream müşteri bağlamı olarak kullanın." : "Use the audience defined in Audience Manager as upstream customer context for the SMS action.")</p>
+            </div>
+            <div class="pika-sol-value-card">
+                <div class="pika-sol-value-icon"><i class="ri-shield-check-line" aria-hidden="true"></i></div>
+                <h4>@(tr ? "İzin ve Zaman Kontrolü" : "Permission & Time Control")</h4>
+                <p>@(tr ? "İlgili SMS iletişiminde IYS, opt-out ve uygulanabilir quiet-hours kontrollerini gönderim uygunluğu bağlamında değerlendirin." : "Evaluate IYS, opt-out and applicable quiet-hours controls within SMS delivery-eligibility context.")</p>
+            </div>
+            <div class="pika-sol-value-card">
+                <div class="pika-sol-value-icon"><i class="ri-bar-chart-box-line" aria-hidden="true"></i></div>
+                <h4>@(tr ? "Ölçülebilir Delivery Sonucu" : "Measurable Delivery Outcome")</h4>
+                <p>@(tr ? "Kullanılabilir SMS delivery outcome veya status verisini Analytics & Reporting bağlamında değerlendirin." : "Evaluate available SMS delivery-outcome or status data within Analytics & Reporting context.")</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Ne Yapabilirsiniz? -->
-<section class="pika-sol-section pika-sol-section-alt">
+@* ── 04 WHEN SMS FITS THE COMMUNICATION CONTEXT ──────────────── *@
+<section class="pika-sol-section pika-sol-section-alt" id="context">
     <div class="container">
-        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "SMS'i sadece toplu mesaj değil, stratejik aksiyon kanalı olarak kullanın" : "Use SMS as a strategic action channel, not just bulk messaging")</h2>
-        <p class="pika-sol-section-desc" data-aos="fade-up" data-aos-delay="100">@(tr ? "Kampanyalar, hatırlatmalar, anlık duyurular ve davranış tetiklemeli aksiyonlar için SMS'i kontrollü ve ölçülebilir şekilde yönetin." : "Manage SMS in a controlled and measurable way for campaigns, reminders, instant announcements, and behavior-triggered actions.")</p>
-        <div class="pika-sol-card-grid">
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="pika-sol-card-icon"><i class="ri-megaphone-line"></i></div>
-                <h4>@(tr ? "Kampanya SMS'leri" : "Campaign SMS")</h4>
-                <p>@(tr ? "İndirim, özel gün ve promosyon iletişimleri." : "Discount, special occasion, and promotional communications.")</p>
+        <div class="max-w-800">
+            <span class="pika-sol-eyebrow">@(tr ? "SMS BAĞLAMI" : "SMS CONTEXT")</span>
+            <h2 class="pika-sol-section-title">@(tr ? "Kısa ve zaman hassasiyetli iletişimde, kanalın yapısını doğru kullanın." : "Use the channel appropriately for concise, time-sensitive communication.")</h2>
+            <p class="pika-sol-section-desc">
+                @(tr ? "SMS zengin görsel içerik yerine kısa ve doğrudan metin iletişimi gereken bağlamlarda kullanılabilen kanaldır." : "SMS is a channel that can be used when communication requires concise, direct text rather than rich visual content.")
+            </p>
+            <p class="mt-3">
+                @(tr ? "Zaman hassasiyetli kampanya iletişimi, kısa hatırlatma veya tanımlı journey adımı SMS kullanım bağlamlarından biri olabilir." : "Time-sensitive campaign communication, a short reminder or a defined journey step can be examples of SMS context.")
+            </p>
+            <p class="mt-3">
+                @(tr ? "Bu, SMS'in bütün müşteri iletişimlerinde “en iyi” veya “en hızlı” kanal olduğu anlamına gelmez." : "This does not mean SMS is the “best” or “fastest” channel for every customer communication.")
+            </p>
+
+            <div class="sms-callout">
+                @if (tr)
+                {
+                    <p class="mb-1"><strong>SMS:</strong> kısa metin kanalıdır.</p>
+                    <p class="mb-1"><strong>Kullanım bağlamı:</strong> kampanya veya journey amacına göre belirlenir.</p>
+                    <p class="mb-0"><strong>Kanal seçimi:</strong> evrensel performans sıralaması değildir.</p>
+                }
+                else
+                {
+                    <p class="mb-1"><strong>SMS:</strong> is a concise text channel.</p>
+                    <p class="mb-1"><strong>Use context:</strong> depends on the campaign or journey objective.</p>
+                    <p class="mb-0"><strong>Channel selection:</strong> is not a universal performance ranking.</p>
+                }
             </div>
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="pika-sol-card-icon"><i class="ri-alarm-line"></i></div>
-                <h4>@(tr ? "Hatırlatma SMS'leri" : "Reminder SMS")</h4>
-                <p>@(tr ? "Davranış veya zaman bazlı hatırlatmalar." : "Behavior or time-based reminders.")</p>
-            </div>
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="pika-sol-card-icon"><i class="ri-route-line"></i></div>
-                <h4>@(tr ? "Journey İçi SMS Aksiyonları" : "In-Journey SMS Actions")</h4>
-                <p>@(tr ? "Belirli kurallara göre tetiklenen süreçler." : "Processes triggered by specific rules.")</p>
+
+            <div class="p-3 bg-white rounded border border-light-subtle mt-3">
+                @if (tr)
+                {
+                    <p class="mb-0">Doğru kanal, iletişimin bağlamına göre seçilir.</p>
+                }
+                else
+                {
+                    <p class="mb-0">The right channel depends on communication context.</p>
+                }
             </div>
         </div>
     </div>
 </section>
 
-<!-- Özellikler / Capability Grid -->
-<section class="pika-sol-section" id="features">
+@* ── 05 AUDIENCE → SMS ───────────────────────────────────────── *@
+<section class="pika-sol-section" id="audience">
     <div class="container">
-        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "SMS kampanyalarını daha kontrollü yönetin" : "Manage SMS campaigns with more control")</h2>
-        <div class="pika-sol-card-grid">
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="pika-sol-card-icon"><i class="ri-focus-3-line"></i></div>
-                <h4>@(tr ? "Segment Bazlı Gönderim" : "Segment-Based Delivery")</h4>
-                <p>@(tr ? "SMS'i doğru hedef kitleyle buluşturun." : "Match SMS with the right target audience.")</p>
+        <div class="max-w-800">
+            <span class="pika-sol-eyebrow">@(tr ? "“KİM?”DEN SMS'E" : "FROM “WHO?” TO SMS")</span>
+            <h2 class="pika-sol-section-title">@(tr ? "SMS hedef kitleyi seçmez. Audience bağlamını kullanır." : "SMS does not choose the audience. It uses audience context.")</h2>
+            <p class="pika-sol-section-desc">
+                @(tr ? "Audience Manager gerçek hedef kitleyi müşteri verisi ve açık kurallar üzerinden tanımlar." : "Audience Manager defines the actual target audience through customer data and explicit rules.")
+            </p>
+            <p class="mt-3">
+                @(tr ? "SMS kanalının görevi müşterileri kendi başına segmente etmek veya “en uygun” alıcı grubunu seçmek değildir." : "The role of the SMS channel is not to independently segment customers or choose the “best” recipient group.")
+            </p>
+            <p class="mt-3">
+                @(tr ? "Campaign Manager veya Journey Manager içindeki SMS aksiyonu ilgili audience bağlamını kontrollü iletişim sürecinde kullanabilir." : "An SMS action inside Campaign Manager or Journey Manager can use the relevant audience context within controlled communication.")
+            </p>
+
+            <div class="sms-callout">
+                @if (tr)
+                {
+                    <p class="mb-1"><strong>Audience Manager:</strong> “Kim bu hedef kitleye dahil?”</p>
+                    <p class="mb-0"><strong>SMS:</strong> “Bu tanımlı kitleye uygun SMS iletişimi hangi aksiyon bağlamında yürütülecek?”</p>
+                }
+                else
+                {
+                    <p class="mb-1"><strong>Audience Manager:</strong> “Who belongs in this audience?”</p>
+                    <p class="mb-0"><strong>SMS:</strong> “Within which action context will eligible SMS communication reach this defined audience?”</p>
+                }
             </div>
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="pika-sol-card-icon"><i class="ri-user-heart-line"></i></div>
-                <h4>@(tr ? "Kişiselleştirilmiş Mesajlar" : "Personalized Messages")</h4>
-                <p>@(tr ? "İsim, teklif veya kullanıcı bilgisine göre özelleştirin." : "Customize by name, offer, or user data.")</p>
+
+            <div class="p-3 bg-white rounded border border-light-subtle mt-3">
+                @if (tr)
+                {
+                    <p class="mb-0">Audience gerçeği, SMS kanalı tarafından üretilmez.</p>
+                }
+                else
+                {
+                    <p class="mb-0">Audience truth is not created by the SMS channel.</p>
+                }
             </div>
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="pika-sol-card-icon"><i class="ri-time-line"></i></div>
-                <h4>@(tr ? "Zamanlı ve Anlık Gönderim" : "Scheduled & Instant Delivery")</h4>
-                <p>@(tr ? "Planlı veya anlık aksiyon senaryoları oluşturun." : "Create scheduled or instant action scenarios.")</p>
+
+            <div class="mt-4">
+                <a href="@(tr ? "/cozumler/audience-manager" : "/en/solutions/audience-manager")" class="btn pika-btn-outline">
+                    @(tr ? "Audience Manager'ı Keşfedin →" : "Explore Audience Manager →")
+                </a>
             </div>
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="pika-sol-card-icon"><i class="ri-route-line"></i></div>
-                <h4>@(tr ? "Journey Entegrasyonu" : "Journey Integration")</h4>
-                <p>@(tr ? "SMS'i email, WhatsApp ve Push ile birlikte kullanın." : "Use SMS together with email, WhatsApp, and Push.")</p>
+        </div>
+
+        <div class="pika-sol-card-grid mt-5">
+            <div class="pika-sol-card">
+                <div class="pika-sol-card-icon"><i class="ri-megaphone-line" aria-hidden="true"></i></div>
+                <h4>Campaign SMS</h4>
+                <p>@(tr ? "Tanımlı audience ve hazırlanmış kısa mesaj içeriğinin Campaign Manager üzerinden kontrollü SMS aksiyonunda kullanılabileceği kampanya bağlamı." : "A campaign context where a defined audience and prepared short-message content can be used in a controlled SMS action through Campaign Manager.")</p>
             </div>
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="pika-sol-card-icon"><i class="ri-shield-check-line"></i></div>
-                <h4>@(tr ? "İzin ve Uyumluluk Yönetimi" : "Consent & Compliance")</h4>
-                <p>@(tr ? "İletişim izinlerini ve süreç uyumunu yönetin." : "Manage communication consents and process compliance.")</p>
+            <div class="pika-sol-card">
+                <div class="pika-sol-card-icon"><i class="ri-route-line" aria-hidden="true"></i></div>
+                <h4>@(tr ? "Journey SMS Adımı" : "Journey SMS Step")</h4>
+                <p>@(tr ? "SMS'in Journey Manager içindeki tanımlı koşul, sıra ve bekleme mantığında bir kanal aksiyonu olarak kullanılabileceği journey bağlamı." : "A journey context where SMS can be used as a channel action inside conditions, sequence and wait logic managed by Journey Manager.")</p>
             </div>
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="pika-sol-card-icon"><i class="ri-line-chart-line"></i></div>
-                <h4>@(tr ? "Raporlama" : "Reporting")</h4>
-                <p>@(tr ? "Gönderim performansını izleyin." : "Monitor delivery performance.")</p>
+            <div class="pika-sol-card">
+                <div class="pika-sol-card-icon"><i class="ri-lightbulb-line" aria-hidden="true"></i></div>
+                <h4>@(tr ? "Fırsattan SMS Aksiyonuna" : "From Opportunity to SMS Action")</h4>
+                <p>@(tr ? "Günün Fırsatları'nda değerlendirilen ticari fırsatın kullanıcı kararı, gerçek audience tanımı ve izin kontrollerinden sonra SMS kanalında uygulanabileceği aksiyon bağlamı." : "An action context where a commercial opportunity evaluated in Daily Opportunities can reach the SMS channel after user decision, actual audience definition and permission controls.")</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Kullanım Senaryoları -->
-<section class="pika-sol-section pika-sol-section-alt">
+@* ── 06 CAMPAIGN MANAGER → SMS ───────────────────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt" id="campaign">
     <div class="container">
-        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "Pika SMS Campaigns ile örnek kullanım alanları" : "Example use cases with Pika SMS Campaigns")</h2>
-        <div class="pika-sol-usecase-grid">
-            <div class="pika-sol-usecase" data-aos="fade-up" data-aos-delay="50"><i class="ri-check-line"></i> @(tr ? "İndirim duyuruları" : "Discount announcements")</div>
-            <div class="pika-sol-usecase" data-aos="fade-up" data-aos-delay="100"><i class="ri-check-line"></i> @(tr ? "Sepet veya işlem hatırlatmaları" : "Cart or transaction reminders")</div>
-            <div class="pika-sol-usecase" data-aos="fade-up" data-aos-delay="150"><i class="ri-check-line"></i> @(tr ? "Sadakat kampanyaları" : "Loyalty campaigns")</div>
-            <div class="pika-sol-usecase" data-aos="fade-up" data-aos-delay="200"><i class="ri-check-line"></i> @(tr ? "Özel gün tebrikleri" : "Special occasion greetings")</div>
-            <div class="pika-sol-usecase" data-aos="fade-up" data-aos-delay="250"><i class="ri-check-line"></i> @(tr ? "Belirli segmentlere hızlı kampanyalar" : "Fast campaigns to specific segments")</div>
-            <div class="pika-sol-usecase" data-aos="fade-up" data-aos-delay="300"><i class="ri-check-line"></i> @(tr ? "Zaman hassasiyetli bildirimler" : "Time-sensitive notifications")</div>
+        <div class="max-w-800">
+            <span class="pika-sol-eyebrow">@(tr ? "KAMPANYADAN SMS'E" : "FROM CAMPAIGN TO SMS")</span>
+            <h2 class="pika-sol-section-title">@(tr ? "Campaign Manager kampanyayı yönetir. SMS iletişimi taşır." : "Campaign Manager manages the campaign. SMS carries the communication.")</h2>
+            <p class="pika-sol-section-desc">
+                @(tr ? "Campaign Manager tanımlı hedef kitle, içerik, kanal, zamanlama ve gönderim öncesi kontrolleri aynı kampanya bağlamında yönetir." : "Campaign Manager manages defined audience, content, channel, timing and pre-send controls within the same campaign context.")
+            </p>
+            <p class="mt-3">
+                @(tr ? "SMS seçilen kanal olduğunda hazırlanmış kısa mesaj içeriği kontrollü campaign-execution sürecinde kullanılabilir." : "When SMS is the selected channel, prepared short-message content can be used within controlled campaign execution.")
+            </p>
+            <p class="mt-3">
+                @(tr ? "SMS kanalının bulunması kampanyanın otomatik olarak başladığı anlamına gelmez." : "The availability of SMS does not mean a campaign starts automatically.")
+            </p>
+
+            <div class="sms-callout">
+                @if (tr)
+                {
+                    <p class="mb-1"><strong>Campaign Manager:</strong> kampanya bağlamını, zamanlamayı ve kontrollü gönderimi yönetir.</p>
+                    <p class="mb-0"><strong>SMS:</strong> seçilen iletişim kanalıdır.</p>
+                }
+                else
+                {
+                    <p class="mb-1"><strong>Campaign Manager:</strong> manages campaign context, timing and controlled delivery.</p>
+                    <p class="mb-0"><strong>SMS:</strong> is the selected communication channel.</p>
+                }
+            </div>
+
+            <div class="p-3 bg-white rounded border border-light-subtle mt-3">
+                @if (tr)
+                {
+                    <p class="mb-0">Kampanya kararı ve SMS icrası aynı ürün rolü değildir.</p>
+                }
+                else
+                {
+                    <p class="mb-0">The campaign decision and SMS execution do not perform the same product role.</p>
+                }
+            </div>
+
+            <div class="mt-4">
+                <a href="@(tr ? "/cozumler/campaign-manager" : "/en/solutions/campaign-manager")" class="btn pika-btn-outline">
+                    @(tr ? "Campaign Manager'ı Keşfedin →" : "Explore Campaign Manager →")
+                </a>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- Nasıl Çalışır? -->
-<section class="pika-sol-section">
+@* ── 07 JOURNEY MANAGER → SMS ────────────────────────────────── *@
+<section class="pika-sol-section" id="journey">
     <div class="container">
-        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "SMS kampanyanızı 4 adımda yönetin" : "Manage your SMS campaign in 4 steps")</h2>
-        <div class="pika-sol-steps">
-            <div class="pika-sol-step" data-aos="fade-up" data-aos-delay="100"><div class="pika-sol-step-num"></div><p>@(tr ? "Hedef kitlenizi belirleyin" : "Define your target audience")</p></div>
-            <div class="pika-sol-step" data-aos="fade-up" data-aos-delay="200"><div class="pika-sol-step-num"></div><p>@(tr ? "Mesaj içeriğini oluşturun" : "Create the message content")</p></div>
-            <div class="pika-sol-step" data-aos="fade-up" data-aos-delay="300"><div class="pika-sol-step-num"></div><p>@(tr ? "Gönderimi planlayın veya tetikleyiciye bağlayın" : "Schedule the send or link to a trigger")</p></div>
-            <div class="pika-sol-step" data-aos="fade-up" data-aos-delay="400"><div class="pika-sol-step-num"></div><p>@(tr ? "Sonuçları izleyin" : "Monitor results")</p></div>
-        </div>
-    </div>
-</section>
+        <div class="max-w-800">
+            <span class="pika-sol-eyebrow">@(tr ? "JOURNEY İÇİNDE SMS" : "SMS INSIDE A JOURNEY")</span>
+            <h2 class="pika-sol-section-title">@(tr ? "SMS, çok adımlı journey'nin bir kanal aksiyonu olabilir." : "SMS can be one channel action inside a multi-step journey.")</h2>
+            <p class="pika-sol-section-desc">
+                @(tr ? "Journey Manager başlangıç koşulları, dallanma, bekleme ve aksiyon adımlarından oluşan çok adımlı müşteri akışını yönetir." : "Journey Manager manages a multi-step customer flow consisting of entry conditions, branching, waits and action steps.")
+            </p>
+            <p class="mt-3">
+                @(tr ? "SMS bu akış içindeki tanımlı iletişim kanalı aksiyonlarından biri olarak kullanılabilir." : "SMS can be used as one configured communication-channel action inside that flow.")
+            </p>
+            <p class="mt-3">
+                @(tr ? "Davranış koşulunu, sırayı, beklemeyi veya sonraki adımı SMS kanalı kendi başına belirlemez." : "The SMS channel does not independently determine behavioral conditions, sequence, waits or the next step.")
+            </p>
 
-<!-- Neden SMS? -->
-<section class="pika-sol-section pika-sol-section-alt">
-    <div class="container" data-aos="fade-up">
-        <div class="pika-sol-highlight">
-            <h3>@(tr ? "Görünürlük gerektiren iletişimlerde güçlü kanal" : "A powerful channel for high-visibility communications")</h3>
-            <p>@(tr ? "SMS; hızlı aksiyon, yüksek görünürlük ve kısa iletişim senaryolarında kritik rol oynar. Pika ile bu gücü daha akıllı hedefleme ve otomasyonla birleştirin." : "SMS plays a critical role in fast-action, high-visibility, and short-message scenarios. Combine this power with smarter targeting and automation through Pika.")</p>
-        </div>
-    </div>
-</section>
+            <div class="sms-callout">
+                @if (tr)
+                {
+                    <p class="mb-1"><strong>Journey Manager:</strong> “Sonraki adım ne ve hangi koşulda ilerlemeli?”</p>
+                    <p class="mb-0"><strong>SMS:</strong> “Bu adımda kullanılacak iletişim kanalı SMS mi?”</p>
+                }
+                else
+                {
+                    <p class="mb-1"><strong>Journey Manager asks:</strong> “What is the next step and under which condition should it progress?”</p>
+                    <p class="mb-0"><strong>SMS asks:</strong> “Is SMS the communication channel used at this step?”</p>
+                }
+            </div>
 
-<!-- Çok Kanallı Kullanım -->
-<section class="pika-sol-section">
-    <div class="container" data-aos="fade-up">
-        <div class="pika-sol-omni">
-            <h2 class="pika-sol-section-title">@(tr ? "SMS'i tek başına değil, journey'nin parçası olarak kullanın" : "Use SMS as part of the journey, not in isolation")</h2>
-            <p class="pika-sol-section-desc" style="margin-left:auto;margin-right:auto">@(tr ? "Email, WhatsApp ve Push ile birlikte çalışan SMS aksiyonlarıyla daha tutarlı müşteri deneyimi oluşturun." : "Create a more consistent customer experience with SMS actions that work alongside Email, WhatsApp, and Push.")</p>
+            <div class="p-3 bg-white rounded border border-light-subtle mt-3">
+                @if (tr)
+                {
+                    <p class="mb-1"><strong>SMS</strong> journey'yi tetikleyen otonom motor değildir.</p>
+                    <p class="mb-0">Journey içinde kullanılabilen bir kanal aksiyonudur.</p>
+                }
+                else
+                {
+                    <p class="mb-1"><strong>SMS</strong> is not an autonomous journey-trigger engine.</p>
+                    <p class="mb-0">It is a channel action that can be used inside a journey.</p>
+                }
+            </div>
+
+            <div class="mt-4">
+                <a href="@(tr ? "/cozumler/journey-manager" : "/en/solutions/journey-manager")" class="btn pika-btn-outline">
+                    @(tr ? "Journey Manager'ı Keşfedin →" : "Explore Journey Manager →")
+                </a>
+            </div>
+        </div>
+
+        @* Omnichannel visual footprint: ONLY Email, SMS, WhatsApp *@
+        <div class="pika-sol-omni mt-5">
+            <h3 class="h4 pika-sol-section-title">
+                @(tr ? "Omnichannel İletişim Kanalları" : "Omnichannel Communication Channels")
+            </h3>
+            <p class="pika-sol-section-desc mx-auto" style="max-width:640px">
+                @if (tr)
+                {
+                    <text>Journey Manager, SMS iletişimini <a href="/kanallar/email">Email</a> ve <a href="/kanallar/whatsapp">WhatsApp</a> gibi doğrulanmış kanallarla koordine biçimde kullanabilir.</text>
+                }
+                else
+                {
+                    <text>Journey Manager can coordinate SMS communication alongside confirmed channels such as <a href="/en/channels/email">Email</a> and <a href="/en/channels/whatsapp">WhatsApp</a>.</text>
+                }
+            </p>
             <div class="pika-sol-omni-icons">
-                <div class="pika-sol-omni-icon" style="background:#e3f2fd;color:#1976d2"><i class="ri-message-2-line"></i></div>
-                <div class="pika-sol-omni-icon" style="background:#fff3e0;color:#f57c00"><i class="ri-mail-line"></i></div>
-                <div class="pika-sol-omni-icon" style="background:#dcf8c6;color:#25d366"><i class="ri-whatsapp-line"></i></div>
-                <div class="pika-sol-omni-icon" style="background:#fce4ec;color:#e91e63"><i class="ri-notification-3-line"></i></div>
+                <div class="pika-sol-omni-icon" style="background:#fff3e0;color:#f57c00"><i class="ri-mail-line" aria-hidden="true"></i></div>
+                <div class="pika-sol-omni-icon" style="background:#e3f2fd;color:#1976d2"><i class="ri-message-2-line" aria-hidden="true"></i></div>
+                <div class="pika-sol-omni-icon" style="background:#dcf8c6;color:#25d366"><i class="ri-whatsapp-line" aria-hidden="true"></i></div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Kapanış CTA -->
+@* ── 08 MESSAGE CONTENT & PERSONALIZATION BOUNDARY ───────────── *@
+<section class="pika-sol-section pika-sol-section-alt">
+    <div class="container">
+        <div class="max-w-800">
+            <span class="pika-sol-eyebrow">@(tr ? "MESAJ İÇERİĞİ" : "MESSAGE CONTENT")</span>
+            <h2 class="pika-sol-section-title">@(tr ? "Mevcut müşteri bağlamını kullanın. SMS'in müşteriyi yeniden icat etmesine izin vermeyin." : "Use available customer context. Do not let the SMS channel reinvent the customer.")</h2>
+            <p class="pika-sol-section-desc">
+                @(tr ? "SMS içeriği kısa metin iletişimi için hazırlanır ve kampanya veya journey bağlamında kullanılabilir." : "SMS content is prepared for concise text communication and can be used within campaign or journey context.")
+            </p>
+            <p class="mt-3">
+                @(tr ? "Mevcut müşteri verisinden kullanılabilen kişiselleştirme alanları mesaj hazırlığında değerlendirilebilir." : "Available personalization fields based on existing customer data can be considered during message preparation.")
+            </p>
+            <p class="mt-3">
+                @(tr ? "Kişiselleştirme SMS kanalının müşteri hakkında yeni bilgi üretmesi veya hedef kitleyi kendi başına seçmesi anlamına gelmez." : "Personalization does not mean the SMS channel creates new information about the customer or independently chooses the audience.")
+            </p>
+
+            <div class="sms-callout">
+                @if (tr)
+                {
+                    <p class="mb-1"><strong>Müşteri bağlamı:</strong> Pika'nın veri ve intelligence katmanlarından gelir.</p>
+                    <p class="mb-1"><strong>Audience:</strong> açık kurallarla tanımlanır.</p>
+                    <p class="mb-1"><strong>Mesaj içeriği:</strong> hazırlanır ve kullanıcı kontrolünde kullanılır.</p>
+                    <p class="mb-0"><strong>SMS:</strong> iletişimin execution kanalıdır.</p>
+                }
+                else
+                {
+                    <p class="mb-1"><strong>Customer context:</strong> comes from Pika's data and intelligence layers.</p>
+                    <p class="mb-1"><strong>Audience:</strong> is defined through explicit rules.</p>
+                    <p class="mb-1"><strong>Message content:</strong> is prepared and used under user control.</p>
+                    <p class="mb-0"><strong>SMS:</strong> is the execution channel for the communication.</p>
+                }
+            </div>
+
+            <div class="p-3 bg-white rounded border border-light-subtle mt-3">
+                @if (tr)
+                {
+                    <p class="mb-0">Kanal, müşteri gerçeğinin kaynağı değildir.</p>
+                }
+                else
+                {
+                    <p class="mb-0">The channel is not the source of customer truth.</p>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 09 IYS, OPT-OUT & QUIET-HOURS CONTROLS ───────────────────── *@
+<section class="pika-sol-section" id="governance">
+    <div class="container">
+        <div class="max-w-800">
+            <span class="pika-sol-eyebrow">@(tr ? "İZİN VE ZAMAN KONTROLÜ" : "CONSENT & TIME CONTROL")</span>
+            <h2 class="pika-sol-section-title">@(tr ? "SMS aksiyonunu, izin ve iletişim zamanı bağlamından bağımsız yürütmeyin." : "Do not execute SMS action independently from permission and communication-time context.")</h2>
+            <p class="pika-sol-section-desc">
+                @(tr ? "İlgili ticari SMS iletişiminde gönderim öncesi IYS durum kontrolü iletişim uygunluğu değerlendirmesinin bir parçasıdır." : "For relevant commercial SMS communication, a pre-dispatch IYS status check forms part of communication-eligibility evaluation.")
+            </p>
+            <p class="mt-3">
+                @(tr ? "Mevcut opt-out durumu SMS iletişiminin suppression kapsamında değerlendirilmesine neden olabilir." : "Available opt-out state can cause SMS communication to be evaluated for suppression.")
+            </p>
+            <p class="mt-3">
+                @(tr ? "Dokümante edilmiş commercial-message quiet-hours kontrolü, uygulanabilir iletişim zamanı kısıtlarının gönderim sürecinde dikkate alınmasına yardımcı olur." : "Documented commercial-message quiet-hours control helps applicable communication-time restrictions participate in the delivery process.")
+            </p>
+
+            <div class="sms-callout">
+                @if (tr)
+                {
+                    <p class="mb-1"><strong>IYS:</strong> mevcut izin durumuna ilişkin kontrol girdisidir.</p>
+                    <p class="mb-1"><strong>Opt-out:</strong> suppression sinyalidir.</p>
+                    <p class="mb-1"><strong>Quiet-hours:</strong> iletişim zamanı kontrolüdür.</p>
+                    <p class="mb-0"><strong>SMS:</strong> bu kontrollerden sonra kullanılabilen execution kanalıdır.</p>
+                }
+                else
+                {
+                    <p class="mb-1"><strong>IYS:</strong> is a control input about available consent state.</p>
+                    <p class="mb-1"><strong>Opt-out:</strong> is a suppression signal.</p>
+                    <p class="mb-1"><strong>Quiet-hours:</strong> is a communication-time control.</p>
+                    <p class="mb-0"><strong>SMS:</strong> is the execution channel used after those controls.</p>
+                }
+            </div>
+
+            <p class="mt-3 text-muted">
+                @(tr ? "Bu teknik kontroller Pika'nın veya SMS kanalının bütün hukuki yükümlülükleri otomatik olarak garanti ettiği anlamına gelmez." : "These technical controls do not mean Pika or the SMS channel automatically guarantees every legal obligation.")
+            </p>
+
+            <div class="p-3 bg-white rounded border border-light-subtle mt-3">
+                @if (tr)
+                {
+                    <p class="mb-0">SMS aksiyonu, izin kontrolünün yerine geçmez.</p>
+                }
+                else
+                {
+                    <p class="mb-0">SMS action does not replace permission controls.</p>
+                }
+            </div>
+
+            <div class="mt-4">
+                <a href="@(tr ? "/cozumler/consent-management" : "/en/solutions/consent-management")" class="btn pika-btn-outline">
+                    @(tr ? "Consent Management'i Keşfedin →" : "Explore Consent Management →")
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 10 OPERATOR-GATEWAY DELIVERY ────────────────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt">
+    <div class="container">
+        <div class="max-w-800">
+            <span class="pika-sol-eyebrow">@(tr ? "KANAL İCRASI" : "CHANNEL EXECUTION")</span>
+            <h2 class="pika-sol-section-title">@(tr ? "Kontrollü SMS aksiyonunu, operator gateway üzerinden gönderim sürecine taşıyın." : "Move controlled SMS action into delivery through operator-gateway context.")</h2>
+            <p class="pika-sol-section-desc">
+                @(tr ? "Pika'daki SMS iletişimi ilgili aksiyon ve izin kontrollerinden sonra operator gateway bağlamında gönderim sürecine aktarılır." : "SMS communication in Pika moves into operator-gateway delivery context after the relevant action and permission controls.")
+            </p>
+            <p class="mt-3">
+                @(tr ? "Bu kanal katmanı kampanya veya journey kararını üretmez. Tanımlanmış SMS iletişiminin teknik dispatch yoludur." : "This channel layer does not create the campaign or journey decision. It is the technical dispatch path for defined SMS communication.")
+            </p>
+            <p class="mt-3">
+                @(tr ? "Gönderim isteğinin operator gateway'e aktarılması müşterinin cihazında anında veya kesin teslimat garantisi değildir." : "Passing a delivery request into operator-gateway context does not guarantee immediate or definitive delivery to the customer's device.")
+            </p>
+
+            <div class="sms-callout">
+                @if (tr)
+                {
+                    <p class="mb-1"><strong>Campaign / Journey:</strong> aksiyonu tanımlar.</p>
+                    <p class="mb-1"><strong>Consent controls:</strong> gönderim uygunluğunu değerlendirir.</p>
+                    <p class="mb-1"><strong>SMS channel:</strong> iletişimi operator-gateway dispatch sürecine taşır.</p>
+                    <p class="mb-0"><strong>Delivery outcome:</strong> gönderim sonrasında oluşur.</p>
+                }
+                else
+                {
+                    <p class="mb-1"><strong>Campaign / Journey:</strong> defines the action.</p>
+                    <p class="mb-1"><strong>Consent controls:</strong> evaluate delivery eligibility.</p>
+                    <p class="mb-1"><strong>SMS channel:</strong> moves communication into operator-gateway dispatch.</p>
+                    <p class="mb-0"><strong>Delivery outcome:</strong> occurs after execution.</p>
+                }
+            </div>
+
+            <div class="p-3 bg-white rounded border border-light-subtle mt-3">
+                @if (tr)
+                {
+                    <p class="mb-0">Dispatch, sonuç garantisi değildir.</p>
+                }
+                else
+                {
+                    <p class="mb-0">Dispatch is not an outcome guarantee.</p>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 11 DELIVERY OUTCOME & MEASUREMENT ───────────────────────── *@
+<section class="pika-sol-section">
+    <div class="container">
+        <div class="max-w-800">
+            <span class="pika-sol-eyebrow">@(tr ? "GÖNDERİMDEN ÖLÇÜME" : "FROM DELIVERY TO MEASUREMENT")</span>
+            <h2 class="pika-sol-section-title">@(tr ? "SMS aksiyonundan sonra, mevcut teslimat sonucunu ölçüm bağlamında değerlendirin." : "After SMS action, evaluate available delivery outcomes within measurement context.")</h2>
+            <p class="pika-sol-section-desc">
+                @(tr ? "SMS iletişimi gönderim isteğiyle bitmez. Kullanılabilir delivery outcome veya status bağlamı kampanya değerlendirmesinin parçası olabilir." : "SMS communication does not end with the delivery request. Available delivery-outcome or status context can become part of campaign evaluation.")
+            </p>
+            <p class="mt-3">
+                @(tr ? "Bu sonuç iletişimin teknik gönderim sürecinde ne olduğunu anlamaya yardımcı olur." : "That outcome helps explain what happened in the technical communication-delivery process.")
+            </p>
+            <p class="mt-3">
+                @(tr ? "Delivery sonucu müşterinin mesajı okuduğunu, aksiyon aldığını veya ticari dönüşüm oluşturduğunu tek başına kanıtlamaz." : "A delivery outcome does not by itself prove that the customer read the message, took action or produced a commercial conversion.")
+            </p>
+
+            <div class="sms-callout">
+                @if (tr)
+                {
+                    <p class="mb-1"><strong>SMS:</strong> kullanılabilir delivery sonuç bağlamını üretir.</p>
+                    <p class="mb-0"><strong>Analytics & Reporting:</strong> bu sonucu kampanya, kitle ve diğer ölçüm bağlamlarıyla birlikte değerlendirir.</p>
+                }
+                else
+                {
+                    <p class="mb-1"><strong>SMS:</strong> produces available delivery-outcome context.</p>
+                    <p class="mb-0"><strong>Analytics & Reporting:</strong> evaluates that outcome together with campaign, audience and other measurement context.</p>
+                }
+            </div>
+
+            <div class="p-3 bg-white rounded border border-light-subtle mt-3">
+                @if (tr)
+                {
+                    <p class="mb-1"><strong>Gönderim sonucu:</strong> ölçülebilir operasyonal bağlamdır.</p>
+                    <p class="mb-0"><strong>Müşteri davranışı:</strong> ayrı değerlendirme konusudur.</p>
+                }
+                else
+                {
+                    <p class="mb-1"><strong>Delivery outcome:</strong> is measurable operational context.</p>
+                    <p class="mb-0"><strong>Customer behavior:</strong> is a separate evaluation question.</p>
+                }
+            </div>
+
+            <div class="mt-4">
+                <a href="@(tr ? "/cozumler/analytics-reporting" : "/en/solutions/analytics-reporting")" class="btn pika-btn-outline">
+                    @(tr ? "Analytics & Reporting'i Keşfedin →" : "Explore Analytics & Reporting →")
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 12 WHAT SMS IS / IS NOT ─────────────────────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt">
+    <div class="container">
+        <div class="max-w-800">
+            <span class="pika-sol-eyebrow">@(tr ? "DOĞRU SINIRLAR" : "CLEAR BOUNDARIES")</span>
+            <h2 class="pika-sol-section-title">@(tr ? "SMS'i doğru yere koyun." : "Put SMS in the right place.")</h2>
+        </div>
+
+        <div class="pika-sol-card-grid mt-4">
+            <div class="pika-sol-card">
+                <h4>@(tr ? "SMS, Customer Intelligence değildir." : "SMS is not Customer Intelligence.")</h4>
+                <p>@(tr ? "Customer Intelligence müşteri davranışı ve değer bağlamını hesaplar. SMS bu bağlamdan doğan kontrollü iletişimin kanallarından biridir." : "Customer Intelligence calculates customer behavior and value context. SMS is one channel through which controlled communication based on that context can be executed.")</p>
+            </div>
+            <div class="pika-sol-card">
+                <h4>@(tr ? "SMS, Audience Manager değildir." : "SMS is not Audience Manager.")</h4>
+                <p>@(tr ? "Audience Manager gerçek hedef kitleyi açık kurallarla tanımlar. SMS hedef kitleyi kendi başına seçmez." : "Audience Manager defines the actual audience through explicit rules. SMS does not independently choose the audience.")</p>
+            </div>
+            <div class="pika-sol-card">
+                <h4>@(tr ? "SMS, Campaign Manager değildir." : "SMS is not Campaign Manager.")</h4>
+                <p>@(tr ? "Campaign Manager hedef kitle, içerik, kanal, zamanlama ve kontrollü gönderim bağlamını yönetir. SMS seçilen execution kanallarından biridir." : "Campaign Manager manages audience, content, channel, timing and controlled-delivery context. SMS is one selected execution channel.")</p>
+            </div>
+            <div class="pika-sol-card">
+                <h4>@(tr ? "SMS, Journey Manager değildir." : "SMS is not Journey Manager.")</h4>
+                <p>@(tr ? "Journey Manager koşul, sıra, bekleme ve aksiyon akışını yönetir. SMS journey içinde kullanılabilen bir kanal aksiyonudur." : "Journey Manager manages conditions, sequence, waits and action flow. SMS is a channel action that can be used inside a journey.")</p>
+            </div>
+            <div class="pika-sol-card">
+                <h4>@(tr ? "SMS, Consent Management değildir." : "SMS is not Consent Management.")</h4>
+                <p>@(tr ? "Consent Management mevcut izin ve opt-out bağlamını değerlendirir. SMS uygun iletişimin execution kanalıdır." : "Consent Management evaluates available permission and opt-out context. SMS is the execution channel for eligible communication.")</p>
+            </div>
+            <div class="pika-sol-card">
+                <h4>@(tr ? "SMS, “anlık teslimat” garantisi değildir." : "SMS is not a guarantee of “instant delivery.”")</h4>
+                <p>@(tr ? "Operator-gateway dispatch müşterinin cihazına belirli bir sürede veya kesin biçimde teslimat garantisi vermez." : "Operator-gateway dispatch does not guarantee delivery to the customer's device within a particular time or with certainty.")</p>
+            </div>
+            <div class="pika-sol-card">
+                <h4>@(tr ? "SMS, yüksek görünürlük veya okuma garantisi değildir." : "SMS does not guarantee visibility or reading.")</h4>
+                <p>@(tr ? "C16 müşterinin SMS'i mutlaka göreceği, okuyacağı veya aksiyon alacağı yönünde performans iddiası yapmaz." : "C16 makes no performance claim that the customer will necessarily see, read or act on an SMS.")</p>
+            </div>
+            <div class="pika-sol-card">
+                <h4>@(tr ? "SMS, sonuç garantisi değildir." : "SMS is not an outcome guarantee.")</h4>
+                <p>@(tr ? "SMS gönderimi belirli bir dönüşüm, satış, gelir veya kampanya performansı garanti etmez." : "SMS delivery does not guarantee a particular conversion, sale, revenue or campaign-performance outcome.")</p>
+            </div>
+        </div>
+
+        <div class="max-w-800 mt-5">
+            <div class="p-4 bg-white rounded border border-light-subtle">
+                @if (tr)
+                {
+                    <h3 class="h5 mb-2 text-dark">SMS'in görevi:</h3>
+                    <p class="mb-2">Tanımlı hedef kitle ve aksiyon bağlamındaki kısa iletişimi, izin ve zaman kontrollerinden sonra SMS kanalı üzerinden kontrollü biçimde yürütmektir.</p>
+                    <p class="mb-0 text-muted">Platformun karar katmanlarının yerine geçmek değildir.</p>
+                }
+                else
+                {
+                    <h3 class="h5 mb-2 text-dark">The role of SMS is:</h3>
+                    <p class="mb-2">To execute concise communication for a defined audience and action context through the SMS channel after permission and time controls.</p>
+                    <p class="mb-0 text-muted">It is not: A replacement for Pika's decision layers.</p>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 13 FAQ ──────────────────────────────────────────────────── *@
+<section class="pika-sol-section" id="faq">
+    <div class="container">
+        <div class="max-w-800">
+            <h2 class="pika-sol-section-title">@(tr ? "Sıkça Sorulan Sorular" : "Frequently Asked Questions")</h2>
+
+            <div class="mt-4">
+                @if (tr)
+                {
+                    <details class="sms-faq-details">
+                        <summary class="sms-faq-summary">
+                            <span>Pika SMS nedir?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="sms-faq-body">
+                            Pika SMS, kısa ve zaman hassasiyetli metin iletişiminin Campaign Manager veya Journey Manager içindeki kontrollü aksiyonlarda kullanılabildiği doğrulanmış Pika iletişim kanallarından biridir.
+                        </div>
+                    </details>
+
+                    <details class="sms-faq-details">
+                        <summary class="sms-faq-summary">
+                            <span>Pika SMS hedef kitleyi otomatik olarak seçer mi?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="sms-faq-body">
+                            Hayır. Gerçek hedef kitle Audience Manager'da müşteri verisi ve açık kurallarla tanımlanır. SMS bu tanımlı audience bağlamını kullanan communication execution kanalıdır.
+                        </div>
+                    </details>
+
+                    <details class="sms-faq-details">
+                        <summary class="sms-faq-summary">
+                            <span>SMS Campaign Manager ve Journey Manager ile nasıl çalışır?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="sms-faq-body">
+                            Campaign Manager tanımlı kampanyanın kontrollü gönderim bağlamını, Journey Manager ise çok adımlı akışı yönetir. SMS her iki ürün bağlamında kullanılabilecek doğrulanmış iletişim kanallarından biridir.
+                        </div>
+                    </details>
+
+                    <details class="sms-faq-details">
+                        <summary class="sms-faq-summary">
+                            <span>Pika SMS gönderiminden önce IYS kontrolü yapar mı?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="sms-faq-body">
+                            İlgili ticari SMS iletişiminde gönderim öncesi IYS durum kontrolü Pika'nın dokümante edilmiş gönderim uygunluğu kontrollerinden biridir. Mevcut IYS sonucu iletişimin uygulanabilirliğinin değerlendirilmesinde kullanılabilir.
+                        </div>
+                    </details>
+
+                    <details class="sms-faq-details">
+                        <summary class="sms-faq-summary">
+                            <span>SMS iletişiminde opt-out ve gönderim zamanı kontrolü var mı?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="sms-faq-body">
+                            Evet. Mevcut opt-out durumu suppression kontrolünün parçasıdır ve dokümante edilmiş commercial-message quiet-hours mekanizması uygulanabilir iletişim zamanı kısıtlarının gönderim sürecinde değerlendirilmesine yardımcı olur.
+                        </div>
+                    </details>
+
+                    <details class="sms-faq-details">
+                        <summary class="sms-faq-summary">
+                            <span>Pika SMS anında veya kesin teslimat garantisi verir mi?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="sms-faq-body">
+                            Hayır. SMS'in operator-gateway dispatch sürecine aktarılması müşterinin cihazına belirli bir sürede veya kesin biçimde teslim edileceği anlamına gelmez.
+                        </div>
+                    </details>
+
+                    <details class="sms-faq-details">
+                        <summary class="sms-faq-summary">
+                            <span>SMS için hangi sonuçlar ölçülebilir?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="sms-faq-body">
+                            Kullanılabilir SMS delivery outcome veya status bağlamı kampanya değerlendirmesinde kullanılabilir. Analytics & Reporting bu sonucu ilgili kampanya, audience ve diğer ölçüm bağlamlarıyla birlikte değerlendirir.
+                        </div>
+                    </details>
+
+                    <details class="sms-faq-details">
+                        <summary class="sms-faq-summary">
+                            <span>SMS gönderimi müşterinin mesajı okuyacağını veya dönüşüm sağlayacağını garanti eder mi?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="sms-faq-body">
+                            Hayır. Delivery sonucu müşterinin mesajı okuduğunu, aksiyon aldığını, satın alma yaptığını veya belirli bir ticari dönüşüm oluşturduğunu tek başına kanıtlamaz ve garanti etmez.
+                        </div>
+                    </details>
+                }
+                else
+                {
+                    <details class="sms-faq-details">
+                        <summary class="sms-faq-summary">
+                            <span>What is Pika SMS?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="sms-faq-body">
+                            Pika SMS is one of Pika's confirmed communication channels for using concise, time-sensitive text communication within controlled actions managed through Campaign Manager or Journey Manager.
+                        </div>
+                    </details>
+
+                    <details class="sms-faq-details">
+                        <summary class="sms-faq-summary">
+                            <span>Does Pika SMS automatically choose the audience?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="sms-faq-body">
+                            No. The actual audience is defined in Audience Manager through customer data and explicit rules. SMS is the communication-execution channel that uses that defined audience context.
+                        </div>
+                    </details>
+
+                    <details class="sms-faq-details">
+                        <summary class="sms-faq-summary">
+                            <span>How does SMS work with Campaign Manager and Journey Manager?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="sms-faq-body">
+                            Campaign Manager manages controlled delivery for a defined campaign, while Journey Manager manages multi-step flow. SMS is a confirmed communication channel that can be used within both product contexts.
+                        </div>
+                    </details>
+
+                    <details class="sms-faq-details">
+                        <summary class="sms-faq-summary">
+                            <span>Does Pika check IYS status before SMS delivery?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="sms-faq-body">
+                            For relevant commercial SMS communication, a pre-dispatch IYS status check is one of Pika's documented delivery-eligibility controls. Available IYS status can participate in evaluating whether communication is eligible.
+                        </div>
+                    </details>
+
+                    <details class="sms-faq-details">
+                        <summary class="sms-faq-summary">
+                            <span>Does SMS communication include opt-out and communication-time controls?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="sms-faq-body">
+                            Yes. Available opt-out state forms part of suppression control, and the documented commercial-message quiet-hours mechanism helps applicable communication-time restrictions participate in the delivery process.
+                        </div>
+                    </details>
+
+                    <details class="sms-faq-details">
+                        <summary class="sms-faq-summary">
+                            <span>Does Pika SMS guarantee instant or definitive delivery?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="sms-faq-body">
+                            No. Moving SMS communication into operator-gateway dispatch does not mean it will be delivered to the customer's device within a particular time or with certainty.
+                        </div>
+                    </details>
+
+                    <details class="sms-faq-details">
+                        <summary class="sms-faq-summary">
+                            <span>Which SMS outcomes can be measured?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="sms-faq-body">
+                            Available SMS delivery-outcome or status context can participate in campaign evaluation. Analytics & Reporting evaluates that outcome together with relevant campaign, audience and other measurement context.
+                        </div>
+                    </details>
+
+                    <details class="sms-faq-details">
+                        <summary class="sms-faq-summary">
+                            <span>Does SMS delivery guarantee that the customer reads the message or converts?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="sms-faq-body">
+                            No. A delivery outcome does not by itself prove or guarantee that the customer read the message, took action, made a purchase or produced a particular commercial conversion.
+                        </div>
+                    </details>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 14 FINAL CTA ─────────────────────────────────────────────── *@
 <section class="pika-sol-cta-section">
     <div class="container" data-aos="fade-up">
-        <h2>@(tr ? "SMS kampanyalarını daha hızlı, daha hedefli ve daha ölçülebilir yönetin" : "Manage SMS campaigns faster, more targeted, and more measurable")</h2>
-        <p>@(tr ? "Pika SMS Campaigns ile görünürlüğü yüksek kampanyaları tek panelden yönetin." : "Manage high-visibility campaigns from a single panel with Pika SMS Campaigns.")</p>
+        <span class="pika-sol-eyebrow" style="color:var(--pika-primary);display:block;margin-bottom:12px;font-weight:700">
+            @(tr ? "SMS KANALI" : "SMS CHANNEL")
+        </span>
+        <h2>
+            @if (tr)
+            {
+                <text>Hedef kitleyi tanımlayın.<br />İzin ve zaman kontrollerini uygulayın.<br />SMS iletişimini kontrollü biçimde yürütün.</text>
+            }
+            else
+            {
+                <text>Define the audience.<br />Apply permission and time controls.<br />Execute SMS communication under control.</text>
+            }
+        </h2>
+        <p class="mx-auto" style="max-width:720px">
+            @(tr ? "Pika SMS'in Audience Manager hedef kitle bağlamını, Campaign Manager veya Journey Manager aksiyonlarını ve Consent Management kontrollerini SMS iletişim kanalında nasıl bir araya getirdiğini birlikte inceleyelim." : "Let's explore how Pika SMS brings Audience Manager context, Campaign Manager or Journey Manager actions and Consent Management controls together through the SMS communication channel.")
+        </p>
+        <p class="small fw-semibold mt-2 mb-4" style="color:#dce5d2">
+            @(tr ? "İhtiyacınıza ve kullanım kapsamınıza göre özel teklif." : "Pricing is tailored to your requirements and scope of use.")
+        </p>
         <div class="pika-sol-cta-actions">
-            <button type="button" class="btn pika-btn-primary px-4 py-2" data-bs-toggle="modal" data-bs-target="#demoModal">@(tr ? "Demo Talep Et" : "Request a Demo") <i class="ri-arrow-right-up-line"></i></button>
-            <a href="@Url.Action("Contact", "Home")" class="btn pika-btn-ghost px-4 py-2">@(tr ? "Bizimle İletişime Geçin" : "Contact Us")</a>
+            <button type="button" class="btn pika-btn-primary px-4 py-2" data-bs-toggle="modal" data-bs-target="#demoModal">
+                @(tr ? "Demo Talep Et" : "Request a Demo") <i class="ri-arrow-right-up-line" aria-hidden="true"></i>
+            </button>
+            <a href="@(tr ? "/iletisim" : "/en/contact")" class="btn pika-btn-ghost px-4 py-2">
+                @(tr ? "Teklif Al" : "Request a Quote")
+            </a>
         </div>
     </div>
 </section>

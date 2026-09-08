@@ -173,12 +173,12 @@ public static class SeoHelper
         ["Solutions.SmsCampaigns"] = new(
             "/kanallar/sms",
             "/en/channels/sms",
-            "SMS Campaigns | SMS Kampanya Yönetimi",
-            "SMS Campaigns | SMS Campaign Management",
-            "Kritik duyurular ve anlık fırsatlar için zamanlanmış ve kişiselleştirilmiş SMS gönderimleri yapın.",
-            "Deliver targeted, scheduled, and personalized SMS messages across operator networks.",
-            "SMS Campaigns",
-            "SMS Campaigns"),
+            "SMS Marketing | İYS Kontrollü Kampanya ve SMS Gönderimi | Pika",
+            "SMS Marketing | Controlled Campaigns & SMS Delivery | Pika",
+            "Pika SMS; tanımlı hedef kitleye yönelik kısa ve zaman hassasiyetli iletişimleri Campaign Manager veya Journey Manager üzerinden, gönderim öncesi IYS ve opt-out kontrolleriyle kontrollü biçimde yürütmenize yardımcı olur.",
+            "Pika SMS helps execute concise, time-sensitive communication for defined audiences through Campaign Manager or Journey Manager with pre-dispatch IYS and opt-out controls.",
+            "SMS",
+            "SMS"),
 
         ["Solutions.WhatsAppMessaging"] = new(
             "/kanallar/whatsapp",
