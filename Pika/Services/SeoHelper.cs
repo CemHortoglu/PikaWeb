@@ -72,10 +72,10 @@ public static class SeoHelper
         ["Home.Career"] = new(
             "/kariyer",
             "/en/careers",
-            "Kariyer",
-            "Careers",
-            "Pika ailesine katılın. Yenilikçi omnichannel pazarlama teknolojileri geliştiren tutkulu ekibimizde açık pozisyonları inceleyin.",
-            "Join the Pika team. Explore open positions in our passionate team building next-generation omnichannel marketing technology.",
+            "Kariyer | Pika'da Genel Başvuru",
+            "Careers at Pika | General Applications",
+            "Pika'nın müşteri zekâsı ve omnichannel pazarlama ürün odağını inceleyin; kariyer için genel başvurunuzu CV veya LinkedIn bilgilerinizle paylaşın.",
+            "Explore Pika's Customer Intelligence & Omnichannel Marketing product context and submit a general career application with your CV or LinkedIn details.",
             "Kariyer",
             "Careers"),
 
