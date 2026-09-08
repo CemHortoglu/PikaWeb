@@ -21,7 +21,7 @@
             </nav>
             <div class="inner-eyebrow">
                 <span></span>
-                @(isTr ? "KULLANIM SENARYOSU — ÇAPRAZ SATIŞ" : "USE CASE — CROSS-SELL")
+                @(isTr ? "KULLANIM SENARYOSU" : "USE CASE")
             </div>
             <h1>
                 @(isTr
@@ -283,8 +283,8 @@
             <span class="pika-eyebrow">@(isTr ? "İLGİLİ PIKA KATMANLARI" : "RELATED PIKA LAYERS")</span>
             <h2 class="pika-h2 mx-auto" style="max-width:820px;">
                 @(isTr
-                    ? "Çapraz satış fırsatı tek bir modülün işi değildir."
-                    : "A cross-sell opportunity is not the work of a single module.")
+                    ? "İlgili Pika Katmanları ve Kullanım Senaryoları"
+                    : "Related Pika Layers & Use Cases")
             </h2>
         </div>
 
@@ -315,35 +315,17 @@
         <div class="row g-4 justify-content-center">
             <div class="col-md-4">
                 <a href="@(isTr ? "/kullanim-senaryolari/tekrar-satin-alma" : "/en/use-cases/repeat-purchase")" class="growth-uc-card-link">
-                    <span class="badge mb-2" style="background:#edf4e2;color:#64863e;border:1px solid #dce8cb;">@(isTr ? "KULLANIM SENARYOSU" : "USE CASE")</span>
-                    <h3 class="h5 fw-bold mb-2">@(isTr ? "Tekrar Satın Alma" : "Repeat Purchase")</h3>
-                    <p class="text-secondary small mb-0">
-                        @(isTr
-                            ? "Müşteri işlem geçmişi ve ürün tüketim ritmini değerlendirerek tekrar satın alma fırsatlarını görünür hale getirin."
-                            : "Evaluate customer transaction history and product consumption rhythm to surface repeat-purchase opportunities.")
-                    </p>
+                    <h3 class="h5 fw-bold mb-0">@(isTr ? "Tekrar Satın Alma" : "Repeat Purchase")</h3>
                 </a>
             </div>
             <div class="col-md-4">
                 <a href="@(isTr ? "/kullanim-senaryolari/geri-kazanim" : "/en/use-cases/win-back")" class="growth-uc-card-link">
-                    <span class="badge mb-2" style="background:#edf4e2;color:#64863e;border:1px solid #dce8cb;">@(isTr ? "KULLANIM SENARYOSU" : "USE CASE")</span>
-                    <h3 class="h5 fw-bold mb-2">@(isTr ? "Geri Kazanım" : "Win-back")</h3>
-                    <p class="text-secondary small mb-0">
-                        @(isTr
-                            ? "Müşterinin hareketsizlik süresini kendi geçmiş satın alma ritmiyle karşılaştırarak pasifleşme fırsatlarını görünür kılın."
-                            : "Compare inactivity with individual purchase rhythm to surface dormancy and win-back opportunities.")
-                    </p>
+                    <h3 class="h5 fw-bold mb-0">@(isTr ? "Geri Kazanım" : "Win-back")</h3>
                 </a>
             </div>
             <div class="col-md-4">
                 <a href="@(isTr ? "/kullanim-senaryolari" : "/en/use-cases")" class="growth-uc-card-link">
-                    <span class="badge mb-2" style="background:#edf4e2;color:#64863e;border:1px solid #dce8cb;">@(isTr ? "TÜM SENARYOLAR" : "ALL USE CASES")</span>
-                    <h3 class="h5 fw-bold mb-2">@(isTr ? "Tüm Kullanım Senaryoları" : "All Use Cases")</h3>
-                    <p class="text-secondary small mb-0">
-                        @(isTr
-                            ? "Müşteri zekâsı ve kontrollü omnichannel pazarlama için tüm kullanım senaryolarını keşfedin."
-                            : "Explore all use cases for customer intelligence and controlled omnichannel marketing.")
-                    </p>
+                    <h3 class="h5 fw-bold mb-0">@(isTr ? "Tüm Kullanım Senaryoları" : "All Use Cases")</h3>
                 </a>
             </div>
         </div>
@@ -354,8 +336,7 @@
 <section class="pika-section" style="background:#fff;">
     <div class="container">
         <div class="text-center mb-5">
-            <span class="pika-eyebrow">@(isTr ? "SIKÇA SORULAN SORULAR" : "FREQUENTLY ASKED QUESTIONS")</span>
-            <h2 class="pika-h2">@(isTr ? "Çapraz Satış Hakkında Sorular" : "Questions About Cross-sell")</h2>
+            <h2 class="pika-h2">@(isTr ? "Sıkça Sorulan Sorular" : "Frequently Asked Questions")</h2>
         </div>
 
         <div class="row justify-content-center">
