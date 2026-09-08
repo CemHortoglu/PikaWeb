@@ -1,22 +1,79 @@
 @{
-    var culture = (ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").ToLowerInvariant();
+    var culture = (ViewData["culture"] as string ?? ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").ToLowerInvariant();
     var tr = culture == "tr";
-    ViewData["Title"] = tr ? "Sıkça Sorulan Sorular | Pika Bilgi ve Soru Merkezi" : "FAQ | Frequently Asked Questions About Pika";
-    ViewData["MetaDescription"] = tr
-        ? "Pika müşteri zekâsı platformu, veri entegrasyonu, günün fırsatları, kampanya yönetimi, izin süreçleri ve yapay zekâ hakkında sıkça sorulan soruların yanıtları."
-        : "Answers to frequently asked questions about the Pika customer intelligence platform, data integrations, opportunities, campaigns, consent, and AI features.";
-    ViewData["CanonicalUrl"] = tr ? "https://pika.tr/kaynaklar/sss" : "https://pika.tr/en/resources/faq";
+    ViewData["BodyClass"] = "pika-solutions-page";
 }
 
 @section Styles {
-    <link href="~/css/faq.css" rel="stylesheet" />
+    <link href="~/css/faq.css" rel="stylesheet" asp-append-version="true" />
 }
 
-<!-- ═══════════════════════════ HERO ═══════════════════════════ -->
-@await Html.PartialAsync("_MarketingHero")
+<!-- ═══════════════════════════ 01 HERO ═══════════════════════════ -->
+<section class="inner-hero inner-hero--knowledge">
+    <div class="inner-atmosphere" aria-hidden="true"><span></span><span></span></div>
+    <div class="container inner-hero-grid">
+        <div class="inner-intro">
+            <nav class="inner-breadcrumb" aria-label="@(tr ? "Sayfa yolu" : "Breadcrumb")">
+                <a href="@(tr ? "/" : "/en/")">Pika</a>
+                <span>/</span>
+                <span>@(tr ? "Sıkça Sorulan Sorular" : "FAQ")</span>
+            </nav>
+            <div class="inner-eyebrow" aria-label="@(tr ? "Sıkça Sorulan Sorular" : "Frequently Asked Questions")">
+                <span></span>@(tr ? "Sıkça Sorulan Sorular" : "Frequently Asked Questions")
+            </div>
+            <span class="badge bg-light text-dark border px-2 py-1 mb-3 fs-6">Pika FAQ</span>
+            <h1>
+                @(tr
+                    ? "Pika'yı değerlendirirken temel soruların yanıtlarını tek yerde bulun."
+                    : "Find clear answers to the core questions that come up when evaluating Pika.")
+            </h1>
+            <p>
+                @(tr
+                    ? "Pika'nın veri, müşteri ve ürün zekâsı, fırsat, audience, campaign, journey, iletişim kanalları, izin, güvenlik, AI ve ticari değerlendirme yaklaşımı hakkında temel soruları açık ürün sınırlarıyla yanıtlıyoruz."
+                    : "Find clear answers about Pika's data, customer and product intelligence, opportunities, audiences, campaigns, journeys, communication channels, consent, security, AI and commercial-evaluation approach.")
+            </p>
+            <p class="text-muted small">
+                @(tr
+                    ? "Bu sayfa kamuya açık ürün değerlendirme sorularını yanıtlar; teknik kullanım adımları, operasyon dokümantasyonu veya hukuki danışmanlığın yerine geçmez."
+                    : "This page answers public product-evaluation questions; it does not replace technical usage documentation, operational documentation or legal advice.")
+            </p>
+            <div class="inner-actions">
+                <a class="inner-primary" href="@(tr ? "/demo-talebi" : "/en/demo-request")">
+                    @(tr ? "Demo Talep Et ↗" : "Request a Demo ↗")
+                </a>
+                <a class="inner-secondary" href="@(tr ? "/pika" : "/en/pika")">
+                    @(tr ? "Pika'yı Keşfedin →" : "Explore Pika →")
+                </a>
+                <a class="inner-hero-anchor" href="#inner-content" aria-label="@(tr ? "İçeriğe atla" : "Skip to content")">
+                    <i class="ri-arrow-down-line" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="inner-scene" aria-hidden="true">
+            <div class="inner-scene-orbit"></div>
+            <div class="inner-scene-window">
+                <div class="inner-window-bar">
+                    <strong>pika<span>✳</span></strong>
+                    <span>Pika FAQ</span>
+                    <small>@(tr ? "Örnek görünüm" : "Illustration")</small>
+                </div>
+                <div class="inner-knowledge">
+                    <span>PIKA / @(tr ? "SORU & CEVAP" : "Q & A")</span>
+                    <h3>@(tr ? "8 Kategori, 32 Yanıt" : "8 Categories, 32 Answers")</h3>
+                    <div><i class="ri-information-line" aria-hidden="true"></i>@(tr ? "Pika Hakkında" : "About Pika")<b>↗</b></div>
+                    <div><i class="ri-database-2-line" aria-hidden="true"></i>@(tr ? "Veri & Entegrasyon" : "Data & Integrations")<b>↗</b></div>
+                    <div><i class="ri-brain-line" aria-hidden="true"></i>@(tr ? "Intelligence & Fırsatlar" : "Intelligence & Opportunities")<b>↗</b></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="inner-content" class="inner-anchor"></div>
 
 <!-- ═══════════════════════════ FAQ BODY ═══════════════════════════ -->
-<section class="faq-section" itemscope itemtype="https://schema.org/FAQPage">
+<section class="faq-section">
     <div class="container">
         <div class="row g-5">
             <!-- Navigation Sidebar -->
@@ -25,19 +82,25 @@
                     <h6 class="faq-nav-title">@(tr ? "KATEGORİLER" : "CATEGORIES")</h6>
                     <nav class="nav flex-column faq-nav-links">
                         <a class="nav-link active" href="#cat-about"><i class="ri-information-line"></i> @(tr ? "Pika Hakkında" : "About Pika")</a>
-                        <a class="nav-link" href="#cat-data"><i class="ri-database-2-line"></i> @(tr ? "Veri & Kurulum" : "Data & Setup")</a>
-                        <a class="nav-link" href="#cat-intel"><i class="ri-brain-line"></i> @(tr ? "Müşteri & Ürün Zekâsı" : "Intelligence")</a>
-                        <a class="nav-link" href="#cat-opps"><i class="ri-focus-3-line"></i> @(tr ? "Günün Fırsatları" : "Opportunities")</a>
-                        <a class="nav-link" href="#cat-campaign"><i class="ri-route-line"></i> @(tr ? "Campaign & Journey" : "Campaign & Journey")</a>
-                        <a class="nav-link" href="#cat-ai"><i class="ri-sparkling-2-line"></i> @(tr ? "Yapay Zekâ (AI)" : "AI Assistant")</a>
-                        <a class="nav-link" href="#cat-trust"><i class="ri-shield-check-line"></i> @(tr ? "İzin & Güvenlik" : "Consent & Security")</a>
-                        <a class="nav-link" href="#cat-start"><i class="ri-rocket-line"></i> @(tr ? "Başlangıç" : "Getting Started")</a>
+                        <a class="nav-link" href="#cat-data"><i class="ri-database-2-line"></i> @(tr ? "Veri & Entegrasyon" : "Data & Integrations")</a>
+                        <a class="nav-link" href="#cat-intel"><i class="ri-brain-line"></i> @(tr ? "Intelligence & Fırsatlar" : "Intelligence & Opportunities")</a>
+                        <a class="nav-link" href="#cat-audience"><i class="ri-route-line"></i> @(tr ? "Audience, İçerik & Aksiyon" : "Audience, Content & Action")</a>
+                        <a class="nav-link" href="#cat-channels"><i class="ri-mail-send-line"></i> @(tr ? "Kanallar & Ölçüm" : "Channels & Measurement")</a>
+                        <a class="nav-link" href="#cat-consent"><i class="ri-shield-check-line"></i> @(tr ? "İzin & Güvenlik" : "Consent & Security")</a>
+                        <a class="nav-link" href="#cat-ai"><i class="ri-sparkling-2-line"></i> @(tr ? "AI & İnsan Kontrolü" : "AI & Human Control")</a>
+                        <a class="nav-link" href="#cat-demo"><i class="ri-rocket-line"></i> @(tr ? "Demo & Ticari Değerlendirme" : "Demo & Commercial Evaluation")</a>
                     </nav>
 
                     <div class="faq-sidebar-box mt-4 p-3 rounded-3 bg-light border">
-                        <div class="small fw-bold text-dark mb-1">@(tr ? "Daha Fazla Detay mı Lazım?" : "Need Deeper Details?")</div>
-                        <p class="small text-muted mb-2">@(tr ? "Tüm kullanım kılavuzları ve teknik detaylar Wiki'de yer alır." : "Review complete user guides and APIs in the Wiki.")</p>
-                        <a href="/wiki/" class="small fw-bold text-success text-decoration-none">@(tr ? "Bilgi Bankası'nı Aç →" : "Open Knowledge Base →")</a>
+                        <div class="small fw-bold text-dark mb-1">
+                            @(tr ? "Sorunuz kullanım senaryonuza mı bağlı?" : "Does your question depend on your usage scenario?")
+                        </div>
+                        <p class="small text-muted mb-2">
+                            @(tr ? "Veri, entegrasyon ve ürün kapsamınızı gerçek kullanım bağlamınız üzerinden birlikte değerlendirebiliriz." : "We can evaluate your data, integration and product scope together within your actual usage context.")
+                        </p>
+                        <a href="@(tr ? "/demo-talebi" : "/en/demo-request")" class="small fw-bold text-success text-decoration-none">
+                            @(tr ? "Demo Talep Et →" : "Request a Demo →")
+                        </a>
                     </div>
                 </div>
             </div>
@@ -45,7 +108,7 @@
             <!-- Content Area -->
             <div class="col-lg-9">
 
-                <!-- 1. PİKA HAKKINDA -->
+                <!-- 1. PİKA HAKKINDA / ABOUT PIKA -->
                 <div id="cat-about" class="faq-group mb-5">
                     <div class="faq-group-header">
                         <div class="faq-group-badge"><i class="ri-information-line"></i></div>
@@ -54,314 +117,737 @@
 
                     <div class="accordion faq-accordion" id="accAbout">
                         <!-- Q1 -->
-                        <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                            <h3 class="accordion-header" itemprop="name">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#qa1">
-                                    @(tr ? "Pika tam olarak nedir?" : "What exactly is Pika?")
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q1" aria-expanded="false" aria-controls="q1">
+                                    @(tr ? "Pika nedir?" : "What is Pika?")
                                 </button>
                             </h3>
-                            <div id="qa1" class="accordion-collapse collapse" data-bs-parent="#accAbout" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                                <div class="accordion-body" itemprop="text">
-                                    <p>@(tr 
-                                        ? "Pika; müşteri, ürün ve satış verilerini anlamlandırarak hangi müşteride hangi fırsatın oluştuğunu tespit eden ve bu fırsatı SMS, WhatsApp, E-posta ve Push kanallarında kontrollü kampanyalara dönüştüren bir müşteri zekâsı ve pazarlama platformudur." 
-                                        : "Pika is a customer intelligence and omnichannel marketing platform that analyzes customer, product, and sales data to reveal actionable opportunities and drive controlled multi-channel campaigns.")</p>
-                                    <a href="@(tr ? "/pika" : "/en/pika")" class="faq-inline-link">@(tr ? "Detaylı Pika Açıklamasını İnceleyin →" : "Read Full Pika Overview →")</a>
+                            <div id="q1" class="accordion-collapse collapse" data-bs-parent="#accAbout">
+                                <div class="accordion-body">
+                                    <p>
+                                        @(tr
+                                            ? "Pika; müşteri, ürün ve satış verisini birlikte anlamlandırarak işletmenin bugün hangi müşteride hangi ticari fırsatın oluştuğunu görmesini ve bu fırsatı kontrollü, ölçülebilir çok kanallı aksiyona dönüştürmesini sağlayan Müşteri Zekâsı ve Omnichannel Pazarlama Platformudur."
+                                            : "Pika is a Customer Intelligence & Omnichannel Marketing Platform that brings customer, product and sales data together to identify commercial opportunities and turn them into controlled, measurable omnichannel actions.")
+                                    </p>
+                                    <a href="@(tr ? "/pika" : "/en/pika")" class="faq-inline-link">
+                                        @(tr ? "Pika'yı Keşfedin →" : "Explore Pika →")
+                                    </a>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Q2 -->
-                        <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                            <h3 class="accordion-header" itemprop="name">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#qa2">
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2" aria-expanded="false" aria-controls="q2">
                                     @(tr ? "Pika bir CRM midir?" : "Is Pika a CRM?")
                                 </button>
                             </h3>
-                            <div id="qa2" class="accordion-collapse collapse" data-bs-parent="#accAbout" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                                <div class="accordion-body" itemprop="text">
-                                    <p>@(tr 
-                                        ? "Hayır, Pika geleneksel bir satış/iletişim takip CRM'i değildir. Pika, mevcut CRM veya e-ticaret verilerinizi alarak müşterinin satın alma ritmini ve ürün rollerini anlamlandıran, fırsat üreten ve bunu pazarlama aksiyonlarına bağlayan zekâ katmanıdır." 
-                                        : "No, Pika is not a traditional sales CRM. Pika acts as the intelligence layer on top of your existing CRM or e-commerce database to understand purchase rhythms, detect opportunities, and automate marketing actions.")</p>
+                            <div id="q2" class="accordion-collapse collapse" data-bs-parent="#accAbout">
+                                <div class="accordion-body">
+                                    <p>
+                                        @(tr
+                                            ? "Pika geleneksel satış fırsatı, müşteri görüşmesi veya satış temsilcisi aktivitesi takip CRM'i olarak konumlandırılmaz. Mevcut müşteri, ürün ve işlem verisini intelligence, fırsat, audience ve kontrollü pazarlama aksiyonu bağlamında kullanır."
+                                            : "Pika is not positioned as a traditional CRM for tracking sales opportunities, customer conversations or sales-representative activity. It uses existing customer, product and transaction data within intelligence, opportunity, audience and controlled marketing-action context.")
+                                    </p>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Q3 -->
-                        <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                            <h3 class="accordion-header" itemprop="name">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#qa3">
-                                    @(tr ? "Pika yalnızca bir kampanya gönderim aracı mıdır?" : "Is Pika only a campaign delivery tool?")
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q3" aria-expanded="false" aria-controls="q3">
+                                    @(tr ? "Pika yalnızca mesaj veya kampanya gönderim aracı mıdır?" : "Is Pika only a messaging or campaign-delivery tool?")
                                 </button>
                             </h3>
-                            <div id="qa3" class="accordion-collapse collapse" data-bs-parent="#accAbout" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                                <div class="accordion-body" itemprop="text">
-                                    <p>@(tr 
-                                        ? "Hayır. Statik gönderim araçları yalnızca yüklediğiniz listelere mesaj iletir. Pika ise 'Kime, ne zaman ve neden ulaşmalıyım?' sorusunu verinizden yanıtlar; fırsatı bulur, hedef kitleyi dinamik seçer ve sonucu ölçer." 
-                                        : "No. While sending tools simply blast static lists, Pika answers 'Who should we reach, when, and with what offer?' by analyzing transaction data before routing messages through integrated channels.")</p>
+                            <div id="q3" class="accordion-collapse collapse" data-bs-parent="#accAbout">
+                                <div class="accordion-body">
+                                    <p>
+                                        @(tr
+                                            ? "Hayır. Email, SMS ve WhatsApp Pika'nın iletişim execution kanallarıdır. Platformun başlangıç noktası müşteri ve ürün verisini anlamlandırmak, ticari fırsat ve karar bağlamı oluşturmak ve ardından kontrollü aksiyona geçmektir."
+                                            : "No. Email, SMS and WhatsApp are Pika's communication execution channels. The platform begins with understanding customer and product data, creating commercial opportunity and decision context and then moving into controlled action.")
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Q4 -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q4" aria-expanded="false" aria-controls="q4">
+                                    @(tr ? "Pika hangi işletmeler için anlamlıdır?" : "What kinds of organizations can evaluate Pika?")
+                                </button>
+                            </h3>
+                            <div id="q4" class="accordion-collapse collapse" data-bs-parent="#accAbout">
+                                <div class="accordion-body">
+                                    <p>
+                                        @(tr
+                                            ? "Pika; müşteri, ürün ve işlem verisini pazarlama kararlarıyla ilişkilendirmek, ticari fırsatları görünür hale getirmek ve bu bağlamı kontrollü çok kanallı aksiyona taşımak isteyen işletmeler için değerlendirilir. C21 belirli şirket büyüklüğü, sektör veya müşteri sayısı şartı iddia etmez."
+                                            : "Pika can be evaluated by organizations that want to connect customer, product and transaction data to marketing decisions, make commercial opportunities visible and turn that context into controlled omnichannel action. C21 does not claim a required company size, industry or customer count.")
+                                    </p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- 2. VERİ VE KURULUM -->
+                <!-- 2. VERİ & ENTEGRASYON / DATA & INTEGRATIONS -->
                 <div id="cat-data" class="faq-group mb-5">
                     <div class="faq-group-header">
                         <div class="faq-group-badge"><i class="ri-database-2-line"></i></div>
-                        <h2 class="faq-group-title">@(tr ? "Veri ve Kurulum" : "Data & Setup")</h2>
+                        <h2 class="faq-group-title">@(tr ? "Veri & Entegrasyon" : "Data & Integrations")</h2>
                     </div>
 
                     <div class="accordion faq-accordion" id="accData">
-                        <!-- Q4 -->
-                        <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                            <h3 class="accordion-header" itemprop="name">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#qd1">
-                                    @(tr ? "Pika hangi verilere ihtiyaç duyar?" : "What data does Pika require?")
-                                </button>
-                            </h3>
-                            <div id="qd1" class="accordion-collapse collapse" data-bs-parent="#accData" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                                <div class="accordion-body" itemprop="text">
-                                    <p>@(tr 
-                                        ? "Pika temel olarak üç veri setine ihtiyaç duyar: Müşteri bilgileri (iletişim ve izin durumu), Ürün kataloğu (kategori ve ürün tanımları) ve Satış/İşlem hareketleri (kim, ne zaman, ne aldı)." 
-                                        : "Pika relies on three primary data entities: Customer records (contact details and consent status), Product catalog (SKUs, categories, attributes), and Transactions (order timestamp, items purchased, value).")</p>
-                                    <a href="/wiki/veri-yukleme-ve-import" class="faq-inline-link">@(tr ? "Veri Yükleme Kılavuzunu İnceleyin →" : "View Data Ingestion Guide →")</a>
-                                </div>
-                            </div>
-                        </div>
-
                         <!-- Q5 -->
-                        <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                            <h3 class="accordion-header" itemprop="name">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#qd2">
-                                    @(tr ? "Excel veya CSV dosyaları ile başlayabilir miyim?" : "Can I start with Excel or CSV files?")
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q5" aria-expanded="false" aria-controls="q5">
+                                    @(tr ? "Pika hangi temel veri bağlamıyla çalışır?" : "What core data context does Pika use?")
                                 </button>
                             </h3>
-                            <div id="qd2" class="accordion-collapse collapse" data-bs-parent="#accData" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                                <div class="accordion-body" itemprop="text">
-                                    <p>@(tr 
-                                        ? "Evet. Karmaşık API entegrasyonlarına gerek kalmadan müşteri, ürün ve sipariş verilerinizi Excel veya CSV formatında yükleyebilir ve zekâ analizlerini hemen başlatabilirsiniz." 
-                                        : "Yes. You can import customer, product, and transaction data directly using Excel or CSV files to generate customer intelligence insights immediately without requiring an API integration.")</p>
+                            <div id="q5" class="accordion-collapse collapse" data-bs-parent="#accData">
+                                <div class="accordion-body">
+                                    <p>
+                                        @(tr
+                                            ? "Pika'nın çekirdek veri bağlamı müşteri, ürün ve işlem verisidir. Kullanım senaryosuna göre gerekli alanların ve veri kapsamının ayrıntısı entegrasyon değerlendirmesinde netleştirilir."
+                                            : "Pika's core data context consists of customer, product and transaction data. The exact fields and data scope required depend on the usage scenario and are clarified during integration evaluation.")
+                                    </p>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Q6 -->
-                        <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                            <h3 class="accordion-header" itemprop="name">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#qd3">
-                                    @(tr ? "Ingestion API ne zaman gereklidir?" : "When is the Ingestion API needed?")
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q6" aria-expanded="false" aria-controls="q6">
+                                    @(tr ? "Excel veya CSV ile Pika'ya veri aktarılabilir mi?" : "Can data be imported into Pika with Excel or CSV?")
                                 </button>
                             </h3>
-                            <div id="qd3" class="accordion-collapse collapse" data-bs-parent="#accData" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                                <div class="accordion-body" itemprop="text">
-                                    <p>@(tr 
-                                        ? "Siparişlerin ve müşteri hareketlerinin Pika'ya gerçek zamanlı aktarılması ve anlık tetiklenen Journey akışlarının çalışması istendiğinde Ingestion API kullanılır." 
-                                        : "The Ingestion API is recommended for real-time order synchronization and immediate event-driven journey triggers.")</p>
-                                    <a href="/wiki/ingestion-api" class="faq-inline-link">@(tr ? "Ingestion API Teknik Rehberi →" : "Ingestion API Reference →")</a>
+                            <div id="q6" class="accordion-collapse collapse" data-bs-parent="#accData">
+                                <div class="accordion-body">
+                                    <p>
+                                        @(tr
+                                            ? "Evet. Excel ve CSV, Pika'nın doğrulanmış veri giriş yolları arasındadır. Müşteri, ürün ve işlem verisi uygun dosya yapısıyla aktarılabilir."
+                                            : "Yes. Excel and CSV are among Pika's verified data-intake paths. Customer, product and transaction data can be imported using an appropriate file structure.")
+                                    </p>
+                                    <a href="@(tr ? "/entegrasyonlar" : "/en/integrations")" class="faq-inline-link">
+                                        @(tr ? "Entegrasyonları Keşfedin →" : "Explore Integrations →")
+                                    </a>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
 
-                <!-- 3. MÜŞTERİ VE ÜRÜN ZEKÂSI -->
-                <div id="cat-intel" class="faq-group mb-5">
-                    <div class="faq-group-header">
-                        <div class="faq-group-badge"><i class="ri-brain-line"></i></div>
-                        <h2 class="faq-group-title">@(tr ? "Müşteri ve Ürün Zekâsı" : "Customer & Product Intelligence")</h2>
-                    </div>
-
-                    <div class="accordion faq-accordion" id="accIntel">
                         <!-- Q7 -->
-                        <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                            <h3 class="accordion-header" itemprop="name">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#qi1">
-                                    @(tr ? "Customer Intelligence neyi hesaplar?" : "What does Customer Intelligence calculate?")
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q7" aria-expanded="false" aria-controls="q7">
+                                    @(tr ? "Pika'nın REST Ingestion API'si var mı?" : "Does Pika provide a REST Ingestion API?")
                                 </button>
                             </h3>
-                            <div id="qi1" class="accordion-collapse collapse" data-bs-parent="#accIntel" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                                <div class="accordion-body" itemprop="text">
-                                    <p>@(tr 
-                                        ? "Müşterinin satın alma sıklığını, harcama değerini (LTV) ve son ziyaret aralıklarını (RFM) analiz eder. Müşterileri aktif, sadık, riskli ve uyuyan segmentlerine ayırır." 
-                                        : "Analyzes customer recency, frequency, monetary value (RFM), and lifetime spend trends to segment customers into active, loyal, at-risk, and churned groups.")</p>
-                                    <a href="@(tr ? "/platform/customer-intelligence" : "/en/platform/customer-intelligence")" class="faq-inline-link">Customer Intelligence →</a>
+                            <div id="q7" class="accordion-collapse collapse" data-bs-parent="#accData">
+                                <div class="accordion-body">
+                                    <p>
+                                        @(tr
+                                            ? "Evet. Pika'nın dokümante edilmiş REST Ingestion API'si programatik veri aktarımı için kullanılabilir. API erişiminde X-API-Key, tekrar eden request'lerin kontrolünde ise X-Idempotency-Key bağlamı bulunur."
+                                            : "Yes. Pika's documented REST Ingestion API can be used for programmatic data ingestion. API access includes X-API-Key context, while X-Idempotency-Key is used in the context of controlling repeated requests.")
+                                    </p>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Q8 -->
-                        <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                            <h3 class="accordion-header" itemprop="name">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#qi2">
-                                    @(tr ? "Product Intelligence ürün rollerini nasıl belirler?" : "How does Product Intelligence define product roles?")
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q8" aria-expanded="false" aria-controls="q8">
+                                    @(tr ? "Pika her CRM, ERP veya e-ticaret ürünü için hazır connector sunuyor mu?" : "Does Pika provide a ready-made connector for every CRM, ERP or e-commerce product?")
                                 </button>
                             </h3>
-                            <div id="qi2" class="accordion-collapse collapse" data-bs-parent="#accIntel" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                                <div class="accordion-body" itemprop="text">
-                                    <p>@(tr 
-                                        ? "Ürünleri Need Group altında gruplar; hangi ürünün giriş kapısı (akizisyon), hangisinin çapraz satış tamamlayıcısı ve hangisinin periyodik tüketim ürünü olduğunu geçmiş sepet verileriyle haritalandırır." 
-                                        : "Clusters products into Need Groups and classifies items as acquisition drivers, cross-sell complements, or repeat consumption products based on co-purchase history.")</p>
-                                    <a href="@(tr ? "/platform/product-intelligence" : "/en/platform/product-intelligence")" class="faq-inline-link">Product Intelligence →</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Q9 -->
-                        <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                            <h3 class="accordion-header" itemprop="name">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#qi3">
-                                    @(tr ? "Pika 360 müşteri profili nedir?" : "What is the Pika 360 customer profile?")
-                                </button>
-                            </h3>
-                            <div id="qi3" class="accordion-collapse collapse" data-bs-parent="#accIntel" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                                <div class="accordion-body" itemprop="text">
-                                    <p>@(tr 
-                                        ? "Her müşterinin sipariş geçmişini, RFM skorunu, izin/opt-out durumunu, ilgi duyduğu ürünleri ve aktif fırsatlarını tek ekranda toplayan bütünleşik karar kartıdır." 
-                                        : "A unified decision overview for each customer combining transaction timelines, RFM metrics, channel consent status, product affinities, and active opportunities.")</p>
-                                    <a href="@(tr ? "/platform/pika-360" : "/en/platform/pika-360")" class="faq-inline-link">Pika 360 →</a>
+                            <div id="q8" class="accordion-collapse collapse" data-bs-parent="#accData">
+                                <div class="accordion-body">
+                                    <p>
+                                        @(tr
+                                            ? "C21 böyle bir iddia yapmaz. CRM, ERP, POS, e-ticaret veya veri ambarı gibi sistemler veri kaynağı kategorileri olabilir; gerçek entegrasyon kapsamı kullanılacak API, dosya akışı ve veri kontratına göre değerlendirilir."
+                                            : "C21 makes no such claim. Systems such as CRM, ERP, POS, e-commerce or data warehouses can be source-system categories; actual integration scope depends on the API, file flow and data contract being used.")
+                                    </p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- 4. GÜNÜN FIRSATLARI -->
-                <div id="cat-opps" class="faq-group mb-5">
+                <!-- 3. INTELLIGENCE & FIRSATLAR / INTELLIGENCE & OPPORTUNITIES -->
+                <div id="cat-intel" class="faq-group mb-5">
                     <div class="faq-group-header">
-                        <div class="faq-group-badge"><i class="ri-focus-3-line"></i></div>
-                        <h2 class="faq-group-title">@(tr ? "Günün Fırsatları" : "Daily Opportunities")</h2>
+                        <div class="faq-group-badge"><i class="ri-brain-line"></i></div>
+                        <h2 class="faq-group-title">@(tr ? "Intelligence & Fırsatlar" : "Intelligence & Opportunities")</h2>
                     </div>
 
-                    <div class="accordion faq-accordion" id="accOpps">
-                        <!-- Q10 -->
-                        <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                            <h3 class="accordion-header" itemprop="name">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#qo1">
-                                    @(tr ? "Günün Fırsatları nasıl üretilir?" : "How are Daily Opportunities generated?")
+                    <div class="accordion faq-accordion" id="accIntel">
+                        <!-- Q9 -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q9" aria-expanded="false" aria-controls="q9">
+                                    @(tr ? "Customer Intelligence ne yapar?" : "What does Customer Intelligence do?")
                                 </button>
                             </h3>
-                            <div id="qo1" class="accordion-collapse collapse" data-bs-parent="#accOpps" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                                <div class="accordion-body" itemprop="text">
-                                    <p>@(tr 
-                                        ? "Pika verinizi her gün analiz ederek tekrar satın alma zamanı gelen, pasifleşme riski taşıyan veya çapraz satış potansiyeli olan müşteri gruplarını eyleme hazır listeler halinde sunar." 
-                                        : "Pika scans daily data to group customers reaching repurchase deadlines, exhibiting churn risk, or qualifying for cross-sell recommendations into actionable lists.")</p>
-                                    <a href="@(tr ? "/platform/firsatlar" : "/en/platform/opportunities")" class="faq-inline-link">@(tr ? "Günün Fırsatları Sayfası →" : "Explore Opportunities →")</a>
+                            <div id="q9" class="accordion-collapse collapse" data-bs-parent="#accIntel">
+                                <div class="accordion-body">
+                                    <p>
+                                        @(tr
+                                            ? "Customer Intelligence müşteri davranışı, değer ve satın alma bağlamını veriden hesaplayarak müşteriyi daha anlamlı biçimde değerlendirmeye yardımcı olan Pika intelligence katmanıdır."
+                                            : "Customer Intelligence is Pika's intelligence layer for calculating customer behavior, value and purchase context from data so customers can be evaluated more meaningfully.")
+                                    </p>
+                                    <a href="@(tr ? "/platform/customer-intelligence" : "/en/platform/customer-intelligence")" class="faq-inline-link">
+                                        @(tr ? "Customer Intelligence'ı Keşfedin →" : "Explore Customer Intelligence →")
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Q10 -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q10" aria-expanded="false" aria-controls="q10">
+                                    @(tr ? "Product Intelligence ne yapar?" : "What does Product Intelligence do?")
+                                </button>
+                            </h3>
+                            <div id="q10" class="accordion-collapse collapse" data-bs-parent="#accIntel">
+                                <div class="accordion-body">
+                                    <p>
+                                        @(tr
+                                            ? "Product Intelligence ürünlerin yalnızca katalog kaydı olarak değil, ticari anlamları, satın alma davranışları ve diğer ürünlerle ilişkileri bağlamında değerlendirilmesine yardımcı olan Pika intelligence katmanıdır."
+                                            : "Product Intelligence is Pika's intelligence layer for evaluating products not only as catalog records, but through their commercial meaning, purchase behavior and relationships with other products.")
+                                    </p>
+                                    <a href="@(tr ? "/platform/product-intelligence" : "/en/platform/product-intelligence")" class="faq-inline-link">
+                                        @(tr ? "Product Intelligence'ı Keşfedin →" : "Explore Product Intelligence →")
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Q11 -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q11" aria-expanded="false" aria-controls="q11">
+                                    @(tr ? "Pika 360 nedir?" : "What is Pika 360?")
+                                </button>
+                            </h3>
+                            <div id="q11" class="accordion-collapse collapse" data-bs-parent="#accIntel">
+                                <div class="accordion-body">
+                                    <p>
+                                        @(tr
+                                            ? "Pika 360, müşteri bağlamını ilgili intelligence ve ticari değerlendirme sonuçlarıyla birlikte incelemeye yardımcı olan Pika görünümüdür. Tek başına kampanya veya iletişim kanalı değildir."
+                                            : "Pika 360 is a Pika view for evaluating customer context together with relevant intelligence and commercial-evaluation outcomes. It is not itself a campaign or communication channel.")
+                                    </p>
+                                    <a href="@(tr ? "/platform/pika-360" : "/en/platform/pika-360")" class="faq-inline-link">
+                                        @(tr ? "Pika 360'ı Keşfedin →" : "Explore Pika 360 →")
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Q12 -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q12" aria-expanded="false" aria-controls="q12">
+                                    @(tr ? "Günün Fırsatları nedir?" : "What is Daily Opportunities?")
+                                </button>
+                            </h3>
+                            <div id="q12" class="accordion-collapse collapse" data-bs-parent="#accIntel">
+                                <div class="accordion-body">
+                                    <p>
+                                        @(tr
+                                            ? "Günün Fırsatları, Pika'nın hesapladığı müşteri, ürün ve işlem bağlamından değerlendirilebilir ticari fırsatları kullanıcıya görünür hale getiren karar katmanıdır. Fırsatı kullanıcı değerlendirmesine sunar; kendi başına otonom iletişim göndermez."
+                                            : "Daily Opportunities is Pika's decision layer for making evaluable commercial opportunities visible from calculated customer, product and transaction context. It presents opportunities for user evaluation and does not autonomously send communication.")
+                                    </p>
+                                    <a href="@(tr ? "/platform/gunun-firsatlari" : "/en/platform/opportunities")" class="faq-inline-link">
+                                        @(tr ? "Günün Fırsatları'nı Keşfedin →" : "Explore Daily Opportunities →")
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- 5. CAMPAIGN & JOURNEY -->
-                <div id="cat-campaign" class="faq-group mb-5">
+                <!-- 4. AUDIENCE, CONTENT & ACTION -->
+                <div id="cat-audience" class="faq-group mb-5">
                     <div class="faq-group-header">
                         <div class="faq-group-badge"><i class="ri-route-line"></i></div>
-                        <h2 class="faq-group-title">@(tr ? "Campaign ve Journey" : "Campaign & Journey")</h2>
+                        <h2 class="faq-group-title">@(tr ? "Audience, İçerik & Aksiyon" : "Audience, Content & Action")</h2>
                     </div>
 
-                    <div class="accordion faq-accordion" id="accCampaign">
-                        <!-- Q11 -->
-                        <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                            <h3 class="accordion-header" itemprop="name">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#qc1">
+                    <div class="accordion faq-accordion" id="accAudience">
+                        <!-- Q13 -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q13" aria-expanded="false" aria-controls="q13">
+                                    @(tr ? "Audience Manager ne yapar?" : "What does Audience Manager do?")
+                                </button>
+                            </h3>
+                            <div id="q13" class="accordion-collapse collapse" data-bs-parent="#accAudience">
+                                <div class="accordion-body">
+                                    <p>
+                                        @(tr
+                                            ? "Audience Manager müşteri verisi, işlem veya davranış bağlamı ve açık kurallar üzerinden gerçek hedef kitle tanımını yönetir. Bir fırsat listesi veya iletişim kanalı kendi başına audience gerçeği değildir."
+                                            : "Audience Manager manages the actual audience definition through customer data, transaction or behavioral context and explicit rules. An opportunity list or communication channel is not itself audience truth.")
+                                    </p>
+                                    <a href="@(tr ? "/cozumler/audience-manager" : "/en/solutions/audience-manager")" class="faq-inline-link">
+                                        @(tr ? "Audience Manager'ı Keşfedin →" : "Explore Audience Manager →")
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Q14 -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q14" aria-expanded="false" aria-controls="q14">
+                                    @(tr ? "Content Studio ne yapar?" : "What does Content Studio do?")
+                                </button>
+                            </h3>
+                            <div id="q14" class="accordion-collapse collapse" data-bs-parent="#accAudience">
+                                <div class="accordion-body">
+                                    <p>
+                                        @(tr
+                                            ? "Content Studio görsel Email içeriğini sürükle-bırak kompozisyon, modüler bloklar, şablonlar, kişiselleştirme alanları ve önizleme bağlamında hazırlamaya yardımcı olan Pika içerik katmanıdır."
+                                            : "Content Studio is Pika's content layer for preparing visual Email content through drag-and-drop composition, modular blocks, templates, personalization fields and preview.")
+                                    </p>
+                                    <a href="@(tr ? "/cozumler/content-studio" : "/en/solutions/content-studio")" class="faq-inline-link">
+                                        @(tr ? "Content Studio'yu Keşfedin →" : "Explore Content Studio →")
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Q15 -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q15" aria-expanded="false" aria-controls="q15">
                                     @(tr ? "Campaign Manager ile Journey Manager arasındaki fark nedir?" : "What is the difference between Campaign Manager and Journey Manager?")
                                 </button>
                             </h3>
-                            <div id="qc1" class="accordion-collapse collapse" data-bs-parent="#accCampaign" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                                <div class="accordion-body" itemprop="text">
-                                    <p>@(tr 
-                                        ? "Campaign Manager; belirli bir hedef kitleye tek seferlik veya zamanlanmış toplu mesaj gönderimi içindir. Journey Manager ise olay bazlı tetiklenen (ör. sepet bırakma, sipariş teslimi) ve kurallara göre dallanan çok adımlı otomasyon akışlarını yönetir." 
-                                        : "Campaign Manager is designed for targeted one-off or scheduled batch dispatches. Journey Manager orchestrates multi-step, event-triggered automation flows that branch dynamically based on customer actions.")</p>
-                                    <a href="/wiki/kampanya-journey-orkestrasyonu" class="faq-inline-link">@(tr ? "Orkestrasyon Rehberi →" : "Orchestration Guide →")</a>
+                            <div id="q15" class="accordion-collapse collapse" data-bs-parent="#accAudience">
+                                <div class="accordion-body">
+                                    <p>
+                                        @(tr
+                                            ? "Campaign Manager tanımlı hedef kitle, içerik, kanal, zamanlama ve gönderim öncesi kontrolleri tek kampanya bağlamında yönetir. Journey Manager ise koşul, dallanma, bekleme ve aksiyon adımlarından oluşan çok adımlı müşteri akışını yönetir."
+                                            : "Campaign Manager manages defined audience, content, channel, timing and pre-send controls within one campaign context. Journey Manager manages a multi-step customer flow consisting of conditions, branching, waits and action steps.")
+                                    </p>
+                                    <div class="d-flex flex-wrap gap-3 mt-2">
+                                        <a href="@(tr ? "/cozumler/campaign-manager" : "/en/solutions/campaign-manager")" class="faq-inline-link">
+                                            Campaign Manager →
+                                        </a>
+                                        <a href="@(tr ? "/cozumler/journey-manager" : "/en/solutions/journey-manager")" class="faq-inline-link">
+                                            Journey Manager →
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Q16 -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q16" aria-expanded="false" aria-controls="q16">
+                                    @(tr ? "Pika hedef kitleyi seçip kampanyayı tamamen kendi başına gönderebilir mi?" : "Can Pika choose the audience and send a campaign completely by itself?")
+                                </button>
+                            </h3>
+                            <div id="q16" class="accordion-collapse collapse" data-bs-parent="#accAudience">
+                                <div class="accordion-body">
+                                    <p>
+                                        @(tr
+                                            ? "Pika'nın public ürün modeli böyle bir otonom gönderim iddiası yapmaz. Audience kurallarla tanımlanır, kampanya veya journey aksiyonu ilgili ürün katmanlarında yönetilir, izin ve gönderim kontrolleri uygulanır ve nihai karar kullanıcı kontrolünde kalır."
+                                            : "Pika's public product model makes no such autonomous-delivery claim. The audience is defined through rules, campaign or journey action is managed in the relevant product layers, permission and delivery controls apply and final decision remains under user control.")
+                                    </p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- 6. YAPAY ZEKÂ (AI) -->
+                <!-- 5. KANALLAR & ÖLÇÜM / CHANNELS & MEASUREMENT -->
+                <div id="cat-channels" class="faq-group mb-5">
+                    <div class="faq-group-header">
+                        <div class="faq-group-badge"><i class="ri-mail-send-line"></i></div>
+                        <h2 class="faq-group-title">@(tr ? "Kanallar & Ölçüm" : "Channels & Measurement")</h2>
+                    </div>
+
+                    <div class="accordion faq-accordion" id="accChannels">
+                        <!-- Q17 -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q17" aria-expanded="false" aria-controls="q17">
+                                    @(tr ? "Pika'nın aktif iletişim kanalları hangileridir?" : "Which communication channels are active in Pika?")
+                                </button>
+                            </h3>
+                            <div id="q17" class="accordion-collapse collapse" data-bs-parent="#accChannels">
+                                <div class="accordion-body">
+                                    <p>
+                                        @(tr
+                                            ? "Pika'nın doğrulanmış public iletişim kanalları Email, SMS ve WhatsApp'tır. Push C21 tarafından aktif public capability olarak pazarlanmaz."
+                                            : "Pika's confirmed public communication channels are Email, SMS and WhatsApp. Push is not marketed by C21 as an active public capability.")
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Q18 -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q18" aria-expanded="false" aria-controls="q18">
+                                    @(tr ? "Email, SMS ve WhatsApp'ın rolleri nasıl ayrılır?" : "How do Email, SMS and WhatsApp roles differ?")
+                                </button>
+                            </h3>
+                            <div id="q18" class="accordion-collapse collapse" data-bs-parent="#accChannels">
+                                <div class="accordion-body">
+                                    <p>
+                                        @(tr
+                                            ? "Email daha zengin ve görsel iletişim içeriği için, SMS kısa ve zaman hassasiyetli metin iletişimi için, WhatsApp ise uygun onaylı WhatsApp Business template iletişimi için kullanılabilen execution kanallarıdır. Kanal seçimi evrensel performans sıralaması değildir."
+                                            : "Email is an execution channel for richer visual communication, SMS for concise and time-sensitive text communication and WhatsApp for eligible approved WhatsApp Business template communication. Channel selection is not a universal performance ranking.")
+                                    </p>
+                                    <div class="d-flex flex-wrap gap-3 mt-2">
+                                        <a href="@(tr ? "/kanallar/email" : "/en/channels/email")" class="faq-inline-link">Email →</a>
+                                        <a href="@(tr ? "/kanallar/sms" : "/en/channels/sms")" class="faq-inline-link">SMS →</a>
+                                        <a href="@(tr ? "/kanallar/whatsapp" : "/en/channels/whatsapp")" class="faq-inline-link">WhatsApp →</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Q19 -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q19" aria-expanded="false" aria-controls="q19">
+                                    @(tr ? "Pika gönderim ve etkileşim sonuçlarını ölçebilir mi?" : "Can Pika measure delivery and engagement outcomes?")
+                                </button>
+                            </h3>
+                            <div id="q19" class="accordion-collapse collapse" data-bs-parent="#accChannels">
+                                <div class="accordion-body">
+                                    <p>
+                                        @(tr
+                                            ? "Evet, ancak telemetri kanal bağlamına göre değişir. Email tarafında mevcut delivery, bounce, open, click ve unsubscribe bağlamı değerlendirilebilir; SMS ve WhatsApp tarafında kullanılabilir delivery outcome veya status bağlamı ölçüme taşınabilir. Analytics & Reporting bu sonuçları ilgili kampanya ve audience bağlamıyla birlikte değerlendirir."
+                                            : "Yes, but telemetry varies by channel context. Available Email context can include delivery, bounce, open, click and unsubscribe, while available SMS and WhatsApp delivery-outcome or status context can participate in measurement. Analytics & Reporting evaluates these outcomes together with relevant campaign and audience context.")
+                                    </p>
+                                    <a href="@(tr ? "/cozumler/analytics-reporting" : "/en/solutions/analytics-reporting")" class="faq-inline-link">
+                                        @(tr ? "Analytics & Reporting'i Keşfedin →" : "Explore Analytics & Reporting →")
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Q20 -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q20" aria-expanded="false" aria-controls="q20">
+                                    @(tr ? "Teknik gönderim başarılıysa kampanya sonucu garanti edilmiş olur mu?" : "Does successful technical delivery guarantee campaign results?")
+                                </button>
+                            </h3>
+                            <div id="q20" class="accordion-collapse collapse" data-bs-parent="#accChannels">
+                                <div class="accordion-body">
+                                    <p>
+                                        @(tr
+                                            ? "Hayır. Teknik delivery sonucu müşterinin mesajı okuyacağını, tıklayacağını, cevap vereceğini, satın alma yapacağını veya belirli bir dönüşüm ya da ciro sonucu oluşturacağını garanti etmez."
+                                            : "No. A technical delivery outcome does not guarantee that the customer will read, click, reply, purchase or produce a particular conversion or revenue outcome.")
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. İZİN & GÜVENLİK / CONSENT & SECURITY -->
+                <div id="cat-consent" class="faq-group mb-5">
+                    <div class="faq-group-header">
+                        <div class="faq-group-badge"><i class="ri-shield-check-line"></i></div>
+                        <h2 class="faq-group-title">@(tr ? "İzin & Güvenlik" : "Consent & Security")</h2>
+                    </div>
+
+                    <div class="accordion faq-accordion" id="accConsent">
+                        <!-- Q21 -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q21" aria-expanded="false" aria-controls="q21">
+                                    @(tr ? "Audience'a dahil olmak iletişim izni anlamına gelir mi?" : "Does audience membership mean communication permission?")
+                                </button>
+                            </h3>
+                            <div id="q21" class="accordion-collapse collapse" data-bs-parent="#accConsent">
+                                <div class="accordion-body">
+                                    <p>
+                                        @(tr
+                                            ? "Hayır. Audience Manager “kim?” sorusunu yanıtlar. Consent Management ise mevcut izin, IYS ve opt-out bağlamının iletişim uygunluğuna etkisini değerlendirir. Audience üyeliği consent kontrolünün yerine geçmez."
+                                            : "No. Audience Manager answers “who?” Consent Management evaluates how available consent, IYS and opt-out context affects communication eligibility. Audience membership does not replace consent controls.")
+                                    </p>
+                                    <a href="@(tr ? "/cozumler/consent-management" : "/en/solutions/consent-management")" class="faq-inline-link">
+                                        @(tr ? "Consent Management'i Keşfedin →" : "Explore Consent Management →")
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Q22 -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q22" aria-expanded="false" aria-controls="q22">
+                                    @(tr ? "Email, SMS ve WhatsApp tercihleri aynı public formdan mı yönetilir?" : "Are Email, SMS and WhatsApp preferences managed through the same public form?")
+                                </button>
+                            </h3>
+                            <div id="q22" class="accordion-collapse collapse" data-bs-parent="#accConsent">
+                                <div class="accordion-body">
+                                    <p>
+                                        @(tr
+                                            ? "Hayır. Pika'nın mevcut public preference-update akışı Email ve SMS tercihlerini kapsar. WhatsApp opt-in aynı public checkbox formundan yönetilmez; WhatsApp opt-in bağlamı ayrı webhook veya import akışlarından gelebilir."
+                                            : "No. Pika's current public preference-update flow covers Email and SMS preferences. WhatsApp opt-in is not managed through that same public checkbox form; WhatsApp opt-in context can come from separate webhook or import flows.")
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Q23 -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q23" aria-expanded="false" aria-controls="q23">
+                                    @(tr ? "Pika'nın doğrulanmış güvenlik kontrolleri nelerdir?" : "Which Pika security controls are verified?")
+                                </button>
+                            </h3>
+                            <div id="q23" class="accordion-collapse collapse" data-bs-parent="#accConsent">
+                                <div class="accordion-body">
+                                    <p>
+                                        @(tr
+                                            ? "Doğrulanmış public güvenlik bağlamı rol bazlı erişim denetimi (RBAC), ilgili arayüzlerde maskelenmiş iletişim verisi görünümü ve dokümante edilmiş API akışlarında API-key erişim kontrolünü içerir."
+                                            : "Verified public security context includes role-based access control (RBAC), masked communication-data presentation in relevant interfaces and API-key access control in documented API flows.")
+                                    </p>
+                                    <a href="@(tr ? "/guvenlik-ve-gizlilik" : "/en/security-and-privacy")" class="faq-inline-link">
+                                        @(tr ? "Security & Privacy'yi Keşfedin →" : "Explore Security & Privacy →")
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Q24 -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q24" aria-expanded="false" aria-controls="q24">
+                                    @(tr ? "Pika SOC 2, ISO 27001 veya SAML / SSO iddiası yapıyor mu?" : "Does Pika claim SOC 2, ISO 27001 or SAML / SSO capability?")
+                                </button>
+                            </h3>
+                            <div id="q24" class="accordion-collapse collapse" data-bs-parent="#accConsent">
+                                <div class="accordion-body">
+                                    <p>
+                                        @(tr
+                                            ? "C21 doğrulanmış kanıt bulunmadan SOC 2, ISO 27001, SAML / SSO veya belirli encryption ve fiziksel tenant-isolation yeteneklerini public capability olarak pazarlamaz."
+                                            : "C21 does not market SOC 2, ISO 27001, SAML / SSO or specific encryption and physical tenant-isolation capabilities as public product claims without verified evidence.")
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7. AI & İNSAN KONTROLÜ / AI & HUMAN CONTROL -->
                 <div id="cat-ai" class="faq-group mb-5">
                     <div class="faq-group-header">
                         <div class="faq-group-badge"><i class="ri-sparkling-2-line"></i></div>
-                        <h2 class="faq-group-title">@(tr ? "Yapay Zekâ ve Asistan" : "AI Assistant & Control")</h2>
+                        <h2 class="faq-group-title">@(tr ? "AI & İnsan Kontrolü" : "AI & Human Control")</h2>
                     </div>
 
                     <div class="accordion faq-accordion" id="accAi">
-                        <!-- Q12 -->
-                        <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                            <h3 class="accordion-header" itemprop="name">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#qai1">
-                                    @(tr ? "Pika AI kendi başına onaysız gönderim yapabilir mi?" : "Can Pika AI send messages autonomously without approval?")
+                        <!-- Q25 -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q25" aria-expanded="false" aria-controls="q25">
+                                    @(tr ? "Pika Pilot nedir?" : "What is Pika Pilot?")
                                 </button>
                             </h3>
-                            <div id="qai1" class="accordion-collapse collapse" data-bs-parent="#accAi" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                                <div class="accordion-body" itemprop="text">
-                                    <p>@(tr 
-                                        ? "Kesinlikle hayır. Pika'da yapay zekâ yalnızca fikir, içerik ve hedef kitle önerisi sunan bir yardımcıdır. Tüm kampanyalar ve gönderimler yetkili pazarlama yöneticisinin inceleme ve onayı olmadan asla başlatılamaz." 
-                                        : "Absolutely not. In Pika, AI serves strictly as an assistant generating drafts, recommendations, and audience filters. No campaign or journey is triggered without explicit review and approval by an authorized manager.")</p>
-                                    <a href="@(tr ? "/urunler/ai-kampanya-asistani" : "/en/products/ai-campaign-assistant")" class="faq-inline-link">@(tr ? "AI Kampanya Asistanı →" : "AI Assistant →")</a>
+                            <div id="q25" class="accordion-collapse collapse" data-bs-parent="#accAi">
+                                <div class="accordion-body">
+                                    <p>
+                                        @(tr
+                                            ? "Pika Pilot, Pika'nın hesapladığı müşteri, ürün ve fırsat bağlamını kullanarak kampanya hazırlığı ve içerik taslağı üretimini hızlandırmaya yardımcı olan AI destekli yardımcı katmandır."
+                                            : "Pika Pilot is Pika's AI-assisted layer that uses customer, product and opportunity context calculated by Pika to help accelerate campaign preparation and content drafting.")
+                                    </p>
+                                    <a href="@(tr ? "/urunler/ai-kampanya-asistani" : "/en/products/ai-campaign-assistant")" class="faq-inline-link">
+                                        @(tr ? "Pika Pilot'ı Keşfedin →" : "Explore Pika Pilot →")
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Q26 -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q26" aria-expanded="false" aria-controls="q26">
+                                    @(tr ? "Pika AI müşteri veya ticari fırsatı kendi başına oluşturur mu?" : "Does Pika AI invent customers or commercial opportunities?")
+                                </button>
+                            </h3>
+                            <div id="q26" class="accordion-collapse collapse" data-bs-parent="#accAi">
+                                <div class="accordion-body">
+                                    <p>
+                                        @(tr
+                                            ? "Hayır. Pika Pilot müşteriyi veya fırsatı hayal ederek kaynak gerçek haline getirmez. AI, Pika'nın hesapladığı müşteri, ürün ve fırsat bağlamını kullanarak açıklama, taslak ve üretim desteği sağlar."
+                                            : "No. Pika Pilot does not invent a customer or opportunity and turn it into source truth. AI uses customer, product and opportunity context calculated by Pika to provide explanation, drafting and creation assistance.")
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Q27 -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q27" aria-expanded="false" aria-controls="q27">
+                                    @(tr ? "Pika AI kampanyaları otonom olarak gönderir mi?" : "Does Pika AI autonomously send campaigns?")
+                                </button>
+                            </h3>
+                            <div id="q27" class="accordion-collapse collapse" data-bs-parent="#accAi">
+                                <div class="accordion-body">
+                                    <p>
+                                        @(tr
+                                            ? "Hayır. AI tarafından üretilen taslak ve öneriler kullanıcı değerlendirmesi altında kalır. Audience, campaign, journey, consent ve delivery kontrolleri ayrı ürün katmanlarında yönetilir; nihai karar kullanıcıdadır."
+                                            : "No. AI-generated drafts and suggestions remain under user review. Audience, campaign, journey, consent and delivery controls are managed in separate product layers, and the final decision remains with the user.")
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Q28 -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q28" aria-expanded="false" aria-controls="q28">
+                                    @(tr ? "Üretken AI prompt bağlamında kişisel veri sınırı var mı?" : "Is there a personal-data boundary for generative-AI prompt context?")
+                                </button>
+                            </h3>
+                            <div id="q28" class="accordion-collapse collapse" data-bs-parent="#accAi">
+                                <div class="accordion-body">
+                                    <p>
+                                        @(tr
+                                            ? "Pika'nın dokümante edilmiş AI hazırlık sınırı TCKN, ham telefon numarası ve tam ad gibi doğrudan tanımlayıcıların LLM prompt tokenlarına dahil edilmemesini kapsar. Bu, Pika'nın bütün sistemlerinde hiçbir kişisel veri bulunmadığı veya ürünün mutlak “Zero-PII” olduğu anlamına gelmez."
+                                            : "Pika's documented AI-preparation boundary excludes direct identifiers such as TCKN, raw phone numbers and full names from LLM prompt tokens. This does not mean no personal data exists anywhere in Pika or that the product is absolutely “Zero-PII.”")
+                                    </p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- 7. İZİN VE GÜVENLİK -->
-                <div id="cat-trust" class="faq-group mb-5">
-                    <div class="faq-group-header">
-                        <div class="faq-group-badge"><i class="ri-shield-check-line"></i></div>
-                        <h2 class="faq-group-title">@(tr ? "İzin, İYS ve Güvenlik" : "Consent, IYS & Security")</h2>
-                    </div>
-
-                    <div class="accordion faq-accordion" id="accTrust">
-                        <!-- Q13 -->
-                        <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                            <h3 class="accordion-header" itemprop="name">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#qt1">
-                                    @(tr ? "İzni olmayan kişilere mesaj gönderilebilir mi?" : "Can unconsented contacts receive messages?")
-                                </button>
-                            </h3>
-                            <div id="qt1" class="accordion-collapse collapse" data-bs-parent="#accTrust" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                                <div class="accordion-body" itemprop="text">
-                                    <p>@(tr 
-                                        ? "Hayır. Pika gönderim öncesinde izin ve opt-out durumunu otomatik doğrular. İzni bulunmayan veya ret bildiriminde bulunmuş alıcılar gönderim listelerinden teknik filtrelerle otomatik ayıklanır." 
-                                        : "No. Pika verifies consent and opt-out status prior to any dispatch. Contacts without valid consent or with active opt-out records are automatically suppressed by gateway filters.")</p>
-                                    <a href="@(tr ? "/guvenlik-ve-gizlilik" : "/en/security-and-privacy")" class="faq-inline-link">@(tr ? "Güvenlik ve Gizlilik Sayfası →" : "Security & Privacy Overview →")</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 8. BAŞLANGIÇ -->
-                <div id="cat-start" class="faq-group">
+                <!-- 8. DEMO & TİCARİ DEĞERLENDİRME / DEMO & COMMERCIAL EVALUATION -->
+                <div id="cat-demo" class="faq-group">
                     <div class="faq-group-header">
                         <div class="faq-group-badge"><i class="ri-rocket-line"></i></div>
-                        <h2 class="faq-group-title">@(tr ? "Başlangıç ve Canlı Demo" : "Getting Started & Demo")</h2>
+                        <h2 class="faq-group-title">@(tr ? "Demo & Ticari Değerlendirme" : "Demo & Commercial Evaluation")</h2>
                     </div>
 
-                    <div class="accordion faq-accordion" id="accStart">
-                        <!-- Q14 -->
-                        <div class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                            <h3 class="accordion-header" itemprop="name">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#qs1">
-                                    @(tr ? "Pika'yı canlı nasıl deneyebilirim?" : "How can I experience Pika live?")
+                    <div class="accordion faq-accordion" id="accDemo">
+                        <!-- Q29 -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q29" aria-expanded="false" aria-controls="q29">
+                                    @(tr ? "Pika demosunda ne değerlendirilir?" : "What is evaluated in a Pika demo?")
                                 </button>
                             </h3>
-                            <div id="qs1" class="accordion-collapse collapse" data-bs-parent="#accStart" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                                <div class="accordion-body" itemprop="text">
-                                    <p>@(tr 
-                                        ? "Demo talep formunu doldurarak uzman ekibimizle 15 dakikalık bir canlı oturum planlayabilirsiniz. Kendi veri formatlarınıza ve sektörünüze uygun akışları birlikte test edebiliriz." 
-                                        : "Submit a demo request to schedule a 15-minute walkthrough with our solution engineering team tailored to your data format and industry use cases.")</p>
-                                    <button type="button" class="btn pika-btn-primary btn-sm mt-2" data-bs-toggle="modal" data-bs-target="#demoModal">
-                                        @(tr ? "Demo Talep Edin" : "Request a Demo")
-                                    </button>
+                            <div id="q29" class="accordion-collapse collapse" data-bs-parent="#accDemo">
+                                <div class="accordion-body">
+                                    <p>
+                                        @(tr
+                                            ? "Demo görüşmesi müşteri, ürün ve işlem verinizin Pika'ya nasıl bağlanabileceğini; hangi intelligence, audience, campaign, journey, kanal, izin, güvenlik ve ölçüm katmanlarının gerçek kullanım senaryonuzla ilişkili olduğunu değerlendirmek için kullanılabilir."
+                                            : "The demo conversation can evaluate how your customer, product and transaction data can connect to Pika and which intelligence, audience, campaign, journey, channel, consent, security and measurement layers are relevant to your actual usage scenario.")
+                                    </p>
+                                    <a href="@(tr ? "/demo-talebi" : "/en/demo-request")" class="faq-inline-link">
+                                        @(tr ? "Demo Talep Et →" : "Request a Demo →")
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Q30 -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q30" aria-expanded="false" aria-controls="q30">
+                                    @(tr ? "Pika demosunun sabit bir süresi var mı?" : "Does the Pika demo have a fixed duration?")
+                                </button>
+                            </h3>
+                            <div id="q30" class="accordion-collapse collapse" data-bs-parent="#accDemo">
+                                <div class="accordion-body">
+                                    <p>
+                                        @(tr
+                                            ? "Public site sabit bir demo süresi taahhüdü vermez. Görüşmenin kapsamı değerlendirilecek kullanım senaryosuna göre ele alınır."
+                                            : "The public site does not promise a fixed demo duration. Conversation scope is considered according to the usage scenario being evaluated.")
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Q31 -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q31" aria-expanded="false" aria-controls="q31">
+                                    @(tr ? "Pika'nın fiyatlandırması nasıl belirlenir?" : "How is Pika pricing determined?")
+                                </button>
+                            </h3>
+                            <div id="q31" class="accordion-collapse collapse" data-bs-parent="#accDemo">
+                                <div class="accordion-body">
+                                    <p>
+                                        @(tr
+                                            ? "Pika sabit public paket fiyatı yayınlamaz. İhtiyacınıza ve kullanım kapsamınıza göre özel teklif hazırlanır."
+                                            : "Pika does not publish a fixed public package price. Pricing is tailored to your requirements and scope of use.")
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Q32 -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q32" aria-expanded="false" aria-controls="q32">
+                                    @(tr ? "Pika'yı kullanmak için bütün modülleri almak gerekir mi?" : "Do I need every Pika module?")
+                                </button>
+                            </h3>
+                            <div id="q32" class="accordion-collapse collapse" data-bs-parent="#accDemo">
+                                <div class="accordion-body">
+                                    <p>
+                                        @(tr
+                                            ? "C21 böyle bir gereklilik iddia etmez. Kullanılacak intelligence, audience, content, campaign, journey, kanal, consent, security ve measurement kapsamı gerçek ihtiyaç ve kullanım senaryosuna göre değerlendirilir."
+                                            : "C21 makes no such requirement claim. The relevant intelligence, audience, content, campaign, journey, channel, consent, security and measurement scope is evaluated according to actual requirements and usage scenario.")
+                                    </p>
+                                    <a href="@(tr ? "/kurumsal" : "/en/corporate")" class="faq-inline-link">
+                                        @(tr ? "Kurumsal Değerlendirme →" : "Corporate Evaluation →")
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ FINAL CTA ═══════════════════════════ -->
+<section class="pika-sol-cta-section text-center">
+    <div class="container" data-aos="fade-up">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <span class="pika-sol-eyebrow">@(tr ? "SORUNUZU GERÇEK BAĞLAMDA DEĞERLENDİRİN" : "EVALUATE THE QUESTION IN CONTEXT")</span>
+                <h2 class="pika-sol-cta-title">
+                    @(tr
+                        ? "Yanıt kullanım senaryonuza bağlıysa, Pika kapsamını birlikte netleştirelim."
+                        : "If the answer depends on your usage scenario, let's clarify the relevant Pika scope together.")
+                </h2>
+                <p class="pika-sol-cta-desc mx-auto" style="max-width:680px">
+                    @(tr
+                        ? "Veri kaynağınızı, intelligence ihtiyacınızı, audience ve aksiyon modelinizi, iletişim kanallarınızı, izin ve ölçüm kapsamınızı gerçek kullanım senaryonuz üzerinden değerlendirin."
+                        : "Evaluate your data source, intelligence requirements, audience and action model, communication channels, permission and measurement scope through your actual usage scenario.")
+                </p>
+                <div class="d-flex flex-wrap justify-content-center gap-3 mt-4">
+                    <a href="@(tr ? "/demo-talebi" : "/en/demo-request")" class="btn pika-btn-primary">
+                        @(tr ? "Demo Talep Et" : "Request a Demo")
+                    </a>
+                    <a href="@(tr ? "/iletisim" : "/en/contact")" class="btn pika-btn-outline">
+                        @(tr ? "İletişime Geçin" : "Contact Us")
+                    </a>
+                </div>
             </div>
         </div>
     </div>

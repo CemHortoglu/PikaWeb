@@ -82,11 +82,11 @@ public static class SeoHelper
         ["Home.Faq"] = new(
             "/kaynaklar/sss",
             "/en/resources/faq",
+            "Sıkça Sorulan Sorular | Pika Ürün, Veri, Kanallar ve AI",
+            "Pika FAQ | Product, Data, Channels, Consent & AI",
+            "Pika hakkında sık sorulan soruları; müşteri ve ürün zekâsı, veri aktarımı, audience, campaign, journey, Email/SMS/WhatsApp, izin, güvenlik, AI ve fiyatlandırma başlıklarında inceleyin.",
+            "Find answers about Pika customer and product intelligence, data ingestion, audiences, campaigns, journeys, Email/SMS/WhatsApp, consent, security, AI and pricing.",
             "Sıkça Sorulan Sorular",
-            "Frequently Asked Questions",
-            "Pika omnichannel kampanya yönetimi, entegrasyonlar, izin süreçleri ve yapay zekâ özellikleri hakkında merak edilen soruların yanıtları.",
-            "Answers to frequently asked questions about Pika omnichannel campaign management, integrations, consent, and AI features.",
-            "S.S.S.",
             "FAQ"),
 
         ["Home.TermsOfUse"] = new(
