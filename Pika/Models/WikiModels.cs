@@ -16,6 +16,7 @@ namespace Pika.Models
         public string Summary { get; set; } = string.Empty;
         public string Html { get; set; } = string.Empty;
         public List<string> Related { get; set; } = new();
+        public bool Indexable { get; set; } = true;
     }
 
     public class WikiCategory
@@ -30,6 +31,7 @@ namespace Pika.Models
         public string Title { get; set; } = string.Empty;
         public string Section { get; set; } = string.Empty;
         public string Summary { get; set; } = string.Empty;
+        public bool Indexable { get; set; } = true;
     }
 
     public class WikiTocItem

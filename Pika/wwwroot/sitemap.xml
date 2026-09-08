@@ -355,7 +355,7 @@
 		<priority>0.7</priority>
 	</url>
 
-	<!-- Pika Public Knowledge Base / Bilgi Bankası -->
+	<!-- Pika Public Knowledge Base / Bilgi Bankası (INDEX Only) -->
 	<url>
 		<loc>https://pika.tr/wiki/</loc>
 		<changefreq>weekly</changefreq>
@@ -372,17 +372,7 @@
 		<priority>0.7</priority>
 	</url>
 	<url>
-		<loc>https://pika.tr/wiki/aksiyon-calisma-alani</loc>
-		<changefreq>monthly</changefreq>
-		<priority>0.7</priority>
-	</url>
-	<url>
 		<loc>https://pika.tr/wiki/api-entegrasyonu</loc>
-		<changefreq>monthly</changefreq>
-		<priority>0.7</priority>
-	</url>
-	<url>
-		<loc>https://pika.tr/wiki/basarisiz-yeniden-deneme</loc>
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
 	</url>
@@ -412,27 +402,7 @@
 		<priority>0.7</priority>
 	</url>
 	<url>
-		<loc>https://pika.tr/wiki/dinamik-siniflandirma-alanlari</loc>
-		<changefreq>monthly</changefreq>
-		<priority>0.7</priority>
-	</url>
-	<url>
-		<loc>https://pika.tr/wiki/email-store</loc>
-		<changefreq>monthly</changefreq>
-		<priority>0.7</priority>
-	</url>
-	<url>
-		<loc>https://pika.tr/wiki/email-template-editor</loc>
-		<changefreq>monthly</changefreq>
-		<priority>0.7</priority>
-	</url>
-	<url>
 		<loc>https://pika.tr/wiki/en-iyi-uygulamalar</loc>
-		<changefreq>monthly</changefreq>
-		<priority>0.7</priority>
-	</url>
-	<url>
-		<loc>https://pika.tr/wiki/excel-csv-aktarimi</loc>
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
 	</url>
@@ -457,27 +427,7 @@
 		<priority>0.7</priority>
 	</url>
 	<url>
-		<loc>https://pika.tr/wiki/gmail-kisi-aktarimi</loc>
-		<changefreq>monthly</changefreq>
-		<priority>0.7</priority>
-	</url>
-	<url>
-		<loc>https://pika.tr/wiki/gonderim-operasyonu-izleme</loc>
-		<changefreq>monthly</changefreq>
-		<priority>0.7</priority>
-	</url>
-	<url>
-		<loc>https://pika.tr/wiki/gonderim-son-katman</loc>
-		<changefreq>monthly</changefreq>
-		<priority>0.7</priority>
-	</url>
-	<url>
 		<loc>https://pika.tr/wiki/gunun-firsatlari-ve-karar-motoru</loc>
-		<changefreq>monthly</changefreq>
-		<priority>0.7</priority>
-	</url>
-	<url>
-		<loc>https://pika.tr/wiki/ice-aktarma-sonuclari</loc>
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
 	</url>
@@ -492,32 +442,12 @@
 		<priority>0.7</priority>
 	</url>
 	<url>
-		<loc>https://pika.tr/wiki/iletisim-listeleri-ve-opt-out</loc>
-		<changefreq>monthly</changefreq>
-		<priority>0.7</priority>
-	</url>
-	<url>
 		<loc>https://pika.tr/wiki/izin-kanal-zamanlama</loc>
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
 	</url>
 	<url>
 		<loc>https://pika.tr/wiki/izin-optout-iys</loc>
-		<changefreq>monthly</changefreq>
-		<priority>0.7</priority>
-	</url>
-	<url>
-		<loc>https://pika.tr/wiki/journey-karar-kurallari</loc>
-		<changefreq>monthly</changefreq>
-		<priority>0.7</priority>
-	</url>
-	<url>
-		<loc>https://pika.tr/wiki/journey-store</loc>
-		<changefreq>monthly</changefreq>
-		<priority>0.7</priority>
-	</url>
-	<url>
-		<loc>https://pika.tr/wiki/journey-tasarim-tuvali</loc>
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
 	</url>
@@ -542,37 +472,7 @@
 		<priority>0.7</priority>
 	</url>
 	<url>
-		<loc>https://pika.tr/wiki/kanal-operasyonlari</loc>
-		<changefreq>monthly</changefreq>
-		<priority>0.7</priority>
-	</url>
-	<url>
-		<loc>https://pika.tr/wiki/kategori-playbook-baglantisi</loc>
-		<changefreq>monthly</changefreq>
-		<priority>0.7</priority>
-	</url>
-	<url>
-		<loc>https://pika.tr/wiki/kategori-yonetimi</loc>
-		<changefreq>monthly</changefreq>
-		<priority>0.7</priority>
-	</url>
-	<url>
 		<loc>https://pika.tr/wiki/kimler-icin</loc>
-		<changefreq>monthly</changefreq>
-		<priority>0.7</priority>
-	</url>
-	<url>
-		<loc>https://pika.tr/wiki/kisi-listesi-ve-segmentler</loc>
-		<changefreq>monthly</changefreq>
-		<priority>0.7</priority>
-	</url>
-	<url>
-		<loc>https://pika.tr/wiki/kolon-eslestirme</loc>
-		<changefreq>monthly</changefreq>
-		<priority>0.7</priority>
-	</url>
-	<url>
-		<loc>https://pika.tr/wiki/kullanici-roller-yetkiler</loc>
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
 	</url>
@@ -598,11 +498,6 @@
 	</url>
 	<url>
 		<loc>https://pika.tr/wiki/magaza-performansi</loc>
-		<changefreq>monthly</changefreq>
-		<priority>0.7</priority>
-	</url>
-	<url>
-		<loc>https://pika.tr/wiki/master-urun-anlamlandirmalari</loc>
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
 	</url>
@@ -697,32 +592,12 @@
 		<priority>0.7</priority>
 	</url>
 	<url>
-		<loc>https://pika.tr/wiki/review-resolution-readiness</loc>
-		<changefreq>monthly</changefreq>
-		<priority>0.7</priority>
-	</url>
-	<url>
 		<loc>https://pika.tr/wiki/sadakat-hedefe-yakinlik</loc>
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
 	</url>
 	<url>
 		<loc>https://pika.tr/wiki/satis-kanali-performansi</loc>
-		<changefreq>monthly</changefreq>
-		<priority>0.7</priority>
-	</url>
-	<url>
-		<loc>https://pika.tr/wiki/satis-veri-operasyonlari</loc>
-		<changefreq>monthly</changefreq>
-		<priority>0.7</priority>
-	</url>
-	<url>
-		<loc>https://pika.tr/wiki/segment-sablonlari</loc>
-		<changefreq>monthly</changefreq>
-		<priority>0.7</priority>
-	</url>
-	<url>
-		<loc>https://pika.tr/wiki/segment-yonetimi-ve-filtreler</loc>
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
 	</url>
@@ -752,11 +627,6 @@
 		<priority>0.7</priority>
 	</url>
 	<url>
-		<loc>https://pika.tr/wiki/teslimat-konsolu</loc>
-		<changefreq>monthly</changefreq>
-		<priority>0.7</priority>
-	</url>
-	<url>
 		<loc>https://pika.tr/wiki/upsell-firsatlari</loc>
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
@@ -772,32 +642,12 @@
 		<priority>0.7</priority>
 	</url>
 	<url>
-		<loc>https://pika.tr/wiki/urun-siniflandirma-workbench</loc>
-		<changefreq>monthly</changefreq>
-		<priority>0.7</priority>
-	</url>
-	<url>
-		<loc>https://pika.tr/wiki/veri-dogrulama-kalite</loc>
-		<changefreq>monthly</changefreq>
-		<priority>0.7</priority>
-	</url>
-	<url>
 		<loc>https://pika.tr/wiki/veri-entegrasyon-genel</loc>
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
 	</url>
 	<url>
-		<loc>https://pika.tr/wiki/veri-hazirligi-guvenilirlik</loc>
-		<changefreq>monthly</changefreq>
-		<priority>0.7</priority>
-	</url>
-	<url>
 		<loc>https://pika.tr/wiki/veri-sonrasi</loc>
-		<changefreq>monthly</changefreq>
-		<priority>0.7</priority>
-	</url>
-	<url>
-		<loc>https://pika.tr/wiki/yayinlama-sablon-ve-yonetim</loc>
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
 	</url>

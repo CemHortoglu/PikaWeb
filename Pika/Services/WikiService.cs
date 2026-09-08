@@ -90,7 +90,8 @@ namespace Pika.Services
                                     Slug = slug,
                                     Title = page.Title,
                                     Section = sectionTitle,
-                                    Summary = page.Summary
+                                    Summary = page.Summary,
+                                    Indexable = page.Indexable
                                 };
                                 category.Pages.Add(summary);
                                 _allPages.Add(summary);
@@ -98,6 +99,22 @@ namespace Pika.Services
                         }
                     }
                     _categories.Add(category);
+                }
+            }
+
+            // Include any off-nav pages in _allPages inventory
+            foreach (var kvp in _pagesBySlug)
+            {
+                if (!_allPages.Any(p => string.Equals(p.Slug, kvp.Key, StringComparison.OrdinalIgnoreCase)))
+                {
+                    _allPages.Add(new WikiPageSummary
+                    {
+                        Slug = kvp.Key,
+                        Title = kvp.Value.Title,
+                        Section = kvp.Value.Section,
+                        Summary = kvp.Value.Summary,
+                        Indexable = kvp.Value.Indexable
+                    });
                 }
             }
         }
@@ -116,7 +133,8 @@ namespace Pika.Services
                     Title = page.Title,
                     Summary = page.Summary,
                     Html = _processedHtmlBySlug.TryGetValue(slug, out var html) ? html : page.Html,
-                    Related = page.Related
+                    Related = page.Related,
+                    Indexable = page.Indexable
                 };
             }
             return null;
@@ -156,7 +174,8 @@ namespace Pika.Services
                             Slug = relSlug,
                             Title = relPage.Title,
                             Section = relPage.Section,
-                            Summary = relPage.Summary
+                            Summary = relPage.Summary,
+                            Indexable = relPage.Indexable
                         });
                     }
                 }

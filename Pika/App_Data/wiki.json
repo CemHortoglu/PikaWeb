@@ -11,7 +11,8 @@
         "pika-nasil-calisir",
         "urun-haritasi",
         "veri-entegrasyon-genel"
-      ]
+      ],
+      "Indexable": true
     },
     "pika-ne-degildir": {
       "Slug": "pika-ne-degildir",
@@ -22,7 +23,8 @@
       "Related": [
         "pika-nedir",
         "urun-haritasi"
-      ]
+      ],
+      "Indexable": true
     },
     "pika-nasil-calisir": {
       "Slug": "pika-nasil-calisir",
@@ -34,7 +36,8 @@
         "pika-nedir",
         "urun-haritasi",
         "veri-entegrasyon-genel"
-      ]
+      ],
+      "Indexable": true
     },
     "kimler-icin": {
       "Slug": "kimler-icin",
@@ -45,7 +48,8 @@
       "Related": [
         "pika-nedir",
         "pika-nasil-calisir"
-      ]
+      ],
+      "Indexable": true
     },
     "urun-haritasi": {
       "Slug": "urun-haritasi",
@@ -57,7 +61,8 @@
         "pika-nedir",
         "pika-nasil-calisir",
         "veri-entegrasyon-genel"
-      ]
+      ],
+      "Indexable": true
     },
     "veri-entegrasyon-genel": {
       "Slug": "veri-entegrasyon-genel",
@@ -70,7 +75,8 @@
         "pika-hangi-verileri-kullanir",
         "excel-csv-aktarimi",
         "api-entegrasyonu"
-      ]
+      ],
+      "Indexable": true
     },
     "pika-hangi-verileri-kullanir": {
       "Slug": "pika-hangi-verileri-kullanir",
@@ -82,7 +88,8 @@
         "veri-entegrasyon-genel",
         "kolon-eslestirme",
         "fatura-siparis-neden-onemli"
-      ]
+      ],
+      "Indexable": true
     },
     "excel-csv-aktarimi": {
       "Slug": "excel-csv-aktarimi",
@@ -95,7 +102,8 @@
         "veri-dogrulama-kalite",
         "veri-entegrasyon-genel",
         "api-entegrasyonu"
-      ]
+      ],
+      "Indexable": false
     },
     "kolon-eslestirme": {
       "Slug": "kolon-eslestirme",
@@ -107,7 +115,8 @@
         "excel-csv-aktarimi",
         "pika-hangi-verileri-kullanir",
         "veri-dogrulama-kalite"
-      ]
+      ],
+      "Indexable": false
     },
     "veri-dogrulama-kalite": {
       "Slug": "veri-dogrulama-kalite",
@@ -119,7 +128,8 @@
         "ice-aktarma-sonuclari",
         "kolon-eslestirme",
         "veri-sonrasi"
-      ]
+      ],
+      "Indexable": false
     },
     "ice-aktarma-sonuclari": {
       "Slug": "ice-aktarma-sonuclari",
@@ -131,7 +141,8 @@
         "veri-dogrulama-kalite",
         "veri-sonrasi",
         "excel-csv-aktarimi"
-      ]
+      ],
+      "Indexable": false
     },
     "fatura-siparis-neden-onemli": {
       "Slug": "fatura-siparis-neden-onemli",
@@ -143,7 +154,8 @@
         "pika-hangi-verileri-kullanir",
         "veri-sonrasi",
         "urun-haritasi"
-      ]
+      ],
+      "Indexable": true
     },
     "veri-sonrasi": {
       "Slug": "veri-sonrasi",
@@ -156,7 +168,8 @@
         "pika-nedir",
         "urun-haritasi",
         "api-entegrasyonu"
-      ]
+      ],
+      "Indexable": true
     },
     "api-entegrasyonu": {
       "Slug": "api-entegrasyonu",
@@ -169,7 +182,8 @@
         "pika-hangi-verileri-kullanir",
         "veri-sonrasi",
         "excel-csv-aktarimi"
-      ]
+      ],
+      "Indexable": true
     },
     "satis-veri-operasyonlari": {
       "Slug": "satis-veri-operasyonlari",
@@ -182,7 +196,8 @@
         "api-entegrasyonu",
         "veri-dogrulama-kalite",
         "kisi-listesi-ve-segmentler"
-      ]
+      ],
+      "Indexable": false
     },
     "kisi-listesi-ve-segmentler": {
       "Slug": "kisi-listesi-ve-segmentler",
@@ -195,7 +210,8 @@
         "aksiyon-calisma-alani",
         "bi-kokpit",
         "pika-hangi-verileri-kullanir"
-      ]
+      ],
+      "Indexable": false
     },
     "kategori-yonetimi": {
       "Slug": "kategori-yonetimi",
@@ -208,7 +224,8 @@
         "pika-360",
         "tekrar-satin-alma-analizi",
         "bi-kokpit"
-      ]
+      ],
+      "Indexable": false
     },
     "bi-kokpit": {
       "Slug": "bi-kokpit",
@@ -221,20 +238,22 @@
         "pika-360",
         "ai-musteri-ozeti",
         "satis-veri-operasyonlari"
-      ]
+      ],
+      "Indexable": true
     },
     "tekrar-satin-alma-analizi": {
       "Slug": "tekrar-satin-alma-analizi",
       "Section": "Müşteriyi ve Ürünü Anlayın",
       "Title": "Tekrar Satın Alma Analizi",
-      "Summary": "Tekrar satın alma zamanı, tahmin güveni ve olası alışveriş tutarı gibi sinyallerin nasıl görünür hale getirildiğini açıklar.",
-      "Html": "\n\u003Csection class=\u0022hero hero-light\u0022\u003E\n\u003Cdiv class=\u0022hero-copy wide\u0022\u003E\n\u003Cdiv class=\u0022hero-kicker\u0022\u003EMüşteri ve Analitik Zekâsı\u003C/div\u003E\n\u003Ch1\u003ETekrar Satın Alma Analizi\u003C/h1\u003E\n\u003Cp class=\u0022hero-lead\u0022\u003EPika, geçmiş satın alma ritmini kullanarak hangi müşteride tekrar satın alma penceresinin oluştuğunu görünür hale getirmeye çalışır. Bu, yalnızca satış geçmişini göstermek değil; yaklaşan ihtiyacı ticari fırsat olarak okumaktır.\u003C/p\u003E\n\u003C/div\u003E\n\u003C/section\u003E\n\u003Cfigure class=\u0022screen-figure\u0022\u003E\n\u003Cimg alt=\u0022Pika tekrar satın alma analizi ekranı\u0022 src=\u0022/wiki/assets/images/img_tekrar-satin-alma-analizi_6.png\u0022/\u003E\n\u003Cfigcaption\u003EDemo görünüm: zamanlama dağılımı, yüksek olası alışveriş tutarları ve müşteri bazlı tekrar satın alma döngüleri aynı ekranda yer alır.\u003C/figcaption\u003E\n\u003C/figure\u003E\u003Cdiv class=\u0022demo-disclaimer\u0022\u003E\u003Cstrong\u003EEkran bilgisi: \u003C/strong\u003EGörseller, kişisel verileri korumak ve kullanım akışını açıklamak amacıyla örnek veya anonim veriler içerebilir.\u003C/div\u003E\n\u003Ch2\u003EEkrandaki mantık nedir?\u003C/h2\u003E\n\u003Cdiv class=\u0022story-flow\u0022\u003E\n\u003Cdiv class=\u0022story-step\u0022\u003E\n\u003Cdiv class=\u0022story-num\u0022\u003E1\u003C/div\u003E\n\u003Cdiv class=\u0022story-content\u0022\u003E\n\u003Ch3\u003EGeçmiş ritim okunur\u003C/h3\u003E\n\u003Cp\u003EMüşterinin belirli ürün veya kategori için alışveriş aralığı incelenir.\u003C/p\u003E\n\u003C/div\u003E\n\u003C/div\u003E\n\u003Cdiv class=\u0022story-step\u0022\u003E\n\u003Cdiv class=\u0022story-num\u0022\u003E2\u003C/div\u003E\n\u003Cdiv class=\u0022story-content\u0022\u003E\n\u003Ch3\u003EZaman penceresi hesaplanır\u003C/h3\u003E\n\u003Cp\u003EZamanı gelen, yaklaşan veya henüz erken olan döngüler ayrıştırılır.\u003C/p\u003E\n\u003C/div\u003E\n\u003C/div\u003E\n\u003Cdiv class=\u0022story-step\u0022\u003E\n\u003Cdiv class=\u0022story-num\u0022\u003E3\u003C/div\u003E\n\u003Cdiv class=\u0022story-content\u0022\u003E\n\u003Ch3\u003EOlası değer görünür olur\u003C/h3\u003E\n\u003Cp\u003EPotansiyel alışveriş tutarı ve tahmin güveniyle birlikte ticari önceliklendirme yapılır.\u003C/p\u003E\n\u003C/div\u003E\n\u003C/div\u003E\n\u003Cdiv class=\u0022story-step\u0022\u003E\n\u003Cdiv class=\u0022story-num\u0022\u003E4\u003C/div\u003E\n\u003Cdiv class=\u0022story-content\u0022\u003E\n\u003Ch3\u003EAksiyon için bağlam oluşur\u003C/h3\u003E\n\u003Cp\u003EBu sinyal, müşteri ekranı ve aksiyon çalışma alanıyla birleştiğinde daha anlamlı hale gelir.\u003C/p\u003E\n\u003C/div\u003E\n\u003C/div\u003E\n\u003C/div\u003E\n\u003Cdiv class=\u0022callout callout-warning\u0022\u003E\n\u003Cdiv class=\u0022callout-title\u0022\u003EGerçekçi not\u003C/div\u003E\n\u003Cp\u003EBu yapı kesin satış garantisi vermez. Ama işletmenin hangi müşteride ne tür bir yenileme veya tekrar ihtiyaç sinyali oluştuğunu sistematik biçimde görmesine yardımcı olur.\u003C/p\u003E\n\u003C/div\u003E\n",
+      "Summary": "Müşterinin geçmiş alışveriş döngüsü penceresine (%80–%120 aralığı) göre zamanı yaklaşan ve geciken tekrar satın alma ihtiyaçlarının nasıl görünür hale getirildiğini açıklar.",
+      "Html": "\r\n\u003Csection class=\u0022hero hero-light\u0022\u003E\r\n\u003Cdiv class=\u0022hero-copy wide\u0022\u003E\r\n\u003Cdiv class=\u0022hero-kicker\u0022\u003EMüşteri ve Analitik Zekâsı\u003C/div\u003E\r\n\u003Ch1\u003ETekrar Satın Alma Analizi\u003C/h1\u003E\r\n\u003Cp class=\u0022hero-lead\u0022\u003EPika, geçmiş satın alma ritmini kullanarak hangi müşteride tekrar satın alma penceresinin oluştuğunu görünür hale getirir. Bu, yapay olasılık tahminleri üretmek değil; müşterinin geçmiş döngü aralığına göre yaklaşan ihtiyacı kanıta dayalı bir fırsat olarak okumaktır.\u003C/p\u003E\r\n\u003C/div\u003E\r\n\u003C/section\u003E\r\n\u003Cfigure class=\u0022screen-figure\u0022\u003E\r\n\u003Cimg alt=\u0022Pika tekrar satın alma analizi ekranı\u0022 src=\u0022/wiki/assets/images/img_tekrar-satin-alma-analizi_6.png\u0022/\u003E\r\n\u003Cfigcaption\u003EDemo görünüm: döngü zamanlaması dağılımı, zamanı yaklaşan ve geciken müşteri grupları ile geçmiş döngü aralıkları aynı ekranda yer alır.\u003C/figcaption\u003E\r\n\u003C/figure\u003E\u003Cdiv class=\u0022demo-disclaimer\u0022\u003E\u003Cstrong\u003EEkran bilgisi: \u003C/strong\u003EGörseller, kişisel verileri korumak ve kullanım akışını açıklamak amacıyla örnek veya anonim veriler içerebilir.\u003C/div\u003E\r\n\u003Ch2\u003EEkrandaki mantık nedir?\u003C/h2\u003E\r\n\u003Cdiv class=\u0022story-flow\u0022\u003E\r\n\u003Cdiv class=\u0022story-step\u0022\u003E\r\n\u003Cdiv class=\u0022story-num\u0022\u003E1\u003C/div\u003E\r\n\u003Cdiv class=\u0022story-content\u0022\u003E\r\n\u003Ch3\u003EGeçmiş ritim okunur\u003C/h3\u003E\r\n\u003Cp\u003EMüşterinin belirli ürün veya kategori için geçmiş sipariş aralıkları ve medyan döngüsü incelenir.\u003C/p\u003E\r\n\u003C/div\u003E\r\n\u003C/div\u003E\r\n\u003Cdiv class=\u0022story-step\u0022\u003E\r\n\u003Cdiv class=\u0022story-num\u0022\u003E2\u003C/div\u003E\r\n\u003Cdiv class=\u0022story-content\u0022\u003E\r\n\u003Ch3\u003EDöngü penceresi hesaplanır\u003C/h3\u003E\r\n\u003Cp\u003EMüşterinin geçmiş döngüsünün %80–%120 penceresine göre zamanı yaklaşan, geciken veya döngü dışındaki durumlar ayrıştırılır.\u003C/p\u003E\r\n\u003C/div\u003E\r\n\u003C/div\u003E\r\n\u003Cdiv class=\u0022story-step\u0022\u003E\r\n\u003Cdiv class=\u0022story-num\u0022\u003E3\u003C/div\u003E\r\n\u003Cdiv class=\u0022story-content\u0022\u003E\r\n\u003Ch3\u003EAksiyon önceliği belirlenir\u003C/h3\u003E\r\n\u003Cp\u003EDöngü durumu ve geçmiş sepet büyüklüğü ile birlikte ticari aksiyon önceliklendirmesi yapılır; kesin sipariş tutarı veya olasılık tahmini yerine kanıta dayalı zamanlama sunulur.\u003C/p\u003E\r\n\u003C/div\u003E\r\n\u003C/div\u003E\r\n\u003Cdiv class=\u0022story-step\u0022\u003E\r\n\u003Cdiv class=\u0022story-num\u0022\u003E4\u003C/div\u003E\r\n\u003Cdiv class=\u0022story-content\u0022\u003E\r\n\u003Ch3\u003EAksiyon için bağlam oluşur\u003C/h3\u003E\r\n\u003Cp\u003EBu sinyal, müşteri ekranı ve aksiyon çalışma alanıyla birleştiğinde doğru kanal ve izin kontrolüyle aksiyona dönüşür.\u003C/p\u003E\r\n\u003C/div\u003E\r\n\u003C/div\u003E\r\n\u003C/div\u003E\r\n\u003Cdiv class=\u0022callout callout-warning\u0022\u003E\r\n\u003Cdiv class=\u0022callout-title\u0022\u003EGerçekçi not\u003C/div\u003E\r\n\u003Cp\u003EPika geleceğe yönelik kesin sipariş tarihi, sipariş tutarı veya olasılık yüzdesi üretmez; müşterinin geçmiş satın alma ritmine dayalı döngü pencerelerini görünür kılar.\u003C/p\u003E\r\n\u003C/div\u003E\r\n",
       "Related": [
         "pika-360",
         "ai-musteri-ozeti",
         "aksiyon-calisma-alani",
         "kategori-yonetimi"
-      ]
+      ],
+      "Indexable": true
     },
     "pika-360": {
       "Slug": "pika-360",
@@ -247,7 +266,8 @@
         "aksiyon-calisma-alani",
         "tekrar-satin-alma-analizi",
         "kisi-listesi-ve-segmentler"
-      ]
+      ],
+      "Indexable": true
     },
     "ai-musteri-ozeti": {
       "Slug": "ai-musteri-ozeti",
@@ -260,7 +280,8 @@
         "bi-kokpit",
         "aksiyon-calisma-alani",
         "tekrar-satin-alma-analizi"
-      ]
+      ],
+      "Indexable": true
     },
     "aksiyon-calisma-alani": {
       "Slug": "aksiyon-calisma-alani",
@@ -273,7 +294,8 @@
         "pika-360",
         "ai-musteri-ozeti",
         "kisi-listesi-ve-segmentler"
-      ]
+      ],
+      "Indexable": false
     },
     "product-intelligence-nedir": {
       "Slug": "product-intelligence-nedir",
@@ -286,7 +308,8 @@
         "need-group-product-role",
         "urun-siniflandirma-workbench",
         "tekrar-satin-alma-analizi"
-      ]
+      ],
+      "Indexable": true
     },
     "playbook-sektorel-anlam": {
       "Slug": "playbook-sektorel-anlam",
@@ -299,7 +322,8 @@
         "need-group-product-role",
         "dinamik-siniflandirma-alanlari",
         "kategori-playbook-baglantisi"
-      ]
+      ],
+      "Indexable": true
     },
     "need-group-product-role": {
       "Slug": "need-group-product-role",
@@ -312,7 +336,8 @@
         "dinamik-siniflandirma-alanlari",
         "master-urun-anlamlandirmalari",
         "product-intelligence-musteri-firsati"
-      ]
+      ],
+      "Indexable": true
     },
     "dinamik-siniflandirma-alanlari": {
       "Slug": "dinamik-siniflandirma-alanlari",
@@ -325,7 +350,8 @@
         "kategori-playbook-baglantisi",
         "master-urun-anlamlandirmalari",
         "urun-siniflandirma-workbench"
-      ]
+      ],
+      "Indexable": false
     },
     "kategori-playbook-baglantisi": {
       "Slug": "kategori-playbook-baglantisi",
@@ -338,7 +364,8 @@
         "need-group-product-role",
         "review-resolution-readiness",
         "urun-siniflandirma-workbench"
-      ]
+      ],
+      "Indexable": false
     },
     "urun-siniflandirma-workbench": {
       "Slug": "urun-siniflandirma-workbench",
@@ -351,7 +378,8 @@
         "review-resolution-readiness",
         "dinamik-siniflandirma-alanlari",
         "product-intelligence-musteri-firsati"
-      ]
+      ],
+      "Indexable": false
     },
     "review-resolution-readiness": {
       "Slug": "review-resolution-readiness",
@@ -363,7 +391,8 @@
         "urun-siniflandirma-workbench",
         "master-urun-anlamlandirmalari",
         "product-intelligence-musteri-firsati"
-      ]
+      ],
+      "Indexable": false
     },
     "product-intelligence-musteri-firsati": {
       "Slug": "product-intelligence-musteri-firsati",
@@ -376,7 +405,8 @@
         "tekrar-satin-alma-analizi",
         "aksiyon-calisma-alani",
         "product-intelligence-nedir"
-      ]
+      ],
+      "Indexable": true
     },
     "master-urun-anlamlandirmalari": {
       "Slug": "master-urun-anlamlandirmalari",
@@ -389,7 +419,8 @@
         "need-group-product-role",
         "dinamik-siniflandirma-alanlari",
         "product-intelligence-musteri-firsati"
-      ]
+      ],
+      "Indexable": false
     },
     "kampanya-journey-orkestrasyonu": {
       "Slug": "kampanya-journey-orkestrasyonu",
@@ -402,7 +433,8 @@
         "email-template-editor",
         "journey-tasarim-tuvali",
         "journey-store"
-      ]
+      ],
+      "Indexable": true
     },
     "pika-pilot-ai-kampanya-asistani": {
       "Slug": "pika-pilot-ai-kampanya-asistani",
@@ -414,7 +446,8 @@
         "email-template-editor",
         "journey-tasarim-tuvali",
         "email-store"
-      ]
+      ],
+      "Indexable": true
     },
     "email-template-editor": {
       "Slug": "email-template-editor",
@@ -426,7 +459,8 @@
         "pika-pilot-ai-kampanya-asistani",
         "email-store",
         "journey-tasarim-tuvali"
-      ]
+      ],
+      "Indexable": false
     },
     "journey-tasarim-tuvali": {
       "Slug": "journey-tasarim-tuvali",
@@ -438,7 +472,8 @@
         "journey-karar-kurallari",
         "journey-store",
         "segment-sablonlari"
-      ]
+      ],
+      "Indexable": false
     },
     "journey-karar-kurallari": {
       "Slug": "journey-karar-kurallari",
@@ -450,7 +485,8 @@
         "journey-tasarim-tuvali",
         "segment-sablonlari",
         "pika-pilot-ai-kampanya-asistani"
-      ]
+      ],
+      "Indexable": false
     },
     "email-store": {
       "Slug": "email-store",
@@ -462,7 +498,8 @@
         "email-template-editor",
         "journey-store",
         "pika-pilot-ai-kampanya-asistani"
-      ]
+      ],
+      "Indexable": false
     },
     "journey-store": {
       "Slug": "journey-store",
@@ -474,7 +511,8 @@
         "journey-tasarim-tuvali",
         "email-store",
         "segment-sablonlari"
-      ]
+      ],
+      "Indexable": false
     },
     "segment-sablonlari": {
       "Slug": "segment-sablonlari",
@@ -486,7 +524,8 @@
         "journey-tasarim-tuvali",
         "journey-store",
         "gmail-kisi-aktarimi"
-      ]
+      ],
+      "Indexable": false
     },
     "gmail-kisi-aktarimi": {
       "Slug": "gmail-kisi-aktarimi",
@@ -498,7 +537,8 @@
         "segment-sablonlari",
         "journey-store",
         "pika-pilot-ai-kampanya-asistani"
-      ]
+      ],
+      "Indexable": false
     },
     "pika-konumu": {
       "Slug": "pika-konumu",
@@ -511,7 +551,8 @@
         "pika-ne-degildir",
         "urun-haritasi",
         "kurulum-baslangic-modeli"
-      ]
+      ],
+      "Indexable": true
     },
     "kurulum-baslangic-modeli": {
       "Slug": "kurulum-baslangic-modeli",
@@ -524,7 +565,8 @@
         "kullanici-roller-yetkiler",
         "izin-kanal-zamanlama",
         "pika-konumu"
-      ]
+      ],
+      "Indexable": true
     },
     "kullanici-roller-yetkiler": {
       "Slug": "kullanici-roller-yetkiler",
@@ -536,7 +578,8 @@
         "kurulum-baslangic-modeli",
         "izin-kanal-zamanlama",
         "yayinlama-sablon-ve-yonetim"
-      ]
+      ],
+      "Indexable": false
     },
     "izin-kanal-zamanlama": {
       "Slug": "izin-kanal-zamanlama",
@@ -549,20 +592,22 @@
         "aksiyon-calisma-alani",
         "kampanya-kanallari-ve-rol-dagilimi",
         "gonderim-son-katman"
-      ]
+      ],
+      "Indexable": true
     },
     "ai-rolu-guven-siniri": {
       "Slug": "ai-rolu-guven-siniri",
       "Section": "SSS ve Kaynaklar",
       "Title": "AI\u0027ın Rolü ve Güven Sınırı",
       "Summary": "Pika\u0027da yapay zekânın karar verici değil, analitik hesaplamaları açıklayan ve içerik üreten güvenilir bir yardımcı olduğunu açıklar.",
-      "Html": "\n\u003Csection class=\u0022hero hero-intro\u0022\u003E\n\u003Cdiv class=\u0022hero-copy\u0022\u003E\n\u003Cdiv class=\u0022hero-kicker\u0022\u003ESSS ve Kaynaklar\u003C/div\u003E\n\u003Ch1\u003EAI\u0027ın Rolü ve Güven Sınırı\u003C/h1\u003E\n\u003Cp class=\u0022hero-lead\u0022\u003EPika\u0027da AI sihirli bir kara kutu değildir. Müşteri değeri, satın alma ritmi ve risk skorları belirlenmiş matematiksel kurallarla hesaplanır; AI ise bu verileri kullanıcı için anlaşılır metinlere ve yaratıcı kampanya fikirlerine dönüştürür.\u003C/p\u003E\n\u003C/div\u003E\n\u003C/section\u003E\n\n\u003Ch2\u003ERol Dağılımı\u003C/h2\u003E\n\u003Cdiv class=\u0022role-table\u0022\u003E\n\u003Cdiv class=\u0022role-row role-head\u0022\u003E\u003Cdiv\u003EKatman\u003C/div\u003E\u003Cdiv\u003ESorumluluk\u003C/div\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022role-row\u0022\u003E\u003Cdiv\u003E\u003Cstrong\u003ESistem \u0026amp; Analitik\u003C/strong\u003E\u003C/div\u003E\u003Cdiv\u003EVeri doğrulama, ciro hesaplama, müşteri ritmi, sepet birlikteliği.\u003C/div\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022role-row\u0022\u003E\u003Cdiv\u003E\u003Cstrong\u003EPika AI\u003C/strong\u003E\u003C/div\u003E\u003Cdiv\u003EMüşteri özetini yorumlama, kampanya metni ve e-posta şablonu taslağı üretme.\u003C/div\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022role-row\u0022\u003E\u003Cdiv\u003E\u003Cstrong\u003Eİnsan \u0026amp; Yönetici\u003C/strong\u003E\u003C/div\u003E\u003Cdiv\u003ESon karar, onay, bütçe ve yayına alma kontrolü.\u003C/div\u003E\u003C/div\u003E\n\u003C/div\u003E\n",
+      "Html": "\r\n\u003Csection class=\u0022hero hero-intro\u0022\u003E\r\n\u003Cdiv class=\u0022hero-copy\u0022\u003E\r\n\u003Cdiv class=\u0022hero-kicker\u0022\u003ESSS ve Kaynaklar\u003C/div\u003E\r\n\u003Ch1\u003EAI\u0027ın Rolü ve Güven Sınırı\u003C/h1\u003E\r\n\u003Cp class=\u0022hero-lead\u0022\u003EPika\u0027da AI sihirli bir kara kutu değildir. Müşteri değeri, satın alma ritmi ve risk skorları belirlenmiş matematiksel kurallarla hesaplanır; AI ise bu verileri kullanıcı için anlaşılır metinlere ve yaratıcı kampanya fikirlerine dönüştürür.\u003C/p\u003E\r\n\u003C/div\u003E\r\n\u003C/section\u003E\r\n\r\n\u003Ch2\u003ERol Dağılımı\u003C/h2\u003E\r\n\u003Cdiv class=\u0022role-table\u0022\u003E\r\n\u003Cdiv class=\u0022role-row role-head\u0022\u003E\u003Cdiv\u003EKatman\u003C/div\u003E\u003Cdiv\u003ESorumluluk\u003C/div\u003E\u003C/div\u003E\r\n\u003Cdiv class=\u0022role-row\u0022\u003E\u003Cdiv\u003E\u003Cstrong\u003ESistem \u0026amp; Analitik\u003C/strong\u003E\u003C/div\u003E\u003Cdiv\u003EVeri doğrulama, ciro hesaplama, müşteri ritmi, sepet birlikteliği.\u003C/div\u003E\u003C/div\u003E\r\n\u003Cdiv class=\u0022role-row\u0022\u003E\u003Cdiv\u003E\u003Cstrong\u003EPika AI\u003C/strong\u003E\u003C/div\u003E\u003Cdiv\u003EMüşteri özetini yorumlama, kampanya metni ve e-posta şablonu taslağı üretme.\u003C/div\u003E\u003C/div\u003E\r\n\u003Cdiv class=\u0022role-row\u0022\u003E\u003Cdiv\u003E\u003Cstrong\u003Eİnsan \u0026amp; Yönetici\u003C/strong\u003E\u003C/div\u003E\u003Cdiv\u003ESon karar, onay, bütçe ve yayına alma kontrolü.\u003C/div\u003E\u003C/div\u003E\r\n\u003C/div\u003E\r\n",
       "Related": [
         "ai-musteri-ozeti",
         "pika-pilot-ai-kampanya-asistani",
         "kullanici-roller-yetkiler",
         "firsat-guveni-kanit"
-      ]
+      ],
+      "Indexable": true
     },
     "segmentasyon-ve-firsatlar": {
       "Slug": "segmentasyon-ve-firsatlar",
@@ -575,7 +620,8 @@
         "firsat-turleri",
         "next-best-action",
         "izin-kanal-zamanlama"
-      ]
+      ],
+      "Indexable": true
     },
     "firsat-turleri": {
       "Slug": "firsat-turleri",
@@ -588,33 +634,36 @@
         "product-intelligence-musteri-firsati",
         "next-best-action",
         "firsat-guveni-kanit"
-      ]
+      ],
+      "Indexable": true
     },
     "next-best-action": {
       "Slug": "next-best-action",
       "Section": "Fırsat ve Karar",
       "Title": "Next Best Action, Kanal ve Zaman",
-      "Summary": "Müşteri için en doğru aksiyonun, en uygun iletişim kanalının ve zamanlamanın nasıl belirlendiğini açıklar.",
-      "Html": "\n\u003Csection class=\u0022hero hero-intro\u0022\u003E\n\u003Cdiv class=\u0022hero-copy\u0022\u003E\n\u003Cdiv class=\u0022hero-kicker\u0022\u003EFırsat ve Karar\u003C/div\u003E\n\u003Ch1\u003ENext Best Action, Kanal ve Zaman\u003C/h1\u003E\n\u003Cp class=\u0022hero-lead\u0022\u003EPika, müşteri için sadece \u0027bir mesaj göndermek\u0027 yerine; hangi müşteriye, hangi teklifle, hangi kanaldan ve ne zaman ulaşılması gerektiğini kararlaştırmaya destek olur.\u003C/p\u003E\n\u003C/div\u003E\n\u003C/section\u003E\n\n\u003Ch2\u003EKarar Boyutları\u003C/h2\u003E\n\u003Cdiv class=\u0022feature-grid\u0022\u003E\n\u003Carticle class=\u0022feature-card\u0022\u003E\n\u003Ch3\u003ENext Best Action (Hangi Aksiyon?)\u003C/h3\u003E\n\u003Cp\u003EMüşterinin durumuna göre tekrar satın alma hatırlatması, hoş geldin teklifi, geri kazanım veya çapraz satış seçeneği.\u003C/p\u003E\n\u003C/article\u003E\n\u003Carticle class=\u0022feature-card\u0022\u003E\n\u003Ch3\u003ENext Best Channel (Hangi Kanal?)\u003C/h3\u003E\n\u003Cp\u003EMüşterinin izin verdiği ve etkileşim olasılığı en yüksek kanal (E-posta, SMS veya WhatsApp).\u003C/p\u003E\n\u003C/article\u003E\n\u003Carticle class=\u0022feature-card\u0022\u003E\n\u003Ch3\u003ENext Best Time (Hangi Zaman?)\u003C/h3\u003E\n\u003Cp\u003EMüşterinin alışveriş ve mesaj açma alışkanlıklarına göre en uygun gün ve saat aralığı.\u003C/p\u003E\n\u003C/article\u003E\n\u003C/div\u003E\n",
+      "Summary": "Müşteri için en doğru aksiyonun, iletişim kanalının ve zamanlama bağlamının deterministik kurallarla nasıl belirlendiğini açıklar.",
+      "Html": "\r\n\u003Csection class=\u0022hero hero-intro\u0022\u003E\r\n\u003Cdiv class=\u0022hero-copy\u0022\u003E\r\n\u003Cdiv class=\u0022hero-kicker\u0022\u003EFırsat ve Karar\u003C/div\u003E\r\n\u003Ch1\u003ENext Best Action, Kanal ve Zaman\u003C/h1\u003E\r\n\u003Cp class=\u0022hero-lead\u0022\u003EPika, müşteri için sadece rastgele bir mesaj göndermek yerine; hangi müşteriye, hangi teklifle, hangi kanaldan ve hangi zamanlama penceresinde ulaşılması gerektiğini deterministik kurallarla değerlendirir.\u003C/p\u003E\r\n\u003C/div\u003E\r\n\u003C/section\u003E\r\n\r\n\u003Ch2\u003EKarar ve Uygunluk Boyutları\u003C/h2\u003E\r\n\u003Cdiv class=\u0022feature-grid\u0022\u003E\r\n\u003Carticle class=\u0022feature-card\u0022\u003E\r\n\u003Ch3\u003ENext Best Action (Hangi Aksiyon?)\u003C/h3\u003E\r\n\u003Cp\u003EMüşterinin yaşam döngüsü ve işlem verisine göre tekrar satın alma hatırlatması, hoş geldin teklifi, geri kazanım veya çapraz satış seçeneği.\u003C/p\u003E\r\n\u003C/article\u003E\r\n\u003Carticle class=\u0022feature-card\u0022\u003E\r\n\u003Ch3\u003EKanal Uygunluğu (Hangi Kanal?)\u003C/h3\u003E\r\n\u003Cp\u003EMüşterinin aktif izin durumu, opt-out kayıtları, erişilebilir adresleri ve kanal tercihine göre uygun iletişim yolu (E-posta, SMS veya WhatsApp).\u003C/p\u003E\r\n\u003C/article\u003E\r\n\u003Carticle class=\u0022feature-card\u0022\u003E\r\n\u003Ch3\u003EZamanlama Bağlamı (Hangi Zaman?)\u003C/h3\u003E\r\n\u003Cp\u003EKampanya zamanlama kuralları, frekans sınırları (frequency capping) ve tanımlı gönderim pencerelerine göre belirlenen uygun zaman.\u003C/p\u003E\r\n\u003C/article\u003E\r\n\u003C/div\u003E\r\n\r\n\u003Ch2\u003ESistem ve Karar Sınırı\u003C/h2\u003E\r\n\u003Cp\u003EPika otonom bir yapay zekâ göndericisi değildir; izin ve uygunluk kurallarını deterministik olarak denetler, aksiyonu insan kontrolünde ve onaylanan orkestrasyon planı dahilinde yürütür.\u003C/p\u003E\r\n",
       "Related": [
         "firsat-guveni-kanit",
         "firsattan-aksiyona-gecis",
         "ai-rolu-guven-siniri",
         "pika-360"
-      ]
+      ],
+      "Indexable": true
     },
     "firsat-guveni-kanit": {
       "Slug": "firsat-guveni-kanit",
       "Section": "Fırsat ve Karar",
       "Title": "Fırsat Güveni ve Kanıt",
       "Summary": "Pika’nın önerileri kesin gerçek gibi sunmak yerine, kanıtın gücü ve veri yeterliliğiyle birlikte değerlendirme yaklaşımını açıklar.",
-      "Html": "\u003Csection class=\u0022hero hero-intro\u0022\u003E\u003Cdiv class=\u0022hero-copy\u0022\u003E\u003Cdiv class=\u0022hero-kicker\u0022\u003EFırsat ve Karar Motoru\u003C/div\u003E\u003Ch1\u003EFırsat Güveni ve Kanıt\u003C/h1\u003E\u003Cp class=\u0022hero-lead\u0022\u003Eİyi bir fırsat sistemi yalnızca öneri üretmez; önerinin neye dayandığını ve ne kadar güvenilir olduğunu da görünür kılar. Bu nedenle Pika’daki fırsatlar veri yeterliliği, geçmiş davranış ve ilgili ürün/müşteri kanıtlarıyla birlikte okunmalıdır.\u003C/p\u003E\u003Cdiv class=\u0022hero-tags\u0022\u003E\u003Cspan\u003EKanıt\u003C/span\u003E\u003Cspan\u003EGüven\u003C/span\u003E\u003Cspan\u003EVeri yeterliliği\u003C/span\u003E\u003Cspan\u003EAçıklanabilirlik\u003C/span\u003E\u003C/div\u003E\u003C/div\u003E\u003Cdiv class=\u0022hero-side\u0022\u003E\u003Cdiv class=\u0022hero-side-card\u0022\u003E\u003Cdiv class=\u0022side-card-kicker\u0022\u003ETemel ilke\u003C/div\u003E\u003Cp\u003E\u003Cstrong\u003EKanıt zayıfsa sistemin bunu saklamaması gerekir.\u003C/strong\u003E\u003C/p\u003E\u003C/div\u003E\u003C/div\u003E\u003C/section\u003E\u003Cdiv class=\u0022metric-grid\u0022\u003E\u003Cdiv class=\u0022metric-card\u0022\u003E\u003Cspan\u003EKaynak\u003C/span\u003E\u003Cstrong\u003EDavranış\u003C/strong\u003E\u003Cp\u003EGeçmiş satın alma, etkileşim ve zamanlama kalıpları.\u003C/p\u003E\u003C/div\u003E\u003Cdiv class=\u0022metric-card\u0022\u003E\u003Cspan\u003EBağlam\u003C/span\u003E\u003Cstrong\u003EÜrün\u003C/strong\u003E\u003Cp\u003ENeed Group, ürün rolü, kategori ve tekrar tüketilebilirlik.\u003C/p\u003E\u003C/div\u003E\u003Cdiv class=\u0022metric-card\u0022\u003E\u003Cspan\u003EYeterlilik\u003C/span\u003E\u003Cstrong\u003EVeri\u003C/strong\u003E\u003Cp\u003EKaç gözlem var, veri güncel mi, ilişki yeterli mi?\u003C/p\u003E\u003C/div\u003E\u003Cdiv class=\u0022metric-card\u0022\u003E\u003Cspan\u003EAçıklama\u003C/span\u003E\u003Cstrong\u003ENeden?\u003C/strong\u003E\u003Cp\u003EÖneri hangi kanıt kombinasyonundan doğdu?\u003C/p\u003E\u003C/div\u003E\u003C/div\u003E\n\u003Ctable class=\u0022matrix\u0022\u003E\u003Cthead\u003E\u003Ctr\u003E\u003Cth\u003EGüven durumu\u003C/th\u003E\u003Cth\u003ENasıl yorumlanmalı?\u003C/th\u003E\u003Cth\u003EUygun yaklaşım\u003C/th\u003E\u003C/tr\u003E\u003C/thead\u003E\u003Ctbody\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Cstrong\u003EDüşük\u003C/strong\u003E\u003C/td\u003E\u003Ctd\u003ESinyal var ama veri az veya davranış henüz net değil.\u003C/td\u003E\u003Ctd\u003EAgresif aksiyon yerine gözlem, düşük riskli test veya veri toplama.\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Cstrong\u003EOrta\u003C/strong\u003E\u003C/td\u003E\u003Ctd\u003EBirden fazla kanıt yönü destekliyor fakat belirsizlik sürüyor.\u003C/td\u003E\u003Ctd\u003EKontrollü teklif, küçük test veya segment bazlı uygulama.\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Cstrong\u003EYüksek\u003C/strong\u003E\u003C/td\u003E\u003Ctd\u003EDavranış ve bağlam güçlü şekilde aynı yönü gösteriyor.\u003C/td\u003E\u003Ctd\u003EUygun izin ve zamanlama ile aksiyon önceliklendirilebilir.\u003C/td\u003E\u003C/tr\u003E\u003C/tbody\u003E\u003C/table\u003E\n\u003Ch2\u003EGüven skoru ile olasılık aynı şey değildir\u003C/h2\u003E\u003Cp\u003EEvidence miktarı, coverage, freshness ve warning bilgileri bir önerinin ne kadar iyi desteklendiğini anlatabilir; bunlar otomatik olarak “satın alma olasılığı %X” anlamına gelmez. Özellikle az sepetli cross-sell çiftlerinde veya eksik customer identity coverage’da yüksek görünen oranların örneklem büyüklüğü mutlaka kontrol edilmelidir.\u003C/p\u003E",
+      "Html": "\u003Csection class=\u0022hero hero-intro\u0022\u003E\u003Cdiv class=\u0022hero-copy\u0022\u003E\u003Cdiv class=\u0022hero-kicker\u0022\u003EFırsat ve Karar Motoru\u003C/div\u003E\u003Ch1\u003EFırsat Güveni ve Kanıt\u003C/h1\u003E\u003Cp class=\u0022hero-lead\u0022\u003Eİyi bir fırsat sistemi yalnızca öneri üretmez; önerinin neye dayandığını ve ne kadar güvenilir olduğunu da görünür kılar. Bu nedenle Pika’daki fırsatlar veri yeterliliği, geçmiş davranış ve ilgili ürün/müşteri kanıtlarıyla birlikte okunmalıdır.\u003C/p\u003E\u003Cdiv class=\u0022hero-tags\u0022\u003E\u003Cspan\u003EKanıt\u003C/span\u003E\u003Cspan\u003EGüven\u003C/span\u003E\u003Cspan\u003EVeri yeterliliği\u003C/span\u003E\u003Cspan\u003EAçıklanabilirlik\u003C/span\u003E\u003C/div\u003E\u003C/div\u003E\u003Cdiv class=\u0022hero-side\u0022\u003E\u003Cdiv class=\u0022hero-side-card\u0022\u003E\u003Cdiv class=\u0022side-card-kicker\u0022\u003ETemel ilke\u003C/div\u003E\u003Cp\u003E\u003Cstrong\u003EKanıt zayıfsa sistemin bunu saklamaması gerekir.\u003C/strong\u003E\u003C/p\u003E\u003C/div\u003E\u003C/div\u003E\u003C/section\u003E\u003Cdiv class=\u0022metric-grid\u0022\u003E\u003Cdiv class=\u0022metric-card\u0022\u003E\u003Cspan\u003EKaynak\u003C/span\u003E\u003Cstrong\u003EDavranış\u003C/strong\u003E\u003Cp\u003EGeçmiş satın alma, etkileşim ve zamanlama kalıpları.\u003C/p\u003E\u003C/div\u003E\u003Cdiv class=\u0022metric-card\u0022\u003E\u003Cspan\u003EBağlam\u003C/span\u003E\u003Cstrong\u003EÜrün\u003C/strong\u003E\u003Cp\u003ENeed Group, ürün rolü, kategori ve tekrar tüketilebilirlik.\u003C/p\u003E\u003C/div\u003E\u003Cdiv class=\u0022metric-card\u0022\u003E\u003Cspan\u003EYeterlilik\u003C/span\u003E\u003Cstrong\u003EVeri\u003C/strong\u003E\u003Cp\u003EKaç gözlem var, veri güncel mi, ilişki yeterli mi?\u003C/p\u003E\u003C/div\u003E\u003Cdiv class=\u0022metric-card\u0022\u003E\u003Cspan\u003EAçıklama\u003C/span\u003E\u003Cstrong\u003ENeden?\u003C/strong\u003E\u003Cp\u003EÖneri hangi kanıt kombinasyonundan doğdu?\u003C/p\u003E\u003C/div\u003E\u003C/div\u003E\r\n\u003Ctable class=\u0022matrix\u0022\u003E\u003Cthead\u003E\u003Ctr\u003E\u003Cth\u003EKanıt Yeterliliği Seviyesi\u003C/th\u003E\u003Cth\u003ENasıl yorumlanmalı?\u003C/th\u003E\u003Cth\u003EUygun yaklaşım\u003C/th\u003E\u003C/tr\u003E\u003C/thead\u003E\u003Ctbody\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Cstrong\u003ESınırlı Kanıt\u003C/strong\u003E\u003C/td\u003E\u003Ctd\u003ESinyal var ama veri az veya davranış henüz net değil.\u003C/td\u003E\u003Ctd\u003EAgresif aksiyon yerine gözlem, düşük riskli test veya veri toplama.\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Cstrong\u003EGelişen Kanıt\u003C/strong\u003E\u003C/td\u003E\u003Ctd\u003EBirden fazla kanıt yönü destekliyor fakat belirsizlik sürüyor.\u003C/td\u003E\u003Ctd\u003EKontrollü teklif, küçük test veya segment bazlı uygulama.\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Cstrong\u003EGüçlü Kanıt\u003C/strong\u003E\u003C/td\u003E\u003Ctd\u003EDavranış ve bağlam güçlü şekilde aynı yönü gösteriyor.\u003C/td\u003E\u003Ctd\u003EUygun izin ve zamanlama ile aksiyon önceliklendirilebilir.\u003C/td\u003E\u003C/tr\u003E\u003C/tbody\u003E\u003C/table\u003E\r\n\u003Ch2\u003EKanıt Kalitesi ve Veri Yeterliliği Nasıl Okunmalı?\u003C/h2\u003E\u003Cp\u003EPika bağımsız bir \u0027güven skoru motoru\u0027 veya yapay satın alma olasılığı çalıştırmaz. Fırsat güveni; veri yeterliliği, kanıt kapsamı (coverage), veri tazeliği (freshness) ve uyarı kodları (warning codes) ile ölçülen veri kalitesini ifade eder. Bu göstergeler hiçbir zaman \u0027kesin satın alma olasılığı %X\u0027 olarak yorumlanmamalıdır.\u003C/p\u003E",
       "Related": [
         "tekrar-satin-alma-analizi",
         "ai-rolu-guven-siniri",
         "next-best-action",
         "firsattan-aksiyona-gecis"
-      ]
+      ],
+      "Indexable": true
     },
     "firsattan-aksiyona-gecis": {
       "Slug": "firsattan-aksiyona-gecis",
@@ -627,7 +676,8 @@
         "firsat-guveni-kanit",
         "izin-optout-iys",
         "gonderim-son-katman"
-      ]
+      ],
+      "Indexable": true
     },
     "kampanya-kanallari-ve-rol-dagilimi": {
       "Slug": "kampanya-kanallari-ve-rol-dagilimi",
@@ -640,7 +690,8 @@
         "email-template-editor",
         "journey-tasarim-tuvali",
         "izin-kanal-zamanlama"
-      ]
+      ],
+      "Indexable": true
     },
     "kampanya-performansi-ve-olcumleme": {
       "Slug": "kampanya-performansi-ve-olcumleme",
@@ -653,7 +704,8 @@
         "omnichannel-performansi",
         "teslimat-konsolu",
         "ai-rolu-guven-siniri"
-      ]
+      ],
+      "Indexable": true
     },
     "yayinlama-sablon-ve-yonetim": {
       "Slug": "yayinlama-sablon-ve-yonetim",
@@ -666,7 +718,8 @@
         "journey-store",
         "kullanici-roller-yetkiler",
         "gonderim-operasyonu-izleme"
-      ]
+      ],
+      "Indexable": false
     },
     "ornek-kullanim-senaryolari": {
       "Slug": "ornek-kullanim-senaryolari",
@@ -678,7 +731,8 @@
         "kampanya-journey-orkestrasyonu",
         "kampanya-performansi-ve-olcumleme",
         "sektorel-kullanim-ornekleri"
-      ]
+      ],
+      "Indexable": true
     },
     "sektorel-kullanim-ornekleri": {
       "Slug": "sektorel-kullanim-ornekleri",
@@ -691,7 +745,8 @@
         "firsat-turleri",
         "ornek-kullanim-senaryolari",
         "kurulum-baslangic-modeli"
-      ]
+      ],
+      "Indexable": true
     },
     "gonderim-son-katman": {
       "Slug": "gonderim-son-katman",
@@ -704,19 +759,21 @@
         "izin-optout-iys",
         "basarisiz-yeniden-deneme",
         "olcum-ogrenme-dongusu"
-      ]
+      ],
+      "Indexable": false
     },
     "gonderim-operasyonu-izleme": {
       "Slug": "gonderim-operasyonu-izleme",
       "Section": "Ölçüm ve Analitik",
       "Title": "Gönderim Operasyonu ve İzleme",
-      "Summary": "Kanal görevlerinin, kampanya/ Journey operasyonunun ve sonuç durumlarının neden izlenebilir olması gerektiğini açıklar.",
-      "Html": "\u003Csection class=\u0022hero hero-intro\u0022\u003E\u003Cdiv class=\u0022hero-copy\u0022\u003E\u003Cdiv class=\u0022hero-kicker\u0022\u003EGönderim · Ölçüm · Öğrenme\u003C/div\u003E\u003Ch1\u003EGönderim Operasyonu ve İzleme\u003C/h1\u003E\u003Cp class=\u0022hero-lead\u0022\u003EAksiyon canlıya çıktığında iş bitmez. Görevlerin durumu, kanala iletilme süreci, bekleyen veya tamamlanan işler ve sonuç kayıtları operasyonel görünürlük gerektirir.\u003C/p\u003E\u003Cdiv class=\u0022hero-tags\u0022\u003E\u003Cspan\u003EGörev\u003C/span\u003E\u003Cspan\u003EDurum\u003C/span\u003E\u003Cspan\u003EKanal\u003C/span\u003E\u003Cspan\u003Eİzleme\u003C/span\u003E\u003Cspan\u003ESonuç\u003C/span\u003E\u003C/div\u003E\u003C/div\u003E\u003C/section\u003E\n\u003Cfigure class=\u0022screen-figure\u0022\u003E\u003Cimg alt=\u0022Pika Teslimat Konsolu ekranı\u0022 src=\u0022/wiki/assets/images/img_gonderim-operasyonu-izleme_28.png\u0022/\u003E\u003Cfigcaption\u003E\u003Cstrong\u003EDemo görünüm:\u003C/strong\u003E E-posta, SMS ve WhatsApp gönderimlerinde kuyruk, işleniyor, gönderildi, teslim edildi, açıldı, tıklandı ve hata oranı gibi operasyon metrikleri ile job detayı aynı ekranda izlenir.\u003C/figcaption\u003E\u003C/figure\u003E\u003Cdiv class=\u0022demo-disclaimer\u0022\u003E\u003Cstrong\u003EEkran bilgisi: \u003C/strong\u003EGörseller, kişisel verileri korumak ve kullanım akışını açıklamak amacıyla örnek veya anonim veriler içerebilir.\u003C/div\u003E\n\u003Cdiv class=\u0022feature-grid\u0022\u003E\u003Carticle class=\u0022feature-card\u0022\u003E\u003Cdiv class=\u0022feature-icon\u0022\u003EQ\u003C/div\u003E\u003Ch3\u003EGörev görünürlüğü\u003C/h3\u003E\u003Cp\u003EHangi kampanya veya Journey adımı için hangi işlerin üretildiği izlenebilir.\u003C/p\u003E\u003C/article\u003E\u003Carticle class=\u0022feature-card\u0022\u003E\u003Cdiv class=\u0022feature-icon\u0022\u003E↗\u003C/div\u003E\u003Ch3\u003EKanal durumu\u003C/h3\u003E\u003Cp\u003Eİletişim kanalına aktarım ve sonuç durumu operasyon ekibine görünür olmalıdır.\u003C/p\u003E\u003C/article\u003E\u003Carticle class=\u0022feature-card\u0022\u003E\u003Cdiv class=\u0022feature-icon\u0022\u003E!\u003C/div\u003E\u003Ch3\u003Eİstisna yönetimi\u003C/h3\u003E\u003Cp\u003EBaşarısız veya bekleyen işler sessizce kaybolmamalı; inceleme ve tekrar deneme sürecine girmelidir.\u003C/p\u003E\u003C/article\u003E\u003Carticle class=\u0022feature-card\u0022\u003E\u003Cdiv class=\u0022feature-icon\u0022\u003E✓\u003C/div\u003E\u003Ch3\u003ESonuç kaydı\u003C/h3\u003E\u003Cp\u003EAksiyonun tamamlandığı ve mümkünse müşteri davranışıyla ilişkilendirildiği izlenebilir.\u003C/p\u003E\u003C/article\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022note-box\u0022\u003E\u003Ch3\u003EMüşteri açısından neden önemli?\u003C/h3\u003E\u003Cp\u003EPlatformun “gönderdim” demesi yeterli değildir. Özellikle yüksek hacimde operasyonel güven, hangi işin ne durumda olduğunu ve sorunun nerede oluştuğunu anlayabilmeye bağlıdır.\u003C/p\u003E\u003C/div\u003E\n\u003Ch2\u003Eİzleme hangi seviyelerde yapılır?\u003C/h2\u003E\u003Cp\u003EToplam kampanya statüsü, tekil delivery job, attempt geçmişi, worker sağlığı ve queue/dead-letter birikimi farklı seviyelerdir. Bir kampanya “çalışıyor” görünürken belirli kanalda kuyruk birikmesi olabilir. Bu nedenle operasyon uyarıları yalnız kampanya toplamından değil delivery altyapısından da izlenmelidir.\u003C/p\u003E",
+      "Summary": "Gönderimlerin durumunu, kanala iletilme sürecini, bekleyen veya tamamlanan işlerin operasyonel görünürlüğünü açıklar.",
+      "Html": "\u003Csection class=\u0022hero hero-intro\u0022\u003E\u003Cdiv class=\u0022hero-copy\u0022\u003E\u003Cdiv class=\u0022hero-kicker\u0022\u003EGönderim · Ölçüm · Öğrenme\u003C/div\u003E\u003Ch1\u003EGönderim Operasyonu ve İzleme\u003C/h1\u003E\u003Cp class=\u0022hero-lead\u0022\u003EAksiyon canlıya çıktığında iş bitmez. Görevlerin durumu, kanala iletilme süreci, bekleyen veya tamamlanan işler ve sonuç kayıtları operasyonel görünürlük gerektirir.\u003C/p\u003E\u003Cdiv class=\u0022hero-tags\u0022\u003E\u003Cspan\u003EGörev\u003C/span\u003E\u003Cspan\u003EDurum\u003C/span\u003E\u003Cspan\u003EKanal\u003C/span\u003E\u003Cspan\u003Eİzleme\u003C/span\u003E\u003Cspan\u003ESonuç\u003C/span\u003E\u003C/div\u003E\u003C/div\u003E\u003C/section\u003E\r\n\u003Cfigure class=\u0022screen-figure\u0022\u003E\u003Cimg alt=\u0022Pika Teslimat Konsolu ekranı\u0022 src=\u0022/wiki/assets/images/img_gonderim-operasyonu-izleme_28.png\u0022/\u003E\u003Cfigcaption\u003E\u003Cstrong\u003EDemo görünüm:\u003C/strong\u003E E-posta, SMS ve WhatsApp gönderimlerinde kuyruk, işleniyor, gönderildi, teslim edildi, açıldı, tıklandı ve hata oranı gibi operasyon metrikleri ile job detayı aynı ekranda izlenir.\u003C/figcaption\u003E\u003C/figure\u003E\u003Cdiv class=\u0022demo-disclaimer\u0022\u003E\u003Cstrong\u003EEkran bilgisi: \u003C/strong\u003EGörseller, kişisel verileri korumak ve kullanım akışını açıklamak amacıyla örnek veya anonim veriler içerebilir.\u003C/div\u003E\r\n\u003Cdiv class=\u0022feature-grid\u0022\u003E\u003Carticle class=\u0022feature-card\u0022\u003E\u003Cdiv class=\u0022feature-icon\u0022\u003EQ\u003C/div\u003E\u003Ch3\u003EGörev görünürlüğü\u003C/h3\u003E\u003Cp\u003EHangi kampanya veya Journey adımı için hangi işlerin üretildiği izlenebilir.\u003C/p\u003E\u003C/article\u003E\u003Carticle class=\u0022feature-card\u0022\u003E\u003Cdiv class=\u0022feature-icon\u0022\u003EC\u003C/div\u003E\u003Ch3\u003EKanal durumu\u003C/h3\u003E\u003Cp\u003Eİletişim kanalına aktarım ve sonuç durumu operasyon ekibine görünür olmalıdır.\u003C/p\u003E\u003C/article\u003E\u003Carticle class=\u0022feature-card\u0022\u003E\u003Cdiv class=\u0022feature-icon\u0022\u003E!\u003C/div\u003E\u003Ch3\u003Eİstisna yönetimi\u003C/h3\u003E\u003Cp\u003EBaşarısız veya bekleyen işler sessizce kaybolmamalı; inceleme ve tekrar deneme sürecine girmelidir.\u003C/p\u003E\u003C/article\u003E\u003Carticle class=\u0022feature-card\u0022\u003E\u003Cdiv class=\u0022feature-icon\u0022\u003ER\u003C/div\u003E\u003Ch3\u003ESonuç kaydı\u003C/h3\u003E\u003Cp\u003EAksiyonun tamamlandığı ve mümkünse müşteri davranışıyla ilişkilendirildiği izlenebilir.\u003C/p\u003E\u003C/article\u003E\u003C/div\u003E\r\n\u003Cdiv class=\u0022note-box\u0022\u003E\u003Ch3\u003EMüşteri açısından neden önemli?\u003C/h3\u003E\u003Cp\u003EPlatformun \u0022gönderdim\u0022 demesi yeterli değildir. Özellikle yüksek hacimde operasyonel güven, hangi işin ne durumda olduğunu ve sorunun nerede oluştuğunu anlayabilmeye bağlıdır.\u003C/p\u003E\u003C/div\u003E\r\n\u003Ch2\u003Eİzleme hangi seviyelerde yapılır?\u003C/h2\u003E\u003Cp\u003EToplam kampanya statüsü, tekil delivery job, attempt geçmişi, worker sağlığı, kuyruk durumu ve başarısız iş inceleme havuzu farklı seviyelerdir. Bir kampanya \u0022çalışıyor\u0022 görünürken belirli kanalda kuyruk birikmesi olabilir. Bu nedenle operasyon uyarıları yalnız kampanya toplamından değil delivery altyapısından da izlenmelidir.\u003C/p\u003E",
       "Related": [
         "gonderim-son-katman",
         "kampanya-performansi-ve-olcumleme",
         "olcum-ogrenme-dongusu"
-      ]
+      ],
+      "Indexable": false
     },
     "olcum-ogrenme-dongusu": {
       "Slug": "olcum-ogrenme-dongusu",
@@ -729,7 +786,8 @@
         "kampanya-performansi-ve-olcumleme",
         "gonderim-operasyonu-izleme",
         "pika-nedir"
-      ]
+      ],
+      "Indexable": true
     },
     "bilgi-bankasi-haritasi": {
       "Slug": "bilgi-bankasi-haritasi",
@@ -742,45 +800,49 @@
         "pika-konumu",
         "urun-haritasi",
         "kurulum-baslangic-modeli"
-      ]
+      ],
+      "Indexable": true
     },
     "musteri-degeri-sadakat": {
       "Slug": "musteri-degeri-sadakat",
       "Section": "Müşteriyi ve Ürünü Anlayın",
       "Title": "Müşteri Değeri ve Sadakat",
-      "Summary": "Müşteri değer skoru, sadakat, risk ve davranış sinyallerinin birbirinden ayrı ama birlikte nasıl okunacağını açıklar.",
-      "Html": "\u003Csection class=\u0022hero hero-intro\u0022\u003E\u003Cdiv class=\u0022hero-copy\u0022\u003E\u003Cdiv class=\u0022hero-kicker\u0022\u003EMüşteri ve Analitik Zekâsı\u003C/div\u003E\u003Ch1\u003EMüşteri Değeri ve Sadakat\u003C/h1\u003E\u003Cp class=\u0022hero-lead\u0022\u003EPika’da müşteri değeri tek bir sayıya indirgenmez. \u003Cstrong\u003ECustomer Value Score\u003C/strong\u003E gelir ve satın alma sıklığını özetler; sadakat, risk, son davranış, ritim ve kanal sinyalleri ise bu skora ayrı bağlam sağlar.\u003C/p\u003E\u003Cdiv class=\u0022hero-tags\u0022\u003E\u003Cspan\u003EDeğer skoru\u003C/span\u003E\u003Cspan\u003ESadakat\u003C/span\u003E\u003Cspan\u003ERisk\u003C/span\u003E\u003Cspan\u003EDavranış bağlamı\u003C/span\u003E\u003C/div\u003E\u003C/div\u003E\u003C/section\u003E\n\n\u003Cdiv class=\u0022principle-grid\u0022\u003E\u003Cdiv class=\u0022principle-card\u0022\u003E\u003Cstrong\u003EDeğer skoru\u003C/strong\u003E\u003Cspan\u003ENormalize gelir %60 \u002B satın alma sıklığı %40.\u003C/span\u003E\u003C/div\u003E\u003Cdiv class=\u0022principle-card\u0022\u003E\u003Cstrong\u003ESadakat\u003C/strong\u003E\u003Cspan\u003EPuan/tier/hedefe yakınlık gibi ayrı ilişki göstergeleri.\u003C/span\u003E\u003C/div\u003E\u003Cdiv class=\u0022principle-card\u0022\u003E\u003Cstrong\u003ERisk ve ritim\u003C/strong\u003E\u003Cspan\u003ESon alışveriş ve müşterinin normal aralığına göre ayrı davranış sinyalleri.\u003C/span\u003E\u003C/div\u003E\u003C/div\u003E\n\u003Ch2\u003ENeden bunları ayırıyoruz?\u003C/h2\u003E\u003Cp\u003EBir müşteri geçmişte yüksek gelir üretmiş olabilir fakat artık normal ritmine göre gecikiyor olabilir. Başka bir müşteri orta değer skorunda olup aktif, sık ve sadakat hedefine yakın olabilir. Bu nedenle Pika’da \u003Cstrong\u003Edeğer skoru aksiyonun kendisi değil, karar bağlamının bir parçasıdır.\u003C/strong\u003E\u003C/p\u003E\n\u003Ctable class=\u0022matrix\u0022\u003E\u003Cthead\u003E\u003Ctr\u003E\u003Cth\u003EAlan\u003C/th\u003E\u003Cth\u003ENe anlatır?\u003C/th\u003E\u003Cth\u003EKararda rolü\u003C/th\u003E\u003C/tr\u003E\u003C/thead\u003E\u003Ctbody\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Cstrong\u003ECustomer Value Score\u003C/strong\u003E\u003C/td\u003E\u003Ctd\u003EGelir \u002B satın alma sıklığı\u003C/td\u003E\u003Ctd\u003EMüşteriler arasında ticari değer kıyaslaması\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Cstrong\u003EOrtalama sepet\u003C/strong\u003E\u003C/td\u003E\u003Ctd\u003ETipik satın alma büyüklüğü\u003C/td\u003E\u003Ctd\u003ESkoru açıklayan yardımcı bağlam\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Cstrong\u003ESon alışveriş / ritim\u003C/strong\u003E\u003C/td\u003E\u003Ctd\u003Eİlişkinin ne kadar güncel olduğu\u003C/td\u003E\u003Ctd\u003EPasifleşme ve tekrar ihtiyaç sinyali\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Cstrong\u003ESadakat\u003C/strong\u003E\u003C/td\u003E\u003Ctd\u003EPuan, tier veya hedefe yakınlık\u003C/td\u003E\u003Ctd\u003Eİlişkiyi indirim dışında güçlendirebilecek aksiyon bağlamı\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Cstrong\u003EChurn / risk\u003C/strong\u003E\u003C/td\u003E\u003Ctd\u003ENormal davranıştan uzaklaşma\u003C/td\u003E\u003Ctd\u003EYüksek değerli müşteride önceliği artırabilir\u003C/td\u003E\u003C/tr\u003E\u003C/tbody\u003E\u003C/table\u003E\n\u003Cdiv class=\u0022scenario-panel single\u0022\u003E\u003Cdiv class=\u0022scenario-left wide-block\u0022\u003E\u003Cdiv class=\u0022scenario-badge\u0022\u003EÖrnek okuma\u003C/div\u003E\u003Ch3\u003EDeğerli ama ritmi bozulan müşteri\u003C/h3\u003E\u003Cp\u003EMüşterinin değer skoru yüksek olabilir; buna rağmen son satın alması kendi ortalama aralığının belirgin biçimde gerisinde kalmışsa, “yüksek değer = sağlıklı ilişki” varsayımı yapılmaz. Risk ve sadakat bağlamı ayrıca değerlendirilir.\u003C/p\u003E\u003C/div\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022callout callout-primary\u0022\u003E\u003Cdiv class=\u0022callout-title\u0022\u003ETemel ayrım\u003C/div\u003E\u003Cp\u003E\u003Cstrong\u003ESkor hesaplanır; karar ise skor \u002B davranış \u002B izin \u002B zamanlama bağlamıyla verilir.\u003C/strong\u003E\u003C/p\u003E\u003C/div\u003E",
+      "Summary": "Müşteri değer skoru (CVS), sadakat, risk ve davranış sinyallerinin birbirinden ayrı ama birlikte nasıl okunacağını açıklar.",
+      "Html": "\u003Csection class=\u0022hero hero-intro\u0022\u003E\u003Cdiv class=\u0022hero-copy\u0022\u003E\u003Cdiv class=\u0022hero-kicker\u0022\u003EMüşteri ve Analitik Zekâsı\u003C/div\u003E\u003Ch1\u003EMüşteri Değeri ve Sadakat\u003C/h1\u003E\u003Cp class=\u0022hero-lead\u0022\u003EPika’da müşteri değeri tek bir yüzeysel sayıya indirgenmez. \u003Cstrong\u003ECustomer Value Score (CVS)\u003C/strong\u003E 4 temel faktörle (ciro, sıklık, tazelik ve sadakat) deterministik olarak hesaplanır; risk, son davranış ve ritim sinyalleri ise bu skora bağımsız davranışsal bağlam sağlar.\u003C/p\u003E\u003Cdiv class=\u0022hero-tags\u0022\u003E\u003Cspan\u003EDeğer skoru\u003C/span\u003E\u003Cspan\u003ESadakat\u003C/span\u003E\u003Cspan\u003ERisk\u003C/span\u003E\u003Cspan\u003EDavranış bağlamı\u003C/span\u003E\u003C/div\u003E\u003C/div\u003E\u003C/section\u003E\r\n\r\n\u003Cdiv class=\u0022principle-grid\u0022\u003E\u003Cdiv class=\u0022principle-card\u0022\u003E\u003Cstrong\u003EDeğer skoru (CVS)\u003C/strong\u003E\u003Cspan\u003E4 faktörlü formül: (0.40 × Ciro) \u002B (0.25 × Sıklık) \u002B (0.20 × Tazelik) \u002B (0.15 × Sadakat).\u003C/span\u003E\u003C/div\u003E\u003Cdiv class=\u0022principle-card\u0022\u003E\u003Cstrong\u003ESadakat\u003C/strong\u003E\u003Cspan\u003EPuan, tier, segment ve hedefe yakınlık gibi bağlılık göstergeleri.\u003C/span\u003E\u003C/div\u003E\u003Cdiv class=\u0022principle-card\u0022\u003E\u003Cstrong\u003ERisk ve ritim\u003C/strong\u003E\u003Cspan\u003EMüşterinin kendi geçmiş alışveriş döngüsüne dayalı bağımsız davranış sinyalleri.\u003C/span\u003E\u003C/div\u003E\u003C/div\u003E\r\n\u003Ch2\u003ENeden bunları ayırıyoruz?\u003C/h2\u003E\u003Cp\u003EBir müşteri geçmişte yüksek ciro üretmiş olabilir fakat artık normal ritmine göre gecikiyor olabilir. Başka bir müşteri orta değer skorunda olup aktif, sık ve sadakat hedefine yakın olabilir. Bu nedenle Pika’da \u003Cstrong\u003Edeğer skoru aksiyonun kendisi değil, karar bağlamının bir parçasıdır.\u003C/strong\u003E\u003C/p\u003E\r\n\u003Ctable class=\u0022matrix\u0022\u003E\u003Cthead\u003E\u003Ctr\u003E\u003Cth\u003EAlan\u003C/th\u003E\u003Cth\u003ENe anlatır?\u003C/th\u003E\u003Cth\u003EKararda rolü\u003C/th\u003E\u003C/tr\u003E\u003C/thead\u003E\u003Ctbody\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Cstrong\u003ECustomer Value Score\u003C/strong\u003E\u003C/td\u003E\u003Ctd\u003E4 faktörlü ağırlıklı ticari değer (Ciro, Sıklık, Tazelik, Sadakat)\u003C/td\u003E\u003Ctd\u003EMüşteriler arasında ticari değer kıyaslaması\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Cstrong\u003EOrtalama sepet\u003C/strong\u003E\u003C/td\u003E\u003Ctd\u003ETipik satın alma büyüklüğü\u003C/td\u003E\u003Ctd\u003ESkoru açıklayan yardımcı bağlam\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Cstrong\u003ESon alışveriş / ritim\u003C/strong\u003E\u003C/td\u003E\u003Ctd\u003Eİlişkinin ne kadar güncel olduğu ve döngü durumu\u003C/td\u003E\u003Ctd\u003EPasifleşme ve tekrar ihtiyaç sinyali\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Cstrong\u003ESadakat\u003C/strong\u003E\u003C/td\u003E\u003Ctd\u003EPuan, tier veya hedefe yakınlık\u003C/td\u003E\u003Ctd\u003Eİlişkiyi indirim dışında güçlendirebilecek aksiyon bağlamı\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Cstrong\u003EChurn / risk\u003C/strong\u003E\u003C/td\u003E\u003Ctd\u003ENormal döngüden ve alışveriş ritminden uzaklaşma\u003C/td\u003E\u003Ctd\u003EYüksek değerli müşteride önceliği artırabilir\u003C/td\u003E\u003C/tr\u003E\u003C/tbody\u003E\u003C/table\u003E\r\n\u003Cdiv class=\u0022scenario-panel single\u0022\u003E\u003Cdiv class=\u0022scenario-left wide-block\u0022\u003E\u003Cdiv class=\u0022scenario-badge\u0022\u003EÖrnek okuma\u003C/div\u003E\u003Ch3\u003EDeğerli ama ritmi bozulan müşteri\u003C/h3\u003E\u003Cp\u003EMüşterinin değer skoru yüksek olabilir; buna rağmen son satın alması kendi ortalama aralığının belirgin biçimde gerisinde kalmışsa, “yüksek değer = sağlıklı ilişki” varsayımı yapılmaz. Risk ve sadakat bağlamı ayrıca değerlendirilir.\u003C/p\u003E\u003C/div\u003E\u003C/div\u003E\r\n\u003Cdiv class=\u0022callout callout-primary\u0022\u003E\u003Cdiv class=\u0022callout-title\u0022\u003ETemel ayrım\u003C/div\u003E\u003Cp\u003E\u003Cstrong\u003ESkor deterministik olarak hesaplanır; karar ise skor \u002B davranış \u002B izin \u002B zamanlama bağlamıyla insan kontrolünde verilir.\u003C/strong\u003E\u003C/p\u003E\u003C/div\u003E",
       "Related": [
         "musteri-deger-skoru",
         "sadakat-hedefe-yakinlik",
         "deger-risk-birlikte-okuma",
         "pika-360"
-      ]
+      ],
+      "Indexable": true
     },
     "musteri-deger-skoru": {
       "Slug": "musteri-deger-skoru",
       "Section": "Müşteriyi ve Ürünü Anlayın",
       "Title": "Müşteri Değer Skoru",
-      "Summary": "Müşteri Değer Skoru\u0027nun hangi iş sinyallerini (ciro, sıklık, alışveriş ritmi) kullandığını ve nasıl yorumlanacağını açıklar.",
-      "Html": "\n\u003Csection class=\u0022hero hero-intro\u0022\u003E\n\u003Cdiv class=\u0022hero-copy\u0022\u003E\n\u003Cdiv class=\u0022hero-kicker\u0022\u003EMüşteriyi ve Ürünü Anlayın\u003C/div\u003E\n\u003Ch1\u003EMüşteri Değer Skoru\u003C/h1\u003E\n\u003Cp class=\u0022hero-lead\u0022\u003EMüşteri Değer Skoru, müşterinin işletmeniz için oluşturduğu toplam ticari değeri ve ilişki gücünü 0–100 arasında anlaşılır bir göstergeye dönüştürür.\u003C/p\u003E\n\u003C/div\u003E\n\u003C/section\u003E\n\n\u003Ch2\u003EHangi Sinyaller Kullanılır?\u003C/h2\u003E\n\u003Cdiv class=\u0022role-table\u0022\u003E\n\u003Cdiv class=\u0022role-row role-head\u0022\u003E\u003Cdiv\u003ESinyal\u003C/div\u003E\u003Cdiv\u003Eİş Anlamı\u003C/div\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022role-row\u0022\u003E\u003Cdiv\u003E\u003Cstrong\u003EToplam Harcama (Monetary)\u003C/strong\u003E\u003C/div\u003E\u003Cdiv\u003EMüşterinin toplam ciroya katkısı ve sepet büyüklüğü.\u003C/div\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022role-row\u0022\u003E\u003Cdiv\u003E\u003Cstrong\u003ESipariş Sıklığı (Frequency)\u003C/strong\u003E\u003C/div\u003E\u003Cdiv\u003EAlışveriş yapma periyodu ve sipariş adedi.\u003C/div\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022role-row\u0022\u003E\u003Cdiv\u003E\u003Cstrong\u003EAlışveriş Ritmi (Rhythm)\u003C/strong\u003E\u003C/div\u003E\u003Cdiv\u003EMüşterinin kendi geçmişindeki alışveriş aralığına sadakati.\u003C/div\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022role-row\u0022\u003E\u003Cdiv\u003E\u003Cstrong\u003Eİlişki Süresi (Recency)\u003C/strong\u003E\u003C/div\u003E\u003Cdiv\u003EEn son alışverişten bu yana geçen süre ve aktiflik durumu.\u003C/div\u003E\u003C/div\u003E\n\u003C/div\u003E\n\n\u003Ch2\u003ESkor Nasıl Okunmalıdır?\u003C/h2\u003E\n\u003Cp\u003EYüksek skorlu müşteriler sadık ve yüksek katkı sağlayan çekirdek kitleyi temsil eder. Skorun düşüş eğilimine girmesi, müşterinin ilgisinin azaldığını gösteren erken bir uyarı sinyalidir.\u003C/p\u003E\n",
+      "Summary": "Müşteri Değer Skoru\u0027nun (CVS) 4 temel faktörünü (Monetary, Frequency, Recency, Loyalty), ağırlıklı hesaplama mantığını ve nasıl yorumlanacağını açıklar.",
+      "Html": "\r\n\u003Csection class=\u0022hero hero-intro\u0022\u003E\r\n\u003Cdiv class=\u0022hero-copy\u0022\u003E\r\n\u003Cdiv class=\u0022hero-kicker\u0022\u003EMüşteriyi ve Ürünü Anlayın\u003C/div\u003E\r\n\u003Ch1\u003EMüşteri Değer Skoru\u003C/h1\u003E\r\n\u003Cp class=\u0022hero-lead\u0022\u003EMüşteri Değer Skoru (Customer Value Score - CVS), müşterinin işletmeniz için oluşturduğu toplam ticari değeri ve ilişki gücünü 0–100 arasında normalize edilmiş, deterministik bir göstergeye dönüştürür.\u003C/p\u003E\r\n\u003C/div\u003E\r\n\u003C/section\u003E\r\n\r\n\u003Ch2\u003EKanonik Skorlama Formülü\u003C/h2\u003E\r\n\u003Cp\u003EPika Customer Value Score, 4 temel ağırlıklı faktörün deterministik toplamından oluşur:\u003C/p\u003E\r\n\u003Cdiv class=\u0022callout callout-primary\u0022\u003E\r\n\u003Cp\u003E\u003Cstrong\u003ECustomer Value Score = (0.40 × Monetary) \u002B (0.25 × Frequency) \u002B (0.20 × Recency) \u002B (0.15 × Loyalty)\u003C/strong\u003E\u003C/p\u003E\r\n\u003C/div\u003E\r\n\r\n\u003Ch2\u003EHangi Faktörler Kullanılır?\u003C/h2\u003E\r\n\u003Cdiv class=\u0022role-table\u0022\u003E\r\n\u003Cdiv class=\u0022role-row role-head\u0022\u003E\u003Cdiv\u003EFaktör\u003C/div\u003E\u003Cdiv\u003EAğırlık\u003C/div\u003E\u003Cdiv\u003Eİş Anlamı\u003C/div\u003E\u003C/div\u003E\r\n\u003Cdiv class=\u0022role-row\u0022\u003E\u003Cdiv\u003E\u003Cstrong\u003EToplam Harcama (Monetary)\u003C/strong\u003E\u003C/div\u003E\u003Cdiv\u003E%40 (0.40)\u003C/div\u003E\u003Cdiv\u003EMüşterinin toplam ciroya katkısı ve parasal hacmi.\u003C/div\u003E\u003C/div\u003E\r\n\u003Cdiv class=\u0022role-row\u0022\u003E\u003Cdiv\u003E\u003Cstrong\u003ESipariş Sıklığı (Frequency)\u003C/strong\u003E\u003C/div\u003E\u003Cdiv\u003E%25 (0.25)\u003C/div\u003E\u003Cdiv\u003EMüşterinin sipariş adedi ve alışveriş tekrarlama periyodu.\u003C/div\u003E\u003C/div\u003E\r\n\u003Cdiv class=\u0022role-row\u0022\u003E\u003Cdiv\u003E\u003Cstrong\u003ESon İşlem Tazeliği (Recency)\u003C/strong\u003E\u003C/div\u003E\u003Cdiv\u003E%20 (0.20)\u003C/div\u003E\u003Cdiv\u003EEn son alışverişten bu yana geçen süre ve güncellik durumu.\u003C/div\u003E\u003C/div\u003E\r\n\u003Cdiv class=\u0022role-row\u0022\u003E\u003Cdiv\u003E\u003Cstrong\u003ESadakat (Loyalty)\u003C/strong\u003E\u003C/div\u003E\u003Cdiv\u003E%15 (0.15)\u003C/div\u003E\u003Cdiv\u003EMüşterinin bağlılık düzeyi ve sadakat programı katkısı.\u003C/div\u003E\u003C/div\u003E\r\n\u003C/div\u003E\r\n\r\n\u003Ch2\u003ERitim ve Davranışsal Bağlam\u003C/h2\u003E\r\n\u003Cp\u003EAlışveriş Ritmi (Rhythm), Customer Value Score\u0027un ağırlıklı bir çarpanı veya 5. puan bileşeni değildir; müşterinin kendi geçmiş döngüsünü anlamaya yarayan bağımsız bir davranışsal bağlam sinyalidir.\u003C/p\u003E\r\n\r\n\u003Ch2\u003ESkor Nasıl Okunmalıdır?\u003C/h2\u003E\r\n\u003Cp\u003EYüksek skorlu müşteriler sadık ve yüksek katkı sağlayan çekirdek kitleyi temsil eder. Skorun düşüş eğilimine girmesi, müşterinin ilgisinin azaldığını gösteren erken bir uyarı sinyalidir.\u003C/p\u003E\r\n",
       "Related": [
         "musteri-degeri-sadakat",
         "deger-risk-birlikte-okuma",
         "pika-360",
         "ozellik-veri-gereksinimleri"
-      ]
+      ],
+      "Indexable": true
     },
     "sadakat-hedefe-yakinlik": {
       "Slug": "sadakat-hedefe-yakinlik",
       "Section": "Müşteriyi ve Ürünü Anlayın",
       "Title": "Sadakat ve Hedefe Yakınlık",
       "Summary": "Loyalty point/tier bilgisi ile müşterinin bir üst sadakat eşiğine yakınlığının nasıl daha akıllı aksiyonlara dönüştürülebileceğini açıklar.",
-      "Html": "\u003Csection class=\u0022hero hero-dark\u0022\u003E\u003Cdiv class=\u0022hero-copy wide\u0022\u003E\u003Cdiv class=\u0022hero-kicker\u0022\u003EMüşteri ve Analitik Zekâsı\u003C/div\u003E\u003Ch1\u003ESadakat ve Hedefe Yakınlık\u003C/h1\u003E\u003Cp class=\u0022hero-lead\u0022\u003ESadakat yalnız “kaç puanı var?” sorusu değildir. Pika için daha değerli soru; müşterinin hangi seviyede olduğu, bir üst eşiğe ne kadar yaklaştığı ve bu bilginin daha anlamlı bir ilişki aksiyonuna dönüşüp dönüşemeyeceğidir.\u003C/p\u003E\u003C/div\u003E\u003C/section\u003E\n\u003Cdiv class=\u0022feature-grid\u0022\u003E\u003Carticle class=\u0022feature-card\u0022\u003E\u003Cdiv class=\u0022feature-icon\u0022\u003EP\u003C/div\u003E\u003Ch3\u003ELoyalty points\u003C/h3\u003E\u003Cp\u003EMevcut sadakat puanı ve puan hareketleri.\u003C/p\u003E\u003C/article\u003E\u003Carticle class=\u0022feature-card\u0022\u003E\u003Cdiv class=\u0022feature-icon\u0022\u003ET\u003C/div\u003E\u003Ch3\u003ELoyalty tier\u003C/h3\u003E\u003Cp\u003EMüşterinin mevcut sadakat seviyesi.\u003C/p\u003E\u003C/article\u003E\u003Carticle class=\u0022feature-card\u0022\u003E\u003Cdiv class=\u0022feature-icon\u0022\u003E→\u003C/div\u003E\u003Ch3\u003EBir üst seviyeye kalan\u003C/h3\u003E\u003Cp\u003EMüşterinin bir sonraki sadakat eşiğine ne kadar yakın olduğu.\u003C/p\u003E\u003C/article\u003E\u003Carticle class=\u0022feature-card\u0022\u003E\u003Cdiv class=\u0022feature-icon\u0022\u003E✓\u003C/div\u003E\u003Ch3\u003EKampanya uygunluğu\u003C/h3\u003E\u003Cp\u003ESadakat tamamlama mesajının gerçekten anlamlı olup olmadığı.\u003C/p\u003E\u003C/article\u003E\u003C/div\u003E\n\u003Ch2\u003ENeden indirimden daha akıllı olabilir?\u003C/h2\u003E\u003Cdiv class=\u0022scenario-panel single\u0022\u003E\u003Cdiv class=\u0022scenario-left\u0022\u003E\u003Cdiv class=\u0022scenario-badge\u0022\u003EÖrnek senaryo\u003C/div\u003E\u003Ch3\u003EMüşteri bir alışveriş sonra sadakat ödülüne ulaşacak\u003C/h3\u003E\u003Col class=\u0022scenario-steps\u0022\u003E\u003Cli\u003EMüşteri değerli ve hâlâ aktif.\u003C/li\u003E\u003Cli\u003EBir üst sadakat eşiğine yalnızca bir alışveriş kalmış.\u003C/li\u003E\u003Cli\u003EGenel indirim vermek yerine mevcut ilişkiyi tamamlatan mesaj daha uygun olabilir.\u003C/li\u003E\u003Cli\u003EÖneri: “Bir alışveriş daha yap, ödülünü tamamla.”\u003C/li\u003E\u003C/ol\u003E\u003C/div\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022callout callout-primary\u0022\u003E\u003Cdiv class=\u0022callout-title\u0022\u003Eİşletme açısından\u003C/div\u003E\u003Cp\u003EBu yaklaşım gereksiz indirim vermek yerine müşterinin zaten yaklaşmış olduğu sadakat hedefini kullanarak ilişkiyi güçlendirebilir.\u003C/p\u003E\u003C/div\u003E\n\u003Ch2\u003EDeğer skoruyla karıştırmayın\u003C/h2\u003E\u003Cp\u003ESadakat puanı/tier veya bir üst hedefe kalan mesafe, Customer Value Score’un mevcut %60 gelir \u002B %40 sıklık formülünün parçası değildir. Sadakat bilgisi ayrı bir ilişki bağlamıdır ve müşteriye gereksiz genel indirim vermek yerine mevcut programa uygun bir aksiyon tasarlamak için kullanılabilir.\u003C/p\u003E",
+      "Html": "\u003Csection class=\u0022hero hero-dark\u0022\u003E\u003Cdiv class=\u0022hero-copy wide\u0022\u003E\u003Cdiv class=\u0022hero-kicker\u0022\u003EMüşteri ve Analitik Zekâsı\u003C/div\u003E\u003Ch1\u003ESadakat ve Hedefe Yakınlık\u003C/h1\u003E\u003Cp class=\u0022hero-lead\u0022\u003ESadakat yalnız “kaç puanı var?” sorusu değildir. Pika için daha değerli soru; müşterinin hangi seviyede olduğu, bir üst eşiğe ne kadar yaklaştığı ve bu bilginin daha anlamlı bir ilişki aksiyonuna dönüşüp dönüşemeyeceğidir.\u003C/p\u003E\u003C/div\u003E\u003C/section\u003E\n\u003Cdiv class=\u0022feature-grid\u0022\u003E\u003Carticle class=\u0022feature-card\u0022\u003E\u003Cdiv class=\u0022feature-icon\u0022\u003EP\u003C/div\u003E\u003Ch3\u003ELoyalty points\u003C/h3\u003E\u003Cp\u003EMevcut sadakat puanı ve puan hareketleri.\u003C/p\u003E\u003C/article\u003E\u003Carticle class=\u0022feature-card\u0022\u003E\u003Cdiv class=\u0022feature-icon\u0022\u003ET\u003C/div\u003E\u003Ch3\u003ELoyalty tier\u003C/h3\u003E\u003Cp\u003EMüşterinin mevcut sadakat seviyesi.\u003C/p\u003E\u003C/article\u003E\u003Carticle class=\u0022feature-card\u0022\u003E\u003Cdiv class=\u0022feature-icon\u0022\u003E→\u003C/div\u003E\u003Ch3\u003EBir üst seviyeye kalan\u003C/h3\u003E\u003Cp\u003EMüşterinin bir sonraki sadakat eşiğine ne kadar yakın olduğu.\u003C/p\u003E\u003C/article\u003E\u003Carticle class=\u0022feature-card\u0022\u003E\u003Cdiv class=\u0022feature-icon\u0022\u003E✓\u003C/div\u003E\u003Ch3\u003EKampanya uygunluğu\u003C/h3\u003E\u003Cp\u003ESadakat tamamlama mesajının gerçekten anlamlı olup olmadığı.\u003C/p\u003E\u003C/article\u003E\u003C/div\u003E\n\u003Ch2\u003ENeden indirimden daha akıllı olabilir?\u003C/h2\u003E\u003Cdiv class=\u0022scenario-panel single\u0022\u003E\u003Cdiv class=\u0022scenario-left\u0022\u003E\u003Cdiv class=\u0022scenario-badge\u0022\u003EÖrnek senaryo\u003C/div\u003E\u003Ch3\u003EMüşteri bir alışveriş sonra sadakat ödülüne ulaşacak\u003C/h3\u003E\u003Col class=\u0022scenario-steps\u0022\u003E\u003Cli\u003EMüşteri değerli ve hâlâ aktif.\u003C/li\u003E\u003Cli\u003EBir üst sadakat eşiğine yalnızca bir alışveriş kalmış.\u003C/li\u003E\u003Cli\u003EGenel indirim vermek yerine mevcut ilişkiyi tamamlatan mesaj daha uygun olabilir.\u003C/li\u003E\u003Cli\u003EÖneri: “Bir alışveriş daha yap, ödülünü tamamla.”\u003C/li\u003E\u003C/ol\u003E\u003C/div\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022callout callout-primary\u0022\u003E\u003Cdiv class=\u0022callout-title\u0022\u003Eİşletme açısından\u003C/div\u003E\u003Cp\u003EBu yaklaşım gereksiz indirim vermek yerine müşterinin zaten yaklaşmış olduğu sadakat hedefini kullanarak ilişkiyi güçlendirebilir.\u003C/p\u003E\u003C/div\u003E\n\u003Ch2\u003EDeğer skoruyla karıştırmayın\u003C/h2\u003E\u003Cp\u003ESadakat puanı/tier veya bir üst hedefe kalan mesafe, Customer Value Score\u0027un 4 faktörlü (Monetary, Frequency, Recency, Loyalty) formülünün ötesinde, güncel puan veya kademe ilerlemesi bağımsız bir operasyonel sadakat bağlamıdır. Sadakat bilgisi ayrı bir ilişki bağlamıdır ve müşteriye gereksiz genel indirim vermek yerine mevcut programa uygun bir aksiyon tasarlamak için kullanılabilir.\u003C/p\u003E",
       "Related": [
         "musteri-degeri-sadakat",
         "next-best-action",
         "firsattan-aksiyona-gecis"
-      ]
+      ],
+      "Indexable": true
     },
     "deger-risk-birlikte-okuma": {
       "Slug": "deger-risk-birlikte-okuma",
@@ -793,7 +855,8 @@
         "sadakat-hedefe-yakinlik",
         "next-best-action",
         "firsattan-aksiyona-gecis"
-      ]
+      ],
+      "Indexable": true
     },
     "magaza-performansi": {
       "Slug": "magaza-performansi",
@@ -806,19 +869,21 @@
         "magaza-musteri-davranisi",
         "magaza-firsat-alanlari",
         "ozellik-veri-gereksinimleri"
-      ]
+      ],
+      "Indexable": true
     },
     "magaza-performans-skoru": {
       "Slug": "magaza-performans-skoru",
       "Section": "Ölçüm ve Analitik",
       "Title": "Mağaza Karşılaştırması ve Sıralamalar",
       "Summary": "Mağazaların ciro, büyüme, sepet büyüklüğü ve müşteri sadakati açısından nasıl karşılaştırıldığını açıklar.",
-      "Html": "\n\u003Csection class=\u0022hero hero-intro\u0022\u003E\n\u003Cdiv class=\u0022hero-copy\u0022\u003E\n\u003Cdiv class=\u0022hero-kicker\u0022\u003EÖlçüm ve Analitik\u003C/div\u003E\n\u003Ch1\u003EMağaza Karşılaştırması ve Sıralamalar\u003C/h1\u003E\n\u003Cp class=\u0022hero-lead\u0022\u003EPika BI, mağazalarınızı tek bir yüzeysel puana sıkıştırmak yerine; ciro, müşteri büyümesi ve tekrar alışveriş oranı gibi somut eksenlerde karşılaştırır.\u003C/p\u003E\n\u003C/div\u003E\n\u003C/section\u003E\n\n\u003Ch2\u003EKarşılaştırma Eksenleri\u003C/h2\u003E\n\u003Cul\u003E\n\u003Cli\u003E\u003Cstrong\u003ECiro ve Satış Hacmi:\u003C/strong\u003E Toplam satış katkısı.\u003C/li\u003E\n\u003Cli\u003E\u003Cstrong\u003EMüşteri Kazanımı:\u003C/strong\u003E Yeni müşteri edinme performansı.\u003C/li\u003E\n\u003Cli\u003E\u003Cstrong\u003ETekrar Alışveriş Oranı:\u003C/strong\u003E Mağazaya gelen müşterilerin yeniden gelme sıklığı.\u003C/li\u003E\n\u003Cli\u003E\u003Cstrong\u003EOrtalama Sepet:\u003C/strong\u003E Fatura başına ürün adedi ve tutarı.\u003C/li\u003E\n\u003C/ul\u003E\n",
+      "Html": "\r\n\u003Csection class=\u0022hero hero-intro\u0022\u003E\r\n\u003Cdiv class=\u0022hero-copy\u0022\u003E\r\n\u003Cdiv class=\u0022hero-kicker\u0022\u003EÖlçüm ve Analitik\u003C/div\u003E\r\n\u003Ch1\u003EMağaza Karşılaştırması ve Sıralamalar\u003C/h1\u003E\r\n\u003Cp class=\u0022hero-lead\u0022\u003EPika BI, mağazalarınızı tek bir yüzeysel puana sıkıştırmak yerine; ciro, müşteri büyümesi ve tekrar alışveriş oranı gibi somut eksenlerde karşılaştırır.\u003C/p\u003E\r\n\u003C/div\u003E\r\n\u003C/section\u003E\r\n\r\n\u003Ch2\u003EKarşılaştırma Eksenleri\u003C/h2\u003E\r\n\u003Cul\u003E\r\n\u003Cli\u003E\u003Cstrong\u003ECiro ve Satış Hacmi:\u003C/strong\u003E Toplam satış katkısı.\u003C/li\u003E\r\n\u003Cli\u003E\u003Cstrong\u003EMüşteri Kazanımı:\u003C/strong\u003E Yeni müşteri edinme performansı.\u003C/li\u003E\r\n\u003Cli\u003E\u003Cstrong\u003ETekrar Alışveriş Oranı:\u003C/strong\u003E Mağazaya gelen müşterilerin yeniden gelme sıklığı.\u003C/li\u003E\r\n\u003Cli\u003E\u003Cstrong\u003EOrtalama Sepet:\u003C/strong\u003E Fatura başına ürün adedi ve tutarı.\u003C/li\u003E\r\n\u003C/ul\u003E\r\n",
       "Related": [
         "magaza-performansi",
         "magaza-musteri-davranisi",
         "magaza-firsat-alanlari"
-      ]
+      ],
+      "Indexable": true
     },
     "magaza-musteri-davranisi": {
       "Slug": "magaza-musteri-davranisi",
@@ -831,7 +896,8 @@
         "magaza-firsat-alanlari",
         "musteri-degeri-sadakat",
         "tekrar-satin-alma-analizi"
-      ]
+      ],
+      "Indexable": true
     },
     "magaza-firsat-alanlari": {
       "Slug": "magaza-firsat-alanlari",
@@ -844,7 +910,8 @@
         "next-best-action",
         "aksiyon-calisma-alani",
         "magaza-musteri-davranisi"
-      ]
+      ],
+      "Indexable": true
     },
     "urun-kategori-performansi": {
       "Slug": "urun-kategori-performansi",
@@ -857,20 +924,22 @@
         "product-intelligence-nedir",
         "cross-sell-firsatlari",
         "ozellik-veri-gereksinimleri"
-      ]
+      ],
+      "Indexable": true
     },
     "cross-sell-firsatlari": {
       "Slug": "cross-sell-firsatlari",
       "Section": "Fırsat ve Karar",
       "Title": "Cross-sell / Çapraz Satış Analizi",
       "Summary": "Sepet birliktelikleri üzerinden müşterilere en uygun tamamlayıcı ürün önerilerinin nasıl tespit edildiğini açıklar.",
-      "Html": "\n\u003Csection class=\u0022hero hero-intro\u0022\u003E\n\u003Cdiv class=\u0022hero-copy\u0022\u003E\n\u003Cdiv class=\u0022hero-kicker\u0022\u003EFırsat ve Karar\u003C/div\u003E\n\u003Ch1\u003ECross-sell / Çapraz Satış Analizi\u003C/h1\u003E\n\u003Cp class=\u0022hero-lead\u0022\u003EPika Cross-sell analizi, müşterilerinizin geçmiş sepet birlikteliklerini inceleyerek birbiriyle doğal olarak eşleşen ürün çiftlerini ve fırsatları görünür kılar.\u003C/p\u003E\n\u003C/div\u003E\n\u003C/section\u003E\n\n\u003Ch2\u003EBirliktelik Mantığı\u003C/h2\u003E\n\u003Cp\u003EHangi ürünlerin aynı sepette veya yakın zaman aralıklarında birlikte alındığı analiz edilir. Böylece belirli bir ürünü alan müşteriye ilgisiz bir teklif yerine, gerçekten ihtiyaç duyabileceği tamamlayıcı ürünler önerilir.\u003C/p\u003E\n",
+      "Html": "\r\n\u003Csection class=\u0022hero hero-intro\u0022\u003E\r\n\u003Cdiv class=\u0022hero-copy\u0022\u003E\r\n\u003Cdiv class=\u0022hero-kicker\u0022\u003EFırsat ve Karar\u003C/div\u003E\r\n\u003Ch1\u003ECross-sell / Çapraz Satış Analizi\u003C/h1\u003E\r\n\u003Cp class=\u0022hero-lead\u0022\u003EPika Cross-sell analizi, müşterilerinizin geçmiş sepet birlikteliklerini inceleyerek birbiriyle doğal olarak eşleşen ürün çiftlerini ve fırsatları görünür kılar.\u003C/p\u003E\r\n\u003C/div\u003E\r\n\u003C/section\u003E\r\n\r\n\u003Ch2\u003EBirliktelik Mantığı\u003C/h2\u003E\r\n\u003Cp\u003EHangi ürünlerin aynı sepette veya yakın zaman aralıklarında birlikte alındığı analiz edilir. Böylece belirli bir ürünü alan müşteriye ilgisiz bir teklif yerine, gerçekten ihtiyaç duyabileceği tamamlayıcı ürünler önerilir.\u003C/p\u003E\r\n",
       "Related": [
         "urun-kategori-performansi",
         "product-intelligence-musteri-firsati",
         "upsell-firsatlari",
         "ozellik-veri-gereksinimleri"
-      ]
+      ],
+      "Indexable": true
     },
     "upsell-firsatlari": {
       "Slug": "upsell-firsatlari",
@@ -883,7 +952,8 @@
         "kategori-playbook-baglantisi",
         "cross-sell-firsatlari",
         "firsattan-aksiyona-gecis"
-      ]
+      ],
+      "Indexable": true
     },
     "omnichannel-performansi": {
       "Slug": "omnichannel-performansi",
@@ -896,7 +966,8 @@
         "izin-optout-iys",
         "kanal-operasyonlari",
         "next-best-action"
-      ]
+      ],
+      "Indexable": true
     },
     "veri-hazirligi-guvenilirlik": {
       "Slug": "veri-hazirligi-guvenilirlik",
@@ -909,7 +980,8 @@
         "review-resolution-readiness",
         "ozellik-veri-gereksinimleri",
         "bi-kokpit"
-      ]
+      ],
+      "Indexable": false
     },
     "kanal-operasyonlari": {
       "Slug": "kanal-operasyonlari",
@@ -922,20 +994,22 @@
         "teslimat-konsolu",
         "omnichannel-performansi",
         "gonderim-son-katman"
-      ]
+      ],
+      "Indexable": false
     },
     "teslimat-konsolu": {
       "Slug": "teslimat-konsolu",
       "Section": "Ölçüm ve Analitik",
       "Title": "Görevler ve Teslimat Takibi",
       "Summary": "Gönderim operasyonlarının durumunu, kampanya teslimat süreçlerini ve operasyonel görünürlüğü müşteri odaklı olarak açıklar.",
-      "Html": "\n\u003Csection class=\u0022hero hero-intro\u0022\u003E\n\u003Cdiv class=\u0022hero-copy\u0022\u003E\n\u003Cdiv class=\u0022hero-kicker\u0022\u003EÖlçüm ve Analitik\u003C/div\u003E\n\u003Ch1\u003EGörevler ve Teslimat Takibi\u003C/h1\u003E\n\u003Cp class=\u0022hero-lead\u0022\u003EPika\u0027da bir kampanya veya Journey yayınlandığında gönderim süreçleri şeffaf bir şekilde izlenir. Teslimat Takibi ekranı, her bir iletişimin durumunu ve operasyonel güvenilirliğini kullanıcılara sunar.\u003C/p\u003E\n\u003C/div\u003E\n\u003C/section\u003E\n\n\u003Cdiv class=\u0022lead-note\u0022\u003E\n\u003Cspan class=\u0022eyebrow\u0022\u003ETemel Amaç\u003C/span\u003E\n\u003Cp\u003EKullanıcıların hangi kampanyanın ne aşamada olduğunu, kaç alıcıya başarıyla ulaştığını ve olası gönderim engellerini tek ekrandan görmesini sağlamaktır.\u003C/p\u003E\n\u003C/div\u003E\n\n\u003Ch2\u003EGönderim Durumları Ne Anlama Gelir?\u003C/h2\u003E\n\u003Cdiv class=\u0022role-table\u0022\u003E\n\u003Cdiv class=\u0022role-row role-head\u0022\u003E\u003Cdiv\u003EDurum\u003C/div\u003E\u003Cdiv\u003EAnlamı\u003C/div\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022role-row\u0022\u003E\u003Cdiv\u003E\u003Cstrong\u003EBekliyor (Queued)\u003C/strong\u003E\u003C/div\u003E\u003Cdiv\u003EGönderim sıraya alınmış ve zamanlanmış saatini beklemektedir.\u003C/div\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022role-row\u0022\u003E\u003Cdiv\u003E\u003Cstrong\u003EGönderiliyor (Processing)\u003C/strong\u003E\u003C/div\u003E\u003Cdiv\u003Eİlgili kanal üzerinden alıcılara iletim devam etmektedir.\u003C/div\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022role-row\u0022\u003E\u003Cdiv\u003E\u003Cstrong\u003ETeslim Edildi (Delivered)\u003C/strong\u003E\u003C/div\u003E\u003Cdiv\u003EMesaj alıcının cihazına veya e-posta sunucusuna başarıyla ulaşmıştır.\u003C/div\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022role-row\u0022\u003E\u003Cdiv\u003E\u003Cstrong\u003EEngellendi / Uygun Değil\u003C/strong\u003E\u003C/div\u003E\u003Cdiv\u003Eİletişim izni bulunmayan veya kanal tercihi kapalı olan kullanıcılara gönderim yapılmamıştır.\u003C/div\u003E\u003C/div\u003E\n\u003C/div\u003E\n\n\u003Ch2\u003EOperasyonel Güvenilirlik\u003C/h2\u003E\n\u003Cp\u003EPika, geçici bağlantı sorunlarında gönderimi otomatik olarak koruma altına alır ve kullanıcının manuel müdahalesine gerek kalmadan süreci yönetir. Kalıcı izin engellerinde ise müşterinin tercihine saygı duyularak gönderim durdurulur.\u003C/p\u003E\n",
+      "Html": "\r\n\u003Csection class=\u0022hero hero-intro\u0022\u003E\r\n\u003Cdiv class=\u0022hero-copy\u0022\u003E\r\n\u003Cdiv class=\u0022hero-kicker\u0022\u003EÖlçüm ve Analitik\u003C/div\u003E\r\n\u003Ch1\u003EGörevler ve Teslimat Takibi\u003C/h1\u003E\r\n\u003Cp class=\u0022hero-lead\u0022\u003EPika\u0027da bir kampanya veya Journey yayınlandığında gönderim süreçleri şeffaf bir şekilde izlenir. Teslimat Takibi ekranı, her bir iletişimin durumunu ve operasyonel güvenilirliğini kullanıcılara sunar.\u003C/p\u003E\r\n\u003C/div\u003E\r\n\u003C/section\u003E\r\n\r\n\u003Cdiv class=\u0022lead-note\u0022\u003E\r\n\u003Cspan class=\u0022eyebrow\u0022\u003ETemel Amaç\u003C/span\u003E\r\n\u003Cp\u003EKullanıcıların hangi kampanyanın ne aşamada olduğunu, kaç alıcıya başarıyla ulaştığını ve olası gönderim engellerini tek ekrandan görmesini sağlamaktır.\u003C/p\u003E\r\n\u003C/div\u003E\r\n\r\n\u003Ch2\u003EGönderim Durumları Ne Anlama Gelir?\u003C/h2\u003E\r\n\u003Cdiv class=\u0022role-table\u0022\u003E\r\n\u003Cdiv class=\u0022role-row role-head\u0022\u003E\u003Cdiv\u003EDurum\u003C/div\u003E\u003Cdiv\u003EAnlamı\u003C/div\u003E\u003C/div\u003E\r\n\u003Cdiv class=\u0022role-row\u0022\u003E\u003Cdiv\u003E\u003Cstrong\u003EBekliyor (Queued)\u003C/strong\u003E\u003C/div\u003E\u003Cdiv\u003EGönderim sıraya alınmış ve zamanlanmış saatini beklemektedir.\u003C/div\u003E\u003C/div\u003E\r\n\u003Cdiv class=\u0022role-row\u0022\u003E\u003Cdiv\u003E\u003Cstrong\u003EGönderiliyor (Processing)\u003C/strong\u003E\u003C/div\u003E\u003Cdiv\u003Eİlgili kanal üzerinden alıcılara iletim devam etmektedir.\u003C/div\u003E\u003C/div\u003E\r\n\u003Cdiv class=\u0022role-row\u0022\u003E\u003Cdiv\u003E\u003Cstrong\u003ETeslim Edildi (Delivered)\u003C/strong\u003E\u003C/div\u003E\u003Cdiv\u003EMesaj alıcının cihazına veya e-posta sunucusuna başarıyla ulaşmıştır.\u003C/div\u003E\u003C/div\u003E\r\n\u003Cdiv class=\u0022role-row\u0022\u003E\u003Cdiv\u003E\u003Cstrong\u003EEngellendi / Uygun Değil\u003C/strong\u003E\u003C/div\u003E\u003Cdiv\u003Eİletişim izni bulunmayan veya kanal tercihi kapalı olan kullanıcılara gönderim yapılmamıştır.\u003C/div\u003E\u003C/div\u003E\r\n\u003C/div\u003E\r\n\r\n\u003Ch2\u003EOperasyonel Güvenilirlik\u003C/h2\u003E\r\n\u003Cp\u003EPika, geçici bağlantı sorunlarında gönderimi otomatik olarak koruma altına alır ve kullanıcının manuel müdahalesine gerek kalmadan süreci yönetir. Kalıcı izin engellerinde ise müşterinin tercihine saygı duyularak gönderim durdurulur.\u003C/p\u003E\r\n",
       "Related": [
         "gonderim-son-katman",
         "basarisiz-yeniden-deneme",
         "gonderim-operasyonu-izleme",
         "kanal-operasyonlari"
-      ]
+      ],
+      "Indexable": false
     },
     "izin-optout-iys": {
       "Slug": "izin-optout-iys",
@@ -948,20 +1022,22 @@
         "next-best-action",
         "gonderim-son-katman",
         "kullanici-roller-yetkiler"
-      ]
+      ],
+      "Indexable": true
     },
     "basarisiz-yeniden-deneme": {
       "Slug": "basarisiz-yeniden-deneme",
       "Section": "Ölçüm ve Analitik",
       "Title": "Başarısız Gönderimler ve İletişim Güvenliği",
       "Summary": "Geçici ve kalıcı gönderim engellerinin nasıl ayrıldığını, izin ve opt-out güvenliğini açıklar.",
-      "Html": "\n\u003Csection class=\u0022hero hero-intro\u0022\u003E\n\u003Cdiv class=\u0022hero-copy\u0022\u003E\n\u003Cdiv class=\u0022hero-kicker\u0022\u003EÖlçüm ve Analitik\u003C/div\u003E\n\u003Ch1\u003EBaşarısız Gönderimler ve İletişim Güvenliği\u003C/h1\u003E\n\u003Cp class=\u0022hero-lead\u0022\u003EHer başarısız gönderim aynı nedene dayanmaz. Pika, geçici teknik aksaklıklar ile kalıcı müşteri tercihlerini birbirinden ayırarak hem teslimat kalitesini hem de müşteri güvenini korur.\u003C/p\u003E\n\u003C/div\u003E\n\u003C/section\u003E\n\n\u003Ch2\u003EGeçici ve Kalıcı Hata Farkı\u003C/h2\u003E\n\u003Cdiv class=\u0022feature-grid\u0022\u003E\n\u003Carticle class=\u0022feature-card\u0022\u003E\n\u003Ch3\u003EGeçici Durumlar\u003C/h3\u003E\n\u003Cp\u003EAlıcı sunucusunun anlık meşgul olması veya geçici şebeke kesintileridir. Pika bu durumları güvenli aralıklarla yeniden deneyerek teslimat oranını maksimize eder.\u003C/p\u003E\n\u003C/article\u003E\n\u003Carticle class=\u0022feature-card\u0022\u003E\n\u003Ch3\u003EKalıcı Engeller\u003C/h3\u003E\n\u003Cp\u003EGeçersiz e-posta adresi, eksik telefon numarası veya kullanıcının opt-out bildirmesi gibi durumlardır. Bu iletiler tekrar denenmez ve raporlarda açıkça listelenir.\u003C/p\u003E\n\u003C/article\u003E\n\u003C/div\u003E\n",
+      "Html": "\r\n\u003Csection class=\u0022hero hero-intro\u0022\u003E\r\n\u003Cdiv class=\u0022hero-copy\u0022\u003E\r\n\u003Cdiv class=\u0022hero-kicker\u0022\u003EÖlçüm ve Analitik\u003C/div\u003E\r\n\u003Ch1\u003EBaşarısız Gönderimler ve İletişim Güvenliği\u003C/h1\u003E\r\n\u003Cp class=\u0022hero-lead\u0022\u003EHer başarısız gönderim aynı nedene dayanmaz. Pika, geçici teknik aksaklıklar ile kalıcı müşteri tercihlerini birbirinden ayırarak hem teslimat kalitesini hem de müşteri güvenini korur.\u003C/p\u003E\r\n\u003C/div\u003E\r\n\u003C/section\u003E\r\n\r\n\u003Ch2\u003EGeçici ve Kalıcı Hata Farkı\u003C/h2\u003E\r\n\u003Cdiv class=\u0022feature-grid\u0022\u003E\r\n\u003Carticle class=\u0022feature-card\u0022\u003E\r\n\u003Ch3\u003EGeçici Durumlar\u003C/h3\u003E\r\n\u003Cp\u003EAlıcı sunucusunun anlık meşgul olması veya geçici şebeke kesintileridir. Pika bu durumları güvenli aralıklarla yeniden deneyerek teslimat oranını maksimize eder.\u003C/p\u003E\r\n\u003C/article\u003E\r\n\u003Carticle class=\u0022feature-card\u0022\u003E\r\n\u003Ch3\u003EKalıcı Engeller\u003C/h3\u003E\r\n\u003Cp\u003EGeçersiz e-posta adresi, eksik telefon numarası veya kullanıcının opt-out bildirmesi gibi durumlardır. Bu iletiler tekrar denenmez ve raporlarda açıkça listelenir.\u003C/p\u003E\r\n\u003C/article\u003E\r\n\u003C/div\u003E\r\n",
       "Related": [
         "teslimat-konsolu",
         "gonderim-operasyonu-izleme",
         "izin-optout-iys",
         "kanal-operasyonlari"
-      ]
+      ],
+      "Indexable": false
     },
     "ihtiyac-haritasi": {
       "Slug": "ihtiyac-haritasi",
@@ -974,32 +1050,35 @@
         "sozluk",
         "bilgi-bankasi-haritasi",
         "pika-nedir"
-      ]
+      ],
+      "Indexable": true
     },
     "sss": {
       "Slug": "sss",
       "Section": "SSS ve Kaynaklar",
       "Title": "Sık Sorulan Sorular",
       "Summary": "Müşteri, satış, kurulum ve operasyon ekiplerinin Pika hakkında en sık soracağı ürün, veri, AI, BI, kanal ve ölçüm sorularını yanıtlar.",
-      "Html": "\u003Csection class=\u0022hero hero-intro\u0022\u003E\u003Cdiv class=\u0022hero-copy\u0022\u003E\u003Cdiv class=\u0022hero-kicker\u0022\u003EEk Kaynaklar\u003C/div\u003E\u003Ch1\u003ESık Sorulan Sorular\u003C/h1\u003E\u003Cp class=\u0022hero-lead\u0022\u003EKısa cevaplar temel çerçeveyi verir; ayrıntı gerektiğinde ilgili bilgi bankası sayfasına geçilebilir.\u003C/p\u003E\u003Cdiv class=\u0022hero-tags\u0022\u003E\u003Cspan\u003EÜrün\u003C/span\u003E\u003Cspan\u003EVeri\u003C/span\u003E\u003Cspan\u003EAI\u003C/span\u003E\u003Cspan\u003EKampanya\u003C/span\u003E\u003Cspan\u003EOperasyon\u003C/span\u003E\u003C/div\u003E\u003C/div\u003E\u003C/section\u003E\n\u003Cdiv class=\u0022faq-list\u0022\u003E\n\u003Cdetails\u003E\u003Csummary\u003EPika bir CRM mi?\u003C/summary\u003E\u003Cp\u003EHayır. CRM kayıt ve ilişki süreçlerini yönetir. Pika müşteri, ürün ve satış verisini anlamlandırıp analitik, fırsat ve aksiyon desteği üretmeye odaklanır; CRM/ERP/e-ticaret sistemlerinden veri alabilir.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003EPika yalnızca e-posta/SMS/WhatsApp gönderen bir sistem mi?\u003C/summary\u003E\u003Cp\u003EHayır. Gönderim karar zincirinin son katmanıdır. Önce veri, müşteri/ürün zekâsı, segment/fırsat ve uygunluk değerlendirilir.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003EBaşlamak için bütün sistemlerimizi değiştirmemiz gerekir mi?\u003C/summary\u003E\u003Cp\u003EHayır. Kontrollü başlangıç Excel/CSV ile yapılabilir; düzenli ve ölçekli akış için API/entegrasyon tercih edilir.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003EHangi veri minimum gereklidir?\u003C/summary\u003E\u003Cp\u003EKabiliyete göre değişir. Örneğin Customer Value için çözümlenmiş müşteri \u002B uygun satış/sepet; Cross-sell için aynı sepet altında birden fazla ürün; mağaza BI için StoreId/mapping gerekir. “Özellik → Veri Gereksinimi Matrisi” sayfası ayrıntılıdır.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003EMüşteri eşleşmezse ne olur?\u003C/summary\u003E\u003Cp\u003ECustomer-unmatched veri kalite problemi olarak izlenebilir. Müşteri bazlı metriklerin coverage’ı düşer; kayıt otomatik olarak güvenilir müşteri davranışı sayılmaz.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003EÜrün eşleşmez veya sınıflandırılmazsa ne olur?\u003C/summary\u003E\u003Cp\u003EProduct-unmatched / product-unclassified uyarıları oluşabilir. Ürün BI ve Product Intelligence kapsamı düşer; resolution ve review iş akışlarıyla düzeltilir.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003EMüşteri Değer Skoru nasıl hesaplanıyor?\u003C/summary\u003E\u003Cp\u003EGüncel deterministik formül normalize edilmiş toplam gelir %60 \u002B satın alma sıklığı %40’tır. Ortalama sepet, sadakat veya churn bu skorun içinde değildir; ayrı bağlamlardır.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003EBu skor LTV veya kârlılık mı?\u003C/summary\u003E\u003Cp\u003EHayır. Gelecek lifetime value, marj veya kârlılık tahmini değildir. Mevcut ticari değer için açıklanabilir karşılaştırma göstergesidir.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003ECross-sell müşteri bazlı ürün öneriyor mu?\u003C/summary\u003E\u003Cp\u003ECross-sell BI katmanı önce sepet düzeyinde ürün çiftlerini support/confidence/lift ile analiz eder. Müşteriye özel aksiyon, bunun üzerine müşteri ve Product Intelligence bağlamıyla kurulabilir.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003EUpsell için hazır bir başarı olasılığı skoru var mı?\u003C/summary\u003E\u003Cp\u003EStandart ayrı bir genel Upsell BI başarı-olasılığı servisi doğrulanmış değildir. Upsell bağlamı Product Role/Playbook ile tanımlanır ve iş kuralları/Journey tarafında uygulanabilir.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003EMağaza Skoru 0–100 var mı?\u003C/summary\u003E\u003Cp\u003EStandart mağaza BI’da birleşik 0–100 skor yoktur. Revenue rank, growth rank ve repeat-rate rank gibi ayrı açıklanabilir sıralamalar vardır.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003ESatış kanalı ile iletişim kanalı aynı şey mi?\u003C/summary\u003E\u003Cp\u003EHayır. Satış kanalı mağaza/web/e-ticaret gibi satışın kaynağıdır. İletişim kanalı e-posta/SMS/WhatsApp gibi müşteriye ulaşma yoludur.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003EAI kararları kendi başına mı veriyor?\u003C/summary\u003E\u003Cp\u003EHayır. Temel analitik metrikler system-calculated/deterministik olabilir. AI bunları açıklama, özetleme ve taslak üretiminde kullanır; yetki ve aksiyon kontrolünü devralmaz.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003EAI ile sistem hesaplamasını ekranda nasıl ayırıyoruz?\u003C/summary\u003E\u003Cp\u003ECustomer Strategy yaklaşımında “AI generated” ve “System calculated” kaynak etiketleriyle ayrım görünür tutulur; hesaplama/snapshot zamanı ayrıca gösterilir.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003EVerimiz eksikse Pika çalışmaz mı?\u003C/summary\u003E\u003Cp\u003EHer özellik için mükemmel veri gerekmez; fakat ilgili analitiğin minimum evidence’ı gerekir. Sistem mümkün olduğunda coverage, warning, unknown bucket ve data-quality issue ile eksikliği görünür kılar.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003EVerinin güncel olup olmadığını nasıl anlarız?\u003C/summary\u003E\u003Cp\u003EBirçok BI sözleşmesinde data-through, last-successful, freshness status, family health ve warning bilgileri bulunur. Güncellik ekranın kendi veri ailesiyle birlikte okunur.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003EOpt-out olan müşteriye mesaj gider mi?\u003C/summary\u003E\u003Cp\u003EOpt-out ve kanal izni gönderim uygunluğunun ön koşuludur. Uygun değilse kanal normal pazarlama aksiyonunda kullanılmamalıdır.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003EİYS entegrasyonu hukuki uygunluğu tamamen Pika’ya mı bırakır?\u003C/summary\u003E\u003Cp\u003EHayır. Pika izin verisini karar zincirine taşıyabilir; ancak veri kaynağı, entegrasyon kapsamı, ileti türü ve mevzuat sorumlulukları işletme süreçleriyle birlikte yönetilir.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003EGönderim başarısızsa sistem sürekli tekrar mı dener?\u003C/summary\u003E\u003Cp\u003EHayır. Geçici hatalar kontrollü retry’a uygun olabilir; kalıcı adres/izin hataları retry nedeni değildir. Retry limiti aşan işler dead-letter/inceleme akışına taşınabilir.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003EKampanya sonrası satış kampanyanın yarattığı gelir midir?\u003C/summary\u003E\u003Cp\u003EOtomatik olarak değil. Attribution kampanya sonrası satın almayı ilişkilendirir; nedensellik için uygun kontrol/deney tasarımı gerekir.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003EPika BI’da bir sayı neden warning gösterebilir?\u003C/summary\u003E\u003Cp\u003ECustomer/product/store/channel mapping, currency, basket eligibility, projection freshness veya başka evidence coverage sorunları metriğin güvenini etkileyebilir. Pika bu kalite bilgisini sayıdan ayrı saklamamaya çalışır.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003EHangi ekranı önce açmalıyım?\u003C/summary\u003E\u003Cp\u003EYönetici genel resim için BI Kokpit; müşteri özelinde Pika 360; veri sorunu için Veri Kalitesi; ürün ilişkileri için Ürün/Kategori ve Cross-sell; delivery problemi için Teslimat Konsolu ile başlayabilir.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003EPika’nın temel ürün ilkesi nedir?\u003C/summary\u003E\u003Cp\u003EDaha çok mesaj değil, daha doğru ilişki: veriyi anla, kanıtı gör, aksiyonu gerekçelendir ve sonucu ölç.\u003C/p\u003E\u003C/details\u003E\n\u003C/div\u003E",
+      "Html": "\u003Csection class=\u0022hero hero-intro\u0022\u003E\u003Cdiv class=\u0022hero-copy\u0022\u003E\u003Cdiv class=\u0022hero-kicker\u0022\u003EEk Kaynaklar\u003C/div\u003E\u003Ch1\u003ESık Sorulan Sorular\u003C/h1\u003E\u003Cp class=\u0022hero-lead\u0022\u003EKısa cevaplar temel çerçeveyi verir; ayrıntı gerektiğinde ilgili bilgi bankası sayfasına geçilebilir.\u003C/p\u003E\u003Cdiv class=\u0022hero-tags\u0022\u003E\u003Cspan\u003EÜrün\u003C/span\u003E\u003Cspan\u003EVeri\u003C/span\u003E\u003Cspan\u003EAI\u003C/span\u003E\u003Cspan\u003EKampanya\u003C/span\u003E\u003Cspan\u003EOperasyon\u003C/span\u003E\u003C/div\u003E\u003C/div\u003E\u003C/section\u003E\n\u003Cdiv class=\u0022faq-list\u0022\u003E\n\u003Cdetails\u003E\u003Csummary\u003EPika bir CRM mi?\u003C/summary\u003E\u003Cp\u003EHayır. CRM kayıt ve ilişki süreçlerini yönetir. Pika müşteri, ürün ve satış verisini anlamlandırıp analitik, fırsat ve aksiyon desteği üretmeye odaklanır; CRM/ERP/e-ticaret sistemlerinden veri alabilir.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003EPika yalnızca e-posta/SMS/WhatsApp gönderen bir sistem mi?\u003C/summary\u003E\u003Cp\u003EHayır. Gönderim karar zincirinin son katmanıdır. Önce veri, müşteri/ürün zekâsı, segment/fırsat ve uygunluk değerlendirilir.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003EBaşlamak için bütün sistemlerimizi değiştirmemiz gerekir mi?\u003C/summary\u003E\u003Cp\u003EHayır. Kontrollü başlangıç Excel/CSV ile yapılabilir; düzenli ve ölçekli akış için API/entegrasyon tercih edilir.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003EHangi veri minimum gereklidir?\u003C/summary\u003E\u003Cp\u003EKabiliyete göre değişir. Örneğin Customer Value için çözümlenmiş müşteri \u002B uygun satış/sepet; Cross-sell için aynı sepet altında birden fazla ürün; mağaza BI için StoreId/mapping gerekir. “Özellik → Veri Gereksinimi Matrisi” sayfası ayrıntılıdır.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003EMüşteri eşleşmezse ne olur?\u003C/summary\u003E\u003Cp\u003ECustomer-unmatched veri kalite problemi olarak izlenebilir. Müşteri bazlı metriklerin coverage’ı düşer; kayıt otomatik olarak güvenilir müşteri davranışı sayılmaz.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003EÜrün eşleşmez veya sınıflandırılmazsa ne olur?\u003C/summary\u003E\u003Cp\u003EProduct-unmatched / product-unclassified uyarıları oluşabilir. Ürün BI ve Product Intelligence kapsamı düşer; resolution ve review iş akışlarıyla düzeltilir.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003EMüşteri Değer Skoru nasıl hesaplanıyor?\u003C/summary\u003E\u003Cp\u003ECustomer Value Score (CVS), deterministik olarak 4 temel faktörün ağırlıklı toplamıyla hesaplanır: (0.40 × Monetary) \u002B (0.25 × Frequency) \u002B (0.20 × Recency) \u002B (0.15 × Loyalty). Alışveriş ritmi ise skorun bir çarpanı değil, bağımsız davranışsal bağlam sinyalidir.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003EBu skor LTV veya kârlılık mı?\u003C/summary\u003E\u003Cp\u003EHayır. Gelecek lifetime value, marj veya kârlılık tahmini değildir. Mevcut ticari değer için açıklanabilir karşılaştırma göstergesidir.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003ECross-sell müşteri bazlı ürün öneriyor mu?\u003C/summary\u003E\u003Cp\u003ECross-sell BI katmanı önce sepet düzeyinde ürün çiftlerini support/confidence/lift ile analiz eder. Müşteriye özel aksiyon, bunun üzerine müşteri ve Product Intelligence bağlamıyla kurulabilir.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003EUpsell için hazır bir başarı olasılığı skoru var mı?\u003C/summary\u003E\u003Cp\u003EStandart ayrı bir genel Upsell BI başarı-olasılığı servisi doğrulanmış değildir. Upsell bağlamı Product Role/Playbook ile tanımlanır ve iş kuralları/Journey tarafında uygulanabilir.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003EMağaza Skoru 0–100 var mı?\u003C/summary\u003E\u003Cp\u003EStandart mağaza BI’da birleşik 0–100 skor yoktur. Revenue rank, growth rank ve repeat-rate rank gibi ayrı açıklanabilir sıralamalar vardır.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003ESatış kanalı ile iletişim kanalı aynı şey mi?\u003C/summary\u003E\u003Cp\u003EHayır. Satış kanalı mağaza/web/e-ticaret gibi satışın kaynağıdır. İletişim kanalı e-posta/SMS/WhatsApp gibi müşteriye ulaşma yoludur.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003EAI kararları kendi başına mı veriyor?\u003C/summary\u003E\u003Cp\u003EHayır. Temel analitik metrikler system-calculated/deterministik olabilir. AI bunları açıklama, özetleme ve taslak üretiminde kullanır; yetki ve aksiyon kontrolünü devralmaz.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003EAI ile sistem hesaplamasını ekranda nasıl ayırıyoruz?\u003C/summary\u003E\u003Cp\u003ECustomer Strategy yaklaşımında “AI generated” ve “System calculated” kaynak etiketleriyle ayrım görünür tutulur; hesaplama/snapshot zamanı ayrıca gösterilir.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003EVerimiz eksikse Pika çalışmaz mı?\u003C/summary\u003E\u003Cp\u003EHer özellik için mükemmel veri gerekmez; fakat ilgili analitiğin minimum evidence’ı gerekir. Sistem mümkün olduğunda coverage, warning, unknown bucket ve data-quality issue ile eksikliği görünür kılar.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003EVerinin güncel olup olmadığını nasıl anlarız?\u003C/summary\u003E\u003Cp\u003EBirçok BI sözleşmesinde data-through, last-successful, freshness status, family health ve warning bilgileri bulunur. Güncellik ekranın kendi veri ailesiyle birlikte okunur.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003EOpt-out olan müşteriye mesaj gider mi?\u003C/summary\u003E\u003Cp\u003EOpt-out ve kanal izni gönderim uygunluğunun ön koşuludur. Uygun değilse kanal normal pazarlama aksiyonunda kullanılmamalıdır.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003EİYS entegrasyonu hukuki uygunluğu tamamen Pika’ya mı bırakır?\u003C/summary\u003E\u003Cp\u003EHayır. Pika izin verisini karar zincirine taşıyabilir; ancak veri kaynağı, entegrasyon kapsamı, ileti türü ve mevzuat sorumlulukları işletme süreçleriyle birlikte yönetilir.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003EGönderim başarısızsa sistem sürekli tekrar mı dener?\u003C/summary\u003E\u003Cp\u003EHayır. Geçici hatalar kontrollü retry’a uygun olabilir; kalıcı adres/izin hataları retry nedeni değildir. Retry limiti aşan işler başarısız iş inceleme havuzuna taşınabilir.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003EKampanya sonrası satış kampanyanın yarattığı gelir midir?\u003C/summary\u003E\u003Cp\u003EOtomatik olarak değil. Attribution kampanya sonrası satın almayı ilişkilendirir; nedensellik için uygun kontrol/deney tasarımı gerekir.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003EPika BI’da bir sayı neden warning gösterebilir?\u003C/summary\u003E\u003Cp\u003ECustomer/product/store/channel mapping, currency, basket eligibility, projection freshness veya başka evidence coverage sorunları metriğin güvenini etkileyebilir. Pika bu kalite bilgisini sayıdan ayrı saklamamaya çalışır.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003EHangi ekranı önce açmalıyım?\u003C/summary\u003E\u003Cp\u003EYönetici genel resim için BI Kokpit; müşteri özelinde Pika 360; veri sorunu için Veri Kalitesi; ürün ilişkileri için Ürün/Kategori ve Cross-sell; delivery problemi için Teslimat Konsolu ile başlayabilir.\u003C/p\u003E\u003C/details\u003E\n\u003Cdetails\u003E\u003Csummary\u003EPika’nın temel ürün ilkesi nedir?\u003C/summary\u003E\u003Cp\u003EDaha çok mesaj değil, daha doğru ilişki: veriyi anla, kanıtı gör, aksiyonu gerekçelendir ve sonucu ölç.\u003C/p\u003E\u003C/details\u003E\n\u003C/div\u003E",
       "Related": [
         "ozellik-veri-gereksinimleri",
         "sozluk",
         "pika-ne-degildir",
         "ai-rolu-guven-siniri"
-      ]
+      ],
+      "Indexable": true
     },
     "sozluk": {
       "Slug": "sozluk",
       "Section": "SSS ve Kaynaklar",
       "Title": "Pika Sözlüğü",
       "Summary": "Knowledge Base boyunca kullanılan ürün, veri, BI, Product Intelligence, kampanya ve delivery terimlerini ortak bir dille açıklar.",
-      "Html": "\u003Csection class=\u0022hero hero-intro\u0022\u003E\u003Cdiv class=\u0022hero-copy\u0022\u003E\u003Cdiv class=\u0022hero-kicker\u0022\u003EEk Kaynaklar\u003C/div\u003E\u003Ch1\u003EPika Sözlüğü\u003C/h1\u003E\u003Cp class=\u0022hero-lead\u0022\u003Eİngilizce teknik adlar sistemde korunabilir; ilk kullanımda Türkçe anlamı birlikte verilerek satış, ürün ve teknik ekiplerin aynı kavramı konuşması sağlanır.\u003C/p\u003E\u003Cdiv class=\u0022hero-tags\u0022\u003E\u003Cspan\u003EMüşteri zekâsı\u003C/span\u003E\u003Cspan\u003EÜrün zekâsı\u003C/span\u003E\u003Cspan\u003EBI\u003C/span\u003E\u003Cspan\u003EJourney\u003C/span\u003E\u003Cspan\u003EDelivery\u003C/span\u003E\u003C/div\u003E\u003C/div\u003E\u003C/section\u003E\n\u003Cdiv class=\u0022glossary-grid\u0022\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003EPika 360 / Müşteri 360\u003C/strong\u003E\u003Cp\u003ETek müşterinin değer, risk, davranış, kanal ve karar sinyallerinin birleşik görünümü.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003EProduct Intelligence / Ürün Zekâsı\u003C/strong\u003E\u003Cp\u003EÜrünü yalnız kod/adla değil kategori, ihtiyaç, rol ve dinamik özelliklerle anlamlandıran katman.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003EPlaybook / Sektörel ürün dili\u003C/strong\u003E\u003Cp\u003EBelirli sektör/ürün ailesi için kullanılacak ihtiyaç, rol, alan ve seçenek tanımlarını bir araya getiren model.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003ENeed Group / İhtiyaç Grubu\u003C/strong\u003E\u003Cp\u003EÜrünün müşterinin hangi ihtiyacını temsil ettiğini tanımlayan sınıflandırma.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003EProduct Role / Ürün Rolü\u003C/strong\u003E\u003Cp\u003EÜrünün tekrar tüketim, cross-sell, upsell veya ana ürün gibi ticari görevini tanımlayan bağlam.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003EWorkbench / Çalışma Alanı\u003C/strong\u003E\u003Cp\u003EKullanıcının ürünleri listelediği, filtrelediği, sınıflandırdığı ve düzelttiği operasyon ekranı.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003EResolution / Ürün Eşleştirme\u003C/strong\u003E\u003Cp\u003EHam satış satırındaki ürün bilgisini gerçek/master ürün kaydıyla eşleştirme süreci.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003EReview / İnceleme\u003C/strong\u003E\u003Cp\u003ESınıflandırma veya eşleştirme sonucunun uyarı, güven ve iş kuralı açısından kontrol edilmesi.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003EReadiness / Analitik Hazırlık\u003C/strong\u003E\u003Cp\u003EBir kaydın ilgili analitik için gereken eşleştirme/sınıflandırma koşullarını ne kadar karşıladığını anlatan genel kavram; tek bir evrensel 0–100 skor anlamına gelmez.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003ECustomer Value Score / Müşteri Değer Skoru\u003C/strong\u003E\u003Cp\u003EGüncel uygulamada normalize toplam gelir %60 \u002B satın alma sıklığı %40 ile hesaplanan 0–100 sistem metriği.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003EChurn Risk / Pasifleşme Riski\u003C/strong\u003E\u003Cp\u003EMüşterinin son satın alma davranışının kendi geçmiş ritminden uzaklaşmasını değerlendiren ayrı risk sinyali.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003ESegment\u003C/strong\u003E\u003Cp\u003EBelirli davranış veya iş kurallarını karşılayan yönetilebilir müşteri kümesi.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003EOpportunity / Fırsat\u003C/strong\u003E\u003Cp\u003EVeride görülen ve belirli bir ticari aksiyona temel olabilecek sinyal veya bağlam.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003ECross-sell / Çapraz Satış\u003C/strong\u003E\u003Cp\u003ECross-sell BI katmanında ürün çiftlerinin sepet birlikteliğini support/confidence/lift ile analiz eden yaklaşım; kişiselleştirme sonraki katmandır.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003EUpsell / Yükseltme\u003C/strong\u003E\u003Cp\u003EMevcut ihtiyacın daha yüksek değerli çözümüne geçiş bağlamı; Product Role ile aday ilişkileri tanımlanabilir.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003ESupport\u003C/strong\u003E\u003Cp\u003EBir ürün çiftinin tüm uygun sepetlerde birlikte görülme oranı.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003EConfidence\u003C/strong\u003E\u003Cp\u003EA ürünü görüldüğünde B’nin de aynı sepette görülme oranı; yönlü birliktelik metriği.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003ELift\u003C/strong\u003E\u003Cp\u003EÜrün birlikteliğinin bağımsız görülme beklentisine göre ne kadar güçlü olduğunu gösteren oran.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003ENext Best Action / Sıradaki En Uygun Aksiyon\u003C/strong\u003E\u003Cp\u003EGüncel CCE profilinde lifecycle/status ve risk bağlamından üretilen deterministik aksiyon yönü.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003ENext Best Channel / Uygun Kanal\u003C/strong\u003E\u003Cp\u003EKanal erişilebilirliği, izin, engagement, attribution ve fatigue gibi ayrı sinyallerle değerlendirilen kanal kararı.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003EJourney / Müşteri Akışı\u003C/strong\u003E\u003Cp\u003ETetikleyici, bekleme, karar ve iletişim adımlarından oluşan çok aşamalı otomasyon.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003EAttribution / İlişkilendirme\u003C/strong\u003E\u003Cp\u003EKampanya/iletişim ile daha sonraki satın alma arasında tanımlı pencere içinde ilişki kurma yaklaşımı; tek başına nedensellik kanıtı değildir.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003ECoverage / Kapsama\u003C/strong\u003E\u003Cp\u003EBir metriğin gereken müşteri, ürün, kanal, currency veya başka evidence alanlarının ne kadarını kapsadığını gösteren oran.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003EFreshness / Veri Tazeliği\u003C/strong\u003E\u003Cp\u003ERead-model veya snapshot’ın hangi zamana kadar güncel olduğunu ve son başarılı hesaplama zamanını anlatır.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003EDelivery Job / Gönderim Görevi\u003C/strong\u003E\u003Cp\u003EBir mesajın teknik gönderim yaşam döngüsünü temsil eden operasyonel iş kaydı.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003ERetry / Yeniden Deneme\u003C/strong\u003E\u003Cp\u003EGeçici hatalarda politikanın izin verdiği ölçüde aynı işin kontrollü tekrar çalıştırılması.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003EDead-letter\u003C/strong\u003E\u003Cp\u003ENormal otomatik retry akışında çözülemeyen ve manuel/özel incelemeye ayrılan işlerin tutulduğu operasyon durumu.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003EOpt-out / İletişimden Çıkma\u003C/strong\u003E\u003Cp\u003EMüşterinin ilgili kanaldaki pazarlama iletişimini istemediğini gösteren uygunluk sinyali.\u003C/p\u003E\u003C/div\u003E\n\u003C/div\u003E",
+      "Html": "\u003Csection class=\u0022hero hero-intro\u0022\u003E\u003Cdiv class=\u0022hero-copy\u0022\u003E\u003Cdiv class=\u0022hero-kicker\u0022\u003EEk Kaynaklar\u003C/div\u003E\u003Ch1\u003EPika Sözlüğü\u003C/h1\u003E\u003Cp class=\u0022hero-lead\u0022\u003Eİngilizce teknik adlar sistemde korunabilir; ilk kullanımda Türkçe anlamı birlikte verilerek satış, ürün ve teknik ekiplerin aynı kavramı konuşması sağlanır.\u003C/p\u003E\u003Cdiv class=\u0022hero-tags\u0022\u003E\u003Cspan\u003EMüşteri zekâsı\u003C/span\u003E\u003Cspan\u003EÜrün zekâsı\u003C/span\u003E\u003Cspan\u003EBI\u003C/span\u003E\u003Cspan\u003EJourney\u003C/span\u003E\u003Cspan\u003EDelivery\u003C/span\u003E\u003C/div\u003E\u003C/div\u003E\u003C/section\u003E\n\u003Cdiv class=\u0022glossary-grid\u0022\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003EPika 360 / Müşteri 360\u003C/strong\u003E\u003Cp\u003ETek müşterinin değer, risk, davranış, kanal ve karar sinyallerinin birleşik görünümü.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003EProduct Intelligence / Ürün Zekâsı\u003C/strong\u003E\u003Cp\u003EÜrünü yalnız kod/adla değil kategori, ihtiyaç, rol ve dinamik özelliklerle anlamlandıran katman.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003EPlaybook / Sektörel ürün dili\u003C/strong\u003E\u003Cp\u003EBelirli sektör/ürün ailesi için kullanılacak ihtiyaç, rol, alan ve seçenek tanımlarını bir araya getiren model.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003ENeed Group / İhtiyaç Grubu\u003C/strong\u003E\u003Cp\u003EÜrünün müşterinin hangi ihtiyacını temsil ettiğini tanımlayan sınıflandırma.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003EProduct Role / Ürün Rolü\u003C/strong\u003E\u003Cp\u003EÜrünün tekrar tüketim, cross-sell, upsell veya ana ürün gibi ticari görevini tanımlayan bağlam.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003EWorkbench / Çalışma Alanı\u003C/strong\u003E\u003Cp\u003EKullanıcının ürünleri listelediği, filtrelediği, sınıflandırdığı ve düzelttiği operasyon ekranı.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003EResolution / Ürün Eşleştirme\u003C/strong\u003E\u003Cp\u003EHam satış satırındaki ürün bilgisini gerçek/master ürün kaydıyla eşleştirme süreci.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003EReview / İnceleme\u003C/strong\u003E\u003Cp\u003ESınıflandırma veya eşleştirme sonucunun uyarı, güven ve iş kuralı açısından kontrol edilmesi.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003EReadiness / Analitik Hazırlık\u003C/strong\u003E\u003Cp\u003EBir kaydın ilgili analitik için gereken eşleştirme/sınıflandırma koşullarını ne kadar karşıladığını anlatan genel kavram; tek bir evrensel 0–100 skor anlamına gelmez.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003ECustomer Value Score / Müşteri Değer Skoru\u003C/strong\u003E\u003Cp\u003E4 faktörün ağırlıklı toplamıyla [(0.40 × Monetary) \u002B (0.25 × Frequency) \u002B (0.20 × Recency) \u002B (0.15 × Loyalty)] hesaplanan 0–100 deterministik sistem metriği. Alışveriş ritmi skora dahil edilmez, bağımsız davranışsal bağlam olarak okunur.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003EChurn Risk / Pasifleşme Riski\u003C/strong\u003E\u003Cp\u003EMüşterinin son satın alma davranışının kendi geçmiş ritminden uzaklaşmasını değerlendiren ayrı risk sinyali.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003ESegment\u003C/strong\u003E\u003Cp\u003EBelirli davranış veya iş kurallarını karşılayan yönetilebilir müşteri kümesi.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003EOpportunity / Fırsat\u003C/strong\u003E\u003Cp\u003EVeride görülen ve belirli bir ticari aksiyona temel olabilecek sinyal veya bağlam.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003ECross-sell / Çapraz Satış\u003C/strong\u003E\u003Cp\u003ECross-sell BI katmanında ürün çiftlerinin sepet birlikteliğini support/confidence/lift ile analiz eden yaklaşım; kişiselleştirme sonraki katmandır.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003EUpsell / Yükseltme\u003C/strong\u003E\u003Cp\u003EMevcut ihtiyacın daha yüksek değerli çözümüne geçiş bağlamı; Product Role ile aday ilişkileri tanımlanabilir.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003ESupport\u003C/strong\u003E\u003Cp\u003EBir ürün çiftinin tüm uygun sepetlerde birlikte görülme oranı.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003EConfidence\u003C/strong\u003E\u003Cp\u003EA ürünü görüldüğünde B’nin de aynı sepette görülme oranı; yönlü birliktelik metriği.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003ELift\u003C/strong\u003E\u003Cp\u003EÜrün birlikteliğinin bağımsız görülme beklentisine göre ne kadar güçlü olduğunu gösteren oran.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003ENext Best Action / Sıradaki En Uygun Aksiyon\u003C/strong\u003E\u003Cp\u003EGüncel CCE profilinde lifecycle/status ve risk bağlamından üretilen deterministik aksiyon yönü.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003ENext Best Channel / Uygun Kanal\u003C/strong\u003E\u003Cp\u003EKanal erişilebilirliği, izin, engagement, attribution ve fatigue gibi ayrı sinyallerle değerlendirilen kanal kararı.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003EJourney / Müşteri Akışı\u003C/strong\u003E\u003Cp\u003ETetikleyici, bekleme, karar ve iletişim adımlarından oluşan çok aşamalı otomasyon.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003EAttribution / İlişkilendirme\u003C/strong\u003E\u003Cp\u003EKampanya/iletişim ile daha sonraki satın alma arasında tanımlı pencere içinde ilişki kurma yaklaşımı; tek başına nedensellik kanıtı değildir.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003ECoverage / Kapsama\u003C/strong\u003E\u003Cp\u003EBir metriğin gereken müşteri, ürün, kanal, currency veya başka evidence alanlarının ne kadarını kapsadığını gösteren oran.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003EFreshness / Veri Tazeliği\u003C/strong\u003E\u003Cp\u003ERead-model veya snapshot’ın hangi zamana kadar güncel olduğunu ve son başarılı hesaplama zamanını anlatır.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003EDelivery Job / Gönderim Görevi\u003C/strong\u003E\u003Cp\u003EBir mesajın teknik gönderim yaşam döngüsünü temsil eden operasyonel iş kaydı.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003ERetry / Yeniden Deneme\u003C/strong\u003E\u003Cp\u003EGeçici hatalarda politikanın izin verdiği ölçüde aynı işin kontrollü tekrar çalıştırılması.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003EBaşarısız İş İnceleme (Dead-letter)\u003C/strong\u003E\u003Cp\u003ENormal otomatik retry akışında çözülemeyen ve operasyonel incelemeye ayrılan işlerin tutulduğu operasyon durumu.\u003C/p\u003E\u003C/div\u003E\n\u003Cdiv class=\u0022glossary-item\u0022\u003E\u003Cstrong\u003EOpt-out / İletişimden Çıkma\u003C/strong\u003E\u003Cp\u003EMüşterinin ilgili kanaldaki pazarlama iletişimini istemediğini gösteren uygunluk sinyali.\u003C/p\u003E\u003C/div\u003E\n\u003C/div\u003E",
       "Related": [
         "sss",
         "ozellik-veri-gereksinimleri",
         "bilgi-bankasi-haritasi"
-      ]
+      ],
+      "Indexable": true
     },
     "en-iyi-uygulamalar": {
       "Slug": "en-iyi-uygulamalar",
@@ -1012,7 +1091,8 @@
         "sss",
         "olcum-ogrenme-dongusu",
         "pika-nedir"
-      ]
+      ],
+      "Indexable": true
     },
     "satis-kanali-performansi": {
       "Slug": "satis-kanali-performansi",
@@ -1025,7 +1105,8 @@
         "magaza-performansi",
         "bi-kokpit",
         "ozellik-veri-gereksinimleri"
-      ]
+      ],
+      "Indexable": true
     },
     "ozellik-veri-gereksinimleri": {
       "Slug": "ozellik-veri-gereksinimleri",
@@ -1038,81 +1119,88 @@
         "veri-hazirligi-guvenilirlik",
         "pika-hangi-verileri-kullanir",
         "sss"
-      ]
+      ],
+      "Indexable": true
     },
     "gunun-firsatlari-ve-karar-motoru": {
       "Slug": "gunun-firsatlari-ve-karar-motoru",
       "Section": "Fırsat ve Karar",
       "Title": "Günün Fırsatları ve Karar Motoru",
       "Summary": "Günlük olarak hesaplanan tekrar satın alma, geri kazanım ve çapraz satış fırsatlarının tek ekranda nasıl yönetildiğini açıklar.",
-      "Html": "\n\u003Csection class=\u0022hero hero-dark\u0022\u003E\n\u003Cdiv class=\u0022hero-copy wide\u0022\u003E\n\u003Cdiv class=\u0022hero-kicker\u0022\u003EFırsat ve Karar\u003C/div\u003E\n\u003Ch1\u003EGünün Fırsatları ve Karar Motoru\u003C/h1\u003E\n\u003Cp class=\u0022hero-lead\u0022\u003EGünün Fırsatları, işletmenizin veri tabanındaki binlerce müşteri hareketini tarayarak bugün aksiyon alınması gereken en öncelikli fırsatları önünüze getirir.\u003C/p\u003E\n\u003C/div\u003E\n\u003C/section\u003E\n\n\u003Cfigure class=\u0022screen-figure\u0022\u003E\n\u003Cimg src=\u0022/wiki/assets/images/img_gunun-firsatlari.png\u0022 alt=\u0022Pika Günün Fırsatları Ekranı\u0022\u003E\n\u003Cfigcaption\u003EGünün Fırsatları: Öncelikli müşteri grupları, fırsat nedenleri ve tek tıkla aksiyona dönüştürme butonları.\u003C/figcaption\u003E\n\u003C/figure\u003E\n\n\u003Ch2\u003ENasıl Çalışır?\u003C/h2\u003E\n\u003Cp\u003EHer gün yenilenen analizlerle, tüketim periyodu yaklaşanlar, sepetinde çapraz satış potansiyeli olanlar ve pasifleşme riski taşıyan sadık müşteriler listelenir. Kullanıcı bu kitleyi doğrudan bir kampanyaya veya Journey akışına yönlendirebilir.\u003C/p\u003E\n",
+      "Html": "\r\n\u003Csection class=\u0022hero hero-dark\u0022\u003E\r\n\u003Cdiv class=\u0022hero-copy wide\u0022\u003E\r\n\u003Cdiv class=\u0022hero-kicker\u0022\u003EFırsat ve Karar\u003C/div\u003E\r\n\u003Ch1\u003EGünün Fırsatları ve Karar Motoru\u003C/h1\u003E\r\n\u003Cp class=\u0022hero-lead\u0022\u003EGünün Fırsatları, işletmenizin veri tabanındaki binlerce müşteri hareketini tarayarak bugün aksiyon alınması gereken en öncelikli fırsatları önünüze getirir.\u003C/p\u003E\r\n\u003C/div\u003E\r\n\u003C/section\u003E\r\n\r\n\u003Cfigure class=\u0022screen-figure\u0022\u003E\r\n\u003Cimg src=\u0022/wiki/assets/images/img_gunun-firsatlari.png\u0022 alt=\u0022Pika Günün Fırsatları Ekranı\u0022\u003E\r\n\u003Cfigcaption\u003EGünün Fırsatları: Öncelikli müşteri grupları, fırsat nedenleri ve tek tıkla aksiyona dönüştürme butonları.\u003C/figcaption\u003E\r\n\u003C/figure\u003E\r\n\r\n\u003Ch2\u003ENasıl Çalışır?\u003C/h2\u003E\r\n\u003Cp\u003EHer gün yenilenen analizlerle, tüketim periyodu yaklaşanlar, sepetinde çapraz satış potansiyeli olanlar ve pasifleşme riski taşıyan sadık müşteriler listelenir. Kullanıcı bu kitleyi doğrudan bir kampanyaya veya Journey akışına yönlendirebilir.\u003C/p\u003E\r\n",
       "Related": [
         "segmentasyon-ve-firsatlar",
         "firsat-turleri",
         "next-best-action",
         "kampanya-journey-orkestrasyonu"
-      ]
+      ],
+      "Indexable": true
     },
     "customer-intelligence-nedir": {
       "Slug": "customer-intelligence-nedir",
       "Section": "Müşteriyi ve Ürünü Anlayın",
       "Title": "Customer Intelligence ve Müşteri Analitiği",
       "Summary": "Müşteri alışveriş ritmi, değer segmentleri ve davranış eğilimlerinin nasıl analiz edildiğini açıklar.",
-      "Html": "\n\u003Csection class=\u0022hero hero-intro\u0022\u003E\n\u003Cdiv class=\u0022hero-copy\u0022\u003E\n\u003Cdiv class=\u0022hero-kicker\u0022\u003EMüşteriyi ve Ürünü Anlayın\u003C/div\u003E\n\u003Ch1\u003ECustomer Intelligence ve Müşteri Analitiği\u003C/h1\u003E\n\u003Cp class=\u0022hero-lead\u0022\u003ECustomer Intelligence, ham müşteri listelerini yaşayan ve anlamlı ticari segmentlere dönüştüren Pika\u0027nın temel analitik katmanıdır.\u003C/p\u003E\n\u003C/div\u003E\n\u003C/section\u003E\n\n\u003Ch2\u003EAnalitik Göstergeler\u003C/h2\u003E\n\u003Cp\u003EMüşterinin hangi aralıklarla alışveriş yaptığı, sepet büyüklüğü trendi, tercih ettiği mağazalar ve kanallar tek bir bütünleşik profilde toplanır.\u003C/p\u003E\n",
+      "Html": "\r\n\u003Csection class=\u0022hero hero-intro\u0022\u003E\r\n\u003Cdiv class=\u0022hero-copy\u0022\u003E\r\n\u003Cdiv class=\u0022hero-kicker\u0022\u003EMüşteriyi ve Ürünü Anlayın\u003C/div\u003E\r\n\u003Ch1\u003ECustomer Intelligence ve Müşteri Analitiği\u003C/h1\u003E\r\n\u003Cp class=\u0022hero-lead\u0022\u003ECustomer Intelligence, ham müşteri listelerini yaşayan ve anlamlı ticari segmentlere dönüştüren Pika\u0027nın temel analitik katmanıdır.\u003C/p\u003E\r\n\u003C/div\u003E\r\n\u003C/section\u003E\r\n\r\n\u003Ch2\u003EAnalitik Göstergeler\u003C/h2\u003E\r\n\u003Cp\u003EMüşterinin hangi aralıklarla alışveriş yaptığı, sepet büyüklüğü trendi, tercih ettiği mağazalar ve kanallar tek bir bütünleşik profilde toplanır.\u003C/p\u003E\r\n",
       "Related": [
         "pika-360",
         "musteri-degeri-sadakat",
         "tekrar-satin-alma-analizi",
         "ai-musteri-ozeti"
-      ]
+      ],
+      "Indexable": true
     },
     "kampanya-yoneticisi-ve-kurgular": {
       "Slug": "kampanya-yoneticisi-ve-kurgular",
       "Section": "Aksiyon ve Otomasyon",
       "Title": "Campaign Manager ve Kampanya Kurguları",
       "Summary": "Hedef kitle seçimi, kanal belirleme, şablon eşleme ve zamanlanmış kampanya yönetimini açıklar.",
-      "Html": "\n\u003Csection class=\u0022hero hero-intro\u0022\u003E\n\u003Cdiv class=\u0022hero-copy\u0022\u003E\n\u003Cdiv class=\u0022hero-kicker\u0022\u003EAksiyon ve Otomasyon\u003C/div\u003E\n\u003Ch1\u003ECampaign Manager ve Kampanya Kurguları\u003C/h1\u003E\n\u003Cp class=\u0022hero-lead\u0022\u003ECampaign Manager, fırsat olarak belirlenen kitlelere yönelik çok kanallı pazarlama kampanyalarının tasarlandığı ve yönetildiği merkezdir.\u003C/p\u003E\n\u003C/div\u003E\n\u003C/section\u003E\n\n\u003Ch2\u003EKampanya Adımları\u003C/h2\u003E\n\u003Col\u003E\n\u003Cli\u003E\u003Cstrong\u003EHedef Kitle:\u003C/strong\u003E Hazır segmentlerden veya fırsat listesinden kitle seçilir.\u003C/li\u003E\n\u003Cli\u003E\u003Cstrong\u003EKanal Seçimi:\u003C/strong\u003E E-posta, SMS, WhatsApp veya Push bildirim belirlenir.\u003C/li\u003E\n\u003Cli\u003E\u003Cstrong\u003Eİçerik:\u003C/strong\u003E Content Studio şablonları veya AI asistanı ile hazırlanan mesaj yüklenir.\u003C/li\u003E\n\u003Cli\u003E\u003Cstrong\u003EZamanlama:\u003C/strong\u003E Anında gönderim veya geleceğe yönelik zamanlama yapılır.\u003C/li\u003E\n\u003C/ol\u003E\n",
+      "Html": "\r\n\u003Csection class=\u0022hero hero-intro\u0022\u003E\r\n\u003Cdiv class=\u0022hero-copy\u0022\u003E\r\n\u003Cdiv class=\u0022hero-kicker\u0022\u003EAksiyon ve Otomasyon\u003C/div\u003E\r\n\u003Ch1\u003ECampaign Manager ve Kampanya Kurguları\u003C/h1\u003E\r\n\u003Cp class=\u0022hero-lead\u0022\u003ECampaign Manager, fırsat olarak belirlenen kitlelere yönelik çok kanallı pazarlama kampanyalarının tasarlandığı ve yönetildiği merkezdir.\u003C/p\u003E\r\n\u003C/div\u003E\r\n\u003C/section\u003E\r\n\r\n\u003Ch2\u003EKampanya Adımları\u003C/h2\u003E\r\n\u003Col\u003E\r\n\u003Cli\u003E\u003Cstrong\u003EHedef Kitle:\u003C/strong\u003E Hazır segmentlerden veya fırsat listesinden kitle seçilir.\u003C/li\u003E\r\n\u003Cli\u003E\u003Cstrong\u003EKanal Seçimi:\u003C/strong\u003E E-posta, SMS veya WhatsApp belirlenir.\u003C/li\u003E\r\n\u003Cli\u003E\u003Cstrong\u003Eİçerik:\u003C/strong\u003E Content Studio şablonları veya AI asistanı ile hazırlanan mesaj yüklenir.\u003C/li\u003E\r\n\u003Cli\u003E\u003Cstrong\u003EZamanlama:\u003C/strong\u003E Anında gönderim veya geleceğe yönelik zamanlama yapılır.\u003C/li\u003E\r\n\u003C/ol\u003E\r\n",
       "Related": [
         "kampanya-journey-orkestrasyonu",
         "pika-pilot-ai-kampanya-asistani",
         "icerik-studyosu-ve-gorsel-yonetimi"
-      ]
+      ],
+      "Indexable": true
     },
     "icerik-studyosu-ve-gorsel-yonetimi": {
       "Slug": "icerik-studyosu-ve-gorsel-yonetimi",
       "Section": "Aksiyon ve Otomasyon",
       "Title": "Content Studio ve İçerik Tasarımı",
       "Summary": "E-posta, SMS ve WhatsApp için kurumsal içerik şablonlarının, görsel varlıkların ve metin taslaklarının yönetimini açıklar.",
-      "Html": "\n\u003Csection class=\u0022hero hero-intro\u0022\u003E\n\u003Cdiv class=\u0022hero-copy\u0022\u003E\n\u003Cdiv class=\u0022hero-kicker\u0022\u003EAksiyon ve Otomasyon\u003C/div\u003E\n\u003Ch1\u003EContent Studio ve İçerik Tasarımı\u003C/h1\u003E\n\u003Cp class=\u0022hero-lead\u0022\u003EContent Studio; tüm kanallarınız için görsel, metin ve dinamik kişiselleştirme bloklarını tek çatı altında hazırlamanızı sağlar.\u003C/p\u003E\n\u003C/div\u003E\n\u003C/section\u003E\n\n\u003Cfigure class=\u0022screen-figure\u0022\u003E\n\u003Cimg src=\u0022/wiki/assets/images/img_email-template-editor_17.png\u0022 alt=\u0022Pika Content Studio ve Email Editörü\u0022\u003E\n\u003Cfigcaption\u003EContent Studio: Sürükle bırak bileşenler, responsive önizleme ve görsel kütüphanesi.\u003C/figcaption\u003E\n\u003C/figure\u003E\n",
+      "Html": "\r\n\u003Csection class=\u0022hero hero-intro\u0022\u003E\r\n\u003Cdiv class=\u0022hero-copy\u0022\u003E\r\n\u003Cdiv class=\u0022hero-kicker\u0022\u003EAksiyon ve Otomasyon\u003C/div\u003E\r\n\u003Ch1\u003EContent Studio ve İçerik Tasarımı\u003C/h1\u003E\r\n\u003Cp class=\u0022hero-lead\u0022\u003EContent Studio; tüm kanallarınız için görsel, metin ve dinamik kişiselleştirme bloklarını tek çatı altında hazırlamanızı sağlar.\u003C/p\u003E\r\n\u003C/div\u003E\r\n\u003C/section\u003E\r\n\r\n\u003Cfigure class=\u0022screen-figure\u0022\u003E\r\n\u003Cimg src=\u0022/wiki/assets/images/img_email-template-editor_17.png\u0022 alt=\u0022Pika Content Studio ve Email Editörü\u0022\u003E\r\n\u003Cfigcaption\u003EContent Studio: Sürükle bırak bileşenler, responsive önizleme ve görsel kütüphanesi.\u003C/figcaption\u003E\r\n\u003C/figure\u003E\r\n",
       "Related": [
         "email-template-editor",
         "email-store",
         "pika-pilot-ai-kampanya-asistani"
-      ]
+      ],
+      "Indexable": true
     },
     "iletisim-listeleri-ve-opt-out": {
       "Slug": "iletisim-listeleri-ve-opt-out",
       "Section": "Kanallar ve İzinler",
       "Title": "İletişim Listeleri ve Tercih Yönetimi",
       "Summary": "İletişim listeleri, müşteri izinleri, e-posta abonelikten çıkma (opt-out) ve engelleme listelerinin yönetimini açıklar.",
-      "Html": "\n\u003Csection class=\u0022hero hero-intro\u0022\u003E\n\u003Cdiv class=\u0022hero-copy\u0022\u003E\n\u003Cdiv class=\u0022hero-kicker\u0022\u003EKanallar ve İzinler\u003C/div\u003E\n\u003Ch1\u003Eİletişim Listeleri ve Tercih Yönetimi\u003C/h1\u003E\n\u003Cp class=\u0022hero-lead\u0022\u003EPika, müşteri tercihlerine ve yasal izinlere tam uyum sağlayacak şekilde iletişim listelerini ve abonelikten ayrılma süreçlerini otomatik yönetir.\u003C/p\u003E\n\u003C/div\u003E\n\u003C/section\u003E\n\n\u003Ch2\u003EAbonelikten Çıkma ve Tercih Yönetimi\u003C/h2\u003E\n\u003Cp\u003EGönderilen e-postalarda yer alan tek tıkla abonelikten çıkma bağlantıları, müşterinin tercihini anında iletişim listesine işler ve gelecekteki gönderimlerde ilgili kanal otomatik olarak pasife alınır.\u003C/p\u003E\n",
+      "Html": "\r\n\u003Csection class=\u0022hero hero-intro\u0022\u003E\r\n\u003Cdiv class=\u0022hero-copy\u0022\u003E\r\n\u003Cdiv class=\u0022hero-kicker\u0022\u003EKanallar ve İzinler\u003C/div\u003E\r\n\u003Ch1\u003Eİletişim Listeleri ve Tercih Yönetimi\u003C/h1\u003E\r\n\u003Cp class=\u0022hero-lead\u0022\u003EPika, müşteri tercihlerine ve yasal izinlere tam uyum sağlayacak şekilde iletişim listelerini ve abonelikten ayrılma süreçlerini otomatik yönetir.\u003C/p\u003E\r\n\u003C/div\u003E\r\n\u003C/section\u003E\r\n\r\n\u003Ch2\u003EAbonelikten Çıkma ve Tercih Yönetimi\u003C/h2\u003E\r\n\u003Cp\u003EGönderilen e-postalarda yer alan tek tıkla abonelikten çıkma bağlantıları, müşterinin tercihini anında iletişim listesine işler ve gelecekteki gönderimlerde ilgili kanal otomatik olarak pasife alınır.\u003C/p\u003E\r\n",
       "Related": [
         "izin-optout-iys",
         "izin-kanal-zamanlama",
         "kisi-listesi-ve-segmentler"
-      ]
+      ],
+      "Indexable": false
     },
     "segment-yonetimi-ve-filtreler": {
       "Slug": "segment-yonetimi-ve-filtreler",
       "Section": "Kullanım Rehberleri",
       "Title": "Dinamik Segment Oluşturma ve Kural Filtreleri",
       "Summary": "Audience Manager üzerinde davranışsal, demografik ve işlem bazlı dinamik segmentlerin nasıl oluşturulacağını adım adım anlatır.",
-      "Html": "\n\u003Csection class=\u0022hero hero-intro\u0022\u003E\n\u003Cdiv class=\u0022hero-copy\u0022\u003E\n\u003Cdiv class=\u0022hero-kicker\u0022\u003EKullanım Rehberleri\u003C/div\u003E\n\u003Ch1\u003EDinamik Segment Oluşturma ve Kural Filtreleri\u003C/h1\u003E\n\u003Cp class=\u0022hero-lead\u0022\u003EAudience Manager, statik excel listeleri yerine kurallara göre otomatik güncellenen dinamik kitleler oluşturmanıza olanak tanır.\u003C/p\u003E\n\u003C/div\u003E\n\u003C/section\u003E\n\n\u003Cfigure class=\u0022screen-figure\u0022\u003E\n\u003Cimg src=\u0022/wiki/assets/images/img_kisi-listesi-ve-segmentler_3.png\u0022 alt=\u0022Pika Segment Yönetimi ve Filtre Ekranı\u0022\u003E\n\u003Cfigcaption\u003EAudience Manager: Kural bazlı filtreleme ve dinamik segment büyüklüğü önizlemesi.\u003C/figcaption\u003E\n\u003C/figure\u003E\n\n\u003Ch2\u003EAdım Adım Segment Oluşturma\u003C/h2\u003E\n\u003Col\u003E\n\u003Cli\u003E\u003Cstrong\u003EKural Ekle:\u003C/strong\u003E Son alışveriş tarihi, toplam ciro, kategori ilgisi veya mağaza filtresi seçilir.\u003C/li\u003E\n\u003Cli\u003E\u003Cstrong\u003EKoşulları Birleştir:\u003C/strong\u003E VE / VEYA mantığı ile kurallar zenginleştirilir.\u003C/li\u003E\n\u003Cli\u003E\u003Cstrong\u003EÖnizle ve Kaydet:\u003C/strong\u003E Kurala uyan canlı müşteri sayısı anlık hesaplanır ve segment kaydedilir.\u003C/li\u003E\n\u003C/ol\u003E\n",
+      "Html": "\r\n\u003Csection class=\u0022hero hero-intro\u0022\u003E\r\n\u003Cdiv class=\u0022hero-copy\u0022\u003E\r\n\u003Cdiv class=\u0022hero-kicker\u0022\u003EKullanım Rehberleri\u003C/div\u003E\r\n\u003Ch1\u003EDinamik Segment Oluşturma ve Kural Filtreleri\u003C/h1\u003E\r\n\u003Cp class=\u0022hero-lead\u0022\u003EAudience Manager, statik excel listeleri yerine kurallara göre otomatik güncellenen dinamik kitleler oluşturmanıza olanak tanır.\u003C/p\u003E\r\n\u003C/div\u003E\r\n\u003C/section\u003E\r\n\r\n\u003Cfigure class=\u0022screen-figure\u0022\u003E\r\n\u003Cimg src=\u0022/wiki/assets/images/img_kisi-listesi-ve-segmentler_3.png\u0022 alt=\u0022Pika Segment Yönetimi ve Filtre Ekranı\u0022\u003E\r\n\u003Cfigcaption\u003EAudience Manager: Kural bazlı filtreleme ve dinamik segment büyüklüğü önizlemesi.\u003C/figcaption\u003E\r\n\u003C/figure\u003E\r\n\r\n\u003Ch2\u003EAdım Adım Segment Oluşturma\u003C/h2\u003E\r\n\u003Col\u003E\r\n\u003Cli\u003E\u003Cstrong\u003EKural Ekle:\u003C/strong\u003E Son alışveriş tarihi, toplam ciro, kategori ilgisi veya mağaza filtresi seçilir.\u003C/li\u003E\r\n\u003Cli\u003E\u003Cstrong\u003EKoşulları Birleştir:\u003C/strong\u003E VE / VEYA mantığı ile kurallar zenginleştirilir.\u003C/li\u003E\r\n\u003Cli\u003E\u003Cstrong\u003EÖnizle ve Kaydet:\u003C/strong\u003E Kurala uyan canlı müşteri sayısı anlık hesaplanır ve segment kaydedilir.\u003C/li\u003E\r\n\u003C/ol\u003E\r\n",
       "Related": [
         "kisi-listesi-ve-segmentler",
         "segment-sablonlari",
         "segmentasyon-ve-firsatlar"
-      ]
+      ],
+      "Indexable": false
     }
   },
   "Nav": [

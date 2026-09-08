@@ -7,6 +7,7 @@
     ViewData["CurrentSlug"] = Model.CurrentPage.Slug;
     ViewData["Categories"] = Model.Categories;
     ViewData["ArticleTitle"] = Model.CurrentPage.Title;
+    ViewData["RobotsMeta"] = Model.CurrentPage.Indexable ? "index, follow" : "noindex, follow";
 }
 
 @section Breadcrumb {

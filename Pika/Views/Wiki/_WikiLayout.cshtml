@@ -5,6 +5,7 @@
     var canonicalUrl = ViewData["CanonicalUrl"] as string ?? "https://pika.tr/wiki/";
     var currentSlug = ViewData["CurrentSlug"] as string ?? "";
     var categories = ViewData["Categories"] as List<WikiCategory> ?? new List<WikiCategory>();
+    var robotsMeta = ViewData["RobotsMeta"] as string ?? "index, follow";
 }
 <!doctype html>
 <html lang="tr">
@@ -13,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@title</title>
     <meta name="description" content="@description">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="@robotsMeta">
     <link rel="canonical" href="@canonicalUrl" />
 
     <!-- Open Graph -->

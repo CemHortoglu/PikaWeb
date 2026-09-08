@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Unicode;
@@ -47,6 +48,7 @@ namespace Pika.Web.Tests
                 File.WriteAllText(publicJsonPath, publicJson);
 
                 CleanStaticAppJs(baseDir, publicWiki);
+                UpdateSitemap(baseDir, publicWiki);
             }
 
             // 4. TEST VALIDATION: Validate semantic structure without mutating tracked files
@@ -56,6 +58,13 @@ namespace Pika.Web.Tests
             Assert.NotEmpty(internalWiki.Pages);
             Assert.NotNull(publicWiki.Pages);
             Assert.NotEmpty(publicWiki.Pages);
+
+            // Assert indexable / noindex count governance (58 INDEX vs 30 NOINDEX)
+            var indexablePages = publicWiki.Pages.Values.Where(p => p.Indexable).ToList();
+            var noindexPages = publicWiki.Pages.Values.Where(p => !p.Indexable).ToList();
+            Assert.Equal(58, indexablePages.Count);
+            Assert.Equal(30, noindexPages.Count);
+            Assert.Equal(88, publicWiki.Pages.Count);
 
             // Assert internal pages are not leaked into public wiki
             Assert.DoesNotContain("internal-mimari-genel-bakis", publicWiki.Pages.Keys);
@@ -674,7 +683,8 @@ namespace Pika.Web.Tests
                     Title = kvp.Value.Title,
                     Summary = kvp.Value.Summary,
                     Html = kvp.Value.Html,
-                    Related = kvp.Value.Related != null ? new List<string>(kvp.Value.Related) : new List<string>()
+                    Related = kvp.Value.Related != null ? new List<string>(kvp.Value.Related) : new List<string>(),
+                    Indexable = kvp.Value.Indexable
                 };
             }
 
@@ -687,7 +697,65 @@ namespace Pika.Web.Tests
             // ADD NEW CUSTOMER USAGE GUIDES
             AddNewCustomerGuides(publicWiki);
 
+            // APPLY INDEXABILITY GOVERNANCE
+            ApplyIndexabilityGovernance(publicWiki);
+
             return publicWiki;
+        }
+
+        private static readonly HashSet<string> NoindexSlugs = new(StringComparer.OrdinalIgnoreCase)
+        {
+            // Müşteriyi ve Ürünü Anlayın (Detailed workbench / catalog setup)
+            "dinamik-siniflandirma-alanlari",
+            "kategori-playbook-baglantisi",
+            "urun-siniflandirma-workbench",
+            "master-urun-anlamlandirmalari",
+            "review-resolution-readiness",
+
+            // Aksiyon ve Otomasyon (Detailed canvas / editor / stores / template ops)
+            "journey-tasarim-tuvali",
+            "journey-karar-kurallari",
+            "journey-store",
+            "email-template-editor",
+            "email-store",
+            "segment-sablonlari",
+            "aksiyon-calisma-alani",
+            "yayinlama-sablon-ve-yonetim",
+
+            // Kanallar ve İzinler (Detailed operator channel delivery & contact suppression)
+            "kanal-operasyonlari",
+            "iletisim-listeleri-ve-opt-out",
+
+            // Veri ve Entegrasyon (Detailed import / column mapping / validation / DQ guides)
+            "excel-csv-aktarimi",
+            "kolon-eslestirme",
+            "veri-dogrulama-kalite",
+            "ice-aktarma-sonuclari",
+            "satis-veri-operasyonlari",
+            "veri-hazirligi-guvenilirlik",
+
+            // Kullanım Rehberleri (Detailed contact import / list ops / filter builder / admin RBAC)
+            "gmail-kisi-aktarimi",
+            "kisi-listesi-ve-segmentler",
+            "segment-yonetimi-ve-filtreler",
+            "kategori-yonetimi",
+            "kullanici-roller-yetkiler",
+
+            // Ölçüm ve Analitik (Detailed delivery console / retry / queue monitoring)
+            "teslimat-konsolu",
+            "basarisiz-yeniden-deneme",
+            "gonderim-operasyonu-izleme",
+
+            // Off-nav delivery layer operational note
+            "gonderim-son-katman"
+        };
+
+        private static void ApplyIndexabilityGovernance(WikiData wiki)
+        {
+            foreach (var page in wiki.Pages.Values)
+            {
+                page.Indexable = !NoindexSlugs.Contains(page.Slug);
+            }
         }
 
         private static void UpdatePublicPageSections(WikiData wiki)
@@ -775,24 +843,33 @@ namespace Pika.Web.Tests
             if (wiki.Pages.TryGetValue("musteri-deger-skoru", out var mds))
             {
                 mds.Title = "Müşteri Değer Skoru";
-                mds.Summary = "Müşteri Değer Skoru'nun hangi iş sinyallerini (ciro, sıklık, alışveriş ritmi) kullandığını ve nasıl yorumlanacağını açıklar.";
+                mds.Summary = "Müşteri Değer Skoru'nun (CVS) 4 temel faktörünü (Monetary, Frequency, Recency, Loyalty), ağırlıklı hesaplama mantığını ve nasıl yorumlanacağını açıklar.";
                 mds.Html = @"
 <section class=""hero hero-intro"">
 <div class=""hero-copy"">
 <div class=""hero-kicker"">Müşteriyi ve Ürünü Anlayın</div>
 <h1>Müşteri Değer Skoru</h1>
-<p class=""hero-lead"">Müşteri Değer Skoru, müşterinin işletmeniz için oluşturduğu toplam ticari değeri ve ilişki gücünü 0–100 arasında anlaşılır bir göstergeye dönüştürür.</p>
+<p class=""hero-lead"">Müşteri Değer Skoru (Customer Value Score - CVS), müşterinin işletmeniz için oluşturduğu toplam ticari değeri ve ilişki gücünü 0–100 arasında normalize edilmiş, deterministik bir göstergeye dönüştürür.</p>
 </div>
 </section>
 
-<h2>Hangi Sinyaller Kullanılır?</h2>
-<div class=""role-table"">
-<div class=""role-row role-head""><div>Sinyal</div><div>İş Anlamı</div></div>
-<div class=""role-row""><div><strong>Toplam Harcama (Monetary)</strong></div><div>Müşterinin toplam ciroya katkısı ve sepet büyüklüğü.</div></div>
-<div class=""role-row""><div><strong>Sipariş Sıklığı (Frequency)</strong></div><div>Alışveriş yapma periyodu ve sipariş adedi.</div></div>
-<div class=""role-row""><div><strong>Alışveriş Ritmi (Rhythm)</strong></div><div>Müşterinin kendi geçmişindeki alışveriş aralığına sadakati.</div></div>
-<div class=""role-row""><div><strong>İlişki Süresi (Recency)</strong></div><div>En son alışverişten bu yana geçen süre ve aktiflik durumu.</div></div>
+<h2>Kanonik Skorlama Formülü</h2>
+<p>Pika Customer Value Score, 4 temel ağırlıklı faktörün deterministik toplamından oluşur:</p>
+<div class=""callout callout-primary"">
+<p><strong>Customer Value Score = (0.40 × Monetary) + (0.25 × Frequency) + (0.20 × Recency) + (0.15 × Loyalty)</strong></p>
 </div>
+
+<h2>Hangi Faktörler Kullanılır?</h2>
+<div class=""role-table"">
+<div class=""role-row role-head""><div>Faktör</div><div>Ağırlık</div><div>İş Anlamı</div></div>
+<div class=""role-row""><div><strong>Toplam Harcama (Monetary)</strong></div><div>%40 (0.40)</div><div>Müşterinin toplam ciroya katkısı ve parasal hacmi.</div></div>
+<div class=""role-row""><div><strong>Sipariş Sıklığı (Frequency)</strong></div><div>%25 (0.25)</div><div>Müşterinin sipariş adedi ve alışveriş tekrarlama periyodu.</div></div>
+<div class=""role-row""><div><strong>Son İşlem Tazeliği (Recency)</strong></div><div>%20 (0.20)</div><div>En son alışverişten bu yana geçen süre ve güncellik durumu.</div></div>
+<div class=""role-row""><div><strong>Sadakat (Loyalty)</strong></div><div>%15 (0.15)</div><div>Müşterinin bağlılık düzeyi ve sadakat programı katkısı.</div></div>
+</div>
+
+<h2>Ritim ve Davranışsal Bağlam</h2>
+<p>Alışveriş Ritmi (Rhythm), Customer Value Score'un ağırlıklı bir çarpanı veya 5. puan bileşeni değildir; müşterinin kendi geçmiş döngüsünü anlamaya yarayan bağımsız bir davranışsal bağlam sinyalidir.</p>
 
 <h2>Skor Nasıl Okunmalıdır?</h2>
 <p>Yüksek skorlu müşteriler sadık ve yüksek katkı sağlayan çekirdek kitleyi temsil eder. Skorun düşüş eğilimine girmesi, müşterinin ilgisinin azaldığını gösteren erken bir uyarı sinyalidir.</p>
@@ -846,31 +923,34 @@ namespace Pika.Web.Tests
             if (wiki.Pages.TryGetValue("next-best-action", out var nba))
             {
                 nba.Title = "Next Best Action, Kanal ve Zaman";
-                nba.Summary = "Müşteri için en doğru aksiyonun, en uygun iletişim kanalının ve zamanlamanın nasıl belirlendiğini açıklar.";
+                nba.Summary = "Müşteri için en doğru aksiyonun, iletişim kanalının ve zamanlama bağlamının deterministik kurallarla nasıl belirlendiğini açıklar.";
                 nba.Html = @"
 <section class=""hero hero-intro"">
 <div class=""hero-copy"">
 <div class=""hero-kicker"">Fırsat ve Karar</div>
 <h1>Next Best Action, Kanal ve Zaman</h1>
-<p class=""hero-lead"">Pika, müşteri için sadece 'bir mesaj göndermek' yerine; hangi müşteriye, hangi teklifle, hangi kanaldan ve ne zaman ulaşılması gerektiğini kararlaştırmaya destek olur.</p>
+<p class=""hero-lead"">Pika, müşteri için sadece rastgele bir mesaj göndermek yerine; hangi müşteriye, hangi teklifle, hangi kanaldan ve hangi zamanlama penceresinde ulaşılması gerektiğini deterministik kurallarla değerlendirir.</p>
 </div>
 </section>
 
-<h2>Karar Boyutları</h2>
+<h2>Karar ve Uygunluk Boyutları</h2>
 <div class=""feature-grid"">
 <article class=""feature-card"">
 <h3>Next Best Action (Hangi Aksiyon?)</h3>
-<p>Müşterinin durumuna göre tekrar satın alma hatırlatması, hoş geldin teklifi, geri kazanım veya çapraz satış seçeneği.</p>
+<p>Müşterinin yaşam döngüsü ve işlem verisine göre tekrar satın alma hatırlatması, hoş geldin teklifi, geri kazanım veya çapraz satış seçeneği.</p>
 </article>
 <article class=""feature-card"">
-<h3>Next Best Channel (Hangi Kanal?)</h3>
-<p>Müşterinin izin verdiği ve etkileşim olasılığı en yüksek kanal (E-posta, SMS veya WhatsApp).</p>
+<h3>Kanal Uygunluğu (Hangi Kanal?)</h3>
+<p>Müşterinin aktif izin durumu, opt-out kayıtları, erişilebilir adresleri ve kanal tercihine göre uygun iletişim yolu (E-posta, SMS veya WhatsApp).</p>
 </article>
 <article class=""feature-card"">
-<h3>Next Best Time (Hangi Zaman?)</h3>
-<p>Müşterinin alışveriş ve mesaj açma alışkanlıklarına göre en uygun gün ve saat aralığı.</p>
+<h3>Zamanlama Bağlamı (Hangi Zaman?)</h3>
+<p>Kampanya zamanlama kuralları, frekans sınırları (frequency capping) ve tanımlı gönderim pencerelerine göre belirlenen uygun zaman.</p>
 </article>
 </div>
+
+<h2>Sistem ve Karar Sınırı</h2>
+<p>Pika otonom bir yapay zekâ göndericisi değildir; izin ve uygunluk kurallarını deterministik olarak denetler, aksiyonu insan kontrolünde ve onaylanan orkestrasyon planı dahilinde yürütür.</p>
 ";
             }
 
@@ -896,6 +976,127 @@ namespace Pika.Web.Tests
 <div class=""role-row""><div><strong>İnsan &amp; Yönetici</strong></div><div>Son karar, onay, bütçe ve yayına alma kontrolü.</div></div>
 </div>
 ";
+            }
+
+            // 8. musteri-degeri-sadakat -> Müşteri Değeri ve Sadakat
+            if (wiki.Pages.TryGetValue("musteri-degeri-sadakat", out var mdsad))
+            {
+                mdsad.Title = "Müşteri Değeri ve Sadakat";
+                mdsad.Summary = "Müşteri değer skoru (CVS), sadakat, risk ve davranış sinyallerinin birbirinden ayrı ama birlikte nasıl okunacağını açıklar.";
+                mdsad.Html = @"<section class=""hero hero-intro""><div class=""hero-copy""><div class=""hero-kicker"">Müşteri ve Analitik Zekâsı</div><h1>Müşteri Değeri ve Sadakat</h1><p class=""hero-lead"">Pika’da müşteri değeri tek bir yüzeysel sayıya indirgenmez. <strong>Customer Value Score (CVS)</strong> 4 temel faktörle (ciro, sıklık, tazelik ve sadakat) deterministik olarak hesaplanır; risk, son davranış ve ritim sinyalleri ise bu skora bağımsız davranışsal bağlam sağlar.</p><div class=""hero-tags""><span>Değer skoru</span><span>Sadakat</span><span>Risk</span><span>Davranış bağlamı</span></div></div></section>
+
+<div class=""principle-grid""><div class=""principle-card""><strong>Değer skoru (CVS)</strong><span>4 faktörlü formül: (0.40 × Ciro) + (0.25 × Sıklık) + (0.20 × Tazelik) + (0.15 × Sadakat).</span></div><div class=""principle-card""><strong>Sadakat</strong><span>Puan, tier, segment ve hedefe yakınlık gibi bağlılık göstergeleri.</span></div><div class=""principle-card""><strong>Risk ve ritim</strong><span>Müşterinin kendi geçmiş alışveriş döngüsüne dayalı bağımsız davranış sinyalleri.</span></div></div>
+<h2>Neden bunları ayırıyoruz?</h2><p>Bir müşteri geçmişte yüksek ciro üretmiş olabilir fakat artık normal ritmine göre gecikiyor olabilir. Başka bir müşteri orta değer skorunda olup aktif, sık ve sadakat hedefine yakın olabilir. Bu nedenle Pika’da <strong>değer skoru aksiyonun kendisi değil, karar bağlamının bir parçasıdır.</strong></p>
+<table class=""matrix""><thead><tr><th>Alan</th><th>Ne anlatır?</th><th>Kararda rolü</th></tr></thead><tbody><tr><td><strong>Customer Value Score</strong></td><td>4 faktörlü ağırlıklı ticari değer (Ciro, Sıklık, Tazelik, Sadakat)</td><td>Müşteriler arasında ticari değer kıyaslaması</td></tr><tr><td><strong>Ortalama sepet</strong></td><td>Tipik satın alma büyüklüğü</td><td>Skoru açıklayan yardımcı bağlam</td></tr><tr><td><strong>Son alışveriş / ritim</strong></td><td>İlişkinin ne kadar güncel olduğu ve döngü durumu</td><td>Pasifleşme ve tekrar ihtiyaç sinyali</td></tr><tr><td><strong>Sadakat</strong></td><td>Puan, tier veya hedefe yakınlık</td><td>İlişkiyi indirim dışında güçlendirebilecek aksiyon bağlamı</td></tr><tr><td><strong>Churn / risk</strong></td><td>Normal döngüden ve alışveriş ritminden uzaklaşma</td><td>Yüksek değerli müşteride önceliği artırabilir</td></tr></tbody></table>
+<div class=""scenario-panel single""><div class=""scenario-left wide-block""><div class=""scenario-badge"">Örnek okuma</div><h3>Değerli ama ritmi bozulan müşteri</h3><p>Müşterinin değer skoru yüksek olabilir; buna rağmen son satın alması kendi ortalama aralığının belirgin biçimde gerisinde kalmışsa, “yüksek değer = sağlıklı ilişki” varsayımı yapılmaz. Risk ve sadakat bağlamı ayrıca değerlendirilir.</p></div></div>
+<div class=""callout callout-primary""><div class=""callout-title"">Temel ayrım</div><p><strong>Skor deterministik olarak hesaplanır; karar ise skor + davranış + izin + zamanlama bağlamıyla insan kontrolünde verilir.</strong></p></div>";
+            }
+
+            // 9. tekrar-satin-alma-analizi -> Tekrar Satın Alma Analizi
+            if (wiki.Pages.TryGetValue("tekrar-satin-alma-analizi", out var tsaa))
+            {
+                tsaa.Title = "Tekrar Satın Alma Analizi";
+                tsaa.Summary = "Müşterinin geçmiş alışveriş döngüsü penceresine (%80–%120 aralığı) göre zamanı yaklaşan ve geciken tekrar satın alma ihtiyaçlarının nasıl görünür hale getirildiğini açıklar.";
+                tsaa.Html = @"
+<section class=""hero hero-light"">
+<div class=""hero-copy wide"">
+<div class=""hero-kicker"">Müşteri ve Analitik Zekâsı</div>
+<h1>Tekrar Satın Alma Analizi</h1>
+<p class=""hero-lead"">Pika, geçmiş satın alma ritmini kullanarak hangi müşteride tekrar satın alma penceresinin oluştuğunu görünür hale getirir. Bu, yapay olasılık tahminleri üretmek değil; müşterinin geçmiş döngü aralığına göre yaklaşan ihtiyacı kanıta dayalı bir fırsat olarak okumaktır.</p>
+</div>
+</section>
+<figure class=""screen-figure"">
+<img alt=""Pika tekrar satın alma analizi ekranı"" src=""/wiki/assets/images/img_tekrar-satin-alma-analizi_6.png""/>
+<figcaption>Demo görünüm: döngü zamanlaması dağılımı, zamanı yaklaşan ve geciken müşteri grupları ile geçmiş döngü aralıkları aynı ekranda yer alır.</figcaption>
+</figure><div class=""demo-disclaimer""><strong>Ekran bilgisi: </strong>Görseller, kişisel verileri korumak ve kullanım akışını açıklamak amacıyla örnek veya anonim veriler içerebilir.</div>
+<h2>Ekrandaki mantık nedir?</h2>
+<div class=""story-flow"">
+<div class=""story-step"">
+<div class=""story-num"">1</div>
+<div class=""story-content"">
+<h3>Geçmiş ritim okunur</h3>
+<p>Müşterinin belirli ürün veya kategori için geçmiş sipariş aralıkları ve medyan döngüsü incelenir.</p>
+</div>
+</div>
+<div class=""story-step"">
+<div class=""story-num"">2</div>
+<div class=""story-content"">
+<h3>Döngü penceresi hesaplanır</h3>
+<p>Müşterinin geçmiş döngüsünün %80–%120 penceresine göre zamanı yaklaşan, geciken veya döngü dışındaki durumlar ayrıştırılır.</p>
+</div>
+</div>
+<div class=""story-step"">
+<div class=""story-num"">3</div>
+<div class=""story-content"">
+<h3>Aksiyon önceliği belirlenir</h3>
+<p>Döngü durumu ve geçmiş sepet büyüklüğü ile birlikte ticari aksiyon önceliklendirmesi yapılır; kesin sipariş tutarı veya olasılık tahmini yerine kanıta dayalı zamanlama sunulur.</p>
+</div>
+</div>
+<div class=""story-step"">
+<div class=""story-num"">4</div>
+<div class=""story-content"">
+<h3>Aksiyon için bağlam oluşur</h3>
+<p>Bu sinyal, müşteri ekranı ve aksiyon çalışma alanıyla birleştiğinde doğru kanal ve izin kontrolüyle aksiyona dönüşür.</p>
+</div>
+</div>
+</div>
+<div class=""callout callout-warning"">
+<div class=""callout-title"">Gerçekçi not</div>
+<p>Pika geleceğe yönelik kesin sipariş tarihi, sipariş tutarı veya olasılık yüzdesi üretmez; müşterinin geçmiş satın alma ritmine dayalı döngü pencerelerini görünür kılar.</p>
+</div>
+";
+            }
+
+            // 10. firsat-guveni-kanit -> Fırsat Güveni ve Kanıt
+            if (wiki.Pages.TryGetValue("firsat-guveni-kanit", out var fgk))
+            {
+                fgk.Title = "Fırsat Güveni ve Kanıt";
+                fgk.Summary = "Pika’nın önerileri kesin gerçek gibi sunmak yerine, kanıtın gücü ve veri yeterliliğiyle birlikte değerlendirme yaklaşımını açıklar.";
+                fgk.Html = @"<section class=""hero hero-intro""><div class=""hero-copy""><div class=""hero-kicker"">Fırsat ve Karar Motoru</div><h1>Fırsat Güveni ve Kanıt</h1><p class=""hero-lead"">İyi bir fırsat sistemi yalnızca öneri üretmez; önerinin neye dayandığını ve ne kadar güvenilir olduğunu da görünür kılar. Bu nedenle Pika’daki fırsatlar veri yeterliliği, geçmiş davranış ve ilgili ürün/müşteri kanıtlarıyla birlikte okunmalıdır.</p><div class=""hero-tags""><span>Kanıt</span><span>Güven</span><span>Veri yeterliliği</span><span>Açıklanabilirlik</span></div></div><div class=""hero-side""><div class=""hero-side-card""><div class=""side-card-kicker"">Temel ilke</div><p><strong>Kanıt zayıfsa sistemin bunu saklamaması gerekir.</strong></p></div></div></section><div class=""metric-grid""><div class=""metric-card""><span>Kaynak</span><strong>Davranış</strong><p>Geçmiş satın alma, etkileşim ve zamanlama kalıpları.</p></div><div class=""metric-card""><span>Bağlam</span><strong>Ürün</strong><p>Need Group, ürün rolü, kategori ve tekrar tüketilebilirlik.</p></div><div class=""metric-card""><span>Yeterlilik</span><strong>Veri</strong><p>Kaç gözlem var, veri güncel mi, ilişki yeterli mi?</p></div><div class=""metric-card""><span>Açıklama</span><strong>Neden?</strong><p>Öneri hangi kanıt kombinasyonundan doğdu?</p></div></div>
+<table class=""matrix""><thead><tr><th>Kanıt Yeterliliği Seviyesi</th><th>Nasıl yorumlanmalı?</th><th>Uygun yaklaşım</th></tr></thead><tbody><tr><td><strong>Sınırlı Kanıt</strong></td><td>Sinyal var ama veri az veya davranış henüz net değil.</td><td>Agresif aksiyon yerine gözlem, düşük riskli test veya veri toplama.</td></tr><tr><td><strong>Gelişen Kanıt</strong></td><td>Birden fazla kanıt yönü destekliyor fakat belirsizlik sürüyor.</td><td>Kontrollü teklif, küçük test veya segment bazlı uygulama.</td></tr><tr><td><strong>Güçlü Kanıt</strong></td><td>Davranış ve bağlam güçlü şekilde aynı yönü gösteriyor.</td><td>Uygun izin ve zamanlama ile aksiyon önceliklendirilebilir.</td></tr></tbody></table>
+<h2>Kanıt Kalitesi ve Veri Yeterliliği Nasıl Okunmalı?</h2><p>Pika bağımsız bir 'güven skoru motoru' veya yapay satın alma olasılığı çalıştırmaz. Fırsat güveni; veri yeterliliği, kanıt kapsamı (coverage), veri tazeliği (freshness) ve uyarı kodları (warning codes) ile ölçülen veri kalitesini ifade eder. Bu göstergeler hiçbir zaman 'kesin satın alma olasılığı %X' olarak yorumlanmamalıdır.</p>";
+            }
+
+            // 11. gonderim-operasyonu-izleme -> Gönderim Operasyonu ve İzleme
+            if (wiki.Pages.TryGetValue("gonderim-operasyonu-izleme", out var goi))
+            {
+                goi.Title = "Gönderim Operasyonu ve İzleme";
+                goi.Summary = "Gönderimlerin durumunu, kanala iletilme sürecini, bekleyen veya tamamlanan işlerin operasyonel görünürlüğünü açıklar.";
+                goi.Html = @"<section class=""hero hero-intro""><div class=""hero-copy""><div class=""hero-kicker"">Gönderim · Ölçüm · Öğrenme</div><h1>Gönderim Operasyonu ve İzleme</h1><p class=""hero-lead"">Aksiyon canlıya çıktığında iş bitmez. Görevlerin durumu, kanala iletilme süreci, bekleyen veya tamamlanan işler ve sonuç kayıtları operasyonel görünürlük gerektirir.</p><div class=""hero-tags""><span>Görev</span><span>Durum</span><span>Kanal</span><span>İzleme</span><span>Sonuç</span></div></div></section>
+<figure class=""screen-figure""><img alt=""Pika Teslimat Konsolu ekranı"" src=""/wiki/assets/images/img_gonderim-operasyonu-izleme_28.png""/><figcaption><strong>Demo görünüm:</strong> E-posta, SMS ve WhatsApp gönderimlerinde kuyruk, işleniyor, gönderildi, teslim edildi, açıldı, tıklandı ve hata oranı gibi operasyon metrikleri ile job detayı aynı ekranda izlenir.</figcaption></figure><div class=""demo-disclaimer""><strong>Ekran bilgisi: </strong>Görseller, kişisel verileri korumak ve kullanım akışını açıklamak amacıyla örnek veya anonim veriler içerebilir.</div>
+<div class=""feature-grid""><article class=""feature-card""><div class=""feature-icon"">Q</div><h3>Görev görünürlüğü</h3><p>Hangi kampanya veya Journey adımı için hangi işlerin üretildiği izlenebilir.</p></article><article class=""feature-card""><div class=""feature-icon"">C</div><h3>Kanal durumu</h3><p>İletişim kanalına aktarım ve sonuç durumu operasyon ekibine görünür olmalıdır.</p></article><article class=""feature-card""><div class=""feature-icon"">!</div><h3>İstisna yönetimi</h3><p>Başarısız veya bekleyen işler sessizce kaybolmamalı; inceleme ve tekrar deneme sürecine girmelidir.</p></article><article class=""feature-card""><div class=""feature-icon"">R</div><h3>Sonuç kaydı</h3><p>Aksiyonun tamamlandığı ve mümkünse müşteri davranışıyla ilişkilendirildiği izlenebilir.</p></article></div>
+<div class=""note-box""><h3>Müşteri açısından neden önemli?</h3><p>Platformun ""gönderdim"" demesi yeterli değildir. Özellikle yüksek hacimde operasyonel güven, hangi işin ne durumda olduğunu ve sorunun nerede oluştuğunu anlayabilmeye bağlıdır.</p></div>
+<h2>İzleme hangi seviyelerde yapılır?</h2><p>Toplam kampanya statüsü, tekil delivery job, attempt geçmişi, worker sağlığı, kuyruk durumu ve başarısız iş inceleme havuzu farklı seviyelerdir. Bir kampanya ""çalışıyor"" görünürken belirli kanalda kuyruk birikmesi olabilir. Bu nedenle operasyon uyarıları yalnız kampanya toplamından değil delivery altyapısından da izlenmelidir.</p>";
+            }
+
+            // 12. sss -> Sık Sorulan Sorular
+            if (wiki.Pages.TryGetValue("sss", out var sssPage))
+            {
+                sssPage.Html = sssPage.Html.Replace(
+                    "Güncel deterministik formül normalize edilmiş toplam gelir %60 + satın alma sıklığı %40’tır. Ortalama sepet, sadakat veya churn bu skorun içinde değildir; ayrı bağlamlardır.",
+                    "Customer Value Score (CVS), deterministik olarak 4 temel faktörün ağırlıklı toplamıyla hesaplanır: (0.40 × Monetary) + (0.25 × Frequency) + (0.20 × Recency) + (0.15 × Loyalty). Alışveriş ritmi ise skorun bir çarpanı değil, bağımsız davranışsal bağlam sinyalidir.");
+                sssPage.Html = sssPage.Html.Replace(
+                    "dead-letter/inceleme akışına",
+                    "başarısız iş inceleme havuzuna");
+            }
+
+            // 13. sozluk -> Pika Sözlüğü
+            if (wiki.Pages.TryGetValue("sozluk", out var sozlukPage))
+            {
+                sozlukPage.Html = sozlukPage.Html.Replace(
+                    "Güncel uygulamada normalize toplam gelir %60 + satın alma sıklığı %40 ile hesaplanan 0–100 sistem metriği.",
+                    "4 faktörün ağırlıklı toplamıyla [(0.40 × Monetary) + (0.25 × Frequency) + (0.20 × Recency) + (0.15 × Loyalty)] hesaplanan 0–100 deterministik sistem metriği. Alışveriş ritmi skora dahil edilmez, bağımsız davranışsal bağlam olarak okunur.");
+                sozlukPage.Html = sozlukPage.Html.Replace(
+                    "<div class=\"glossary-item\"><strong>Dead-letter</strong><p>Normal otomatik retry akışında çözülemeyen ve manuel/özel incelemeye ayrılan işlerin tutulduğu operasyon durumu.</p></div>",
+                    "<div class=\"glossary-item\"><strong>Başarısız İş İnceleme (Dead-letter)</strong><p>Normal otomatik retry akışında çözülemeyen ve operasyonel incelemeye ayrılan işlerin tutulduğu operasyon durumu.</p></div>");
+            }
+
+            // 14. sadakat-hedefe-yakinlik -> Sadakat ve Hedefe Yakınlık
+            if (wiki.Pages.TryGetValue("sadakat-hedefe-yakinlik", out var shyPage))
+            {
+                shyPage.Html = shyPage.Html.Replace(
+                    "Customer Value Score’un mevcut %60 gelir + %40 sıklık formülünün parçası değildir.",
+                    "Customer Value Score'un 4 faktörlü (Monetary, Frequency, Recency, Loyalty) formülünün ötesinde, güncel puan veya kademe ilerlemesi bağımsız bir operasyonel sadakat bağlamıdır.");
             }
         }
 
@@ -970,7 +1171,7 @@ namespace Pika.Web.Tests
 <h2>Kampanya Adımları</h2>
 <ol>
 <li><strong>Hedef Kitle:</strong> Hazır segmentlerden veya fırsat listesinden kitle seçilir.</li>
-<li><strong>Kanal Seçimi:</strong> E-posta, SMS, WhatsApp veya Push bildirim belirlenir.</li>
+<li><strong>Kanal Seçimi:</strong> E-posta, SMS veya WhatsApp belirlenir.</li>
 <li><strong>İçerik:</strong> Content Studio şablonları veya AI asistanı ile hazırlanan mesaj yüklenir.</li>
 <li><strong>Zamanlama:</strong> Anında gönderim veya geleceğe yönelik zamanlama yapılır.</li>
 </ol>
@@ -1089,6 +1290,44 @@ function searchPublicDocs(q) {
 }
 ";
             File.WriteAllText(appJsPath, cleanAppJs);
+        }
+
+        private static void UpdateSitemap(string baseDir, WikiData publicWiki)
+        {
+            var sitemapPath = Path.Combine(baseDir, "wwwroot", "sitemap.xml");
+            if (!File.Exists(sitemapPath)) return;
+
+            var content = File.ReadAllText(sitemapPath);
+            var wikiMarker = "\t<!-- Pika Public Knowledge Base / Bilgi Bankası";
+            var markerIdx = content.IndexOf(wikiMarker, StringComparison.Ordinal);
+            if (markerIdx < 0) return;
+
+            var sb = new StringBuilder();
+            sb.Append(content.Substring(0, markerIdx));
+            sb.AppendLine("\t<!-- Pika Public Knowledge Base / Bilgi Bankası (INDEX Only) -->");
+            sb.AppendLine("\t<url>");
+            sb.AppendLine("\t\t<loc>https://pika.tr/wiki/</loc>");
+            sb.AppendLine("\t\t<changefreq>weekly</changefreq>");
+            sb.AppendLine("\t\t<priority>0.9</priority>");
+            sb.AppendLine("\t</url>");
+
+            var indexablePages = publicWiki.Pages.Values
+                .Where(p => p.Indexable)
+                .OrderBy(p => p.Slug, StringComparer.OrdinalIgnoreCase);
+
+            foreach (var page in indexablePages)
+            {
+                sb.AppendLine("\t<url>");
+                sb.AppendLine($"\t\t<loc>https://pika.tr/wiki/{page.Slug}</loc>");
+                sb.AppendLine("\t\t<changefreq>monthly</changefreq>");
+                sb.AppendLine("\t\t<priority>0.7</priority>");
+                sb.AppendLine("\t</url>");
+            }
+
+            sb.AppendLine();
+            sb.AppendLine("</urlset>");
+
+            File.WriteAllText(sitemapPath, sb.ToString());
         }
     }
 }
