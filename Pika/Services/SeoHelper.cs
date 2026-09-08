@@ -163,12 +163,12 @@ public static class SeoHelper
         ["Solutions.EmailMarketing"] = new(
             "/kanallar/email",
             "/en/channels/email",
-            "Email Marketing | E-Posta Pazarlama Çözümleri",
-            "Email Marketing | Email Marketing Solutions",
-            "Zengin görsel şablonlar, dinamik kişiselleştirme ve teslimat takibi ile e-posta kampanyalarınızı yönetin.",
-            "Manage your email marketing with rich templates, dynamic personalization, and delivery tracking.",
-            "Email Marketing",
-            "Email Marketing"),
+            "Email Marketing | Şablon, Kişiselleştirme ve Teslimat Takibi | Pika",
+            "Email Marketing | Templates, Personalization & Delivery Tracking | Pika",
+            "Pika Email; Content Studio'da hazırlanan görsel şablonları ve kişiselleştirilmiş içeriği Campaign Manager veya Journey Manager üzerinden kontrollü Email iletişiminde kullanmanıza ve teslimat ile etkileşim sonuçlarını ölçmenize yardımcı olur.",
+            "Pika Email helps use visual templates and personalized content prepared in Content Studio through controlled Email communication in Campaign Manager or Journey Manager, with delivery and engagement measurement.",
+            "Email",
+            "Email"),
 
         ["Solutions.SmsCampaigns"] = new(
             "/kanallar/sms",

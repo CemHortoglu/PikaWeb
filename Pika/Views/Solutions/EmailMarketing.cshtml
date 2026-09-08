@@ -1,182 +1,949 @@
 @{
-    var tr = (ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr").Equals("tr", StringComparison.OrdinalIgnoreCase);
-    ViewData["Title"] = tr ? "Email Marketing Yazılımı ile Kampanyalarınızı Yönetin - Pika" : "Email Marketing Software for Campaign Management - Pika";
-    ViewData["MetaDescription"] = tr ? "Pika email marketing platformu ile e-posta tasarımını kolayca yapın, segmentasyon sağlayın ve kişiselleştirilmiş mail pazarlama otomasyonlarını yönetin." : "Easily design emails, gain segmentation, and manage personalized email marketing automations with the Pika email marketing platform.";
-    ViewData["MetaKeywords"] = "email marketing, e-posta pazarlama, mail pazarlama, email kampanya, marketing otomasyonu, kişiselleştirilmiş email";
+    var culture = ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr";
+    var tr = culture.Equals("tr", StringComparison.OrdinalIgnoreCase);
+    ViewData["BodyClass"] = "pika-solutions-page";
 }
 
-<!-- Hero -->
-@await Html.PartialAsync("_MarketingHero")
+@section Styles {
+    <link rel="stylesheet" href="~/css/pika-email-page.css" asp-append-version="true" />
+}
 
-<!-- Değer Kutuları -->
+@* ── 01 HERO ─────────────────────────────────────────────────── *@
+<section class="inner-hero inner-hero--content">
+    <div class="inner-atmosphere" aria-hidden="true"><span></span><span></span></div>
+    <div class="container inner-hero-grid">
+        <div class="inner-intro">
+            <nav class="inner-breadcrumb" aria-label="@(tr ? "Sayfa yolu" : "Breadcrumb")">
+                <a href="@(tr ? "/" : "/en/")">Pika</a>
+                <span>/</span>
+                <a href="@(tr ? "/pika" : "/en/pika")">@(tr ? "Pika Nedir?" : "What Is Pika?")</a>
+                <span>/</span>
+                <span>Email</span>
+            </nav>
+            <div class="inner-eyebrow"><span></span>EMAIL · Email Marketing</div>
+            @if (tr)
+            {
+                <h1>
+                    Zengin Email içeriğini,<br />
+                    Pika'nın müşteri bağlamı ve<br />
+                    kontrollü aksiyon zinciriyle buluşturun.
+                </h1>
+                <p>
+                    Pika Email; Content Studio'da hazırlanan görsel ve kişiselleştirilebilir Email içeriğinin Audience Manager, Campaign Manager veya Journey Manager tarafından oluşturulan kontrollü iletişim bağlamında kullanılmasını sağlayan Email iletişim kanalıdır.
+                </p>
+                <p class="text-muted small">
+                    Amaç daha fazla toplu mail göndermek değil; doğru hedef kitle, hazırlanmış içerik, izin kontrolü ve ölçülebilir gönderim sonucunu aynı Pika karar zincirinde buluşturmaktır.
+                </p>
+                <div class="inner-actions">
+                    <button class="inner-primary" type="button" data-bs-toggle="modal" data-bs-target="#demoModal">Demo Talep Et ↗</button>
+                    <a class="inner-secondary" href="/cozumler/content-studio">Content Studio'yu Keşfedin →</a>
+                    <a class="inner-hero-anchor" href="#inner-content" aria-label="İçeriğe atla"><i class="ri-arrow-down-line" aria-hidden="true"></i></a>
+                </div>
+            }
+            else
+            {
+                <h1>
+                    Connect rich Email content<br />
+                    to Pika's customer context<br />
+                    and controlled action chain.
+                </h1>
+                <p>
+                    Pika Email is the communication channel through which visual and personalizable Email content prepared in Content Studio can be used within controlled communication context created through Audience Manager, Campaign Manager or Journey Manager.
+                </p>
+                <p class="text-muted small">
+                    The objective is not to send more bulk email, but to connect the right audience, prepared content, permission controls and measurable delivery outcomes within the same Pika decision chain.
+                </p>
+                <div class="inner-actions">
+                    <button class="inner-primary" type="button" data-bs-toggle="modal" data-bs-target="#demoModal">Request a Demo ↗</button>
+                    <a class="inner-secondary" href="/en/solutions/content-studio">Explore Content Studio →</a>
+                    <a class="inner-hero-anchor" href="#inner-content" aria-label="Skip to content"><i class="ri-arrow-down-line" aria-hidden="true"></i></a>
+                </div>
+            }
+        </div>
+
+        <div class="inner-scene" aria-hidden="true">
+            <div class="inner-scene-orbit"></div>
+            <div class="inner-scene-window">
+                <div class="inner-window-bar">
+                    <strong>pika<span>✳</span></strong>
+                    <span>Email</span>
+                    <small>@(tr ? "Örnek görünüm" : "Illustration")</small>
+                </div>
+                <div class="email-hero-pills">
+                    @if (tr)
+                    {
+                        <span class="email-hero-pill">İÇERİK <span>01</span></span>
+                        <span class="email-hero-pill">HEDEF KİTLE <span>02</span></span>
+                        <span class="email-hero-pill">İZİN <span>03</span></span>
+                        <span class="email-hero-pill">EMAIL <span>04</span></span>
+                        <span class="email-hero-pill">TESLİMAT <span>05</span></span>
+                        <span class="email-hero-pill">ÖLÇÜM <span>06</span></span>
+                    }
+                    else
+                    {
+                        <span class="email-hero-pill">CONTENT <span>01</span></span>
+                        <span class="email-hero-pill">AUDIENCE <span>02</span></span>
+                        <span class="email-hero-pill">CONSENT <span>03</span></span>
+                        <span class="email-hero-pill">EMAIL <span>04</span></span>
+                        <span class="email-hero-pill">DELIVERY <span>05</span></span>
+                        <span class="email-hero-pill">MEASUREMENT <span>06</span></span>
+                    }
+                </div>
+            </div>
+            <div class="inner-scene-caption">EMAIL CHANNEL. CONTROLLED EXECUTION.</div>
+        </div>
+    </div>
+</section>
+<div id="inner-content" class="inner-anchor"></div>
+
+@* ── STICKY SUBNAV ────────────────────────────────────────────── *@
+<div class="pika-sol-subnav-wrap">
+    <div class="container">
+        <nav class="pika-sol-subnav" aria-label="@(tr ? "Sayfa içi gezinti" : "In-page navigation")">
+            <a href="#overview">@(tr ? "Genel Bakış" : "Overview")</a>
+            <a href="#content">@(tr ? "İçerik" : "Content")</a>
+            <a href="#audience">@(tr ? "Hedef Kitle" : "Audience")</a>
+            <a href="#campaign">@(tr ? "Kampanya" : "Campaign")</a>
+            <a href="#journey">Journey</a>
+            <a href="#measurement">@(tr ? "Ölçüm" : "Measurement")</a>
+            <a href="#faq">@(tr ? "SSS" : "FAQ")</a>
+        </nav>
+    </div>
+</div>
+
+@* ── TRUST / VALUE STRIP ──────────────────────────────────────── *@
+<section class="pika-sol-section py-4">
+    <div class="container">
+        <div class="pika-sol-highlight-items justify-content-center">
+            <span class="pika-sol-highlight-item"><i class="ri-check-line" aria-hidden="true"></i> @(tr ? "Görsel Email İçeriği" : "Visual Email Content")</span>
+            <span class="pika-sol-highlight-item"><i class="ri-check-line" aria-hidden="true"></i> @(tr ? "Yeniden Kullanılabilir Şablonlar" : "Reusable Templates")</span>
+            <span class="pika-sol-highlight-item"><i class="ri-check-line" aria-hidden="true"></i> @(tr ? "Kişiselleştirme" : "Personalization")</span>
+            <span class="pika-sol-highlight-item"><i class="ri-check-line" aria-hidden="true"></i> @(tr ? "Kontrollü Gönderim" : "Controlled Delivery")</span>
+            <span class="pika-sol-highlight-item"><i class="ri-check-line" aria-hidden="true"></i> @(tr ? "Teslimat & Etkileşim Ölçümü" : "Delivery & Engagement Measurement")</span>
+        </div>
+    </div>
+</section>
+
+@* ── 02 DIRECT ANSWER ─────────────────────────────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt" id="overview">
+    <div class="container">
+        <div class="max-w-800">
+            <span class="pika-sol-eyebrow">@(tr ? "KISA CEVAP" : "THE SHORT ANSWER")</span>
+            <h2 class="pika-sol-section-title">@(tr ? "Pika Email nedir?" : "What is Pika Email?")</h2>
+            <p class="pika-sol-section-desc">
+                @(tr ? "Pika Email, görsel ve daha zengin iletişim içeriğinin kampanya veya müşteri yolculuğu bağlamında gönderilebildiği doğrulanmış Pika iletişim kanallarından biridir." : "Pika Email is one of Pika's confirmed communication channels for delivering richer visual communication content within campaign or customer-journey context.")
+            </p>
+            <p class="mt-3">
+                @(tr ? "Email'in kanal rolü içerik editörlüğü, hedef kitle seçimi veya journey kararını kendi başına yürütmek değildir. Bu görevler Pika'nın ilgili Content Studio, Audience Manager, Campaign Manager ve Journey Manager katmanlarında yönetilir." : "The role of the Email channel is not to independently edit content, choose the audience or make journey decisions. Those responsibilities are managed in Pika's Content Studio, Audience Manager, Campaign Manager and Journey Manager layers.")
+            </p>
+            <p class="mt-4 fw-medium text-dark">
+                @(tr ? "Email'in temel sorusu şudur:" : "Email answers one central question:")
+            </p>
+            <div class="email-callout">
+                <h3 class="h4 mb-0 text-dark">
+                    @(tr ? "“Hazırlanmış bu Email iletişimi hangi kontrollü aksiyon bağlamında müşteriye ulaştırılacak?”" : "“Within which controlled action context will this prepared Email communication be delivered to the customer?”")
+                </h3>
+            </div>
+            <p class="mt-3">
+                @(tr ? "Gönderimden sonra oluşan delivery, bounce, open ve click gibi kullanılabilir sonuçlar Analytics & Reporting bağlamında değerlendirilebilir." : "Available outcomes such as delivery, bounce, open and click context after execution can be evaluated in Analytics & Reporting.")
+            </p>
+            <div class="p-3 bg-white rounded border border-light-subtle mt-4">
+                <p class="mb-1"><strong>Email:</strong> @(tr ? "iletişim kanalıdır." : "is the communication channel.")</p>
+                <p class="mb-0"><strong>Pika:</strong> @(tr ? "kanalın etrafındaki anlama, karar, kontrol ve ölçüm zinciridir." : "is the surrounding chain of understanding, decision, control and measurement.")</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 03 EMAIL'S PLACE IN PIKA ─────────────────────────────────── *@
+<section class="pika-sol-section" id="platform">
+    <div class="container">
+        <div class="max-w-800">
+            <span class="pika-sol-eyebrow">@(tr ? "KANAL, PLATFORMUN TAMAMI DEĞİL" : "A CHANNEL, NOT THE WHOLE PLATFORM")</span>
+            <h2 class="pika-sol-section-title">@(tr ? "Email'i, Pika'nın karar zincirindeki doğru yere koyun." : "Put Email in the right place inside Pika's decision chain.")</h2>
+            <p class="pika-sol-section-desc">
+                @(tr ? "Pika bir Email Marketing aracından ibaret değildir. Email, platformun müşteri zekâsı ve omnichannel aksiyon zincirindeki iletişim kanallarından biridir." : "Pika is more than an Email Marketing tool. Email is one communication channel within the platform's customer-intelligence and omnichannel-action chain.")
+            </p>
+            <p class="mt-3">
+                @if (tr)
+                {
+                    <text>Müşterinin davranış ve değer bağlamı <a href="/platform/customer-intelligence">Customer Intelligence</a>'da, ürün bağlamı <a href="/platform/product-intelligence">Product Intelligence</a>'da ve değerlendirilebilir ticari fırsat <a href="/platform/gunun-firsatlari">Günün Fırsatları</a> gibi karar katmanlarında oluşur.</text>
+                }
+                else
+                {
+                    <text>Customer behavior and value context comes from <a href="/en/platform/customer-intelligence">Customer Intelligence</a>, product context comes from <a href="/en/platform/product-intelligence">Product Intelligence</a> and evaluable commercial opportunity context can come from decision layers such as <a href="/en/platform/opportunities">Daily Opportunities</a>.</text>
+                }
+            </p>
+            <p class="mt-3">
+                @(tr ? "Audience Manager kimin dahil olduğunu, Content Studio hangi içeriğin kullanılacağını, Campaign Manager veya Journey Manager ise aksiyonun nasıl yürütüleceğini belirleyen ayrı ürün katmanlarıdır." : "Audience Manager defines who belongs, Content Studio prepares what content will be used and Campaign Manager or Journey Manager manage how action is executed.")
+            </p>
+
+            <div class="email-flow-chain" aria-label="Pika Decision Chain">
+                <span>DATA</span>
+                <span class="email-flow-arrow">→</span>
+                <span>@(tr ? "CUSTOMER & PRODUCT INTELLIGENCE" : "CUSTOMER & PRODUCT INTELLIGENCE")</span>
+                <span class="email-flow-arrow">→</span>
+                <span>@(tr ? "OPPORTUNITY / DECISION" : "OPPORTUNITY / DECISION")</span>
+                <span class="email-flow-arrow">→</span>
+                <span>AUDIENCE</span>
+                <span class="email-flow-arrow">→</span>
+                <span>CONTENT</span>
+                <span class="email-flow-arrow">→</span>
+                <span>CAMPAIGN / JOURNEY</span>
+                <span class="email-flow-arrow">→</span>
+                <span>CONSENT</span>
+                <span class="email-flow-arrow">→</span>
+                <span>EMAIL</span>
+                <span class="email-flow-arrow">→</span>
+                <span>MEASUREMENT</span>
+            </div>
+
+            <div class="p-3 bg-white rounded border border-light-subtle mt-4">
+                @if (tr)
+                {
+                    <p class="mb-1"><strong>Email,</strong> Pika'nın başlangıç noktası değildir.</p>
+                    <p class="mb-0">Kararın müşteriye ulaştığı kanal katmanıdır.</p>
+                }
+                else
+                {
+                    <p class="mb-1"><strong>Email</strong> is not Pika's starting point.</p>
+                    <p class="mb-0">It is the channel layer through which a decision reaches the customer.</p>
+                }
+            </div>
+        </div>
+
+        <div class="pika-sol-value-grid mt-5">
+            <div class="pika-sol-value-card">
+                <div class="pika-sol-value-icon"><i class="ri-palette-line" aria-hidden="true"></i></div>
+                <h4>@(tr ? "Görsel Email İçeriği" : "Visual Email Content")</h4>
+                <p>@(tr ? "Content Studio'da hazırlanmış görsel ve modüler Email içeriğini kontrollü iletişim bağlamında kullanın." : "Use visual and modular Email content prepared in Content Studio within controlled communication context.")</p>
+            </div>
+            <div class="pika-sol-value-card">
+                <div class="pika-sol-value-icon"><i class="ri-user-settings-line" aria-hidden="true"></i></div>
+                <h4>@(tr ? "Kişiselleştirme Bağlamı" : "Personalization Context")</h4>
+                <p>@(tr ? "Mevcut müşteri verisinden kullanılabilen kişiselleştirme alanlarını hazırlanmış Email içeriğinde kullanın." : "Use available personalization fields based on existing customer data within prepared Email content.")</p>
+            </div>
+            <div class="pika-sol-value-card">
+                <div class="pika-sol-value-icon"><i class="ri-send-plane-line" aria-hidden="true"></i></div>
+                <h4>@(tr ? "Kontrollü Kanal Aksiyonu" : "Controlled Channel Action")</h4>
+                <p>@(tr ? "Email'i Campaign Manager veya Journey Manager içinde tanımlı iletişim kanallarından biri olarak kullanın." : "Use Email as one configured communication channel inside Campaign Manager or Journey Manager.")</p>
+            </div>
+            <div class="pika-sol-value-card">
+                <div class="pika-sol-value-icon"><i class="ri-bar-chart-box-line" aria-hidden="true"></i></div>
+                <h4>@(tr ? "Ölçülebilir Sonuçlar" : "Measurable Outcomes")</h4>
+                <p>@(tr ? "Delivery, bounce, open, click ve unsubscribe gibi kullanılabilir Email sonuçlarını Analytics & Reporting bağlamında değerlendirin." : "Evaluate available Email outcomes such as delivery, bounce, open, click and unsubscribe within Analytics & Reporting context.")</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 04 CONTENT STUDIO → EMAIL ────────────────────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt" id="content">
+    <div class="container">
+        <div class="max-w-800">
+            <span class="pika-sol-eyebrow">@(tr ? "İÇERİKTEN KANALA" : "FROM CONTENT TO CHANNEL")</span>
+            <h2 class="pika-sol-section-title">@(tr ? "Email içeriğini Content Studio'da hazırlayın. Email kanalında kullanın." : "Prepare Email content in Content Studio. Use it through the Email channel.")</h2>
+            <p class="pika-sol-section-desc">
+                @(tr ? "Content Studio, Email içeriğinin görsel olarak hazırlanabildiği ve düzenlenebildiği Pika içerik katmanıdır." : "Content Studio is Pika's content layer where Email content can be visually prepared and edited.")
+            </p>
+            <p class="mt-3">
+                @(tr ? "Sürükle-bırak kompozisyon, modüler içerik blokları, şablonlar, kişiselleştirme alanları ve cihaz önizlemesi Content Studio'ın sorumluluğundadır." : "Drag-and-drop composition, modular content blocks, templates, personalization fields and device preview belong to Content Studio.")
+            </p>
+            <p class="mt-3">
+                @(tr ? "Hazırlanan içerik daha sonra Campaign Manager veya Journey Manager içindeki uygun Email aksiyonunda kullanılabilir." : "Prepared content can then be used in an appropriate Email action through Campaign Manager or Journey Manager.")
+            </p>
+
+            <div class="email-callout">
+                @if (tr)
+                {
+                    <p class="mb-1"><strong>Content Studio:</strong> “Email içeriğini nasıl hazırlıyoruz?”</p>
+                    <p class="mb-0"><strong>Email:</strong> “Hazırlanan içeriği hangi kanalda iletiyoruz?”</p>
+                }
+                else
+                {
+                    <p class="mb-1"><strong>Content Studio asks:</strong> “How do we prepare the Email content?”</p>
+                    <p class="mb-0"><strong>Email asks:</strong> “Through which channel do we deliver the prepared content?”</p>
+                }
+            </div>
+
+            <div class="p-3 bg-white rounded border border-light-subtle mt-3">
+                @if (tr)
+                {
+                    <p class="mb-0">Editör ve kanal aynı ürün rolü değildir.</p>
+                }
+                else
+                {
+                    <p class="mb-0">The editor and the channel do not perform the same product role.</p>
+                }
+            </div>
+
+            <div class="mt-4">
+                <a href="@(tr ? "/cozumler/content-studio" : "/en/solutions/content-studio")" class="btn pika-btn-outline">
+                    @(tr ? "Content Studio'yu Keşfedin →" : "Explore Content Studio →")
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 05 TEMPLATES & PERSONALIZATION ──────────────────────────── *@
 <section class="pika-sol-section">
     <div class="container">
-        <div class="pika-sol-value-grid">
-            <div class="pika-sol-value-card" data-aos="fade-up" data-aos-duration="500">
-                <div class="pika-sol-value-icon"><i class="ri-palette-line"></i></div>
-                <h4>@(tr ? "Kodsuz Kolay Tasarım" : "No-Code Design")</h4>
-                <p>@(tr ? "Görsel e-posta editörü ile teknik bilgi gerektirmeden profesyonel mail içerikleri hazırlayın." : "Create professional email content without technical knowledge using the visual email editor.")</p>
+        <div class="max-w-800">
+            <span class="pika-sol-eyebrow">@(tr ? "ŞABLON VE KİŞİSELLEŞTİRME" : "TEMPLATES & PERSONALIZATION")</span>
+            <h2 class="pika-sol-section-title">@(tr ? "Tekrar kullanılabilir yapıyı koruyun. Mevcut müşteri bağlamını içeriğe taşıyın." : "Keep a reusable structure. Bring available customer context into the content.")</h2>
+            <p class="pika-sol-section-desc">
+                @(tr ? "Content Studio'da hazırlanmış Email şablonları tekrar eden kampanya çalışmalarında başlangıç yapısı olarak yeniden kullanılabilir." : "Email templates prepared in Content Studio can be reused as a starting structure for later campaign work.")
+            </p>
+            <p class="mt-3">
+                @(tr ? "Mevcut müşteri verisinden kullanılabilen kişiselleştirme alanları Email içeriğine eklenebilir." : "Available personalization fields based on existing customer data can appear within Email content.")
+            </p>
+            <p class="mt-3">
+                @(tr ? "Kişiselleştirme, Email kanalının müşteriye ait olmayan yeni bir gerçeği üretmesi anlamına gelmez." : "Personalization does not mean the Email channel invents new facts about the customer.")
+            </p>
+
+            <div class="email-callout">
+                @if (tr)
+                {
+                    <p class="mb-1"><strong>Şablon:</strong> yeniden kullanılabilir içerik yapısıdır.</p>
+                    <p class="mb-1"><strong>Kişiselleştirme:</strong> mevcut bağlamı içerikte kullanılabilir hale getirir.</p>
+                    <p class="mb-0"><strong>Email:</strong> hazırlanan içeriğin iletişim kanalıdır.</p>
+                }
+                else
+                {
+                    <p class="mb-1"><strong>A template:</strong> is a reusable content structure.</p>
+                    <p class="mb-1"><strong>Personalization:</strong> makes available context usable inside content.</p>
+                    <p class="mb-0"><strong>Email:</strong> is the communication channel for the prepared content.</p>
+                }
             </div>
-            <div class="pika-sol-value-card" data-aos="fade-up" data-aos-duration="500" data-aos-delay="100">
-                <div class="pika-sol-value-icon"><i class="ri-user-heart-line"></i></div>
-                <h4>@(tr ? "Gelişmiş Kişiselleştirme" : "Advanced Personalization")</h4>
-                <p>@(tr ? "Müşterilerinize özel teklifler ve doğrudan ilgi alanlarına hitap eden içerikler sunun." : "Offer customized deals and content directly appealing to your customers' interests.")</p>
-            </div>
-            <div class="pika-sol-value-card" data-aos="fade-up" data-aos-duration="500" data-aos-delay="200">
-                <div class="pika-sol-value-icon"><i class="ri-focus-3-line"></i></div>
-                <h4>@(tr ? "Segmentasyon ve Hedefleme" : "Segmentation & Targeting")</h4>
-                <p>@(tr ? "Doğru e-posta kampanyasını en uygun hedef kitleye, doğru segmente ulaştırın." : "Deliver the right email campaign to the most suitable target audience and correct segment.")</p>
-            </div>
-            <div class="pika-sol-value-card" data-aos="fade-up" data-aos-duration="500" data-aos-delay="300">
-                <div class="pika-sol-value-icon"><i class="ri-bar-chart-box-line"></i></div>
-                <h4>@(tr ? "Ölçülebilir E-posta Raporları" : "Measurable Email Reports")</h4>
-                <p>@(tr ? "Açılma oranları, tıklamalar ve etkileşim performansını detaylı analiz edin." : "Analyze open rates, clicks, and engagement performance in detail.")</p>
+
+            <div class="p-3 bg-white rounded border border-light-subtle mt-3">
+                @if (tr)
+                {
+                    <p class="mb-0">İçerik, kanaldan önce hazırlanır.</p>
+                }
+                else
+                {
+                    <p class="mb-0">Content is prepared before channel execution.</p>
+                }
             </div>
         </div>
     </div>
 </section>
 
-<!-- Ne Yapabilirsiniz? -->
-<section class="pika-sol-section pika-sol-section-alt">
+@* ── 06 AUDIENCE → EMAIL ─────────────────────────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt" id="audience">
     <div class="container">
-        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "E-posta pazarlamasını operasyonel yük olmaktan çıkarın" : "Take email marketing beyond an operational burden")</h2>
-        <p class="pika-sol-section-desc" data-aos="fade-up" data-aos-delay="100">@(tr ? "Pika platformu sayesinde mail listesi yönetme, kampanya tasarımı, segmentasyon ve pazarlama otomasyonu süreçlerinizi tek merkezde verimli kılın." : "With the Pika platform, efficiently centralize mailing list management, campaign design, segmentation, and marketing automation processes.")</p>
-        <div class="pika-sol-card-grid">
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="pika-sol-card-icon"><i class="ri-megaphone-line"></i></div>
-                <h4>@(tr ? "Özel Kampanya E-postaları" : "Custom Campaign Emails")</h4>
-                <p>@(tr ? "Duyurular, dönemsel indirimler ve lansmanlar için etkili toplu mail gönderimleri planlayın." : "Plan effective bulk mass mailings for announcements, seasonal discounts, and launches.")</p>
+        <div class="max-w-800">
+            <span class="pika-sol-eyebrow">@(tr ? "“KİM?”DEN EMAIL'E" : "FROM “WHO?” TO EMAIL")</span>
+            <h2 class="pika-sol-section-title">@(tr ? "Email hedef kitleyi seçmez. Audience bağlamını kullanır." : "Email does not choose the audience. It uses audience context.")</h2>
+            <p class="pika-sol-section-desc">
+                @(tr ? "Audience Manager müşteri verisi ve açık kurallar üzerinden gerçek hedef kitle tanımını yönetir." : "Audience Manager manages the actual audience definition through customer data and explicit rules.")
+            </p>
+            <p class="mt-3">
+                @(tr ? "Email kanalının görevi müşterileri kendi başına segmente etmek veya “en uygun” alıcıları seçmek değildir." : "The role of the Email channel is not to independently segment customers or select the “best” recipients.")
+            </p>
+            <p class="mt-3">
+                @(tr ? "Campaign Manager veya Journey Manager içindeki Email aksiyonu, ilgili audience bağlamını kontrollü iletişim sürecinde kullanabilir." : "An Email action inside Campaign Manager or Journey Manager can use the relevant audience context within controlled communication.")
+            </p>
+
+            <div class="email-callout">
+                @if (tr)
+                {
+                    <p class="mb-1"><strong>Audience Manager:</strong> “Kim bu hedef kitleye dahil?”</p>
+                    <p class="mb-0"><strong>Email:</strong> “Bu tanımlı kitleye Email iletişimi hangi aksiyon bağlamında ulaştırılacak?”</p>
+                }
+                else
+                {
+                    <p class="mb-1"><strong>Audience Manager:</strong> “Who belongs in this audience?”</p>
+                    <p class="mb-0"><strong>Email:</strong> “Within which action context will Email communication reach this defined audience?”</p>
+                }
             </div>
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="pika-sol-card-icon"><i class="ri-loop-right-line"></i></div>
-                <h4>@(tr ? "Otomatik Email Pazarlama" : "Automated Email Marketing")</h4>
-                <p>@(tr ? "Hoş geldin mesajları, doğum günü teklifleri ve sepet hatırlatmaları gibi otomasyonlar kurun." : "Set up automations like welcome messages, birthday offers, and cart abandonment reminders.")</p>
+
+            <div class="p-3 bg-white rounded border border-light-subtle mt-3">
+                @if (tr)
+                {
+                    <p class="mb-0">Audience gerçeği, kanal tarafından üretilmez.</p>
+                }
+                else
+                {
+                    <p class="mb-0">Audience truth is not created by the channel.</p>
+                }
             </div>
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="pika-sol-card-icon"><i class="ri-refresh-line"></i></div>
-                <h4>@(tr ? "Yeniden Kazanım Stratejileri" : "Win-Back Strategies")</h4>
-                <p>@(tr ? "Hareketsiz kullanıcıları hedefleyen stratejik etkileşim senaryolarıyla dönüşümü artırın." : "Increase conversions with strategic engagement scenarios targeting inactive users.")</p>
+
+            <div class="mt-4">
+                <a href="@(tr ? "/cozumler/audience-manager" : "/en/solutions/audience-manager")" class="btn pika-btn-outline">
+                    @(tr ? "Audience Manager'ı Keşfedin →" : "Explore Audience Manager →")
+                </a>
+            </div>
+        </div>
+
+        <div class="pika-sol-card-grid mt-5">
+            <div class="pika-sol-card">
+                <div class="pika-sol-card-icon"><i class="ri-megaphone-line" aria-hidden="true"></i></div>
+                <h4>@(tr ? "Kampanya Email'i" : "Campaign Email")</h4>
+                <p>@(tr ? "Tanımlı hedef kitle ve hazırlanmış içeriğin Campaign Manager üzerinden kontrollü Email iletişiminde kullanılabileceği aksiyon bağlamı." : "An action context where a defined audience and prepared content can be used for controlled Email communication through Campaign Manager.")</p>
+            </div>
+            <div class="pika-sol-card">
+                <div class="pika-sol-card-icon"><i class="ri-route-line" aria-hidden="true"></i></div>
+                <h4>@(tr ? "Journey Email Adımı" : "Journey Email Step")</h4>
+                <p>@(tr ? "Hazırlanmış Email içeriğinin Journey Manager içindeki tanımlı sıra, koşul ve bekleme mantığının bir kanal adımı olarak kullanılabileceği journey bağlamı." : "A journey context where prepared Email content can be used as a channel action inside sequence, conditions and wait logic managed by Journey Manager.")</p>
+            </div>
+            <div class="pika-sol-card">
+                <div class="pika-sol-card-icon"><i class="ri-lightbulb-line" aria-hidden="true"></i></div>
+                <h4>@(tr ? "Fırsattan Email Aksiyonuna" : "From Opportunity to Email Action")</h4>
+                <p>@(tr ? "Günün Fırsatları'nda değerlendirilen ticari fırsatın kullanıcı kararı, gerçek audience tanımı ve hazırlanmış içerik sonrasında Email kanalında uygulanabileceği aksiyon bağlamı." : "An action context where a commercial opportunity evaluated in Daily Opportunities can reach the Email channel after user decision, actual audience definition and prepared content.")</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Özellikler / Capability Grid -->
-<section class="pika-sol-section" id="features">
+@* ── 07 CAMPAIGN MANAGER → EMAIL ─────────────────────────────── *@
+<section class="pika-sol-section" id="campaign">
     <div class="container">
-        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "Başarılı bir email marketing için gereken tüm yetenekler" : "All the capabilities needed for successful email marketing")</h2>
-        <div class="pika-sol-card-grid">
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="pika-sol-card-icon"><i class="ri-drag-move-line"></i></div>
-                <h4>@(tr ? "Sürükle Bırak Editör (Drag & Drop)" : "Drag & Drop Editor")</h4>
-                <p>@(tr ? "Tasarım ajansına veya teknik ekibe bağımlı olmadan saniyeler içinde şablonlar oluşturun." : "Create templates in seconds without depending on a design agency or tech team.")</p>
+        <div class="max-w-800">
+            <span class="pika-sol-eyebrow">@(tr ? "KAMPANYADAN GÖNDERİME" : "FROM CAMPAIGN TO DELIVERY")</span>
+            <h2 class="pika-sol-section-title">@(tr ? "Campaign Manager kampanyayı yönetir. Email kanalı iletişimi taşır." : "Campaign Manager manages the campaign. Email carries the communication.")</h2>
+            <p class="pika-sol-section-desc">
+                @(tr ? "Campaign Manager tanımlı hedef kitle, hazırlanmış içerik, kanal, zamanlama ve gönderim öncesi kontrolleri aynı kampanya bağlamında yönetir." : "Campaign Manager manages defined audience, prepared content, channel, timing and pre-send controls within the same campaign context.")
+            </p>
+            <p class="mt-3">
+                @(tr ? "Email seçilen kanallardan biri olduğunda hazırlanmış Email içeriği kontrollü campaign-execution sürecinde kullanılır." : "When Email is one of the selected channels, prepared Email content is used within the controlled campaign-execution process.")
+            </p>
+            <p class="mt-3">
+                @(tr ? "Email'in kanal olarak bulunması, kampanyanın kendi kendine başladığı anlamına gelmez." : "The availability of Email as a channel does not mean the campaign starts by itself.")
+            </p>
+
+            <div class="email-callout">
+                @if (tr)
+                {
+                    <p class="mb-1"><strong>Campaign Manager:</strong> kampanya bağlamını ve kontrollü gönderimi yönetir.</p>
+                    <p class="mb-0"><strong>Email:</strong> seçilen iletişim kanalıdır.</p>
+                }
+                else
+                {
+                    <p class="mb-1"><strong>Campaign Manager:</strong> manages campaign context and controlled delivery.</p>
+                    <p class="mb-0"><strong>Email:</strong> is the selected communication channel.</p>
+                }
             </div>
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="pika-sol-card-icon"><i class="ri-user-settings-line"></i></div>
-                <h4>@(tr ? "Dinamik İçerik Alanları" : "Dynamic Content Fields")</h4>
-                <p>@(tr ? "Alıcının adına, işlem geçmişine veya satın alma alışkanlıklarına göre değişen bloklar kullanın." : "Use dynamic blocks changing based on recipient name, transaction history, or buying habits.")</p>
+
+            <div class="p-3 bg-white rounded border border-light-subtle mt-3">
+                @if (tr)
+                {
+                    <p class="mb-0">Kampanya kararı ve kanal icrası aynı şey değildir.</p>
+                }
+                else
+                {
+                    <p class="mb-0">The campaign decision and channel execution are different things.</p>
+                }
             </div>
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="pika-sol-card-icon"><i class="ri-focus-3-line"></i></div>
-                <h4>@(tr ? "Aksiyon ve İşlem Bazlı Hedefleme" : "Action & Event-Based Targeting")</h4>
-                <p>@(tr ? "Davranışsal müşteri segmentleri yaratarak dönüşüm oranları yüksek mail bültenleri atın." : "Send high-conversion newsletters by creating behavioral customer segments.")</p>
-            </div>
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="pika-sol-card-icon"><i class="ri-time-line"></i></div>
-                <h4>@(tr ? "Zamanlanmış ve Anlık Gönderim" : "Scheduled & Instant Delivery")</h4>
-                <p>@(tr ? "Bültenlerinizi en yüksek açılma oranına ulaşacak saatlere planlayın veya anında tetikleyin." : "Schedule newsletters for highest open rate times or trigger them instantly.")</p>
-            </div>
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="pika-sol-card-icon"><i class="ri-route-line"></i></div>
-                <h4>@(tr ? "Customer Journey Entegrasyonu" : "Customer Journey Integration")</h4>
-                <p>@(tr ? "Çok kanallı pazarlama; email bildirimlerini müşteri yolculuğunun ayrılmaz bir parçası yapın." : "Multichannel marketing; make email notifications an integral part of the customer journey.")</p>
-            </div>
-            <div class="pika-sol-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="pika-sol-card-icon"><i class="ri-line-chart-line"></i></div>
-                <h4>@(tr ? "Kapsamlı Karar Destek Raporlaması" : "Comprehensive Analytics Reporting")</h4>
-                <p>@(tr ? "E-posta açılma (open rate), tıklanma (CTR) ve genel kampanya ROI analizlerini şeffaf şekilde izleyin." : "Transparently track email open rates, CTR, and overall campaign ROI analysis.")</p>
+
+            <div class="mt-4">
+                <a href="@(tr ? "/cozumler/campaign-manager" : "/en/solutions/campaign-manager")" class="btn pika-btn-outline">
+                    @(tr ? "Campaign Manager'ı Keşfedin →" : "Explore Campaign Manager →")
+                </a>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Kullanım Senaryoları -->
-<section class="pika-sol-section pika-sol-section-alt">
+@* ── 08 JOURNEY MANAGER → EMAIL ──────────────────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt" id="journey">
     <div class="container">
-        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "Pika Email Pazarlama aracı ile örnek kullanım senaryoları" : "Example use cases with the Pika Email Marketing tool")</h2>
-        <div class="pika-sol-usecase-grid">
-            <div class="pika-sol-usecase" data-aos="fade-up" data-aos-delay="50"><i class="ri-check-line"></i> @(tr ? "E-ticaret sepet terk etme hatırlatmaları" : "E-commerce cart abandonment reminders")</div>
-            <div class="pika-sol-usecase" data-aos="fade-up" data-aos-delay="100"><i class="ri-check-line"></i> @(tr ? "Kişiye özel doğum günü kutlama ve hediye kuponları" : "Personalized birthday greeting & gift coupons")</div>
-            <div class="pika-sol-usecase" data-aos="fade-up" data-aos-delay="150"><i class="ri-check-line"></i> @(tr ? "Tüketim ürünleri için periyodik yeniden satın alma bildirimleri" : "Periodic repurchase notifications for consumer goods")</div>
-            <div class="pika-sol-usecase" data-aos="fade-up" data-aos-delay="200"><i class="ri-check-line"></i> @(tr ? "Önceki alışverişlere göre çapraz satış (cross-sell) mailleri" : "Cross-sell emails based on past purchases")</div>
-            <div class="pika-sol-usecase" data-aos="fade-up" data-aos-delay="250"><i class="ri-check-line"></i> @(tr ? "VIP müşteri segmentlerine özel öncelikli indirim duyuruları" : "Exclusive priority discount announcements for VIP segments")</div>
-            <div class="pika-sol-usecase" data-aos="fade-up" data-aos-delay="300"><i class="ri-check-line"></i> @(tr ? "Yeni aboneler için otomatik karşılama serileri (nurture)" : "Automated welcome series (nurture) for new subscribers")</div>
+        <div class="max-w-800">
+            <span class="pika-sol-eyebrow">@(tr ? "JOURNEY İÇİNDE EMAIL" : "EMAIL INSIDE A JOURNEY")</span>
+            <h2 class="pika-sol-section-title">@(tr ? "Email, çok adımlı journey'nin bir iletişim adımı olabilir." : "Email can be one communication step inside a multi-step journey.")</h2>
+            <p class="pika-sol-section-desc">
+                @(tr ? "Journey Manager başlangıç koşulları, dallanma, bekleme ve aksiyon adımlarından oluşan çok adımlı müşteri akışını yönetir." : "Journey Manager manages a multi-step customer flow consisting of entry conditions, branching, waits and action steps.")
+            </p>
+            <p class="mt-3">
+                @(tr ? "Email bu akış içindeki tanımlı kanal aksiyonlarından biri olarak kullanılabilir." : "Email can be used as one configured channel action inside that flow.")
+            </p>
+            <p class="mt-3">
+                @(tr ? "Koşul, sıra ve bekleme mantığını Email kanalının kendisi yönetmez. Bu orchestration Journey Manager'ın sorumluluğundadır." : "The Email channel itself does not manage condition, sequence or wait logic. That orchestration belongs to Journey Manager.")
+            </p>
+
+            <div class="email-callout">
+                @if (tr)
+                {
+                    <p class="mb-1"><strong>Journey Manager:</strong> “Sonraki adım ne ve hangi koşulda ilerlemeli?”</p>
+                    <p class="mb-0"><strong>Email:</strong> “Bu adımda kullanılacak iletişim kanalı Email mi?”</p>
+                }
+                else
+                {
+                    <p class="mb-1"><strong>Journey Manager asks:</strong> “What is the next step and under which condition should it progress?”</p>
+                    <p class="mb-0"><strong>Email asks:</strong> “Is Email the communication channel used at this step?”</p>
+                }
+            </div>
+
+            <div class="p-3 bg-white rounded border border-light-subtle mt-3">
+                @if (tr)
+                {
+                    <p class="mb-1"><strong>Email,</strong> journey'nin tamamı değil,</p>
+                    <p class="mb-0">journey içinde kullanılabilen bir kanal adımıdır.</p>
+                }
+                else
+                {
+                    <p class="mb-1"><strong>Email</strong> is not the entire journey.</p>
+                    <p class="mb-0">It is a channel step that can be used inside the journey.</p>
+                }
+            </div>
+
+            <div class="mt-4">
+                <a href="@(tr ? "/cozumler/journey-manager" : "/en/solutions/journey-manager")" class="btn pika-btn-outline">
+                    @(tr ? "Journey Manager'ı Keşfedin →" : "Explore Journey Manager →")
+                </a>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- Nasıl Çalışır? -->
+@* ── 09 CONSENT, UNSUBSCRIBE & OPT-OUT ───────────────────────── *@
 <section class="pika-sol-section">
     <div class="container">
-        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "Email kampanyalarınızı yapılandırmanın en hızlı yolu" : "The fastest way to configure your email campaigns")</h2>
-        <div class="pika-sol-steps">
-            <div class="pika-sol-step" data-aos="fade-up" data-aos-delay="100"><div class="pika-sol-step-num"></div><p>@(tr ? "Kitlenizi ve hedef e-posta segmentinizi saniyeler içinde belirleyin" : "Determine your audience and target email segment in seconds")</p></div>
-            <div class="pika-sol-step" data-aos="fade-up" data-aos-delay="200"><div class="pika-sol-step-num"></div><p>@(tr ? "Pika email şablonlarıyla veya AI desteğiyle içeriğinizi oluşturun" : "Create your content with Pika email templates or AI support")</p></div>
-            <div class="pika-sol-step" data-aos="fade-up" data-aos-delay="300"><div class="pika-sol-step-num"></div><p>@(tr ? "İdeal gönderim tarihini ayarlayın ya da kullanıcı aksiyonuyla tetikleyin" : "Set the ideal delivery date or trigger by user action")</p></div>
-            <div class="pika-sol-step" data-aos="fade-up" data-aos-delay="400"><div class="pika-sol-step-num"></div><p>@(tr ? "Kampanya analizlerinde veri takibi yapın ve bir sonraki adıma hazırlanın" : "Track data in campaign analytics and prepare for the next step")</p></div>
-        </div>
-    </div>
-</section>
+        <div class="max-w-800">
+            <span class="pika-sol-eyebrow">@(tr ? "İZİN VE OPT-OUT" : "CONSENT & OPT-OUT")</span>
+            <h2 class="pika-sol-section-title">@(tr ? "Hedef kitleye dahil olmak, Email izni anlamına gelmez." : "Belonging to the audience does not mean permission for Email communication.")</h2>
+            <p class="pika-sol-section-desc">
+                @(tr ? "Email iletişimi, ilgili gönderim sürecindeki mevcut izin ve opt-out kontrollerinden bağımsız değildir." : "Email communication is not independent of available consent and opt-out controls in the relevant delivery process.")
+            </p>
+            <p class="mt-3">
+                @(tr ? "Pika'nın Email iletişim bağlamında unsubscribe / opt-out mekanizması bulunur ve mevcut suppression durumu gönderim uygunluğu sürecinin parçasıdır." : "Pika's Email communication context includes unsubscribe / opt-out handling, and available suppression state forms part of delivery-eligibility control.")
+            </p>
+            <p class="mt-3">
+                @(tr ? "Bir müşterinin audience'a dahil olması veya journey içinde Email adımına ulaşması mevcut opt-out durumunu ortadan kaldırmaz." : "A customer belonging to an audience or reaching an Email step inside a journey does not remove an existing opt-out state.")
+            </p>
 
-<!-- Kişiselleştirme ve Veri -->
-<section class="pika-sol-section pika-sol-section-alt">
-    <div class="container" data-aos="fade-up">
-        <div class="pika-sol-highlight">
-            <h3>@(tr ? "Gelen kutusunda dikkat çekin: E-postalarınızı doğru kişiye optimize edin" : "Stand out in the inbox: Optimize your emails for the right person")</h3>
-            <p>@(tr ? "Pika, basit bülten gönderimlerinin ötesine geçer. Sadece bir 'mailing list' sistemi değil; işlem (transaction), alışkanlık ve profil verilerini analiz ederek en alakalı email kampanyalarını oluşturmanızı destekleyen bir iletişim orkestrasyonudur." : "Pika goes beyond simple newsletter mass sends. It is not just a 'mailing list' system; it's a communication orchestration that supports creating the most relevant email campaigns by analyzing transaction, habit, and profile data.")</p>
-            <p class="mt-3"><strong>@(tr ? "Özensiz ve alakasız mailler yerine, kullanıcı beklentilerine hizalanan ve dönüşüm garantileyen e-posta pazarlama stratejilerine geçiş yapın." : "Switch to email marketing strategies aligned with user expectations ensuring conversions instead of careless and irrelevant emails.")</strong></p>
-        </div>
-    </div>
-</section>
+            <div class="email-callout">
+                @if (tr)
+                {
+                    <p class="mb-1"><strong>Audience:</strong> “Kiminle iletişim kurmak istiyoruz?”</p>
+                    <p class="mb-1"><strong>Consent:</strong> “Bu iletişim izin bağlamında uygun mu?”</p>
+                    <p class="mb-0"><strong>Email:</strong> “Uygun iletişimi Email kanalı üzerinden nasıl icra ediyoruz?”</p>
+                }
+                else
+                {
+                    <p class="mb-1"><strong>Audience asks:</strong> “Who do we want to communicate with?”</p>
+                    <p class="mb-1"><strong>Consent asks:</strong> “Is this communication eligible under the available permission context?”</p>
+                    <p class="mb-0"><strong>Email asks:</strong> “How do we execute the eligible communication through Email?”</p>
+                }
+            </div>
 
-<!-- AI Alanı -->
-<section class="pika-sol-section">
-    <div class="container">
-        <h2 class="pika-sol-section-title" data-aos="fade-up">@(tr ? "Yapay zeka asistanı ile e-posta metin üretimini hızlandırın" : "Accelerate email copywriting with AI assistant")</h2>
-        <p class="pika-sol-section-desc" data-aos="fade-up" data-aos-delay="100">@(tr ? "Email konu satırından kampanya metnine uzanan geniş süreçte yapay zeka gücüyle üretkenliğinizi ikiye katlayın." : "Double your productivity with the power of artificial intelligence across the broad process from email subject line to campaign text.")</p>
-        <div class="pika-sol-highlight-items" data-aos="fade-up" data-aos-delay="200">
-            <span class="pika-sol-highlight-item"><i class="ri-lightbulb-flash-line"></i> @(tr ? "Yüksek açılma oranlı konu başlıkları" : "High open-rate subject lines")</span>
-            <span class="pika-sol-highlight-item"><i class="ri-file-text-line"></i> @(tr ? "İkna edici pazarlama metni taslakları" : "Persuasive marketing copy drafts")</span>
-            <span class="pika-sol-highlight-item"><i class="ri-gift-line"></i> @(tr ? "Kapsamlı özel gün kampanya fikirleri" : "Comprehensive special occasion campaign ideas")</span>
-            <span class="pika-sol-highlight-item"><i class="ri-translate-2"></i> @(tr ? "Farklı segmentler için uygun ton ve dil seçenekleri" : "Appropriate tone and language options for different segments")</span>
-        </div>
-    </div>
-</section>
+            <div class="p-3 bg-white rounded border border-light-subtle mt-3">
+                @if (tr)
+                {
+                    <p class="mb-0">Email kampanyası, izin kontrolünün yerine geçmez.</p>
+                }
+                else
+                {
+                    <p class="mb-0">An Email campaign does not replace permission controls.</p>
+                }
+            </div>
 
-<!-- Omnichannel -->
-<section class="pika-sol-section pika-sol-section-alt">
-    <div class="container" data-aos="fade-up">
-        <div class="pika-sol-omni">
-            <h2 class="pika-sol-section-title">@(tr ? "E-posta pazarlamasını Omnichannel zincirine dahil edin" : "Integrate email marketing into the Omnichannel chain")</h2>
-            <p class="pika-sol-section-desc" style="margin-left:auto;margin-right:auto">@(tr ? "SMS, WhatsApp ve Push Notifications ile koordine çalışan bütünleşik formüller kurgulayarak müşteri devamliliğini koruyun." : "Maintain customer retention by constructing integrated formulas that work coordinatedly with SMS, WhatsApp, and Push Notifications.")</p>
-            <div class="pika-sol-omni-icons">
-                <div class="pika-sol-omni-icon" style="background:#fff3e0;color:#f57c00"><i class="ri-mail-line"></i></div>
-                <div class="pika-sol-omni-icon" style="background:#e3f2fd;color:#1976d2"><i class="ri-message-2-line"></i></div>
-                <div class="pika-sol-omni-icon" style="background:#dcf8c6;color:#25d366"><i class="ri-whatsapp-line"></i></div>
-                <div class="pika-sol-omni-icon" style="background:#fce4ec;color:#e91e63"><i class="ri-notification-3-line"></i></div>
+            <div class="mt-4">
+                <a href="@(tr ? "/cozumler/consent-management" : "/en/solutions/consent-management")" class="btn pika-btn-outline">
+                    @(tr ? "Consent Management'i Keşfedin →" : "Explore Consent Management →")
+                </a>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Kapanış CTA -->
+@* ── 10 DELIVERY, BOUNCE & ENGAGEMENT TELEMETRY ──────────────── *@
+<section class="pika-sol-section pika-sol-section-alt" id="measurement">
+    <div class="container">
+        <div class="max-w-800">
+            <span class="pika-sol-eyebrow">@(tr ? "GÖNDERİMDEN ÖLÇÜME" : "FROM DELIVERY TO MEASUREMENT")</span>
+            <h2 class="pika-sol-section-title">@(tr ? "Email gönderildi mi? Teslimat ve etkileşim sonucunu ölçüm bağlamına taşıyın." : "Was the Email sent? Bring delivery and engagement outcomes into measurement context.")</h2>
+            <p class="pika-sol-section-desc">
+                @(tr ? "Email iletişimi gönderim aksiyonuyla bitmez. Gönderimden sonra oluşan mevcut delivery ve engagement telemetrisi kampanya değerlendirmesinin parçası olabilir." : "Email communication does not end with the delivery action. Available delivery and engagement telemetry after execution can become part of campaign evaluation.")
+            </p>
+        </div>
+
+        <div class="pika-sol-card-grid mt-4">
+            <div class="pika-sol-card">
+                <div class="pika-sol-card-icon"><i class="ri-mail-check-line" aria-hidden="true"></i></div>
+                <h4>Delivery</h4>
+                <p>@(tr ? "Email gönderim sürecinin mevcut teknik durumunu değerlendirmek için kullanılır." : "Used to evaluate available technical state within the Email delivery process.")</p>
+            </div>
+            <div class="pika-sol-card">
+                <div class="pika-sol-card-icon"><i class="ri-mail-close-line" aria-hidden="true"></i></div>
+                <h4>Bounce</h4>
+                <p>@(tr ? "Başarılı biçimde tamamlanmayan Email teslimatına ilişkin kullanılabilir sonuç bağlamını sağlar." : "Provides available outcome context when Email delivery does not complete successfully.")</p>
+            </div>
+            <div class="pika-sol-card">
+                <div class="pika-sol-card-icon"><i class="ri-mail-open-line" aria-hidden="true"></i></div>
+                <h4>Open</h4>
+                <p>@(tr ? "Kullanılabilir olduğunda Email etkileşiminin ölçülen sinyallerinden biri olarak değerlendirilebilir." : "Where available, can be evaluated as one measured signal of Email engagement.")</p>
+            </div>
+            <div class="pika-sol-card">
+                <div class="pika-sol-card-icon"><i class="ri-cursor-line" aria-hidden="true"></i></div>
+                <h4>Click</h4>
+                <p>@(tr ? "Kullanılabilir olduğunda Email içindeki bağlantı etkileşimini ölçüm bağlamına taşıyabilir." : "Where available, can bring link interaction within the Email into measurement context.")</p>
+            </div>
+            <div class="pika-sol-card">
+                <div class="pika-sol-card-icon"><i class="ri-user-unfollow-line" aria-hidden="true"></i></div>
+                <h4>Unsubscribe / Opt-Out</h4>
+                <p>@(tr ? "Email iletişiminin devam uygunluğunu etkileyen izin ve suppression bağlamının parçasıdır." : "Forms part of permission and suppression context affecting continued Email communication eligibility.")</p>
+            </div>
+        </div>
+
+        <div class="max-w-800 mt-5">
+            <div class="email-callout">
+                @if (tr)
+                {
+                    <p class="mb-1"><strong>Email:</strong> telemetri üretir.</p>
+                    <p class="mb-0"><strong>Analytics & Reporting:</strong> sonucu kampanya, kitle ve diğer ölçüm bağlamlarıyla birlikte değerlendirir.</p>
+                }
+                else
+                {
+                    <p class="mb-1"><strong>Email:</strong> produces telemetry.</p>
+                    <p class="mb-0"><strong>Analytics & Reporting:</strong> evaluates the outcome together with campaign, audience and other measurement context.</p>
+                }
+            </div>
+
+            <div class="p-3 bg-white rounded border border-light-subtle mt-3">
+                @if (tr)
+                {
+                    <p class="mb-0">Ölçüm, kanal aksiyonunun ardından karar döngüsünü besler.</p>
+                }
+                else
+                {
+                    <p class="mb-0">Measurement feeds the decision loop after channel execution.</p>
+                }
+            </div>
+
+            <div class="mt-4">
+                <a href="@(tr ? "/cozumler/analytics-reporting" : "/en/solutions/analytics-reporting")" class="btn pika-btn-outline">
+                    @(tr ? "Analytics & Reporting'i Keşfedin →" : "Explore Analytics & Reporting →")
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 11 DELIVERY / RENDERING / PERFORMANCE BOUNDARIES ────────── *@
+<section class="pika-sol-section">
+    <div class="container">
+        <div class="max-w-800">
+            <span class="pika-sol-eyebrow">@(tr ? "GÖNDERİM ≠ SONUÇ GARANTİSİ" : "DELIVERY ≠ OUTCOME GUARANTEE")</span>
+            <h2 class="pika-sol-section-title">@(tr ? "Teknik gönderim, müşteri davranışını garanti etmez." : "Technical delivery does not guarantee customer behavior.")</h2>
+            <p class="pika-sol-section-desc">
+                @(tr ? "Email gönderim sürecinin teknik sonucu, müşterinin mesajı okuyacağı, bağlantıya tıklayacağı veya ticari aksiyon alacağı anlamına gelmez." : "A technical Email-delivery outcome does not mean the customer will read the message, click a link or take a commercial action.")
+            </p>
+            <p class="mt-3">
+                @(tr ? "Open ve click gibi sinyaller ölçüm bağlamında değerlendirilebilir; ancak belirli bir kampanya sonucu için garanti değildir." : "Signals such as opens and clicks can be evaluated within measurement context, but they do not guarantee a particular campaign outcome.")
+            </p>
+            <p class="mt-3">
+                @(tr ? "Email içeriğinin farklı cihaz veya Email istemcilerindeki görünümü de Content Studio önizlemesinin birebir rendering garantisi olarak yorumlanmaz." : "The appearance of Email content across different devices or Email clients should also not be interpreted as an identical-rendering guarantee from Content Studio preview.")
+            </p>
+
+            <div class="email-callout">
+                @if (tr)
+                {
+                    <p class="mb-1"><strong>Delivery:</strong> gönderim sonucudur.</p>
+                    <p class="mb-1"><strong>Engagement:</strong> ölçülen etkileşim bağlamıdır.</p>
+                    <p class="mb-1"><strong>Conversion:</strong> ayrı ticari sonuçtur.</p>
+                    <p class="mb-0"><strong>Bunlar:</strong> aynı metrik değildir.</p>
+                }
+                else
+                {
+                    <p class="mb-1"><strong>Delivery:</strong> is a delivery outcome.</p>
+                    <p class="mb-1"><strong>Engagement:</strong> is measured interaction context.</p>
+                    <p class="mb-1"><strong>Conversion:</strong> is a separate commercial outcome.</p>
+                    <p class="mb-0"><strong>They are:</strong> not the same metric.</p>
+                }
+            </div>
+
+            <p class="mt-3 text-muted">
+                @(tr ? "C15 belirli bir inbox placement, açılma oranı, tıklama oranı, dönüşüm veya ciro sonucu garanti etmez." : "C15 does not guarantee a specific inbox-placement, open-rate, click-rate, conversion or revenue outcome.")
+            </p>
+
+            <div class="p-3 bg-white rounded border border-light-subtle mt-3">
+                @if (tr)
+                {
+                    <p class="mb-1">Ölçün.</p>
+                    <p class="mb-1">Karşılaştırın.</p>
+                    <p class="mb-0">Ama teknik teslimatı ticari başarı garantisine çevirmeyin.</p>
+                }
+                else
+                {
+                    <p class="mb-1">Measure.</p>
+                    <p class="mb-1">Compare.</p>
+                    <p class="mb-0">But do not turn technical delivery into a guarantee of commercial success.</p>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 12 WHAT EMAIL IS / IS NOT ───────────────────────────────── *@
+<section class="pika-sol-section pika-sol-section-alt">
+    <div class="container">
+        <div class="max-w-800">
+            <span class="pika-sol-eyebrow">@(tr ? "DOĞRU SINIRLAR" : "CLEAR BOUNDARIES")</span>
+            <h2 class="pika-sol-section-title">@(tr ? "Email'i doğru yere koyun." : "Put Email in the right place.")</h2>
+        </div>
+
+        <div class="pika-sol-card-grid mt-4">
+            <div class="pika-sol-card">
+                <h4>@(tr ? "Email, Customer Intelligence değildir." : "Email is not Customer Intelligence.")</h4>
+                <p>@(tr ? "Customer Intelligence müşteri davranışı ve değer bağlamını hesaplar. Email bu bağlamdan doğan kontrollü iletişimin kanallarından biridir." : "Customer Intelligence calculates customer behavior and value context. Email is one channel through which controlled communication based on that context can be executed.")</p>
+            </div>
+            <div class="pika-sol-card">
+                <h4>@(tr ? "Email, Audience Manager değildir." : "Email is not Audience Manager.")</h4>
+                <p>@(tr ? "Audience Manager gerçek hedef kitleyi tanımlar. Email hedef kitleyi kendi başına seçmez." : "Audience Manager defines the actual audience. Email does not independently choose the target audience.")</p>
+            </div>
+            <div class="pika-sol-card">
+                <h4>@(tr ? "Email, Content Studio değildir." : "Email is not Content Studio.")</h4>
+                <p>@(tr ? "Content Studio Email içeriğini hazırlar, şablonlaştırır, kişiselleştirir ve önizler. Email hazırlanan içeriğin iletişim kanalıdır." : "Content Studio prepares, templates, personalizes and previews Email content. Email is the communication channel for that prepared content.")</p>
+            </div>
+            <div class="pika-sol-card">
+                <h4>@(tr ? "Email, Campaign Manager değildir." : "Email is not Campaign Manager.")</h4>
+                <p>@(tr ? "Campaign Manager hedef kitle, içerik, kanal, zamanlama ve kontrollü gönderim bağlamını yönetir. Email seçilen execution kanallarından biridir." : "Campaign Manager manages audience, content, channel, timing and controlled-delivery context. Email is one selected execution channel.")</p>
+            </div>
+            <div class="pika-sol-card">
+                <h4>@(tr ? "Email, Journey Manager değildir." : "Email is not Journey Manager.")</h4>
+                <p>@(tr ? "Journey Manager koşul, sıra, bekleme ve aksiyon akışını yönetir. Email journey içinde kullanılabilen bir kanal aksiyonu olabilir." : "Journey Manager manages conditions, sequence, waits and action flow. Email can be a channel action used inside a journey.")</p>
+            </div>
+            <div class="pika-sol-card">
+                <h4>@(tr ? "Email, Consent Management değildir." : "Email is not Consent Management.")</h4>
+                <p>@(tr ? "Consent Management iletişim uygunluğu ve opt-out bağlamını değerlendirir. Email uygun iletişimin teknik icra kanalıdır." : "Consent Management evaluates communication eligibility and opt-out context. Email is the technical execution channel for eligible communication.")</p>
+            </div>
+            <div class="pika-sol-card">
+                <h4>@(tr ? "Email, Analytics & Reporting değildir." : "Email is not Analytics & Reporting.")</h4>
+                <p>@(tr ? "Email delivery ve engagement telemetrisi oluşturabilir. Analytics & Reporting bu sonuçları kampanya ve ölçüm bağlamıyla değerlendirir." : "Email can produce delivery and engagement telemetry. Analytics & Reporting evaluates those outcomes within campaign and measurement context.")</p>
+            </div>
+            <div class="pika-sol-card">
+                <h4>@(tr ? "Email sonuç garantisi değildir." : "Email is not an outcome guarantee.")</h4>
+                <p>@(tr ? "Email gönderimi belirli bir inbox placement, açılma, tıklama, dönüşüm, satış veya ciro sonucu garanti etmez." : "Email delivery does not guarantee a particular inbox-placement, open, click, conversion, sales or revenue outcome.")</p>
+            </div>
+        </div>
+
+        <div class="max-w-800 mt-5">
+            <div class="p-4 bg-white rounded border border-light-subtle">
+                @if (tr)
+                {
+                    <h3 class="h5 mb-2 text-dark">Email'in görevi:</h3>
+                    <p class="mb-2">Pika'nın karar verdiği müşteri bağlamını uygun içerik ve izin kontrolleriyle zengin bir iletişim kanalında uygulamaktır.</p>
+                    <p class="mb-0 text-muted">Platformun tamamının yerine geçmek değildir.</p>
+                }
+                else
+                {
+                    <h3 class="h5 mb-2 text-dark">The role of Email is:</h3>
+                    <p class="mb-2">To execute communication from Pika's decision context through a rich channel with prepared content and permission controls.</p>
+                    <p class="mb-0 text-muted">It is not: A replacement for the whole platform.</p>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 13 FAQ ──────────────────────────────────────────────────── *@
+<section class="pika-sol-section" id="faq">
+    <div class="container">
+        <div class="max-w-800">
+            <h2 class="pika-sol-section-title">@(tr ? "Sıkça Sorulan Sorular" : "Frequently Asked Questions")</h2>
+            
+            <div class="mt-4">
+                @if (tr)
+                {
+                    <details class="email-faq-details">
+                        <summary class="email-faq-summary">
+                            <span>Pika Email nedir?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="email-faq-body">
+                            Pika Email, Content Studio'da hazırlanmış görsel ve kişiselleştirilebilir içeriğin Campaign Manager veya Journey Manager üzerinden kontrollü iletişim bağlamında kullanılabildiği Pika iletişim kanallarından biridir.
+                        </div>
+                    </details>
+
+                    <details class="email-faq-details">
+                        <summary class="email-faq-summary">
+                            <span>Pika ile görsel Email şablonları hazırlanabilir mi?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="email-faq-body">
+                            Evet. Görsel sürükle-bırak Email kompozisyonu, modüler bloklar, şablonlar ve cihaz önizlemesi Content Studio'da yönetilir. Hazırlanan içerik daha sonra Email kanalında kullanılabilir.
+                        </div>
+                    </details>
+
+                    <details class="email-faq-details">
+                        <summary class="email-faq-summary">
+                            <span>Email içeriği kişiselleştirilebilir mi?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="email-faq-body">
+                            Mevcut müşteri verisinden kullanılabilen kişiselleştirme alanları Content Studio'da Email içeriğine eklenebilir. Kişiselleştirme müşteriye ait olmayan yeni bilgilerin üretilmesi anlamına gelmez.
+                        </div>
+                    </details>
+
+                    <details class="email-faq-details">
+                        <summary class="email-faq-summary">
+                            <span>Email Campaign Manager ve Journey Manager ile nasıl çalışır?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="email-faq-body">
+                            Campaign Manager tanımlı kampanyanın kontrollü gönderim bağlamını yönetir. Journey Manager çok adımlı akışı yönetir. Email her iki ürün bağlamında da kullanılabilecek doğrulanmış iletişim kanallarından biridir.
+                        </div>
+                    </details>
+
+                    <details class="email-faq-details">
+                        <summary class="email-faq-summary">
+                            <span>Email iletişiminde opt-out ve unsubscribe kontrolü var mı?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="email-faq-body">
+                            Pika'nın Email iletişim bağlamında unsubscribe / opt-out handling bulunur ve mevcut suppression durumu gönderim uygunluğu kontrollerinin parçasıdır. Audience veya journey üyeliği opt-out durumunu ortadan kaldırmaz.
+                        </div>
+                    </details>
+
+                    <details class="email-faq-details">
+                        <summary class="email-faq-summary">
+                            <span>Pika Email hangi sonuçları ölçebilir?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="email-faq-body">
+                            Mevcut Email telemetry bağlamında delivery, bounce, open, click ve unsubscribe gibi sonuçlar kampanya değerlendirmesinde kullanılabilir. Analytics & Reporting bu sonuçları ilgili kampanya, kitle ve ölçüm bağlamıyla birlikte değerlendirir.
+                        </div>
+                    </details>
+
+                    <details class="email-faq-details">
+                        <summary class="email-faq-summary">
+                            <span>Email gönderimi inbox, açılma veya dönüşüm garantisi verir mi?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="email-faq-body">
+                            Hayır. Teknik gönderim sonucu belirli bir inbox placement, açılma, tıklama, dönüşüm, satış veya ciro sonucu garanti etmez. Bu sonuçlar birbirinden farklı ölçüm ve ticari bağlamlardır.
+                        </div>
+                    </details>
+
+                    <details class="email-faq-details">
+                        <summary class="email-faq-summary">
+                            <span>Pika Email yapay zekâ ile kampanyayı kendi başına oluşturup gönderir mi?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="email-faq-body">
+                            Hayır. <a href="/urunler/ai-kampanya-asistani">Pika Pilot</a> Email içerik taslağı hazırlamaya yardımcı olabilir; kullanıcı içeriği değerlendirir ve Content Studio'da hazırlar. Campaign Manager veya Journey Manager aksiyonu yönetir. Email kendi başına kampanya başlatan otonom AI sistemi değildir.
+                        </div>
+                    </details>
+                }
+                else
+                {
+                    <details class="email-faq-details">
+                        <summary class="email-faq-summary">
+                            <span>What is Pika Email?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="email-faq-body">
+                            Pika Email is one of Pika's communication channels for using visual and personalizable content prepared in Content Studio within controlled communication through Campaign Manager or Journey Manager.
+                        </div>
+                    </details>
+
+                    <details class="email-faq-details">
+                        <summary class="email-faq-summary">
+                            <span>Can visual Email templates be prepared in Pika?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="email-faq-body">
+                            Yes. Visual drag-and-drop Email composition, modular blocks, templates and device preview are managed in Content Studio. Prepared content can then be used through the Email channel.
+                        </div>
+                    </details>
+
+                    <details class="email-faq-details">
+                        <summary class="email-faq-summary">
+                            <span>Can Email content be personalized?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="email-faq-body">
+                            Available personalization fields based on existing customer data can be added to Email content in Content Studio. Personalization does not mean creating customer information that does not exist.
+                        </div>
+                    </details>
+
+                    <details class="email-faq-details">
+                        <summary class="email-faq-summary">
+                            <span>How does Email work with Campaign Manager and Journey Manager?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="email-faq-body">
+                            Campaign Manager manages controlled delivery for a defined campaign. Journey Manager manages multi-step flow. Email is a confirmed communication channel that can be used within both product contexts.
+                        </div>
+                    </details>
+
+                    <details class="email-faq-details">
+                        <summary class="email-faq-summary">
+                            <span>Does Email communication include opt-out and unsubscribe handling?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="email-faq-body">
+                            Pika's Email communication context includes unsubscribe / opt-out handling, and available suppression state forms part of delivery-eligibility controls. Audience or journey membership does not remove an opt-out state.
+                        </div>
+                    </details>
+
+                    <details class="email-faq-details">
+                        <summary class="email-faq-summary">
+                            <span>Which Email outcomes can Pika measure?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="email-faq-body">
+                            Available Email telemetry can include delivery, bounce, open, click and unsubscribe context for campaign evaluation. Analytics & Reporting evaluates those outcomes together with relevant campaign, audience and measurement context.
+                        </div>
+                    </details>
+
+                    <details class="email-faq-details">
+                        <summary class="email-faq-summary">
+                            <span>Does Email delivery guarantee inbox placement, opens or conversion?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="email-faq-body">
+                            No. A technical delivery outcome does not guarantee a particular inbox placement, open, click, conversion, sales or revenue result. These are different measurement and commercial contexts.
+                        </div>
+                    </details>
+
+                    <details class="email-faq-details">
+                        <summary class="email-faq-summary">
+                            <span>Does Pika Email use AI to create and send campaigns by itself?</span>
+                            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+                        </summary>
+                        <div class="email-faq-body">
+                            No. <a href="/en/products/ai-campaign-assistant">Pika Pilot</a> can help prepare Email content drafts; the user reviews the content and prepares it in Content Studio. Campaign Manager or Journey Manager manages the action. Email is not an autonomous AI system that launches campaigns by itself.
+                        </div>
+                    </details>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ── 14 FINAL CTA ─────────────────────────────────────────────── *@
 <section class="pika-sol-cta-section">
     <div class="container" data-aos="fade-up">
-        <h2>@(tr ? "Email Marketing süreçlerinizi maksimum potansiyele ulaştırın" : "Unlock the maximum potential of your Email Marketing processes")</h2>
-        <p>@(tr ? "Pika Email Pazarlama yazılımı ile tasarım şablonlarından hedef kitle yönetimine ve performansa dayalı otomasyona kadar tüm döngüyü merkeze alın." : "Centralize the entire lifecycle from design templates to audience management and performance-based automation with Pika Email Marketing software.")</p>
+        <span class="pika-sol-eyebrow" style="color:var(--pika-primary);display:block;margin-bottom:12px;font-weight:700">
+            @(tr ? "EMAIL KANALI" : "EMAIL CHANNEL")
+        </span>
+        <h2>
+            @if (tr)
+            {
+                <text>İçeriği hazırlayın.<br />Hedef kitleyi tanımlayın.<br />Email iletişimini kontrollü biçimde yürütün.</text>
+            }
+            else
+            {
+                <text>Prepare the content.<br />Define the audience.<br />Execute Email communication under control.</text>
+            }
+        </h2>
+        <p class="mx-auto" style="max-width:720px">
+            @(tr ? "Pika Email'in Content Studio'da hazırlanan içeriği, Audience Manager hedef kitle bağlamını, Consent Management kontrollerini ve Campaign Manager veya Journey Manager aksiyonlarını Email iletişim kanalında nasıl bir araya getirdiğini birlikte inceleyelim." : "Let's explore how Pika Email brings together content prepared in Content Studio, Audience Manager context, Consent Management controls and Campaign Manager or Journey Manager actions through the Email communication channel.")
+        </p>
+        <p class="small fw-semibold mt-2 mb-4" style="color:#dce5d2">
+            @(tr ? "İhtiyacınıza ve kullanım kapsamınıza göre özel teklif." : "Pricing is tailored to your requirements and scope of use.")
+        </p>
         <div class="pika-sol-cta-actions">
-            <button type="button" class="btn pika-btn-primary px-4 py-2" data-bs-toggle="modal" data-bs-target="#demoModal">@(tr ? "Demo Talep Et" : "Request a Demo") <i class="ri-arrow-right-up-line"></i></button>
-            <a href="@Url.Action("Contact", "Home")" class="btn pika-btn-ghost px-4 py-2">@(tr ? "Özel Danışmanlık İçin Bize Ulaşın" : "Contact Us for Consultation")</a>
+            <button type="button" class="btn pika-btn-primary px-4 py-2" data-bs-toggle="modal" data-bs-target="#demoModal">
+                @(tr ? "Demo Talep Et" : "Request a Demo") <i class="ri-arrow-right-up-line" aria-hidden="true"></i>
+            </button>
+            <a href="@(tr ? "/iletisim" : "/en/contact")" class="btn pika-btn-ghost px-4 py-2">
+                @(tr ? "Teklif Al" : "Request a Quote")
+            </a>
         </div>
     </div>
 </section>
