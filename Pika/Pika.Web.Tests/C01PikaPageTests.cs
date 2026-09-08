@@ -229,14 +229,16 @@ public class C01PikaPageTests : IClassFixture<WebApplicationFactory<Program>>
     }
 
     [Fact]
-    public void PikaView_ContainsNoScreenshotReferencesOrWikiImages()
+    public void PikaView_UsesEditorialImageWithoutWikiScreenshots()
     {
         var root = GetProjectRoot();
         var viewPath = Path.Combine(root, "Views", "Home", "Pika.cshtml");
         var viewContent = File.ReadAllText(viewPath);
 
         Assert.DoesNotContain("/wiki/assets/images/", viewContent);
-        Assert.DoesNotContain("<img", viewContent, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("~/images/pika-commerce-editorial.png", viewContent);
+        Assert.Contains("<img", viewContent, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("alt=\"@L(", viewContent);
     }
 
     [Theory]

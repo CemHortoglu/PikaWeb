@@ -876,37 +876,55 @@
         </div>
 
         @* 6 Audience Contexts (reused cards) *@
-        <div class="pika-sol-usecase-cards mt-5">
-            <div class="pika-sol-usecase-card" data-aos="fade-up" data-aos-delay="50">
-                <div class="pika-sol-usecase-card-icon"><i class="ri-vip-crown-line"></i></div>
-                <h5>@(tr ? "Hesaplanan Müşteri Değeri" : "Calculated Customer Value")</h5>
-                <p>@(tr ? "Customer Intelligence bağlamını kullanarak belirli değer koşullarını karşılayan müşterileri kitle tanımına dahil edin." : "Use Customer Intelligence context to include customers who satisfy relevant value conditions in an audience definition.")</p>
-            </div>
-            <div class="pika-sol-usecase-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="pika-sol-usecase-card-icon"><i class="ri-shopping-cart-line"></i></div>
-                <h5>@(tr ? "Satın Alma Davranışı" : "Purchase Behavior")</h5>
-                <p>@(tr ? "Belirli işlem, ürün veya kategori davranışına uyan müşterileri kurallarla tanımlayın." : "Define customers through rules based on relevant transaction, product or category behavior.")</p>
-            </div>
-            <div class="pika-sol-usecase-card" data-aos="fade-up" data-aos-delay="150">
-                <div class="pika-sol-usecase-card-icon"><i class="ri-pulse-line"></i></div>
-                <h5>@(tr ? "Davranış Değişimi" : "Behavioral Change")</h5>
-                <p>@(tr ? "Müşterinin kendi geçmişine göre oluşan uygun davranış sinyallerini kitle koşullarında değerlendirin." : "Evaluate appropriate signals relative to the customer's own history within audience conditions.")</p>
-            </div>
-            <div class="pika-sol-usecase-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="pika-sol-usecase-card-icon"><i class="ri-refresh-line"></i></div>
-                <h5>@(tr ? "Tekrar Satın Alma Bağlamı" : "Repeat-Purchase Context")</h5>
-                <p>@(tr ? "Satın alma ritmi ve ilgili ürün bağlamını kullanan hedef kitle kuralları oluşturun." : "Create audience rules using purchase-rhythm and relevant product context.")</p>
-            </div>
-            <div class="pika-sol-usecase-card" data-aos="fade-up" data-aos-delay="250">
-                <div class="pika-sol-usecase-card-icon"><i class="ri-focus-3-line"></i></div>
-                <h5>@(tr ? "Açık Fırsat Bağlamı" : "Open Opportunity Context")</h5>
-                <p>@(tr ? "Uygun fırsat veya karar bağlamlarını sonraki hedef kitle çalışmalarında değerlendirin." : "Evaluate relevant opportunity or decision context in downstream audience workflows.")</p>
-            </div>
-            <div class="pika-sol-usecase-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="pika-sol-usecase-card-icon"><i class="ri-shield-check-line"></i></div>
-                <h5>@(tr ? "İzin / Erişilebilirlik Bağlamı" : "Permission / Reachability Context")</h5>
-                <p>@(tr ? "Mevcut izin veya kanal erişilebilirliği bilgisini uygun olduğunda hedef kitle değerlendirmesine dahil edin." : "Include available permission or channel-reachability information in audience evaluation where appropriate.")</p>
-            </div>
+        <div class="pika-sol-usecase-cards pika-story-gallery mt-5">
+            <article class="pika-sol-usecase-card pika-story-card">
+                <img class="pika-story-image" src="/images/pika-commerce-editorial.png" alt="" loading="lazy" decoding="async" width="1024" height="1365" />
+                <span class="pika-story-number" aria-hidden="true">01</span>
+                <div class="pika-story-copy">
+                    <h5><button type="button" class="pika-story-toggle" aria-expanded="true" aria-controls="audiencemanager-story-0">@(tr ? "Hesaplanan Müşteri Değeri" : "Calculated Customer Value")<span aria-hidden="true">↗</span></button></h5>
+                    <p id="audiencemanager-story-0">@(tr ? "Customer Intelligence bağlamını kullanarak belirli değer koşullarını karşılayan müşterileri kitle tanımına dahil edin." : "Use Customer Intelligence context to include customers who satisfy relevant value conditions in an audience definition.")</p>
+                </div>
+            </article>
+            <article class="pika-sol-usecase-card pika-story-card">
+                <img class="pika-story-image" src="/images/pika-story-cart.png" alt="" loading="lazy" decoding="async" width="1024" height="1365" />
+                <span class="pika-story-number" aria-hidden="true">02</span>
+                <div class="pika-story-copy">
+                    <h5><button type="button" class="pika-story-toggle" aria-expanded="true" aria-controls="audiencemanager-story-1">@(tr ? "Satın Alma Davranışı" : "Purchase Behavior")<span aria-hidden="true">↗</span></button></h5>
+                    <p id="audiencemanager-story-1">@(tr ? "Belirli işlem, ürün veya kategori davranışına uyan müşterileri kurallarla tanımlayın." : "Define customers through rules based on relevant transaction, product or category behavior.")</p>
+                </div>
+            </article>
+            <article class="pika-sol-usecase-card pika-story-card">
+                <img class="pika-story-image" src="/images/pika-story-repeat.png" alt="" loading="lazy" decoding="async" width="1024" height="1365" />
+                <span class="pika-story-number" aria-hidden="true">03</span>
+                <div class="pika-story-copy">
+                    <h5><button type="button" class="pika-story-toggle" aria-expanded="true" aria-controls="audiencemanager-story-2">@(tr ? "Davranış Değişimi" : "Behavioral Change")<span aria-hidden="true">↗</span></button></h5>
+                    <p id="audiencemanager-story-2">@(tr ? "Müşterinin kendi geçmişine göre oluşan uygun davranış sinyallerini kitle koşullarında değerlendirin." : "Evaluate appropriate signals relative to the customer's own history within audience conditions.")</p>
+                </div>
+            </article>
+            <article class="pika-sol-usecase-card pika-story-card">
+                <img class="pika-story-image" src="/images/pika-story-reconnect.png" alt="" loading="lazy" decoding="async" width="1024" height="1365" />
+                <span class="pika-story-number" aria-hidden="true">04</span>
+                <div class="pika-story-copy">
+                    <h5><button type="button" class="pika-story-toggle" aria-expanded="true" aria-controls="audiencemanager-story-3">@(tr ? "Tekrar Satın Alma Bağlamı" : "Repeat-Purchase Context")<span aria-hidden="true">↗</span></button></h5>
+                    <p id="audiencemanager-story-3">@(tr ? "Satın alma ritmi ve ilgili ürün bağlamını kullanan hedef kitle kuralları oluşturun." : "Create audience rules using purchase-rhythm and relevant product context.")</p>
+                </div>
+            </article>
+            <article class="pika-sol-usecase-card pika-story-card">
+                <img class="pika-story-image" src="/images/pika-commerce-editorial.png" alt="" loading="lazy" decoding="async" width="1024" height="1365" />
+                <span class="pika-story-number" aria-hidden="true">05</span>
+                <div class="pika-story-copy">
+                    <h5><button type="button" class="pika-story-toggle" aria-expanded="true" aria-controls="audiencemanager-story-4">@(tr ? "Açık Fırsat Bağlamı" : "Open Opportunity Context")<span aria-hidden="true">↗</span></button></h5>
+                    <p id="audiencemanager-story-4">@(tr ? "Uygun fırsat veya karar bağlamlarını sonraki hedef kitle çalışmalarında değerlendirin." : "Evaluate relevant opportunity or decision context in downstream audience workflows.")</p>
+                </div>
+            </article>
+            <article class="pika-sol-usecase-card pika-story-card">
+                <img class="pika-story-image" src="/images/pika-story-cart.png" alt="" loading="lazy" decoding="async" width="1024" height="1365" />
+                <span class="pika-story-number" aria-hidden="true">06</span>
+                <div class="pika-story-copy">
+                    <h5><button type="button" class="pika-story-toggle" aria-expanded="true" aria-controls="audiencemanager-story-5">@(tr ? "İzin / Erişilebilirlik Bağlamı" : "Permission / Reachability Context")<span aria-hidden="true">↗</span></button></h5>
+                    <p id="audiencemanager-story-5">@(tr ? "Mevcut izin veya kanal erişilebilirliği bilgisini uygun olduğunda hedef kitle değerlendirmesine dahil edin." : "Include available permission or channel-reachability information in audience evaluation where appropriate.")</p>
+                </div>
+            </article>
         </div>
     </div>
 </section>

@@ -77,6 +77,7 @@ public class C04Pika360PageTests : IClassFixture<WebApplicationFactory<Program>>
             Arguments = arguments,
             WorkingDirectory = workingDir,
             RedirectStandardOutput = true,
+            StandardOutputEncoding = System.Text.Encoding.UTF8,
             RedirectStandardError = true,
             UseShellExecute = false,
             CreateNoWindow = true

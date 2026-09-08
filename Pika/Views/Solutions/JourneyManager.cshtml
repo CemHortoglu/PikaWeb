@@ -622,27 +622,39 @@
         </div>
 
         @* 4 Exact Customer-Process Examples *@
-        <div class="pika-sol-usecase-cards mb-2" data-aos="fade-up">
-            <div class="pika-sol-usecase-card">
-                <div class="pika-sol-usecase-card-icon"><i class="ri-user-smile-line"></i></div>
-                <h5>@(tr ? "Hoş Geldin Serisi" : "Welcome Series")</h5>
-                <p>@(tr ? "Yeni müşteri veya üye bağlamında tanımlanan giriş koşulundan sonra birden fazla iletişim adımının sıralı biçimde yönetilebileceği journey örneği." : "An example journey where multiple communication steps can be managed in sequence after a configured entry condition for a new customer or member context.")</p>
-            </div>
-            <div class="pika-sol-usecase-card">
-                <div class="pika-sol-usecase-card-icon"><i class="ri-shopping-cart-line"></i></div>
-                <h5>@(tr ? "Sepet Tamamlama Akışı" : "Cart Completion Flow")</h5>
-                <p>@(tr ? "Uygun sepet veya işlem bağlamından sonra bekleme, koşul ve iletişim adımlarının bir araya getirilebileceği journey örneği." : "An example journey where waits, conditions and communication steps can be combined after relevant cart or transaction context.")</p>
-            </div>
-            <div class="pika-sol-usecase-card">
-                <div class="pika-sol-usecase-card-icon"><i class="ri-repeat-line"></i></div>
-                <h5>@(tr ? "Tekrar Satın Alma Hatırlatması" : "Repeat-Purchase Reminder")</h5>
-                <p>@(tr ? "Tekrar satın alma bağlamı değerlendirildikten sonra tanımlı zamanlama ve iletişim adımlarının kullanılabileceği journey örneği." : "An example journey where configured timing and communication steps can be used after repeat-purchase context has been evaluated.")</p>
-            </div>
-            <div class="pika-sol-usecase-card">
-                <div class="pika-sol-usecase-card-icon"><i class="ri-heart-pulse-line"></i></div>
-                <h5>@(tr ? "Geri Kazanım Akışı" : "Win-Back Flow")</h5>
-                <p>@(tr ? "Davranış değişimi veya uygun win-back bağlamı sonrasında birden fazla kontrollü adımın kurgulanabileceği journey örneği." : "An example journey where multiple controlled steps can be configured after relevant behavioral change or win-back context.")</p>
-            </div>
+        <div class="pika-sol-usecase-cards pika-story-gallery mb-2" data-aos="fade-up">
+            <article class="pika-sol-usecase-card pika-story-card">
+                <img class="pika-story-image" src="/images/pika-commerce-editorial.png" alt="" loading="lazy" decoding="async" width="1024" height="1365" />
+                <span class="pika-story-number" aria-hidden="true">01</span>
+                <div class="pika-story-copy">
+                    <h5><button type="button" class="pika-story-toggle" aria-expanded="true" aria-controls="journeymanager-story-0">@(tr ? "Hoş Geldin Serisi" : "Welcome Series")<span aria-hidden="true">↗</span></button></h5>
+                    <p id="journeymanager-story-0">@(tr ? "Yeni müşteri veya üye bağlamında tanımlanan giriş koşulundan sonra birden fazla iletişim adımının sıralı biçimde yönetilebileceği journey örneği." : "An example journey where multiple communication steps can be managed in sequence after a configured entry condition for a new customer or member context.")</p>
+                </div>
+            </article>
+            <article class="pika-sol-usecase-card pika-story-card">
+                <img class="pika-story-image" src="/images/pika-story-cart.png" alt="" loading="lazy" decoding="async" width="1024" height="1365" />
+                <span class="pika-story-number" aria-hidden="true">02</span>
+                <div class="pika-story-copy">
+                    <h5><button type="button" class="pika-story-toggle" aria-expanded="true" aria-controls="journeymanager-story-1">@(tr ? "Sepet Tamamlama Akışı" : "Cart Completion Flow")<span aria-hidden="true">↗</span></button></h5>
+                    <p id="journeymanager-story-1">@(tr ? "Uygun sepet veya işlem bağlamından sonra bekleme, koşul ve iletişim adımlarının bir araya getirilebileceği journey örneği." : "An example journey where waits, conditions and communication steps can be combined after relevant cart or transaction context.")</p>
+                </div>
+            </article>
+            <article class="pika-sol-usecase-card pika-story-card">
+                <img class="pika-story-image" src="/images/pika-story-repeat.png" alt="" loading="lazy" decoding="async" width="1024" height="1365" />
+                <span class="pika-story-number" aria-hidden="true">03</span>
+                <div class="pika-story-copy">
+                    <h5><button type="button" class="pika-story-toggle" aria-expanded="true" aria-controls="journeymanager-story-2">@(tr ? "Tekrar Satın Alma Hatırlatması" : "Repeat-Purchase Reminder")<span aria-hidden="true">↗</span></button></h5>
+                    <p id="journeymanager-story-2">@(tr ? "Tekrar satın alma bağlamı değerlendirildikten sonra tanımlı zamanlama ve iletişim adımlarının kullanılabileceği journey örneği." : "An example journey where configured timing and communication steps can be used after repeat-purchase context has been evaluated.")</p>
+                </div>
+            </article>
+            <article class="pika-sol-usecase-card pika-story-card">
+                <img class="pika-story-image" src="/images/pika-story-reconnect.png" alt="" loading="lazy" decoding="async" width="1024" height="1365" />
+                <span class="pika-story-number" aria-hidden="true">04</span>
+                <div class="pika-story-copy">
+                    <h5><button type="button" class="pika-story-toggle" aria-expanded="true" aria-controls="journeymanager-story-3">@(tr ? "Geri Kazanım Akışı" : "Win-Back Flow")<span aria-hidden="true">↗</span></button></h5>
+                    <p id="journeymanager-story-3">@(tr ? "Davranış değişimi veya uygun win-back bağlamı sonrasında birden fazla kontrollü adımın kurgulanabileceği journey örneği." : "An example journey where multiple controlled steps can be configured after relevant behavioral change or win-back context.")</p>
+                </div>
+            </article>
         </div>
     </div>
 </section>

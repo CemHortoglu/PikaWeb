@@ -1,0 +1,68 @@
+/* Pika entity story. All original copy remains in its semantic document order. */
+.pika-inner .pika-entity-page { --pika-text-dark:#10292e; --pika-text-secondary:#465e58; }
+.pika-inner .pika-entity-page .pika-hero { padding:140px 0 80px; }
+.pika-inner .pika-entity-page .pika-hero__layout { grid-template-columns:1fr 1.05fr; gap:56px; align-items:center; }
+.pika-inner .pika-entity-page .pika-hero__h1 { font-size:clamp(38px,4.4vw,68px); line-height:1.08; letter-spacing:-.05em; }
+.pika-inner .pika-entity-page .pika-hero__lead { font-size:17px; line-height:1.8; color:#c2cec9; }
+.pika-inner .pika-entity-page .pika-badge--hero { background:none; border:0; padding:0; color:#b5c7ba; font-size:12px; line-height:1.7; }
+.pika-inner .pika-entity-page .pika-hero__visual-wrap { min-width:0; padding:0; }
+.pika-brand-photo { position:relative; margin:0; overflow:hidden; border-radius:18px; background:#263d37; }
+.pika-brand-photo img { width:100%; height:430px; display:block; object-fit:cover; }
+.pika-brand-photo:after { content:""; position:absolute; inset:55% 0 0; background:linear-gradient(transparent,#061a20ba); pointer-events:none; }
+.pika-brand-photo figcaption { position:absolute; z-index:1; bottom:25px; left:26px; right:20px; font-size:20px; line-height:1.4; font-weight:500; letter-spacing:-.5px; color:#fff; }
+.pika-inner .pika-entity-page .pika-relationship-visual { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; padding:16px 0 0; background:none; border:0; box-shadow:none; width:100%; max-width:none; }
+.pika-inner .pika-entity-page .pika-rel-node { position:static; min-width:0; margin:0; padding:14px; border:1px solid #c4d1c222; border-radius:9px; background:#ffffff05; transform:none; text-align:left; }
+.pika-inner .pika-entity-page .pika-rel-connector { display:none; }
+.pika-inner .pika-entity-page .pika-rel-tag { font-size:8px; color:#b1c0be; letter-spacing:.08em; margin-bottom:8px; }
+.pika-inner .pika-entity-page .pika-rel-label { font-size:14px; color:#e6eedf; }
+.pika-inner .pika-entity-page .pika-rel-desc { color:#b1c0be; font-size:10px; line-height:1.5; }
+.pika-inner .pika-entity-page .pika-rel-pillars { flex-wrap:wrap; gap:5px; }
+.pika-inner .pika-entity-page .pika-pillar { color:#e6eedf; font-size:10px; }
+.pika-inner .pika-entity-page .pika-diagram-caption { grid-column:1/-1; margin:0; padding:0; border:0; color:#a4b8af; font-size:9px; }
+.pika-inner .pika-entity-page .pika-section { padding-block:clamp(60px,7vw,104px); }
+.pika-inner .pika-entity-page .pika-section--light { background:#fff; }
+.pika-inner .pika-entity-page :is(.pika-section--warm,.pika-section--tinted) { background:#f1f4ed; }
+.pika-inner .pika-entity-page .pika-section--dark { background:#10292e; color:#e8f0e3; }
+.pika-inner .pika-entity-page .pika-section--dark :is(h2,h3,.pika-display-h2,.pika-h2) { color:#f1f6ea; }
+.pika-inner .pika-entity-page .pika-section--dark :is(.pika-section-intro,.pika-body-paragraph,.pika-final-cta__body) { color:#c0cec7; }
+.pika-inner .pika-entity-page .pika-section-header { max-width:850px; margin:0 0 46px; text-align:left; }
+.pika-inner .pika-entity-page :is(.pika-display-h2,.pika-h2) { font-size:clamp(30px,3.6vw,48px); line-height:1.15; letter-spacing:-.035em; font-weight:500; text-align:left; }
+.pika-inner .pika-entity-page .pika-section-intro { margin:18px 0 0; max-width:72ch; font-size:17px; line-height:1.85; }
+.pika-inner .pika-entity-page .pika-split-scene { grid-template-columns:.7fr 1.5fr; gap:70px; }
+.pika-inner .pika-entity-page .pika-lead-paragraph { font-size:23px; line-height:1.65; font-weight:450; letter-spacing:-.4px; }
+.pika-inner .pika-entity-page .pika-manifesto__grid { gap:60px; align-items:stretch; }
+.pika-inner .pika-entity-page .pika-manifesto__statement-wrap { padding:38px; border-radius:16px; background:#10292e; display:flex; flex-direction:column; justify-content:center; }
+.pika-inner .pika-entity-page .pika-manifesto__statement { padding:0; margin:0 0 24px; border:0; background:none; }
+.pika-inner .pika-entity-page .pika-manifesto__statement p { color:#f2f6ed; font-size:clamp(28px,3vw,42px); line-height:1.25; font-weight:500; }
+.pika-inner .pika-entity-page .pika-manifesto__statement .pika-highlight { color:#b5ee19; }
+.pika-inner .pika-entity-page .pika-manifesto__conclusion { color:#c0cec7; font-size:16px; line-height:1.8; }
+.pika-inner .pika-entity-page .pika-manifesto__channels-line { border:0; padding:20px 24px; border-radius:12px; background:#fff; }
+.pika-inner .pika-entity-page .pika-flow-spine { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; max-width:none; }
+.pika-inner .pika-entity-page .pika-flow-spine__down { display:none; }
+.pika-inner .pika-entity-page .pika-flow-step { display:flex; flex-direction:column; align-items:flex-start; gap:25px; padding:28px; border-radius:14px; background:#f7f9f4; border:1px solid #dce3dd; }
+.pika-inner .pika-entity-page .pika-flow-step:hover { transform:none; box-shadow:none; }
+.pika-inner .pika-entity-page .pika-flow-step__marker { width:auto; height:auto; background:none; color:#65814a; font-size:30px; font-weight:400; }
+.pika-inner .pika-entity-page .pika-flow-step__title { font-size:16px; line-height:1.5; }
+.pika-inner .pika-entity-page .pika-flow-step__text { font-size:15px; line-height:1.8; }
+.pika-inner .pika-entity-page .pika-intelligence-split { gap:24px; }
+.pika-inner .pika-entity-page .pika-intelligence-col { padding:36px; border:1px solid #dce3dd; background:#fff; border-radius:16px; }
+.pika-inner .pika-entity-page .pika-principles-wall { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+.pika-inner .pika-entity-page .pika-principle-entry { margin:0; padding:28px; border:1px solid #dce3dd; border-radius:12px; background:#fff; }
+.pika-inner .pika-entity-page .pika-principle-entry:last-child { grid-column:1/-1; }
+.pika-inner .pika-entity-page .pika-disambiguation-item { padding:25px 0; border-bottom:1px solid #dce3dd; background:none; border-radius:0; }
+.pika-inner .pika-entity-page .pika-final-cta__box { border:0; background:none; padding:0; text-align:left; }
+.pika-inner .pika-entity-page .pika-final-cta__actions { justify-content:flex-start; }
+@media(max-width:991px) {
+    .pika-inner .pika-entity-page .pika-hero__layout { grid-template-columns:1fr; gap:40px; }
+    .pika-inner .pika-entity-page .pika-hero__visual-wrap { max-width:720px; width:100%; margin:auto; }
+    .pika-inner .pika-entity-page .pika-split-scene { grid-template-columns:1fr; gap:20px; }
+    .pika-inner .pika-entity-page .pika-flow-spine { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media(max-width:600px) {
+    .pika-inner .pika-entity-page .pika-hero { padding-top:115px; }
+    .pika-brand-photo img { height:310px; }
+    .pika-brand-photo figcaption { font-size:18px; left:20px; }
+    .pika-inner .pika-entity-page :is(.pika-flow-spine,.pika-principles-wall) { grid-template-columns:1fr; }
+    .pika-inner .pika-entity-page :is(.pika-intelligence-col,.pika-manifesto__statement-wrap) { padding:26px; }
+    .pika-inner .pika-entity-page .pika-hero__h1 { font-size:39px; }
+}

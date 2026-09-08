@@ -22,3 +22,36 @@
   if(field){if(!field.id)field.id=`inner-field-${index}`;label.htmlFor=field.id;}
  });
 })();
+
+(() => {
+ const desktop = matchMedia('(min-width:1100px)');
+ document.querySelectorAll('.pika-story-gallery').forEach(gallery => {
+  const cards = [...gallery.querySelectorAll('.pika-story-card')];
+  let selected = 0;
+  const render = () => {
+   const expandable = desktop.matches && cards.length <= 4;
+   gallery.classList.toggle('is-enhanced', expandable);
+   cards.forEach((card, index) => {
+    const open = !expandable || index === selected;
+    card.classList.toggle('is-active', index === selected);
+    card.querySelector('button').setAttribute('aria-expanded', String(open));
+    card.querySelector('p').hidden = !open;
+   });
+  };
+  cards.forEach((card, index) => {
+   const button = card.querySelector('button');
+   button.addEventListener('click', () => { selected = index; render(); });
+   button.addEventListener('keydown', event => {
+    if (!desktop.matches || cards.length > 4) return;
+    const offsets = { ArrowRight:1, ArrowLeft:-1 };
+    if (!(event.key in offsets) && event.key !== 'Home' && event.key !== 'End') return;
+    event.preventDefault();
+    selected = event.key === 'Home' ? 0 : event.key === 'End' ? cards.length - 1 : (index + offsets[event.key] + cards.length) % cards.length;
+    render();
+    cards[selected].querySelector('button').focus();
+   });
+  });
+  desktop.addEventListener('change', render);
+  render();
+ });
+})();

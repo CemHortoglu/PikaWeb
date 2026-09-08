@@ -5,6 +5,7 @@
 }
 @section Styles {
     <link href="~/css/pika-about.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/css/pika-about-editorial.css" rel="stylesheet" asp-append-version="true" />
 }
 
 <div class="pika-entity-page">
@@ -66,6 +67,10 @@
                 </div>
 
                 <div class="pika-hero__visual-wrap">
+                    <figure class="pika-brand-photo">
+                        <img src="~/images/pika-commerce-editorial.png" width="1536" height="1024" fetchpriority="high" alt="@L("Mağazada ürünler üzerine sohbet eden iki kişi; müşteri ilişkisini anlatan temsili görsel.", "Two people discussing products in a store; an illustrative customer relationship scene.")" />
+                        <figcaption>@L("Müşteri. Ürün. Anlamlı bir ilişki.", "Customer. Product. A meaningful relationship.")</figcaption>
+                    </figure>
                     <div class="pika-relationship-visual" role="img" aria-label="@L("Örnek görünüm · Veriden karara ilişki modeli", "Illustration · Data to decision relationship model")">
                         <div class="pika-rel-node pika-rel-node--data">
                             <span class="pika-rel-tag">01 / INPUT</span>
