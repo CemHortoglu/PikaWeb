@@ -1,0 +1,20 @@
+@{ var tr = !string.Equals(ViewContext.RouteData.Values["culture"]?.ToString(), "en", StringComparison.OrdinalIgnoreCase); }
+<section class="journey-demo-section"><div class="container">
+ <span class="ph-eyebrow">@(tr ? "ADIM ADIM ORKESTRASYON" : "STEP-BY-STEP ORCHESTRATION")</span>
+ <h2>@(tr ? "Bir yolculuk, adım adım şekillenir." : "A journey takes shape, step by step.")</h2>
+ <p>@(tr ? "Başlangıç koşulundan iletişim adımına: örnek bir akışın nasıl kurulduğunu izleyin." : "Watch an example flow take shape, from entry criteria to a communication step.")</p>
+ <div class="journey-demo" aria-label="@(tr ? "Örnek journey oluşturma gösterimi" : "Example journey construction")">
+  <div class="journey-demo-toolbar"><strong>PIKA · JOURNEY STUDIO</strong><span>@(tr ? "Örnek taslak" : "Example draft")</span></div>
+  <div class="journey-demo-flow">
+   <div class="jd-node" style="--step:0"><i class="ri-user-add-line" aria-hidden="true"></i><div><small>01 · @(tr ? "BAŞLANGIÇ" : "ENTRY")</small><h3>@(tr ? "Hedef kitleye katılım" : "Audience entry")</h3></div></div>
+   <div class="jd-node" style="--step:1"><i class="ri-timer-line" aria-hidden="true"></i><div><small>02 · @(tr ? "BEKLEME" : "WAIT")</small><h3>@(tr ? "Tanımlanan süreyi bekle" : "Wait for the defined interval")</h3></div></div>
+   <div class="jd-node jd-condition" style="--step:2"><i class="ri-git-branch-line" aria-hidden="true"></i><div><small>03 · @(tr ? "KOŞUL" : "CONDITION")</small><h3>@(tr ? "İletişim koşulu sağlanıyor mu?" : "Is the communication condition met?")</h3></div></div>
+   <div class="jd-branches">
+    <div class="jd-node" style="--step:3"><i class="ri-mail-line" aria-hidden="true"></i><div><small>@(tr ? "EVET · AKSİYON" : "YES · ACTION")</small><h3>@(tr ? "E-posta adımı" : "Email step")</h3></div></div>
+    <div class="jd-node" style="--step:4"><i class="ri-stop-circle-line" aria-hidden="true"></i><div><small>@(tr ? "HAYIR · BİTİŞ" : "NO · END")</small><h3>@(tr ? "Akışı sonlandır" : "End the flow")</h3></div></div>
+   </div>
+  </div>
+  <p class="jd-finish">@(tr ? "Örnek akış oluşturuldu · Yayına alınmadı" : "Example flow assembled · Not activated")</p>
+ </div>
+ <p class="journey-demo-note">@(tr ? "Kavramsal animasyon; gerçek müşteri işlemez ve mesaj göndermez." : "Conceptual animation; no real customers are processed and no messages are sent.")</p>
+</div></section>

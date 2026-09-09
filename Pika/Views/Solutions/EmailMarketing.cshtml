@@ -1,7 +1,7 @@
 @{
     var culture = ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr";
     var tr = culture.Equals("tr", StringComparison.OrdinalIgnoreCase);
-    ViewData["BodyClass"] = "pika-solutions-page";
+    ViewData["BodyClass"] = "pika-solutions-page pika-email-experience";
 }
 
 @section Styles {
@@ -237,6 +237,7 @@
 </section>
 
 @* ── 04 CONTENT STUDIO → EMAIL ────────────────────────────────── *@
+@await Html.PartialAsync("_EmailPlayground")
 <section class="pika-sol-section pika-sol-section-alt" id="content">
     <div class="container">
         <div class="max-w-800">
@@ -946,3 +947,5 @@
         </div>
     </div>
 </section>
+
+@section Scripts { <script src="~/js/pika-email-designer.js" asp-append-version="true" defer></script> }

@@ -1,0 +1,22 @@
+@{ var tr = !string.Equals(ViewContext.RouteData.Values["culture"]?.ToString(), "en", StringComparison.OrdinalIgnoreCase); }
+<section class="email-lab" id="email-designer" data-language="@(tr ? "tr" : "en")">
+ <div class="container">
+  <span class="ph-eyebrow">@(tr ? "İÇERİĞİNİZE ŞEKİL VERİN" : "SHAPE YOUR CONTENT")</span>
+  <h2>@(tr ? "Bir fikirden, gelen kutusuna." : "From an idea to the inbox.")</h2>
+  <p>@(tr ? "Blokları tuvale sürükleyin veya tıklayarak ekleyin. Bir bloğu seçip metnini düzenleyin; sırasını değiştirin." : "Drag blocks onto the canvas or click to add. Select a block to edit its text or change its position.")</p>
+  <div class="email-workbench">
+   <aside class="email-tools"><h3>@(tr ? "İçerik blokları" : "Content blocks")</h3>
+    <button type="button" draggable="true" data-block="heading">Tt · @(tr ? "Başlık" : "Heading")</button>
+    <button type="button" draggable="true" data-block="text">¶ · @(tr ? "Metin" : "Text")</button>
+    <button type="button" draggable="true" data-block="image">▧ · @(tr ? "Görsel" : "Image")</button>
+    <button type="button" draggable="true" data-block="button">↗ · @(tr ? "Buton" : "Button")</button>
+    <button type="button" draggable="true" data-block="divider">— · @(tr ? "Ayırıcı" : "Divider")</button>
+    <label>@(tr ? "Seçili bloğun metni" : "Selected block text")<textarea class="email-edit" rows="4" disabled></textarea></label>
+    <div class="email-block-actions"><button type="button" data-action="up" aria-label="@(tr ? "Yukarı taşı" : "Move up")">↑</button><button type="button" data-action="down" aria-label="@(tr ? "Aşağı taşı" : "Move down")">↓</button><button type="button" data-action="remove">@(tr ? "Sil" : "Delete")</button></div>
+   </aside>
+   <div class="email-stage"><div class="email-stage-bar"><span>PIKA STUDIO <small>· @(tr ? "Etkileşimli örnek" : "Interactive example")</small></span><button type="button" data-action="preview">@(tr ? "Mobil görünüm" : "Mobile view")</button></div><div class="email-canvas" aria-label="@(tr ? "E-posta tasarım alanı" : "Email design canvas")"></div><p class="email-status" role="status" aria-live="polite"></p></div>
+  </div>
+  <p class="email-lab-note">@(tr ? "Bu alan bir tasarım denemesidir. E-posta göndermez; sayfa yenilendiğinde değişiklikler sıfırlanır." : "This is a design playground. It does not send email; changes reset when the page reloads.")</p>
+ </div>
+</section>
+

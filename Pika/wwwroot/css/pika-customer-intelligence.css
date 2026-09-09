@@ -1053,3 +1053,13 @@
     border-color: rgba(181, 238, 25, 0.3);
     background: rgba(181, 238, 25, 0.05);
 }
+
+/* Pair the customer-context illustration with its narrative. */
+.pika-ci-context-layout { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.1fr); align-items:center; gap:clamp(32px,5vw,72px); }
+.pika-ci-context-copy { min-width:0; }
+.pika-ci-context-art { min-width:0; width:100%; margin:0; align-self:center; }
+.pika-ci-context-art img { display:block; width:100%; height:auto; border-radius:24px; box-shadow:0 24px 60px -30px rgba(16,41,46,.3); }
+.pika-ci-context-art figcaption { margin:16px 4px 0; color:#536963; font-size:12px; line-height:1.6; max-width:56ch; }
+.pika-ci-context-story .pika-ci-section-title { font-size:clamp(30px,3vw,44px); line-height:1.16; }
+@media(max-width:1000px) { .pika-ci-context-layout { grid-template-columns:1fr; gap:32px; } .pika-ci-context-art { max-width:760px; margin-inline:auto; } }
+@media(max-width:600px) { .pika-ci-context-art img { border-radius:16px; } }

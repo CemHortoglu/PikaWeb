@@ -1,4 +1,4 @@
-﻿@{
+@{
     var culture = ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr";
     var tr = culture.Equals("tr", StringComparison.OrdinalIgnoreCase);
     ViewData["BodyClass"] = "pika-solutions-page";
@@ -188,7 +188,11 @@
 
 @* ── 02 DIRECT ANSWER ────────────────────────────────────────── *@
 <section class="pika-sol-section pika-sol-section-alt" id="overview">
-    <div class="container">
+    <div class="container journey-overview-layout"><figure class="journey-overview-art">
+    <img src="~/images/pages/Pika/when.png" asp-append-version="true" loading="lazy" decoding="async" width="1536" height="1024"
+         alt="@(tr ? "Pika Journey Manager — zamanında, koşula bağlı çok adımlı müşteri yolculuğu" : "Pika Journey Manager — timely, condition-based multi-step customer journey")" />
+    <figcaption>@(tr ? "Kavramsal gösterim; kişi, değerler ve arayüz örnek amaçlıdır." : "Conceptual illustration; people, values and interface are illustrative.")</figcaption>
+</figure>
         <div class="p-4 rounded-4 mb-4 bg-white border" data-aos="fade-up">
             <span class="ph-eyebrow">@(tr ? "KISA CEVAP" : "THE SHORT ANSWER")</span>
             <h2 class="pika-sol-section-title mb-3">@(tr ? "Journey Manager nedir?" : "What is Journey Manager?")</h2>
@@ -215,6 +219,10 @@
         </div>
     </div>
 </section>
+
+@await Html.PartialAsync("_JourneyDemo")
+@* ── PAGE ART ─────────────────────────────────────────────────── *@
+
 
 @* ── 03 WHY ONE-OFF CAMPAIGNS ARE NOT ALWAYS ENOUGH ───────────── *@
 <section class="pika-sol-section">
@@ -1041,3 +1049,7 @@
         </div>
     </div>
 </section>
+
+
+@section Scripts { <script src="~/js/pika-journey-demo.js" asp-append-version="true" defer></script> }
+

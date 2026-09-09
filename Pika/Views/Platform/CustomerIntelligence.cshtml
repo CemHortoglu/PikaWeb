@@ -186,8 +186,8 @@
     </section>
 
     @* ── 03 THE PROBLEM ─────────────────────────────────────────── *@
-    <section class="pika-ci-section">
-        <div class="pika-ci-container pika-ci-container--narrow">
+    <section class="pika-ci-section pika-ci-context-story">
+        <div class="pika-ci-container pika-ci-context-layout"><div class="pika-ci-context-copy">
             <span class="pika-ci-section-eyebrow">@(tr ? "VERİDEN BAĞLAMA" : "FROM DATA TO CONTEXT")</span>
             @if (tr)
             {
@@ -244,7 +244,16 @@
                 </div>
             }
         </div>
-    </section>
+<figure class="pika-ci-context-art">
+        <img src="~/images/pages/Pika/customer-and-product-intelligence.png" asp-append-version="true" loading="lazy" decoding="async" width="1672" height="941"
+             alt="@(tr ? "Müşteri ve ürün zekâsının birlikte gösterimi — Pika Customer Intelligence" : "Customer and product intelligence together — Pika Customer Intelligence")" />
+        <figcaption>@(tr ? "Kavramsal gösterim; kişi, değerler ve arayüz örnek amaçlıdır." : "Conceptual illustration; people, values and interface are illustrative.")</figcaption>
+    </figure>
+</div>
+</section>
+
+    @* ── PAGE ART ─────────────────────────────────────────────────── *@
+    
 
     @* ── 04 WHAT CUSTOMER INTELLIGENCE UNDERSTANDS ──────────────── *@
     <section class="pika-ci-section pika-ci-section--alt">
@@ -770,7 +779,7 @@
                 </p>
 
                 <div class="pika-ci-dest-flow">
-                    <div class="pika-ci-dest-item">
+                    <div class="pika-ci-dest-item"><div class="ci-destination-art ci-destination-art--0" aria-hidden="true"><div class="ci-destination-window"><div class="ci-destination-toolbar"><span>pika ✳</span><span>•••</span></div><svg viewBox="0 0 320 260" fill="#456c43"><circle cx="160" cy="75" r="28" fill="#a8bd8b"/><path d="M105 145Q105 112 160 112Q215 112 215 145" fill="#cad6b9"/><rect x="38" y="173" width="108" height="12" rx="6"/><rect x="38" y="196" width="178" height="8" rx="4" opacity=".35"/><rect x="38" y="214" width="140" height="8" rx="4" opacity=".2"/></svg></div></div>
                         <div class="pika-ci-dest-header">
                             <span class="pika-ci-dest-badge">01</span>
                             <h3 class="pika-ci-dest-title">Pika 360</h3>
@@ -783,7 +792,7 @@
                         </a>
                     </div>
 
-                    <div class="pika-ci-dest-item">
+                    <div class="pika-ci-dest-item"><div class="ci-destination-art ci-destination-art--1" aria-hidden="true"><div class="ci-destination-window"><div class="ci-destination-toolbar"><span>pika ✳</span><span>•••</span></div><svg viewBox="0 0 320 260" fill="#456c43"><rect x="32" y="40" width="256" height="54" rx="12" fill="#e3ecd4"/><rect x="32" y="107" width="256" height="54" rx="12" fill="#edf2e7"/><rect x="32" y="174" width="256" height="54" rx="12" fill="#edf2e7"/><path d="M49 66h20m-10-10v20M49 134h20M49 201h20" stroke="#68834f" stroke-width="3"/><path d="M92 61h155M92 75h100M92 129h140M92 142h100M92 196h145M92 209h90" stroke="#557346" stroke-width="5" stroke-linecap="round" opacity=".5"/></svg></div></div>
                         <div class="pika-ci-dest-header">
                             <span class="pika-ci-dest-badge">02</span>
                             <h3 class="pika-ci-dest-title">Günün Fırsatları</h3>
@@ -796,7 +805,7 @@
                         </a>
                     </div>
 
-                    <div class="pika-ci-dest-item">
+                    <div class="pika-ci-dest-item"><div class="ci-destination-art ci-destination-art--2" aria-hidden="true"><div class="ci-destination-window"><div class="ci-destination-toolbar"><span>pika ✳</span><span>•••</span></div><svg viewBox="0 0 320 260" fill="#456c43"><circle cx="160" cy="132" r="85" fill="#e6eddb"/><circle cx="160" cy="132" r="48" fill="#cedeb8"/><g fill="#6a8755"><circle cx="160" cy="132" r="14"/><circle cx="91" cy="89" r="11"/><circle cx="229" cy="89" r="11"/><circle cx="91" cy="175" r="11"/><circle cx="229" cy="175" r="11"/></g><path d="M102 96l46 28m24 0 46-28m-116 72 46-28m24 0 46 28" stroke="#779465" stroke-width="2"/></svg></div></div>
                         <div class="pika-ci-dest-header">
                             <span class="pika-ci-dest-badge">03</span>
                             <h3 class="pika-ci-dest-title">Audience Manager</h3>
@@ -809,7 +818,7 @@
                         </a>
                     </div>
 
-                    <div class="pika-ci-dest-item">
+                    <div class="pika-ci-dest-item"><div class="ci-destination-art ci-destination-art--3" aria-hidden="true"><div class="ci-destination-window"><div class="ci-destination-toolbar"><span>pika ✳</span><span>•••</span></div><svg viewBox="0 0 320 260" fill="#456c43"><path d="M30 65H290M30 115H290M30 165H290M30 215H290" stroke="#dae4ce"/><path d="M30 210L70 185L110 195L150 135L190 150L230 80L290 48V230H30Z" fill="#dce8ca"/><path class="ci-destination-curve" d="M30 210L70 185L110 195L150 135L190 150L230 80L290 48" fill="none" stroke="#628241" stroke-width="4" stroke-linejoin="round"/></svg></div></div>
                         <div class="pika-ci-dest-header">
                             <span class="pika-ci-dest-badge">04</span>
                             <h3 class="pika-ci-dest-title">Analytics &amp; Reporting</h3>
@@ -841,7 +850,7 @@
                 </p>
 
                 <div class="pika-ci-dest-flow">
-                    <div class="pika-ci-dest-item">
+                    <div class="pika-ci-dest-item"><div class="ci-destination-art ci-destination-art--0" aria-hidden="true"><div class="ci-destination-window"><div class="ci-destination-toolbar"><span>pika ✳</span><span>•••</span></div><svg viewBox="0 0 320 260" fill="#456c43"><circle cx="160" cy="75" r="28" fill="#a8bd8b"/><path d="M105 145Q105 112 160 112Q215 112 215 145" fill="#cad6b9"/><rect x="38" y="173" width="108" height="12" rx="6"/><rect x="38" y="196" width="178" height="8" rx="4" opacity=".35"/><rect x="38" y="214" width="140" height="8" rx="4" opacity=".2"/></svg></div></div>
                         <div class="pika-ci-dest-header">
                             <span class="pika-ci-dest-badge">01</span>
                             <h3 class="pika-ci-dest-title">Pika 360</h3>
@@ -854,7 +863,7 @@
                         </a>
                     </div>
 
-                    <div class="pika-ci-dest-item">
+                    <div class="pika-ci-dest-item"><div class="ci-destination-art ci-destination-art--1" aria-hidden="true"><div class="ci-destination-window"><div class="ci-destination-toolbar"><span>pika ✳</span><span>•••</span></div><svg viewBox="0 0 320 260" fill="#456c43"><rect x="32" y="40" width="256" height="54" rx="12" fill="#e3ecd4"/><rect x="32" y="107" width="256" height="54" rx="12" fill="#edf2e7"/><rect x="32" y="174" width="256" height="54" rx="12" fill="#edf2e7"/><path d="M49 66h20m-10-10v20M49 134h20M49 201h20" stroke="#68834f" stroke-width="3"/><path d="M92 61h155M92 75h100M92 129h140M92 142h100M92 196h145M92 209h90" stroke="#557346" stroke-width="5" stroke-linecap="round" opacity=".5"/></svg></div></div>
                         <div class="pika-ci-dest-header">
                             <span class="pika-ci-dest-badge">02</span>
                             <h3 class="pika-ci-dest-title">Daily Opportunities</h3>
@@ -867,7 +876,7 @@
                         </a>
                     </div>
 
-                    <div class="pika-ci-dest-item">
+                    <div class="pika-ci-dest-item"><div class="ci-destination-art ci-destination-art--2" aria-hidden="true"><div class="ci-destination-window"><div class="ci-destination-toolbar"><span>pika ✳</span><span>•••</span></div><svg viewBox="0 0 320 260" fill="#456c43"><circle cx="160" cy="132" r="85" fill="#e6eddb"/><circle cx="160" cy="132" r="48" fill="#cedeb8"/><g fill="#6a8755"><circle cx="160" cy="132" r="14"/><circle cx="91" cy="89" r="11"/><circle cx="229" cy="89" r="11"/><circle cx="91" cy="175" r="11"/><circle cx="229" cy="175" r="11"/></g><path d="M102 96l46 28m24 0 46-28m-116 72 46-28m24 0 46 28" stroke="#779465" stroke-width="2"/></svg></div></div>
                         <div class="pika-ci-dest-header">
                             <span class="pika-ci-dest-badge">03</span>
                             <h3 class="pika-ci-dest-title">Audience Manager</h3>
@@ -880,7 +889,7 @@
                         </a>
                     </div>
 
-                    <div class="pika-ci-dest-item">
+                    <div class="pika-ci-dest-item"><div class="ci-destination-art ci-destination-art--3" aria-hidden="true"><div class="ci-destination-window"><div class="ci-destination-toolbar"><span>pika ✳</span><span>•••</span></div><svg viewBox="0 0 320 260" fill="#456c43"><path d="M30 65H290M30 115H290M30 165H290M30 215H290" stroke="#dae4ce"/><path d="M30 210L70 185L110 195L150 135L190 150L230 80L290 48V230H30Z" fill="#dce8ca"/><path class="ci-destination-curve" d="M30 210L70 185L110 195L150 135L190 150L230 80L290 48" fill="none" stroke="#628241" stroke-width="4" stroke-linejoin="round"/></svg></div></div>
                         <div class="pika-ci-dest-header">
                             <span class="pika-ci-dest-badge">04</span>
                             <h3 class="pika-ci-dest-title">Analytics &amp; Reporting</h3>
@@ -1343,3 +1352,4 @@
         </div>
     </section>
 </div>
+

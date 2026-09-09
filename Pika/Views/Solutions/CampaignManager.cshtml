@@ -1,4 +1,4 @@
-﻿@{
+@{
     var culture = ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr";
     var tr = culture.Equals("tr", StringComparison.OrdinalIgnoreCase);
     ViewData["BodyClass"] = "pika-platform-page";
@@ -196,6 +196,9 @@
     </div>
 </section>
 
+@* ── PAGE ART ─────────────────────────────────────────────────── *@
+
+
 @* ── 03 WHY CAMPAIGN OPERATIONS BECOME FRAGMENTED ─────────────── *@
 <section class="ph-section ph-section-plain">
     <div class="container">
@@ -238,7 +241,7 @@
             </div>
         </div>
     </div>
-</section>
+<div class="container"><figure class="pika-integrated-art"><img src="~/images/pages/Pika/email-sms-whatsapp.png" asp-append-version="true" alt="Email, SMS, WhatsApp — Pika Campaign Manager" width="1672" height="941" loading="lazy" decoding="async" /><figcaption>@(tr ? "Kavramsal gösterim; kişi, değerler ve arayüz örnek amaçlıdır." : "Conceptual illustration; people, values and interface are illustrative.")</figcaption></figure></div></section>
 
 @* ── 04 WHAT DEFINES A CAMPAIGN & CONCEPTUAL FLOW ─────────────── *@
 <section class="ph-section ph-section-alt">
@@ -1088,3 +1091,4 @@
         }
     </div>
 </section>
+

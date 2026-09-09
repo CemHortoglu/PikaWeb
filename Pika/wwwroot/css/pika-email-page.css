@@ -11,3 +11,46 @@
 .email-callout { background: #f4f8eb; border: 1px solid rgba(128, 148, 139, .24); border-radius: 8px; padding: 20px 24px; margin: 20px 0; }
 .email-flow-chain { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding: 20px; background: #fff; border: 1px solid #dce5d3; border-radius: 10px; margin: 20px 0; font-size: 0.85rem; font-weight: 600; color: #23413b; }
 .email-flow-arrow { color: #8aa948; font-weight: bold; }
+
+/* Email editorial experience and interactive studio. */
+.pika-email-experience .inner-hero h1 { font-size:clamp(36px,4vw,62px); line-height:1.1; letter-spacing:-.045em; }
+.pika-email-experience .pika-sol-section { padding-block:clamp(56px,6vw,88px); }
+.pika-email-experience .pika-sol-section .container { max-width:1160px; }
+.pika-email-experience .pika-sol-section h2 { font-size:clamp(30px,3vw,44px); line-height:1.17; letter-spacing:-.03em; }
+.pika-email-experience .pika-sol-section-alt { background:#f0f3eb; }
+.pika-email-experience .pika-sol-section p { line-height:1.8; }
+.email-lab { padding:80px 0; background:#10292e; color:#ecf2e9; }
+.email-lab h2 { color:#f5f8ef; font-size:clamp(34px,4vw,54px); letter-spacing:-.04em; }
+.email-lab .ph-eyebrow { color:#c5eb90; }
+.email-lab > .container > p { max-width:72ch; color:#bacdc5; line-height:1.7; }
+.email-workbench { display:grid; grid-template-columns:240px minmax(0,1fr); margin-top:36px; border-radius:20px; overflow:hidden; background:#edf0eb; color:#183830; }
+.email-tools { padding:24px; background:#fafbf7; display:flex; flex-direction:column; gap:10px; }
+.email-tools h3 { font-size:18px; margin:0 0 12px; }
+.email-workbench button { border:1px solid #d4dfd6; padding:11px 14px; border-radius:8px; background:#fff; color:#183830; text-align:left; font:inherit; font-size:14px; cursor:pointer; }
+.email-tools [draggable] { cursor:grab; }
+.email-workbench button:hover { background:#e6eddc; }
+.email-workbench :focus-visible { outline:3px solid #729841; outline-offset:3px; }
+.email-tools label { margin-top:20px; font-size:13px; }
+.email-edit { display:block; width:100%; margin-top:8px; border:1px solid #ccd8cf; border-radius:8px; padding:10px; font:inherit; resize:vertical; }
+.email-block-actions { display:flex; gap:8px; }
+.email-workbench button:disabled { opacity:.4; cursor:default; }
+.email-stage { padding:24px; min-width:0; }
+.email-stage-bar { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:24px; font-size:13px; }
+.email-stage-bar small { color:#62746b; }
+.email-canvas { width:100%; max-width:600px; margin:auto; min-height:280px; background:white; padding:18px; border-radius:4px; box-shadow:0 12px 32px #10292e12; transition:max-width .3s; }
+.email-canvas.mobile { max-width:340px; }
+.mail-block { padding:12px; position:relative; cursor:grab; overflow-wrap:anywhere; }
+.mail-block.selected { outline:2px solid #729841; outline-offset:-2px; background:#f5f8f1; }
+.mail-block img { width:100%; height:180px; object-fit:cover; border-radius:5px; }
+.mail-block h3 { font-size:28px; color:#183830; line-height:1.2; margin:0; }
+.mail-block[data-type=text] { font-size:16px; line-height:1.7; }
+.mail-block[data-type=button] .mail-content { background:#183b31; color:white; padding:14px 20px; text-align:center; border-radius:5px; }
+.email-canvas.drag-over { outline:3px dashed #729841; }
+.email-status { min-height:20px; margin:12px 0 0; font-size:13px; }
+.email-lab-note { margin-top:18px; font-size:12px; }
+@media(max-width:760px) { .email-workbench { grid-template-columns:1fr; } .email-tools { display:grid; grid-template-columns:1fr 1fr; padding:18px; } .email-tools h3,.email-tools label { grid-column:1/-1; } .email-stage { padding:14px; } .email-stage-bar { flex-wrap:wrap; } }
+@media(prefers-reduced-motion:reduce) { .email-canvas { transition:none; } }
+
+.email-demo-ghost { position:fixed; z-index:1100; pointer-events:none; max-width:220px; padding:14px 20px; border-radius:10px; background:#183b31; color:#f5f8ef; box-shadow:0 12px 30px #10292e40; font-size:15px; font-weight:600; }
+.email-lab .demo-source { opacity:.45; }
+@media(prefers-reduced-motion:reduce) { .email-demo-ghost { display:none; } }

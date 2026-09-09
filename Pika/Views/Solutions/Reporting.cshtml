@@ -1,4 +1,4 @@
-﻿@{
+@{
     var culture = ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr";
     var tr = culture.Equals("tr", StringComparison.OrdinalIgnoreCase);
     ViewData["BodyClass"] = "pika-platform-page";
@@ -184,6 +184,13 @@
         </div>
     </div>
 </section>
+
+@* ── PAGE ART ─────────────────────────────────────────────────── *@
+<figure class="pika-page-art">
+    <img src="~/images/pages/Pika/measurement-and-learning.png" asp-append-version="true" loading="lazy" decoding="async" width="1536" height="1024"
+         alt="@(tr ? "Pika Analytics & Reporting — kampanya ölçümü ve öğrenme döngüsü" : "Pika Analytics & Reporting — campaign measurement and learning loop")" />
+    <figcaption>@(tr ? "Kavramsal gösterim; değerler ve arayüz örnek amaçlıdır." : "Conceptual illustration; values and interface are illustrative.")</figcaption>
+</figure>
 
 @* ── 03 FROM SEND COUNTS TO DECISION CONTEXT ──────────────────── *@
 <section class="ph-section ph-section-plain">
