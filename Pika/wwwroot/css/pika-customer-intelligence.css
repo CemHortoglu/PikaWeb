@@ -1020,3 +1020,36 @@
         transition: none !important;
     }
 }
+
+/* ── Professionalism Enhancements ── */
+.ci-observatory {
+    animation: inner-subtle-float 8s ease-in-out infinite;
+}
+
+.pika-ci-page .ci-timeline svg path[stroke="#b5ee19"] {
+    stroke-dasharray: 800;
+    stroke-dashoffset: 800;
+    animation: ci-chart-draw 3s ease-in-out forwards;
+}
+
+@keyframes ci-chart-draw {
+    to { stroke-dashoffset: 0; }
+}
+
+.pika-ci-page .ci-signal {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pika-ci-page .ci-signal:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(82, 123, 33, 0.15);
+}
+
+.pika-ci-page .ci-context-grid > div {
+    transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.pika-ci-page .ci-context-grid > div:hover {
+    border-color: rgba(181, 238, 25, 0.3);
+    background: rgba(181, 238, 25, 0.05);
+}

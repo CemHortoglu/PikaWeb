@@ -1,4 +1,4 @@
-/* Pika Integrations Page Styles - Scoped strictly to .intg-* */
+﻿/* Pika Integrations Page Styles - Scoped strictly to .intg-* */
 .intg-hero-pills {
     display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; padding: 18px 14px;
 }
@@ -41,4 +41,9 @@
 .intg-faq-item[open] .intg-faq-summary::after { content: "−"; }
 .intg-faq-body {
     padding: 0 1.25rem 1.25rem 1.25rem; color: #4a5c4e; line-height: 1.65; font-size: 0.95rem;
+}
+
+/* â”€â”€ Professionalism Enhancements â”€â”€ */
+.inner-scene-window {
+    animation: inner-subtle-float 8s ease-in-out infinite;
 }

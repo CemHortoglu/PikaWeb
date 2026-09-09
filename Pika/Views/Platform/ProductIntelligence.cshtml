@@ -10,6 +10,10 @@
 
 @* ── 01 HERO (Restored existing hero shell) ─────────────────── *@
 <section class="inner-hero inner-hero--product">
+    <div class="inner-hero-grid-overlay" aria-hidden="true"></div>
+    <div class="inner-hero-orbit" aria-hidden="true"></div>
+    <div class="inner-hero-grid-overlay" aria-hidden="true"></div>
+    <div class="inner-hero-orbit" aria-hidden="true"></div>
     <div class="inner-atmosphere" aria-hidden="true"><span></span><span></span></div>
     <div class="container inner-hero-grid">
         <div class="inner-intro">
@@ -103,6 +107,43 @@
         </div>
     </div>
 </section>
+
+
+<div class="inner-trust-ribbon">
+    <div class="container">
+        <div class="inner-trust-ribbon__items">
+            <div class="inner-trust-ribbon__item">
+                <i class="ri-whatsapp-line" aria-hidden="true"></i>
+                <div>
+                    <strong>WhatsApp Business API</strong>
+                    <span>@(tr ? "Resmi Meta API" : "Official Meta API")</span>
+                </div>
+            </div>
+            <div class="inner-trust-ribbon__item">
+                <i class="ri-mail-send-line" aria-hidden="true"></i>
+                <div>
+                    <strong>Email &amp; SMS</strong>
+                    <span>@(tr ? "Doğrulanmış Kanallar" : "Verified Channels")</span>
+                </div>
+            </div>
+            <div class="inner-trust-ribbon__item">
+                <i class="ri-focus-3-line" aria-hidden="true"></i>
+                <div>
+                    <strong>Pika Opportunity Engine</strong>
+                    <span>@(tr ? "Günlük Algoritmik Tespit" : "Daily Discovery")</span>
+                </div>
+            </div>
+            <div class="inner-trust-ribbon__item">
+                <i class="ri-shield-check-line" aria-hidden="true"></i>
+                <div>
+                    <strong>İYS &amp; KVKK</strong>
+                    <span>@(tr ? "İzin Denetimi" : "Consent Verification")</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div id="inner-content" class="inner-anchor"></div>
 
 @* ── 02 & 03 DIRECT ANSWER + WHY A SKU IS NOT ENOUGH ────────── *@
@@ -123,7 +164,7 @@
                     <p class="ph-muted mb-2">
                         Bu sayede işlem verisindeki: “müşteri X ürününü satın aldı” bilgisi daha anlamlı bir soruya dönüşebilir:
                     </p>
-                    <div class="p-3 my-3 rounded bg-white border" style="border:1px solid rgba(128,148,139,.24)">
+                    <div class="p-3 my-3 rounded bg-white border pika-editorial-note" style="border:1px solid rgba(128,148,139,.24)">
                         <strong style="color:#23413b">“Müşteri hangi ihtiyacı karşılayan nasıl bir ürün satın aldı?”</strong>
                     </div>
                     <p class="ph-muted">
@@ -141,7 +182,7 @@
                     <p class="ph-muted mb-2">
                         This turns the transaction statement: “the customer purchased product X” into a more meaningful question:
                     </p>
-                    <div class="p-3 my-3 rounded bg-white border" style="border:1px solid rgba(128,148,139,.24)">
+                    <div class="p-3 my-3 rounded bg-white border pika-editorial-note" style="border:1px solid rgba(128,148,139,.24)">
                         <strong style="color:#23413b">“What kind of product did the customer buy, and which need did it serve?”</strong>
                     </div>
                     <p class="ph-muted">
@@ -167,7 +208,7 @@
                     <p class="ph-muted">
                         Farklı kategorilerdeki iki ürün ise müşterinin aynı ihtiyacını karşılıyor olabilir.
                     </p>
-                    <div class="p-3 my-3 rounded bg-white border">
+                    <div class="p-3 my-3 rounded bg-white border pika-editorial-note">
                         <p class="small mb-1"><strong>Katalog:</strong> “Bu ürün nedir?” sorusuna cevap verir.</p>
                         <p class="small mb-0"><strong>Product Intelligence:</strong> “Bu ürün müşteri ve ticari karar açısından ne ifade ediyor?” sorusuna yaklaşır.</p>
                     </div>
@@ -189,7 +230,7 @@
                     <p class="ph-muted">
                         Two products in different categories may satisfy the same underlying need.
                     </p>
-                    <div class="p-3 my-3 rounded bg-white border">
+                    <div class="p-3 my-3 rounded bg-white border pika-editorial-note">
                         <p class="small mb-1"><strong>The catalog answers:</strong> “What is this product?”</p>
                         <p class="small mb-0"><strong>Product Intelligence approaches:</strong> “What does this product mean for the customer and the commercial decision?”</p>
                     </div>
@@ -277,7 +318,7 @@
                         <p class="ph-muted small mb-2">
                             Need Group ise ürüne başka bir açıdan bakar:
                         </p>
-                        <div class="p-3 my-3 rounded bg-white border" style="border:1px solid rgba(128,148,139,.24)">
+                        <div class="p-3 my-3 rounded bg-white border pika-editorial-note" style="border:1px solid rgba(128,148,139,.24)">
                             <strong style="color:#23413b">“Bu ürün müşterinin hangi ihtiyacına hizmet ediyor?”</strong>
                         </div>
                         <p class="ph-muted small">
@@ -286,7 +327,7 @@
                         <p class="ph-muted small">
                             Benzer şekilde aynı kategoride yer alan ürünler müşterinin farklı ihtiyaçlarını karşılıyor olabilir.
                         </p>
-                        <div class="p-3 my-3 rounded bg-white border">
+                        <div class="p-3 my-3 rounded bg-white border pika-editorial-note">
                             <p class="small mb-1"><strong>CATEGORY:</strong> Ürünün katalogdaki yeri.</p>
                             <p class="small mb-0"><strong>NEED GROUP:</strong> Ürünün müşteri ihtiyacı içindeki anlamı.</p>
                         </div>
@@ -302,7 +343,7 @@
                         <p class="ph-muted small mb-2">
                             A Need Group looks at the product from another perspective:
                         </p>
-                        <div class="p-3 my-3 rounded bg-white border" style="border:1px solid rgba(128,148,139,.24)">
+                        <div class="p-3 my-3 rounded bg-white border pika-editorial-note" style="border:1px solid rgba(128,148,139,.24)">
                             <strong style="color:#23413b">“Which customer need does this product serve?”</strong>
                         </div>
                         <p class="ph-muted small">
@@ -311,7 +352,7 @@
                         <p class="ph-muted small">
                             Likewise, products in the same category may serve different customer needs.
                         </p>
-                        <div class="p-3 my-3 rounded bg-white border">
+                        <div class="p-3 my-3 rounded bg-white border pika-editorial-note">
                             <p class="small mb-1"><strong>CATEGORY:</strong> Where the product sits in the catalog.</p>
                             <p class="small mb-0"><strong>NEED GROUP:</strong> What the product means within customer need.</p>
                         </div>
@@ -349,7 +390,7 @@
                         <p class="ph-muted small">
                             Bu rol bilgisi özellikle ürünlerin birbirleriyle ilişkisini, teklif yapısını ve fırsat bağlamını değerlendirirken önem kazanır.
                         </p>
-                        <div class="p-3 my-3 rounded bg-white border">
+                        <div class="p-3 my-3 rounded bg-white border pika-editorial-note">
                             <p class="small mb-1"><strong>Need Group:</strong> “Neden?”</p>
                             <p class="small mb-0"><strong>Product Role:</strong> “Bu ihtiyacın içinde nasıl bir rol?”</p>
                         </div>
@@ -377,7 +418,7 @@
                         <p class="ph-muted small">
                             Role context becomes especially useful when evaluating product relationships, offer structure and commercial opportunities.
                         </p>
-                        <div class="p-3 my-3 rounded bg-white border">
+                        <div class="p-3 my-3 rounded bg-white border pika-editorial-note">
                             <p class="small mb-1"><strong>Need Group:</strong> “Why?”</p>
                             <p class="small mb-0"><strong>Product Role:</strong> “What role does the product play within that need?”</p>
                         </div>
@@ -481,7 +522,7 @@
                         <p class="ph-muted small">
                             Bu sayede tekrar davranışı anlamlı olan ürünler için ürünün kendisi, müşteri ritmi ve geçmiş işlem aralıkları aynı fırsat bağlamında değerlendirilebilir.
                         </p>
-                        <div class="p-3 my-3 rounded bg-white border">
+                        <div class="p-3 my-3 rounded bg-white border pika-editorial-note">
                             <p class="small mb-2">
                                 <strong>Product Intelligence:</strong><br />
                                 “Bu müşterinin bir sonraki alışverişini kesin olarak bilir” iddiasında bulunmaz.
@@ -514,7 +555,7 @@
                         <p class="ph-muted small">
                             For products where repeat behavior is meaningful, the product itself, customer rhythm and historical transaction intervals can contribute to the same opportunity context.
                         </p>
-                        <div class="p-3 my-3 rounded bg-white border">
+                        <div class="p-3 my-3 rounded bg-white border pika-editorial-note">
                             <p class="small mb-2">
                                 <strong>Product Intelligence does not claim:</strong><br />
                                 “We know exactly when this customer will purchase again.”
@@ -564,7 +605,7 @@
                         <p class="ph-muted small">
                             Bu yaklaşımın amacı her birlikte satın almayı otomatik olarak öneri haline getirmek değil, ürün ilişkilerinin ticari olarak neden anlamlı olabileceğini daha iyi değerlendirmektir.
                         </p>
-                        <div class="p-3 my-3 rounded bg-white border">
+                        <div class="p-3 my-3 rounded bg-white border pika-editorial-note">
                             <p class="small mb-1">Cross-sell yalnızca: “Bunu alan şunu da aldı” değildir.</p>
                             <p class="small mb-0 fw-bold">Asıl soru: “Neden birlikte anlamlılar?”</p>
                         </div>
@@ -590,7 +631,7 @@
                         <p class="ph-muted small">
                             The purpose is not to turn every co-purchase into an automatic recommendation, but to better evaluate why a product relationship may be commercially meaningful.
                         </p>
-                        <div class="p-3 my-3 rounded bg-white border">
+                        <div class="p-3 my-3 rounded bg-white border pika-editorial-note">
                             <p class="small mb-1">Cross-sell is more than: “People who bought this also bought that.”</p>
                             <p class="small mb-0 fw-bold">The more important question is: “Why do these products make sense together?”</p>
                         </div>
@@ -1011,6 +1052,11 @@
                         Teklif Al <i class="ri-file-list-3-line"></i>
                     </a>
                 </div>
+                <div class="inner-cta-trust">
+                    <span><i class="ri-shield-check-line"></i> @(tr ? "KVKK Uyumlu" : "GDPR Compliant")</span>
+                    <span><i class="ri-lock-line"></i> @(tr ? "Kurumsal Güvenlik" : "Enterprise Security")</span>
+                    <span><i class="ri-customer-service-2-line"></i> @(tr ? "Özel Destek" : "Dedicated Support")</span>
+                </div>
             }
             else
             {
@@ -1034,6 +1080,11 @@
                     <a href="/en/demo-request" class="ph-btn-outline">
                         Request a Quote <i class="ri-file-list-3-line"></i>
                     </a>
+                </div>
+                <div class="inner-cta-trust">
+                    <span><i class="ri-shield-check-line"></i> @(tr ? "KVKK Uyumlu" : "GDPR Compliant")</span>
+                    <span><i class="ri-lock-line"></i> @(tr ? "Kurumsal Güvenlik" : "Enterprise Security")</span>
+                    <span><i class="ri-customer-service-2-line"></i> @(tr ? "Özel Destek" : "Dedicated Support")</span>
                 </div>
             }
         </div>

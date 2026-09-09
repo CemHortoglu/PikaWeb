@@ -14,6 +14,8 @@
 
 @* ── 01 HERO ─────────────────────────────────────────────────── *@
 <section class="inner-hero inner-hero--product">
+    <div class="inner-hero-grid-overlay" aria-hidden="true"></div>
+    <div class="inner-hero-orbit" aria-hidden="true"></div>
     <div class="inner-atmosphere" aria-hidden="true"><span></span><span></span></div>
     <div class="container inner-hero-grid">
         <div class="inner-intro">
@@ -107,6 +109,41 @@
         </div>
     </div>
 </section>
+
+<div class="inner-trust-ribbon">
+    <div class="container">
+        <div class="inner-trust-ribbon__items">
+            <div class="inner-trust-ribbon__item">
+                <i class="ri-whatsapp-line" aria-hidden="true"></i>
+                <div>
+                    <strong>WhatsApp Business API</strong>
+                    <span>@(tr ? "Resmi Meta API" : "Official Meta API")</span>
+                </div>
+            </div>
+            <div class="inner-trust-ribbon__item">
+                <i class="ri-mail-send-line" aria-hidden="true"></i>
+                <div>
+                    <strong>Email &amp; SMS</strong>
+                    <span>@(tr ? "DoÄŸrulanmÄ±ÅŸ Kanallar" : "Verified Channels")</span>
+                </div>
+            </div>
+            <div class="inner-trust-ribbon__item">
+                <i class="ri-focus-3-line" aria-hidden="true"></i>
+                <div>
+                    <strong>Pika Opportunity Engine</strong>
+                    <span>@(tr ? "GÃ¼nlÃ¼k Algoritmik Tespit" : "Daily Discovery")</span>
+                </div>
+            </div>
+            <div class="inner-trust-ribbon__item">
+                <i class="ri-shield-check-line" aria-hidden="true"></i>
+                <div>
+                    <strong>Ä°YS &amp; KVKK</strong>
+                    <span>@(tr ? "Ä°zin Denetimi" : "Consent Verification")</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div id="inner-content" class="inner-anchor"></div>
 
 @* ── 02 DIRECT ANSWER ────────────────────────────────────────── *@
@@ -189,7 +226,7 @@
             <p class="ph-muted">
                 Pazarlama ekipleri her gün benzer bir soruyla karşılaşır:
             </p>
-            <div class="p-3 my-3 rounded bg-white border">
+            <div class="p-3 my-3 rounded bg-white border pika-editorial-note">
                 <strong style="color:#23413b;font-size:1.05rem">“Bugün kime ulaşmalıyız?”</strong>
             </div>
             <p class="ph-muted">
@@ -224,7 +261,7 @@
             <p class="ph-muted">
                 Marketing teams face a familiar question every day:
             </p>
-            <div class="p-3 my-3 rounded bg-white border">
+            <div class="p-3 my-3 rounded bg-white border pika-editorial-note">
                 <strong style="color:#23413b;font-size:1.05rem">“Who should we reach today?”</strong>
             </div>
             <p class="ph-muted">
@@ -602,7 +639,7 @@
                 <div class="ph-module-card pika-context-module h-100 p-4">
                     <div class="ph-module-icon mb-3"><i class="ri-user-heart-line"></i></div>
                     <h3 class="fw-bold mb-2" style="font-size:1.05rem">Customer Intelligence</h3>
-                    <div class="p-3 my-3 rounded bg-white border">
+                    <div class="p-3 my-3 rounded bg-white border pika-editorial-note">
                         <strong style="color:#23413b">
                             @(tr ? "“Bu müşteride ne değişiyor?”" : "“What is changing for this customer?”")
                         </strong>
@@ -617,7 +654,7 @@
                 <div class="ph-module-card pika-context-module h-100 p-4">
                     <div class="ph-module-icon mb-3"><i class="ri-shopping-bag-line"></i></div>
                     <h3 class="fw-bold mb-2" style="font-size:1.05rem">Product Intelligence</h3>
-                    <div class="p-3 my-3 rounded bg-white border">
+                    <div class="p-3 my-3 rounded bg-white border pika-editorial-note">
                         <strong style="color:#23413b">
                             @(tr ? "“Bu ürün neyi temsil ediyor?”" : "“What does this product represent?”")
                         </strong>
@@ -632,7 +669,7 @@
                 <div class="ph-module-card pika-context-module h-100 p-4">
                     <div class="ph-module-icon mb-3"><i class="ri-focus-3-line"></i></div>
                     <h3 class="fw-bold mb-2" style="font-size:1.05rem">@(tr ? "Günün Fırsatları" : "Daily Opportunities")</h3>
-                    <div class="p-3 my-3 rounded bg-white border">
+                    <div class="p-3 my-3 rounded bg-white border pika-editorial-note">
                         <strong style="color:#23413b">
                             @(tr ? "“Bu müşteri ve ürün bağlamının şu anda değerlendirmeye değer ticari bir kesişimi var mı?”" : "“Is there a commercially meaningful intersection between this customer and product context worth evaluating now?”")
                         </strong>
@@ -1124,6 +1161,16 @@
                     <a href="/en/demo-request" class="ph-btn-outline">
                         Request a Quote <i class="ri-file-list-3-line"></i>
                     </a>
+                </div>
+                <div class="inner-cta-trust">
+                    <span><i class="ri-shield-check-line"></i> @(tr ? "KVKK Uyumlu" : "GDPR Compliant")</span>
+                    <span><i class="ri-lock-line"></i> @(tr ? "Kurumsal GÃ¼venlik" : "Enterprise Security")</span>
+                    <span><i class="ri-customer-service-2-line"></i> @(tr ? "Ã–zel Destek" : "Dedicated Support")</span>
+                </div>
+                <div class="inner-cta-trust">
+                    <span><i class="ri-shield-check-line"></i> @(tr ? "KVKK Uyumlu" : "GDPR Compliant")</span>
+                    <span><i class="ri-lock-line"></i> @(tr ? "Kurumsal GÃ¼venlik" : "Enterprise Security")</span>
+                    <span><i class="ri-customer-service-2-line"></i> @(tr ? "Ã–zel Destek" : "Dedicated Support")</span>
                 </div>
             }
         </div>

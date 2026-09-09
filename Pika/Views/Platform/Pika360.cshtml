@@ -10,6 +10,8 @@
 
 @* ── 01 HERO (Reproduced safely without fabricated customer metrics) ── *@
 <section class="inner-hero inner-hero--customer">
+    <div class="inner-hero-grid-overlay" aria-hidden="true"></div>
+    <div class="inner-hero-orbit" aria-hidden="true"></div>
     <div class="inner-atmosphere" aria-hidden="true"><span></span><span></span></div>
     <div class="container inner-hero-grid">
         <div class="inner-intro">
@@ -71,47 +73,46 @@
             }
         </div>
         <div class="inner-scene" aria-label="@(tr ? "Platformun çalışma biçimini anlatan örnek görünüm" : "Illustrative view of how the platform works")">
-            <div class="inner-scene-orbit" aria-hidden="true"></div>
-            <div class="inner-scene-window">
-                <div class="inner-window-bar">
-                    <strong>pika<span>✳</span></strong>
-                    <span>Pika 360</span>
-                    <small>@(tr ? "Örnek görünüm" : "Illustration")</small>
-                </div>
-                <div class="p-3 d-flex flex-column gap-2" style="background:#f6f9f0">
-                    <div class="d-flex align-items-center gap-2 p-2 rounded bg-white border" style="font-size:12px;color:#23413b">
-                        <i class="ri-history-line" style="color:#7a9845"></i>
-                        <strong>@(tr ? "İŞLEM GEÇMİŞİ" : "TRANSACTION HISTORY")</strong>
-                    </div>
-                    <div class="d-flex align-items-center gap-2 p-2 rounded bg-white border" style="font-size:12px;color:#23413b">
-                        <i class="ri-shield-star-line" style="color:#7a9845"></i>
-                        <strong>@(tr ? "MÜŞTERİ DEĞERİ" : "CUSTOMER VALUE")</strong>
-                    </div>
-                    <div class="d-flex align-items-center gap-2 p-2 rounded bg-white border" style="font-size:12px;color:#23413b">
-                        <i class="ri-user-follow-line" style="color:#7a9845"></i>
-                        <strong>@(tr ? "DAVRANIŞ" : "BEHAVIOR")</strong>
-                    </div>
-                    <div class="d-flex align-items-center gap-2 p-2 rounded bg-white border" style="font-size:12px;color:#23413b">
-                        <i class="ri-chat-check-line" style="color:#7a9845"></i>
-                        <strong>@(tr ? "ERİŞİLEBİLİRLİK" : "REACHABILITY")</strong>
-                    </div>
-                    <div class="d-flex align-items-center gap-2 p-2 rounded bg-white border" style="font-size:12px;color:#23413b">
-                        <i class="ri-focus-3-line" style="color:#7a9845"></i>
-                        <strong>@(tr ? "AÇIK FIRSATLAR" : "OPEN OPPORTUNITIES")</strong>
-                    </div>
-                </div>
-                <div class="inner-insight m-3">
-                    <span>✳</span>
-                    <div>
-                        <strong>@(tr ? "Bütünleşik karar bağlamı." : "Unified decision context.")</strong>
-                        <p>@(tr ? "Tek bir müşteri perspektifinde tüm sinyaller." : "All signals within a single customer perspective.")</p>
-                    </div>
-                </div>
-            </div>
+            <figure class="p360-page-art p360-page-art--hero"><img src="~/images/pages/Pika360/hero.png" asp-append-version="true" width="1536" height="1024" fetchpriority="high" alt="@(tr ? "Pika 360: işlem geçmişi, müşteri değeri, davranış ve fırsat bağlamının birlikte gösterimi" : "Pika 360: transaction history, customer value, behavior and opportunity context together")" /><figcaption>@(tr ? "Kavramsal gösterim; kişi, değerler ve arayüz örnek amaçlıdır." : "Conceptual illustration; people, values and interface are illustrative.")</figcaption></figure><div class="inner-scene-orbit" aria-hidden="true"></div>
             <div class="inner-scene-caption">PIKA 360. MEANINGFUL CONNECTIONS.</div>
         </div>
     </div>
 </section>
+
+<div class="inner-trust-ribbon">
+    <div class="container">
+        <div class="inner-trust-ribbon__items">
+            <div class="inner-trust-ribbon__item">
+                <i class="ri-whatsapp-line" aria-hidden="true"></i>
+                <div>
+                    <strong>WhatsApp Business API</strong>
+                    <span>@(tr ? "Resmi Meta API" : "Official Meta API")</span>
+                </div>
+            </div>
+            <div class="inner-trust-ribbon__item">
+                <i class="ri-mail-send-line" aria-hidden="true"></i>
+                <div>
+                    <strong>Email &amp; SMS</strong>
+                    <span>@(tr ? "DoÄŸrulanmÄ±ÅŸ Kanallar" : "Verified Channels")</span>
+                </div>
+            </div>
+            <div class="inner-trust-ribbon__item">
+                <i class="ri-focus-3-line" aria-hidden="true"></i>
+                <div>
+                    <strong>Pika Opportunity Engine</strong>
+                    <span>@(tr ? "GÃ¼nlÃ¼k Algoritmik Tespit" : "Daily Discovery")</span>
+                </div>
+            </div>
+            <div class="inner-trust-ribbon__item">
+                <i class="ri-shield-check-line" aria-hidden="true"></i>
+                <div>
+                    <strong>Ä°YS &amp; KVKK</strong>
+                    <span>@(tr ? "Ä°zin Denetimi" : "Consent Verification")</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div id="inner-content" class="inner-anchor"></div>
 
 @* ── 02 & 03 DIRECT ANSWER + WHY A CUSTOMER RECORD IS NOT ENOUGH ── *@
@@ -132,7 +133,7 @@
                     <p class="ph-muted mb-2">
                         Bu nedenle Pika 360 yalnızca: “Bu müşteri kim?” sorusunu cevaplamaya çalışmaz.
                     </p>
-                    <div class="p-3 my-3 rounded bg-white border" style="border:1px solid rgba(128,148,139,.24)">
+                    <div class="p-3 my-3 rounded bg-white border pika-editorial-note" style="border:1px solid rgba(128,148,139,.24)">
                         <strong style="color:#23413b">
                             “Bu müşteri şu anda<br />
                             nasıl bir durumda<br />
@@ -154,7 +155,7 @@
                     <p class="ph-muted mb-2">
                         That means Pika 360 goes beyond answering: “Who is this customer?”
                     </p>
-                    <div class="p-3 my-3 rounded bg-white border" style="border:1px solid rgba(128,148,139,.24)">
+                    <div class="p-3 my-3 rounded bg-white border pika-editorial-note" style="border:1px solid rgba(128,148,139,.24)">
                         <strong style="color:#23413b">
                             “What is this customer's current situation,<br />
                             and which context should be considered?”
@@ -194,7 +195,7 @@
                     <p class="ph-muted">
                         Bu bilgiler birbirinden kopuk kaldığında kullanıcı karar vermeden önce bağlamı farklı yerlerden zihinsel olarak birleştirmek zorunda kalır.
                     </p>
-                    <div class="p-3 my-3 rounded bg-white border">
+                    <div class="p-3 my-3 rounded bg-white border pika-editorial-note">
                         <p class="small mb-1"><strong>Pika 360'ın amacı:</strong></p>
                         <p class="small mb-1">Daha fazla müşteri verisi göstermek değil,</p>
                         <p class="small mb-0 fw-bold" style="color:#23413b">karar için gerekli müşteri bağlamını aynı perspektifte buluşturmaktır.</p>
@@ -223,7 +224,7 @@
                     <p class="ph-muted">
                         When those signals remain fragmented, users must mentally reconstruct customer context before making a decision.
                     </p>
-                    <div class="p-3 my-3 rounded bg-white border">
+                    <div class="p-3 my-3 rounded bg-white border pika-editorial-note">
                         <p class="small mb-1"><strong>The purpose of Pika 360 is not:</strong></p>
                         <p class="small mb-1">To display more customer data.</p>
                         <p class="small mb-0 fw-bold" style="color:#23413b">It is: To bring the customer context required for a decision into the same perspective.</p>
@@ -231,7 +232,7 @@
                 }
             </div>
         </div>
-    </div>
+    <figure class="p360-page-art p360-page-art--overview"><img src="~/images/pages/Pika360/pika360.png" asp-append-version="true" loading="lazy" decoding="async" width="1536" height="1024" alt="@(tr ? "Tek müşteri perspektifinde Pika 360 bağlamlarının kavramsal görünümü" : "Conceptual view of Pika 360 contexts for a single customer")" /><figcaption>@(tr ? "Kavramsal gösterim; kişi, değerler ve arayüz örnek amaçlıdır." : "Conceptual illustration; people, values and interface are illustrative.")</figcaption></figure></div>
 </section>
 
 @* ── 04 WHAT PIKA 360 BRINGS TOGETHER ───────────────────────── *@
@@ -247,57 +248,27 @@
             </p>
         </div>
 
-        <div class="row g-4 justify-content-center">
-            <div class="col-lg-4 col-md-6">
-                <div class="ph-module-card pika-context-module h-100 p-4">
-                    <div class="ph-module-icon mb-3"><i class="ri-history-line"></i></div>
-                    <h3 class="fw-bold mb-2" style="font-size:1.05rem">@(tr ? "İşlem Geçmişi" : "Transaction History")</h3>
-                    <p class="small ph-muted mb-0">
+        <div class="pika-sol-usecase-cards pika-story-gallery p360-story-gallery">
+            <article class="pika-sol-usecase-card pika-story-card"><img class="pika-story-image" src="~/images/pages/Pika360/transaction-history.png" asp-append-version="true" loading="lazy" decoding="async" width="1536" height="1024" alt="İşlem Geçmişi — Pika 360" /><span class="pika-story-number" aria-hidden="true">01</span><div class="pika-story-copy"><h5><button type="button" class="pika-story-toggle" aria-expanded="true" aria-controls="p360-context-1">@(tr ? "İşlem Geçmişi" : "Transaction History")<span aria-hidden="true">↗</span></button></h5><p id="p360-context-1">
                         @(tr ? "Müşterinin geçmiş alışverişleri ve ticari hareketleri, bugünkü davranışı değerlendirirken temel tarihsel bağlamı oluşturur." : "Past purchases and commercial activity provide the historical foundation for evaluating current customer behavior.")
-                    </p>
-                </div>
-            </div>
+                    </p></div></article>
 
-            <div class="col-lg-4 col-md-6">
-                <div class="ph-module-card pika-context-module h-100 p-4">
-                    <div class="ph-module-icon mb-3"><i class="ri-shield-star-line"></i></div>
-                    <h3 class="fw-bold mb-2" style="font-size:1.05rem">@(tr ? "Hesaplanan Müşteri Değeri" : "Calculated Customer Value")</h3>
-                    <p class="small ph-muted mb-0">
+            <article class="pika-sol-usecase-card pika-story-card"><img class="pika-story-image" src="~/images/pages/Pika360/calculated-customer-value.png" asp-append-version="true" loading="lazy" decoding="async" width="1536" height="1024" alt="Hesaplanan Müşteri Değeri — Pika 360" /><span class="pika-story-number" aria-hidden="true">02</span><div class="pika-story-copy"><h5><button type="button" class="pika-story-toggle" aria-expanded="true" aria-controls="p360-context-2">@(tr ? "Hesaplanan Müşteri Değeri" : "Calculated Customer Value")<span aria-hidden="true">↗</span></button></h5><p id="p360-context-2">
                         @(tr ? "Customer Intelligence tarafından üretilen değer göstergeleri, müşterinin ticari önemini yalnızca tek bir işlem üzerinden değil, geçmiş davranışıyla birlikte değerlendirmeye yardımcı olur." : "Value indicators produced by Customer Intelligence help evaluate the customer's commercial importance through historical behavior rather than one isolated transaction.")
-                    </p>
-                </div>
-            </div>
+                    </p></div></article>
 
-            <div class="col-lg-4 col-md-6">
-                <div class="ph-module-card pika-context-module h-100 p-4">
-                    <div class="ph-module-icon mb-3"><i class="ri-user-follow-line"></i></div>
-                    <h3 class="fw-bold mb-2" style="font-size:1.05rem">@(tr ? "Davranış Bağlamı" : "Behavioral Context")</h3>
-                    <p class="small ph-muted mb-0">
+            <article class="pika-sol-usecase-card pika-story-card"><img class="pika-story-image" src="~/images/pages/Pika360/behavioral-context.png" asp-append-version="true" loading="lazy" decoding="async" width="1536" height="1024" alt="Davranış Bağlamı — Pika 360" /><span class="pika-story-number" aria-hidden="true">03</span><div class="pika-story-copy"><h5><button type="button" class="pika-story-toggle" aria-expanded="true" aria-controls="p360-context-3">@(tr ? "Davranış Bağlamı" : "Behavioral Context")<span aria-hidden="true">↗</span></button></h5><p id="p360-context-3">
                         @(tr ? "Satın alma sıklığı, ritim ve davranış değişimi gibi hesaplanan sinyaller müşterinin kendi geçmişine göre nasıl değiştiğini anlamaya yardımcı olur." : "Calculated signals such as purchase frequency, rhythm and behavioral change help reveal how the customer is changing relative to their own history.")
-                    </p>
-                </div>
-            </div>
+                    </p></div></article>
 
-            <div class="col-lg-4 col-md-6">
-                <div class="ph-module-card pika-context-module h-100 p-4">
-                    <div class="ph-module-icon mb-3"><i class="ri-chat-check-line"></i></div>
-                    <h3 class="fw-bold mb-2" style="font-size:1.05rem">@(tr ? "İletişim Erişilebilirliği" : "Communication Reachability")</h3>
-                    <p class="small ph-muted mb-0">
+            <article class="pika-sol-usecase-card pika-story-card"><img class="pika-story-image" src="~/images/pages/Pika360/communication-accessibility.png" asp-append-version="true" loading="lazy" decoding="async" width="1536" height="1024" alt="İletişim Erişilebilirliği — Pika 360" /><span class="pika-story-number" aria-hidden="true">04</span><div class="pika-story-copy"><h5><button type="button" class="pika-story-toggle" aria-expanded="true" aria-controls="p360-context-4">@(tr ? "İletişim Erişilebilirliği" : "Communication Reachability")<span aria-hidden="true">↗</span></button></h5><p id="p360-context-4">
                         @(tr ? "Müşteriyle hangi iletişim kanallarında aksiyon alınabileceğine ilişkin mevcut erişilebilirlik ve izin bağlamı, karar perspektifinin bir parçası olarak değerlendirilebilir." : "Available reachability and permission context for communication channels can form part of the decision perspective when evaluating possible action.")
-                    </p>
-                </div>
-            </div>
+                    </p></div></article>
 
-            <div class="col-lg-4 col-md-6">
-                <div class="ph-module-card pika-context-module h-100 p-4">
-                    <div class="ph-module-icon mb-3"><i class="ri-focus-3-line"></i></div>
-                    <h3 class="fw-bold mb-2" style="font-size:1.05rem">@(tr ? "Açık Fırsatlar" : "Open Opportunities")</h3>
-                    <p class="small ph-muted mb-0">
+            <article class="pika-sol-usecase-card pika-story-card"><img class="pika-story-image" src="~/images/pages/Pika360/open-opportunities.png" asp-append-version="true" loading="lazy" decoding="async" width="1536" height="1024" alt="Açık Fırsatlar — Pika 360" /><span class="pika-story-number" aria-hidden="true">05</span><div class="pika-story-copy"><h5><button type="button" class="pika-story-toggle" aria-expanded="true" aria-controls="p360-context-5">@(tr ? "Açık Fırsatlar" : "Open Opportunities")<span aria-hidden="true">↗</span></button></h5><p id="p360-context-5">
                         @(tr ? "Müşteri için oluşmuş değerlendirilebilir ticari fırsatlar, geçmiş ve davranış bağlamıyla birlikte aynı müşteri perspektifinde görülebilir." : "Evaluable commercial opportunities associated with the customer can be considered alongside historical and behavioral context within the same customer perspective.")
-                    </p>
-                </div>
-            </div>
-        </div>
+                    </p></div></article>
+        </div><p class="p360-art-note">@(tr ? "Kavramsal gösterim · örnek veriler" : "Conceptual illustration · sample data")</p>
 
         <div class="text-center mt-4">
             <div class="p-3 rounded d-inline-block text-start" style="background:#f8faf4;border:1px dashed #dce5d3;max-width:720px">
@@ -384,7 +355,7 @@
                 <div class="ph-module-card pika-context-module h-100 p-4">
                     <div class="ph-module-icon mb-3"><i class="ri-user-heart-line"></i></div>
                     <h3 class="fw-bold mb-2" style="font-size:1.05rem">Customer Intelligence</h3>
-                    <div class="p-3 my-3 rounded bg-white border">
+                    <div class="p-3 my-3 rounded bg-white border pika-editorial-note">
                         <strong style="color:#23413b">
                             @(tr ? "“Bu müşterinin davranışında ne oluyor?”" : "“What is happening in this customer's behavior?”")
                         </strong>
@@ -399,7 +370,7 @@
                 <div class="ph-module-card pika-context-module h-100 p-4">
                     <div class="ph-module-icon mb-3"><i class="ri-user-search-line"></i></div>
                     <h3 class="fw-bold mb-2" style="font-size:1.05rem">Pika 360</h3>
-                    <div class="p-3 my-3 rounded bg-white border">
+                    <div class="p-3 my-3 rounded bg-white border pika-editorial-note">
                         <strong style="color:#23413b">
                             @(tr ? "“Bu müşteri hakkında karar verirken hangi bağlamları birlikte görmeliyim?”" : "“Which contexts should I consider together when making a decision about this customer?”")
                         </strong>
@@ -443,7 +414,7 @@
             <p class="ph-muted">
                 Müşterinin işlem geçmişi, değeri ve davranış bağlamıyla birlikte değerlendirilebilir.
             </p>
-            <div class="p-3 my-3 rounded bg-white border">
+            <div class="p-3 my-3 rounded bg-white border pika-editorial-note">
                 <p class="small mb-1"><strong>Fırsat:</strong> “Ne yapılabilir?”</p>
                 <p class="small mb-0 fw-bold" style="color:#23413b">Pika 360: “Bu fırsat bu müşterinin bütün bağlamı içinde ne ifade ediyor?”</p>
             </div>
@@ -470,7 +441,7 @@
             <p class="ph-muted">
                 It can be evaluated together with the customer's transaction history, value and behavioral context.
             </p>
-            <div class="p-3 my-3 rounded bg-white border">
+            <div class="p-3 my-3 rounded bg-white border pika-editorial-note">
                 <p class="small mb-1"><strong>Opportunity:</strong> “What could be done?”</p>
                 <p class="small mb-0 fw-bold" style="color:#23413b">Pika 360: “What does this opportunity mean within this customer's complete context?”</p>
             </div>
@@ -507,7 +478,7 @@
             <p class="ph-muted">
                 Bu bilgi fırsatı değiştirmez; fakat kullanıcıya sonraki adımı değerlendirirken önemli bir kontrol bağlamı sağlar.
             </p>
-            <div class="p-3 my-3 rounded bg-white border">
+            <div class="p-3 my-3 rounded bg-white border pika-editorial-note">
                 <p class="small mb-1"><strong>Pika 360 bir gönderim motoru değildir.</strong></p>
                 <p class="small mb-0 fw-bold" style="color:#23413b">Pika 360'ın görevi: karar verilmeden önce müşteri bağlamını görünür tutmaktır.</p>
             </div>
@@ -531,7 +502,7 @@
             <p class="ph-muted">
                 This does not change the opportunity itself. It gives the user important control context when evaluating the next step.
             </p>
-            <div class="p-3 my-3 rounded bg-white border">
+            <div class="p-3 my-3 rounded bg-white border pika-editorial-note">
                 <p class="small mb-1"><strong>Pika 360 is not a delivery engine.</strong></p>
                 <p class="small mb-0 fw-bold" style="color:#23413b">Its role is to: Keep customer context visible before a decision is made.</p>
             </div>
@@ -574,7 +545,7 @@
                 <span class="p360-flow-arrow">→</span>
                 <span class="p360-flow-step">KONTROLLÜ AKSİYON</span>
             </div>
-            <div class="p-3 my-3 rounded bg-white border">
+            <div class="p-3 my-3 rounded bg-white border pika-editorial-note">
                 <p class="small mb-1"><strong>Pika 360 gönderim ekranı değildir.</strong></p>
                 <p class="small mb-0">Karardan önce müşteriyi doğru bağlamda görebilmek için vardır.</p>
             </div>
@@ -602,7 +573,7 @@
                 <span class="p360-flow-arrow">→</span>
                 <span class="p360-flow-step">CONTROLLED ACTION</span>
             </div>
-            <div class="p-3 my-3 rounded bg-white border">
+            <div class="p-3 my-3 rounded bg-white border pika-editorial-note">
                 <p class="small mb-1"><strong>Pika 360 is not a delivery screen.</strong></p>
                 <p class="small mb-0">It exists to help users see the customer in the right context before action.</p>
             </div>
@@ -637,7 +608,7 @@
                 <span class="p360-flow-arrow">→</span>
                 <span class="p360-flow-step">HUMAN DECISION</span>
             </div>
-            <div class="p-3 my-3 rounded bg-white border">
+            <div class="p-3 my-3 rounded bg-white border pika-editorial-note">
                 <p class="small mb-1">Önce müşteri bağlamı vardır.</p>
                 <p class="small mb-1">AI bu bağlamı anlamayı kolaylaştırabilir.</p>
                 <p class="small mb-0 fw-bold" style="color:#23413b">Son karar kullanıcıda kalır.</p>
@@ -668,7 +639,7 @@
                 <span class="p360-flow-arrow">→</span>
                 <span class="p360-flow-step">HUMAN DECISION</span>
             </div>
-            <div class="p-3 my-3 rounded bg-white border">
+            <div class="p-3 my-3 rounded bg-white border pika-editorial-note">
                 <p class="small mb-1">Customer context comes first.</p>
                 <p class="small mb-1">AI can help make that context easier to understand.</p>
                 <p class="small mb-0 fw-bold" style="color:#23413b">The final decision remains with the user.</p>
@@ -1063,6 +1034,16 @@
                     <a href="/en/demo-request" class="ph-btn-outline">
                         Request a Quote <i class="ri-file-list-3-line"></i>
                     </a>
+                </div>
+                <div class="inner-cta-trust">
+                    <span><i class="ri-shield-check-line"></i> @(tr ? "KVKK Uyumlu" : "GDPR Compliant")</span>
+                    <span><i class="ri-lock-line"></i> @(tr ? "Kurumsal GÃ¼venlik" : "Enterprise Security")</span>
+                    <span><i class="ri-customer-service-2-line"></i> @(tr ? "Ã–zel Destek" : "Dedicated Support")</span>
+                </div>
+                <div class="inner-cta-trust">
+                    <span><i class="ri-shield-check-line"></i> @(tr ? "KVKK Uyumlu" : "GDPR Compliant")</span>
+                    <span><i class="ri-lock-line"></i> @(tr ? "Kurumsal GÃ¼venlik" : "Enterprise Security")</span>
+                    <span><i class="ri-customer-service-2-line"></i> @(tr ? "Ã–zel Destek" : "Dedicated Support")</span>
                 </div>
             }
         </div>

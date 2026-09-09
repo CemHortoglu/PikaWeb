@@ -96,3 +96,19 @@
     line-height: 1.65;
     color: #486258;
 }
+
+/* Added Animations for Inner Pages */
+.inner-scene-window {
+    animation: inner-subtle-float 8s ease-in-out infinite;
+}
+
+@keyframes inner-subtle-float {
+    0%, 100% { transform: translateY(0) rotate(-1deg); }
+    50% { transform: translateY(-8px) rotate(0deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .inner-scene-window {
+        animation: none;
+    }
+}

@@ -143,3 +143,53 @@
 @keyframes context-node-glow { 50% { border-color:#badb7770; background:#284943; } }
 @media(max-width:600px) { .pika-inner .pika-entity-page .pika-orbit-node { padding:10px 8px; min-width:72px; font-size:10px; } }
 @media(prefers-reduced-motion:reduce) { .pika-context-network *,.pika-inner .pika-entity-page .pika-orbit-node,.pika-inner .pika-entity-page .pika-orbit-center__pulse { animation:none!important; } .context-signals { display:none; } }
+
+/* Image-led intelligence chapters; full copy remains visible. */
+.pika-inner .pika-entity-page .pika-intelligence-split { display:flex; flex-direction:column; gap:64px; }
+.pika-inner .pika-entity-page .pika-intelligence-col { position:relative; display:grid; grid-template-columns: .85fr 1.15fr; gap:16px 48px; padding:0; border:0; background:transparent; box-shadow:none; }
+.pika-inner .pika-entity-page .pika-intelligence-col > :not(.pika-intelligence-art) { grid-column:2; margin:0; }
+.pika-inner .pika-entity-page .pika-intelligence-art { position:relative; grid-column:1; grid-row:1 / span 8; margin:0; min-height:580px; overflow:hidden; border-radius:22px; background:#183b35; }
+.pika-intelligence-art img { display:block; width:100%; height:100%; position:absolute; inset:0; object-fit:cover; }
+.pika-intelligence-art:after { content:""; position:absolute; inset:60% 0 0; background:linear-gradient(transparent,#0c252bef); }
+.pika-intelligence-art > span { position:absolute; bottom:28px; left:26px; z-index:1; color:#e5f1d4; font-size:11px; letter-spacing:.12em; }
+.pika-inner .pika-entity-page .pika-intelligence-col__badge { background:none; padding:0; width:auto; height:auto; color:#6a8058; font-size:13px; }
+.pika-inner .pika-entity-page .pika-intelligence-col__title { font-size:clamp(28px,3vw,40px); line-height:1.2; letter-spacing:-.04em; }
+.pika-inner .pika-entity-page .pika-intelligence-col__lead { font-size:21px; line-height:1.5; color:#3e6336; }
+.pika-inner .pika-entity-page .pika-intelligence-col__list { display:grid; grid-template-columns:1fr 1fr; gap:0 24px; padding:0; list-style:none; }
+.pika-inner .pika-entity-page .pika-intelligence-col__list li { padding:13px 0; margin:0; border-bottom:1px solid #d9e2d2; font-size:14px; line-height:1.7; }
+.pika-inner .pika-entity-page .pika-intelligence-col__list li:before { content:none; }
+.pika-inner .pika-entity-page .pika-intelligence-col__closing { padding:20px 0 0; border:0; font-style:normal; color:#516957; }
+.pika-inner .pika-entity-page .pika-intelligence-col--product .pika-intelligence-art { grid-column:2; }
+.pika-inner .pika-entity-page .pika-intelligence-col--product > :not(.pika-intelligence-art) { grid-column:1; }
+.pika-inner .pika-entity-page .pika-flow-step { transition:transform .3s,background .3s; }
+.pika-inner .pika-entity-page .pika-flow-step:hover { transform:translateY(-5px); background:#eaf1e1; }
+.pika-inner .pika-entity-page .pika-principle-entry { transition:transform .3s; }
+.pika-inner .pika-entity-page .pika-principle-entry:hover { transform:translateY(-4px); }
+.pika-inner .pika-entity-page .pika-chapter-arrived { animation:pika-chapter-enter .7s cubic-bezier(.2,.7,.2,1) both; }
+@keyframes pika-chapter-enter { from { opacity:.4; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
+@media(max-width:850px) {
+ .pika-inner .pika-entity-page .pika-intelligence-col { display:flex; flex-direction:column; gap:20px; }
+ .pika-inner .pika-entity-page .pika-intelligence-art { width:100%; min-height:350px; aspect-ratio:4/3; }
+ .pika-inner .pika-entity-page .pika-intelligence-col__list { grid-template-columns:1fr; }
+}
+@media(prefers-reduced-motion:reduce) { .pika-inner .pika-entity-page .pika-chapter-arrived { animation:none; } .pika-inner .pika-entity-page :is(.pika-flow-step,.pika-principle-entry) { transition:none; transform:none; } }
+
+/* Pika 360 signal console: readable layers replace tiny orbit labels. */
+.pika-inner .pika-entity-page .pika-360-editorial__diagram { display:flex; flex-direction:column; gap:12px; aspect-ratio:auto; padding:30px; max-width:560px; background:#16373b; border:1px solid #b5d0bf24; border-radius:24px; box-shadow:0 28px 65px #001b2440; }
+.pika-360-editorial__diagram .pika-context-network { display:none; }
+.pika-inner .pika-entity-page .pika-orbit-center { position:relative; inset:auto; transform:none; width:auto; height:auto; border:0; border-radius:0; background:none; box-shadow:none; align-items:flex-start; padding:8px 0 28px; gap:12px; text-align:left; }
+.pika-inner .pika-entity-page .pika-orbit-center__pulse { display:none; }
+.pika-inner .pika-entity-page .pika-orbit-center__title { font-size:46px; font-weight:600; letter-spacing:-2px; line-height:1.1; }
+.pika-inner .pika-entity-page .pika-orbit-center__subtitle { font-size:17px; line-height:1.5; max-width:none; letter-spacing:0; color:#c7d8cf; }
+.pika-inner .pika-entity-page .pika-orbit-node { position:relative; inset:auto; transform:none; display:flex; align-items:center; gap:18px; width:100%; min-width:0; padding:20px; border:0; border-radius:12px; background:#234449; box-shadow:none; text-align:left; font-size:21px; font-weight:500; line-height:1.4; animation:p360-console-focus 10s ease-in-out infinite; overflow:hidden; }
+.pika-inner .pika-entity-page .pika-orbit-node i { display:grid; place-items:center; flex:0 0 42px; height:42px; font-size:25px; color:#caed9a; background:#ffffff08; border-radius:10px; }
+.pika-inner .pika-entity-page .pika-orbit-node b { margin-left:auto; font-weight:400; color:#c8e798; }
+.pika-inner .pika-entity-page .pika-orbit-node:after { content:""; position:absolute; inset:auto 20px 0; height:2px; background:#bee987; transform:scaleX(0); transform-origin:left; animation:p360-console-progress 10s linear infinite; }
+.pika-inner .pika-entity-page .pika-orbit-node--2,.pika-inner .pika-entity-page .pika-orbit-node--2:after { animation-delay:2s; }
+.pika-inner .pika-entity-page .pika-orbit-node--3,.pika-inner .pika-entity-page .pika-orbit-node--3:after { animation-delay:4s; }
+.pika-inner .pika-entity-page .pika-orbit-node--4,.pika-inner .pika-entity-page .pika-orbit-node--4:after { animation-delay:6s; }
+.pika-inner .pika-entity-page .pika-orbit-node--5,.pika-inner .pika-entity-page .pika-orbit-node--5:after { animation-delay:8s; }
+@keyframes p360-console-focus { 0%,20%,100% { background:#234449; } 3%,17% { background:#365b50; } }
+@keyframes p360-console-progress { 0% { transform:scaleX(0); opacity:1; } 18% { transform:scaleX(1); opacity:1; } 20%,100% { transform:scaleX(1); opacity:0; } }
+@media(max-width:600px) { .pika-inner .pika-entity-page .pika-360-editorial__diagram { padding:22px; } .pika-inner .pika-entity-page .pika-orbit-node { font-size:18px; padding:16px; gap:12px; } .pika-inner .pika-entity-page .pika-orbit-center__title { font-size:38px; } }
+@media(prefers-reduced-motion:reduce) { .pika-inner .pika-entity-page .pika-orbit-node:after { animation:none; display:none; } }

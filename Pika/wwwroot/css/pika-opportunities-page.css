@@ -1,4 +1,4 @@
-/* Pika Daily Opportunities / Günün Fırsatları Page Styles */
+﻿/* Pika Daily Opportunities / Günün Fırsatları Page Styles */
 .opp-faq-details {
     border: 1px solid #e2e8db;
     border-radius: 8px;
@@ -65,4 +65,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+/* â”€â”€ Professionalism Enhancements â”€â”€ */
+.inner-scene-window {
+    animation: inner-subtle-float 8s ease-in-out infinite;
 }

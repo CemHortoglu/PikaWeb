@@ -1,4 +1,4 @@
-/* Pika Content Studio Page Styles - Scoped strictly to .cstudio-* */
+﻿/* Pika Content Studio Page Styles - Scoped strictly to .cstudio-* */
 
 .cstudio-diagram-grid {
     display: grid;
@@ -92,4 +92,9 @@
     color: #496352;
     font-size: 0.95rem;
     line-height: 1.6;
+}
+
+/* â”€â”€ Professionalism Enhancements â”€â”€ */
+.inner-scene-window {
+    animation: inner-subtle-float 8s ease-in-out infinite;
 }

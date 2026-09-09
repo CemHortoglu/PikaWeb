@@ -1,4 +1,4 @@
-@{
+﻿@{
     var culture = ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr";
     var tr = culture.Equals("tr", StringComparison.OrdinalIgnoreCase);
     ViewData["BodyClass"] = "pika-solutions-page";
@@ -10,6 +10,8 @@
 
 @* ── 01 HERO ─────────────────────────────────────────────────── *@
 <section class="inner-hero inner-hero--content">
+    <div class="inner-hero-grid-overlay" aria-hidden="true"></div>
+    <div class="inner-hero-orbit" aria-hidden="true"></div>
     <div class="inner-atmosphere" aria-hidden="true"><span></span><span></span></div>
     <div class="container inner-hero-grid">
         <div class="inner-intro">
@@ -116,6 +118,41 @@
         </div>
     </div>
 </section>
+
+<div class="inner-trust-ribbon">
+    <div class="container">
+        <div class="inner-trust-ribbon__items">
+            <div class="inner-trust-ribbon__item">
+                <i class="ri-whatsapp-line" aria-hidden="true"></i>
+                <div>
+                    <strong>WhatsApp Business API</strong>
+                    <span>@(tr ? "Resmi Meta API" : "Official Meta API")</span>
+                </div>
+            </div>
+            <div class="inner-trust-ribbon__item">
+                <i class="ri-mail-send-line" aria-hidden="true"></i>
+                <div>
+                    <strong>Email &amp; SMS</strong>
+                    <span>@(tr ? "DoÄŸrulanmÄ±ÅŸ Kanallar" : "Verified Channels")</span>
+                </div>
+            </div>
+            <div class="inner-trust-ribbon__item">
+                <i class="ri-focus-3-line" aria-hidden="true"></i>
+                <div>
+                    <strong>Pika Opportunity Engine</strong>
+                    <span>@(tr ? "GÃ¼nlÃ¼k Algoritmik Tespit" : "Daily Discovery")</span>
+                </div>
+            </div>
+            <div class="inner-trust-ribbon__item">
+                <i class="ri-shield-check-line" aria-hidden="true"></i>
+                <div>
+                    <strong>Ä°YS &amp; KVKK</strong>
+                    <span>@(tr ? "Ä°zin Denetimi" : "Consent Verification")</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div id="inner-content" class="inner-anchor"></div>
 
 @* ── STICKY SUBNAV ───────────────────────────────────────────── *@
@@ -1037,4 +1074,14 @@
             </a>
         </div>
     </div>
+                <div class="inner-cta-trust">
+                    <span><i class="ri-shield-check-line"></i> @(tr ? "KVKK Uyumlu" : "GDPR Compliant")</span>
+                    <span><i class="ri-lock-line"></i> @(tr ? "Kurumsal GÃ¼venlik" : "Enterprise Security")</span>
+                    <span><i class="ri-customer-service-2-line"></i> @(tr ? "Ã–zel Destek" : "Dedicated Support")</span>
+                </div>
+                <div class="inner-cta-trust">
+                    <span><i class="ri-shield-check-line"></i> @(tr ? "KVKK Uyumlu" : "GDPR Compliant")</span>
+                    <span><i class="ri-lock-line"></i> @(tr ? "Kurumsal GÃ¼venlik" : "Enterprise Security")</span>
+                    <span><i class="ri-customer-service-2-line"></i> @(tr ? "Ã–zel Destek" : "Dedicated Support")</span>
+                </div>
 </section>

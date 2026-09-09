@@ -1,4 +1,4 @@
-/* Pika Analytics & Reporting Page Styles - Scoped strictly to .report-* */
+﻿/* Pika Analytics & Reporting Page Styles - Scoped strictly to .report-* */
 
 .report-map-grid {
     display: grid;
@@ -121,4 +121,9 @@
 @media(max-width:600px) {
  .pika-inner .reporting-chart-scene .measurement-report { padding:24px 20px; }
  .pika-inner .reporting-chart-scene .report-chart { height:190px; }
+}
+
+/* â”€â”€ Professionalism Enhancements â”€â”€ */
+.inner-scene-window {
+    animation: inner-subtle-float 8s ease-in-out infinite;
 }

@@ -1,4 +1,4 @@
-/* Security & Trust Page Styles */
+﻿/* Security & Trust Page Styles */
 .sec-hero-section {
     padding: 3.5rem 0 3.5rem;
     background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
@@ -277,3 +277,8 @@
     text-decoration: underline;
 }
 
+
+/* â”€â”€ Professionalism Enhancements â”€â”€ */
+.inner-scene-window {
+    animation: inner-subtle-float 8s ease-in-out infinite;
+}

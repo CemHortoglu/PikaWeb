@@ -82,3 +82,23 @@
     border-top: 1px solid #edf2e4;
     padding-top: 12px;
 }
+
+/* â”€â”€ Professionalism Enhancements â”€â”€ */
+.inner-scene-window {
+    animation: inner-subtle-float 8s ease-in-out infinite;
+}
+/* Supplied Pika 360 editorial illustrations, shown without cropping. */
+.pika-inner .p360-page-art { margin:0; min-width:0; }
+.pika-inner .p360-page-art img { display:block; width:100%; height:auto; border:0; border-radius:16px; }
+.pika-inner .p360-page-art figcaption,.pika-inner .p360-art-note { margin:12px 0 0; font-size:11px; line-height:1.6; color:#667b72; }
+.pika-inner .p360-page-art--hero { margin-bottom:24px; }
+.pika-inner .p360-page-art--hero figcaption { color:#b5c9c1; }
+.pika-inner .inner-scene:has(.p360-page-art) .inner-scene-orbit { display:none; }
+
+.pika-inner .p360-page-art--overview { margin:40px auto 0; max-width:1100px; }
+.pika-inner .p360-context-story { display:grid; grid-template-columns:1.35fr 1fr; gap:38px; align-items:center; padding:24px; background:#f4f6f0; border-radius:20px; }
+.pika-inner .p360-context-copy { padding:12px; }
+.pika-inner .p360-context-copy h3 { font-size:26px!important; font-weight:500!important; }
+.pika-inner .p360-context-copy p { font-size:16px; line-height:1.8; }
+.pika-inner .p360-context-copy .p360-art-note { font-size:11px; }
+@media(max-width:767px) { .pika-inner .p360-context-story { grid-template-columns:1fr; gap:16px; padding:16px; } .pika-inner .p360-context-copy { padding:4px; } }

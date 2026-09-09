@@ -13,6 +13,8 @@
 
     @* ── 01 HERO ────────────────────────────────────────────────── *@
     <section class="pika-ci-hero">
+        <div class="inner-hero-grid-overlay" aria-hidden="true"></div>
+        <div class="inner-hero-orbit" aria-hidden="true"></div>
         <div class="pika-ci-container">
             <nav class="pika-ci-breadcrumb" aria-label="@(tr ? "Navigasyon" : "Breadcrumb")">
                 <a href="@(tr ? "/" : "/en/")">@(tr ? "Ana Sayfa" : "Home")</a>
@@ -104,6 +106,41 @@
             </div>
         </div>
     </section>
+
+    <div class="inner-trust-ribbon">
+        <div class="pika-ci-container">
+            <div class="inner-trust-ribbon__items">
+                <div class="inner-trust-ribbon__item">
+                    <i class="ri-whatsapp-line" aria-hidden="true"></i>
+                    <div>
+                        <strong>WhatsApp Business API</strong>
+                        <span>@(tr ? "Resmi Meta API" : "Official Meta API")</span>
+                    </div>
+                </div>
+                <div class="inner-trust-ribbon__item">
+                    <i class="ri-mail-send-line" aria-hidden="true"></i>
+                    <div>
+                        <strong>Email &amp; SMS</strong>
+                        <span>@(tr ? "Doğrulanmış Kanallar" : "Verified Channels")</span>
+                    </div>
+                </div>
+                <div class="inner-trust-ribbon__item">
+                    <i class="ri-focus-3-line" aria-hidden="true"></i>
+                    <div>
+                        <strong>Pika Opportunity Engine</strong>
+                        <span>@(tr ? "Günlük Algoritmik Tespit" : "Daily Discovery")</span>
+                    </div>
+                </div>
+                <div class="inner-trust-ribbon__item">
+                    <i class="ri-shield-check-line" aria-hidden="true"></i>
+                    <div>
+                        <strong>İYS &amp; KVKK</strong>
+                        <span>@(tr ? "İzin Denetimi" : "Consent Verification")</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     @* ── 02 DIRECT ANSWER ───────────────────────────────────────── *@
     <section class="pika-ci-section pika-ci-section--light" id="inner-content">
@@ -224,7 +261,7 @@
                 </p>
 
                 <div class="pika-ci-editorial-list">
-                    <div class="pika-ci-editorial-item">
+                    <div class="pika-ci-editorial-item"><svg class="ci-metric-art" viewBox="0 0 200 64" aria-hidden="true"><path class="ci-metric-guide" d="M10 54H190 M10 30H190"/><path class="ci-metric-stroke" pathLength="100" d="M10 48H140 M140 48L165 22H190"/></svg>
                         <div class="pika-ci-editorial-meta">
                             <span class="pika-ci-editorial-num">01</span>
                             <h3 class="pika-ci-editorial-heading">Güncellik</h3>
@@ -234,7 +271,7 @@
                         </p>
                     </div>
 
-                    <div class="pika-ci-editorial-item">
+                    <div class="pika-ci-editorial-item"><svg class="ci-metric-art" viewBox="0 0 200 64" aria-hidden="true"><path class="ci-metric-guide" d="M10 54H190 M10 30H190"/><path class="ci-metric-stroke" pathLength="100" d="M10 50V36 M45 50V24 M80 50V36 M115 50V18 M150 50V28 M185 50V12"/></svg>
                         <div class="pika-ci-editorial-meta">
                             <span class="pika-ci-editorial-num">02</span>
                             <h3 class="pika-ci-editorial-heading">Sıklık</h3>
@@ -244,7 +281,7 @@
                         </p>
                     </div>
 
-                    <div class="pika-ci-editorial-item">
+                    <div class="pika-ci-editorial-item"><svg class="ci-metric-art" viewBox="0 0 200 64" aria-hidden="true"><path class="ci-metric-guide" d="M10 54H190 M10 30H190"/><path class="ci-metric-stroke" pathLength="100" d="M10 52L45 44L80 46L115 31L150 27L190 12"/></svg>
                         <div class="pika-ci-editorial-meta">
                             <span class="pika-ci-editorial-num">03</span>
                             <h3 class="pika-ci-editorial-heading">Parasal katkı</h3>
@@ -254,7 +291,7 @@
                         </p>
                     </div>
 
-                    <div class="pika-ci-editorial-item">
+                    <div class="pika-ci-editorial-item"><svg class="ci-metric-art" viewBox="0 0 200 64" aria-hidden="true"><path class="ci-metric-guide" d="M10 54H190 M10 30H190"/><path class="ci-metric-stroke" pathLength="100" d="M10 38Q25 8 40 38T70 38T100 38T130 38T160 38T190 38"/></svg>
                         <div class="pika-ci-editorial-meta">
                             <span class="pika-ci-editorial-num">04</span>
                             <h3 class="pika-ci-editorial-heading">Satın alma ritmi</h3>
@@ -264,7 +301,7 @@
                         </p>
                     </div>
 
-                    <div class="pika-ci-editorial-item">
+                    <div class="pika-ci-editorial-item"><svg class="ci-metric-art" viewBox="0 0 200 64" aria-hidden="true"><path class="ci-metric-guide" d="M10 54H190 M10 30H190"/><path class="ci-metric-stroke" pathLength="100" d="M10 42L40 40L70 43L100 38L130 18L160 30L190 12"/></svg>
                         <div class="pika-ci-editorial-meta">
                             <span class="pika-ci-editorial-num">05</span>
                             <h3 class="pika-ci-editorial-heading">Davranış değişimi</h3>
@@ -274,7 +311,7 @@
                         </p>
                     </div>
 
-                    <div class="pika-ci-editorial-item">
+                    <div class="pika-ci-editorial-item"><svg class="ci-metric-art" viewBox="0 0 200 64" aria-hidden="true"><path class="ci-metric-guide" d="M10 54H190 M10 30H190"/><path class="ci-metric-stroke" pathLength="100" d="M10 52L45 44L80 34L115 30L150 18L190 10"/></svg>
                         <div class="pika-ci-editorial-meta">
                             <span class="pika-ci-editorial-num">06</span>
                             <h3 class="pika-ci-editorial-heading">Müşteri değeri</h3>
@@ -302,7 +339,7 @@
                 </p>
 
                 <div class="pika-ci-editorial-list">
-                    <div class="pika-ci-editorial-item">
+                    <div class="pika-ci-editorial-item"><svg class="ci-metric-art" viewBox="0 0 200 64" aria-hidden="true"><path class="ci-metric-guide" d="M10 54H190 M10 30H190"/><path class="ci-metric-stroke" pathLength="100" d="M10 48H140 M140 48L165 22H190"/></svg>
                         <div class="pika-ci-editorial-meta">
                             <span class="pika-ci-editorial-num">01</span>
                             <h3 class="pika-ci-editorial-heading">Recency</h3>
@@ -312,7 +349,7 @@
                         </p>
                     </div>
 
-                    <div class="pika-ci-editorial-item">
+                    <div class="pika-ci-editorial-item"><svg class="ci-metric-art" viewBox="0 0 200 64" aria-hidden="true"><path class="ci-metric-guide" d="M10 54H190 M10 30H190"/><path class="ci-metric-stroke" pathLength="100" d="M10 50V36 M45 50V24 M80 50V36 M115 50V18 M150 50V28 M185 50V12"/></svg>
                         <div class="pika-ci-editorial-meta">
                             <span class="pika-ci-editorial-num">02</span>
                             <h3 class="pika-ci-editorial-heading">Frequency</h3>
@@ -322,7 +359,7 @@
                         </p>
                     </div>
 
-                    <div class="pika-ci-editorial-item">
+                    <div class="pika-ci-editorial-item"><svg class="ci-metric-art" viewBox="0 0 200 64" aria-hidden="true"><path class="ci-metric-guide" d="M10 54H190 M10 30H190"/><path class="ci-metric-stroke" pathLength="100" d="M10 52L45 44L80 46L115 31L150 27L190 12"/></svg>
                         <div class="pika-ci-editorial-meta">
                             <span class="pika-ci-editorial-num">03</span>
                             <h3 class="pika-ci-editorial-heading">Monetary contribution</h3>
@@ -332,7 +369,7 @@
                         </p>
                     </div>
 
-                    <div class="pika-ci-editorial-item">
+                    <div class="pika-ci-editorial-item"><svg class="ci-metric-art" viewBox="0 0 200 64" aria-hidden="true"><path class="ci-metric-guide" d="M10 54H190 M10 30H190"/><path class="ci-metric-stroke" pathLength="100" d="M10 38Q25 8 40 38T70 38T100 38T130 38T160 38T190 38"/></svg>
                         <div class="pika-ci-editorial-meta">
                             <span class="pika-ci-editorial-num">04</span>
                             <h3 class="pika-ci-editorial-heading">Purchase rhythm</h3>
@@ -342,7 +379,7 @@
                         </p>
                     </div>
 
-                    <div class="pika-ci-editorial-item">
+                    <div class="pika-ci-editorial-item"><svg class="ci-metric-art" viewBox="0 0 200 64" aria-hidden="true"><path class="ci-metric-guide" d="M10 54H190 M10 30H190"/><path class="ci-metric-stroke" pathLength="100" d="M10 42L40 40L70 43L100 38L130 18L160 30L190 12"/></svg>
                         <div class="pika-ci-editorial-meta">
                             <span class="pika-ci-editorial-num">05</span>
                             <h3 class="pika-ci-editorial-heading">Behavioral change</h3>
@@ -352,7 +389,7 @@
                         </p>
                     </div>
 
-                    <div class="pika-ci-editorial-item">
+                    <div class="pika-ci-editorial-item"><svg class="ci-metric-art" viewBox="0 0 200 64" aria-hidden="true"><path class="ci-metric-guide" d="M10 54H190 M10 30H190"/><path class="ci-metric-stroke" pathLength="100" d="M10 52L45 44L80 34L115 30L150 18L190 10"/></svg>
                         <div class="pika-ci-editorial-meta">
                             <span class="pika-ci-editorial-num">06</span>
                             <h3 class="pika-ci-editorial-heading">Customer value</h3>
@@ -1267,6 +1304,11 @@
                         <i class="ri-file-list-3-line" aria-hidden="true"></i>
                     </a>
                 </div>
+                <div class="inner-cta-trust">
+                    <span><i class="ri-shield-check-line"></i> @(tr ? "KVKK Uyumlu" : "GDPR Compliant")</span>
+                    <span><i class="ri-lock-line"></i> @(tr ? "Kurumsal Güvenlik" : "Enterprise Security")</span>
+                    <span><i class="ri-customer-service-2-line"></i> @(tr ? "Özel Destek" : "Dedicated Support")</span>
+                </div>
             }
             else
             {
@@ -1291,6 +1333,11 @@
                         <span>Request a Quote</span>
                         <i class="ri-file-list-3-line" aria-hidden="true"></i>
                     </a>
+                </div>
+                <div class="inner-cta-trust">
+                    <span><i class="ri-shield-check-line"></i> @(tr ? "KVKK Uyumlu" : "GDPR Compliant")</span>
+                    <span><i class="ri-lock-line"></i> @(tr ? "Kurumsal Güvenlik" : "Enterprise Security")</span>
+                    <span><i class="ri-customer-service-2-line"></i> @(tr ? "Özel Destek" : "Dedicated Support")</span>
                 </div>
             }
         </div>

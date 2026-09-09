@@ -1,4 +1,4 @@
-/* Pika Consent Management Page Styles - Scoped strictly to .consent-* */
+﻿/* Pika Consent Management Page Styles - Scoped strictly to .consent-* */
 
 .consent-map-grid {
     display: grid;
@@ -128,4 +128,9 @@
     color: #495e50;
     line-height: 1.7;
     font-size: 0.95rem;
+}
+
+/* â”€â”€ Professionalism Enhancements â”€â”€ */
+.inner-scene-window {
+    animation: inner-subtle-float 8s ease-in-out infinite;
 }

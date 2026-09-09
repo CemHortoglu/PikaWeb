@@ -1,4 +1,4 @@
-@{
+﻿@{
     var culture = ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr";
     var tr = culture.Equals("tr", StringComparison.OrdinalIgnoreCase);
     ViewData["BodyClass"] = "pika-platform-page";
@@ -10,6 +10,10 @@
 
 @* ── 01 HERO ─────────────────────────────────────────────────── *@
 <section class="inner-hero inner-hero--report">
+    <div class="inner-hero-grid-overlay" aria-hidden="true"></div>
+    <div class="inner-hero-orbit" aria-hidden="true"></div>
+    <div class="inner-hero-grid-overlay" aria-hidden="true"></div>
+    <div class="inner-hero-orbit" aria-hidden="true"></div>
     <div class="inner-atmosphere" aria-hidden="true"><span></span><span></span></div>
     <div class="container inner-hero-grid">
         <div class="inner-intro">
@@ -73,6 +77,41 @@
 <div class="inner-scene reporting-chart-scene"><div class="pw2-telemetry-stage measurement-report"><div class="report-heading"><div><span class="studio-kicker">PIKA ANALYTICS</span><h3>@(tr ? "İletişimden alışverişe" : "From communication to purchase")</h3></div><small>@(tr ? "Örnek rapor · 30 gün" : "Sample report · 30 days")</small></div><div class="report-summary"><div><small>@(tr ? "İlişkilendirilen ciro" : "Attributed revenue")</small><strong>₺84.250</strong></div><span>@(tr ? "Temaslarla ilişkili siparişler" : "Orders associated with touchpoints")</span></div>
  <div class="report-chart" role="img" aria-label="@(tr ? "Örnek ilişkilendirilen ciro grafiği, gün 1 ile gün 30 arası. Gerçek müşteri sonucu değildir." : "Sample attributed revenue chart for days 1 to 30. Not an actual customer result.")"><div class="chart-scale"><span>30k</span><span>20k</span><span>10k</span><span>0</span></div><svg viewBox="0 0 600 200" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="measurementFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#829e45" stop-opacity=".3"/><stop offset="100%" stop-color="#829e45" stop-opacity="0"/></linearGradient></defs><path d="M0 20H600 M0 75H600 M0 130H600 M0 185H600" stroke="#e3e8dc" stroke-width="1"/><path d="M0 164 C35 164 45 124 80 132 S135 170 170 118 S220 150 265 96 S320 125 355 78 S425 112 465 52 S550 82 600 25 V200 H0Z" fill="url(#measurementFill)"/><path d="M0 164 C35 164 45 124 80 132 S135 170 170 118 S220 150 265 96 S320 125 355 78 S425 112 465 52 S550 82 600 25" fill="none" stroke="#68863c" stroke-width="3"/></svg><div class="chart-days"><span>01</span><span>10</span><span>20</span><span>30</span></div></div>
  <div class="report-channels"><div><span class="channel-dot"></span>WhatsApp<strong>₺42.100</strong></div><div><span class="channel-dot dot-email"></span>E-mail<strong>₺28.750</strong></div><div><span class="channel-dot dot-sms"></span>SMS<strong>₺13.400</strong></div></div><p class="report-note">@(tr ? "Gösterim amaçlı veriler. İlişkilendirme, satışın yalnızca kampanyadan kaynaklandığını göstermez." : "Illustrative data. Attribution does not establish that a campaign alone caused a sale.")</p></div></div></div></section>
+
+<div class="inner-trust-ribbon">
+    <div class="container">
+        <div class="inner-trust-ribbon__items">
+            <div class="inner-trust-ribbon__item">
+                <i class="ri-whatsapp-line" aria-hidden="true"></i>
+                <div>
+                    <strong>WhatsApp Business API</strong>
+                    <span>@(tr ? "Resmi Meta API" : "Official Meta API")</span>
+                </div>
+            </div>
+            <div class="inner-trust-ribbon__item">
+                <i class="ri-mail-send-line" aria-hidden="true"></i>
+                <div>
+                    <strong>Email &amp; SMS</strong>
+                    <span>@(tr ? "Doğrulanmış Kanallar" : "Verified Channels")</span>
+                </div>
+            </div>
+            <div class="inner-trust-ribbon__item">
+                <i class="ri-focus-3-line" aria-hidden="true"></i>
+                <div>
+                    <strong>Pika Opportunity Engine</strong>
+                    <span>@(tr ? "Günlük Algoritmik Tespit" : "Daily Discovery")</span>
+                </div>
+            </div>
+            <div class="inner-trust-ribbon__item">
+                <i class="ri-shield-check-line" aria-hidden="true"></i>
+                <div>
+                    <strong>İYS &amp; KVKK</strong>
+                    <span>@(tr ? "İzin Denetimi" : "Consent Verification")</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div id="inner-content" class="inner-anchor"></div>
 
 @* ── STICKY SUBNAV ───────────────────────────────────────────── *@
@@ -1000,6 +1039,11 @@
             <a href="@(tr ? "/iletisim" : "/en/contact")" class="btn pika-btn-ghost px-4 py-2">
                 @(tr ? "Teklif Al" : "Request a Quote")
             </a>
+        </div>
+        <div class="inner-cta-trust">
+            <span><i class="ri-shield-check-line"></i> @(tr ? "KVKK Uyumlu" : "GDPR Compliant")</span>
+            <span><i class="ri-lock-line"></i> @(tr ? "Kurumsal Güvenlik" : "Enterprise Security")</span>
+            <span><i class="ri-customer-service-2-line"></i> @(tr ? "Özel Destek" : "Dedicated Support")</span>
         </div>
     </div>
 </section>

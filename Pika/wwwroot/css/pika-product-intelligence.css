@@ -1,4 +1,4 @@
-/* ============================================================
+﻿/* ============================================================
    PIKA PRODUCT INTELLIGENCE — PAGE-LOCAL EXTENSIONS
    Restored visual baseline; small semantic content helpers only.
    Global elements (hero, containers, typography, buttons,
@@ -82,4 +82,9 @@
     color: #62746d;
     border-top: 1px solid #edf2e4;
     padding-top: 12px;
+}
+
+/* â”€â”€ Professionalism Enhancements â”€â”€ */
+.inner-scene-window {
+    animation: inner-subtle-float 8s ease-in-out infinite;
 }
