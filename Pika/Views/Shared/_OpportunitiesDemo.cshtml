@@ -1,0 +1,20 @@
+@{ var tr = !string.Equals(ViewContext.RouteData.Values["culture"]?.ToString(), "en", StringComparison.OrdinalIgnoreCase); }
+<section class="opp-demo-section"><div class="container">
+ <span class="ph-eyebrow">@(tr ? "FIRSATTAN HAZIRLIĞA" : "FROM OPPORTUNITY TO PREPARATION")</span>
+ <h2>@(tr ? "Fırsatı görün. Nedenini anlayın. Mesajı hazırlayın." : "See the opportunity. Understand why. Prepare the message.")</h2>
+ <p>@(tr ? "Müşteri ve ürün bağlamından doğan bir fırsatın, kontrolünüzde iletişim hazırlığına dönüşmesini izleyin." : "Watch an opportunity grounded in customer and product context become a communication draft under your control.")</p>
+ <div class="opp-demo">
+  <div class="opp-inbox"><div class="opp-toolbar"><strong>@(tr ? "Günün Fırsatları" : "Daily Opportunities")</strong><small>@(tr ? "ÖRNEK GÖRÜNÜM" : "ILLUSTRATIVE VIEW")</small></div>
+   <div class="opp-item opp-selected"><span class="opp-avatar">D</span><div><small>@(tr ? "TEKRAR SATIN ALMA" : "REPEAT PURCHASE")</small><h3>@(tr ? "Deniz · Kahve yenileme fırsatı" : "Deniz · Coffee replenishment")</h3><p>@(tr ? "Önceki alışveriş ritmine göre yeniden satın alma zamanı yaklaşıyor." : "The next purchase window is approaching based on previous purchase rhythm.")</p><b>@(tr ? "Mesaj hazırlığına geç ↗" : "Prepare a message ↗")</b></div></div>
+   <div class="opp-item"><span class="opp-avatar">E</span><div><small>@(tr ? "ÇAPRAZ SATIŞ" : "CROSS-SELL")</small><h3>@(tr ? "Ece · Tamamlayıcı ürün" : "Ece · Complementary product")</h3><p>@(tr ? "Ürün ilişkilerinden gelen bir öneri adayı." : "A recommendation candidate based on product relationships.")</p></div></div>
+   <div class="opp-item"><span class="opp-avatar">A</span><div><small>@(tr ? "GERİ KAZANIM" : "WIN-BACK")</small><h3>@(tr ? "Arda · Değişen alışveriş ritmi" : "Arda · Changing purchase rhythm")</h3><p>@(tr ? "Kendi geçmişine göre yavaşlayan alışveriş davranışı." : "Purchasing has slowed relative to previous behavior.")</p></div></div>
+  </div>
+  <div class="opp-message"><div class="opp-toolbar"><strong>@(tr ? "Mesaj önerisi" : "Message suggestion")</strong><small>PIKA ✳</small></div>
+   <div class="opp-phase" style="--phase:0"><small>@(tr ? "NEDEN BU MÜŞTERİ?" : "WHY THIS CUSTOMER?")</small><h3>@(tr ? "Deniz için kahve hatırlatması" : "A coffee reminder for Deniz")</h3><p>@(tr ? "Fırsat türü: tekrar satın alma. İlgili ürün: filtre kahve." : "Opportunity: repeat purchase. Related product: filter coffee.")</p></div>
+   <div class="opp-phase" style="--phase:1"><small>@(tr ? "KANAL VE İÇERİK" : "CHANNEL AND CONTENT")</small><h3>WhatsApp · @(tr ? "Dengeli ton" : "Balanced tone")</h3><p>@(tr ? "İzin ve kanal uygunluğu kontrol edilir; uygun onaylı şablon değerlendirilir." : "Permission and channel eligibility are checked; a suitable approved template is considered.")</p></div>
+   <div class="opp-phase opp-bubble" style="--phase:2"><small>@(tr ? "ÖRNEK MESAJ ÖNİZLEMESİ" : "SAMPLE MESSAGE PREVIEW")</small><p>@(tr ? "Merhaba Deniz, filtre kahvenizi yenilemek isterseniz ürün seçeneklerini inceleyebilirsiniz." : "Hello Deniz, if you would like to replenish your filter coffee, you can explore the available options.")</p></div>
+   <div class="opp-phase opp-approval" style="--phase:3"><i class="ri-checkbox-circle-line" aria-hidden="true"></i> @(tr ? "Taslak incelemenize hazır · Gönderim sizin onayınızla" : "Draft ready for review · Delivery requires your approval")</div>
+  </div>
+ </div>
+ <p class="opp-note">@(tr ? "Kavramsal animasyon; kişiler ve fırsatlar örnektir. Gerçek mesaj gönderilmez." : "Conceptual animation; people and opportunities are illustrative. No real messages are sent.")</p>
+</div></section>

@@ -1,0 +1,25 @@
+@{ var tr = !string.Equals(ViewContext.RouteData.Values["culture"]?.ToString(), "en", StringComparison.OrdinalIgnoreCase); }
+<section class="pilot-demo-section"><div class="container">
+ <span class="ph-eyebrow">@(tr ? "FİKRİNİZİ ANLATIN" : "DESCRIBE YOUR IDEA")</span>
+ <h2>@(tr ? "Bir direktif verin. Kampanyanız şekillensin." : "Give a brief. Watch your campaign take shape.")</h2>
+ <p>@(tr ? "Hedefinizi doğal dilde anlatın. Hedef kitle, kanal ve mesaj taslağını birlikte değerlendirin; son kararı siz verin." : "Describe your goal in natural language. Review the audience, channel and message draft together; the final decision is yours.")</p>
+ <div class="pilot-demo">
+  <div class="pilot-demo-chat"><div class="pilot-demo-bar"><strong>pika ✳ pilot</strong><span>@(tr ? "KAMPANYA HAZIRLIĞI" : "CAMPAIGN PREPARATION")</span></div>
+   <div class="pilot-prompt"><small>@(tr ? "SİZİN DİREKTİFİNİZ" : "YOUR BRIEF")</small><p>@(tr ? "Son 60 gündür alışveriş yapmayan müşterilere, yeni kahve koleksiyonumuz için bir e-posta kampanyası hazırla. Sıcak ve kısa bir dil kullan." : "Prepare an email campaign for customers who have not purchased in 60 days, featuring our new coffee collection. Keep the tone warm and concise.")</p></div>
+   <div class="pilot-demo-progress" aria-hidden="true"><span></span><span></span><span></span></div>
+   <div class="pilot-response"><small>PIKA PILOT</small><p>@(tr ? "Geri kazanım odaklı bir taslak hazırladım. Kitle kriterini ve mesajı gözden geçirerek devam edebilirsiniz." : "I prepared a win-back draft. Review the audience criterion and message before continuing.")</p></div>
+  </div>
+  <div class="pilot-draft"><div class="pilot-demo-bar"><strong>@(tr ? "Kampanya taslağı" : "Campaign draft")</strong><span>@(tr ? "İNCELEMENİZ İÇİN" : "FOR YOUR REVIEW")</span></div>
+   <div class="pilot-result" style="--order:0"><small>01 · @(tr ? "HEDEF KİTLE KRİTERİ" : "AUDIENCE CRITERION")</small><h3>@(tr ? "Son 60 gündür alışveriş yapmayanlar" : "No purchases in the last 60 days")</h3></div>
+   <div class="pilot-result" style="--order:1"><small>02 · @(tr ? "KANAL" : "CHANNEL")</small><h3>Email</h3><p>@(tr ? "Gönderim öncesi izin ve erişilebilirlik kontrolü." : "Permission and reachability checks before delivery.")</p></div>
+   <div class="pilot-result pilot-message" style="--order:2"><small>03 · @(tr ? "MESAJ TASLAĞI" : "MESSAGE DRAFT")</small><h3>@(tr ? "Kahve molasında yeniden buluşalım mı?" : "Shall we meet again over coffee?")</h3><p>@(tr ? "Yeni kahve koleksiyonumuz sizi bekliyor. Favori lezzetinizi keşfetmek için güzel bir zaman." : "Our new coffee collection is waiting. It is a lovely time to discover your favorite flavor.")</p><b>@(tr ? "Koleksiyonu keşfet ↗" : "Explore the collection ↗")</b></div>
+   <div class="pilot-review">@(tr ? "Taslak hazır · İnceleyin, düzenleyin, ardından planlayın." : "Draft ready · Review, edit, then plan.")</div>
+  </div>
+  <div class="pilot-sale-notice">
+   <i class="ri-checkbox-circle-line" aria-hidden="true"></i>
+   <div><small>@(tr ? "ÖRNEK SENARYO · KAMPANYA SONRASI" : "EXAMPLE SCENARIO · AFTER THE CAMPAIGN")</small><h3>@(tr ? "Satın alma kaydedildi" : "Purchase recorded")</h3><p>@(tr ? "Kullanıcı incelemesi ve gönderim sonrasında, hedef kitleden bir müşterinin yeni siparişi kaydedildi." : "Following user review and delivery, a new order from a customer in the audience was recorded.")</p></div>
+  </div>
+ </div>
+ <p class="pilot-demo-note">@(tr ? "Kavramsal gösterim. Bu animasyon gerçek kampanya oluşturmaz veya göndermez." : "Conceptual demonstration. This animation does not create or send a real campaign.")</p>
+</div></section>
+

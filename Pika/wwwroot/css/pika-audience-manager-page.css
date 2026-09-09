@@ -79,3 +79,25 @@
         animation: none;
     }
 }
+
+/* Audience editorial layout. */
+.audience-editorial .aud-overview-layout { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.1fr); gap:44px; align-items:center; }
+.aud-overview-art { margin:0; min-width:0; }
+.aud-overview-art img { display:block; width:100%; height:auto; border-radius:20px; }
+.aud-overview-art figcaption { margin-top:12px; font-size:12px; line-height:1.6; color:#5c7366; }
+.aud-overview-copy { min-width:0; }
+.audience-editorial .pika-sol-section { padding-block:64px; }
+.audience-editorial .pika-sol-section-alt { background:#f0f3eb; }
+.audience-editorial .pika-sol-section-title { font-size:clamp(28px,3vw,42px); line-height:1.18; letter-spacing:-.035em; }
+.audience-editorial .pika-sol-section p { line-height:1.8; }
+.audience-editorial .aud-overview-copy > .border { background:#e5eddb!important; border:0!important; border-radius:14px!important; text-align:left!important; }
+.audience-editorial .aud-overview-copy > .border br { display:none; }
+.audience-editorial .aud-rule-box { padding:28px; border:1px solid #dce4d7; border-radius:16px; background:#fff; }
+.audience-editorial .pika-story-gallery { grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px; }
+.audience-editorial .pika-story-gallery .pika-story-card { min-height:460px; }
+.audience-editorial .pika-story-gallery .pika-story-copy { position:relative; }
+.audience-editorial .pika-story-gallery .pika-story-card:after { background:linear-gradient(180deg,#10292e08 15%,#10292e66 40%,#10292ef5 100%); }
+.audience-editorial .pika-sol-section [data-aos] { opacity:1!important; transform:none!important; }
+.audience-editorial .aud-faq-summary { padding:22px; line-height:1.5; }
+@media(max-width:991px) { .audience-editorial .aud-overview-layout { grid-template-columns:1fr; gap:28px; } .aud-overview-art { max-width:700px; margin:auto; } .audience-editorial .pika-story-gallery { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:600px) { .audience-editorial .pika-story-gallery { grid-template-columns:1fr; } .audience-editorial .pika-sol-section { padding-block:44px; } }

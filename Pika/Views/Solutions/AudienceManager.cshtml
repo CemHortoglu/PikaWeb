@@ -1,7 +1,7 @@
 @{
     var culture = ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr";
     var tr = culture.Equals("tr", StringComparison.OrdinalIgnoreCase);
-    ViewData["BodyClass"] = "pika-solutions-page";
+    ViewData["BodyClass"] = "pika-solutions-page audience-editorial";
 }
 
 @section Styles {
@@ -184,7 +184,11 @@
 
 @* ── 02 DIRECT ANSWER ────────────────────────────────────────── *@
 <section class="pika-sol-section pika-sol-section-alt">
-    <div class="container" style="max-width:860px">
+    <div class="container aud-overview-layout"><figure class="aud-overview-art">
+    <img src="~/images/pages/communication-accessibility.png" asp-append-version="true" loading="lazy" decoding="async" width="1536" height="1024"
+         alt="@(tr ? "Pika Audience Manager — iletişim erişilebilirliği ve kitle bağlamı" : "Pika Audience Manager — communication accessibility and audience context")" />
+    <figcaption>@(tr ? "Kavramsal gösterim; kişi, değerler ve arayüz örnek amaçlıdır." : "Conceptual illustration; people, values and interface are illustrative.")</figcaption>
+</figure><div class="aud-overview-copy">
         <span class="pika-sol-eyebrow">@(tr ? "KISA CEVAP" : "THE SHORT ANSWER")</span>
         <h2 class="pika-sol-section-title mb-3">@(tr ? "Audience Manager nedir?" : "What is Audience Manager?")</h2>
         @if (tr)
@@ -232,11 +236,7 @@
             </p>
         }
     </div>
-<div class="container"><figure class="pika-integrated-art">
-    <img src="~/images/pages/communication-accessibility.png" asp-append-version="true" loading="lazy" decoding="async" width="1536" height="1024"
-         alt="@(tr ? "Pika Audience Manager — iletişim erişilebilirliği ve kitle bağlamı" : "Pika Audience Manager — communication accessibility and audience context")" />
-    <figcaption>@(tr ? "Kavramsal gösterim; kişi, değerler ve arayüz örnek amaçlıdır." : "Conceptual illustration; people, values and interface are illustrative.")</figcaption>
-</figure></div></section>
+</div></section>
 
 @* ── PAGE ART ─────────────────────────────────────────────────── *@
 
@@ -1425,4 +1425,5 @@
         }
     </div>
 </section>
+
 

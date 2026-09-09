@@ -1,20 +1,21 @@
 @{ var tr = !string.Equals(ViewContext.RouteData.Values["culture"]?.ToString(), "en", StringComparison.OrdinalIgnoreCase); }
 <section class="journey-demo-section"><div class="container">
- <span class="ph-eyebrow">@(tr ? "ADIM ADIM ORKESTRASYON" : "STEP-BY-STEP ORCHESTRATION")</span>
- <h2>@(tr ? "Bir yolculuk, adım adım şekillenir." : "A journey takes shape, step by step.")</h2>
- <p>@(tr ? "Başlangıç koşulundan iletişim adımına: örnek bir akışın nasıl kurulduğunu izleyin." : "Watch an example flow take shape, from entry criteria to a communication step.")</p>
+ <span class="ph-eyebrow">@(tr ? "TEKRAR SATIN ALMA SENARYOSU" : "REPEAT PURCHASE SCENARIO")</span>
+ <h2>@(tr ? "Doğru zamanda hatırlatın. Tekrar satın almaya alan açın." : "A timely reminder. Another reason to return.")</h2>
+ <p>@(tr ? "Kahvesini yenileme zamanı yaklaşan bir müşteriyi düşünün. Satın alma durumunu kontrol eden ve uygun koşullarda ürün hatırlatması sunan örnek yolculuğu izleyin." : "Imagine a customer whose coffee may soon need replenishing. Watch a sample journey check purchase status and offer a product reminder when conditions allow.")</p>
  <div class="journey-demo" aria-label="@(tr ? "Örnek journey oluşturma gösterimi" : "Example journey construction")">
   <div class="journey-demo-toolbar"><strong>PIKA · JOURNEY STUDIO</strong><span>@(tr ? "Örnek taslak" : "Example draft")</span></div>
   <div class="journey-demo-flow">
-   <div class="jd-node" style="--step:0"><i class="ri-user-add-line" aria-hidden="true"></i><div><small>01 · @(tr ? "BAŞLANGIÇ" : "ENTRY")</small><h3>@(tr ? "Hedef kitleye katılım" : "Audience entry")</h3></div></div>
-   <div class="jd-node" style="--step:1"><i class="ri-timer-line" aria-hidden="true"></i><div><small>02 · @(tr ? "BEKLEME" : "WAIT")</small><h3>@(tr ? "Tanımlanan süreyi bekle" : "Wait for the defined interval")</h3></div></div>
-   <div class="jd-node jd-condition" style="--step:2"><i class="ri-git-branch-line" aria-hidden="true"></i><div><small>03 · @(tr ? "KOŞUL" : "CONDITION")</small><h3>@(tr ? "İletişim koşulu sağlanıyor mu?" : "Is the communication condition met?")</h3></div></div>
+   <div class="jd-node" style="--step:0"><i class="ri-user-add-line" aria-hidden="true"></i><div><small>01 · @(tr ? "BAŞLANGIÇ" : "ENTRY")</small><h3>@(tr ? "Yenileme zamanı yaklaşan müşteriler" : "Customers approaching replenishment")</h3></div></div>
+   <div class="jd-node" style="--step:1"><i class="ri-timer-line" aria-hidden="true"></i><div><small>02 · @(tr ? "BEKLEME" : "WAIT")</small><h3>@(tr ? "Planlanan hatırlatma zamanını bekle" : "Wait until the planned reminder time")</h3></div></div>
+   <div class="jd-node jd-condition" style="--step:2"><i class="ri-git-branch-line" aria-hidden="true"></i><div><small>03 · @(tr ? "KOŞUL" : "CONDITION")</small><h3>@(tr ? "Henüz satın almadı ve e-posta izni uygun mu?" : "No new purchase and email permission valid?")</h3></div></div>
    <div class="jd-branches">
-    <div class="jd-node" style="--step:3"><i class="ri-mail-line" aria-hidden="true"></i><div><small>@(tr ? "EVET · AKSİYON" : "YES · ACTION")</small><h3>@(tr ? "E-posta adımı" : "Email step")</h3></div></div>
-    <div class="jd-node" style="--step:4"><i class="ri-stop-circle-line" aria-hidden="true"></i><div><small>@(tr ? "HAYIR · BİTİŞ" : "NO · END")</small><h3>@(tr ? "Akışı sonlandır" : "End the flow")</h3></div></div>
+    <div class="jd-node" style="--step:3"><i class="ri-mail-line" aria-hidden="true"></i><div><small>@(tr ? "EVET · AKSİYON" : "YES · ACTION")</small><h3>@(tr ? "Favori kahvesini hatırlat" : "Remind them of their favorite coffee")</h3><p class="jd-detail">@(tr ? "Ürün bağlantısı içeren kişisel e-posta: “Kahve molana devam edelim mi?”" : "A personal email with a product link: “Ready for your next coffee break?”")</p></div></div>
+    <div class="jd-node" style="--step:4"><i class="ri-stop-circle-line" aria-hidden="true"></i><div><small>@(tr ? "HAYIR · BİTİŞ" : "NO · END")</small><h3>@(tr ? "Hatırlatma göndermeden bitir" : "End without a reminder")</h3><p class="jd-detail">@(tr ? "Yeni alışveriş yaptıysa veya izin uygun değilse bu hatırlatmayı atla." : "Skip this reminder if they purchased again or permission is not valid.")</p></div></div>
    </div>
   </div>
-  <p class="jd-finish">@(tr ? "Örnek akış oluşturuldu · Yayına alınmadı" : "Example flow assembled · Not activated")</p>
+  <p class="jd-finish">@(tr ? "Amaç: ihtiyaca uygun bir hatırlatmayla müşteriyi yeniden alışverişe davet etmek." : "Goal: invite the customer back with a reminder relevant to their needs.")</p>
  </div>
  <p class="journey-demo-note">@(tr ? "Kavramsal animasyon; gerçek müşteri işlemez ve mesaj göndermez." : "Conceptual animation; no real customers are processed and no messages are sent.")</p>
 </div></section>
+

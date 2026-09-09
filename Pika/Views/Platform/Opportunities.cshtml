@@ -9,7 +9,7 @@
 }
 
 @section Scripts {
-    <script src="~/js/pika-inner.js" asp-append-version="true"></script>
+    <script src="~/js/pika-opportunities-demo.js" asp-append-version="true" defer></script>
 }
 
 @* ── 01 HERO ─────────────────────────────────────────────────── *@
@@ -148,7 +148,11 @@
 
 @* ── 02 DIRECT ANSWER ────────────────────────────────────────── *@
 <section class="ph-section ph-section-alt">
-    <div class="container" style="max-width:860px">
+    <div class="container opp-overview-layout"><figure class="opp-overview-art">
+    <img src="~/images/pages/Pika/opportunity-decision.png" asp-append-version="true" loading="lazy" decoding="async" width="1672" height="941"
+         alt="@(tr ? "Günün Fırsatları — müşteri ve ürün bağlamından günlük karar adaylarına" : "Daily Opportunities — from customer and product context to daily decision candidates")" />
+    <figcaption>@(tr ? "Kavramsal gösterim; kişi, değerler ve arayüz örnek amaçlıdır." : "Conceptual illustration; people, values and interface are illustrative.")</figcaption>
+</figure><div>
         <span class="ph-eyebrow">@(tr ? "KISA CEVAP" : "THE SHORT ANSWER")</span>
         <h2 class="pika-h2 fw-bold mb-3">@(tr ? "Günün Fırsatları nedir?" : "What are Daily Opportunities?")</h2>
         @if (tr)
@@ -212,7 +216,7 @@
             </p>
         }
     </div>
-</section>
+</div></section>
 
 @* ── 03 WHY OPPORTUNITIES MATTER ─────────────────────────────── *@
 <section class="ph-section">
@@ -293,12 +297,9 @@
             </div>
         }
     </div>
-<div class="container"><figure class="pika-integrated-art">
-    <img src="~/images/pages/Pika/opportunity-decision.png" asp-append-version="true" loading="lazy" decoding="async" width="1536" height="1024"
-         alt="@(tr ? "Günün Fırsatları — müşteri ve ürün bağlamından günlük karar adaylarına" : "Daily Opportunities — from customer and product context to daily decision candidates")" />
-    <figcaption>@(tr ? "Kavramsal gösterim; kişi, değerler ve arayüz örnek amaçlıdır." : "Conceptual illustration; people, values and interface are illustrative.")</figcaption>
-</figure></div></section>
+</section>
 
+@await Html.PartialAsync("_OpportunitiesDemo")
 @* ── PAGE ART ─────────────────────────────────────────────────── *@
 
 
@@ -1178,5 +1179,6 @@
         </div>
     </div>
 </section>
+
 
 

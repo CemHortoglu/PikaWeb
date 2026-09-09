@@ -71,3 +71,35 @@
 .inner-scene-window {
     animation: inner-subtle-float 8s ease-in-out infinite;
 }
+.opp-overview-layout { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.1fr); gap:44px; align-items:center; }
+.opp-overview-art { margin:0; min-width:0; }
+.opp-overview-art img { width:100%; height:auto; display:block; border-radius:20px; }
+.opp-overview-art figcaption { margin-top:12px; font-size:12px; line-height:1.6; color:#5d7467; }
+.opp-demo-section { padding:72px 0; background:#10292e; color:#c7d7cf; }
+.opp-demo-section .ph-eyebrow { color:#c5e992; }
+.opp-demo-section h2 { color:#f3f7ed; font-size:clamp(30px,3.5vw,48px); letter-spacing:-.035em; }
+.opp-demo-section > .container > p { max-width:760px; line-height:1.7; }
+.opp-demo { display:grid; grid-template-columns:1.1fr 1fr; gap:24px; margin-top:32px; }
+.opp-inbox,.opp-message { padding:26px; border-radius:20px; background:#f0f4ea; color:#193b32; min-width:0; }
+.opp-toolbar { display:flex; gap:16px; align-items:center; justify-content:space-between; margin-bottom:24px; }
+.opp-toolbar strong { font-size:21px; }
+.opp-demo small { font-size:10px; letter-spacing:.08em; }
+.opp-item { display:flex; gap:16px; background:#fff; padding:20px; border-radius:12px; margin-top:14px; }
+.opp-avatar { display:grid; place-items:center; flex:0 0 38px; height:38px; border-radius:50%; background:#e3edda; color:#496633; }
+.opp-demo h3 { font-size:19px; line-height:1.35; margin:8px 0; color:#193b32; }
+.opp-demo p { font-size:14px; line-height:1.7; margin:0; }
+.opp-item b { display:block; margin-top:14px; font-size:13px; }
+.opp-selected { background:#e0edcf; }
+.opp-phase { padding:20px; margin-bottom:14px; background:#fff; border-radius:12px; }
+.opp-bubble { background:#e3edda; }
+.opp-approval { background:#193b32; color:#eef6e7; font-size:14px; line-height:1.6; }
+.opp-note { font-size:12px; margin:18px 0 0; }
+.opp-demo.is-ready:not(.is-playing) .opp-phase { opacity:0; }
+.opp-demo.is-playing .opp-item { animation:opp-arrive .7s both; }
+.opp-demo.is-playing .opp-selected { animation:opp-arrive .7s both,opp-select 1s 1.2s both; }
+.opp-demo.is-playing .opp-phase { animation:opp-arrive .8s both; animation-delay:calc(2.5s + var(--phase)*1.7s); }
+@keyframes opp-arrive { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:none; } }
+@keyframes opp-select { from { box-shadow:inset 0 0 0 0 #759348; } to { box-shadow:inset 0 0 0 2px #759348; } }
+@media(max-width:991px) { .opp-overview-layout,.opp-demo { grid-template-columns:1fr; } }
+@media(max-width:600px) { .opp-inbox,.opp-message { padding:18px; } .opp-toolbar { flex-wrap:wrap; } }
+@media(prefers-reduced-motion:reduce) { .opp-demo * { animation:none!important; opacity:1!important; } }

@@ -127,3 +127,17 @@
 .inner-scene-window {
     animation: inner-subtle-float 8s ease-in-out infinite;
 }
+/* Reporting artwork belongs to its introductory chapter. */
+.reporting-editorial .report-overview-layout { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.1fr); gap:44px; align-items:center; }
+.report-overview-art { margin:0; min-width:0; }
+.report-overview-art img { display:block; width:100%; height:auto; border-radius:20px; transform:none; }
+.report-overview-art figcaption { margin-top:12px; font-size:12px; line-height:1.6; color:#607267; }
+.report-overview-copy { min-width:0; }
+.report-overview-copy .text-center { text-align:left!important; }
+.report-overview-copy .mb-5 { margin-bottom:24px!important; }
+.reporting-editorial .ph-section { padding-block:64px; }
+.reporting-editorial .ph-section-alt { background:#f0f3eb; }
+.reporting-editorial .ph-section .pika-h2 { font-size:clamp(28px,3vw,42px); line-height:1.2; letter-spacing:-.035em; }
+.reporting-editorial .ph-section [data-aos] { opacity:1!important; transform:none!important; }
+@media(max-width:991px) { .reporting-editorial .report-overview-layout { grid-template-columns:1fr; gap:28px; } .report-overview-art { max-width:720px; margin:auto; } }
+@media(max-width:600px) { .reporting-editorial .ph-section { padding-block:44px; } }

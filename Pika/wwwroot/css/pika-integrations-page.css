@@ -47,3 +47,13 @@
 .inner-scene-window {
     animation: inner-subtle-float 8s ease-in-out infinite;
 }
+/* Integrated editorial introduction. */
+.intg-overview-layout { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.1fr); align-items:center; gap:48px; }
+.intg-overview-layout > .row { margin:0; }
+.intg-overview-layout .col-lg-10 { width:100%; padding:0; }
+.intg-overview-art { margin:0; }
+.intg-overview-art img { display:block; width:100%; height:auto; border-radius:22px; }
+.intg-overview-art figcaption { font-size:12px; line-height:1.6; color:#607368; margin-top:14px; }
+.intg-overview-layout .pika-h2 { font-size:clamp(30px,3vw,44px); letter-spacing:-.035em; }
+.intg-overview-layout .intg-question-box { padding:24px; background:#edf2e5; border:0; border-radius:12px; }
+@media(max-width:991px) { .intg-overview-layout { grid-template-columns:1fr; gap:32px; } .intg-overview-art { max-width:720px; margin:auto; } }

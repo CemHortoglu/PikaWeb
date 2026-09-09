@@ -1,7 +1,7 @@
 @{
     var culture = ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr";
     var tr = culture.Equals("tr", StringComparison.OrdinalIgnoreCase);
-    ViewData["BodyClass"] = "pika-platform-page";
+    ViewData["BodyClass"] = "pika-platform-page security-editorial";
 }
 
 @section Styles {
@@ -70,19 +70,27 @@
                 <div class="sec-hero-pills">
                     @if (tr)
                     {
-                        <span class="sec-hero-pill">KULLANICI</span>
-                        <span class="sec-hero-pill">ROL / YETKİ</span>
-                        <span class="sec-hero-pill">ERİŞİM</span>
-                        <span class="sec-hero-pill">MASKELİ VERİ</span>
-                        <span class="sec-hero-pill">KONTROLLÜ AKSİYON</span>
+                        <span class="sec-hero-pill" data-step="1">KULLANICI</span>
+                        <span class="sec-hero-pill-arrow" aria-hidden="true">→</span>
+                        <span class="sec-hero-pill" data-step="2">ROL / YETKİ</span>
+                        <span class="sec-hero-pill-arrow" aria-hidden="true">→</span>
+                        <span class="sec-hero-pill" data-step="3">ERİŞİM</span>
+                        <span class="sec-hero-pill-arrow" aria-hidden="true">→</span>
+                        <span class="sec-hero-pill" data-step="4">MASKELİ VERİ</span>
+                        <span class="sec-hero-pill-arrow" aria-hidden="true">→</span>
+                        <span class="sec-hero-pill" data-step="5">KONTROLLÜ AKSİYON</span>
                     }
                     else
                     {
-                        <span class="sec-hero-pill">USER</span>
-                        <span class="sec-hero-pill">ROLE / PERMISSION</span>
-                        <span class="sec-hero-pill">ACCESS</span>
-                        <span class="sec-hero-pill">MASKED DATA</span>
-                        <span class="sec-hero-pill">CONTROLLED ACTION</span>
+                        <span class="sec-hero-pill" data-step="1">USER</span>
+                        <span class="sec-hero-pill-arrow" aria-hidden="true">→</span>
+                        <span class="sec-hero-pill" data-step="2">ROLE / PERMISSION</span>
+                        <span class="sec-hero-pill-arrow" aria-hidden="true">→</span>
+                        <span class="sec-hero-pill" data-step="3">ACCESS</span>
+                        <span class="sec-hero-pill-arrow" aria-hidden="true">→</span>
+                        <span class="sec-hero-pill" data-step="4">MASKED DATA</span>
+                        <span class="sec-hero-pill-arrow" aria-hidden="true">→</span>
+                        <span class="sec-hero-pill" data-step="5">CONTROLLED ACTION</span>
                     }
                 </div>
             </div>
@@ -271,70 +279,113 @@
 @* ── 04 ROLE-BASED ACCESS CONTROL ────────────────────────────── *@
 <section class="sec-section">
     <div class="container">
-        <div class="sec-section-header max-w-800">
-            <span class="sec-badge-sub">RBAC</span>
-            <h2 class="sec-section-h2">@(tr ? "Her kullanıcıya aynı erişimi vermeyin." : "Do not give every user the same access.")</h2>
-            @if (tr)
-            {
-                <p>Pika rol bazlı erişim denetimi (RBAC) kullanır.</p>
-                <p>RBAC, kullanıcının platform içinde erişebileceği işlem ve alanların sahip olduğu yetki bağlamına göre sınırlandırılmasını sağlar.</p>
-                <p>Bu yaklaşım bütün kullanıcıların aynı yönetim veya veri erişim yetkisine sahip olduğu tek seviyeli bir erişim modelinin önüne geçer.</p>
-                <div class="sec-callout">
-                    <p class="mb-2"><strong>Kimlik doğrulama:</strong> “Kullanıcı kim?”</p>
-                    <p class="mb-2"><strong>Yetkilendirme:</strong> “Bu kullanıcı hangi işlemi yapabilir?”</p>
-                    <p class="mb-0"><strong>RBAC:</strong> yetkilendirme kararının rol ve permission bağlamıyla yönetilmesine yardımcı olur.</p>
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <div class="sec-section-header">
+                    <span class="sec-badge-sub">RBAC</span>
+                    <h2 class="sec-section-h2">@(tr ? "Her kullanıcıya aynı erişimi vermeyin." : "Do not give every user the same access.")</h2>
+                    @if (tr)
+                    {
+                        <p>Pika rol bazlı erişim denetimi (RBAC) kullanır.</p>
+                        <p>RBAC, kullanıcının platform içinde erişebileceği işlem ve alanların sahip olduğu yetki bağlamına göre sınırlandırılmasını sağlar.</p>
+                        <p>Bu yaklaşım bütün kullanıcıların aynı yönetim veya veri erişim yetkisine sahip olduğu tek seviyeli bir erişim modelinin önüne geçer.</p>
+                        <div class="sec-callout">
+                            <p class="mb-2"><strong>Kimlik doğrulama:</strong> "Kullanıcı kim?"</p>
+                            <p class="mb-2"><strong>Yetkilendirme:</strong> "Bu kullanıcı hangi işlemi yapabilir?"</p>
+                            <p class="mb-0"><strong>RBAC:</strong> yetkilendirme kararının rol ve permission bağlamıyla yönetilmesine yardımcı olur.</p>
+                        </div>
+                        <p class="text-muted">C14 sabit rol isimleri veya her kurulumda aynı yetki matrisi bulunduğu iddiasını yapmaz.</p>
+                        <p class="fw-semibold text-dark mt-3">Erişim, yalnızca oturum açmış olmakla değil, yetki bağlamıyla belirlenir.</p>
+                    }
+                    else
+                    {
+                        <p>Pika uses role-based access control (RBAC).</p>
+                        <p>RBAC allows platform areas and operations available to a user to be constrained according to their authorization context.</p>
+                        <p>This avoids treating every authenticated user as if they have the same administrative or data-access permissions.</p>
+                        <div class="sec-callout">
+                            <p class="mb-2"><strong>Authentication asks:</strong> "Who is the user?"</p>
+                            <p class="mb-2"><strong>Authorization asks:</strong> "What can this user do?"</p>
+                            <p class="mb-0"><strong>RBAC:</strong> helps manage authorization through role and permission context.</p>
+                        </div>
+                        <p class="text-muted">C14 does not claim fixed role names or an identical permission matrix in every deployment.</p>
+                        <p class="fw-semibold text-dark mt-3">Access is determined not only by being authenticated, but by authorization context.</p>
+                    }
                 </div>
-                <p class="text-muted">C14 sabit rol isimleri veya her kurulumda aynı yetki matrisi bulunduğu iddiasını yapmaz.</p>
-                <p class="fw-semibold text-dark mt-3">Erişim, yalnızca oturum açmış olmakla değil, yetki bağlamıyla belirlenir.</p>
-            }
-            else
-            {
-                <p>Pika uses role-based access control (RBAC).</p>
-                <p>RBAC allows platform areas and operations available to a user to be constrained according to their authorization context.</p>
-                <p>This avoids treating every authenticated user as if they have the same administrative or data-access permissions.</p>
-                <div class="sec-callout">
-                    <p class="mb-2"><strong>Authentication asks:</strong> “Who is the user?”</p>
-                    <p class="mb-2"><strong>Authorization asks:</strong> “What can this user do?”</p>
-                    <p class="mb-0"><strong>RBAC:</strong> helps manage authorization through role and permission context.</p>
+            </div>
+            <div class="col-lg-5 offset-lg-1">
+                <div class="inner-scene-window sec-scene-panel" aria-hidden="true">
+                    <div class="inner-window-bar"><span></span><span></span><span></span><small>@(tr ? "Erişim Modeli" : "Access Model")</small></div>
+                    <div class="inner-shield">
+                        <i class="ri-user-settings-line"></i>
+                        <h3>@(tr ? "Yetki Bağlamı" : "Auth Context")</h3>
+                        <div class="inner-checks">
+                            <span><i class="ri-lock-line"></i> @(tr ? "Kimlik Doğrulama" : "Authentication")</span>
+                            <span><i class="ri-shield-check-line"></i> @(tr ? "Yetkilendirme" : "Authorization")</span>
+                            <span><i class="ri-user-settings-line"></i> RBAC</span>
+                        </div>
+                    </div>
                 </div>
-                <p class="text-muted">C14 does not claim fixed role names or an identical permission matrix in every deployment.</p>
-                <p class="fw-semibold text-dark mt-3">Access is determined not only by being authenticated, but by authorization context.</p>
-            }
+            </div>
         </div>
     </div>
 </section>
 
+
 @* ── 05 MASKED DATA EXPOSURE ─────────────────────────────────── *@
 <section class="sec-section sec-section-alt">
     <div class="container">
-        <div class="sec-section-header max-w-800">
-            <span class="sec-badge-sub">@(tr ? "VERİ GÖRÜNÜRLÜĞÜ" : "DATA EXPOSURE")</span>
-            <h2 class="sec-section-h2">@(tr ? "Veriye erişmek, her alanı açık biçimde görmek zorunda olmak değildir." : "Access to data does not have to mean every field is shown in full.")</h2>
-            @if (tr)
-            {
-                <p>Pika'nın güvenlik yaklaşımı yalnızca bir ekrana erişilip erişilemeyeceği sorusuyla sınırlı değildir.</p>
-                <p>İlgili kullanıcı arayüzlerinde hassas iletişim verisinin doğrudan açık gösterimini azaltmak için maskelenmiş veri görünümü kullanılabilir.</p>
-                <p>Maskelenmiş görünüm, verinin kaynak sistemden silindiği veya platformun hiçbir aşamasında bulunmadığı anlamına gelmez.</p>
-                <div class="sec-callout">
-                    <p class="mb-2"><strong>Access control:</strong> kullanıcının alana erişimini yönetir.</p>
-                    <p class="mb-0"><strong>Masked view:</strong> erişilen alanda hassas bilginin gereksiz açık gösterimini azaltır.</p>
+        <div class="row align-items-center g-5">
+            <div class="col-lg-5">
+                <div class="inner-scene-window sec-scene-panel" aria-hidden="true">
+                    <div class="inner-window-bar"><span></span><span></span><span></span><small>@(tr ? "Veri Görünümü" : "Data View")</small></div>
+                    <div class="p-4">
+                        <div class="d-flex gap-2 align-items-center mb-3">
+                            <i class="ri-eye-off-line" style="color:#059669;font-size:18px"></i>
+                            <span style="font-size:11px;letter-spacing:1px;color:#7a9060;font-weight:600">@(tr ? "MASKELİ GÖRÜNÜM" : "MASKED VIEW")</span>
+                        </div>
+                        <div style="font-family:monospace;font-size:13px;color:#334155;line-height:2.2">
+                            <div>@(tr ? "Tel:" : "Phone:") <span style="background:#d1fae5;color:#d1fae5;border-radius:3px;padding:2px 10px">██████████████</span></div>
+                            <div>@(tr ? "Ad:" : "Name:") <span style="background:#d1fae5;color:#d1fae5;border-radius:3px;padding:2px 10px">████████████</span></div>
+                            <div>Email: <span style="background:#d1fae5;color:#d1fae5;border-radius:3px;padding:2px 10px">██████&#64;████.com</span></div>
+                        </div>
+                        <div class="mt-3 pt-3" style="border-top:1px solid #e0e8d5">
+                            <span style="font-size:11px;color:#7a9060"><i class="ri-shield-check-line"></i> @(tr ? "Erişim kontrolü aktif" : "Access control active")</span>
+                        </div>
+                    </div>
                 </div>
-                <p class="fw-semibold text-dark mt-3">Yetki ve görünürlük, aynı güvenlik probleminin farklı katmanlarıdır.</p>
-            }
-            else
-            {
-                <p>Pika's security approach is not limited to whether a user can open a screen.</p>
-                <p>Masked data presentation can be used in relevant interfaces to reduce unnecessary full exposure of sensitive communication data.</p>
-                <p>A masked view does not mean the source data was deleted or that it never exists anywhere in the platform workflow.</p>
-                <div class="sec-callout">
-                    <p class="mb-2"><strong>Access control:</strong> manages whether a user can access an area.</p>
-                    <p class="mb-0"><strong>Masked view:</strong> reduces unnecessary exposure of sensitive information inside an accessible area.</p>
+            </div>
+            <div class="col-lg-6 offset-lg-1">
+                <div class="sec-section-header">
+                    <span class="sec-badge-sub">@(tr ? "VERİ GÖRÜNÜRLÜĞÜ" : "DATA EXPOSURE")</span>
+                    <h2 class="sec-section-h2">@(tr ? "Veriye erişmek, her alanı açık biçimde görmek zorunda olmak değildir." : "Access to data does not have to mean every field is shown in full.")</h2>
+                    @if (tr)
+                    {
+                        <p>Pika'nın güvenlik yaklaşımı yalnızca bir ekrana erişilip erişilemeyeceği sorusuyla sınırlı değildir.</p>
+                        <p>İlgili kullanıcı arayüzlerinde hassas iletişim verisinin doğrudan açık gösterimini azaltmak için maskelenmiş veri görünümü kullanılabilir.</p>
+                        <p>Maskelenmiş görünüm, verinin kaynak sistemden silindiği veya platformun hiçbir aşamasında bulunmadığı anlamına gelmez.</p>
+                        <div class="sec-callout">
+                            <p class="mb-2"><strong>Access control:</strong> kullanıcının alana erişimini yönetir.</p>
+                            <p class="mb-0"><strong>Masked view:</strong> erişilen alanda hassas bilginin gereksiz açık gösterimini azaltır.</p>
+                        </div>
+                        <p class="fw-semibold text-dark mt-3">Yetki ve görünürlük, aynı güvenlik probleminin farklı katmanlarıdır.</p>
+                    }
+                    else
+                    {
+                        <p>Pika's security approach is not limited to whether a user can open a screen.</p>
+                        <p>Masked data presentation can be used in relevant interfaces to reduce unnecessary full exposure of sensitive communication data.</p>
+                        <p>A masked view does not mean the source data was deleted or that it never exists anywhere in the platform workflow.</p>
+                        <div class="sec-callout">
+                            <p class="mb-2"><strong>Access control:</strong> manages whether a user can access an area.</p>
+                            <p class="mb-0"><strong>Masked view:</strong> reduces unnecessary exposure of sensitive information inside an accessible area.</p>
+                        </div>
+                        <p class="fw-semibold text-dark mt-3">Authorization and visibility are different layers of the same security problem.</p>
+                    }
                 </div>
-                <p class="fw-semibold text-dark mt-3">Authorization and visibility are different layers of the same security problem.</p>
-            }
+            </div>
         </div>
     </div>
 </section>
+
 
 @* ── 06 API ACCESS CONTROL ───────────────────────────────────── *@
 <section class="sec-section">
@@ -917,9 +968,9 @@
 </section>
 
 @* ── 14 FINAL CTA ────────────────────────────────────────────── *@
-<section class="sec-section">
+<section class="sec-section pika-section--dark">
     <div class="container">
-        <div class="sec-cta-card max-w-800 mx-auto">
+        <div class="sec-cta-card max-w-800 mx-auto text-center">
             <span class="sec-badge-sub">@(tr ? "KANITLANABİLİR KONTROL" : "VERIFIABLE CONTROL")</span>
             <h2 class="sec-section-h2 mb-3">
                 @if (tr)
@@ -936,7 +987,7 @@
                     ? "Pika'nın rol bazlı erişim denetimi, maskelenmiş veri görünümü, API erişim kontrolü ve paylaşılan sorumluluk sınırlarını platformunuzun kullanım bağlamında birlikte inceleyelim."
                     : "Let's review how Pika's role-based access control, masked data views, API access control and shared responsibility boundaries apply within your platform usage context.")
             </p>
-            <p class="fw-semibold text-dark mb-4">
+            <p class="fw-semibold mb-4">
                 @(tr
                     ? "İhtiyacınıza ve kullanım kapsamınıza göre özel teklif."
                     : "Pricing is tailored to your requirements and scope of use.")
@@ -945,16 +996,18 @@
                 <button class="btn pika-btn-primary px-4 py-2" type="button" data-bs-toggle="modal" data-bs-target="#demoModal">
                     @(tr ? "Demo Talep Et" : "Request a Demo") ↗
                 </button>
-                <button class="btn btn-outline-secondary px-4 py-2" type="button" data-bs-toggle="modal" data-bs-target="#demoModal">
+                <button class="btn pika-btn-outline px-4 py-2" type="button" data-bs-toggle="modal" data-bs-target="#demoModal">
                     @(tr ? "Teklif Al" : "Request a Quote") →
                 </button>
             </div>
+            <div class="inner-cta-trust mt-4">
+                <span><i class="ri-shield-check-line"></i> @(tr ? "KVKK Uyumlu" : "GDPR Compliant")</span>
+                <span><i class="ri-lock-line"></i> @(tr ? "Kurumsal Güvenlik" : "Enterprise Security")</span>
+                <span><i class="ri-customer-service-2-line"></i> @(tr ? "Özel Destek" : "Dedicated Support")</span>
+            </div>
         </div>
-                <div class="inner-cta-trust">
-                    <span><i class="ri-shield-check-line"></i> @(tr ? "KVKK Uyumlu" : "GDPR Compliant")</span>
-                    <span><i class="ri-lock-line"></i> @(tr ? "Kurumsal Güvenlik" : "Enterprise Security")</span>
-                    <span><i class="ri-customer-service-2-line"></i> @(tr ? "Özel Destek" : "Dedicated Support")</span>
-                </div>
     </div>
 </section>
+
+
 

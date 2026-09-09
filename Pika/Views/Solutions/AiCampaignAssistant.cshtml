@@ -1,7 +1,7 @@
 @{
     var culture = ViewContext.RouteData.Values["culture"]?.ToString() ?? "tr";
     var tr = culture.Equals("tr", StringComparison.OrdinalIgnoreCase);
-    ViewData["BodyClass"] = "pika-platform-page";
+    ViewData["BodyClass"] = "pika-platform-page pilot-editorial";
 }
 
 @section Styles {
@@ -127,6 +127,7 @@
 <div id="inner-content" class="inner-anchor"></div>
 
 @* ── 02 DIRECT ANSWER ────────────────────────────────────────── *@
+@await Html.PartialAsync("_PilotDemo")
 <section class="ph-section ph-section-alt">
     <div class="container" style="max-width:860px">
         <div class="text-center mb-5" data-aos="fade-up">
@@ -164,8 +165,8 @@
 </section>
 
 @* ── 03 WHY GROUNDING MATTERS ────────────────────────────────── *@
-<section class="ph-section ph-section-plain">
-    <div class="container" style="max-width:860px">
+<section class="ph-section ph-section-plain pilot-grounding">
+    <div class="container" >
         <div class="text-center mb-5" data-aos="fade-up">
             <span class="ph-eyebrow">@(tr ? "ÖNCE BAĞLAM" : "CONTEXT FIRST")</span>
             <h2 class="pika-h2 fw-bold mb-3">
@@ -173,7 +174,7 @@
             </h2>
         </div>
 
-        <div class="p-4 rounded-4 bg-white border shadow-sm" data-aos="fade-up">
+        <div class="pilot-grounding-layout" data-aos="fade-up">
             <p class="mb-3" style="line-height:1.65;color:#23413b">
                 @(tr ? "Pika'da kampanya hazırlığı yalnızca serbest metin bir komutla başlamaz. Kampanya fikri, platformda daha önce hesaplanmış müşteri, ürün ve fırsat bağlamıyla birlikte değerlendirilebilir." : "In Pika, campaign preparation does not begin with a free-text prompt alone. A campaign idea can be evaluated together with customer, product and opportunity context already calculated by the platform.")
             </p>
@@ -184,20 +185,17 @@
                 @(tr ? "Bu bağlamlar Pika'nın ilgili intelligence ve opportunity katmanlarından gelir. Pika Pilot'ın görevi bu hesaplanmış bağlamı kampanya hazırlığında kullanılabilir hale getirmeye yardımcı olmaktır." : "Those contexts come from Pika's relevant intelligence and opportunity layers. The role of Pika Pilot is to help make that calculated context usable during campaign preparation.")
             </p>
 
-            <div class="p-4 rounded-3 text-center my-4" style="background:#f4f8ec;border:1px solid #c8deb0">
+            <div class="pilot-grounding-flow">
                 <div class="d-flex align-items-center justify-content-center flex-wrap gap-3 fw-bold" style="font-size:15px;color:#23413b">
-                    <div>
-                        <small class="text-muted d-block text-uppercase" style="font-size:11px">@(tr ? "Önce" : "First")</small>
+                    <div><i class="ri-database-2-line" aria-hidden="true"></i><small class="text-muted d-block text-uppercase" style="font-size:11px">@(tr ? "Önce" : "First")</small>
                         <span style="color:var(--pika-primary)">@(tr ? "HESAPLANMIŞ BAĞLAM" : "CALCULATED CONTEXT")</span>
                     </div>
                     <i class="ri-arrow-right-line" style="color:var(--pika-primary)"></i>
-                    <div>
-                        <small class="text-muted d-block text-uppercase" style="font-size:11px">@(tr ? "Sonra" : "Then")</small>
+                    <div><i class="ri-sparkling-2-line" aria-hidden="true"></i><small class="text-muted d-block text-uppercase" style="font-size:11px">@(tr ? "Sonra" : "Then")</small>
                         <span style="color:var(--pika-primary)">@(tr ? "AI DESTEKLİ TASLAK" : "AI-ASSISTED DRAFT")</span>
                     </div>
                     <i class="ri-arrow-right-line" style="color:var(--pika-primary)"></i>
-                    <div>
-                        <small class="text-muted d-block text-uppercase" style="font-size:11px">@(tr ? "En son" : "Finally")</small>
+                    <div><i class="ri-user-follow-line" aria-hidden="true"></i><small class="text-muted d-block text-uppercase" style="font-size:11px">@(tr ? "En son" : "Finally")</small>
                         <span style="color:var(--pika-primary)">@(tr ? "İNSAN KARARI" : "HUMAN DECISION")</span>
                     </div>
                 </div>
@@ -1152,3 +1150,7 @@
         </div>
     </div>
 </section>
+
+@section Scripts { <script src="~/js/pika-pilot-demo.js" asp-append-version="true" defer></script> }
+
+

@@ -142,3 +142,7 @@
 @media(max-width:991px) { .journey-overview-layout { grid-template-columns:1fr; } .journey-overview-art { max-width:680px; margin:auto; } }
 @media(max-width:600px) { .jd-branches { grid-template-columns:1fr; gap:0; } .journey-demo { padding:20px; } }
 @media(prefers-reduced-motion:reduce) { .journey-demo .jd-node,.journey-demo .jd-finish { animation:none!important; opacity:1!important; } }
+
+.journey-demo .jd-detail { font-size:13px; line-height:1.65; margin:10px 0 0; color:#53695e; }
+.journey-demo .jd-branches > :first-child { background:#e5efd9; }
+.journey-demo .jd-finish { max-width:620px; margin:28px auto 0; font-size:15px; font-weight:500; line-height:1.6; }
