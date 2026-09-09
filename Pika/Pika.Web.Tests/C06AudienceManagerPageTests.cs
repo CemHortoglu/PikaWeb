@@ -260,15 +260,15 @@ public class C06AudienceManagerPageTests : IClassFixture<WebApplicationFactory<P
         Assert.DoesNotContain("ViewData[\"CanonicalUrl\"]", viewContent);
     }
 
-    // 14: View contains no <img> or screenshot references
+    // 14: Editorial photography is allowed; real product screenshots remain excluded.
     [Fact]
-    public void AudienceManagerView_ContainsNoImageTagsOrScreenshots()
+    public void AudienceManagerView_UsesEditorialImagesWithoutScreenshots()
     {
         var root = GetProjectRoot();
         var viewPath = Path.Combine(root, "Views", "Solutions", "AudienceManager.cshtml");
         var viewContent = File.ReadAllText(viewPath);
 
-        Assert.DoesNotContain("<img", viewContent, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("pika-story-image", viewContent, StringComparison.OrdinalIgnoreCase);
         Assert.DoesNotContain("screenshot", viewContent, StringComparison.OrdinalIgnoreCase);
         Assert.DoesNotContain("ekran görüntüsü", viewContent, StringComparison.OrdinalIgnoreCase);
     }

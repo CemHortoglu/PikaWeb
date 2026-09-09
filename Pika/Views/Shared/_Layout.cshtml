@@ -227,7 +227,7 @@
         <nav class="navbar navbar-expand-lg bg-color-ffffff" id="navbar" aria-label="Ana Gezinme">
             <div class="container-fluid side-padding position-relative">
                 <a class="navbar-brand logo-brand p-0" href="@homeUrl">
-                    @if (bodyClass.Contains("pika-orbit")) { <span class="orbit-nav-mark" aria-hidden="true"></span><span class="orbit-nav-word">pika</span> } else { <img src="~/logo.png" alt="Pika Omnichannel Pazarlama Platformu Logosu" style="width: 80%;"> }
+                    <img class="pika-brand-image" src="~/logo.png" asp-append-version="true" alt="Pika" />
                 </a>
                 <a class="navbar-toggler" data-bs-toggle="offcanvas" href="#navbarOffcanvas" role="button" aria-controls="navbarOffcanvas" aria-label="Menüyü aç">
                     <span class="burger-menu">
@@ -441,12 +441,7 @@
     <div class="mobile-navbar offcanvas offcanvas-end border-0" data-bs-backdrop="static" tabindex="-1" id="navbarOffcanvas" aria-label="Mobil Gezinme">
         <div class="offcanvas-header">
             <a href="@homeUrl" class="logo navbar-brand logo-brand p-0 d-inline-flex align-items-center">
-                @if (bodyClass.Contains("pika-orbit")) {
-                    <span class="orbit-nav-mark" aria-hidden="true"></span>
-                    <span class="orbit-nav-word">pika</span>
-                } else {
-                    <img src="~/logo.png" alt="Pika Omnichannel Pazarlama Platformu Logosu" style="height: 30px; width: auto;">
-                }
+                <img class="pika-brand-image" src="~/logo.png" asp-append-version="true" alt="Pika" />
             </a>
             <button type="button" class="close-btn bg-transparent position-relative lh-1 p-0 border-0" data-bs-dismiss="offcanvas" aria-label="Menüyü kapat">
                 <i class="ri-close-line"></i>
@@ -535,11 +530,7 @@
                     <div class="col-xl-3 col-lg-12 col-12 footer-brand-col">
                         <div class="footer-weight">
                             <a href="@homeUrl" class="d-inline-block mb-3" aria-label="Pika Ana Sayfa">
-                                @if (bodyClass.Contains("pika-orbit")) {
-                                    <span class="footer-brand-word">pika<span>✳</span></span>
-                                } else {
-                                    <img src="~/web/assets/images/white-logo.png" alt="Pika Omnichannel Pazarlama Platformu Logosu" style="height:32px">
-                                }
+                                <img class="pika-brand-image pika-brand-image--footer" src="~/logo.png" asp-append-version="true" alt="Pika" />
                             </a>
                             <p class="text-white-50 small mb-3" data-i18n="footer.brandDesc">@(isTr ? "Pika, müşteri ve ürün verisinden anlam çıkaran, fırsatı tespit eden ve doğru aksiyonu doğru anda uygulayan omnichannel pazarlama platformudur." : "Pika is the omnichannel marketing platform that extracts insight from customer and product data, detects revenue opportunities, and orchestrates timely engagement.")</p>
                             <div class="pika-footer-contact mb-3">

@@ -286,7 +286,7 @@ public class C09ContentStudioPageTests : IClassFixture<WebApplicationFactory<Pro
 
     // 15: View contains no legacy tags (ViewData Title, MetaDescription, MetaKeywords, CanonicalUrl, JsonLd, /wiki/, <img)
     [Fact]
-    public void ViewFile_ContainsNoLegacyTagsOrWikiLinksOrImg()
+    public void ViewFile_UsesEditorialImagesWithoutLegacyTagsOrWikiLinks()
     {
         var solutionDir = GetProjectRoot();
         var viewPath = Path.Combine(solutionDir, "Views", "Solutions", "ContentStudio.cshtml");
@@ -300,7 +300,7 @@ public class C09ContentStudioPageTests : IClassFixture<WebApplicationFactory<Pro
         Assert.DoesNotContain("@section JsonLd", content);
         Assert.DoesNotContain("/wiki/", content);
         Assert.DoesNotContain("wikiBase", content);
-        Assert.DoesNotContain("<img", content);
+        Assert.Contains("pika-story-image", content);
     }
 
     // 16: No real screenshots
@@ -315,7 +315,7 @@ public class C09ContentStudioPageTests : IClassFixture<WebApplicationFactory<Pro
 
         Assert.DoesNotContain("img_email-template-editor_17.png", html);
         Assert.DoesNotContain("/wiki/assets/images/", html);
-        Assert.DoesNotContain("<img", html);
+        Assert.Contains("pika-story-image", html);
     }
 
     // 17: No fake pseudo-editor copy: AI Assistant, AI Asistan, Tasarım Alanı, Design Area

@@ -216,3 +216,36 @@
 @media(prefers-reduced-motion:reduce) {
  .pika-inner .pika-story-gallery .pika-story-card,.pika-inner .pika-story-card .pika-story-image { transition:none; }
 }
+
+@media(min-width:1100px) {
+ .pika-inner .pika-story-gallery:has(> :nth-child(6)) { grid-template-columns:repeat(3,minmax(0,1fr)); }
+}
+
+/* A single calm surface for closing calls to action. */
+.pika-inner :is(.ph-cta-section,.pika-sol-cta-section,.pk-cta-section,.uc-cta-section,.pika-ci-cta,.corp-large-closing) { background:#10292e; }
+.pika-inner :is(.ph-cta-section,.pika-sol-cta-section,.pk-cta-section,.uc-cta-section)::before,
+.pika-inner :is(.ph-cta-section,.pika-sol-cta-section,.pk-cta-section,.uc-cta-section)::after { content:none; display:none; }
+.pika-inner .pika-sol-cta-section { padding:88px 0; }
+.pika-inner .pika-sol-cta-section > .container { max-width:1000px; }
+.pika-inner .pika-sol-cta-section .ph-eyebrow { font-size:11px; letter-spacing:.16em; color:#c5d5cc!important; opacity:1!important; margin-bottom:24px!important; }
+.pika-inner .pika-sol-cta-section h2 { max-width:900px; margin:0 auto 24px; font-size:clamp(30px,3.3vw,48px); font-weight:500; letter-spacing:-.035em; line-height:1.18; }
+.pika-inner .pika-sol-cta-section p { color:#c1cfcb; font-size:17px; line-height:1.75; margin-bottom:24px; }
+.pika-inner .pika-sol-cta-section p.small { color:#aabeb7!important; font-size:14px; }
+.pika-inner .pika-sol-cta-actions { gap:14px; margin-top:30px; }
+.pika-inner .pika-sol-cta-actions .btn { min-height:52px; padding:14px 26px!important; border-radius:8px; font-size:14px; font-weight:600; }
+.pika-inner .pika-sol-cta-actions .pika-btn-ghost { background:transparent!important; color:#f5f8f1!important; border:1px solid #8fa8a2; box-shadow:none; }
+.pika-inner .pika-sol-cta-actions .pika-btn-ghost:hover { background:#ffffff10!important; border-color:#d9e4df; }
+@media(max-width:600px) {
+ .pika-inner .pika-sol-cta-section { padding:60px 0; }
+ .pika-inner .pika-sol-cta-section p { font-size:16px; }
+ .pika-inner .pika-sol-cta-actions { gap:12px; }
+}
+
+/* Context modules use equal edges and typography, never an accent rail. */
+.pika-inner .pika-context-module { display:flex; flex-direction:column; gap:4px; padding:30px!important; border:1px solid #e0e6df; border-radius:16px; background:#fff; box-shadow:0 8px 24px #10292e05; }
+.pika-inner .pika-context-module .ph-module-icon { width:48px; height:48px; background:#f0f4ec; color:#587345; border:0; border-radius:12px; }
+.pika-inner .pika-context-module h3 { font-size:21px!important; font-weight:500!important; line-height:1.3; letter-spacing:-.4px; }
+.pika-inner .pika-context-module > .border { border:0!important; background:#f4f6f1!important; padding:20px!important; border-radius:10px!important; flex:1; line-height:1.75; }
+.pika-inner .pika-context-module > a { margin-top:auto; padding-top:12px; color:#456831; }
+.pika-inner :is(.pika-sol-value-card,.pika-sol-usecase-card)::before { content:none; }
+.pika-inner .pika-context-module { border:1px solid #e0e6df!important; }

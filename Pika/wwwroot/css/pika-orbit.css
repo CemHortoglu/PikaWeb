@@ -2309,3 +2309,20 @@ html:has(.pika-orbit){scroll-behavior:smooth;scroll-padding-top:100px}
     color: #081d22 !important;
   }
 }
+
+/* Stable mobile header geometry before and after scrolling. */
+.pika-brand-image { display:block; width:auto!important; height:36px!important; max-width:140px; object-fit:contain; }
+.pika-brand-image--footer { background:#fff; padding:8px 12px; border-radius:8px; height:52px!important; }
+@media(max-width:991.98px) {
+ .pika-orbit .top-header-info,.pika-orbit .top-header-info.is-scrolled { left:0!important; right:0!important; width:100%!important; box-sizing:border-box; padding:10px 14px 0!important; transform:none!important; transition:none!important; }
+ .pika-orbit #navbar,.pika-orbit .top-header-info.is-scrolled #navbar { width:100%!important; height:62px!important; min-height:62px!important; margin:0!important; border-radius:16px!important; transform:none!important; transition:box-shadow .2s!important; }
+ .pika-orbit #navbar .logo-brand { flex:0 0 auto; width:auto!important; margin:0!important; }
+ .pika-orbit #navbar .pika-brand-image { height:32px!important; width:auto!important; max-width:120px; }
+}
+
+/* Remove Bootstrap's vertical nav padding: the full-height child was displaced by it. */
+@media(max-width:991.98px) {
+ .pika-orbit #navbar,.pika-orbit .top-header-info.is-scrolled #navbar { padding:0!important; box-sizing:border-box; }
+ .pika-orbit #navbar > .container-fluid { height:100%!important; min-height:0!important; box-sizing:border-box; align-items:center!important; }
+ .pika-orbit #navbar .navbar-toggler { width:44px; height:44px; padding:0!important; flex:0 0 44px; }
+}

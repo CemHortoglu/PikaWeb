@@ -2915,16 +2915,7 @@ textarea.pika-input {
     overflow: hidden;
 }
 
-.pika-sol-value-card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, #84c225, #2aaa5e);
-    border-radius: 16px 16px 0 0;
-}
+.pika-sol-value-card::before { content: none; }
 
 .pika-sol-value-card:hover {
     transform: translateY(-4px);
@@ -3525,14 +3516,7 @@ textarea.pika-input {
     overflow: hidden;
 }
 
-.pika-sol-usecase-card::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--pika-primary), #2aaa5e);
-    border-radius: 16px 16px 0 0;
-}
+.pika-sol-usecase-card::before { content: none; }
 
 .pika-sol-usecase-card:hover {
     transform: translateY(-4px);

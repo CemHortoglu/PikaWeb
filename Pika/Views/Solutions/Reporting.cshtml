@@ -70,55 +70,9 @@
                 </div>
             }
         </div>
-        <div class="inner-scene" aria-label="@(tr ? "Platformun çalışma biçimini anlatan örnek görünüm" : "Illustrative view of how the platform works")">
-            <div class="inner-scene-orbit" aria-hidden="true"></div>
-            <div class="inner-scene-window">
-                <div class="inner-window-bar">
-                    <strong>pika<span>✳</span></strong>
-                    <span>Analytics &amp; Reporting</span>
-                    <small>@(tr ? "Örnek görünüm" : "Illustration")</small>
-                </div>
-                <div class="inner-flow" style="padding:16px 18px" aria-hidden="true">
-                    <div>
-                        <i class="ri-megaphone-line" aria-hidden="true"></i>
-                        <span><strong style="margin:0">@(tr ? "KAMPANYA" : "CAMPAIGN")</strong></span>
-                        <b>01</b>
-                    </div>
-                    <span class="inner-flow-link" style="height:10px"></span>
-                    <div>
-                        <i class="ri-signal-tower-line" aria-hidden="true"></i>
-                        <span><strong style="margin:0">@(tr ? "KANAL" : "CHANNEL")</strong></span>
-                        <b>02</b>
-                    </div>
-                    <span class="inner-flow-link" style="height:10px"></span>
-                    <div>
-                        <i class="ri-group-line" aria-hidden="true"></i>
-                        <span><strong style="margin:0">@(tr ? "KİTLE" : "AUDIENCE")</strong></span>
-                        <b>03</b>
-                    </div>
-                    <span class="inner-flow-link" style="height:10px"></span>
-                    <div>
-                        <i class="ri-mail-check-line" aria-hidden="true"></i>
-                        <span><strong style="margin:0">@(tr ? "TESLİMAT" : "DELIVERY")</strong></span>
-                        <b>04</b>
-                    </div>
-                    <span class="inner-flow-link" style="height:10px"></span>
-                    <div>
-                        <i class="ri-cursor-line" aria-hidden="true"></i>
-                        <span><strong style="margin:0">@(tr ? "ETKİLEŞİM" : "ENGAGEMENT")</strong></span>
-                        <b>05</b>
-                    </div>
-                    <span class="inner-flow-link" style="height:10px"></span>
-                    <div>
-                        <i class="ri-line-chart-line" aria-hidden="true"></i>
-                        <span><strong style="margin:0">@(tr ? "ATIF" : "ATTRIBUTION")</strong></span>
-                        <b>06</b>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<div class="inner-scene reporting-chart-scene"><div class="pw2-telemetry-stage measurement-report"><div class="report-heading"><div><span class="studio-kicker">PIKA ANALYTICS</span><h3>@(tr ? "İletişimden alışverişe" : "From communication to purchase")</h3></div><small>@(tr ? "Örnek rapor · 30 gün" : "Sample report · 30 days")</small></div><div class="report-summary"><div><small>@(tr ? "İlişkilendirilen ciro" : "Attributed revenue")</small><strong>₺84.250</strong></div><span>@(tr ? "Temaslarla ilişkili siparişler" : "Orders associated with touchpoints")</span></div>
+ <div class="report-chart" role="img" aria-label="@(tr ? "Örnek ilişkilendirilen ciro grafiği, gün 1 ile gün 30 arası. Gerçek müşteri sonucu değildir." : "Sample attributed revenue chart for days 1 to 30. Not an actual customer result.")"><div class="chart-scale"><span>30k</span><span>20k</span><span>10k</span><span>0</span></div><svg viewBox="0 0 600 200" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="measurementFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#829e45" stop-opacity=".3"/><stop offset="100%" stop-color="#829e45" stop-opacity="0"/></linearGradient></defs><path d="M0 20H600 M0 75H600 M0 130H600 M0 185H600" stroke="#e3e8dc" stroke-width="1"/><path d="M0 164 C35 164 45 124 80 132 S135 170 170 118 S220 150 265 96 S320 125 355 78 S425 112 465 52 S550 82 600 25 V200 H0Z" fill="url(#measurementFill)"/><path d="M0 164 C35 164 45 124 80 132 S135 170 170 118 S220 150 265 96 S320 125 355 78 S425 112 465 52 S550 82 600 25" fill="none" stroke="#68863c" stroke-width="3"/></svg><div class="chart-days"><span>01</span><span>10</span><span>20</span><span>30</span></div></div>
+ <div class="report-channels"><div><span class="channel-dot"></span>WhatsApp<strong>₺42.100</strong></div><div><span class="channel-dot dot-email"></span>E-mail<strong>₺28.750</strong></div><div><span class="channel-dot dot-sms"></span>SMS<strong>₺13.400</strong></div></div><p class="report-note">@(tr ? "Gösterim amaçlı veriler. İlişkilendirme, satışın yalnızca kampanyadan kaynaklandığını göstermez." : "Illustrative data. Attribution does not establish that a campaign alone caused a sale.")</p></div></div></div></section>
 <div id="inner-content" class="inner-anchor"></div>
 
 @* ── STICKY SUBNAV ───────────────────────────────────────────── *@
@@ -1049,3 +1003,5 @@
         </div>
     </div>
 </section>
+
+@section Scripts { <script src="~/js/pika-report-chart.js" asp-append-version="true" defer></script> }

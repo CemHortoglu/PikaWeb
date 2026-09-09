@@ -291,7 +291,7 @@ public class C08JourneyManagerPageTests : IClassFixture<WebApplicationFactory<Pr
 
         Assert.DoesNotContain("wikiBase", viewContent, StringComparison.OrdinalIgnoreCase);
         Assert.DoesNotContain("/wiki/", viewContent, StringComparison.OrdinalIgnoreCase);
-        Assert.DoesNotContain("<img", viewContent, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("pika-story-image", viewContent, StringComparison.OrdinalIgnoreCase);
         Assert.DoesNotContain("@section JsonLd", viewContent);
         Assert.DoesNotContain("ViewData[\"Title\"]", viewContent);
         Assert.DoesNotContain("ViewData[\"MetaDescription\"]", viewContent);
